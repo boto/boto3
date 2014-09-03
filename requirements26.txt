@@ -1,0 +1,3 @@
+simplejson==3.3.0
+ordereddict==1.1
+unittest2==0.5.1
