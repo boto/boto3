@@ -32,7 +32,7 @@ def setup_default_session(**kwargs):
     global default_session
     default_session = Session(**kwargs)
 
-def connect(service, **kwargs):
+def client(service):
     """
     Create a low-level service client by name using the default session.
 
@@ -44,8 +44,21 @@ def connect(service, **kwargs):
     if default_session is None:
         setup_default_session()
 
-    return default_session.connect(service, **kwargs)
+    return default_session.client(service)
 
+def resource(service):
+    """
+    Create a resource service client by name using the default session.
+
+    :type service: string
+    :param service: The name of a service, e.g. 's3' or 'ec2'
+
+    :return: Resource client instance
+    """
+    if default_session is None:
+        setup_default_session()
+
+    return default_session.resource(service)
 
 # Set up logging to ``/dev/null`` like a library is supposed to.
 # http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library

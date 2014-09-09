@@ -13,31 +13,71 @@
 
 import botocore.session
 
+from .service import ServiceClient
+from .resource import ResourceFactory
+
 
 class Session(object):
     """
     A session stores configuration state and allows you to create service
     clients and resources.
-    """
-    def __init__(self, access_key=None, secret_key=None, security_token=None,
-                 region=None):
-        self._bc_session = botocore.session.Session()
 
-        if access_key or secret_key or security_token:
-            self._bc_session.set_credentials(access_key, secret_key,
-                                             security_token)
+    :type aws_access_key_id: string
+    :param aws_access_key_id: AWS access key ID
+    :type aws_secret_access_key: string
+    :param aws_secret_access_key: AWS secret access key
+    :type aws_session_token: string
+    :param aws_session_token: AWS temporary session token
+    :type region: string
+    :param region: Default region when creating new connections
+    :type botocore_session: botocore.session.Session
+    :param botocore_session: Use this Botocore session instead of creating
+                             a new default one.
+    """
+    def __init__(self, aws_access_key_id=None, aws_secret_access_key=None,
+                 aws_session_token=None, region=None, botocore_session=None):
+        if botocore_session:
+            self._bc_session = botocore_session
+        else:
+            # Create a new default session
+            self._bc_session = botocore.session.Session()
+
+        if aws_access_key_id or aws_secret_access_key or aws_session_token:
+            self._bc_session.set_credentials(aws_access_key_id,
+                aws_secret_access_key, aws_session_token)
+
+        if region:
+            self._bc_session.set_config_variable('region', region)
+
+        self.resource_factory = ResourceFactory()
 
     def __repr__(self):
-        return '<boto3.session.Session({0})'.format(self.access_key)
+        return '<boto3.Session({0}:{1})'.format(
+            self._bc_session.get_config_variable('region'),
+            self._bc_session.get_credentials().access_key)
 
-    @property
-    def access_key(self):
+    def get_available_services(self):
         """
-        The current session's access key
-        """
-        return self._bc_session.get_credentials().access_key
+        Get a list of available services that can be loaded as low-level
+        clients via ``session.client(name)``.
 
-    def connect(self, service, **kwargs):
+        :rtype: list
+        :return: List of service names
+        """
+        return self._bc_session.get_available_services()
+
+    def get_available_resources(self):
+        """
+        Get a list of available services that can be loaded as resource
+        clients via ``session.resource(name)``.
+
+        :rtype: list
+        :return: List of service names
+        """
+        # TODO: Implement me!
+        return []
+
+    def client(self, service):
         """
         Create a low-level service client by name using the default session.
 
@@ -46,5 +86,18 @@ class Session(object):
 
         :return: Service client instance
         """
-        # TODO: Create a service client and return it
+        # TODO: Create a service client in botocore and return it
+        # return self._bc_session.create_client(service_name=service,
+        #                                       region_name=self.region)
+        raise NotImplementedError()
+
+    def resource(self, service):
+        """
+        Create a resource service client by name using the default session.
+
+        :type service: string
+        :param service: The name of a service, e.g. 's3' or 'ec2'
+
+        :return: Resource client instance
+        """
         raise NotImplementedError()
