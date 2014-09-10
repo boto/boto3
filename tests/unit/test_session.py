@@ -15,7 +15,7 @@ from boto3.session import Session
 from tests import mock, unittest
 
 
-class SessionTest(unittest.TestCase):
+class TestSession(unittest.TestCase):
     def setUp(self):
         self.bc_session_patch = mock.patch('botocore.session.Session', autospec=True)
         self.BCSession = self.bc_session_patch.start()
@@ -27,7 +27,7 @@ class SessionTest(unittest.TestCase):
         Session()
 
         self.assertTrue(self.BCSession.called,
-            'Botocore session was not created, something is wrong!')
+            'Botocore session was not created!')
 
     def test_credentials_can_be_set(self):
         bc_session = self.BCSession.return_value
@@ -37,6 +37,8 @@ class SessionTest(unittest.TestCase):
                 aws_secret_access_key='secret',
                 aws_session_token='token')
 
+        self.assertTrue(self.BCSession.called,
+            'Botocore session was not created!')
         self.assertTrue(bc_session.set_credentials.called,
             'Botocore session set_credentials not called from constructor!')
         bc_session.set_credentials.assert_called_with(

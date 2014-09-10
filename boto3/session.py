@@ -13,9 +13,6 @@
 
 import botocore.session
 
-from .service import ServiceClient
-from .resource import ResourceFactory
-
 
 class Session(object):
     """
@@ -36,25 +33,23 @@ class Session(object):
     """
     def __init__(self, aws_access_key_id=None, aws_secret_access_key=None,
                  aws_session_token=None, region=None, botocore_session=None):
-        if botocore_session:
-            self._bc_session = botocore_session
+        if botocore_session is not None:
+            self._session = botocore_session
         else:
             # Create a new default session
-            self._bc_session = botocore.session.Session()
+            self._session = botocore.session.Session()
 
         if aws_access_key_id or aws_secret_access_key or aws_session_token:
-            self._bc_session.set_credentials(aws_access_key_id,
+            self._session.set_credentials(aws_access_key_id,
                 aws_secret_access_key, aws_session_token)
 
         if region:
-            self._bc_session.set_config_variable('region', region)
-
-        self.resource_factory = ResourceFactory()
+            self._session.set_config_variable('region', region)
 
     def __repr__(self):
         return '<boto3.Session({0}:{1})'.format(
-            self._bc_session.get_config_variable('region'),
-            self._bc_session.get_credentials().access_key)
+            self._session.get_config_variable('region'),
+            self._session.get_credentials().access_key)
 
     def get_available_services(self):
         """
@@ -64,7 +59,7 @@ class Session(object):
         :rtype: list
         :return: List of service names
         """
-        return self._bc_session.get_available_services()
+        return self._session.get_available_services()
 
     def get_available_resources(self):
         """

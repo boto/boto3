@@ -21,7 +21,7 @@ __version__ = '0.0.1'
 
 
 # The default Boto3 session; autoloaded when needed.
-default_session = None
+DEFAULT_SESSION = None
 
 def setup_default_session(**kwargs):
     """
@@ -29,8 +29,20 @@ def setup_default_session(**kwargs):
     constructor. There is no need to call this unless you wish to pass custom
     parameters, because a default session will be created for you.
     """
-    global default_session
-    default_session = Session(**kwargs)
+    global DEFAULT_SESSION
+    DEFAULT_SESSION = Session(**kwargs)
+
+def _get_default_session():
+    """
+    Get the default session, creating one if needed.
+
+    :rtype: boto3.session.Sesssion
+    :return: The default session
+    """
+    if DEFAULT_SESSION is None:
+        setup_default_session()
+
+    return DEFAULT_SESSION
 
 def client(service):
     """
@@ -41,10 +53,7 @@ def client(service):
 
     :return: Service client instance
     """
-    if default_session is None:
-        setup_default_session()
-
-    return default_session.client(service)
+    return _get_default_session().client(service)
 
 def resource(service):
     """
@@ -55,10 +64,7 @@ def resource(service):
 
     :return: Resource client instance
     """
-    if default_session is None:
-        setup_default_session()
-
-    return default_session.resource(service)
+    return _get_default_session().resource(service)
 
 # Set up logging to ``/dev/null`` like a library is supposed to.
 # http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
