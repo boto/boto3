@@ -13,6 +13,8 @@
 
 import botocore.session
 
+from .resources import ResourceFactory
+
 
 class Session(object):
     """
@@ -45,6 +47,8 @@ class Session(object):
 
         if region is not None:
             self._session.set_config_variable('region', region)
+
+        self.resource_factory = ResourceFactory()
 
     def __repr__(self):
         return '<boto3.Session({0}:{1})'.format(
@@ -82,7 +86,7 @@ class Session(object):
         :return: Service client instance
         """
         # TODO: Create a service client in botocore and return it
-        # return self._bc_session.create_client(service_name=service,
+        # return self._session.create_client(service_name=service,
         #                                       region_name=self.region)
         raise NotImplementedError()
 
@@ -95,4 +99,7 @@ class Session(object):
 
         :return: Resource client instance
         """
-        raise NotImplementedError()
+        client = self.client(service)
+        klass = self.resource_factory.get(service)
+        resource = klass(client=client)
+        return resource

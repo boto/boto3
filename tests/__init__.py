@@ -30,5 +30,15 @@ else:
     from unittest import mock
 
 
-class TestCase(unittest.TestCase):
-    pass
+class BaseTestCase(unittest.TestCase):
+    """
+    A base test case which mocks out the low-level session to prevent
+    any actual calls to Botocore.
+    """
+    def setUp(self):
+        self.bc_session_patch = mock.patch('botocore.session.Session',
+                                           autospec=True)
+        self.bc_session_cls = self.bc_session_patch.start()
+
+    def tearDown(self):
+        self.bc_session_patch.stop()

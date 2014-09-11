@@ -12,32 +12,26 @@
 # language governing permissions and limitations under the License.
 
 from boto3.session import Session
-from tests import mock, unittest
+from boto3.resources import ServiceResource
+from tests import mock, unittest, BaseTestCase
 
 
-class TestSession(unittest.TestCase):
-    def setUp(self):
-        self.bc_session_patch = mock.patch('botocore.session.Session', autospec=True)
-        self.BCSession = self.bc_session_patch.start()
-
-    def tearDown(self):
-        self.bc_session_patch.stop()
-
+class TestSession(BaseTestCase):
     def test_arguments_not_required(self):
         Session()
 
-        self.assertTrue(self.BCSession.called,
+        self.assertTrue(self.bc_session_cls.called,
             'Botocore session was not created!')
 
     def test_credentials_can_be_set(self):
-        bc_session = self.BCSession.return_value
+        bc_session = self.bc_session_cls.return_value
 
         # Set values in constructor
         Session(aws_access_key_id='key',
                 aws_secret_access_key='secret',
                 aws_session_token='token')
 
-        self.assertTrue(self.BCSession.called,
+        self.assertTrue(self.bc_session_cls.called,
             'Botocore session was not created!')
         self.assertTrue(bc_session.set_credentials.called,
             'Botocore session set_credentials not called from constructor!')
@@ -45,16 +39,16 @@ class TestSession(unittest.TestCase):
             'key', 'secret', 'token')
 
     def test_custom_session(self):
-        bc_session = self.BCSession()
-        self.BCSession.reset_mock()
+        bc_session = self.bc_session_cls()
+        self.bc_session_cls.reset_mock()
 
         Session(botocore_session=bc_session)
 
         # No new session was created
-        self.assertFalse(self.BCSession.called)
+        self.assertFalse(self.bc_session_cls.called)
 
     def test_get_available_services(self):
-        bc_session = self.BCSession.return_value
+        bc_session = self.bc_session_cls.return_value
 
         session = Session()
         session.get_available_services()
@@ -62,12 +56,10 @@ class TestSession(unittest.TestCase):
         self.assertTrue(bc_session.get_available_services.called,
             'Botocore session get_available_services not called!')
 
-    @unittest.skip(True)
     def test_get_available_resources(self):
-        # TODO: Once implemented, write this test!
-        # session = Session()
-        # session.get_available_resources()
-        pass
+        session = Session()
+        resources = session.get_available_resources()
+        self.assertIsInstance(resources, list)
 
     @unittest.skip(True)
     def test_create_client(self):
@@ -76,9 +68,20 @@ class TestSession(unittest.TestCase):
         # session.client('sqs')
         pass
 
-    @unittest.skip(True)
     def test_create_resource(self):
-        # TODO: Once implemented, write this test!
-        # session = Session()
-        # session.resource('sqs')
-        pass
+        session = Session()
+        session.client = mock.Mock()
+        session.resource_factory.get = mock.Mock()
+        klass = session.resource_factory.get.return_value
+
+        sqs = session.resource('sqs')
+
+        self.assertTrue(session.client.called,
+            'No low-level client was created!')
+        self.assertTrue(session.resource_factory.get.called,
+            'Resource factory did not look up class!')
+        self.assertTrue(klass.called,
+            'Resource instance was not created!')
+        self.assertEqual(sqs, klass.return_value,
+            'Returned instance is not an instance of the looked up resource '
+            'class from the factory!')
