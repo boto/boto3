@@ -43,7 +43,7 @@ class Session(object):
             self._session.set_credentials(aws_access_key_id,
                 aws_secret_access_key, aws_session_token)
 
-        if region:
+        if region is not None:
             self._session.set_config_variable('region', region)
 
     def __repr__(self):
