@@ -49,9 +49,9 @@ class TestBoto3(unittest.TestCase):
         boto3.client('sqs')
 
         self.assertTrue(setup_session.called,
-            'setup_default_session not called!')
+            'setup_default_session not called')
         self.assertTrue(boto3.DEFAULT_SESSION.client.called,
-            'Default session client method not called!')
+            'Default session client method not called')
 
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
@@ -61,9 +61,9 @@ class TestBoto3(unittest.TestCase):
         boto3.client('sqs')
 
         self.assertFalse(setup_session.called,
-            'setup_default_session should not have been called!')
+            'setup_default_session should not have been called')
         self.assertTrue(boto3.DEFAULT_SESSION.client.called,
-            'Default session client method not called!')
+            'Default session client method not called')
 
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
@@ -73,9 +73,9 @@ class TestBoto3(unittest.TestCase):
         boto3.resource('sqs')
 
         self.assertTrue(setup_session.called,
-            'setup_default_session not called!')
+            'setup_default_session not called')
         self.assertTrue(boto3.DEFAULT_SESSION.resource.called,
-            'Default session resource method not called!')
+            'Default session resource method not called')
 
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
@@ -85,6 +85,6 @@ class TestBoto3(unittest.TestCase):
         boto3.resource('sqs')
 
         self.assertFalse(setup_session.called,
-            'setup_default_session should not have been called!')
+            'setup_default_session should not have been called')
         self.assertTrue(boto3.DEFAULT_SESSION.resource.called,
-            'Default session resource method not called!')
+            'Default session resource method not called')

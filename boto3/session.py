@@ -100,6 +100,5 @@ class Session(object):
         :return: Resource client instance
         """
         client = self.client(service)
-        klass = self.resource_factory.get(service)
-        resource = klass(client=client)
-        return resource
+        cls = self.resource_factory.create_class(service)
+        return cls(client=client)

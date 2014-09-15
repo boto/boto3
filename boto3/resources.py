@@ -11,15 +11,14 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-import jmespath
 import logging
 import os
-
-import boto3
-
-from botocore import xform_name
 from functools import partial
 
+import jmespath
+from botocore import xform_name
+
+import boto3
 from .compat import json, OrderedDict
 
 
@@ -82,7 +81,7 @@ class ServiceResource(object):
         for identifier in self.identifiers:
             if getattr(self, identifier) is None:
                 raise ValueError(
-                    'Required parameter {0} not set!'.format(identifier))
+                    'Required parameter {0} not set'.format(identifier))
 
     def __str__(self):
         return "{0}: {1} in {2}".format(
@@ -100,13 +99,13 @@ class ResourceFactory(object):
     within the service (e.g. an SQS Queue resource).
 
         >>> factory = ResourceFactory()
-        >>> S3 = factory.get('s3')
-        >>> Bucket = factory.get('s3', name='Bucket')
-        >>> SQS = factory.get('sqs')
-        >>> Queue = factory.get('sqs', name='Queue')
+        >>> S3Resource = factory.create_class('s3')
+        >>> S3BucketResource = factory.create_class('s3', name='Bucket')
+        >>> SQSResource = factory.create_class('sqs')
+        >>> SQSQueueResource = factory.create_class('sqs', name='Queue')
 
     """
-    def get(self, service, name=None, version='latest'):
+    def create_class(self, service, name=None, version=None):
         """
         Create a new resource class for a service or service resource.
 
@@ -116,27 +115,27 @@ class ResourceFactory(object):
         :param name: Name of the resource to look up. If not given, then the
                      service resource itself is returned.
         :type version: string
-        :param version: The service version to load. 'latest' will look up
-                        the latest available version for you.
+        :param version: The service version to load. A value of ``None`` will
+                        load the latest available version.
         """
-        if version == 'latest':
+        if version is None:
             version = get_latest_version(service)
 
         path = os.path.join(RESOURCE_ROOT,
                            '{0}-{1}.resources.json'.format(service, version))
 
-        logger.info('Loading {0}:{1} from {2}'.format(service, name, path))
+        logger.info('Loading %s:%s from %s', service, name, path)
         model = json.load(open(path), object_pairs_hook=OrderedDict)
 
         if name is None:
-            klass = self._load(service, service, model.get('service', {}),
+            cls = self._load(service, service, model.get('service', {}),
                                model.get('resources', {}), version)
         else:
-            klass = self._load(service, name,
+            cls = self._load(service, name,
                                model.get('resources', {}).get(name, {}),
                                {}, version)
 
-        return klass
+        return cls
 
     def _load(self, service_name, resource_name, model, resource_defs, version):
         """
@@ -161,8 +160,8 @@ class ResourceFactory(object):
 
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
         for name, resource in resource_defs.items():
-            klass = self.get(service_name, name=name, version=version)
-            attrs[name] = self._create_class(klass)
+            cls = self.create_class(service_name, name=name, version=version)
+            attrs[name] = self._create_class_partial(cls)
 
         # Create the name based on the requested service and resource
         name = resource_name + 'Resource'
@@ -173,10 +172,9 @@ class ResourceFactory(object):
             # Python 2 requires string type names
             name = name.encode('utf-8')
 
-        # Create and return the new class type
         return type(name, (ServiceResource,), attrs)
 
-    def _create_class(factory_self, resource):
+    def _create_class_partial(factory_self, resource_cls):
         """
         Creates a new method which acts as a functools.partial, passing
         along the instance's low-level `client` to the new resource
@@ -184,13 +182,13 @@ class ResourceFactory(object):
         """
         # We need a new method here because we want access to the
         # instance's client.
-        def dummy(self, *args, **kwargs):
-            return partial(resource, client=self.client)(*args, **kwargs)
+        def create_resource(self, *args, **kwargs):
+            return partial(resource_cls, client=self.client)(*args, **kwargs)
 
         # Generate documentation about required and optional params
         doc = 'Create a new instance of {0}\n\nRequired identifiers:\n'
 
-        for identifier in resource.identifiers:
+        for identifier in resource_cls.identifiers:
             doc += ':type {0}: string\n'.format(identifier)
             doc += ':param {0}: {0} identifier\n'.format(identifier)
 
@@ -198,10 +196,9 @@ class ResourceFactory(object):
         doc += ':type client: botocore.client\n'
         doc += ':param client: Low-level Botocore client instance\n'
 
-        doc += '\n:rtype: {0}\n'.format(resource)
+        doc += '\n:rtype: {0}\n'.format(resource_cls)
         doc += ':return: A new resource instance'
 
-        # Name is something like `create_sqs_queue_resource`
-        dummy.__name__ = 'create_' + xform_name(resource.__name__)
-        dummy.__doc__ = doc.format(resource)
-        return dummy
+        create_resource.__name__ = resource_cls.__name__
+        create_resource.__doc__ = doc.format(resource_cls)
+        return create_resource

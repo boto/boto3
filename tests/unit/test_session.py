@@ -21,7 +21,7 @@ class TestSession(BaseTestCase):
         Session()
 
         self.assertTrue(self.bc_session_cls.called,
-            'Botocore session was not created!')
+            'Botocore session was not created')
 
     def test_credentials_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
@@ -32,9 +32,9 @@ class TestSession(BaseTestCase):
                 aws_session_token='token')
 
         self.assertTrue(self.bc_session_cls.called,
-            'Botocore session was not created!')
+            'Botocore session was not created')
         self.assertTrue(bc_session.set_credentials.called,
-            'Botocore session set_credentials not called from constructor!')
+            'Botocore session set_credentials not called from constructor')
         bc_session.set_credentials.assert_called_with(
             'key', 'secret', 'token')
 
@@ -54,7 +54,7 @@ class TestSession(BaseTestCase):
         session.get_available_services()
 
         self.assertTrue(bc_session.get_available_services.called,
-            'Botocore session get_available_services not called!')
+            'Botocore session get_available_services not called')
 
     def test_get_available_resources(self):
         session = Session()
@@ -71,17 +71,17 @@ class TestSession(BaseTestCase):
     def test_create_resource(self):
         session = Session()
         session.client = mock.Mock()
-        session.resource_factory.get = mock.Mock()
-        klass = session.resource_factory.get.return_value
+        session.resource_factory.create_class = mock.Mock()
+        cls = session.resource_factory.create_class.return_value
 
         sqs = session.resource('sqs')
 
         self.assertTrue(session.client.called,
-            'No low-level client was created!')
-        self.assertTrue(session.resource_factory.get.called,
-            'Resource factory did not look up class!')
-        self.assertTrue(klass.called,
-            'Resource instance was not created!')
-        self.assertEqual(sqs, klass.return_value,
+            'No low-level client was created')
+        self.assertTrue(session.resource_factory.create_class.called,
+            'Resource factory did not look up class')
+        self.assertTrue(cls.called,
+            'Resource instance was not created')
+        self.assertEqual(sqs, cls.return_value,
             'Returned instance is not an instance of the looked up resource '
-            'class from the factory!')
+            'class from the factory')
