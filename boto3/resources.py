@@ -159,7 +159,7 @@ class ResourceFactory(object):
             attrs[snake_cased] = None
 
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
-        for name, resource in resource_defs.items():
+        for name, resource_def in resource_defs.items():
             cls = self.create_class(service_name, name=name, version=version)
             attrs[name] = self._create_class_partial(cls)
 
