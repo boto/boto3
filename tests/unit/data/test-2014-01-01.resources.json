@@ -1,0 +1,120 @@
+{
+  "doc": "This is a sample service description used for tests",
+  "service": {
+    "hasMany": {
+      "Queues": {
+        "request": { "operation":"ListQueues" },
+        "resource": {
+          "type":"Queue",
+          "identifiers": [
+            { "target":"Url", "sourceType":"responsePath", "source":"QueueUrls[]" }
+          ]
+        }
+      }
+    },
+    "actions": {
+      "GetQueueByName": {
+        "request": { "operation":"GetQueueUrl" },
+        "resource": {
+          "type":"Queue",
+          "identifiers": [
+            { "target":"Url", "sourceType":"responsePath", "source":"QueueUrl" }
+          ]
+        }
+      },
+      "CreateQueue": {
+        "request": { "operation":"CreateQueue" },
+        "resource": {
+          "type":"Queue",
+          "identifiers": [
+            { "target":"Url", "sourceType":"responsePath", "source":"QueueUrl" }
+          ]
+        }
+      }
+    }
+  },
+  "resources": {
+    "Queue": {
+      "shape":"GetQueueAttributesResult",
+      "identifiers": [
+        { "name": "Url" }
+      ],
+      "load": {
+        "request": {
+          "operation":"GetQueueAttributes",
+          "params": [
+            { "target":"QueueUrl", "sourceType":"identifier", "source":"Url" },
+            { "target":"AttributeNames[]", "sourceType":"string", "source":"All" }
+          ]
+        },
+        "path":"$"
+      },
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation":"DeleteQueue",
+            "params": [
+              { "target":"QueueUrl", "sourceType":"identifier", "source":"Url" }
+            ]
+          }
+        },
+        "ReceiveMessages": {
+          "request": {
+            "operation":"ReceiveMessage",
+            "params": [
+              { "target":"QueueUrl", "sourceType":"identifier", "source":"Url" }
+            ]
+          },
+          "resource": {
+            "type":"Message",
+            "identifiers": [
+              { "target":"QueueUrl", "sourceType":"identifier", "source":"Url" },
+              { "target":"ReceiptHandle", "sourceType":"responsePath", "source":"Messages[].ReceiptHandle" }
+            ]
+          },
+          "path":"Messages[]"
+        },
+        "SendMessage": {
+          "request": {
+            "operation":"SendMessage",
+            "params": [
+              { "target":"QueueUrl", "sourceType":"identifier", "source":"Url" }
+            ]
+          }
+        }
+      },
+      "subResources": {
+        "resources": ["Message"],
+        "identifiers": { "Url": "QueueUrl" }
+      }
+    },
+    "Message": {
+      "identifiers": [
+        { "name":"QueueUrl" },
+        { "name":"ReceiptHandle" }
+      ],
+      "shape":"Message",
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation":"DeleteMessage",
+            "params": [
+              { "target":"QueueUrl", "sourceType":"identifier", "source":"QueueUrl" },
+              { "target":"ReceiptHandle", "sourceType":"identifier", "source":"ReceiptHandle" }
+            ]
+          }
+        }
+      },
+      "hasOne": {
+        "Queue": {
+          "resource": {
+            "type":"Queue",
+            "identifiers": [
+              { "target":"Url", "sourceType":"identifier", "source":"QueueUrl" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
