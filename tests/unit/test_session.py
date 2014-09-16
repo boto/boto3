@@ -12,7 +12,6 @@
 # language governing permissions and limitations under the License.
 
 from boto3.session import Session
-from boto3.resources import ServiceResource
 from tests import mock, unittest, BaseTestCase
 
 

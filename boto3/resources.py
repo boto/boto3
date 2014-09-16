@@ -117,6 +117,8 @@ class ResourceFactory(object):
         :type version: string
         :param version: The service version to load. A value of ``None`` will
                         load the latest available version.
+        :rtype: Subclass of ``ServiceResource``
+        :return: The service or resource class.
         """
         if version is None:
             version = get_latest_version(service)
@@ -128,20 +130,33 @@ class ResourceFactory(object):
         model = json.load(open(path), object_pairs_hook=OrderedDict)
 
         if name is None:
-            cls = self._load(service, service, model.get('service', {}),
-                               model.get('resources', {}), version)
+            cls = self.load_from_definition(service, service,
+                model.get('service', {}), model.get('resources', {}), version)
         else:
-            cls = self._load(service, name,
-                               model.get('resources', {}).get(name, {}),
-                               {}, version)
+            cls = self.load_from_definition(service, name,
+                model.get('resources', {}).get(name, {}), {}, version)
 
         return cls
 
-    def _load(self, service_name, resource_name, model, resource_defs, version):
+    def load_from_definition(self, service_name, resource_name, model,
+                             resource_defs):
         """
         Loads a resource from a model, creating a new ServiceResource subclass
         with the correct properties and methods, named based on the service
         and resource name, e.g. EC2InstanceResource.
+
+        :type service: string
+        :param service: Name of the service to look up
+        :type resource_name: string
+        :param resource_name: Name of the resource to look up. For services,
+                              this should match the ``service_name``.
+        :type model: dict
+        :param model: The service or resource definition.
+        :type resource_defs: dict
+        :param resource_defs: The service's resource definitions, used to load
+                              subresources (e.g. ``sqs.Queue``).
+        :rtype: Subclass of ``ServiceResource``
+        :return: The service or resource class.
         """
         # Set some basic info
         attrs = {
@@ -160,7 +175,8 @@ class ResourceFactory(object):
 
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
         for name, resource_def in resource_defs.items():
-            cls = self.create_class(service_name, name=name, version=version)
+            cls = self.load_from_definition(service_name, name,
+                resource_defs.get(name), {})
             attrs[name] = self._create_class_partial(cls)
 
         # Create the name based on the requested service and resource
