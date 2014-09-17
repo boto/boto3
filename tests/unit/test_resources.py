@@ -40,7 +40,7 @@ class TestResourceFactory(BaseTestCase):
             self.assertTrue(self.factory.load_from_definition.called,
                 'Class was not loaded from definition')
             self.factory.load_from_definition.assert_called_with(
-                'test', 'test', {}, {}, '2014-01-01')
+                'test', 'test', {}, {})
 
     def test_create_resource_calls_load(self):
         self.factory.load_from_definition = mock.Mock()
@@ -51,7 +51,7 @@ class TestResourceFactory(BaseTestCase):
             self.assertTrue(self.factory.load_from_definition.called,
                 'Class was not loaded from definition')
             self.factory.load_from_definition.assert_called_with(
-                'test', 'Queue', {}, {}, '2014-01-01')
+                'test', 'Queue', {}, {})
 
     def test_get_service_returns_resource_class(self):
         TestResource = self.load('test', 'test', {}, {})
@@ -166,3 +166,59 @@ class TestResourceFactory(BaseTestCase):
 
         with self.assertRaises(ValueError):
             resource.Queue()
+
+    def test_non_service_resource_missing_defs(self):
+        # Only services should get dangling defs
+        defs = {
+            'Queue': {
+                'identifiers': [
+                    {'name': 'Url'}
+                ]
+            },
+            'Message': {
+                'identifiers': [
+                    {'name': 'QueueUrl'},
+                    {'name': 'ReceiptHandle'}
+                ]
+            }
+        }
+
+        model = defs['Queue']
+
+        queue = self.load('test', 'Queue', model, defs)('url')
+
+        self.assertTrue(not hasattr(queue, 'Queue'))
+        self.assertTrue(not hasattr(queue, 'Message'))
+
+    def test_subresource_requires_only_identifier(self):
+        defs = {
+            'Queue': {
+                'identifiers': [
+                    {'name': 'Url'}
+                ],
+                'subResources': {
+                    'resources': ['Message'],
+                    'identifiers': {'Url': 'QueueUrl'}
+                }
+            },
+            'Message': {
+                'identifiers': [
+                    {'name': 'QueueUrl'},
+                    {'name': 'ReceiptHandle'}
+                ]
+            }
+        }
+
+        model = defs['Queue']
+
+        queue = self.load('test', 'Queue', model, defs)('url')
+
+        # Let's create a message and only give it a receipt handle
+        # The required queue_url identifier should be set from the
+        # queue itself.
+        message = queue.Message('receipt')
+
+        self.assertEqual(message.queue_url, 'url',
+            'Wrong queue URL set on the message resource instance')
+        self.assertEqual(message.receipt_handle, 'receipt',
+            'Wrong receipt handle set on the message resource instance')

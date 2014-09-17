@@ -129,12 +129,14 @@ class ResourceFactory(object):
         logger.info('Loading %s:%s from %s', service, name, path)
         model = json.load(open(path), object_pairs_hook=OrderedDict)
 
+        resource_defs = model.get('resources', {})
+
         if name is None:
             cls = self.load_from_definition(service, service,
-                model.get('service', {}), model.get('resources', {}), version)
+                model.get('service', {}), resource_defs)
         else:
             cls = self.load_from_definition(service, name,
-                model.get('resources', {}).get(name, {}), {}, version)
+                resource_defs.get(name, {}), resource_defs)
 
         return cls
 
@@ -174,10 +176,23 @@ class ResourceFactory(object):
             attrs[snake_cased] = None
 
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
-        for name, resource_def in resource_defs.items():
-            cls = self.load_from_definition(service_name, name,
-                resource_defs.get(name), {})
-            attrs[name] = self._create_class_partial(cls)
+        if service_name == resource_name:
+            # This is a service, so dangle all the resource_defs as if
+            # they were subresources of the service itself.
+            for name, resource_def in resource_defs.items():
+                cls = self.load_from_definition(service_name, name,
+                    resource_defs.get(name), resource_defs)
+                attrs[name] = self._create_class_partial(cls)
+
+        # For non-services, subresources are explicitly listed
+        sub_resources = model.get('subResources', {})
+        if sub_resources:
+            identifiers = sub_resources.get('identifiers', {})
+            for name in sub_resources.get('resources'):
+                klass = self.load_from_definition(service_name, name,
+                    resource_defs.get(name), resource_defs)
+                attrs[name] = self._create_class_partial(klass,
+                    identifiers=identifiers)
 
         # Create the name based on the requested service and resource
         name = resource_name + 'Resource'
@@ -190,7 +205,7 @@ class ResourceFactory(object):
 
         return type(name, (ServiceResource,), attrs)
 
-    def _create_class_partial(factory_self, resource_cls):
+    def _create_class_partial(factory_self, resource_cls, identifiers=None):
         """
         Creates a new method which acts as a functools.partial, passing
         along the instance's low-level `client` to the new resource
@@ -199,7 +214,19 @@ class ResourceFactory(object):
         # We need a new method here because we want access to the
         # instance's client.
         def create_resource(self, *args, **kwargs):
-            return partial(resource_cls, client=self.client)(*args, **kwargs)
+            pargs = []
+
+            # Assumes that identifiers are in order, which lets you do
+            # e.g. ``sqs.Queue('foo').Message('bar')`` to create a new message
+            # linked with the ``foo`` queue and which has a ``bar`` receipt
+            # handle. If we did kwargs here then future positional arguments
+            # would lead to failure.
+            if identifiers is not None:
+                for key, value in identifiers.items():
+                    pargs.append(getattr(self, xform_name(key)))
+
+            return partial(resource_cls, *pargs, client=self.client)(*args,
+                                                                     **kwargs)
 
         # Generate documentation about required and optional params
         doc = 'Create a new instance of {0}\n\nRequired identifiers:\n'

@@ -13,6 +13,7 @@
 
 import botocore.session
 
+from .service import ServiceClient
 from .resources import ResourceFactory
 
 
@@ -88,7 +89,8 @@ class Session(object):
         # TODO: Create a service client in botocore and return it
         # return self._session.create_client(service_name=service,
         #                                       region_name=self.region)
-        raise NotImplementedError()
+        region = self._session.get_config_variable('region') or 'us-east-1'
+        return ServiceClient(service, region, session=self._session)
 
     def resource(self, service):
         """
