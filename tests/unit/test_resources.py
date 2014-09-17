@@ -32,7 +32,6 @@ class TestResourceFactory(BaseTestCase):
         self.version_patch.stop()
 
     def test_create_service_calls_load(self):
-        load = self.factory.load_from_definition
         self.factory.load_from_definition = mock.Mock()
         with mock.patch('boto3.resources.open',
                         mock.mock_open(read_data='{}'), create=True):
@@ -42,10 +41,8 @@ class TestResourceFactory(BaseTestCase):
                 'Class was not loaded from definition')
             self.factory.load_from_definition.assert_called_with(
                 'test', 'test', {}, {}, '2014-01-01')
-            self.factory.load_from_definition = load
 
     def test_create_resource_calls_load(self):
-        load = self.factory.load_from_definition
         self.factory.load_from_definition = mock.Mock()
         with mock.patch('boto3.resources.open',
                         mock.mock_open(read_data='{}'), create=True):
@@ -55,7 +52,6 @@ class TestResourceFactory(BaseTestCase):
                 'Class was not loaded from definition')
             self.factory.load_from_definition.assert_called_with(
                 'test', 'Queue', {}, {}, '2014-01-01')
-            self.factory.load_from_definition = load
 
     def test_get_service_returns_resource_class(self):
         TestResource = self.load('test', 'test', {}, {})
