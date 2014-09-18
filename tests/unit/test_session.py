@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from boto3.session import Session
-from tests import mock, unittest, BaseTestCase
+from tests import mock, BaseTestCase
 
 
 class TestSession(BaseTestCase):
@@ -60,12 +60,16 @@ class TestSession(BaseTestCase):
         resources = session.get_available_resources()
         self.assertIsInstance(resources, list)
 
-    @unittest.skip(True)
     def test_create_client(self):
-        # TODO: Once implemented, write this test!
-        # session = Session()
-        # session.client('sqs')
-        pass
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session()
+        client = session.client('sqs')
+
+        self.assertTrue(bc_session.create_client.called,
+            'No low-level client was created')
+        self.assertTrue(client,
+            'No low-level client was returned')
 
     def test_create_resource(self):
         session = Session()
