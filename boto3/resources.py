@@ -47,6 +47,88 @@ def get_latest_version(name):
     return sorted(entries, reverse=True)[0][len(name) + 1:len(name) + 11]
 
 
+class ServiceAction(object):
+    """
+    A class representing a callable action on a resource, for example
+    ``sqs.get_queue_by_name(...)`` or ``s3.Bucket('foo').delete()``.
+    The action may construct parameters from existing resource identifiers
+    and may return either a raw response or a new resource instance.
+
+    TODO: Move this to its own file
+
+    :type factory: ResourceFactory
+    :param factory: The factory that created the resource class to which
+                    this action is attached.
+    :type action_def: dict
+    :param action_def: The action definition.
+    :type resource_defs: dict
+    :param resource_defs: Service resource definitions.
+    """
+    def __init__(self, factory, action_def, resource_defs):
+        self.factory = factory
+        self.action_def = action_def
+        self.resource_defs = resource_defs
+
+    def create_request_parameters(self, parent, request_def):
+        """
+        Handle request parameters that can be filled in from identifiers,
+        resource data members or constants.
+
+        :type parent: ServiceResource
+        :param parent: The resource instance to which this action is attached.
+        :type request_def: dict
+        :param request_def: The action request definition.
+        :rtype: dict
+        :return: Pre-filled parameters to be sent to the request operation.
+        """
+        params = {}
+
+        for param in request_def.get('params', []):
+            source = param.get('source', '')
+            source_type = param.get('sourceType', '')
+            target = param.get('target', '')
+
+            if source_type in ['identifier', 'dataMember']:
+                # Resource identifier, e.g. queue.url
+                params[target] = getattr(parent, xform_name(source))
+            elif source_type in ['string', 'integer', 'boolean']:
+                # These are hard-coded values in the definition
+                params[target] = source
+            else:
+                raise NotImplementedError(
+                    'Unsupported source type: {0}'.format(source_type))
+
+        return params
+
+    def __call__(self, parent, *args, **kwargs):
+        """
+        Perform the action's request operation after building operation
+        parameters and build any defined resources from the response.
+
+        :type parent: ServiceResource
+        :param parent: The resource instance to which this action is attached.
+        :rtype: dict or ServiceResource or list(ServiceResource)
+        :return: The response, either as a raw dict or resource instance(s).
+        """
+        request_def = self.action_def.get('request', {})
+        operation_name = xform_name(request_def.get('operation', ''))
+
+        # First, build predefined params and then update with the
+        # user-supplied kwargs, which allows overriding the pre-built
+        # params if needed.
+        params = self.create_request_parameters(parent, request_def)
+        params.update(kwargs)
+
+        logger.info('Calling %s:%s with %r', parent.service_name,
+            operation_name, params)
+
+        response = getattr(parent.client, operation_name)(**params)
+
+        logger.debug('Response: %r', response)
+
+        return response
+
+
 class ServiceResource(object):
     """
     A base class for resources.
@@ -194,6 +276,11 @@ class ResourceFactory(object):
                 attrs[name] = self._create_class_partial(klass,
                     identifiers=identifiers)
 
+        for name, action in model.get('actions', {}).items():
+            snake_cased = xform_name(name)
+            attrs[snake_cased] = self._create_action(service_name,
+                name, snake_cased, action, resource_defs)
+
         # Create the name based on the requested service and resource
         name = resource_name + 'Resource'
         if service_name != resource_name:
@@ -245,3 +332,26 @@ class ResourceFactory(object):
         create_resource.__name__ = resource_cls.__name__
         create_resource.__doc__ = doc.format(resource_cls)
         return create_resource
+
+    def _create_action(factory_self, service_name, action_name,
+                       snake_cased, action_def, resource_defs):
+        """
+        Creates a new method which makes a request to the underlying
+        AWS service.
+        """
+        # Create the action in in this closure but before the ``do_action``
+        # method below is invoked, which allows instances of the resource
+        # to share the ServiceAction instance.
+        action = ServiceAction(factory_self, action_def, resource_defs)
+
+        # We need a new method here because we want access to the
+        # instance via ``self``.
+        def do_action(self, *args, **kwargs):
+            return action(self, *args, **kwargs)
+
+        if not isinstance(snake_cased, str):
+            snake_cased = snake_cased.encode('utf-8')
+
+        do_action.__name__ = snake_cased
+        do_action.__doc__ = 'TODO'
+        return do_action

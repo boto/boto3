@@ -1,18 +1,161 @@
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You
+# Licensed under the Apache License, Version 2.0 (the 'License'). You
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
 # http://aws.amazon.com/apache2.0/
 #
-# or in the "license" file accompanying this file. This file is
-# distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+# or in the 'license' file accompanying this file. This file is
+# distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from boto3.resources import ServiceResource, ResourceFactory
+from boto3.resources import ServiceAction, ServiceResource, ResourceFactory
 from tests import BaseTestCase, mock
+
+
+class SimpleObject(object): pass
+
+
+class TestServiceActionParams(BaseTestCase):
+    def test_service_action_params_identifier(self):
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrl',
+                        'sourceType': 'identifier',
+                        'source': 'Url'
+                    }
+                ]
+            }
+        }
+
+        parent = SimpleObject()
+        parent.url = 'w-url'
+
+        action = ServiceAction(None, action_def, {})
+        params = action.create_request_parameters(parent, action_def['request'])
+
+        self.assertEqual(params['WarehouseUrl'], 'w-url')
+
+    def test_service_action_params_data_member(self):
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrl',
+                        'sourceType': 'dataMember',
+                        'source': 'some_member'
+                    }
+                ]
+            }
+        }
+
+        parent = SimpleObject()
+        parent.some_member = 'w-url'
+
+        action = ServiceAction(None, action_def, {})
+        params = action.create_request_parameters(parent, action_def['request'])
+
+        self.assertEqual(params['WarehouseUrl'], 'w-url')
+
+    def test_service_action_params_constants(self):
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'Param1',
+                        'sourceType': 'string',
+                        'source': 'param1'
+                    },
+                    {
+                        'target': 'Param2',
+                        'sourceType': 'integer',
+                        'source': 123
+                    },
+                    {
+                        'target': 'Param3',
+                        'sourceType': 'boolean',
+                        'source': True
+                    }
+                ]
+            }
+        }
+
+        action = ServiceAction(None, action_def, {})
+        params = action.create_request_parameters(None, action_def['request'])
+
+        self.assertEqual(params['Param1'], 'param1')
+        self.assertEqual(params['Param2'], 123)
+        self.assertEqual(params['Param3'], True)
+
+    def test_service_action_params_invalid(self):
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'Param1',
+                        'sourceType': 'invalid',
+                        'source': 'param1'
+                    }
+                ]
+            }
+        }
+
+        action = ServiceAction(None, action_def, {})
+
+        with self.assertRaises(NotImplementedError):
+            action.create_request_parameters(None, action_def['request'])
+
+
+class TestServiceActionCall(BaseTestCase):
+    def test_service_action_creates_params(self):
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            }
+        }
+
+        resource = mock.Mock()
+
+        action = ServiceAction(None, action_def, {})
+        action.create_request_parameters = mock.Mock()
+        action.create_request_parameters.return_value = {}
+
+        action(resource, foo=1)
+
+        self.assertTrue(action.create_request_parameters.called)
+
+    def test_service_action_calls_operation(self):
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            }
+        }
+
+        resource = mock.Mock()
+        operation = resource.client.get_frobs
+        operation.return_value = 'response'
+
+        action = ServiceAction(None, action_def, {})
+        action.create_request_parameters = mock.Mock()
+        action.create_request_parameters.return_value = {
+            'bar': 'baz'
+        }
+
+        response = action(resource, foo=1)
+
+        self.assertTrue(operation.called)
+        operation.assert_called_with(foo=1, bar='baz')
+        self.assertEqual(response, 'response')
 
 
 class TestResourceFactory(BaseTestCase):
@@ -73,9 +216,9 @@ class TestResourceFactory(BaseTestCase):
 
     def test_factory_sets_identifiers(self):
         model = {
-            "identifiers": [
-                {"name": "QueueUrl"},
-                {"name": "ReceiptHandle"},
+            'identifiers': [
+                {'name': 'QueueUrl'},
+                {'name': 'ReceiptHandle'},
             ],
         }
 
