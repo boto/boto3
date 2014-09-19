@@ -15,9 +15,6 @@ from boto3.resources import ServiceAction, ServiceResource, ResourceFactory
 from tests import BaseTestCase, mock
 
 
-class SimpleObject(object): pass
-
-
 class TestServiceActionParams(BaseTestCase):
     def test_service_action_params_identifier(self):
         action_def = {
@@ -33,7 +30,7 @@ class TestServiceActionParams(BaseTestCase):
             }
         }
 
-        parent = SimpleObject()
+        parent = mock.Mock()
         parent.url = 'w-url'
 
         action = ServiceAction(None, action_def, {})
@@ -55,7 +52,7 @@ class TestServiceActionParams(BaseTestCase):
             }
         }
 
-        parent = SimpleObject()
+        parent = mock.Mock()
         parent.some_member = 'w-url'
 
         action = ServiceAction(None, action_def, {})

@@ -278,8 +278,8 @@ class ResourceFactory(object):
 
         for name, action in model.get('actions', {}).items():
             snake_cased = xform_name(name)
-            attrs[snake_cased] = self._create_action(service_name,
-                name, snake_cased, action, resource_defs)
+            attrs[snake_cased] = self._create_action(snake_cased,
+                action, resource_defs)
 
         # Create the name based on the requested service and resource
         name = resource_name + 'Resource'
@@ -333,8 +333,7 @@ class ResourceFactory(object):
         create_resource.__doc__ = doc.format(resource_cls)
         return create_resource
 
-    def _create_action(factory_self, service_name, action_name,
-                       snake_cased, action_def, resource_defs):
+    def _create_action(factory_self, snake_cased, action_def, resource_defs):
         """
         Creates a new method which makes a request to the underlying
         AWS service.
