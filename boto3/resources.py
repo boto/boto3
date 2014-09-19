@@ -282,15 +282,15 @@ class ResourceFactory(object):
                 action, resource_defs)
 
         # Create the name based on the requested service and resource
-        name = resource_name + 'Resource'
+        cls_name = resource_name + 'Resource'
         if service_name != resource_name:
-            name = service_name + name
+            cls_name = service_name + cls_name
 
-        if not isinstance(name, str):
+        if not isinstance(cls_name, str):
             # Python 2 requires string type names
-            name = name.encode('utf-8')
+            cls_name = cls_name.encode('utf-8')
 
-        return type(name, (ServiceResource,), attrs)
+        return type(cls_name, (ServiceResource,), attrs)
 
     def _create_class_partial(factory_self, resource_cls, identifiers=None):
         """
