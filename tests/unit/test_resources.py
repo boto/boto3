@@ -362,3 +362,23 @@ class TestResourceFactory(BaseTestCase):
             'Wrong queue URL set on the message resource instance')
         self.assertEqual(message.receipt_handle, 'receipt',
             'Wrong receipt handle set on the message resource instance')
+
+    @mock.patch('boto3.resources.ServiceAction')
+    def test_resource_calls_action(self, action_cls):
+        model = {
+            'actions': {
+                'GetMessageStatus': {
+                    'request': {
+                        'operation': 'DescribeMessageStatus'
+                    }
+                }
+            }
+        }
+
+        action = action_cls.return_value
+
+        queue = self.load('test', 'Queue', model, {})()
+        queue.get_message_status('arg1', arg2=2)
+
+        self.assertTrue(action.called, 'Action was never called')
+        action.assert_called_with(queue, 'arg1', arg2=2)
