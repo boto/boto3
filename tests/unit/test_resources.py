@@ -150,7 +150,6 @@ class TestServiceActionCall(BaseTestCase):
 
         response = action(resource, foo=1)
 
-        self.assertTrue(operation.called)
         operation.assert_called_with(foo=1, bar='baz')
         self.assertEqual(response, 'response')
 
@@ -380,5 +379,4 @@ class TestResourceFactory(BaseTestCase):
         queue = self.load('test', 'Queue', model, {})()
         queue.get_message_status('arg1', arg2=2)
 
-        self.assertTrue(action.called, 'Action was never called')
         action.assert_called_with(queue, 'arg1', arg2=2)
