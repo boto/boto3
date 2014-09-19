@@ -36,7 +36,8 @@ class TestServiceActionParams(BaseTestCase):
         action = ServiceAction(None, action_def, {})
         params = action.create_request_parameters(parent, action_def['request'])
 
-        self.assertEqual(params['WarehouseUrl'], 'w-url')
+        self.assertEqual(params['WarehouseUrl'], 'w-url',
+            'Parameter not set from resource identifier')
 
     def test_service_action_params_data_member(self):
         action_def = {
@@ -58,7 +59,8 @@ class TestServiceActionParams(BaseTestCase):
         action = ServiceAction(None, action_def, {})
         params = action.create_request_parameters(parent, action_def['request'])
 
-        self.assertEqual(params['WarehouseUrl'], 'w-url')
+        self.assertEqual(params['WarehouseUrl'], 'w-url',
+            'Parameter not set from resource property')
 
     def test_service_action_params_constants(self):
         action_def = {
@@ -87,9 +89,12 @@ class TestServiceActionParams(BaseTestCase):
         action = ServiceAction(None, action_def, {})
         params = action.create_request_parameters(None, action_def['request'])
 
-        self.assertEqual(params['Param1'], 'param1')
-        self.assertEqual(params['Param2'], 123)
-        self.assertEqual(params['Param3'], True)
+        self.assertEqual(params['Param1'], 'param1',
+            'Parameter not set from string constant')
+        self.assertEqual(params['Param2'], 123,
+            'Parameter not set from integer constant')
+        self.assertEqual(params['Param3'], True,
+            'Parameter not set from boolean constant')
 
     def test_service_action_params_invalid(self):
         action_def = {
@@ -128,7 +133,8 @@ class TestServiceActionCall(BaseTestCase):
 
         action(resource, foo=1)
 
-        self.assertTrue(action.create_request_parameters.called)
+        self.assertTrue(action.create_request_parameters.called,
+            'Parameters for operation not created')
 
     def test_service_action_calls_operation(self):
         action_def = {
@@ -151,8 +157,106 @@ class TestServiceActionCall(BaseTestCase):
         response = action(resource, foo=1)
 
         operation.assert_called_with(foo=1, bar='baz')
-        self.assertEqual(response, 'response')
+        self.assertEqual(response, 'response',
+            'Unexpected low-level response data returned')
 
+    def test_service_action_creates_resource(self):
+        factory = ResourceFactory()
+        resource = mock.Mock()
+        resource.service_name = 'test'
+        resource.id_2 = 'two'
+        resource.id_3 = 'three'
+
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id1', 'sourceType': 'responsePath',
+                     'source': 'Container.Frobs[].Id1'},
+                    {'target': 'Id2', 'sourceType': 'identifier',
+                     'source': 'Id2'},
+                    {'target': 'Id3', 'sourceType': 'dataMember',
+                     'source': 'Id3'},
+                    {'target': 'Id4', 'sourceType': 'requestParameter',
+                     'source': 'Id4'}
+                ]
+            },
+            'path': 'Container.Frobs[]'
+        }
+        resource_def = action_def['resource']
+        resource_defs = {
+            'Frob': {
+                'identifiers': [
+                    {'name': 'Id1'},
+                    {'name': 'Id2'},
+                    {'name': 'Id3'},
+                    {'name': 'Id4'}
+                ]
+            }
+        }
+
+        params = {
+            'Id4': 'four'
+        }
+        response = {
+            'Container': {
+                'Frobs': [
+                    {'Id1': 'one'}
+                ]
+            }
+        }
+
+        action = ServiceAction(factory, action_def, resource_defs)
+        response_resources = action.create_response_resource(resource,
+            params, resource_def, response)
+
+        self.assertEqual(len(response_resources), 1,
+            'Too many resources were created')
+        self.assertEqual(response_resources[0].id_1, 'one',
+            'Identifier loaded from responsePath not set')
+        self.assertEqual(response_resources[0].id_2, 'two',
+            'Identifier loaded from parent identifier not set')
+        self.assertEqual(response_resources[0].id_3, 'three',
+            'Identifier loaded from parent property not set')
+        self.assertEqual(response_resources[0].id_4, 'four',
+            'Identifier loaded from request parameter not set')
+
+    def test_service_action_resource_invalid_source_type(self):
+        factory = ResourceFactory()
+        resource = mock.Mock()
+        resource.service_name = 'test'
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id1', 'sourceType': 'bad', 'source': 'Id1'},
+                ]
+            }
+        }
+        resource_def = action_def['resource']
+        resource_defs = {
+            'Frob': {
+                'identifiers': [
+                    {'name': 'Id1'}
+                ]
+            }
+        }
+        params = {}
+        response = {}
+
+        action = ServiceAction(factory, action_def, resource_defs)
+
+        with self.assertRaises(NotImplementedError):
+            action.create_response_resource(resource, params, resource_def,
+                                            response)
 
 class TestResourceFactory(BaseTestCase):
     def setUp(self):
