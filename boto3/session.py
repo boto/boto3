@@ -13,7 +13,7 @@
 
 import botocore.session
 
-from .resources import ResourceFactory
+from .resources.factory import ResourceFactory
 
 
 class Session(object):

@@ -11,7 +11,9 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from boto3.resources import ServiceAction, ServiceResource, ResourceFactory
+from boto3.resources.action import ServiceAction
+from boto3.resources.base import ServiceResource
+from boto3.resources.factory import ResourceFactory
 from tests import BaseTestCase, mock
 
 
@@ -437,7 +439,8 @@ class TestResourceFactory(BaseTestCase):
 
         # Don't do version lookups on the filesystem, instead always return
         # a set date and mock calls to ``open`` when required.
-        self.version_patch = mock.patch('boto3.resources.get_latest_version')
+        self.version_patch = mock.patch(
+            'boto3.resources.factory.get_latest_version')
         self.version_mock = self.version_patch.start()
         self.version_mock.return_value = '2014-01-01'
 
@@ -447,7 +450,7 @@ class TestResourceFactory(BaseTestCase):
 
     def test_create_service_calls_load(self):
         self.factory.load_from_definition = mock.Mock()
-        with mock.patch('boto3.resources.open',
+        with mock.patch('boto3.resources.factory.open',
                         mock.mock_open(read_data='{}'), create=True):
             self.factory.create_class('test')
 
@@ -458,7 +461,7 @@ class TestResourceFactory(BaseTestCase):
 
     def test_create_resource_calls_load(self):
         self.factory.load_from_definition = mock.Mock()
-        with mock.patch('boto3.resources.open',
+        with mock.patch('boto3.resources.factory.open',
                         mock.mock_open(read_data='{}'), create=True):
             self.factory.create_class('test', 'Queue')
 
@@ -637,7 +640,7 @@ class TestResourceFactory(BaseTestCase):
         self.assertEqual(message.receipt_handle, 'receipt',
             'Wrong receipt handle set on the message resource instance')
 
-    @mock.patch('boto3.resources.ServiceAction')
+    @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_calls_action(self, action_cls):
         model = {
             'actions': {
