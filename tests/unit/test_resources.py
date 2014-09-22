@@ -160,12 +160,10 @@ class TestServiceActionCall(BaseTestCase):
         self.assertEqual(response, 'response',
             'Unexpected low-level response data returned')
 
-    def test_service_action_creates_resource(self):
+    def test_service_action_creates_resource_from_res_path(self):
         factory = ResourceFactory()
         resource = mock.Mock()
         resource.service_name = 'test'
-        resource.id_2 = 'two'
-        resource.id_3 = 'three'
 
         action_def = {
             'request': {
@@ -175,14 +173,8 @@ class TestServiceActionCall(BaseTestCase):
             'resource': {
                 'type': 'Frob',
                 'identifiers': [
-                    {'target': 'Id1', 'sourceType': 'responsePath',
-                     'source': 'Container.Frobs[].Id1'},
-                    {'target': 'Id2', 'sourceType': 'identifier',
-                     'source': 'Id2'},
-                    {'target': 'Id3', 'sourceType': 'dataMember',
-                     'source': 'Id3'},
-                    {'target': 'Id4', 'sourceType': 'requestParameter',
-                     'source': 'Id4'}
+                    {'target': 'Id', 'sourceType': 'responsePath',
+                     'source': 'Container.Frobs[].Id'},
                 ]
             },
             'path': 'Container.Frobs[]'
@@ -191,21 +183,16 @@ class TestServiceActionCall(BaseTestCase):
         resource_defs = {
             'Frob': {
                 'identifiers': [
-                    {'name': 'Id1'},
-                    {'name': 'Id2'},
-                    {'name': 'Id3'},
-                    {'name': 'Id4'}
+                    {'name': 'Id'}
                 ]
             }
         }
 
-        params = {
-            'Id4': 'four'
-        }
+        params = {}
         response = {
             'Container': {
                 'Frobs': [
-                    {'Id1': 'one'}
+                    {'Id': 'response-path'}
                 ]
             }
         }
@@ -216,13 +203,149 @@ class TestServiceActionCall(BaseTestCase):
 
         self.assertEqual(len(response_resources), 1,
             'Too many resources were created')
-        self.assertEqual(response_resources[0].id_1, 'one',
+        self.assertEqual(response_resources[0].id, 'response-path',
             'Identifier loaded from responsePath not set')
-        self.assertEqual(response_resources[0].id_2, 'two',
+
+    def test_service_action_creates_resource_from_identifier(self):
+        factory = ResourceFactory()
+        resource = mock.Mock()
+        resource.service_name = 'test'
+        resource.id = 'identifier'
+
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id', 'sourceType': 'identifier',
+                     'source': 'Id'}
+                ]
+            },
+            'path': 'Container.Frobs[]'
+        }
+        resource_def = action_def['resource']
+        resource_defs = {
+            'Frob': {
+                'identifiers': [
+                    {'name': 'Id'}
+                ]
+            }
+        }
+
+        params = {}
+        response = {
+            'Container': {
+                'Frobs': [
+                    {}
+                ]
+            }
+        }
+
+        action = ServiceAction(factory, action_def, resource_defs)
+        response_resources = action.create_response_resource(resource,
+            params, resource_def, response)
+
+        self.assertEqual(len(response_resources), 1,
+            'Too many resources were created')
+        self.assertEqual(response_resources[0].id, 'identifier',
             'Identifier loaded from parent identifier not set')
-        self.assertEqual(response_resources[0].id_3, 'three',
+
+    def test_service_action_creates_resource_from_data_member(self):
+        factory = ResourceFactory()
+        resource = mock.Mock()
+        resource.service_name = 'test'
+        resource.id = 'data-member'
+
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id', 'sourceType': 'dataMember',
+                     'source': 'Id'}
+                ]
+            },
+            'path': 'Container.Frobs[]'
+        }
+        resource_def = action_def['resource']
+        resource_defs = {
+            'Frob': {
+                'identifiers': [
+                    {'name': 'Id'},
+                ]
+            }
+        }
+
+        params = {}
+        response = {
+            'Container': {
+                'Frobs': [
+                    {}
+                ]
+            }
+        }
+
+        action = ServiceAction(factory, action_def, resource_defs)
+        response_resources = action.create_response_resource(resource,
+            params, resource_def, response)
+
+        self.assertEqual(len(response_resources), 1,
+            'Too many resources were created')
+        self.assertEqual(response_resources[0].id, 'data-member',
             'Identifier loaded from parent property not set')
-        self.assertEqual(response_resources[0].id_4, 'four',
+
+    def test_service_action_creates_resource_from_req_param(self):
+        factory = ResourceFactory()
+        resource = mock.Mock()
+        resource.service_name = 'test'
+
+        action_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                'params': []
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id', 'sourceType': 'requestParameter',
+                     'source': 'Id'}
+                ]
+            },
+            'path': 'Container.Frobs[]'
+        }
+        resource_def = action_def['resource']
+        resource_defs = {
+            'Frob': {
+                'identifiers': [
+                    {'name': 'Id'}
+                ]
+            }
+        }
+
+        params = {
+            'Id': 'request-parameter'
+        }
+        response = {
+            'Container': {
+                'Frobs': [
+                    {}
+                ]
+            }
+        }
+
+        action = ServiceAction(factory, action_def, resource_defs)
+        response_resources = action.create_response_resource(resource,
+            params, resource_def, response)
+
+        self.assertEqual(len(response_resources), 1,
+            'Too many resources were created')
+        self.assertEqual(response_resources[0].id, 'request-parameter',
             'Identifier loaded from request parameter not set')
 
     def test_service_action_resource_invalid_source_type(self):
@@ -257,6 +380,54 @@ class TestServiceActionCall(BaseTestCase):
         with self.assertRaises(NotImplementedError):
             action.create_response_resource(resource, params, resource_def,
                                             response)
+
+    def test_service_action_creates_single_resource(self):
+        # This is different from the examples above because only a single
+        # resource is represented in the response. The ``path`` creates
+        # a single response dict rather than a list, so only one resource
+        # instance should ever be returned.
+        factory = ResourceFactory()
+        resource = mock.Mock()
+        resource.service_name = 'test'
+
+        action_def = {
+            'request': {
+                'operation': 'GetFrob',
+                'params': []
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id', 'sourceType': 'responsePath',
+                     'source': 'Container.Id'},
+                ]
+            },
+            'path': 'Container'
+        }
+        resource_defs = {
+            'Frob': {
+                'identifiers': [
+                    {'name': 'Id'}
+                ]
+            }
+        }
+
+        params = {}
+        response = {
+            'Container': {
+                'Id': 'a-frob'
+            }
+        }
+
+        resource.client.get_frob.return_value = response
+
+        action = ServiceAction(factory, action_def, resource_defs)
+        response_resource = action(resource, **params)
+
+        self.assertIsInstance(response_resource, ServiceResource,
+            'A single resource instance was not returned')
+        self.assertEqual(response_resource.id, 'a-frob',
+            'Identifier loaded from request parameter not set')
 
 class TestResourceFactory(BaseTestCase):
     def setUp(self):
