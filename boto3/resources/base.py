@@ -26,12 +26,12 @@ class ServiceResource(object):
         if kwargs.get('client') is not None:
             self.client = kwargs.get('client')
         else:
-            self.client = boto3.client(self.service_name)
+            self.client = boto3.client(self.meta['service_name'])
 
         # Allow setting identifiers as positional arguments in the order
         # in which they were defined in the ResourceJSON.
         for i, value in enumerate(args):
-            setattr(self, self.identifiers[i], value)
+            setattr(self, self.meta['identifiers'][i], value)
 
         # Allow setting identifiers via keyword arguments. Here we need
         # extra logic to ignore other keyword arguments like ``client``.
@@ -39,13 +39,13 @@ class ServiceResource(object):
             if name == 'client':
                 continue
 
-            if name not in self.identifiers:
+            if name not in self.meta['identifiers']:
                 raise ValueError('Unknown keyword argument: {0}'.format(name))
 
             setattr(self, name, value)
 
         # Validate that all identifiers have been set.
-        for identifier in self.identifiers:
+        for identifier in self.meta['identifiers']:
             if getattr(self, identifier) is None:
                 raise ValueError(
                     'Required parameter {0} not set'.format(identifier))

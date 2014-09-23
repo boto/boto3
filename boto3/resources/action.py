@@ -90,9 +90,9 @@ class ServiceAction(object):
         :return: New resource instance(s).
         """
         resource_name = resource_def.get('type', '')
-        resource_cls = self.factory.load_from_definition(parent.service_name,
-            resource_name, self.resource_defs.get(resource_name),
-            self.resource_defs)
+        resource_cls = self.factory.load_from_definition(
+            parent.meta['service_name'], resource_name,
+            self.resource_defs.get(resource_name), self.resource_defs)
 
         raw_response = response
         search_response = response
@@ -181,7 +181,7 @@ class ServiceAction(object):
         params = self.create_request_parameters(parent, request_def)
         params.update(kwargs)
 
-        logger.info('Calling %s:%s with %r', parent.service_name,
+        logger.info('Calling %s:%s with %r', parent.meta['service_name'],
             operation_name, params)
 
         response = getattr(parent.client, operation_name)(**params)

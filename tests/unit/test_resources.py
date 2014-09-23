@@ -128,6 +128,7 @@ class TestServiceActionCall(BaseTestCase):
         }
 
         resource = mock.Mock()
+        resource.meta = {'service_name': 'test'}
 
         action = ServiceAction(None, action_def, {})
         action.create_request_parameters = mock.Mock()
@@ -147,6 +148,7 @@ class TestServiceActionCall(BaseTestCase):
         }
 
         resource = mock.Mock()
+        resource.meta = {'service_name': 'test'}
         operation = resource.client.get_frobs
         operation.return_value = 'response'
 
@@ -165,7 +167,7 @@ class TestServiceActionCall(BaseTestCase):
     def test_service_action_creates_resource_from_res_path(self):
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.service_name = 'test'
+        resource.meta = {'service_name': 'test'}
 
         action_def = {
             'request': {
@@ -211,7 +213,7 @@ class TestServiceActionCall(BaseTestCase):
     def test_service_action_creates_resource_from_identifier(self):
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.service_name = 'test'
+        resource.meta = {'service_name': 'test'}
         resource.id = 'identifier'
 
         action_def = {
@@ -258,7 +260,7 @@ class TestServiceActionCall(BaseTestCase):
     def test_service_action_creates_resource_from_data_member(self):
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.service_name = 'test'
+        resource.meta = {'service_name': 'test'}
         resource.id = 'data-member'
 
         action_def = {
@@ -305,7 +307,7 @@ class TestServiceActionCall(BaseTestCase):
     def test_service_action_creates_resource_from_req_param(self):
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.service_name = 'test'
+        resource.meta = {'service_name': 'test'}
 
         action_def = {
             'request': {
@@ -353,7 +355,7 @@ class TestServiceActionCall(BaseTestCase):
     def test_service_action_resource_invalid_source_type(self):
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.service_name = 'test'
+        resource.meta = {'service_name': 'test'}
         action_def = {
             'request': {
                 'operation': 'GetFrobs',
@@ -390,7 +392,7 @@ class TestServiceActionCall(BaseTestCase):
         # instance should ever be returned.
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.service_name = 'test'
+        resource.meta = {'service_name': 'test'}
 
         action_def = {
             'request': {
@@ -485,7 +487,7 @@ class TestResourceFactory(BaseTestCase):
     def test_factory_sets_service_name(self):
         QueueResource = self.load('test', 'Queue', {}, {})
 
-        self.assertEqual(QueueResource.service_name, 'test',
+        self.assertEqual(QueueResource.meta['service_name'], 'test',
             'Service name not set')
 
     def test_factory_sets_identifiers(self):
@@ -498,11 +500,11 @@ class TestResourceFactory(BaseTestCase):
 
         MessageResource = self.load('test', 'Message', model, {})
 
-        self.assertTrue(hasattr(MessageResource, 'identifiers'),
+        self.assertTrue('identifiers' in MessageResource.meta,
             'Class has no identifiers')
-        self.assertIn('queue_url', MessageResource.identifiers,
+        self.assertIn('queue_url', MessageResource.meta['identifiers'],
             'Missing queue_url identifier from model')
-        self.assertIn('receipt_handle', MessageResource.identifiers,
+        self.assertIn('receipt_handle', MessageResource.meta['identifiers'],
             'Missing receipt_handle identifier from model')
 
     def test_factory_creates_dangling_resources(self):

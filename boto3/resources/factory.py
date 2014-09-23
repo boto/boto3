@@ -117,10 +117,12 @@ class ResourceFactory(object):
         :return: The service or resource class.
         """
         # Set some basic info
-        attrs = {
+        meta = {
             'service_name': service_name,
-            'model': model,
             'identifiers': [],
+        }
+        attrs = {
+            'meta': meta,
         }
 
         # Populate required identifiers. These are arguments without which
@@ -128,7 +130,7 @@ class ResourceFactory(object):
         # operations on the resource.
         for identifier in model.get('identifiers', []):
             snake_cased = xform_name(identifier['name'])
-            attrs['identifiers'].append(snake_cased)
+            meta['identifiers'].append(snake_cased)
             attrs[snake_cased] = None
 
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
@@ -192,7 +194,7 @@ class ResourceFactory(object):
         # Generate documentation about required and optional params
         doc = 'Create a new instance of {0}\n\nRequired identifiers:\n'
 
-        for identifier in resource_cls.identifiers:
+        for identifier in resource_cls.meta['identifiers']:
             doc += ':type {0}: string\n'.format(identifier)
             doc += ':param {0}: {0} identifier\n'.format(identifier)
 
