@@ -24,9 +24,9 @@ class ServiceResource(object):
     def __init__(self, *args, **kwargs):
         # Create a default client if none was passed
         if kwargs.get('client') is not None:
-            self.client = kwargs.get('client')
+            self.meta['client'] = kwargs.get('client')
         else:
-            self.client = boto3.client(self.meta['service_name'])
+            self.meta['client'] = boto3.client(self.meta['service_name'])
 
         # Allow setting identifiers as positional arguments in the order
         # in which they were defined in the ResourceJSON.
@@ -53,6 +53,6 @@ class ServiceResource(object):
     def __str__(self):
         return "{0}: {1} in {2}".format(
             self.__class__.__name__,
-            self.service_name,
-            self.client.endpoint.region_name,
+            self.meta['service_name'],
+            self.meta['client']._endpoint.region_name,
         )

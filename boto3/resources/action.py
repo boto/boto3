@@ -150,7 +150,7 @@ class ServiceAction(object):
         :return: New resource instance.
         """
         kwargs = {
-            'client': parent.client,
+            'client': parent.meta.get('client'),
         }
 
         for name, value in identifiers.items():
@@ -184,7 +184,7 @@ class ServiceAction(object):
         logger.info('Calling %s:%s with %r', parent.meta['service_name'],
             operation_name, params)
 
-        response = getattr(parent.client, operation_name)(**params)
+        response = getattr(parent.meta['client'], operation_name)(**params)
 
         logger.debug('Response: %r', response)
 

@@ -128,7 +128,10 @@ class TestServiceActionCall(BaseTestCase):
         }
 
         resource = mock.Mock()
-        resource.meta = {'service_name': 'test'}
+        resource.meta = {
+            'service_name': 'test',
+            'client': mock.Mock(),
+        }
 
         action = ServiceAction(None, action_def, {})
         action.create_request_parameters = mock.Mock()
@@ -148,8 +151,11 @@ class TestServiceActionCall(BaseTestCase):
         }
 
         resource = mock.Mock()
-        resource.meta = {'service_name': 'test'}
-        operation = resource.client.get_frobs
+        resource.meta = {
+            'service_name': 'test',
+            'client': mock.Mock(),
+        }
+        operation = resource.meta['client'].get_frobs
         operation.return_value = 'response'
 
         action = ServiceAction(None, action_def, {})
@@ -392,7 +398,10 @@ class TestServiceActionCall(BaseTestCase):
         # instance should ever be returned.
         factory = ResourceFactory()
         resource = mock.Mock()
-        resource.meta = {'service_name': 'test'}
+        resource.meta = {
+            'service_name': 'test',
+            'client': mock.Mock(),
+        }
 
         action_def = {
             'request': {
@@ -423,7 +432,7 @@ class TestServiceActionCall(BaseTestCase):
             }
         }
 
-        resource.client.get_frob.return_value = response
+        resource.meta['client'].get_frob.return_value = response
 
         action = ServiceAction(factory, action_def, resource_defs)
         response_resource = action(resource, **params)
@@ -520,6 +529,36 @@ class TestResourceFactory(BaseTestCase):
         self.assertTrue(hasattr(TestResource, 'Message'),
             'Missing Message class from model')
 
+    def test_factory_fails_on_clobber_identifier(self):
+        model = {
+            'identifiers': [
+                {'name': 'Meta'}
+            ]
+        }
+
+        # This fails because each resource has a `meta` defined.
+        with self.assertRaises(ValueError):
+            self.load('test', 'test', model, {})
+
+    def test_factory_fails_on_clobber_action(self):
+        model = {
+            'identifiers': [
+                {'name': 'Test'}
+            ],
+            'actions': {
+                'Test': {
+                    'request': {
+                        'operation': 'GetTest'
+                    }
+                }
+            }
+        }
+
+        # This fails because the resource has an identifier
+        # that would be clobbered by the action name.
+        with self.assertRaises(ValueError):
+            self.load('test', 'test', model, {})
+
     def test_can_instantiate_service_resource(self):
         TestResource = self.load('test', 'test', {}, {})
         resource = TestResource()
@@ -569,7 +608,7 @@ class TestResourceFactory(BaseTestCase):
         resource = self.load('test', 'test', {}, defs)()
         q = resource.Queue('test')
 
-        self.assertEqual(resource.client, q.client,
+        self.assertEqual(resource.meta['client'], q.meta['client'],
             'Client was not shared to dangling resource instance')
 
     def test_dangling_resource_requires_identifier(self):

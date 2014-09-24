@@ -130,6 +130,7 @@ class ResourceFactory(object):
         # operations on the resource.
         for identifier in model.get('identifiers', []):
             snake_cased = xform_name(identifier['name'])
+            self._check_allowed_name(attrs, snake_cased)
             meta['identifiers'].append(snake_cased)
             attrs[snake_cased] = None
 
@@ -154,6 +155,7 @@ class ResourceFactory(object):
 
         for name, action in model.get('actions', {}).items():
             snake_cased = xform_name(name)
+            self._check_allowed_name(attrs, snake_cased)
             attrs[snake_cased] = self._create_action(snake_cased,
                 action, resource_defs)
 
@@ -167,6 +169,21 @@ class ResourceFactory(object):
             cls_name = cls_name.encode('utf-8')
 
         return type(cls_name, (ServiceResource,), attrs)
+
+    def _check_allowed_name(self, attrs, name):
+        """
+        Determine if a given name is allowed on the instance, and if not,
+        then raise an exception. This prevents public attributes of the
+        class from being clobbered, e.g. since we define ``Resource.meta``,
+        no identifier may be named ``meta``. Another example: no action
+        named ``queue_items`` may be added after an identifier of the same
+        name has been added.
+
+        :raises: ValueError
+        """
+        if name in attrs:
+            raise ValueError('Identifier `{0}` would clobber existing '
+                             'resource attribute'.format(name))
 
     def _create_class_partial(factory_self, resource_cls, identifiers=None):
         """
@@ -188,8 +205,8 @@ class ResourceFactory(object):
                 for key, value in identifiers.items():
                     pargs.append(getattr(self, xform_name(key)))
 
-            return partial(resource_cls, *pargs, client=self.client)(*args,
-                                                                     **kwargs)
+            return partial(resource_cls, *pargs,
+                client=self.meta.get('client'))(*args, **kwargs)
 
         # Generate documentation about required and optional params
         doc = 'Create a new instance of {0}\n\nRequired identifiers:\n'
