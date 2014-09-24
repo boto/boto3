@@ -36,11 +36,14 @@ class ServiceAction(object):
     :param action_def: The action definition.
     :type resource_defs: dict
     :param resource_defs: Service resource definitions.
+    :type service_model: `botocore.model.ServiceModel`
+    :param service_model: The Botocore service model
     """
-    def __init__(self, factory, action_def, resource_defs):
+    def __init__(self, factory, action_def, resource_defs, service_model):
         self.factory = factory
         self.action_def = action_def
         self.resource_defs = resource_defs
+        self.service_model = service_model
 
     def create_request_parameters(self, parent, request_def):
         """
@@ -63,13 +66,24 @@ class ServiceAction(object):
 
             if source_type in ['identifier', 'dataMember']:
                 # Resource identifier, e.g. queue.url
-                params[target] = getattr(parent, xform_name(source))
+                value = getattr(parent, xform_name(source))
             elif source_type in ['string', 'integer', 'boolean']:
                 # These are hard-coded values in the definition
-                params[target] = source
+                value = source
             else:
                 raise NotImplementedError(
                     'Unsupported source type: {0}'.format(source_type))
+
+            # Basic reverse jmespath support for lists
+            # TODO: I believe this may get added into jmespath eventually?
+            # TODO: support foo.bar.baz and foo.bar[0].baz
+            # jmespath.create_structure(params, target, value)
+            if target.endswith('[]'):
+                params[target[:-2]] = [value]
+            elif target.endswith('[0]'):
+                params[target[:-3]] = [value]
+            else:
+                params[target] = value
 
         return params
 
@@ -92,7 +106,8 @@ class ServiceAction(object):
         resource_name = resource_def.get('type', '')
         resource_cls = self.factory.load_from_definition(
             parent.meta['service_name'], resource_name,
-            self.resource_defs.get(resource_name), self.resource_defs)
+            self.resource_defs.get(resource_name), self.resource_defs,
+            self.service_model)
 
         raw_response = response
         search_response = response
