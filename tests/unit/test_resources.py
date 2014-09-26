@@ -786,7 +786,7 @@ class TestResourceFactory(BaseTestCase):
             'ETag property returned wrong value')
         action.assert_called_once()
 
-        # Both parames should have been loaded into the data bag
+        # Both params should have been loaded into the data bag
         self.assertIn('ETag', resource.meta['data'])
         self.assertIn('LastModified', resource.meta['data'])
 

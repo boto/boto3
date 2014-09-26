@@ -75,8 +75,10 @@ class ResourceFactory(object):
         :type version: string
         :param version: The service version to load. A value of ``None`` will
                         load the latest available version.
-        :type service_model: `botocore.model.ServiceModel`
-        :param service_model: The Botocore service model
+        :type service_model: ``botocore.model.ServiceModel``
+        :param service_model: The Botocore service model, required only if the
+                              resource shape contains members. This is used to
+                              expose lazy-loaded attributes on the resource.
         :rtype: Subclass of ``ServiceResource``
         :return: The service or resource class.
         """
@@ -117,8 +119,10 @@ class ResourceFactory(object):
         :type resource_defs: dict
         :param resource_defs: The service's resource definitions, used to load
                               subresources (e.g. ``sqs.Queue``).
-        :type service_model: `botocore.model.ServiceModel`
-        :param service_model: The Botocore service model
+        :type service_model: ``botocore.model.ServiceModel``
+        :param service_model: The Botocore service model, required only if the
+                              resource shape contains members. This is used to
+                              expose lazy-loaded attributes on the resource.
         :rtype: Subclass of ``ServiceResource``
         :return: The service or resource class.
         """
@@ -288,18 +292,20 @@ class ResourceFactory(object):
         action = ServiceAction(factory_self, action_def, resource_defs,
                                service_model)
 
-        # We need a new method here because we want access to the
-        # instance via ``self``.
-        def do_action(self, *args, **kwargs):
-            response = action(self, *args, **kwargs)
-
-            # A resource's ``load`` method is special because it sets
-            # values on the resource instead of returning the response.
-            if is_load:
+        # A resource's ``load`` method is special because it sets
+        # values on the resource instead of returning the response.
+        if is_load:
+            # We need a new method here because we want access to the
+            # instance via ``self``.
+            def do_action(self, *args, **kwargs):
+                response = action(self, *args, **kwargs)
                 self.meta['data'] = response
-                return
-
-            return response
+        else:
+            # We need a new method here because we want access to the
+            # instance via ``self``.
+            def do_action(self, *args, **kwargs):
+                response = action(self, *args, **kwargs)
+                return response
 
         if not isinstance(snake_cased, str):
             snake_cased = snake_cased.encode('utf-8')
