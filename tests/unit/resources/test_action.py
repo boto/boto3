@@ -355,11 +355,19 @@ class TestServiceActionCall(BaseTestCase):
         resource_def = action_def['resource']
         resource_defs = {
             'Frob': {
+                'shape': 'Frob',
                 'identifiers': [
                     {'name': 'Id'}
                 ]
             }
         }
+        service_model = mock.Mock()
+        shape = mock.Mock()
+        shape.members = {
+            'Id': None,
+            'OtherValue': None,
+        }
+        service_model.shape_for.return_value = shape
 
         params = {
             'Id': 'request-parameter'
@@ -367,12 +375,15 @@ class TestServiceActionCall(BaseTestCase):
         response = {
             'Container': {
                 'Frobs': [
-                    {}
+                    {
+                        'OtherValue': 'other',
+                    }
                 ]
             }
         }
 
-        action = ServiceAction(factory, action_def, resource_defs, None)
+        action = ServiceAction(factory, action_def, resource_defs,
+                               service_model)
         response_resources = action.create_response_resource(resource,
             params, resource_def, response)
 
@@ -380,6 +391,8 @@ class TestServiceActionCall(BaseTestCase):
             'Too many resources were created')
         self.assertEqual(response_resources[0].id, 'request-parameter',
             'Identifier loaded from request parameter not set')
+        self.assertEqual(response_resources[0].other_value, 'other',
+            'Attribute loaded from response not set')
 
     def test_service_action_resource_invalid_source_type(self):
         factory = ResourceFactory()
@@ -442,25 +455,37 @@ class TestServiceActionCall(BaseTestCase):
         }
         resource_defs = {
             'Frob': {
+                'shape': 'Frob',
                 'identifiers': [
                     {'name': 'Id'}
                 ]
             }
         }
+        service_model = mock.Mock()
+        shape = mock.Mock()
+        shape.members = {
+            'Id': None,
+            'OtherValue': None,
+        }
+        service_model.shape_for.return_value = shape
 
         params = {}
         response = {
             'Container': {
-                'Id': 'a-frob'
+                'Id': 'a-frob',
+                'OtherValue': 'other',
             }
         }
 
         resource.meta['client'].get_frob.return_value = response
 
-        action = ServiceAction(factory, action_def, resource_defs, None)
+        action = ServiceAction(factory, action_def, resource_defs,
+                               service_model)
         response_resource = action(resource, **params)
 
         self.assertIsInstance(response_resource, ServiceResource,
             'A single resource instance was not returned')
         self.assertEqual(response_resource.id, 'a-frob',
             'Identifier loaded from request parameter not set')
+        self.assertEqual(response_resource.other_value, 'other',
+            'Attribute loaded from response not set')

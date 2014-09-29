@@ -111,9 +111,16 @@ class ServiceAction(object):
 
         raw_response = response
         search_response = response
+        resource_data = None
+
+        # Anytime a path is defined, it means the response contains the
+        # resource's attributes, so resource_data gets set here. It
+        # eventually ends up in resource.meta['data'], which is where
+        # the attribute properties look for data.
         path = self.action_def.get('path', None)
         if path:
             search_response = jmespath.search(path, raw_response)
+            resource_data = search_response
 
         # First, we parse all the identifiers, then create the individual
         # response resources using them. Any identifiers that are lists
@@ -141,16 +148,18 @@ class ServiceAction(object):
 
         if isinstance(search_response, list):
             response = []
-            for response_item in search_response:
+            for i, response_item in enumerate(search_response):
+                item_data = resource_data and resource_data[i]
                 response.append(self.handle_response_item(resource_cls,
-                    parent, identifiers))
+                    parent, identifiers, item_data))
         else:
             response = self.handle_response_item(resource_cls,
-                parent, identifiers)
+                parent, identifiers, resource_data)
 
         return response
 
-    def handle_response_item(self, resource_cls, parent, identifiers):
+    def handle_response_item(self, resource_cls, parent, identifiers,
+                             resource_data):
         """
         Handles the creation of a single response item by setting
         parameters and creating the appropriate resource instance.
@@ -161,6 +170,8 @@ class ServiceAction(object):
         :param parent: The resource instance to which this action is attached.
         :type identifiers: dict
         :param identifiers: Map of identifier names to value or values.
+        :type resource_data: dict or None
+        :param resource_data: Data for resource attributes.
         :rtype: ServiceResource
         :return: New resource instance.
         """
@@ -175,7 +186,12 @@ class ServiceAction(object):
 
             kwargs[name] = value
 
-        return resource_cls(**kwargs)
+        resource = resource_cls(**kwargs)
+
+        if resource_data is not None:
+            resource.meta['data'] = resource_data
+
+        return resource
 
     def __call__(self, parent, *args, **kwargs):
         """
