@@ -154,9 +154,11 @@ class ResourceFactory(object):
         return type(cls_name, (ServiceResource,), attrs)
 
     def _load_identifiers(self, attrs, meta, model):
-        # Populate required identifiers. These are arguments without which
-        # the resource cannot be used. Identifiers become arguments for
-        # operations on the resource.
+        """
+        Populate required identifiers. These are arguments without which
+        the resource cannot be used. Identifiers become arguments for
+        operations on the resource.
+        """
         for identifier in model.get('identifiers', []):
             snake_cased = xform_name(identifier['name'])
             self._check_allowed_name(attrs, snake_cased)
@@ -165,6 +167,11 @@ class ResourceFactory(object):
 
     def _load_subresources(self, attrs, service_name, resource_name,
                            model, resource_defs, service_model):
+        """
+        Creates subresource classes which hang off the instance. Each
+        subresource is a bound partial method that returns a resource
+        instance which shares the client and identifiers of the parent.
+        """
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
         if service_name == resource_name:
             # This is a service, so dangle all the resource_defs as if
@@ -185,8 +192,11 @@ class ResourceFactory(object):
                     identifiers=identifiers)
 
     def _load_actions(self, attrs, model, resource_defs, service_model):
-        # Actions on the resource become methods, with the ``load`` method
-        # being a special case which sets internal data for attributes.
+        """
+        Actions on the resource become methods, with the ``load`` method
+        being a special case which sets internal data for attributes, and
+        ``reload`` is an alias for ``load``.
+        """
         if 'load' in model:
             load_def = model.get('load')
 
@@ -201,6 +211,12 @@ class ResourceFactory(object):
                 action, resource_defs, service_model)
 
     def _load_attributes(self, attrs, meta, model, service_model):
+        """
+        Load resource attributes based on the resource shape. The shape
+        name is referenced in the resource JSON, but the shape itself
+        is defined in the Botocore service JSON, hence the need for
+        access to the ``service_model``.
+        """
         if 'shape' in model:
             shape = service_model.shape_for(model.get('shape'))
 
