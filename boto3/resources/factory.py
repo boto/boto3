@@ -191,9 +191,9 @@ class ResourceFactory(object):
                 action, resource_defs, service_model)
 
         # Create the name based on the requested service and resource
-        cls_name = resource_name + 'Resource'
+        cls_name = resource_name
         if service_name != resource_name:
-            cls_name = service_name + cls_name
+            cls_name = service_name + '.' + cls_name
 
         if not isinstance(cls_name, str):
             # Python 2 requires string type names
