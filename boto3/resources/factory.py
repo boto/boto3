@@ -136,6 +136,24 @@ class ResourceFactory(object):
             'meta': meta,
         }
 
+        self._load_identifiers(attrs, meta, model)
+        self._load_subresources(attrs, service_name, resource_name, model,
+                                resource_defs, service_model)
+        self._load_actions(attrs, model, resource_defs, service_model)
+        self._load_attributes(attrs, meta, model, service_model)
+
+        # Create the name based on the requested service and resource
+        cls_name = resource_name
+        if service_name != resource_name:
+            cls_name = service_name + '.' + cls_name
+
+        if not isinstance(cls_name, str):
+            # Python 2 requires string type names
+            cls_name = cls_name.encode('utf-8')
+
+        return type(cls_name, (ServiceResource,), attrs)
+
+    def _load_identifiers(self, attrs, meta, model):
         # Populate required identifiers. These are arguments without which
         # the resource cannot be used. Identifiers become arguments for
         # operations on the resource.
@@ -145,6 +163,8 @@ class ResourceFactory(object):
             meta['identifiers'].append(snake_cased)
             attrs[snake_cased] = None
 
+    def _load_subresources(self, attrs, service_name, resource_name,
+                           model, resource_defs, service_model):
         # Create dangling classes, e.g. SQS.Queue, SQS.Message
         if service_name == resource_name:
             # This is a service, so dangle all the resource_defs as if
@@ -164,6 +184,9 @@ class ResourceFactory(object):
                 attrs[name] = self._create_class_partial(klass,
                     identifiers=identifiers)
 
+    def _load_actions(self, attrs, model, resource_defs, service_model):
+        # Actions on the resource become methods, with the ``load`` method
+        # being a special case which sets internal data for attributes.
         if 'load' in model:
             load_def = model.get('load')
 
@@ -171,6 +194,13 @@ class ResourceFactory(object):
                 load_def, resource_defs, service_model, is_load=True)
             attrs['reload'] = attrs['load']
 
+        for name, action in model.get('actions', {}).items():
+            snake_cased = xform_name(name)
+            self._check_allowed_name(attrs, snake_cased)
+            attrs[snake_cased] = self._create_action(snake_cased,
+                action, resource_defs, service_model)
+
+    def _load_attributes(self, attrs, meta, model, service_model):
         if 'shape' in model:
             shape = service_model.shape_for(model.get('shape'))
 
@@ -183,23 +213,6 @@ class ResourceFactory(object):
                 self._check_allowed_name(attrs, snake_cased)
                 attrs[snake_cased] = self._create_autoload_property(name,
                     snake_cased)
-
-        for name, action in model.get('actions', {}).items():
-            snake_cased = xform_name(name)
-            self._check_allowed_name(attrs, snake_cased)
-            attrs[snake_cased] = self._create_action(snake_cased,
-                action, resource_defs, service_model)
-
-        # Create the name based on the requested service and resource
-        cls_name = resource_name
-        if service_name != resource_name:
-            cls_name = service_name + '.' + cls_name
-
-        if not isinstance(cls_name, str):
-            # Python 2 requires string type names
-            cls_name = cls_name.encode('utf-8')
-
-        return type(cls_name, (ServiceResource,), attrs)
 
     def _check_allowed_name(self, attrs, name):
         """
