@@ -86,6 +86,6 @@ Generating Documentation
 Sphinx is used for documentation. You can generate HTML locally with the
 following::
 
-    $ pip install sphinx
+    $ pip install sphinx sphinx_rtd_theme
     $ cd docs
     $ make html
