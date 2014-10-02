@@ -1,14 +1,18 @@
-SQS Tutorial
-============
+.. _guide_tutorial:
 
-Simple Queue Service (SQS) allows you to queue and then process messages.
-This tutorial covers how to create a new queue, get and use an existing
-queue, push new messages onto the queue and process messages from the queue
-by using :ref:`resources <design_resources>`.
+Tutorial
+========
+`Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
+allows you to queue and then process messages. This tutorial covers how to
+create a new queue, get and use an existing queue, push new messages onto the
+queue, and process messages from the queue by using
+:ref:`guide_resources` and :ref:`guide_collections`.
 
 Creating a Queue
 ----------------
-Queues are created with a name. The examples below will use the name ``test``.
+Queues are created with a name. You may also optionally set queue
+attributes, such as the number of seconds to wait before an item may be
+processed. The examples below will use the queue name ``test``.
 Before creating a queue, you must first get the SQS service resource::
 
     # Get the service resource
@@ -47,7 +51,13 @@ It is also possible to list all of our existing queues::
 
     # Print out each queue name, which is part of its ARN
     for queue in sqs.queues.all():
-        print(queue.attributes['QueueArn'].split(':')[-1])
+        print(queue.url)
+
+.. note::
+
+   To get the name from a queue, you must use its ARN, which is available
+   in the queue's ``attributes`` attribute. Using
+   ``queue.attributes['QueueArn'].split(':')[-1]`` will return its name.
 
 Reference: :py:meth:`sqs.ServiceResource.get_queue_by_name`,
 :py:attr:`sqs.ServiceResource.queues`
@@ -98,6 +108,7 @@ described above in a single request would look like the following::
         }
     ])
 
+    # Print out any failures
     print(response.get('Failed'))
 
 In this case, the response contains lists of ``Successful`` and ``Failed``

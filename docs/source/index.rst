@@ -13,40 +13,25 @@ direct service access.
 .. danger::
 
    Boto 3 is *highly experimental* and **should not** be used in production
-   yet. Consider yourself warned!
+   yet. However, we would greatly appreciate it if you try out Boto 3 and
+   give us some `feedback <https://github.com/boto/boto3>`_!
 
-Installation
-------------
-Install the latest Boto 3 release via :command:`pip`::
-
-    pip install boto3
-
-You may also install a specific version::
-
-    pip install boto3==1.0.0
-
-The latest development version can always be found on
-`GitHub <https://github.com/boto/boto3>`_.
-
-Tutorials
----------
+User Guide
+----------
 
 .. toctree::
    :maxdepth: 2
 
-   tutorial/sqs
+   guide/quickstart
+   guide/resources
+   guide/collections
+   guide/tutorial
+   guide/clients
+   guide/session
+   guide/configuration
 
-Design Documentation
---------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   design/architecture
-   design/resources
-
-API References
---------------
+API Reference
+-------------
 
 Services
 ~~~~~~~~

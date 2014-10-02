@@ -4,6 +4,20 @@
 Resources
 =========
 
+Request Parameters
+------------------
+
+.. automodule:: boto3.resources.params
+   :members:
+   :undoc-members:
+
+Response Handlers
+-----------------
+
+.. automodule:: boto3.resources.response
+   :members:
+   :undoc-members:
+
 Resource Actions
 ----------------
 
