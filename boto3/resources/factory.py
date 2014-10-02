@@ -147,11 +147,7 @@ class ResourceFactory(object):
         if service_name != resource_name:
             cls_name = service_name + '.' + cls_name
 
-        if not isinstance(cls_name, str):
-            # Python 2 requires string type names
-            cls_name = cls_name.encode('utf-8')
-
-        return type(cls_name, (ServiceResource,), attrs)
+        return type(str(cls_name), (ServiceResource,), attrs)
 
     def _load_identifiers(self, attrs, meta, model):
         """
@@ -318,8 +314,8 @@ class ResourceFactory(object):
         # Create the action in in this closure but before the ``do_action``
         # method below is invoked, which allows instances of the resource
         # to share the ServiceAction instance.
-        action = ServiceAction(factory_self, action_def, resource_defs,
-                               service_model)
+        action = ServiceAction(action_def, factory=factory_self,
+            resource_defs=resource_defs, service_model=service_model)
 
         # A resource's ``load`` method is special because it sets
         # values on the resource instead of returning the response.
@@ -336,9 +332,6 @@ class ResourceFactory(object):
                 response = action(self, *args, **kwargs)
                 return response
 
-        if not isinstance(snake_cased, str):
-            snake_cased = snake_cased.encode('utf-8')
-
-        do_action.__name__ = snake_cased
+        do_action.__name__ = str(snake_cased)
         do_action.__doc__ = 'TODO'
         return do_action

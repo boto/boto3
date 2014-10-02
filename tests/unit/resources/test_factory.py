@@ -224,6 +224,20 @@ class TestResourceFactory(BaseTestCase):
         with self.assertRaises(ValueError):
             resource.Queue()
 
+    def test_dangling_resource_raises_for_unknown_arg(self):
+        defs = {
+            'Queue': {
+                'identifiers': [
+                    {'name': 'Url'}
+                ]
+            }
+        }
+
+        resource = self.load('test', 'test', {}, defs, None)()
+
+        with self.assertRaises(ValueError):
+            resource.Queue(url='foo', bar='baz')
+
     def test_non_service_resource_missing_defs(self):
         # Only services should get dangling defs
         defs = {
