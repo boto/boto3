@@ -49,7 +49,7 @@ class ServiceAction(object):
         # resource is defined, then we must create these before returning.
         response_resource_def = action_def.get('resource', {})
         if response_resource_def:
-            self.response_handler = ResourceHandler(search_path, factory, 
+            self.response_handler = ResourceHandler(search_path, factory,
                 resource_defs, service_model, response_resource_def)
         else:
             self.response_handler = RawHandler(search_path)
