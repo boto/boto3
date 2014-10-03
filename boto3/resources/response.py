@@ -77,7 +77,8 @@ class RawHandler(object):
         :type response: dict
         :param response: Low-level operation response.
         """
-        if self.search_path:
+        # TODO: Remove the '$' check after JMESPath supports it
+        if self.search_path and self.search_path != '$':
             response = jmespath.search(self.search_path, response)
 
         return response
