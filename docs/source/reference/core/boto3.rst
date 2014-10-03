@@ -4,9 +4,6 @@
 Boto3
 =====
 
-boto3
------
-
 .. automodule:: boto3
    :members:
    :undoc-members:
