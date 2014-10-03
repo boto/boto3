@@ -13,10 +13,10 @@ of services that are supported.
 
 .. _boto: https://docs.pythonboto.org/
 .. _`Read the Docs`: https://boto3.readthedocs.org/en/latest/
-.. |Build Status| image:: http://img.shields.io/travis/boto/boto3.svg?style=flat
+.. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
     :target: https://travis-ci.org/boto/boto3
     :alt: Build Status
-.. |Coverage| image:: http://img.shields.io/coveralls/boto/boto3.svg?style=flat
+.. |Coverage| image:: http://img.shields.io/coveralls/boto/boto3/develop.svg?style=flat
     :target: https://coveralls.io/r/boto/boto3
     :alt: Code Coverage
 .. |Downloads| image:: http://img.shields.io/pypi/dm/boto3.svg?style=flat
