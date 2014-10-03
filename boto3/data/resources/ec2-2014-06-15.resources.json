@@ -1,0 +1,372 @@
+{
+  "service": {
+    "actions": {
+      "CreateInstances": {
+        "request": { "operation": "RunInstances" },
+        "resource": {
+          "type": "Instance",
+          "identifiers": [
+            { "target":"Id", "sourceType":"responsePath", "source":"Instances[].InstanceId" }
+          ]
+        },
+        "path": "Instances[]"
+      },
+      "CreateSubnet": {
+        "request": { "operation": "CreateSubnet" },
+        "resource": {
+          "type": "Subnet",
+          "identifiers": [
+            { "target":"Id", "sourceType":"responsePath", "source":"Subnet.SubnetId" }
+          ]
+        },
+        "path": "Subnet"
+      },
+      "CreateVpc": {
+        "request": { "operation": "CreateVpc" },
+        "resource": {
+          "type": "Vpc",
+          "identifiers": [
+            { "target":"Id", "sourceType":"responsePath", "source":"Vpc.VpcId" }
+          ]
+        },
+        "path": "Vpc"
+      }
+    },
+    "hasMany": {
+      "Instances": {
+        "request": { "operation": "DescribeInstances" },
+        "resource": {
+          "type": "Instance",
+          "identifiers": [
+            { "target":"Id", "sourceType":"responsePath", "source":"Reservations[].Instances[].InstanceId" }
+          ]
+        },
+        "path": "Reservations[].Instances[]"
+      },
+      "Subnets": {
+        "request": { "operation": "DescribeSubnets" },
+        "resource": {
+          "type": "Subnet",
+          "identifiers": [
+            { "target":"Id", "sourceType":"responsePath", "source":"Subnets[].SubnetId" }
+          ]
+        },
+        "path": "Subnets[]"
+      },
+      "Vpcs": {
+        "request": { "operation": "DescribeVpcs" },
+        "resource": {
+          "type": "Vpc",
+          "identifiers": [
+            { "target":"Id", "sourceType":"responsePath", "source":"Vpcs[].VpcId" }
+          ]
+        },
+        "path": "Vpcs[]"
+      }
+    }
+  },
+  "resources": {
+    "Instance": {
+      "identifiers": [{ "name": "Id" }],
+      "shape": "Instance",
+      "load": {
+        "request": {
+          "operation": "DescribeInstances",
+          "params": [
+            { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+          ]
+        },
+        "path": "Reservations[0].Instances[0]"
+      },
+      "actions": {
+        "ConsoleOutput": {
+          "request": {
+            "operation": "GetConsoleOutput",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "ModifyAttribute": {
+          "request": {
+            "operation": "ModifyInstanceAttribute",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "Monitor": {
+          "request": {
+            "operation": "MonitorInstances",
+            "params": [
+              { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "PasswordData": {
+          "request": {
+            "operation": "GetPasswordData",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "ReportStatus": {
+          "request": {
+            "operation": "ReportInstanceStatus",
+            "params": [
+              { "target":"Instances[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "ResetAttribute": {
+          "request": {
+            "operation": "ResetInstanceAttribute",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "ResetKernel": {
+          "request": {
+            "operation": "ResetInstanceAttribute",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" },
+              { "target":"Attribute", "sourceType":"string", "source":"kernel" }
+            ]
+          }
+        },
+        "ResetRamdisk": {
+          "request": {
+            "operation": "ResetInstanceAttribute",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" },
+              { "target":"Attribute", "sourceType":"string", "source":"ramdisk" }
+            ]
+          }
+        },
+        "ResetSourceDestCheck": {
+          "request": {
+            "operation": "ResetInstanceAttribute",
+            "params": [
+              { "target":"InstanceId", "sourceType":"identifier", "source":"Id" },
+              { "target":"Attribute", "sourceType":"string", "source":"sourceDestCheck" }
+            ]
+          }
+        },
+        "Start": {
+          "request": {
+            "operation": "StartInstances",
+            "params": [
+              { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "Stop": {
+          "request": {
+            "operation": "StopInstances",
+            "params": [
+              { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "Reboot": {
+          "request": {
+            "operation": "RebootInstances",
+            "params": [
+              { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "Terminate": {
+          "request": {
+            "operation": "TerminateInstances",
+            "params": [
+              { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "Unmonitor": {
+          "request": {
+            "operation": "UnmonitorInstances",
+            "params": [
+              { "target":"InstanceIds[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        }
+      },
+      "hasOne": {
+        "Subnet": {
+          "resource": {
+            "type": "Subnet",
+            "identifiers": [
+              { "target":"Id", "sourceType":"dataMember", "source":"SubnetId" }
+            ]
+          }
+        },
+        "Vpc": {
+          "resource": {
+            "type": "Vpc",
+            "identifiers": [
+              { "target":"Id", "sourceType":"dataMember", "source":"VpcId" }
+            ]
+          }
+        }
+      }
+    },
+    "Subnet": {
+      "identifiers": [{ "name": "Id" }],
+      "shape": "Subnet",
+      "load": {
+        "request": {
+          "operation": "DescribeSubnets",
+          "params": [
+            { "target":"SubnetIds[]", "sourceType":"identifier", "source":"Id" }
+          ]
+        },
+        "path": "Subnets[0]"
+      },
+      "actions": {
+        "CreateInstances": {
+          "request": {
+            "operation": "RunInstances",
+            "params": [
+              { "target":"SubnetId", "sourceType":"identifier", "source":"Id" }
+            ]
+          },
+          "resource": {
+            "type": "Instance",
+            "identifiers": [
+              { "target":"Id", "sourceType":"responsePath", "source":"Instances[].InstanceId" }
+            ]
+          },
+          "path": "Instances[]"
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteSubnet",
+            "params": [
+              { "target":"SubnetId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        }
+      },
+      "hasMany": {
+        "Instances": {
+          "request": {
+            "operation": "DescribeInstances",
+            "params": [
+              { "target":"Filters[0].Name", "sourceType":"string", "source":"subnet-id" },
+              { "target":"Filters[0].Values[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          },
+          "resource": {
+            "type": "Instance",
+            "identifiers": [
+              { "target":"Id", "sourceType":"responsePath", "source":"Reservations[].Instances[].InstanceId" }
+            ]
+          },
+          "path": "Reservations[].Instances[]"
+        }
+      },
+      "hasOne": {
+        "Vpc": {
+          "resource": {
+            "type": "Vpc",
+            "identifiers": [
+              { "target":"Id", "sourceType":"dataMember", "source":"VpcId" }
+            ]
+          }
+        }
+      }
+    },
+    "Vpc": {
+      "identifiers": [{ "name": "Id" }],
+      "shape": "Vpc",
+      "load": {
+        "request": {
+          "operation": "DescribeVpcs",
+          "params": [
+            { "target":"VpcIds[]", "sourceType":"identifier", "source":"Id" }
+          ]
+        },
+        "path": "Vpcs[0]"
+      },
+      "actions": {
+        "CreateSubnet": {
+          "request": {
+            "operation": "CreateSubnet",
+            "params": [
+              { "target":"VpcId", "sourceType":"identifier", "source":"Id" }
+            ]
+          },
+          "resource": {
+            "type": "Subnet",
+            "identifiers": [
+              { "target":"Id", "sourceType":"responsePath", "source":"Subnet.SubnetId" }
+            ]
+          },
+          "path": "Subnet"
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteVpc",
+            "params": [
+              { "target":"VpcId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "DescribeAttribute": {
+          "request": {
+            "operation": "DescribeVpcAttribute",
+            "params": [
+              { "target":"VpcId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        },
+        "ModifyAttribute": {
+          "request": {
+            "operation": "ModifyVpcAttribute",
+            "params": [
+              { "target":"VpcId", "sourceType":"identifier", "source":"Id" }
+            ]
+          }
+        }
+      },
+      "hasMany": {
+        "Instances": {
+          "request": {
+            "operation": "DescribeInstances",
+            "params": [
+              { "target":"Filters[0].Name", "sourceType":"string", "source":"vpc-id" },
+              { "target":"Filters[0].Values[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          },
+          "resource": {
+            "type": "Instance",
+            "identifiers": [
+              { "target":"Id", "sourceType":"responsePath", "source":"Reservations[].Instances[].InstanceId" }
+            ]
+          },
+          "path": "Reservations[].Instances[]"
+        },
+        "Subnets": {
+          "request": {
+            "operation": "DescribeSubnets",
+            "params": [
+              { "target":"Filters[0].Name", "sourceType":"string", "source":"vpc-id" },
+              { "target":"Filters[0].Values[]", "sourceType":"identifier", "source":"Id" }
+            ]
+          },
+          "resource": {
+            "type": "Subnet",
+            "identifiers": [
+              { "target":"Id", "sourceType":"responsePath", "source":"Subnets[].SubnetId" }
+            ]
+          },
+          "path": "Subnets[]"
+        }
+      }
+    }
+  }
+}
