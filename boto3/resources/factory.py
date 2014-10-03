@@ -260,7 +260,7 @@ class ResourceFactory(object):
 
             return self.meta['data'].get(name)
 
-        property_loader.__name__ = snake_cased
+        property_loader.__name__ = str(snake_cased)
         property_loader.__doc__ = 'TODO'
         return property(property_loader)
 
@@ -301,7 +301,7 @@ class ResourceFactory(object):
         doc += '\n:rtype: {0}\n'.format(resource_cls)
         doc += ':return: A new resource instance'
 
-        create_resource.__name__ = resource_cls.__name__
+        create_resource.__name__ = str(resource_cls.__name__)
         create_resource.__doc__ = doc.format(resource_cls)
         return create_resource
 
