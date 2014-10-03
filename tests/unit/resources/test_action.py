@@ -16,23 +16,26 @@ from tests import BaseTestCase, mock
 
 
 class TestServiceActionCall(BaseTestCase):
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={})
-    def test_service_action_creates_params(self, params_mock):
-        action_def = {
+    def setUp(self):
+        super(TestServiceActionCall, self).setUp()
+
+        self.action_def = {
             'request': {
                 'operation': 'GetFrobs',
                 'params': []
             }
         }
 
+    @mock.patch('boto3.resources.action.create_request_parameters',
+                return_value={})
+    def test_service_action_creates_params(self, params_mock):
         resource = mock.Mock()
         resource.meta = {
             'service_name': 'test',
             'client': mock.Mock(),
         }
 
-        action = ServiceAction(action_def)
+        action = ServiceAction(self.action_def)
 
         action(resource, foo=1)
 
@@ -42,13 +45,6 @@ class TestServiceActionCall(BaseTestCase):
     @mock.patch('boto3.resources.action.create_request_parameters',
                 return_value={'bar': 'baz'})
     def test_service_action_calls_operation(self, params_mock):
-        action_def = {
-            'request': {
-                'operation': 'GetFrobs',
-                'params': []
-            }
-        }
-
         resource = mock.Mock()
         resource.meta = {
             'service_name': 'test',
@@ -57,7 +53,7 @@ class TestServiceActionCall(BaseTestCase):
         operation = resource.meta['client'].get_frobs
         operation.return_value = 'response'
 
-        action = ServiceAction(action_def)
+        action = ServiceAction(self.action_def)
 
         response = action(resource, foo=1)
 
@@ -69,13 +65,6 @@ class TestServiceActionCall(BaseTestCase):
                 return_value={})
     @mock.patch('boto3.resources.action.RawHandler')
     def test_service_action_calls_raw_handler(self, handler_mock, params_mock):
-        action_def = {
-            'request': {
-                'operation': 'GetFrobs',
-                'params': []
-            }
-        }
-
         resource = mock.Mock()
         resource.meta = {
             'service_name': 'test',
@@ -84,7 +73,7 @@ class TestServiceActionCall(BaseTestCase):
         operation = resource.meta['client'].get_frobs
         operation.return_value = 'response'
 
-        action = ServiceAction(action_def)
+        action = ServiceAction(self.action_def)
 
         handler_mock.return_value.return_value = 'response'
 
@@ -97,16 +86,10 @@ class TestServiceActionCall(BaseTestCase):
                 return_value={})
     @mock.patch('boto3.resources.action.ResourceHandler')
     def test_service_action_calls_resource_handler(self, handler_mock, params_mock):
-        action_def = {
-            'request': {
-                'operation': 'GetFrobs',
-                'params': []
-            },
-            'resource': {
-                'type': 'Frob'
-            },
-            'path': 'Container'
+        self.action_def['resource'] = {
+            'type': 'Frob'
         }
+        self.action_def['path'] = 'Container'
 
         resource = mock.Mock()
         resource.meta = {
@@ -120,7 +103,7 @@ class TestServiceActionCall(BaseTestCase):
         resource_defs = {}
         service_model = mock.Mock()
 
-        action = ServiceAction(action_def, factory=factory,
+        action = ServiceAction(self.action_def, factory=factory,
             resource_defs=resource_defs, service_model=service_model)
 
         handler_mock.return_value.return_value = 'response'
@@ -128,5 +111,5 @@ class TestServiceActionCall(BaseTestCase):
         action(resource)
 
         handler_mock.assert_called_with('Container', factory, resource_defs,
-            service_model, action_def['resource'])
+            service_model, self.action_def['resource'])
         handler_mock.return_value.assert_called_with(resource, {}, 'response')
