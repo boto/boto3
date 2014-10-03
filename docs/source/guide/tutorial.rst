@@ -142,8 +142,9 @@ Messages are processed in batches::
         # Let the queue know that the message is processed
         message.delete()
 
-Given the messages that were sent in the previous section, the above code will
-print out::
+Given *only* the messages that were sent in a batch with
+:py:meth:`~sqs.Queue.send_messages` in the previous section, the above code
+will print out::
 
     Hello, world!
     Hello, boto3! (Daniel)

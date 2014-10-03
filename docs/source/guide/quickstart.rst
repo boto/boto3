@@ -68,5 +68,6 @@ already exists::
     data = open('test.jpg', 'rb')
     s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
 
-:ref:`guide_resources` and :ref:`guide_collections` will be covered in more detail in the following
-sections, so don't worry if the above examples look a bit foreign to you.
+:ref:`guide_resources` and :ref:`guide_collections` will be covered in more
+detail in the following sections, so don't worry if you do not completely
+understand the examples.

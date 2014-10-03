@@ -22,8 +22,8 @@ below and in the following section.
 
 Resources themselves can also be conceptually split into service resources
 (like ``sqs``, ``s3``, ``ec2``, etc) and individual resources (like
-``sqs.Queue`` or ``s3.Bucket``). Service resources *do not* to have
-identifiers or attributes. The two are the same otherwise.
+``sqs.Queue`` or ``s3.Bucket``). Service resources *do not* have
+identifiers or attributes. The two share the same components otherwise.
 
 Identifiers & Attributes
 ------------------------

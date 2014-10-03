@@ -43,7 +43,9 @@ Handling Responses
 ------------------
 Responses are returned as python dictionaries. It is up to you to traverse
 or otherwise process the response for the data you need, keeping in mind
-that responses may not always return all the expected data::
+that responses may not always include all of the expected data. In the
+example below, ``response.get('QueueUrls', [])`` is used to ensure that a
+list is always returned, even when the response has no key ``'QueueUrls'``::
 
     # List all your queues
     response = sqs.list_queues()

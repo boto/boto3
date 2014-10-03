@@ -9,7 +9,7 @@ typically store:
 
 * Credentials
 * Region
-* Other configuration
+* Other configurations
 
 Default Session
 ---------------

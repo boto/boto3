@@ -24,7 +24,7 @@ which are passed into the underlying service operation. Use the
 :py:meth:`~boto3.resources.collection.Collection.filter` method to filter
 the results::
 
-    # S3 list all keys
+    # S3 list all keys with the prefix '/photos'
     s3 = boto3.resource('s3')
     for bucket in s3.buckets.all():
         for obj in bucket.objects.filter(Prefix='/photos'):
