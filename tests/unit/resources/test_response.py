@@ -14,8 +14,8 @@
 from tests import BaseTestCase, mock
 from boto3.resources.base import ServiceResource
 from boto3.resources.factory import ResourceFactory
-from boto3.resources.response import build_identifiers, RawHandler,\
-                                     ResourceHandler
+from boto3.resources.response import build_identifiers, build_empty_response,\
+                                     RawHandler, ResourceHandler
 
 
 class TestBuildIdentifiers(BaseTestCase):
@@ -148,6 +148,126 @@ class TestBuildIdentifiers(BaseTestCase):
             build_identifiers(identifier_defs, parent, params, response)
 
 
+class TestBuildEmptyResponse(BaseTestCase):
+    def setUp(self):
+        super(TestBuildEmptyResponse, self).setUp()
+
+        self.search_path = ''
+        self.operation_name = 'GetFrobs'
+
+        self.output_shape = mock.Mock()
+
+        operation_model = mock.Mock()
+        operation_model.output_shape = self.output_shape
+
+        self.service_model = mock.Mock()
+        self.service_model.operation_model.return_value = operation_model
+
+    def get_response(self):
+        return build_empty_response(self.search_path, self.operation_name,
+                                    self.service_model)
+
+    def test_empty_structure(self):
+        self.output_shape.type_name = 'structure'
+
+        response = self.get_response()
+
+        self.assertIsInstance(response, dict,
+            'Structure should default to empty dictionary')
+        self.assertFalse(response.items(),
+            'Dictionary should be empty')
+
+    def test_empty_list(self):
+        self.output_shape.type_name = 'list'
+
+        response = self.get_response()
+
+        self.assertIsInstance(response, list,
+            'List should default to empty list')
+        self.assertFalse(len(response),
+            'List should be empty')
+
+    def test_empty_string(self):
+        self.output_shape.type_name = 'string'
+
+        response = self.get_response()
+
+        self.assertIsInstance(response, str,
+            'String should default to empty string')
+        self.assertFalse(len(response),
+            'String should be empty')
+
+    def test_empty_integer(self):
+        self.output_shape.type_name = 'integer'
+
+        response = self.get_response()
+
+        self.assertIsNone(response,
+            'Integer should default to None')
+
+    def test_empty_unkown_returns_none(self):
+        self.output_shape.type_name = 'invalid'
+
+        response = self.get_response()
+
+        self.assertIsNone(response,
+            'Unknown types should default to None')
+
+    def test_path_structure(self):
+        self.search_path = 'Container.Frob'
+
+        frob = mock.Mock()
+        frob.type_name = 'integer'
+
+        container = mock.Mock()
+        container.type_name = 'structure'
+        container.members = {
+            'Frob': frob
+        }
+
+        self.output_shape.type_name = 'structure'
+        self.output_shape.members = {
+            'Container': container
+        }
+
+        response = self.get_response()
+
+        self.assertEqual(response, None)
+
+    def test_path_list(self):
+        self.search_path = 'Container[1].Frob'
+
+        frob = mock.Mock()
+        frob.type_name = 'integer'
+
+        container = mock.Mock()
+        container.type_name = 'list'
+        container.member = frob
+
+        self.output_shape.type_name = 'structure'
+        self.output_shape.members = {
+            'Container': container
+        }
+
+        response = self.get_response()
+
+        self.assertEqual(response, None)
+
+    def test_path_invalid(self):
+        self.search_path = 'Container.Invalid'
+
+        container = mock.Mock()
+        container.type_name = 'invalid'
+
+        self.output_shape.type_name = 'structure'
+        self.output_shape.members = {
+            'Container': container
+        }
+
+        with self.assertRaises(NotImplementedError):
+            self.get_response()
+
+
 class TestRawHandler(BaseTestCase):
     def test_raw_handler_response(self):
         parent = mock.Mock()
@@ -182,16 +302,11 @@ class TestRawHandler(BaseTestCase):
 
 
 class TestResourceHandler(BaseTestCase):
-    def _get_resource_scalar(self, search_path, response):
-        request_resource_def = {
-            'type': 'Frob',
-            'identifiers': [
-                {'target': 'Id', 'sourceType': 'responsePath',
-                 'source': 'Container.Id'},
-            ]
-        }
-        factory = ResourceFactory()
-        resource_defs = {
+    def setUp(self):
+        super(TestResourceHandler, self).setUp()
+        self.identifier_source = ''
+        self.factory = ResourceFactory()
+        self.resource_defs = {
             'Frob': {
                 'shape': 'Frob',
                 'identifiers': [
@@ -199,22 +314,50 @@ class TestResourceHandler(BaseTestCase):
                 ]
             }
         }
-        service_model = mock.Mock()
+        self.service_model = mock.Mock()
         shape = mock.Mock()
         shape.members = {}
-        service_model.shape_for.return_value = shape
-        parent = mock.Mock()
-        parent.meta = {
+        self.service_model.shape_for.return_value = shape
+
+        frobs = mock.Mock()
+        frobs.type_name = 'list'
+        container = mock.Mock()
+        container.type_name = 'structure'
+        container.members = {
+            'Frobs': frobs
+        }
+        self.output_shape = mock.Mock()
+        self.output_shape.type_name = 'structure'
+        self.output_shape.members = {
+            'Container': container
+        }
+        operation_model = mock.Mock()
+        operation_model.output_shape = self.output_shape
+        self.service_model.operation_model.return_value = operation_model
+
+        self.parent = mock.Mock()
+        self.parent.meta = {
             'service_name': 'test',
             'client': mock.Mock(),
         }
-        params = {}
+        self.params = {}
 
-        handler = ResourceHandler(search_path, factory, resource_defs,
-            service_model, request_resource_def)
-        return handler(parent, params, response)
+    def get_resource(self, search_path, response):
+        request_resource_def = {
+            'type': 'Frob',
+            'identifiers': [
+                {'target': 'Id', 'sourceType': 'responsePath',
+                 'source': self.identifier_source},
+            ]
+        }
+
+        handler = ResourceHandler(search_path, self.factory,
+            self.resource_defs, self.service_model, request_resource_def,
+            'GetFrobs')
+        return handler(self.parent, self.params, response)
 
     def test_create_resource_scalar(self):
+        self.identifier_source = 'Container.Id'
         search_path = 'Container'
         response = {
             'Container': {
@@ -222,55 +365,28 @@ class TestResourceHandler(BaseTestCase):
                 'OtherValue': 'other',
             }
         }
-        resource = self._get_resource_scalar(search_path, response)
+        resource = self.get_resource(search_path, response)
 
         self.assertIsInstance(resource, ServiceResource,
             'No resource instance returned from handler')
 
-    def test_missing_data_scalar_returns_none(self):
+    @mock.patch('boto3.resources.response.build_empty_response')
+    def test_missing_data_scalar_builds_empty_response(self, build_mock):
+        self.identifier_source = 'Container.Id'
         search_path = 'Container'
         response = {
             'something': 'irrelevant'
         }
 
-        resource = self._get_resource_scalar(search_path, response)
+        resources = self.get_resource(search_path, response)
 
-        self.assertIsNone(resource,
-            'Data returned even though response path was empty')
-
-    def _get_resource_list(self, search_path, response):
-        request_resource_def = {
-            'type': 'Frob',
-            'identifiers': [
-                {'target': 'Id', 'sourceType': 'responsePath',
-                 'source': 'Container.Frobs[].Id'},
-            ]
-        }
-        factory = ResourceFactory()
-        resource_defs = {
-            'Frob': {
-                'shape': 'Frob',
-                'identifiers': [
-                    {'name': 'Id'}
-                ]
-            }
-        }
-        service_model = mock.Mock()
-        shape = mock.Mock()
-        shape.members = {}
-        service_model.shape_for.return_value = shape
-        parent = mock.Mock()
-        parent.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
-        params = {}
-
-        handler = ResourceHandler(search_path, factory, resource_defs,
-            service_model, request_resource_def)
-        return handler(parent, params, response)
+        self.assertTrue(build_mock.called,
+            'build_empty_response was never called')
+        self.assertEqual(resources, build_mock.return_value,
+            'build_empty_response return value was not returned')
 
     def test_create_resource_list(self):
+        self.identifier_source = 'Container.Frobs[].Id'
         search_path = 'Container.Frobs[]'
         response = {
             'Container': {
@@ -287,7 +403,7 @@ class TestResourceHandler(BaseTestCase):
             }
         }
 
-        resources = self._get_resource_list(search_path, response)
+        resources = self.get_resource(search_path, response)
 
         self.assertIsInstance(resources, list,
             'No list returned from handler')
@@ -296,28 +412,36 @@ class TestResourceHandler(BaseTestCase):
         self.assertIsInstance(resources[0], ServiceResource,
             'List items are not resource instances')
 
-    def test_missing_data_list_returns_none(self):
+    def test_create_resource_list_no_search_path(self):
+        self.identifier_source = '[].Id'
+        search_path = ''
+        response = [
+            {
+                'Id': 'a-frob',
+                'OtherValue': 'other'
+            }
+        ]
+
+        resources = self.get_resource(search_path, response)
+
+        self.assertIsInstance(resources, list,
+            'No list returned from handler')
+        self.assertEqual(len(resources), 1,
+            'Exactly one frob should be returned')
+        self.assertIsInstance(resources[0], ServiceResource,
+            'List items are not resource instances')
+
+    @mock.patch('boto3.resources.response.build_empty_response')
+    def test_missing_data_list_builds_empty_response(self, build_mock):
+        self.identifier_source = 'Container.Frobs[].Id'
         search_path = 'Container.Frobs[]'
         response = {
             'something': 'irrelevant'
         }
 
-        resources = self._get_resource_list(search_path, response)
+        resources = self.get_resource(search_path, response)
 
-        self.assertIsNone(resources,
-            'Data returned even though response was path empty')
-
-    def test_empty_list_passes_through(self):
-        search_path = 'Container.Frobs[]'
-        response = {
-            'Container': {
-                'Frobs': []
-            }
-        }
-
-        resources = self._get_resource_list(search_path, response)
-
-        self.assertIsInstance(resources, list,
-            'No list returned from handler')
-        self.assertEqual(len(resources), 0,
-            'Exactly zero frobs should be returned')
+        self.assertTrue(build_mock.called,
+            'build_empty_response was never called')
+        self.assertEqual(resources, build_mock.return_value,
+            'build_empty_response return value was not returned')

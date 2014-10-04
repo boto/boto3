@@ -15,6 +15,18 @@ import jmespath
 from botocore import xform_name
 
 
+def all_not_none(iterable):
+    """
+    Return True if all elements of the iterable are not None (or if the
+    iterable is empty). This is like the built-in ``all``, except checks
+    against None, so 0 and False are allowable values.
+    """
+    for element in iterable:
+        if element is None:
+            return False
+    return True
+
+
 def build_identifiers(identifiers_def, parent, params, raw_response):
     """
     Builds a mapping of identifier names to values based on the
@@ -52,6 +64,55 @@ def build_identifiers(identifiers_def, parent, params, raw_response):
                 'Unsupported source type: {0}'.format(source_type))
 
     return results
+
+
+def build_empty_response(search_path, operation_name, service_model):
+    """
+    Creates an appropriate empty response for the type that is expected,
+    based on the service model's shape type. For example, a value that
+    is normally a list would then return an empty list. A structure would
+    return an empty dict, and a number would return None.
+
+    :type search_path: string
+    :param search_path: JMESPath expression to search in the response
+    :type operation_name: string
+    :param operation_name: Name of the underlying service operation
+    :type service_model: :ref:`botocore.model.ServiceModel`
+    :param service_model: The Botocore service model
+    :rtype: dict, list, string, or None
+    :return: An appropriate empty value
+    """
+    response = None
+
+    operation_model = service_model.operation_model(operation_name)
+    shape = operation_model.output_shape
+
+    if search_path:
+        # Walk the search path and find the final shape. For example, given
+        # a path of ``foo.bar[0].baz``, we first find the shape for ``foo``,
+        # then the shape for ``bar`` (ignoring the indexing), and finally
+        # the shape for ``baz``.
+        for item in search_path.split('.'):
+            item = item.strip('[0123456789]$')
+
+            if shape.type_name == 'structure':
+                shape = shape.members[item]
+            elif shape.type_name == 'list':
+                shape = shape.member
+            else:
+                raise NotImplementedError(
+                    'Search path hits shape type {0} from {1}'.format(
+                        shape.type_name, item))
+
+    # Anything not handled here is set to None
+    if shape.type_name == 'structure':
+        response = {}
+    elif shape.type_name == 'list':
+        response = []
+    elif shape.type_name == 'string':
+        response = ''
+
+    return response
 
 
 class RawHandler(object):
@@ -100,16 +161,19 @@ class ResourceHandler(object):
     :param service_model: The Botocore service model
     :type resource_def: dict
     :param resource_def: Response resource definition.
+    :type operation_name: string
+    :param operation_name: Name of the underlying service operation
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """
     def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_def):
+                 resource_def, operation_name):
         self.search_path = search_path
         self.factory = factory
         self.resource_defs = resource_defs
         self.service_model = service_model
         self.resource_def = resource_def
+        self.operation_name = operation_name
 
     def __call__(self, parent, params, response):
         """
@@ -127,7 +191,7 @@ class ResourceHandler(object):
             self.service_model)
 
         raw_response = response
-        search_response = response
+        search_response = None
 
         # Anytime a path is defined, it means the response contains the
         # resource's attributes, so resource_data gets set here. It
@@ -145,16 +209,33 @@ class ResourceHandler(object):
             self.resource_def.get('identifiers', []), parent, params,
             raw_response)
 
-        if isinstance(search_response, list):
+        # If any of the identifiers is a list, then the response is plural
+        plural = [v for v in identifiers.values() if isinstance(v, list)]
+
+        if plural:
             response = []
-            for i, response_item in enumerate(search_response):
+
+            # The number of items in an identifier that is a list will
+            # determine how many resource instances to create.
+            for i in range(len(plural[0])):
+                # Response item data is *only* available if a search path
+                # was given. This prevents accidentally loading unrelated
+                # data that may be in the response.
+                response_item = None
+                if search_response:
+                    response_item = search_response[i]
                 response.append(self.handle_response_item(resource_cls,
                     parent, identifiers, response_item))
-        elif search_response:
+        elif all_not_none(identifiers.values()):
+            # All identifiers must always exist, otherwise the resource
+            # cannot be instantiated.
             response = self.handle_response_item(resource_cls,
                 parent, identifiers, search_response)
         else:
-            response = None
+            # The response is should be empty, but that may mean an
+            # empty dict, list, string, or None.
+            response = build_empty_response(self.search_path,
+                self.operation_name, self.service_model)
 
         return response
 
