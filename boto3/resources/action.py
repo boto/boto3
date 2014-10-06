@@ -50,7 +50,8 @@ class ServiceAction(object):
         response_resource_def = action_def.get('resource', {})
         if response_resource_def:
             self.response_handler = ResourceHandler(search_path, factory,
-                resource_defs, service_model, response_resource_def)
+                resource_defs, service_model, response_resource_def,
+                action_def.get('request', {}).get('operation'))
         else:
             self.response_handler = RawHandler(search_path)
 
