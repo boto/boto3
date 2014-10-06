@@ -187,15 +187,23 @@ class TestBuildEmptyResponse(BaseTestCase):
         self.assertFalse(len(response),
             'List should be empty')
 
+    def test_empty_map(self):
+        self.output_shape.type_name = 'map'
+
+        response = self.get_response()
+
+        self.assertIsInstance(response, dict,
+            'Map should default to empty dictionary')
+        self.assertFalse(response.items(),
+            'Dictionary should be empty')
+
     def test_empty_string(self):
         self.output_shape.type_name = 'string'
 
         response = self.get_response()
 
-        self.assertIsInstance(response, str,
-            'String should default to empty string')
-        self.assertFalse(len(response),
-            'String should be empty')
+        self.assertIsNone(response,
+            'String should default to None')
 
     def test_empty_integer(self):
         self.output_shape.type_name = 'integer'

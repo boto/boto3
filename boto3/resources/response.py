@@ -79,7 +79,7 @@ def build_empty_response(search_path, operation_name, service_model):
     :param operation_name: Name of the underlying service operation
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
-    :rtype: dict, list, string, or None
+    :rtype: dict, list, or None
     :return: An appropriate empty value
     """
     response = None
@@ -109,8 +109,8 @@ def build_empty_response(search_path, operation_name, service_model):
         response = {}
     elif shape.type_name == 'list':
         response = []
-    elif shape.type_name == 'string':
-        response = ''
+    elif shape.type_name == 'map':
+        response = {}
 
     return response
 
@@ -233,7 +233,7 @@ class ResourceHandler(object):
                 parent, identifiers, search_response)
         else:
             # The response is should be empty, but that may mean an
-            # empty dict, list, string, or None.
+            # empty dict, list, or None.
             response = build_empty_response(self.search_path,
                 self.operation_name, self.service_model)
 
