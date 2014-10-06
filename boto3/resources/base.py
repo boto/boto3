@@ -22,6 +22,10 @@ class ServiceResource(object):
     :param client: A low-level Botocore client instance
     """
     def __init__(self, *args, **kwargs):
+        # Always work on a copy of meta, otherwise we would affect other
+        # instances of the same subclass.
+        self.meta = self.meta.copy()
+
         # Create a default client if none was passed
         if kwargs.get('client') is not None:
             self.meta['client'] = kwargs.get('client')
