@@ -294,6 +294,25 @@ class TestResourceFactory(BaseTestCase):
         self.assertEqual(message.receipt_handle, 'receipt',
             'Wrong receipt handle set on the message resource instance')
 
+    def test_resource_meta_unique(self):
+        queue_cls = self.load('test', 'Queue', {}, {}, None)
+
+        queue1 = queue_cls()
+        queue2 = queue_cls()
+
+        self.assertNotEqual(queue1, queue2)
+
+        self.assertEqual(queue1.meta, queue2.meta,
+            'Queue meta copies not equal after creation')
+
+        queue1.meta['data'] = {'id': 'foo'}
+        queue2.meta['data'] = {'id': 'bar'}
+
+        self.assertNotEqual(queue_cls.meta, queue1.meta,
+            'Modified queue instance data should not modify the class data')
+        self.assertNotEqual(queue1.meta, queue2.meta,
+            'Queue data should be unique to queue instance')
+
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_calls_action(self, action_cls):
         model = {
