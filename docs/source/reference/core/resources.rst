@@ -1,8 +1,8 @@
 .. _ref_core_resources:
 
-=========
-Resources
-=========
+===================
+Resources Reference
+===================
 
 Request Parameters
 ------------------

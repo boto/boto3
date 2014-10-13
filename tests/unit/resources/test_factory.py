@@ -11,8 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from boto3.resources.base import ServiceResource
 from boto3.exceptions import ResourceLoadException
+from boto3.resources.base import ServiceResource
 from boto3.resources.factory import ResourceFactory
 from tests import BaseTestCase, mock
 
@@ -405,3 +405,32 @@ class TestResourceFactory(BaseTestCase):
 
         with self.assertRaises(ResourceLoadException):
             resource.last_modified
+
+    @mock.patch('boto3.resources.factory.CollectionManager')
+    def test_resource_loads_collections(self, collection_cls):
+        model = {
+            'hasMany': {
+                'Queues': {
+                    'request': {
+                        'operation': 'ListQueues'
+                    },
+                    'resource': {
+                        'type': 'Queue'
+                    }
+                }
+            }
+        }
+        defs = {
+            'Queue': {}
+        }
+        service_model = mock.Mock()
+
+        resource = self.load('test', 'test', model, defs, service_model)()
+
+        self.assertTrue(hasattr(resource, 'queues'),
+            'Resource should expose queues collection')
+        self.assertEqual(resource.queues, collection_cls.return_value,
+            'Queues collection should be a collection manager')
+
+        collection_cls.assert_called_with(model['hasMany']['Queues'],
+            resource, self.factory, defs, service_model)

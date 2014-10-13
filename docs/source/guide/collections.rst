@@ -17,6 +17,25 @@ data. Example of a collection::
     for queue in sqs.queues.all():
         print(queue.url)
 
+When Collections Make Requests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collections can be created and manipulated without any request being made
+to the underlying service. A collection makes a remote service request under
+the following conditions:
+
+* **Iteration**::
+
+      for bucket in s3.buckets.all():
+          print(bucket.name)
+
+* **Slicing & Indexing**::
+
+      bucket = s3.buckets.all()[3:5]
+
+* **Conversion to list()**::
+
+      buckets = list(s3.buckets.all())
+
 Filtering
 ---------
 Some collections support extra arguments to filter the returned data set,
@@ -35,6 +54,69 @@ the results::
    Behind the scenes, the above example will call ``ListBuckets``,
    ``ListObjects``, and ``HeadObject`` many times. If you have a large
    number of S3 objects then this could incur a significant cost.
+
+Chainability
+------------
+Collection methods are chainable. They return copies of the collection
+rather than modifying the collection. For example, this allows you
+to build up multiple collections from a base which they all have
+in common::
+
+    # EC2 find instances
+    ec2 = boto3.resource('ec2')
+    base = ec2.instances.filter(InstanceIds=['id1', 'id2', 'id3'])
+
+    filters = [{
+        'name': 'tenancy',
+        'value': 'dedicated'
+    }]
+    filtered = base.filter(Filters=filters)
+
+    print('All instances:')
+    for instance in base:
+        print(instance.id)
+
+    print('Dedicated instances:')
+    for instance in filtered:
+        print(instance.id)
+
+Limiting Results
+----------------
+It is possible to limit the number of items returned from a collection
+by using either the
+:py:meth:`~boto3.resources.collection.ResourceCollection.limit` method or
+keyword argument::
+
+    # S3 iterate over first ten buckets
+    for bucket in s3.buckets.limit(10):
+        print(bucket.name)
+
+    # Keyword argument example
+    for bucket in s3.buckets.filter(limit=10):
+        print(bucket.name)
+
+In both cases, up to 10 items total will be returned. If you do not
+have 10 buckets, then all of your buckets will be returned.
+
+Controlling Page Size
+---------------------
+Collections automatically handle paging through results, but you may want
+to control the number of items returned from a single service operation
+call. You can do so using the
+:py:meth:`~boto3.resources.collection.ResourceCollection.page_size` method
+or keyword argument::
+
+    # S3 iterate over all objects 100 at a time
+    for obj in bucket.objects.page_size(100):
+        print(obj.key)
+
+    # Keyword argument example
+    for obj in bucket.objects.all(page_size=100):
+        print(obj.key)
+
+By default, S3 will return 1000 objects at a time, so the above code
+would let you process the items in smaller batches, which could be
+benefitial for slow or unreliable internet connections.
 
 Batch Actions
 -------------
