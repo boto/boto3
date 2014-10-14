@@ -91,7 +91,7 @@ class ResourceCollection(object):
         else:
             logger.info('Calling %s:%s with %r',
                         self.parent.meta['service_name'],
-            self.py_operation_name, params)
+                        self.py_operation_name, params)
             pages = [getattr(client, self.py_operation_name)(**params)]
 
         # Now that we have a page iterator or single page of results

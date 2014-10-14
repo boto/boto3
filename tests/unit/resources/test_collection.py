@@ -125,7 +125,6 @@ class TestResourceCollection(BaseTestCase):
 
         list(collection.filter(limit=2, Param1='foo', Param2=3))
 
-        # Note - limit is not passed through to the low-level call
         paginator = client.get_paginator.return_value
         paginator.paginate.assert_called_with(page_size=None, limit=2,
             Param1='foo', Param2=3)
