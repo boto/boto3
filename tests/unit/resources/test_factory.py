@@ -410,7 +410,7 @@ class TestResourceFactory(BaseTestCase):
     def test_resource_loads_collections(self, collection_cls):
         model = {
             'hasMany': {
-                'Queues': {
+                u'Queues': {
                     'request': {
                         'operation': 'ListQueues'
                     },

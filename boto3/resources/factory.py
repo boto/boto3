@@ -283,7 +283,7 @@ class ResourceFactory(object):
             return CollectionManager(collection_def,
                 self, factory_self, resource_defs, service_model)
 
-        get_collection.__name__ = snake_cased
+        get_collection.__name__ = str(snake_cased)
         get_collection.__doc__ = 'TODO'
         return property(get_collection)
 
