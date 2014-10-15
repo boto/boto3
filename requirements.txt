@@ -1,4 +1,4 @@
--e git://github.com/boto/botocore.git#egg=botocore
+botocore==0.65.0
 jmespath==0.4.1
 six==1.7.3
 nose==1.3.3

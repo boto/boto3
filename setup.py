@@ -26,7 +26,7 @@ packages = [
 ]
 
 requires = [
-    'botocore==0.62.0',
+    'botocore==0.65.0',
     'jmespath==0.4.1',
     'six==1.7.3',
 ]
@@ -41,12 +41,12 @@ setup(
     url='https://github.com/boto/boto3',
     scripts=[],
     packages=packages,
-    # package_data={
-    #     'boto3': [
-    #         'data/aws/resources/*.json',
-    #     ]
-    # },
-    # include_package_data=True,
+    package_data={
+        'boto3': [
+            'data/aws/resources/*.json',
+        ]
+    },
+    include_package_data=True,
     install_requires=requires,
     license=open("LICENSE").read(),
     classifiers=[
