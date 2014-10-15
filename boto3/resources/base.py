@@ -59,8 +59,7 @@ class ServiceResource(object):
         for identifier in self.meta['identifiers']:
             identifiers.append('{0}={1}'.format(
                 identifier, repr(getattr(self, identifier))))
-        return "{0}({1}) in {2}".format(
+        return "{0}({1})".format(
             self.__class__.__name__,
             ', '.join(identifiers),
-            self.meta['client']._endpoint.region_name,
         )
