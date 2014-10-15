@@ -11,7 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from botocore.model import ServiceModel
+from botocore.model import ServiceModel, StructureShape
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.factory import ResourceFactory
@@ -428,6 +428,57 @@ class TestResourceFactory(BaseTestCase):
 
         with self.assertRaises(ResourceLoadException):
             resource.last_modified
+
+    def test_resource_loads_references(self):
+        model = {
+            'shape': 'InstanceShape',
+            'hasOne': {
+                'Subnet': {
+                    'resource': {
+                        'type': 'Subnet',
+                        'identifiers': [
+                            {'target': 'Id', 'sourceType': 'dataMember',
+                             'source': 'SubnetId'}
+                        ]
+                    }
+                }
+            }
+        }
+        defs = {
+            'Subnet': {
+                'identifiers': [{'name': 'Id'}]
+            }
+        }
+        service_model = ServiceModel({
+            'shapes': {
+                'InstanceShape': {
+                    'type': 'structure',
+                    'members': {
+                        'SubnetId': {
+                            'shape': 'String'
+                        }
+                    }
+                },
+                'String': {
+                    'type': 'string'
+                }
+            }
+        })
+
+        resource = self.load('test', 'Instance', model, defs, service_model)()
+
+        # Load the resource with no data
+        resource.meta['data'] = {}
+
+        self.assertTrue(hasattr(resource, 'subnet'),
+                        'Resource should have a subnet reference')
+        self.assertIsNone(resource.subnet,
+                          'Missing identifier, should return None')
+
+        # Load the resource with data to instantiate a reference
+        resource.meta['data'] = {'SubnetId': 'abc123'}
+        self.assertIsInstance(resource.subnet, ServiceResource)
+        self.assertEqual(resource.subnet.id, 'abc123')
 
     @mock.patch('boto3.resources.factory.CollectionManager')
     @mock.patch('boto3.resources.model.Collection')

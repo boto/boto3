@@ -120,6 +120,46 @@ class TestModels(BaseTestCase):
         resource = model.sub_resources.resources[0]
         self.assertEqual(resource.name, 'Frob')
 
+    def test_resource_references(self):
+        model = ResourceModel('test', {
+            'hasOne': {
+                'Frob': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target':'Id', 'sourceType':'dataMember',
+                             'source':'FrobId'}
+                        ]
+                    },
+                }
+            },
+            'hasSome': {
+                'Frobs': {
+                    'resource': {
+                        'type': 'Frob'
+                    }
+                }
+            }
+        }, {
+            'Frob': {}
+        })
+
+        self.assertIsInstance(model.references, list)
+        self.assertEqual(len(model.references), 2)
+
+        ref = model.references[0]
+        self.assertEqual(ref.name, 'Frob')
+        self.assertEqual(ref.resource.type, 'Frob')
+        self.assertEqual(ref.resource.identifiers[0].target, 'Id')
+        self.assertEqual(ref.resource.identifiers[0].source_type,
+                         'dataMember')
+        self.assertEqual(ref.resource.identifiers[0].source, 'FrobId')
+
+        ref2 = model.references[1]
+        self.assertEqual(ref2.name, 'Frobs')
+        self.assertEqual(ref2.resource.type, 'Frob')
+        self.assertEqual(len(ref2.resource.identifiers), 0)
+
     def test_resource_collections(self):
         model = ResourceModel('test', {
             'hasMany': {

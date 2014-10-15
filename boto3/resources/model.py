@@ -280,6 +280,22 @@ class ResourceModel(object):
         return actions
 
     @property
+    def references(self):
+        """
+        Get a list of reference resources.
+
+        :type: list(:py:class:`ResponseResource`)
+        """
+        references = []
+
+        for key in ['hasOne', 'hasSome']:
+            for name, definition in self._definition.get(key, {}).items():
+                references.append(
+                    Action(name, definition, self._resource_defs))
+
+        return references
+
+    @property
     def collections(self):
         """
         Get a list of collections for this resource.
