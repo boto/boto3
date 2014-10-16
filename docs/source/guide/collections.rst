@@ -54,7 +54,8 @@ the results::
 Chainability
 ------------
 Collection methods are chainable. They return copies of the collection
-rather than modifying the collection. For example, this allows you
+rather than modifying the collection, including a deep copy of any
+associated operation parameters. For example, this allows you
 to build up multiple collections from a base which they all have
 in common::
 
@@ -66,14 +67,22 @@ in common::
         'name': 'tenancy',
         'value': 'dedicated'
     }]
-    filtered = base.filter(Filters=filters)
+    filtered1 = base.filter(Filters=filters)
+
+    # Note, this does NOT modify the filters in ``filtered1``!
+    filters.append({'name': 'instance-type', 'value': 't1.micro'})
+    filtered2 = base.filter(Filters=filters)
 
     print('All instances:')
     for instance in base:
         print(instance.id)
 
     print('Dedicated instances:')
-    for instance in filtered:
+    for instance in filtered1:
+        print(instance.id)
+
+    print('Dedicated micro instances:')
+    for instance in filtered2:
         print(instance.id)
 
 Limiting Results

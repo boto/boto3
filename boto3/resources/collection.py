@@ -34,7 +34,7 @@ class ResourceCollection(object):
 
     :type definition: dict
     :param definition: Collection definition
-    :type parent: ServiceResource
+    :type parent: :py:class:`~boto3.resources.base.ServiceResource`
     :param parent: The collection's parent resource
     :type handler: :py:class:`~boto3.resources.response.ResourceHandler`
     :param handler: The resource response handler used to create resource
@@ -230,9 +230,9 @@ class CollectionManager(object):
 
     :type collection_def: dict
     :param collection_def: Collection definition
-    :type parent: ServiceResource
+    :type parent: :py:class:`~boto3.resources.base.ServiceResource`
     :param parent: The collection's parent resource
-    :type factory: ResourceFactory
+    :type factory: :py:class:`~boto3.resources.factory.ResourceFactory`
     :param factory: The resource factory to create new resources
     :type resource_defs: dict
     :param resource_defs: Service resource definitions.
