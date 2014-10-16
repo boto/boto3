@@ -104,17 +104,14 @@ class TestResourceFactory(BaseTestCase):
 
         resource = self.load('test', 'Message', model, defs, None)('url', 'handle')
 
-        self.assertIn('test.Message', repr(resource),
-            'Resource name should be in repr')
+        # Class name
+        self.assertIn('test.Message', repr(resource))
 
-        self.assertIn('queue_url', repr(resource),
-            'QueueUrl identifier name should be in repr')
-        self.assertIn("'url'", repr(resource),
-            'QueueUrl identifier value should be in repr')
-        self.assertIn('receipt_handle', repr(resource),
-            'ReceiptHandle identifier name should be in repr')
-        self.assertIn("'handle'", repr(resource),
-            'ReceiptHandle identifier value should be in repr')
+        # Identifier names and values
+        self.assertIn('queue_url', repr(resource))
+        self.assertIn("'url'", repr(resource))
+        self.assertIn('receipt_handle', repr(resource))
+        self.assertIn("'handle'", repr(resource))
 
     def test_factory_creates_dangling_resources(self):
         defs = {
