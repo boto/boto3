@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from botocore.model import ServiceModel
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
 from tests import BaseTestCase, mock
@@ -44,10 +45,14 @@ class TestResourceCollection(BaseTestCase):
                 {'Id': 'four'}
             ]
         }
+        pages = [
+            {'Frobs': [{'Id': 'one'}, {'Id': 'two'}]},
+            {'Frobs': [{'Id': 'three'}, {'Id': 'four'}]}
+        ]
         client = mock.Mock()
         client.get_frobs.return_value = response
         client.can_paginate.return_value = paginated
-        client.get_paginator.return_value.paginate.return_value = [response]
+        client.get_paginator.return_value.paginate.return_value = pages
         meta = {
             'client': client,
             'service_name': 'test'
@@ -62,7 +67,7 @@ class TestResourceCollection(BaseTestCase):
                 ]
             }
         }
-        service_model = mock.Mock()
+        service_model = ServiceModel({})
         collection = CollectionManager(collection_def, parent, factory,
             resource_defs, service_model)
         return client, collection
@@ -108,7 +113,7 @@ class TestResourceCollection(BaseTestCase):
         # Low-level pagination should have been called
         client.get_paginator.assert_called_with('get_frobs')
         paginator = client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=None, limit=None)
+        paginator.paginate.assert_called_with(page_size=None, max_items=None)
 
     def test_limit_param_paginated(self):
         client, collection = self.get_collection(paginated=True)
@@ -126,36 +131,20 @@ class TestResourceCollection(BaseTestCase):
         list(collection.filter(limit=2, Param1='foo', Param2=3))
 
         paginator = client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=None, limit=2,
-            Param1='foo', Param2=3)
+        paginator.paginate.assert_called_with(
+            page_size=None, max_items=2, Param1='foo', Param2=3)
 
     def test_page_size_param(self):
         client, collection = self.get_collection(paginated=True)
         list(collection.all(page_size=1))
         paginator = client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=1, limit=None)
+        paginator.paginate.assert_called_with(page_size=1, max_items=None)
 
     def test_page_size_method(self):
         client, collection = self.get_collection(paginated=True)
         list(collection.page_size(1))
         paginator = client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=1, limit=None)
-
-    def test_access_by_index(self):
-        client, collection = self.get_collection()
-
-        first = collection.all()[0]
-
-        self.assertEqual(first.id, 'one')
-
-    def test_slicing(self):
-        client, collection = self.get_collection()
-
-        items = collection.all()[:2]
-
-        self.assertEqual(len(items), 2)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        paginator.paginate.assert_called_with(page_size=1, max_items=None)
 
     def test_chaining(self):
         client, collection = self.get_collection()
@@ -171,7 +160,7 @@ class TestResourceCollection(BaseTestCase):
 
         paginator = client.get_paginator.return_value
         paginator.paginate.assert_called_with(page_size=3,
-            limit=3, CustomArg=1)
+            max_items=3, CustomArg=1)
 
     def test_chained_repr(self):
         client, collection = self.get_collection()

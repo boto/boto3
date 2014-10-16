@@ -28,10 +28,6 @@ the following conditions:
       for bucket in s3.buckets.all():
           print(bucket.name)
 
-* **Slicing & Indexing**::
-
-      bucket = s3.buckets.all()[3:5]
-
 * **Conversion to list()**::
 
       buckets = list(s3.buckets.all())

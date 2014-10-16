@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+import copy
 import logging
 
 from botocore import xform_name
@@ -35,32 +36,25 @@ class ResourceCollection(object):
     :param definition: Collection definition
     :type parent: ServiceResource
     :param parent: The collection's parent resource
-    :type py_operation_name: string
-    :param py_operation_name: Snake-cased operation name
     :type handler: :py:class:`~boto3.resources.response.ResourceHandler`
     :param handler: The resource response handler used to create resource
                     instances
-
-    :ivar parent: The collection's parent resource
-    :ivar params: A dict of key value pairs to send as parameters to the
-                  underlying service operation
-
     """
-    def __init__(self, definition, parent, py_operation_name, handler,
-                 **kwargs):
-        self.definition = definition
-        self.parent = parent
-        self.py_operation_name = py_operation_name
-        self.handler = handler
-        self.params = kwargs
+    def __init__(self, definition, parent, handler, **kwargs):
+        self._definition = definition
+        self._parent = parent
+        self._py_operation_name = xform_name(
+            definition.get('request', {}).get('operation'))
+        self._handler = handler
+        self._params = kwargs
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(
             self.__class__.__name__,
-            self.parent,
+            self._parent,
             '{0}.{1}'.format(
-                self.parent.meta['service_name'],
-                self.definition.get('resource', {}).get('type')
+                self._parent.meta['service_name'],
+                self._definition.get('resource', {}).get('type')
             )
         )
 
@@ -70,13 +64,13 @@ class ResourceCollection(object):
         appropriate service operation calls and handling any pagination
         on your behalf.
         """
-        client = self.parent.meta['client']
-        cleaned_params = self.params.copy()
+        client = self._parent.meta['client']
+        cleaned_params = self._params.copy()
         limit = cleaned_params.pop('limit', None)
         page_size = cleaned_params.pop('page_size', None)
 
-        params = create_request_parameters(self.parent,
-            self.definition.get('request', {}))
+        params = create_request_parameters(
+            self._parent, self._definition.get('request', {}))
         params.update(cleaned_params)
 
         # Is this a paginated operation? If so, we need to get an
@@ -84,21 +78,24 @@ class ResourceCollection(object):
         # call the operation and return the result as a single
         # page in a list. For non-paginated results, we just ignore
         # the page size parameter.
-        if client.can_paginate(self.py_operation_name):
-            paginator = client.get_paginator(self.py_operation_name)
-            pages = paginator.paginate(limit=limit,
-                page_size=page_size, **params)
+        if client.can_paginate(self._py_operation_name):
+            logger.info('Calling paginated %s:%s with %r',
+                        self._parent.meta['service_name'],
+                        self._py_operation_name, params)
+            paginator = client.get_paginator(self._py_operation_name)
+            pages = paginator.paginate(
+                max_items=limit, page_size=page_size, **params)
         else:
             logger.info('Calling %s:%s with %r',
-                        self.parent.meta['service_name'],
-                        self.py_operation_name, params)
-            pages = [getattr(client, self.py_operation_name)(**params)]
+                        self._parent.meta['service_name'],
+                        self._py_operation_name, params)
+            pages = [getattr(client, self._py_operation_name)(**params)]
 
         # Now that we have a page iterator or single page of results
         # we start processing and yielding individual items.
         count = 0
         for page in pages:
-            for item in self.handler(self.parent, params, page):
+            for item in self._handler(self._parent, params, page):
                 yield item
 
                 # If the limit is set and has been reached, then
@@ -106,17 +103,6 @@ class ResourceCollection(object):
                 count += 1
                 if limit is not None and count >= limit:
                     return
-
-    def __getitem__(self, k):
-        """
-        Enable array indexing and slicing, for example:
-
-            >>> collection.all()[2]
-            Item2
-            >>> collection.all()[:5]
-            [Item1, Item2, Item3, Item4, Item5]
-        """
-        return list(self)[k]
 
     def _clone(self, **kwargs):
         """
@@ -135,11 +121,10 @@ class ResourceCollection(object):
         :rtype: :py:class:`ResourceCollection`
         :return: A clone of this resource collection
         """
-        params = self.params.copy()
+        params = copy.deepcopy(self._params)
         params.update(kwargs)
-        clone = self.__class__(self.definition, self.parent,
-                               self.py_operation_name, self.handler,
-                               **params)
+        clone = self.__class__(self._definition, self._parent,
+                               self._handler, **params)
         return clone
 
     def all(self, **kwargs):
@@ -173,6 +158,7 @@ class ResourceCollection(object):
         """
         return self._clone(**kwargs)
 
+    # The filter method is an alias for all
     filter = all
 
     def limit(self, count):
@@ -231,28 +217,25 @@ class CollectionManager(object):
     :param resource_defs: Service resource definitions.
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
-
-    :ivar parent: The collection's parent resource   
     """
     def __init__(self, collection_def, parent, factory, resource_defs,
                  service_model):
-        self.definition = collection_def
-        operation_name = self.definition['request']['operation']
-        self.py_operation_name = xform_name(operation_name)
-        self.parent = parent
+        self._definition = collection_def
+        operation_name = self._definition['request']['operation']
+        self._parent = parent
 
         search_path = collection_def.get('path', '')
         response_resource_def = collection_def.get('resource')
-        self.handler = ResourceHandler(search_path, factory, resource_defs,
+        self._handler = ResourceHandler(search_path, factory, resource_defs,
             service_model, response_resource_def, operation_name)
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(
             self.__class__.__name__,
-            self.parent,
+            self._parent,
             '{0}.{1}'.format(
-                self.parent.meta['service_name'],
-                self.definition.get('resource', {}).get('type')
+                self._parent.meta['service_name'],
+                self._definition.get('resource', {}).get('type')
             )
         )
 
@@ -263,9 +246,8 @@ class CollectionManager(object):
         :rtype: :py:class:`ResourceCollection`
         :return: An iterable representing the collection of resources
         """
-        return ResourceCollection(self.definition, self.parent,
-                                  self.py_operation_name, self.handler,
-                                  **kwargs)
+        return ResourceCollection(self._definition, self._parent,
+                                  self._handler, **kwargs)
 
     # Set up some methods to proxy ResourceCollection methods
     def all(self, **kwargs):

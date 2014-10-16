@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from botocore.model import ServiceModel
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.factory import ResourceFactory
@@ -423,7 +424,7 @@ class TestResourceFactory(BaseTestCase):
         defs = {
             'Queue': {}
         }
-        service_model = mock.Mock()
+        service_model = ServiceModel({})
 
         resource = self.load('test', 'test', model, defs, service_model)()
 
