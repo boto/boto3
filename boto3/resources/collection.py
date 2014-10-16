@@ -127,12 +127,10 @@ class ResourceCollection(object):
                                self._handler, **params)
         return clone
 
-    def all(self, **kwargs):
+    def all(self, limit=None, page_size=None):
         """
         Get all items from the collection, optionally with a custom
-        page size and item count limit. Any other keyword arguments
-        are passed along as parameters to the underlying service
-        operation, typically used to filter the results.
+        page size and item count limit.
 
         This method returns an iterable generator which yields
         individual resource instances. Example use::
@@ -148,7 +146,33 @@ class ResourceCollection(object):
             >>> len(queues)
             2
 
-        The ``filter`` method is an alias for ``all``.
+        :type limit: int
+        :param limit: Return no more than this many items
+        :type page_size: int
+        :param page_size: Fetch this many items per request
+        :rtype: :py:class:`ResourceCollection`
+        """
+        return self._clone(limit=limit, page_size=page_size)
+
+    def filter(self, **kwargs):
+        """
+        Get items from the collection, passing keyword arguments along
+        as parameters to the underlying service operation, which are
+        typically used to filter the results.
+
+        This method returns an iterable generator which yields
+        individual resource instances. Example use::
+
+            # Iterate through items
+            >>> for queue in sqs.queues.filter(Param='foo'):
+            ...     print(queue.url)
+            'https://url1'
+            'https://url2'
+
+            # Convert to list
+            >>> queues = list(sqs.queues.filter(Param='foo'))
+            >>> len(queues)
+            2
 
         :type limit: int
         :param limit: Return no more than this many items
@@ -157,9 +181,6 @@ class ResourceCollection(object):
         :rtype: :py:class:`ResourceCollection`
         """
         return self._clone(**kwargs)
-
-    # The filter method is an alias for all
-    filter = all
 
     def limit(self, count):
         """
@@ -250,10 +271,13 @@ class CollectionManager(object):
                                   self._handler, **kwargs)
 
     # Set up some methods to proxy ResourceCollection methods
-    def all(self, **kwargs):
-        return self.iterator(**kwargs)
+    def all(self, limit=None, page_size=None):
+        return self.iterator(limit=limit, page_size=page_size)
     all.__doc__ = ResourceCollection.all.__doc__
-    filter = all
+
+    def filter(self, **kwargs):
+        return self.iterator(**kwargs)
+    filter.__doc__ = ResourceCollection.filter.__doc__
 
     def limit(self, count):
         return self.iterator(limit=count)
