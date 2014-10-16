@@ -44,7 +44,7 @@ class ResourceCollection(object):
         self._definition = definition
         self._parent = parent
         self._py_operation_name = xform_name(
-            definition.get('request', {}).get('operation'))
+            definition.get('request', {}).get('operation', ''))
         self._handler = handler
         self._params = kwargs
 
@@ -242,7 +242,7 @@ class CollectionManager(object):
     def __init__(self, collection_def, parent, factory, resource_defs,
                  service_model):
         self._definition = collection_def
-        operation_name = self._definition['request']['operation']
+        operation_name = self._definition.get('request', {}).get('operation')
         self._parent = parent
 
         search_path = collection_def.get('path', '')
