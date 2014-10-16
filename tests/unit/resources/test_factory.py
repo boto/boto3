@@ -91,6 +91,28 @@ class TestResourceFactory(BaseTestCase):
         self.assertIn('receipt_handle', MessageResource.meta['identifiers'],
             'Missing receipt_handle identifier from model')
 
+    def test_identifiers_in_repr(self):
+        model = {
+            'identifiers': [
+                {'name': 'QueueUrl'},
+                {'name': 'ReceiptHandle'},
+            ],
+        }
+        defs = {
+            'Message': model
+        }
+
+        resource = self.load('test', 'Message', model, defs, None)('url', 'handle')
+
+        # Class name
+        self.assertIn('test.Message', repr(resource))
+
+        # Identifier names and values
+        self.assertIn('queue_url', repr(resource))
+        self.assertIn("'url'", repr(resource))
+        self.assertIn('receipt_handle', repr(resource))
+        self.assertIn("'handle'", repr(resource))
+
     def test_factory_creates_dangling_resources(self):
         defs = {
             'Queue': {},

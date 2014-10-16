@@ -54,9 +54,12 @@ class ServiceResource(object):
                 raise ValueError(
                     'Required parameter {0} not set'.format(identifier))
 
-    def __str__(self):
-        return "{0}: {1} in {2}".format(
+    def __repr__(self):
+        identifiers = []
+        for identifier in self.meta['identifiers']:
+            identifiers.append('{0}={1}'.format(
+                identifier, repr(getattr(self, identifier))))
+        return "{0}({1})".format(
             self.__class__.__name__,
-            self.meta['service_name'],
-            self.meta['client']._endpoint.region_name,
+            ', '.join(identifiers),
         )
