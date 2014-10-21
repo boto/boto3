@@ -12,8 +12,11 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import os
 import boto3
+
+from botocore.exceptions import ApiVersionNotFoundError
+from boto3.docs import docs_for
 
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
@@ -21,6 +24,20 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+if not os.path.exists('reference/services'):
+  os.makedirs('reference/services')
+
+# Generate reference docs.
+boto3.setup_default_session()
+for service_name in boto3.DEFAULT_SESSION.get_available_services():
+    try:
+        docs = docs_for(service_name)
+    except ApiVersionNotFoundError as e:
+        print(repr(e))
+        continue
+
+    open('reference/services/{0}.rst'.format(service_name), 'w').write(docs)
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
