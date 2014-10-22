@@ -174,10 +174,6 @@ class ResourceCollection(object):
             >>> len(queues)
             2
 
-        :type limit: int
-        :param limit: Return no more than this many items
-        :type page_size: int
-        :param page_size: Fetch this many items per request
         :rtype: :py:class:`ResourceCollection`
         """
         return self._clone(**kwargs)
