@@ -19,6 +19,7 @@ from botocore import xform_name
 
 from .action import ServiceAction
 from .base import ServiceResource
+from .collection import CollectionManager
 from ..compat import json, OrderedDict
 from ..exceptions import ResourceLoadException
 
@@ -141,6 +142,7 @@ class ResourceFactory(object):
                                 resource_defs, service_model)
         self._load_actions(attrs, model, resource_defs, service_model)
         self._load_attributes(attrs, meta, model, service_model)
+        self._load_collections(attrs, model, resource_defs, service_model)
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
@@ -226,6 +228,14 @@ class ResourceFactory(object):
                 attrs[snake_cased] = self._create_autoload_property(name,
                     snake_cased)
 
+    def _load_collections(self, attrs, model, resource_defs, service_model):
+        for name, definition in model.get('hasMany', {}).items():
+            snake_cased = xform_name(name)
+            self._check_allowed_name(attrs, snake_cased)
+
+            attrs[snake_cased] = self._create_collection(snake_cased,
+                definition, resource_defs, service_model)
+
     def _check_allowed_name(self, attrs, name):
         """
         Determine if a given name is allowed on the instance, and if not,
@@ -263,6 +273,19 @@ class ResourceFactory(object):
         property_loader.__name__ = str(snake_cased)
         property_loader.__doc__ = 'TODO'
         return property(property_loader)
+
+    def _create_collection(factory_self, snake_cased, collection_def,
+                           resource_defs, service_model):
+        """
+        Creates a new property on the resource to lazy-load a collection.
+        """
+        def get_collection(self):
+            return CollectionManager(collection_def,
+                self, factory_self, resource_defs, service_model)
+
+        get_collection.__name__ = str(snake_cased)
+        get_collection.__doc__ = 'TODO'
+        return property(get_collection)
 
     def _create_class_partial(factory_self, resource_cls, identifiers=None):
         """

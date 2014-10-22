@@ -1,8 +1,8 @@
 .. _ref_core_session:
 
-=======
-Session
-=======
+=================
+Session Reference
+=================
 
 .. automodule:: boto3.session
    :members:
