@@ -14,6 +14,7 @@
 from botocore.model import ServiceModel
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
+from boto3.resources.model import Collection
 from tests import BaseTestCase, mock
 
 
@@ -21,7 +22,15 @@ class TestResourceCollection(BaseTestCase):
     def setUp(self):
         super(TestResourceCollection, self).setUp()
 
-        self.collection_def = {}
+        # Minimal definition so things like repr work
+        self.collection_def = {
+            'request': {
+                'operation': 'TestOperation'
+            },
+            'resource': {
+                'type': 'Frob'
+            }
+        }
         self.client = mock.Mock()
         self.client.can_paginate.return_value = False
         meta = {
@@ -51,8 +60,11 @@ class TestResourceCollection(BaseTestCase):
             resource_defs['Frob']['identifiers'].append(
                 {'name': identifier['target']})
 
+        collection_model = Collection(
+            'test', self.collection_def, resource_defs)
+
         collection = CollectionManager(
-            self.collection_def, self.parent, self.factory,
+            collection_model, self.parent, self.factory,
             resource_defs, self.service_model)
         return collection
 

@@ -4,6 +4,13 @@
 Resources Reference
 ===================
 
+Resource Model
+--------------
+
+.. automodule:: boto3.resources.model
+   :members:
+   :undoc-members:
+
 Request Parameters
 ------------------
 

@@ -430,7 +430,8 @@ class TestResourceFactory(BaseTestCase):
             resource.last_modified
 
     @mock.patch('boto3.resources.factory.CollectionManager')
-    def test_resource_loads_collections(self, collection_cls):
+    @mock.patch('boto3.resources.model.Collection')
+    def test_resource_loads_collections(self, mock_model, collection_cls):
         model = {
             'hasMany': {
                 u'Queues': {
@@ -447,6 +448,7 @@ class TestResourceFactory(BaseTestCase):
             'Queue': {}
         }
         service_model = ServiceModel({})
+        mock_model.return_value.name = 'Queues'
 
         resource = self.load('test', 'test', model, defs, service_model)()
 
@@ -455,5 +457,5 @@ class TestResourceFactory(BaseTestCase):
         self.assertEqual(resource.queues, collection_cls.return_value,
             'Queues collection should be a collection manager')
 
-        collection_cls.assert_called_with(model['hasMany']['Queues'],
+        collection_cls.assert_called_with(mock_model.return_value,
             resource, self.factory, defs, service_model)
