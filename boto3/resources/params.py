@@ -14,24 +14,24 @@
 from botocore import xform_name
 
 
-def create_request_parameters(parent, request_def):
+def create_request_parameters(parent, request_model):
     """
     Handle request parameters that can be filled in from identifiers,
     resource data members or constants.
 
     :type parent: ServiceResource
     :param parent: The resource instance to which this action is attached.
-    :type request_def: dict
-    :param request_def: The action request definition.
+    :type request_model: :py:class:`~boto3.resources.model.Request`
+    :param request_model: The action request model.
     :rtype: dict
     :return: Pre-filled parameters to be sent to the request operation.
     """
     params = {}
 
-    for param in request_def.get('params', []):
-        source = param.get('source', '')
-        source_type = param.get('sourceType', '')
-        target = param.get('target', '')
+    for param in request_model.params:
+        source = param.source
+        source_type = param.source_type
+        target = param.target
 
         if source_type in ['identifier', 'dataMember']:
             # Resource identifier, e.g. queue.url

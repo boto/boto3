@@ -29,8 +29,8 @@ class ServiceAction(object):
     The action may construct parameters from existing resource identifiers
     and may return either a raw response or a new resource instance.
 
-    :type action_def: dict
-    :param action_def: The action definition.
+    :type action_model: :py:class`~boto3.resources.model.Action`
+    :param action_model: The action model.
     :type factory: ResourceFactory
     :param factory: The factory that created the resource class to which
                     this action is attached.
@@ -39,19 +39,18 @@ class ServiceAction(object):
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
     """
-    def __init__(self, action_def, factory=None, resource_defs=None,
+    def __init__(self, action_model, factory=None, resource_defs=None,
                  service_model=None):
-        self.action_def = action_def
+        self.action_model = action_model
 
-        search_path = action_def.get('path')
+        search_path = action_model.path
 
         # In the simplest case we just return the response, but if a
         # resource is defined, then we must create these before returning.
-        response_resource_def = action_def.get('resource', {})
-        if response_resource_def:
+        if action_model.resource:
             self.response_handler = ResourceHandler(search_path, factory,
-                resource_defs, service_model, response_resource_def,
-                action_def.get('request', {}).get('operation'))
+                resource_defs, service_model, action_model.resource,
+                action_model.request.operation)
         else:
             self.response_handler = RawHandler(search_path)
 
@@ -65,13 +64,12 @@ class ServiceAction(object):
         :rtype: dict or ServiceResource or list(ServiceResource)
         :return: The response, either as a raw dict or resource instance(s).
         """
-        request_def = self.action_def.get('request', {})
-        operation_name = xform_name(request_def.get('operation', ''))
+        operation_name = xform_name(self.action_model.request.operation)
 
         # First, build predefined params and then update with the
         # user-supplied kwargs, which allows overriding the pre-built
         # params if needed.
-        params = create_request_parameters(parent, request_def)
+        params = create_request_parameters(parent, self.action_model.request)
         params.update(kwargs)
 
         logger.info('Calling %s:%s with %r', parent.meta['service_name'],

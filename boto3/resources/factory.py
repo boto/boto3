@@ -20,6 +20,7 @@ from botocore import xform_name
 from .action import ServiceAction
 from .base import ServiceResource
 from .collection import CollectionManager
+from .model import ResourceModel
 from ..compat import json, OrderedDict
 from ..exceptions import ResourceLoadException
 
@@ -137,12 +138,16 @@ class ResourceFactory(object):
             'meta': meta,
         }
 
-        self._load_identifiers(attrs, meta, model)
-        self._load_subresources(attrs, service_name, resource_name, model,
-                                resource_defs, service_model)
-        self._load_actions(attrs, model, resource_defs, service_model)
-        self._load_attributes(attrs, meta, model, service_model)
-        self._load_collections(attrs, model, resource_defs, service_model)
+        resource_model = ResourceModel(resource_name, model, resource_defs)
+
+        self._load_identifiers(attrs, meta, resource_model)
+        self._load_subresources(attrs, service_name, resource_name,
+                                resource_model, resource_defs, service_model)
+        self._load_actions(attrs, resource_model, resource_defs,
+                           service_model)
+        self._load_attributes(attrs, meta, resource_model, service_model)
+        self._load_collections(attrs, resource_model, resource_defs,
+                               service_model)
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
@@ -157,8 +162,8 @@ class ResourceFactory(object):
         the resource cannot be used. Identifiers become arguments for
         operations on the resource.
         """
-        for identifier in model.get('identifiers', []):
-            snake_cased = xform_name(identifier['name'])
+        for identifier in model.identifiers:
+            snake_cased = xform_name(identifier.name)
             self._check_allowed_name(attrs, snake_cased)
             meta['identifiers'].append(snake_cased)
             attrs[snake_cased] = None
@@ -175,19 +180,20 @@ class ResourceFactory(object):
             # This is a service, so dangle all the resource_defs as if
             # they were subresources of the service itself.
             for name, resource_def in resource_defs.items():
-                cls = self.load_from_definition(service_name, name,
-                    resource_defs.get(name), resource_defs, service_model)
+                cls = self.load_from_definition(
+                    service_name, name, resource_defs.get(name, {}),
+                    resource_defs, service_model)
                 attrs[name] = self._create_class_partial(cls)
 
         # For non-services, subresources are explicitly listed
-        sub_resources = model.get('subResources', {})
-        if sub_resources:
-            identifiers = sub_resources.get('identifiers', {})
-            for name in sub_resources.get('resources'):
-                klass = self.load_from_definition(service_name, name,
-                    resource_defs.get(name), resource_defs, service_model)
-                attrs[name] = self._create_class_partial(klass,
-                    identifiers=identifiers)
+        if model.sub_resources:
+            identifiers = model.sub_resources.identifiers
+            for name in model.sub_resources.resource_names:
+                cls = self.load_from_definition(
+                    service_name, name, resource_defs.get(name, {}),
+                    resource_defs, service_model)
+                attrs[name] = self._create_class_partial(
+                    cls, identifiers=identifiers)
 
     def _load_actions(self, attrs, model, resource_defs, service_model):
         """
@@ -195,15 +201,14 @@ class ResourceFactory(object):
         being a special case which sets internal data for attributes, and
         ``reload`` is an alias for ``load``.
         """
-        if 'load' in model:
-            load_def = model.get('load')
-
-            attrs['load'] = self._create_action('load',
-                load_def, resource_defs, service_model, is_load=True)
+        if model.load:
+            attrs['load'] = self._create_action(
+                'load', model.load, resource_defs, service_model,
+                is_load=True)
             attrs['reload'] = attrs['load']
 
-        for name, action in model.get('actions', {}).items():
-            snake_cased = xform_name(name)
+        for action in model.actions:
+            snake_cased = xform_name(action.name)
             self._check_allowed_name(attrs, snake_cased)
             attrs[snake_cased] = self._create_action(snake_cased,
                 action, resource_defs, service_model)
@@ -215,8 +220,8 @@ class ResourceFactory(object):
         is defined in the Botocore service JSON, hence the need for
         access to the ``service_model``.
         """
-        if 'shape' in model:
-            shape = service_model.shape_for(model.get('shape'))
+        if model.shape:
+            shape = service_model.shape_for(model.shape)
 
             for name, member in shape.members.items():
                 snake_cased = xform_name(name)
@@ -229,12 +234,12 @@ class ResourceFactory(object):
                     snake_cased)
 
     def _load_collections(self, attrs, model, resource_defs, service_model):
-        for name, definition in model.get('hasMany', {}).items():
-            snake_cased = xform_name(name)
+        for collection_model in model.collections:
+            snake_cased = xform_name(collection_model.name)
             self._check_allowed_name(attrs, snake_cased)
 
             attrs[snake_cased] = self._create_collection(snake_cased,
-                definition, resource_defs, service_model)
+                collection_model, resource_defs, service_model)
 
     def _check_allowed_name(self, attrs, name):
         """
@@ -274,13 +279,13 @@ class ResourceFactory(object):
         property_loader.__doc__ = 'TODO'
         return property(property_loader)
 
-    def _create_collection(factory_self, snake_cased, collection_def,
+    def _create_collection(factory_self, snake_cased, collection_model,
                            resource_defs, service_model):
         """
         Creates a new property on the resource to lazy-load a collection.
         """
         def get_collection(self):
-            return CollectionManager(collection_def,
+            return CollectionManager(collection_model,
                 self, factory_self, resource_defs, service_model)
 
         get_collection.__name__ = str(snake_cased)
@@ -328,7 +333,7 @@ class ResourceFactory(object):
         create_resource.__doc__ = doc.format(resource_cls)
         return create_resource
 
-    def _create_action(factory_self, snake_cased, action_def, resource_defs,
+    def _create_action(factory_self, snake_cased, action_model, resource_defs,
                        service_model, is_load=False):
         """
         Creates a new method which makes a request to the underlying
@@ -337,7 +342,7 @@ class ResourceFactory(object):
         # Create the action in in this closure but before the ``do_action``
         # method below is invoked, which allows instances of the resource
         # to share the ServiceAction instance.
-        action = ServiceAction(action_def, factory=factory_self,
+        action = ServiceAction(action_model, factory=factory_self,
             resource_defs=resource_defs, service_model=service_model)
 
         # A resource's ``load`` method is special because it sets

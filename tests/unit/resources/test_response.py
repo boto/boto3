@@ -13,6 +13,7 @@
 
 from tests import BaseTestCase, mock
 from boto3.resources.base import ServiceResource
+from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.response import build_identifiers, build_empty_response,\
                                      RawHandler, ResourceHandler
@@ -20,11 +21,8 @@ from boto3.resources.response import build_identifiers, build_empty_response,\
 
 class TestBuildIdentifiers(BaseTestCase):
     def test_build_identifier_from_res_path_scalar(self):
-        identifier_defs = [{
-            'target': 'Id',
-            'sourceType': 'responsePath',
-            'source': 'Container.Frob.Id'
-        }]
+        identifiers = [Parameter(target='Id', source_type='responsePath',
+                                 source='Container.Frob.Id')]
 
         parent = mock.Mock()
         params = {}
@@ -36,17 +34,14 @@ class TestBuildIdentifiers(BaseTestCase):
             }
         }
 
-        values = build_identifiers(identifier_defs, parent, params, response)
+        values = build_identifiers(identifiers, parent, params, response)
 
         self.assertEqual(values['id'], 'response-path',
             'Identifier loaded from responsePath scalar not set')
 
     def test_build_identifier_from_res_path_list(self):
-        identifier_defs = [{
-            'target': 'Id',
-            'sourceType': 'responsePath',
-            'source': 'Container.Frobs[].Id'
-        }]
+        identifiers = [Parameter(target='Id', source_type='responsePath',
+                       source='Container.Frobs[].Id')]
 
         parent = mock.Mock()
         params = {}
@@ -60,17 +55,14 @@ class TestBuildIdentifiers(BaseTestCase):
             }
         }
 
-        values = build_identifiers(identifier_defs, parent, params, response)
+        values = build_identifiers(identifiers, parent, params, response)
 
         self.assertEqual(values['id'], ['response-path'],
             'Identifier loaded from responsePath list not set')
 
     def test_build_identifier_from_parent_identifier(self):
-        identifier_defs = [{
-            'target': 'Id',
-            'sourceType': 'identifier',
-            'source': 'Id'
-        }]
+        identifiers = [Parameter(target='Id', source_type='identifier',
+                       source='Id')]
 
         parent = mock.Mock()
         parent.id = 'identifier'
@@ -81,17 +73,14 @@ class TestBuildIdentifiers(BaseTestCase):
             }
         }
 
-        values = build_identifiers(identifier_defs, parent, params, response)
+        values = build_identifiers(identifiers, parent, params, response)
 
         self.assertEqual(values['id'], 'identifier',
             'Identifier loaded from parent identifier not set')
 
     def test_build_identifier_from_parent_data_member(self):
-        identifier_defs = [{
-            'target': 'Id',
-            'sourceType': 'dataMember',
-            'source': 'Member'
-        }]
+        identifiers = [Parameter(target='Id', source_type='dataMember',
+                       source='Member')]
 
         parent = mock.Mock()
         parent.member = 'data-member'
@@ -102,17 +91,14 @@ class TestBuildIdentifiers(BaseTestCase):
             }
         }
 
-        values = build_identifiers(identifier_defs, parent, params, response)
+        values = build_identifiers(identifiers, parent, params, response)
 
         self.assertEqual(values['id'], 'data-member',
             'Identifier loaded from parent data member not set')
 
     def test_build_identifier_from_req_param(self):
-        identifier_defs = [{
-            'target': 'Id',
-            'sourceType': 'requestParameter',
-            'source': 'Param'
-        }]
+        identifiers = [Parameter(target='Id', source_type='requestParameter',
+                       source='Param')]
 
         parent = mock.Mock()
         params = {
@@ -124,17 +110,14 @@ class TestBuildIdentifiers(BaseTestCase):
             }
         }
 
-        values = build_identifiers(identifier_defs, parent, params, response)
+        values = build_identifiers(identifiers, parent, params, response)
 
         self.assertEqual(values['id'], 'request-param',
             'Identifier loaded from request parameter not set')
 
     def test_build_identifier_from_invalid_source_type(self):
-        identifier_defs = [{
-            'target': 'Id',
-            'sourceType': 'invalid',
-            'source': 'abc'
-        }]
+        identifiers = [Parameter(target='Id', source_type='invalid',
+                       source='abc')]
 
         parent = mock.Mock()
         params = {}
@@ -145,7 +128,7 @@ class TestBuildIdentifiers(BaseTestCase):
         }
 
         with self.assertRaises(NotImplementedError):
-            build_identifiers(identifier_defs, parent, params, response)
+            build_identifiers(identifiers, parent, params, response)
 
 
 class TestBuildEmptyResponse(BaseTestCase):
@@ -358,9 +341,11 @@ class TestResourceHandler(BaseTestCase):
                  'source': self.identifier_source},
             ]
         }
+        resource_model = ResponseResource(
+            request_resource_def, self.resource_defs)
 
         handler = ResourceHandler(search_path, self.factory,
-            self.resource_defs, self.service_model, request_resource_def,
+            self.resource_defs, self.service_model, resource_model,
             'GetFrobs')
         return handler(self.parent, self.params, response)
 

@@ -27,15 +27,16 @@ def all_not_none(iterable):
     return True
 
 
-def build_identifiers(identifiers_def, parent, params, raw_response):
+def build_identifiers(identifiers, parent, params, raw_response):
     """
     Builds a mapping of identifier names to values based on the
     identifier source location, type, and target. Identifier
     values may be scalars or lists depending on the source type
     and location.
 
-    :type identifiers_def: list
-    :param identifiers_def: List of identifier definitions
+    :type identifiers: list
+    :param identifiers: List of :py:class:`~boto3.resources.model.Parameter`
+                        definitions
     :type parent: ServiceResource
     :param parent: The resource instance to which this action is attached.
     :type params: dict
@@ -45,10 +46,10 @@ def build_identifiers(identifiers_def, parent, params, raw_response):
     """
     results = {}
 
-    for identifier in identifiers_def:
-        source = identifier.get('source', '')
-        source_type = identifier.get('sourceType')
-        target = identifier.get('target')
+    for identifier in identifiers:
+        source = identifier.source
+        source_type = identifier.source_type
+        target = identifier.target
 
         if source_type == 'responsePath':
             value = jmespath.search(source, raw_response)
@@ -159,20 +160,20 @@ class ResourceHandler(object):
     :param resource_defs: Service resource definitions.
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
-    :type resource_def: dict
-    :param resource_def: Response resource definition.
+    :type resource_model: :py:class:`~boto3.resources.model.ResponseResource`
+    :param resource_model: Response resource model.
     :type operation_name: string
     :param operation_name: Name of the underlying service operation
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """
     def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_def, operation_name):
+                 resource_model, operation_name):
         self.search_path = search_path
         self.factory = factory
         self.resource_defs = resource_defs
         self.service_model = service_model
-        self.resource_def = resource_def
+        self.resource_model = resource_model
         self.operation_name = operation_name
 
     def __call__(self, parent, params, response):
@@ -184,7 +185,7 @@ class ResourceHandler(object):
         :type response: dict
         :param response: Low-level operation response.
         """
-        resource_name = self.resource_def.get('type', '')
+        resource_name = self.resource_model.type
         resource_cls = self.factory.load_from_definition(
             parent.meta['service_name'], resource_name,
             self.resource_defs.get(resource_name), self.resource_defs,
@@ -206,7 +207,7 @@ class ResourceHandler(object):
         # resource that is instantiated. Items which are not a list will
         # be set as the same value on each new resource instance.
         identifiers = build_identifiers(
-            self.resource_def.get('identifiers', []), parent, params,
+            self.resource_model.identifiers, parent, params,
             raw_response)
 
         # If any of the identifiers is a list, then the response is plural

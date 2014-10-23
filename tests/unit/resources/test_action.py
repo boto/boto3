@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from boto3.resources.action import ServiceAction
+from boto3.resources.model import Action
 from tests import BaseTestCase, mock
 
 
@@ -26,6 +27,10 @@ class TestServiceActionCall(BaseTestCase):
             }
         }
 
+    @property
+    def action(self):
+        return Action('test', self.action_def, {})
+
     @mock.patch('boto3.resources.action.create_request_parameters',
                 return_value={})
     def test_service_action_creates_params(self, params_mock):
@@ -35,7 +40,7 @@ class TestServiceActionCall(BaseTestCase):
             'client': mock.Mock(),
         }
 
-        action = ServiceAction(self.action_def)
+        action = ServiceAction(self.action)
 
         action(resource, foo=1)
 
@@ -53,7 +58,7 @@ class TestServiceActionCall(BaseTestCase):
         operation = resource.meta['client'].get_frobs
         operation.return_value = 'response'
 
-        action = ServiceAction(self.action_def)
+        action = ServiceAction(self.action)
 
         response = action(resource, foo=1)
 
@@ -73,7 +78,7 @@ class TestServiceActionCall(BaseTestCase):
         operation = resource.meta['client'].get_frobs
         operation.return_value = 'response'
 
-        action = ServiceAction(self.action_def)
+        action = ServiceAction(self.action)
 
         handler_mock.return_value.return_value = 'response'
 
@@ -103,7 +108,9 @@ class TestServiceActionCall(BaseTestCase):
         resource_defs = {}
         service_model = mock.Mock()
 
-        action = ServiceAction(self.action_def, factory=factory,
+        action_model = self.action
+
+        action = ServiceAction(action_model, factory=factory,
             resource_defs=resource_defs, service_model=service_model)
 
         handler_mock.return_value.return_value = 'response'
@@ -111,6 +118,6 @@ class TestServiceActionCall(BaseTestCase):
         action(resource)
 
         handler_mock.assert_called_with('Container', factory, resource_defs,
-            service_model, self.action_def['resource'],
+            service_model, action_model.resource,
             self.action_def['request']['operation'])
         handler_mock.return_value.assert_called_with(resource, {}, 'response')

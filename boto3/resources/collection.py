@@ -32,19 +32,19 @@ class ResourceCollection(object):
     See :ref:`guide_collections` for a high-level overview of collections,
     including when remote service requests are performed.
 
-    :type definition: dict
-    :param definition: Collection definition
+    :type model: :py:class:`~boto3.resources.model.Collection`
+    :param model: Collection model
     :type parent: :py:class:`~boto3.resources.base.ServiceResource`
     :param parent: The collection's parent resource
     :type handler: :py:class:`~boto3.resources.response.ResourceHandler`
     :param handler: The resource response handler used to create resource
                     instances
     """
-    def __init__(self, definition, parent, handler, **kwargs):
-        self._definition = definition
+    def __init__(self, model, parent, handler, **kwargs):
+        self._model = model
         self._parent = parent
         self._py_operation_name = xform_name(
-            definition.get('request', {}).get('operation', ''))
+            model.request.operation)
         self._handler = handler
         self._params = kwargs
 
@@ -54,7 +54,7 @@ class ResourceCollection(object):
             self._parent,
             '{0}.{1}'.format(
                 self._parent.meta['service_name'],
-                self._definition.get('resource', {}).get('type')
+                self._model.resource.type
             )
         )
 
@@ -70,7 +70,7 @@ class ResourceCollection(object):
         page_size = cleaned_params.pop('page_size', None)
 
         params = create_request_parameters(
-            self._parent, self._definition.get('request', {}))
+            self._parent, self._model.request)
         params.update(cleaned_params)
 
         # Is this a paginated operation? If so, we need to get an
@@ -123,7 +123,7 @@ class ResourceCollection(object):
         """
         params = copy.deepcopy(self._params)
         params.update(kwargs)
-        clone = self.__class__(self._definition, self._parent,
+        clone = self.__class__(self._model, self._parent,
                                self._handler, **params)
         return clone
 
@@ -224,8 +224,8 @@ class CollectionManager(object):
     See :ref:`guide_collections` for a high-level overview of collections,
     including when remote service requests are performed.
 
-    :type collection_def: dict
-    :param collection_def: Collection definition
+    :type model: :py:class:`~boto3.resources.model.Collection`
+    :param model: Collection model
     :type parent: :py:class:`~boto3.resources.base.ServiceResource`
     :param parent: The collection's parent resource
     :type factory: :py:class:`~boto3.resources.factory.ResourceFactory`
@@ -235,16 +235,15 @@ class CollectionManager(object):
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
     """
-    def __init__(self, collection_def, parent, factory, resource_defs,
+    def __init__(self, model, parent, factory, resource_defs,
                  service_model):
-        self._definition = collection_def
-        operation_name = self._definition.get('request', {}).get('operation')
+        self._model = model
+        operation_name = self._model.request.operation
         self._parent = parent
 
-        search_path = collection_def.get('path', '')
-        response_resource_def = collection_def.get('resource')
+        search_path = model.path
         self._handler = ResourceHandler(search_path, factory, resource_defs,
-            service_model, response_resource_def, operation_name)
+            service_model, model.resource, operation_name)
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(
@@ -252,7 +251,7 @@ class CollectionManager(object):
             self._parent,
             '{0}.{1}'.format(
                 self._parent.meta['service_name'],
-                self._definition.get('resource', {}).get('type')
+                self._model.resource.type
             )
         )
 
@@ -263,7 +262,7 @@ class CollectionManager(object):
         :rtype: :py:class:`ResourceCollection`
         :return: An iterable representing the collection of resources
         """
-        return ResourceCollection(self._definition, self._parent,
+        return ResourceCollection(self._model, self._parent,
                                   self._handler, **kwargs)
 
     # Set up some methods to proxy ResourceCollection methods
