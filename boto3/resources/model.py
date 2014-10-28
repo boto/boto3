@@ -320,8 +320,8 @@ class ResourceModel(object):
             resource_names = sub_resources.get('resources', [])
 
             if self.name in resource_names:
-                logger.debug('Discovered reverse reference from {}'
-                             ' to {}'.format(self.name, name))
+                logger.debug('Discovered reverse reference from {0}'
+                             ' to {1}'.format(self.name, name))
 
                 identifiers = sub_resources.get('identifiers', {})
 
