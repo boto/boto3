@@ -23,6 +23,11 @@ These models are used both by the resource factory to generate resource
 classes as well as by the documentation generator.
 """
 
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 
 class Identifier(object):
     """
@@ -292,6 +297,48 @@ class ResourceModel(object):
             for name, definition in self._definition.get(key, {}).items():
                 references.append(
                     Action(name, definition, self._resource_defs))
+
+        return references
+
+    @property
+    def reverse_references(self):
+        """
+        Get a list of reverse reference resources. E.g. an S3 object has
+        a ``bucket_name`` identifier that can be used to instantiate a
+        bucket resource instance.
+        """
+        references = []
+
+        # First, we search for possible reverse references based on the
+        # defined sub-resources in each resource. If the name of this
+        # resource is present, then we are a child. Next, we use the
+        # identifiers to construct a reference definition, append it
+        # to the list of references and return.
+
+        for name, definition in self._resource_defs.items():
+            sub_resources = definition.get('subResources', {})
+            resource_names = sub_resources.get('resources', [])
+
+            if self.name in resource_names:
+                logger.debug('Discovered reverse reference from {}'
+                             ' to {}'.format(self.name, name))
+
+                identifiers = sub_resources.get('identifiers', {})
+
+                has_one_def = {
+                    'resource': {
+                        'type': name,
+                        'identifiers': []
+                    }
+                }
+
+                for target, source in identifiers.items():
+                    has_one_def['resource']['identifiers'].append(
+                        {'target': target, 'sourceType': 'identifier',
+                         'source': source})
+
+                references.append(
+                    Action(name, has_one_def, self._resource_defs))
 
         return references
 

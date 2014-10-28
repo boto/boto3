@@ -162,6 +162,43 @@ class TestModels(BaseTestCase):
         self.assertEqual(ref2.resource.type, 'Frob')
         self.assertEqual(len(ref2.resource.identifiers), 0)
 
+    def test_reverse_reference(self):
+        # Here the Code resource has no explicit ``hasOne`` defined, however
+        # by accessing the model's ``reverse_references`` you can see that
+        # it provides such a relation to Frob based on the Code resource's
+        # own identifiers (FrobId in this case).
+        resource_defs = {
+            'Frob': {
+                'identifiers': [{'name': 'Id'}],
+                'subResources': {
+                    'identifiers': {'FrobId': 'Id'},
+                    'resources': ['Code']
+                }
+            },
+            'Code': {
+                'identifiers': [
+                    {'name': 'FrobId'},
+                    {'name': 'Id'}
+                ]
+            }
+        }
+        model_def = resource_defs['Code']
+        model = ResourceModel('Code', model_def, resource_defs)
+
+        references = model.reverse_references
+
+        self.assertIsInstance(references, list)
+        self.assertEqual(len(references), 1,
+                         'Code should have a single reverse ref to Frob')
+
+        ref = references[0]
+        self.assertEqual(ref.name, 'Frob')
+        self.assertEqual(ref.resource.type, 'Frob')
+        self.assertEqual(ref.resource.identifiers[0].target, 'FrobId')
+        self.assertEqual(ref.resource.identifiers[0].source_type,
+                         'identifier')
+        self.assertEqual(ref.resource.identifiers[0].source, 'Id')
+
     def test_resource_collections(self):
         model = ResourceModel('test', {
             'hasMany': {

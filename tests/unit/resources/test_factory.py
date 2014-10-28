@@ -432,6 +432,7 @@ class TestResourceFactory(BaseTestCase):
     def test_resource_loads_references(self):
         model = {
             'shape': 'InstanceShape',
+            'identifiers': [{'name': 'GroupId'}],
             'hasOne': {
                 'Subnet': {
                     'resource': {
@@ -445,6 +446,12 @@ class TestResourceFactory(BaseTestCase):
             }
         }
         defs = {
+            'Group': {
+                'subResources': {
+                    'identifiers': {'GroupId': 'Id'},
+                    'resources': ['Instance']
+                }
+            },
             'Subnet': {
                 'identifiers': [{'name': 'Id'}]
             }
@@ -454,6 +461,9 @@ class TestResourceFactory(BaseTestCase):
                 'InstanceShape': {
                     'type': 'structure',
                     'members': {
+                        'GroupId': {
+                            'shape': 'String'
+                        },
                         'SubnetId': {
                             'shape': 'String'
                         }
@@ -465,15 +475,18 @@ class TestResourceFactory(BaseTestCase):
             }
         })
 
-        resource = self.load('test', 'Instance', model, defs, service_model)()
+        resource = self.load('test', 'Instance', model, defs,
+                             service_model)('group-id')
 
         # Load the resource with no data
         resource.meta['data'] = {}
 
-        self.assertTrue(hasattr(resource, 'subnet'),
-                        'Resource should have a subnet reference')
+        self.assertIn('subnet', dir(resource),
+                      'Resource should have a subnet reference')
         self.assertIsNone(resource.subnet,
                           'Missing identifier, should return None')
+        self.assertIn('group', dir(resource),
+                      'Resource should have a group reverse ref')
 
         # Load the resource with data to instantiate a reference
         resource.meta['data'] = {'SubnetId': 'abc123'}
