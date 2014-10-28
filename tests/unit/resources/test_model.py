@@ -121,7 +121,7 @@ class TestModels(BaseTestCase):
         self.assertEqual(resource.name, 'Frob')
 
     def test_resource_references(self):
-        model = ResourceModel('test', {
+        model_def = {
             'hasOne': {
                 'Frob': {
                     'resource': {
@@ -140,9 +140,11 @@ class TestModels(BaseTestCase):
                     }
                 }
             }
-        }, {
+        }
+        resource_defs = {
             'Frob': {}
-        })
+        }
+        model = ResourceModel('test', model_def, resource_defs)
 
         self.assertIsInstance(model.references, list)
         self.assertEqual(len(model.references), 2)
