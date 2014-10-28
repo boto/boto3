@@ -21,6 +21,7 @@ from .action import ServiceAction
 from .base import ServiceResource
 from .collection import CollectionManager
 from .model import ResourceModel
+from .response import all_not_none, build_identifiers
 from ..compat import json, OrderedDict
 from ..exceptions import ResourceLoadException
 
@@ -138,6 +139,8 @@ class ResourceFactory(object):
             'meta': meta,
         }
 
+        logger.debug('Loading %s:%s', service_name, resource_name)
+
         resource_model = ResourceModel(resource_name, model, resource_defs)
 
         self._load_identifiers(attrs, meta, resource_model)
@@ -148,6 +151,8 @@ class ResourceFactory(object):
         self._load_attributes(attrs, meta, resource_model, service_model)
         self._load_collections(attrs, resource_model, resource_defs,
                                service_model)
+        self._load_references(attrs, service_name, resource_name,
+                              resource_model, resource_defs, service_model)
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
@@ -234,12 +239,32 @@ class ResourceFactory(object):
                     snake_cased)
 
     def _load_collections(self, attrs, model, resource_defs, service_model):
+        """
+        Load resource collections from the model. Each collection becomes
+        a :py:class:`~boto3.resources.collection.CollectionManager` instance
+        on the resource instance, which allows you to iterate and filter
+        through the collection's items.
+        """
         for collection_model in model.collections:
             snake_cased = xform_name(collection_model.name)
             self._check_allowed_name(attrs, snake_cased)
 
             attrs[snake_cased] = self._create_collection(snake_cased,
                 collection_model, resource_defs, service_model)
+
+    def _load_references(self, attrs, service_name, resource_name,
+                         model, resource_defs, service_model):
+        """
+        Load references, which are related resource instances. For example,
+        an EC2 instance would have a ``vpc`` reference, which is an instance
+        of an EC2 VPC resource.
+        """
+        for reference in model.references:
+            snake_cased = xform_name(reference.resource.type)
+            self._check_allowed_name(attrs, snake_cased)
+            attrs[snake_cased] = self._create_reference(
+                reference.resource.type, snake_cased, reference, service_name,
+                resource_name, model, resource_defs, service_model)
 
     def _check_allowed_name(self, attrs, name):
         """
@@ -291,6 +316,35 @@ class ResourceFactory(object):
         get_collection.__name__ = str(snake_cased)
         get_collection.__doc__ = 'TODO'
         return property(get_collection)
+
+    def _create_reference(factory_self, name, snake_cased, reference,
+                          service_name, resource_name, model, resource_defs,
+                          service_model):
+        """
+        Creates a new property on the resource to lazy-load a reference.
+        """
+        def get_reference(self):
+            # We need to lazy-evaluate the reference to handle circular
+            # references between resources. We do this by loading the class
+            # when first accessed.
+            # First, though, we need to see if we have the required
+            # identifiers to instantiate the resource reference.
+            identifiers = build_identifiers(
+                reference.resource.identifiers, self, {}, {})
+            resource = None
+            if all_not_none(identifiers.values()):
+                # Identifiers are present, so now we can create the resource
+                # instance using them.
+                resource_type = reference.resource.type
+                cls = factory_self.load_from_definition(
+                    service_name, name, resource_defs.get(resource_type),
+                    resource_defs, service_model)
+                resource = cls(**identifiers)
+            return resource
+
+        get_reference.__name__ = str(snake_cased)
+        get_reference.__doc__ = 'TODO'
+        return property(get_reference)
 
     def _create_class_partial(factory_self, resource_cls, identifiers=None):
         """
