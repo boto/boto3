@@ -24,38 +24,8 @@ class TestResourceFactory(BaseTestCase):
         self.factory = ResourceFactory()
         self.load = self.factory.load_from_definition
 
-        # Don't do version lookups on the filesystem, instead always return
-        # a set date and mock calls to ``open`` when required.
-        self.version_patch = mock.patch(
-            'boto3.resources.factory.get_latest_version')
-        self.version_mock = self.version_patch.start()
-        self.version_mock.return_value = '2014-01-01'
-
     def tearDown(self):
         super(TestResourceFactory, self).tearDown()
-        self.version_patch.stop()
-
-    def test_create_service_calls_load(self):
-        self.factory.load_from_definition = mock.Mock()
-        with mock.patch('boto3.resources.factory.open',
-                        mock.mock_open(read_data='{}'), create=True):
-            self.factory.create_class('test')
-
-            self.assertTrue(self.factory.load_from_definition.called,
-                'Class was not loaded from definition')
-            self.factory.load_from_definition.assert_called_with(
-                'test', 'test', {}, {}, None)
-
-    def test_create_resource_calls_load(self):
-        self.factory.load_from_definition = mock.Mock()
-        with mock.patch('boto3.resources.factory.open',
-                        mock.mock_open(read_data='{}'), create=True):
-            self.factory.create_class('test', 'Queue')
-
-            self.assertTrue(self.factory.load_from_definition.called,
-                'Class was not loaded from definition')
-            self.factory.load_from_definition.assert_called_with(
-                'test', 'Queue', {}, {}, None)
 
     def test_get_service_returns_resource_class(self):
         TestResource = self.load('test', 'test', {}, {}, None)

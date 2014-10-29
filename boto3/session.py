@@ -11,8 +11,11 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+import os
+
 import botocore.session
 
+from .exceptions import NoVersionFound
 from .resources.factory import ResourceFactory
 
 
@@ -50,16 +53,66 @@ class Session(object):
             self._session.set_config_variable('region', region_name)
 
         self.resource_factory = ResourceFactory()
+        self._setup_loader()
 
     def __repr__(self):
-        return '<boto3.Session({0}:{1})'.format(
-            self._session.get_config_variable('region'),
-            self._session.get_credentials().access_key)
+        return 'Session({0}, region={1})'.format(
+            self._session.get_credentials().access_key,
+            repr(self._session.get_config_variable('region')))
+
+    def _setup_loader(self):
+        """
+        Setup loader paths so that we can load resources.
+        """
+        self._loader = self._session.get_component('data_loader')
+        self._loader.data_path = ':'.join(
+            [self._loader.data_path,
+             os.path.join(os.path.dirname(__file__), 'data',
+                          'resources')]).strip(':')
+
+    def _get_resource_files(self):
+        """
+        This generator yields paths to resource files in the loader's
+        search paths. Specifically, it looks for files that end with
+        ``.resources.json`` in any of the search paths, but does not
+        recursively search the paths.
+        """
+        for path in self._loader.get_search_paths():
+            if not os.path.isdir(path) or not os.path.exists(path):
+                continue
+
+            items = os.listdir(path)
+            for entry in [i for i in items if i.endswith('.resources.json')]:
+                yield entry
+
+    def _find_latest_version(self, service_name):
+        """
+        Find the latest resource version of a given service if it exists,
+        otherwise raises an exception.
+
+        TODO: Merge this logic upstream into Botocore if possible. Botocore
+              depends on a different directory layout at the moment.
+
+        :rtype: string
+        :return: Version string like 'YYYY-MM-DD'
+        :raises: NoVersionFound
+        """
+        filtered = []
+        for path in self._get_resource_files():
+            if path.startswith(service_name + '-'):
+                filtered.append(path)
+
+        try:
+            # ['s3-2006-03-01.resources.json', ...] => '2006-03-01'
+            return sorted(filtered, reverse=True)[0][len(service_name) + 1:\
+                                                     len(service_name) + 11]
+        except IndexError:
+            raise NoVersionFound(service_name)
 
     def get_available_services(self):
         """
         Get a list of available services that can be loaded as low-level
-        clients via ``session.client(name)``.
+        clients via :py:meth:`Session.client`.
 
         :rtype: list
         :return: List of service names
@@ -69,20 +122,25 @@ class Session(object):
     def get_available_resources(self):
         """
         Get a list of available services that can be loaded as resource
-        clients via ``session.resource(name)``.
+        clients via :py:meth:`Session.resource`.
 
         :rtype: list
         :return: List of service names
         """
-        # TODO: Implement me!
-        return []
+        service_names = set()
+
+        for path in self._get_resource_files():
+            # 'foo-bar-2006-03-01' => 'foo-bar'
+            service_names.add('-'.join(path.split('-')[:-3]))
+
+        return list(service_names)
 
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
                aws_session_token=None):
         """
-        Create a low-level service client by name using the default session.
+        Create a low-level service client by name.
 
         :type service_name: string
         :param service_name: The name of a service, e.g. 's3' or 'ec2'. You
@@ -150,7 +208,7 @@ class Session(object):
                aws_access_key_id=None, aws_secret_access_key=None,
                aws_session_token=None):
         """
-        Create a resource service client by name using the default session.
+        Create a resource service client by name.
 
         :type service_name: string
         :param service_name: The name of a service, e.g. 's3' or 'ec2'. You
@@ -204,8 +262,12 @@ class Session(object):
         :param aws_session_token: The session token to use when creating
             the client.  Same semantics as aws_access_key_id above.
 
-        :return: Resource client instance
+        :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
+        # Creating a new resource instance requires the low-level client
+        # and service model, the resource version and resource JSON data.
+        # We pass these to the factory and get back a class, which is
+        # instantiated on top of the low-level client.
         client = self.client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
@@ -213,6 +275,10 @@ class Session(object):
             aws_secret_access_key=aws_secret_access_key,
             aws_session_token=aws_session_token)
         service_model = self._session.get_service_model(service_name)
-        cls = self.resource_factory.create_class(service_name,
-            service_model=service_model)
+        version = self._find_latest_version(service_name)
+        model = self._loader.load_data(
+            '{0}-{1}.resources'.format(service_name, version))
+        cls = self.resource_factory.load_from_definition(
+            service_name, service_name, model['service'], model['resources'],
+            service_model)
         return cls(client=client)

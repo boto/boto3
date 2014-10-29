@@ -36,9 +36,12 @@ class BaseTestCase(unittest.TestCase):
     any actual calls to Botocore.
     """
     def setUp(self):
-        self.bc_session_patch = mock.patch('botocore.session.Session',
-                                           autospec=True)
+        self.bc_session_patch = mock.patch('botocore.session.Session')
         self.bc_session_cls = self.bc_session_patch.start()
+
+        loader = self.bc_session_cls.return_value.get_component.return_value
+        loader.data_path = ''
+        self.loader = loader
 
     def tearDown(self):
         self.bc_session_patch.stop()

@@ -12,7 +12,6 @@
 # language governing permissions and limitations under the License.
 
 import logging
-import os
 from functools import partial
 
 from botocore import xform_name
@@ -22,95 +21,27 @@ from .base import ServiceResource
 from .collection import CollectionManager
 from .model import ResourceModel
 from .response import all_not_none, build_identifiers
-from ..compat import json, OrderedDict
 from ..exceptions import ResourceLoadException
-
-
-# Where to find the resource objects
-RESOURCE_ROOT = os.path.join(
-    os.path.dirname(os.path.dirname(__file__)),
-    'data',
-    'resources'
-)
 
 
 logger = logging.getLogger(__name__)
 
 
-def get_latest_version(name):
-    """
-    Get the latest version number given a service name.
-
-    :type name: string
-    :param name: Service name, e.g. 'sqs'
-    :rtype: string
-    :return: Service version, e.g. 2012-11-05
-    """
-    entries = os.listdir(RESOURCE_ROOT)
-    entries = [i for i in entries if i.startswith(name + '-')]
-    return sorted(entries, reverse=True)[0][len(name) + 1:len(name) + 11]
-
-
 class ResourceFactory(object):
     """
-    A factory to create new ``ServiceResource`` classes from a ResourceJSON
-    description. There are two types of lookups that can be done: one on the
-    service itself (e.g. an SQS resource) and another on models contained
-    within the service (e.g. an SQS Queue resource).
-
-        >>> factory = ResourceFactory()
-        >>> S3Resource = factory.create_class('s3')
-        >>> S3BucketResource = factory.create_class('s3', name='Bucket')
-        >>> SQSResource = factory.create_class('sqs')
-        >>> SQSQueueResource = factory.create_class('sqs', name='Queue')
-
+    A factory to create new :py:class:`~boto3.resources.base.ServiceResource`
+    classes from a :py:class:`~boto3.resources.model.ResourceModel`. There are
+    two types of lookups that can be done: one on the service itself (e.g. an
+    SQS resource) and another on models contained within the service (e.g. an
+    SQS Queue resource).
     """
-    def create_class(self, service, name=None, version=None,
-                     service_model=None):
-        """
-        Create a new resource class for a service or service resource.
-
-        :type service: string
-        :param service: Name of the service to look up
-        :type name: string
-        :param name: Name of the resource to look up. If not given, then the
-                     service resource itself is returned.
-        :type version: string
-        :param version: The service version to load. A value of ``None`` will
-                        load the latest available version.
-        :type service_model: ``botocore.model.ServiceModel``
-        :param service_model: The Botocore service model, required only if the
-                              resource shape contains members. This is used to
-                              expose lazy-loaded attributes on the resource.
-        :rtype: Subclass of ``ServiceResource``
-        :return: The service or resource class.
-        """
-        if version is None:
-            version = get_latest_version(service)
-
-        path = os.path.join(RESOURCE_ROOT,
-                           '{0}-{1}.resources.json'.format(service, version))
-
-        logger.info('Loading %s:%s from %s', service, name, path)
-        model = json.load(open(path), object_pairs_hook=OrderedDict)
-
-        resource_defs = model.get('resources', {})
-
-        if name is None:
-            cls = self.load_from_definition(service, service,
-                model.get('service', {}), resource_defs, service_model)
-        else:
-            cls = self.load_from_definition(service, name,
-                resource_defs.get(name, {}), resource_defs, service_model)
-
-        return cls
-
     def load_from_definition(self, service_name, resource_name, model,
                              resource_defs, service_model):
         """
-        Loads a resource from a model, creating a new ServiceResource subclass
+        Loads a resource from a model, creating a new
+        :py:class:`~boto3.resources.base.ServiceResource` subclass
         with the correct properties and methods, named based on the service
-        and resource name, e.g. EC2InstanceResource.
+        and resource name, e.g. EC2.Instance.
 
         :type service: string
         :param service: Name of the service to look up
@@ -126,7 +57,7 @@ class ResourceFactory(object):
         :param service_model: The Botocore service model, required only if the
                               resource shape contains members. This is used to
                               expose lazy-loaded attributes on the resource.
-        :rtype: Subclass of ``ServiceResource``
+        :rtype: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         :return: The service or resource class.
         """
         # Set some basic info

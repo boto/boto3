@@ -62,7 +62,7 @@ def _get_default_session():
     """
     Get the default session, creating one if needed.
 
-    :rtype: boto3.session.Sesssion
+    :rtype: :py:class:`~boto3.session.Sesssion`
     :return: The default session
     """
     if DEFAULT_SESSION is None:
