@@ -63,11 +63,13 @@ class TestSession(BaseTestCase):
     def test_create_client(self):
         bc_session = self.bc_session_cls.return_value
 
-        session = Session()
-        client = session.client('sqs')
+        session = Session(region_name='us-east-1')
+        client = session.client('sqs', region_name='us-west-2')
 
-        self.assertTrue(bc_session.create_client.called,
-            'No low-level client was created')
+        bc_session.create_client.assert_called_with(
+            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            endpoint_url=None, use_ssl=True, aws_session_token=None,
+            verify=None, region_name='us-west-2', api_version=None)
         self.assertTrue(client,
             'No low-level client was returned')
 
@@ -77,10 +79,12 @@ class TestSession(BaseTestCase):
         session.resource_factory.create_class = mock.Mock()
         cls = session.resource_factory.create_class.return_value
 
-        sqs = session.resource('sqs')
+        sqs = session.resource('sqs', verify=False)
 
-        self.assertTrue(session.client.called,
-            'No low-level client was created')
+        session.client.assert_called_with(
+            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            endpoint_url=None, use_ssl=True, aws_session_token=None,
+            verify=False, region_name=None, api_version=None)
         self.assertTrue(session.resource_factory.create_class.called,
             'Resource factory did not look up class')
         self.assertTrue(cls.called,

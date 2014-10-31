@@ -70,27 +70,21 @@ def _get_default_session():
 
     return DEFAULT_SESSION
 
-def client(service):
+def client(*args, **kwargs):
     """
     Create a low-level service client by name using the default session.
 
-    :type service: string
-    :param service: The name of a service, e.g. 's3' or 'ec2'
-
-    :return: Service client instance
+    See :py:meth:`boto3.session.Session.client`.
     """
-    return _get_default_session().client(service)
+    return _get_default_session().client(*args, **kwargs)
 
-def resource(service):
+def resource(*args, **kwargs):
     """
     Create a resource service client by name using the default session.
 
-    :type service: string
-    :param service: The name of a service, e.g. 's3' or 'ec2'
-
-    :return: Resource client instance
+    See :py:meth:`boto3.session.Session.resource`.
     """
-    return _get_default_session().resource(service)
+    return _get_default_session().resource(*args, **kwargs)
 
 # Set up logging to ``/dev/null`` like a library is supposed to.
 # http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
