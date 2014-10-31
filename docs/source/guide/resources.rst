@@ -56,6 +56,19 @@ Identifiers may also be passed as positional arguments::
     # Raises exception, missing key!
     obj = s3.Object('boto3')
 
+Identifiers also play a role in resource instance equality. For two
+instances of a resource to be considered equal, their identifiers must
+be equal::
+
+    >>> bucket1 = s3.Bucket('boto3')
+    >>> bucket2 = s3.Bucket('boto3')
+    >>> bucket3 = s3.Bucket('some-other-bucket')
+
+    >>> bucket1 == bucket2
+    True
+    >>> bucket1 == bucket3
+    False
+
 Resources may also have attributes, which are *lazy-loaded* properties on the
 instance. They may be set at creation time from the response of an action on
 another resource, or they may be set when accessed or via an explicit call to
@@ -74,6 +87,12 @@ the ``load`` or ``reload`` action. Examples of attributes::
    a concern, then manually calling ``load`` will allow you to control 
    exactly when the load action (and thus latency) is invoked. The
    documentation for each resource explicitly lists its attributes.
+
+   Additionally, attributes may be reloaded after an action has been
+   performed on the resource. For example, if the ``last_modified``
+   attribute of an S3 object is loaded and then a ``put`` action is
+   called, then the next time you access ``last_modified`` it will
+   reload the object's metadata.
 
 Actions
 -------

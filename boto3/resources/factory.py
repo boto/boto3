@@ -412,6 +412,13 @@ class ResourceFactory(object):
             # instance via ``self``.
             def do_action(self, *args, **kwargs):
                 response = action(self, *args, **kwargs)
+
+                if hasattr(self, 'load'):
+                    # Clear cached data. It will be reloaded the next
+                    # time that an attribute is accessed.
+                    # TODO: Make this configurable in the future?
+                    self.meta['data'] = None
+
                 return response
 
         do_action.__name__ = str(snake_cased)

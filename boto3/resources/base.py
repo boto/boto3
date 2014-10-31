@@ -63,3 +63,16 @@ class ServiceResource(object):
             self.__class__.__name__,
             ', '.join(identifiers),
         )
+
+    def __eq__(self, other):
+        # Should be instances of the same resource class
+        if other.__class__.__name__ != self.__class__.__name__:
+            return False
+
+        # Each of the identifiers should have the same value in both
+        # instances, e.g. two buckets need the same name to be equal.
+        for identifier in self.meta['identifiers']:
+            if getattr(self, identifier) != getattr(other, identifier):
+                return False
+
+        return True

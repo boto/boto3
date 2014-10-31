@@ -261,6 +261,28 @@ class TestResourceFactory(BaseTestCase):
         with self.assertRaises(ValueError):
             resource.Queue(url='foo', bar='baz')
 
+    def test_dangling_resource_equality(self):
+        defs = {
+            'Queue': {
+                'identifiers': [{'name': 'Url'}]
+            },
+            'Message': {
+                'identifiers': [{'name': 'QueueUrl'}, {'name': 'Handle'}]
+            }
+        }
+
+        resource = self.load('test', 'test', {}, defs, None)()
+
+        q1 = resource.Queue('url')
+        q2 = resource.Queue('url')
+        q3 = resource.Queue('different')
+        m = resource.Message('url', 'handle')
+
+        self.assertEqual(q1, q2)
+        self.assertNotEqual(q1, q3)
+        self.assertNotEqual(q1, m)
+        self.assertNotEqual(m, q2)
+
     def test_non_service_resource_missing_defs(self):
         # Only services should get dangling defs
         defs = {
@@ -323,8 +345,6 @@ class TestResourceFactory(BaseTestCase):
         queue1 = queue_cls()
         queue2 = queue_cls()
 
-        self.assertNotEqual(queue1, queue2)
-
         self.assertEqual(queue1.meta, queue2.meta,
             'Queue meta copies not equal after creation')
 
@@ -354,6 +374,59 @@ class TestResourceFactory(BaseTestCase):
         queue.get_message_status('arg1', arg2=2)
 
         action.assert_called_with(queue, 'arg1', arg2=2)
+
+    @mock.patch('boto3.resources.factory.ServiceAction')
+    def test_resource_action_clears_data(self, action_cls):
+        model = {
+            'load': {
+                'request': {
+                    'operation': 'DescribeQueue'
+                }
+            },
+            'actions': {
+                'GetMessageStatus': {
+                    'request': {
+                        'operation': 'DescribeMessageStatus'
+                    }
+                }
+            }
+        }
+
+        queue = self.load('test', 'Queue', model, {}, None)()
+
+        # Simulate loaded data
+        queue.meta['data'] = {'some': 'data'}
+
+        # Perform a call
+        queue.get_message_status()
+
+        # Cached data should be cleared
+        self.assertIsNone(queue.meta['data'])
+
+    @mock.patch('boto3.resources.factory.ServiceAction')
+    def test_resource_action_leaves_data(self, action_cls):
+        # This model has NO load method. Cached data should
+        # never be cleared since it cannot be reloaded!
+        model = {
+            'actions': {
+                'GetMessageStatus': {
+                    'request': {
+                        'operation': 'DescribeMessageStatus'
+                    }
+                }
+            }
+        }
+
+        queue = self.load('test', 'Queue', model, {}, None)()
+
+        # Simulate loaded data
+        queue.meta['data'] = {'some': 'data'}
+
+        # Perform a call
+        queue.get_message_status()
+
+        # Cached data should be cleared
+        self.assertEqual(queue.meta['data'], {'some': 'data'})
 
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_lazy_loads_properties(self, action_cls):
