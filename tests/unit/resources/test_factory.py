@@ -447,8 +447,9 @@ class TestResourceFactory(BaseTestCase):
         }
         defs = {
             'Group': {
+                'identifiers': [{'name': 'Id'}],
                 'subResources': {
-                    'identifiers': {'GroupId': 'Id'},
+                    'identifiers': {'Id': 'GroupId'},
                     'resources': ['Instance']
                 }
             },
@@ -481,12 +482,12 @@ class TestResourceFactory(BaseTestCase):
         # Load the resource with no data
         resource.meta['data'] = {}
 
-        self.assertIn('subnet', dir(resource),
-                      'Resource should have a subnet reference')
+        self.assertTrue(hasattr(resource, 'subnet'),
+                        'Resource should have a subnet reference')
         self.assertIsNone(resource.subnet,
                           'Missing identifier, should return None')
-        self.assertIn('group', dir(resource),
-                      'Resource should have a group reverse ref')
+        self.assertTrue(hasattr(resource, 'group'),
+                        'Resource should have a group reverse ref')
 
         # Load the resource with data to instantiate a reference
         resource.meta['data'] = {'SubnetId': 'abc123'}
