@@ -37,9 +37,10 @@ of services that are supported.
 
 Quick Start
 -----------
-First, install the library::
+First, install the library and set a default region::
 
     $ pip install boto3
+    $ export BOTO_DEFAULT_REGION=us-east-1
 
 Next, set up configuration (in e.g. ``~/.aws/credentials``)::
 

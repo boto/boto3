@@ -61,15 +61,22 @@ class TestSession(BaseTestCase):
         self.assertIsInstance(resources, list)
 
     def test_create_client(self):
-        bc_session = self.bc_session_cls.return_value
+        session = Session(region_name='us-east-1')
+        client = session.client('sqs', region_name='us-west-2')
 
-        session = Session()
-        client = session.client('sqs')
-
-        self.assertTrue(bc_session.create_client.called,
-            'No low-level client was created')
         self.assertTrue(client,
             'No low-level client was returned')
+
+    def test_create_client_with_args(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(region_name='us-east-1')
+        session.client('sqs', region_name='us-west-2')
+
+        bc_session.create_client.assert_called_with(
+            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            endpoint_url=None, use_ssl=True, aws_session_token=None,
+            verify=None, region_name='us-west-2', api_version=None)
 
     def test_create_resource(self):
         session = Session()
@@ -77,10 +84,8 @@ class TestSession(BaseTestCase):
         session.resource_factory.create_class = mock.Mock()
         cls = session.resource_factory.create_class.return_value
 
-        sqs = session.resource('sqs')
+        sqs = session.resource('sqs', verify=False)
 
-        self.assertTrue(session.client.called,
-            'No low-level client was created')
         self.assertTrue(session.resource_factory.create_class.called,
             'Resource factory did not look up class')
         self.assertTrue(cls.called,
@@ -88,3 +93,15 @@ class TestSession(BaseTestCase):
         self.assertEqual(sqs, cls.return_value,
             'Returned instance is not an instance of the looked up resource '
             'class from the factory')
+
+    def test_create_resource_with_args(self):
+        session = Session()
+        session.client = mock.Mock()
+        session.resource_factory.create_class = mock.Mock()
+
+        session.resource('sqs', verify=False)
+
+        session.client.assert_called_with(
+            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            endpoint_url=None, use_ssl=True, aws_session_token=None,
+            verify=False, region_name=None, api_version=None)
