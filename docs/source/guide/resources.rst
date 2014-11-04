@@ -69,6 +69,12 @@ be equal::
     >>> bucket1 == bucket3
     False
 
+.. note::
+
+   Only identifiers are taken into account for instance equality. Region,
+   account ID and other data members are not considered. When using temporary
+   credentials or multiple regions in your code please keep this in mind.
+
 Resources may also have attributes, which are *lazy-loaded* properties on the
 instance. They may be set at creation time from the response of an action on
 another resource, or they may be set when accessed or via an explicit call to
