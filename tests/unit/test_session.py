@@ -24,9 +24,7 @@ class TestSession(BaseTestCase):
 
         session = Session('abc123', region_name='us-west-2')
 
-        self.assertIn('Session', repr(session))
-        self.assertIn('abc123', repr(session))
-        self.assertIn("region='us-west-2'", repr(session))
+        self.assertEqual(repr(session), 'Session(region=\'us-west-2\')')
 
     def test_arguments_not_required(self):
         Session()
@@ -76,10 +74,7 @@ class TestSession(BaseTestCase):
         self.loader.get_search_paths.return_value = ['search-path']
 
         names = session.get_available_resources()
-        self.assertIsInstance(names, list)
-        self.assertEqual(len(names), 2)
-        self.assertIn('s3', names)
-        self.assertIn('sqs', names)
+        self.assertEqual(sorted(names), ['s3', 'sqs'])
 
     def test_create_client(self):
         session = Session(region_name='us-east-1')
@@ -142,6 +137,25 @@ class TestSession(BaseTestCase):
 
     @mock.patch('os.path.isdir', return_value=True)
     @mock.patch('os.path.exists', return_value=True)
+    @mock.patch('os.listdir',
+                return_value=['sqs-2012-11-05.resources.json',
+                              'sqs-2013-11-05.resources.json',
+                              'sqs-2014-11-05.resources.json'])
+    def test_create_resource_latest_version(self, list_mock, exist_mock,
+                                            dir_mock):
+        session = Session()
+        session.client = mock.Mock()
+        load_mock = mock.Mock()
+        session.resource_factory.load_from_definition = load_mock
+
+        self.loader.get_search_paths.return_value = ['search-path']
+
+        session.resource('sqs')
+
+        self.loader.load_data.assert_called_with('sqs-2014-11-05.resources')
+
+    @mock.patch('os.path.isdir', return_value=True)
+    @mock.patch('os.path.exists', return_value=True)
     @mock.patch('os.listdir', return_value=['s3-2006-03-01.resources.json'])
     def test_bad_resource_name(self, list_mock, exist_mock, dir_mock):
         session = Session()
@@ -155,6 +169,10 @@ class TestSession(BaseTestCase):
             # S3 is defined but not SQS!
             session.resource('sqs')
 
+    # We make ``isdir`` return ``False``, then ``True`` because we
+    # want the first path to be a file, and the second a directory.
+    # This allows us to test both code paths while searching for
+    # a value, otherwise the ``exists`` check is never performed.
     @mock.patch('os.path.isdir', side_effect=[False, True])
     @mock.patch('os.path.exists', return_value=False)
     def test_no_search_path_resources(self, exist_mock, dir_mock):

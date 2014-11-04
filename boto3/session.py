@@ -56,8 +56,7 @@ class Session(object):
         self._setup_loader()
 
     def __repr__(self):
-        return 'Session({0}, region={1})'.format(
-            self._session.get_credentials().access_key,
+        return 'Session(region={0})'.format(
             repr(self._session.get_config_variable('region')))
 
     def _setup_loader(self):
@@ -104,9 +103,10 @@ class Session(object):
 
         try:
             # ['s3-2006-03-01.resources.json', ...] => '2006-03-01'
-            return sorted(filtered, reverse=True)[0][len(service_name) + 1:\
-                                                     len(service_name) + 11]
-        except IndexError:
+            # Hard coded offsets below pull out just the date string
+            start = len(service_name)
+            return max([i[start + 1:start + 11] for i in filtered])
+        except ValueError:
             raise NoVersionFound(service_name)
 
     def get_available_services(self):
