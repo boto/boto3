@@ -138,8 +138,6 @@ class Session(object):
 
         :return: Service client instance
         """
-        if region_name is None:
-            region_name = self._session.get_config_variable('region')
         return self._session.create_client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
