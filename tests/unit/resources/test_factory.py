@@ -265,6 +265,20 @@ class TestResourceFactory(BaseTestCase):
         defs = {
             'Queue': {
                 'identifiers': [{'name': 'Url'}]
+            }
+        }
+
+        resource = self.load('test', 'test', {}, defs, None)()
+
+        q1 = resource.Queue('url')
+        q2 = resource.Queue('url')
+
+        self.assertEqual(q1, q2)
+
+    def test_dangling_resource_inequality(self):
+        defs = {
+            'Queue': {
+                'identifiers': [{'name': 'Url'}]
             },
             'Message': {
                 'identifiers': [{'name': 'QueueUrl'}, {'name': 'Handle'}]
@@ -274,14 +288,11 @@ class TestResourceFactory(BaseTestCase):
         resource = self.load('test', 'test', {}, defs, None)()
 
         q1 = resource.Queue('url')
-        q2 = resource.Queue('url')
-        q3 = resource.Queue('different')
+        q2 = resource.Queue('different')
         m = resource.Message('url', 'handle')
 
-        self.assertEqual(q1, q2)
-        self.assertNotEqual(q1, q3)
+        self.assertNotEqual(q1, q2)
         self.assertNotEqual(q1, m)
-        self.assertNotEqual(m, q2)
 
     def test_non_service_resource_missing_defs(self):
         # Only services should get dangling defs
@@ -425,7 +436,7 @@ class TestResourceFactory(BaseTestCase):
         # Perform a call
         queue.get_message_status()
 
-        # Cached data should be cleared
+        # Cached data should not be cleared
         self.assertEqual(queue.meta['data'], {'some': 'data'})
 
     @mock.patch('boto3.resources.factory.ServiceAction')
