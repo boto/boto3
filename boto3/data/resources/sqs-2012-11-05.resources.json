@@ -169,16 +169,6 @@
             ]
           }
         }
-      },
-      "hasOne": {
-        "Queue": {
-          "resource": {
-            "type":"Queue",
-            "identifiers": [
-              { "target":"Url", "sourceType":"identifier", "source":"QueueUrl" }
-            ]
-          }
-        }
       }
     }
   }

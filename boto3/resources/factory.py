@@ -266,6 +266,13 @@ class ResourceFactory(object):
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
 
+        for reference in model.reverse_references:
+            snake_cased = xform_name(reference.resource.type)
+            self._check_allowed_name(attrs, snake_cased)
+            attrs[snake_cased] = self._create_reference(
+                reference.resource.type, snake_cased, reference, service_name,
+                resource_name, model, resource_defs, service_model)
+
     def _check_allowed_name(self, attrs, name):
         """
         Determine if a given name is allowed on the instance, and if not,
