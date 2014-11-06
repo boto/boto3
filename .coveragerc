@@ -1,0 +1,6 @@
+[run]
+branch = True
+include =
+    boto3/*
+exclude =
+    boto3/docs.py
