@@ -12,14 +12,3 @@
 # language governing permissions and limitations under the License.
 
 import six
-import sys
-
-try:
-    from collections import OrderedDict
-except ImportError:
-    from ordereddict import OrderedDict
-
-if sys.version_info[:2] == (2, 6):
-    import simplejson as json
-else:
-    import json

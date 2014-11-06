@@ -13,3 +13,7 @@
 
 class ResourceLoadException(Exception):
     pass
+
+
+class NoVersionFound(Exception):
+    pass
