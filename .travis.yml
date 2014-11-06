@@ -9,5 +9,5 @@ install:
   - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then travis_retry pip install -r requirements26.txt; fi
   - travis_retry pip install -r requirements.txt
   - travis_retry pip install coverage python-coveralls
-script: nosetests tests/unit --with-coverage --cover-erase --cover-package=boto3
+script: nosetests --with-coverage --cover-erase
 after_success: coveralls

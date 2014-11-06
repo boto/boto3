@@ -52,6 +52,9 @@ def py_type_name(type_name):
     :rtype: string
     """
     return {
+        'character': 'string',
+        'double': 'float',
+        'long': 'integer',
         'map': 'dict',
         'structure': 'dict',
         'timestamp': 'datetime',
