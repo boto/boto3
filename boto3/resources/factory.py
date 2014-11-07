@@ -100,7 +100,8 @@ class ResourceFactory(object):
         """
         for identifier in model.identifiers:
             snake_cased = xform_name(identifier.name)
-            self._check_allowed_name(attrs, snake_cased)
+            self._check_allowed_name(attrs, snake_cased, 'identifier',
+                                     model.name)
             meta['identifiers'].append(snake_cased)
             attrs[snake_cased] = None
 
@@ -145,7 +146,8 @@ class ResourceFactory(object):
 
         for action in model.actions:
             snake_cased = xform_name(action.name)
-            self._check_allowed_name(attrs, snake_cased)
+            self._check_allowed_name(attrs, snake_cased, 'action',
+                                     model.name)
             attrs[snake_cased] = self._create_action(snake_cased,
                 action, resource_defs, service_model)
 
@@ -165,7 +167,8 @@ class ResourceFactory(object):
                     # Skip identifiers, these are set through other means
                     continue
 
-                self._check_allowed_name(attrs, snake_cased)
+                self._check_allowed_name(attrs, snake_cased, 'attribute',
+                                         model.name)
                 attrs[snake_cased] = self._create_autoload_property(name,
                     snake_cased)
 
@@ -178,7 +181,8 @@ class ResourceFactory(object):
         """
         for collection_model in model.collections:
             snake_cased = xform_name(collection_model.name)
-            self._check_allowed_name(attrs, snake_cased)
+            self._check_allowed_name(attrs, snake_cased, 'collection',
+                                     model.name)
 
             attrs[snake_cased] = self._create_collection(snake_cased,
                 collection_model, resource_defs, service_model)
@@ -192,19 +196,21 @@ class ResourceFactory(object):
         """
         for reference in model.references:
             snake_cased = xform_name(reference.resource.type)
-            self._check_allowed_name(attrs, snake_cased)
+            self._check_allowed_name(attrs, snake_cased, 'reference',
+                                     model.name)
             attrs[snake_cased] = self._create_reference(
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
 
         for reference in model.reverse_references:
             snake_cased = xform_name(reference.resource.type)
-            self._check_allowed_name(attrs, snake_cased)
+            self._check_allowed_name(attrs, snake_cased, 'reference',
+                                     model.name)
             attrs[snake_cased] = self._create_reference(
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
 
-    def _check_allowed_name(self, attrs, name):
+    def _check_allowed_name(self, attrs, name, category, resource_name):
         """
         Determine if a given name is allowed on the instance, and if not,
         then raise an exception. This prevents public attributes of the
@@ -216,8 +222,9 @@ class ResourceFactory(object):
         :raises: ValueError
         """
         if name in attrs:
-            raise ValueError('Identifier `{0}` would clobber existing '
-                             'resource attribute'.format(name))
+            raise ValueError('{0} `{1}` would clobber existing '
+                             '{2} resource attribute'.format(
+                                category, name, resource_name))
 
     def _create_autoload_property(factory_self, name, snake_cased):
         """

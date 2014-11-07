@@ -148,8 +148,11 @@ class TestResourceFactory(BaseTestCase):
 
         # This fails because the resource has an identifier
         # that would be clobbered by the action name.
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValueError) as cm:
             self.load('test', 'test', model, {}, None)
+
+        self.assertIn('test', str(cm.exception))
+        self.assertIn('action', str(cm.exception))
 
     def test_can_instantiate_service_resource(self):
         TestResource = self.load('test', 'test', {}, {}, None)
