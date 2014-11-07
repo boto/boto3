@@ -212,8 +212,7 @@ def document_resource(service_name, official_name, resource_model,
             docs += '   Attributes:\n\n'
             shape = service_model.shape_for(resource_model.shape)
 
-            for name, member in sorted(shape.members.items(),
-                                       key=lambda i:i[0]):
+            for name, member in sorted(shape.members.items()):
                 docs += ('   .. py:attribute:: {0}\n\n      (``{1}``)'
                          ' {2}\n\n').format(
                     xform_name(name), py_type_name(member.type_name),
@@ -247,8 +246,7 @@ def document_resource(service_name, official_name, resource_model,
 
         if is_service_resource:
             # TODO: expose service-level subresources via the model
-            for name, resource_def in sorted(resource_model._resource_defs.items(),
-                                             key=lambda i: i[0]):
+            for name, resource_def in sorted(resource_model._resource_defs.items()):
                 docs += '   .. py:method:: {0}({1})\n\n'.format(
                     name,
                     ', '.join([xform_name(i['name']) for i in \
