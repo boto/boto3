@@ -981,16 +981,6 @@
             ]
           }
         }
-      },
-      "hasOne": {
-        "User": {
-          "resource": {
-            "type": "User",
-            "identifiers": [
-              { "target":"Name", "sourceType":"dataMember", "source":"User.UserName" }
-            ]
-          }
-        }
       }
     }
   }
