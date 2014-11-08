@@ -212,8 +212,7 @@ def document_resource(service_name, official_name, resource_model,
             docs += '   Attributes:\n\n'
             shape = service_model.shape_for(resource_model.shape)
 
-            for name, member in sorted(shape.members.items(),
-                                       key=lambda i:i[0]):
+            for name, member in sorted(shape.members.items()):
                 docs += ('   .. py:attribute:: {0}\n\n      (``{1}``)'
                          ' {2}\n\n').format(
                     xform_name(name), py_type_name(member.type_name),
@@ -236,7 +235,8 @@ def document_resource(service_name, official_name, resource_model,
         preset = len(resource_model.identifiers)
 
         if resource_model.sub_resources:
-            for resource in resource_model.sub_resources.resources:
+            for resource in sorted(resource_model.sub_resources.resources,
+                                   key=lambda i: i.name):
                 docs += '   .. py:method:: {0}({1})\n\n'.format(
                     resource.name,
                     ', '.join([xform_name(i.name) for i in \
@@ -246,7 +246,7 @@ def document_resource(service_name, official_name, resource_model,
 
         if is_service_resource:
             # TODO: expose service-level subresources via the model
-            for name, resource_def in resource_model._resource_defs.items():
+            for name, resource_def in sorted(resource_model._resource_defs.items()):
                 docs += '   .. py:method:: {0}({1})\n\n'.format(
                     name,
                     ', '.join([xform_name(i['name']) for i in \
@@ -260,7 +260,8 @@ def document_resource(service_name, official_name, resource_model,
         docs += ('   .. rst-class:: admonition-title\n\n   Collections\n\n'
                  '   Collections provide an interface to iterate and'
                  ' manipulate groups of resources.\n\n')
-        for collection in resource_model.collections:
+        for collection in sorted(resource_model.collections,
+                                 key=lambda i: i.name):
             docs += ('   .. py:attribute:: {0}\n\n      '
                      '(:py:class:`~boto3.resources.collection.CollectionManager`)'
                      ' A collection of :py:class:`{1}.{2}` instances. This'
