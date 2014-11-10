@@ -256,6 +256,18 @@ def document_resource(service_name, official_name, resource_model,
 
         docs += '\n\n'
 
+    refs = resource_model.references + resource_model.reverse_references
+    if sorted(refs, key=lambda i: i.name):
+        docs += ('   .. rst-class:: admonition-title\n\n   References\n\n'
+                 '   References are related resource instances that have'
+                 ' a belongs-to relationship.\n\n')
+        for ref in refs:
+            docs += ('   .. py:attribute:: {0}\n\n      '
+                     '(:py:class:`{1}.{2}`) The related {3} if set,'
+                     ' otherwise ``None``.\n\n').format(
+                        xform_name(ref.name), service_name,
+                        ref.resource.type, ref.resource.type)
+
     if resource_model.collections:
         docs += ('   .. rst-class:: admonition-title\n\n   Collections\n\n'
                  '   Collections provide an interface to iterate and'
