@@ -40,13 +40,17 @@ Quick Start
 First, install the library and set a default region::
 
     $ pip install boto3
-    $ export BOTO_DEFAULT_REGION=us-east-1
 
-Next, set up configuration (in e.g. ``~/.aws/credentials``)::
+Next, set up credentials (in e.g. ``~/.aws/credentials``)::
 
     [default]
     aws_access_key_id = YOUR_KEY
     aws_secret_access_key = YOUR_SECRET
+
+Then, set up a default region (in e.g. ``~/.aws/config``)::
+
+    [default]
+    region=us-east-1
 
 Then, from a Python interpreter::
 

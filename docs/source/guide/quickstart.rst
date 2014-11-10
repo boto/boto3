@@ -39,17 +39,19 @@ its location is at ``~/.aws/credentials``::
     aws_access_key_id = YOUR_ACCESS_KEY
     aws_secret_access_key = YOUR_SECRET_KEY
 
-You may also want to set a default region. This can be done via an
-environment variable::
+You may also want to set a default region. This can be done in the
+configuration file. By default, its location is at ``~/.aws/config``::
 
-    export BOTO_DEFAULT_REGION=us-east-1
+    [default]
+    region=us-east-1
 
 Alternatively, you can pass a ``region_name`` when creating clients
 and resources.
 
 This sets up credentials for the default profile as well as a default
 region to use when creating connections. See
-:ref:`guide_configuration` for in-depth configuration options.
+:ref:`guide_configuration` for in-depth configuration sources and
+options.
 
 Using Boto 3
 ------------
