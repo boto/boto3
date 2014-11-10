@@ -22,14 +22,46 @@ Configuration Sources
 There are multiple sources from which configuration data can be loaded.
 The general order in which they are checked is as follows:
 
-1. Environment variables
-2. Configuration files
-3. EC2 Instance metadata
-4. Method Parameters
+1. Method parameters
+2. Environment variables
+3. Configuration files
+4. EC2 Instance metadata
+
+If a configuration value is set in multiple places, then the first
+will be used according the the order above. For example, if I have
+set a default region in both my environment variables and configuration
+file, then the envirnment variable is used.
 
 Available Options
 -----------------
 The available options for various configuration sources are listed below.
+
+Method Parameters
+~~~~~~~~~~~~~~~~~
+When creating a session, client, or resource you can pass in credential
+and configuration options::
+
+    from boto3.session import Session
+
+    session = Session(aws_access_key_id='<YOUR ACCESS KEY ID>',
+                      aws_secret_access_key='<YOUR SECRET KEY>',
+                      region_name='<REGION NAME>')
+
+    ec2 = session.resource('ec2')
+    ec2_us_west_2 = session.resource('ec2', region_name='us-west-2')
+
+    # List all of my EC2 instances in my default region.
+    print('Default region:')
+    for instance in ec2.instances.all():
+        print(instance.id)
+
+    # List all of my EC2 instances in us-west-2.
+    print('US West 2 region:')
+    for instance in ec2_us_west_2.instances.all():
+        print(instance.id)
+
+For a list of all options, look at the :py:class:`~boto3.session.Session`
+documentation.
 
 Environment Variables
 ~~~~~~~~~~~~~~~~~~~~~
@@ -85,29 +117,3 @@ It also supports profiles, but these are prefixed with the word
     [profile dev-profile]
     # The default region when using the dev-profile account
     region=<REGION NAME>
-
-
-Method Parameters
-~~~~~~~~~~~~~~~~~
-When creating a session, client, or resource you can pass in credential
-and configuration options::
-
-    from boto3.session import Session
-
-    session = Session(aws_access_key_id='<YOUR ACCESS KEY ID>',
-                      aws_secret_access_key='<YOUR SECRET KEY>',
-                      region_name='<REGION NAME>')
-
-    ec2 = session.resource('ec2')
-    ec2_us_west_2 = session.resource('ec2', region_name='us-west-2')
-
-    print('Default region:')
-    for instance in ec2.instances.all():
-        print(instance.id)
-
-    print('US West 2 region:')
-    for instance in ec2_us_west_2.instances.all():
-        print(instance.id)
-
-For a list of all options, look at the :py:class:`~boto3.session.Session`
-documentation.
