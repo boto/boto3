@@ -121,21 +121,24 @@ class TestResourceFactory(BaseTestCase):
         self.assertTrue(hasattr(TestResource, 'last_modified'),
             'LastModified shape member not available on resource')
 
-    def test_factory_fails_on_clobber_identifier(self):
+    def test_factory_renames_on_clobber_identifier(self):
         model = {
             'identifiers': [
                 {'name': 'Meta'}
             ]
         }
 
-        # This fails because each resource has a `meta` defined.
-        with self.assertRaises(ValueError):
-            self.load('test', 'test', model, {}, None)
+        # Each resource has a ``meta`` defined, so this identifier
+        # must be renamed.
+        cls = self.load('test', 'test', model, {}, None)
+
+        self.assertTrue(hasattr(cls, 'meta_identifier'))
 
     def test_factory_fails_on_clobber_action(self):
         model = {
             'identifiers': [
-                {'name': 'Test'}
+                {'name': 'Test'},
+                {'name': 'TestAction'}
             ],
             'actions': {
                 'Test': {

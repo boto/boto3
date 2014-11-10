@@ -100,8 +100,8 @@ class ResourceFactory(object):
         """
         for identifier in model.identifiers:
             snake_cased = xform_name(identifier.name)
-            self._check_allowed_name(attrs, snake_cased, 'identifier',
-                                     model.name)
+            snake_cased = self._check_allowed_name(
+                attrs, snake_cased, 'identifier', model.name)
             meta['identifiers'].append(snake_cased)
             attrs[snake_cased] = None
 
@@ -146,8 +146,8 @@ class ResourceFactory(object):
 
         for action in model.actions:
             snake_cased = xform_name(action.name)
-            self._check_allowed_name(attrs, snake_cased, 'action',
-                                     model.name)
+            snake_cased = self._check_allowed_name(
+                attrs, snake_cased, 'action', model.name)
             attrs[snake_cased] = self._create_action(snake_cased,
                 action, resource_defs, service_model)
 
@@ -167,8 +167,8 @@ class ResourceFactory(object):
                     # Skip identifiers, these are set through other means
                     continue
 
-                self._check_allowed_name(attrs, snake_cased, 'attribute',
-                                         model.name)
+                snake_cased = self._check_allowed_name(
+                    attrs, snake_cased, 'attribute', model.name)
                 attrs[snake_cased] = self._create_autoload_property(name,
                     snake_cased)
 
@@ -181,8 +181,8 @@ class ResourceFactory(object):
         """
         for collection_model in model.collections:
             snake_cased = xform_name(collection_model.name)
-            self._check_allowed_name(attrs, snake_cased, 'collection',
-                                     model.name)
+            snake_cased = self._check_allowed_name(
+                attrs, snake_cased, 'collection', model.name)
 
             attrs[snake_cased] = self._create_collection(snake_cased,
                 collection_model, resource_defs, service_model)
@@ -196,16 +196,16 @@ class ResourceFactory(object):
         """
         for reference in model.references:
             snake_cased = xform_name(reference.resource.type)
-            self._check_allowed_name(attrs, snake_cased, 'reference',
-                                     model.name)
+            snake_cased = self._check_allowed_name(
+                attrs, snake_cased, 'reference', model.name)
             attrs[snake_cased] = self._create_reference(
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
 
         for reference in model.reverse_references:
             snake_cased = xform_name(reference.resource.type)
-            self._check_allowed_name(attrs, snake_cased, 'reference',
-                                     model.name)
+            snake_cased = self._check_allowed_name(
+                attrs, snake_cased, 'reference', model.name)
             attrs[snake_cased] = self._create_reference(
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
@@ -219,12 +219,30 @@ class ResourceFactory(object):
         named ``queue_items`` may be added after an identifier of the same
         name has been added.
 
+        One attempt is made in the event of a collision to remedy the
+        situation. The ``category`` is appended to the name and the
+        check is performed again. For example, if an action named
+        ``get_frobs`` fails the test, then we try ``get_frobs_action``
+        after logging a warning.
+
         :raises: ValueError
         """
+        if name in attrs:
+            logger.warning('%s `%s` would clobber existing %s'
+                           ' resource attribute, going to try'
+                           ' %s instead...', category, name,
+                           resource_name, name + '_' + category)
+            # TODO: Move this logic into the model and strictly
+            #       define the loading order of categories. This
+            #       will make documentation much simpler.
+            name = name + '_' + category
+
         if name in attrs:
             raise ValueError('{0} `{1}` would clobber existing '
                              '{2} resource attribute'.format(
                                 category, name, resource_name))
+
+        return name
 
     def _create_autoload_property(factory_self, name, snake_cased):
         """
