@@ -83,13 +83,24 @@ def build_param_structure(params, target, value):
         # Is it indexing an array?
         result = INDEX_RE.search(part)
         if result:
-            index = int(result.group(1))
+            if result.group(1):
+                # We have an explicit index
+                index = int(result.group(1))
 
-            # Strip index off part name
-            part = part[:-len(str(index) + '[]')]
+                # Strip index off part name
+                part = part[:-len(str(index) + '[]')]
+            else:
+                # Index will be set after we know the proper part
+                # name and that it's a list instance.
+                index = None
+                part = part[:-2]
 
             if part not in pos or not isinstance(pos[part], list):
                 pos[part] = []
+
+            # This means we should append, e.g. 'foo[]'
+            if index is None:
+                index = len(pos[part])
 
             while len(pos[part]) <= index:
                 # Assume it's a dict until we set the final value below

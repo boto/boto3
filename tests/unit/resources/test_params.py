@@ -160,3 +160,11 @@ class TestStructBuilder(BaseTestCase):
         build_param_structure(params, 'foo[0].secret', 123)
         self.assertEqual(params['foo'][0]['key'], 'abc')
         self.assertEqual(params['foo'][0]['secret'], 123)
+
+    def test_append_no_index(self):
+        params = {}
+        build_param_structure(params, 'foo[]', 123)
+        self.assertEqual(params['foo'], [123])
+
+        build_param_structure(params, 'foo[]', 456)
+        self.assertEqual(params['foo'], [123, 456])
