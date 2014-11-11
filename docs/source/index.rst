@@ -12,7 +12,7 @@ direct service access.
 
 .. danger::
 
-   Boto 3 is *highly experimental* and **should not** be used in production
+   Boto 3 is in *developer preview* and **should not** be used in production
    yet. However, we would greatly appreciate it if you try out Boto 3 and
    give us some `feedback <https://github.com/boto/boto3>`_!
 

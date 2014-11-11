@@ -4,12 +4,15 @@ Boto 3 - The AWS SDK for Python
 
 |Build Status| |Coverage| |Docs|
 
-Boto is the AWS SDK for Python, which allows Python developers to write
-software that makes use of Amazon services like S3 and EC2. You can find the
-latest, most up to date, documentation at `Read the Docs`_, including a list
-of services that are supported.
+Boto is the Amazon Web Services (AWS) Software Development Kit (SDK) for
+Python, which allows Python developers to write software that makes use
+of services like Amazon S3 and Amazon EC2. You can find the latest, most
+up to date, documentation at `Read the Docs`_, including a list of
+services that are supported.
 
-**WARNING**: This repo is **unstable**. Use it at **YOUR OWN RISK**!
+**WARNING**: Boto 3 is in *developer preview* and **should not** be used in
+production yet! Please try it out and give feedback by opening issues or
+pull requests on this repository. Thanks!
 
 .. _boto: https://docs.pythonboto.org/
 .. _`Read the Docs`: https://boto3.readthedocs.org/en/latest/
