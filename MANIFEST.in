@@ -1,0 +1,5 @@
+include CONTRIBUTING.rst
+include README.rst
+include LICENSE
+include requirements.txt
+recursive-include boto3/data *.json

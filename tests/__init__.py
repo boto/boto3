@@ -23,5 +23,25 @@ else:
     import unittest
 
 
-class TestCase(unittest.TestCase):
-    pass
+# Python 3 includes mocking, while 2 requires an extra module.
+if sys.version_info[0] == 2:
+    import mock
+else:
+    from unittest import mock
+
+
+class BaseTestCase(unittest.TestCase):
+    """
+    A base test case which mocks out the low-level session to prevent
+    any actual calls to Botocore.
+    """
+    def setUp(self):
+        self.bc_session_patch = mock.patch('botocore.session.Session')
+        self.bc_session_cls = self.bc_session_patch.start()
+
+        loader = self.bc_session_cls.return_value.get_component.return_value
+        loader.data_path = ''
+        self.loader = loader
+
+    def tearDown(self):
+        self.bc_session_patch.stop()

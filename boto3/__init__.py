@@ -21,7 +21,7 @@ __version__ = '0.0.1'
 
 
 # The default Boto3 session; autoloaded when needed.
-default_session = None
+DEFAULT_SESSION = None
 
 def setup_default_session(**kwargs):
     """
@@ -29,23 +29,62 @@ def setup_default_session(**kwargs):
     constructor. There is no need to call this unless you wish to pass custom
     parameters, because a default session will be created for you.
     """
-    global default_session
-    default_session = Session(**kwargs)
+    global DEFAULT_SESSION
+    DEFAULT_SESSION = Session(**kwargs)
 
-def connect(service, **kwargs):
+def set_stream_logger(name='boto3', level=logging.DEBUG, format_string=None):
+    """
+    Add a stream handler for the given name and level to the logging module.
+    By default, this logs all boto3 messages to ``stdout``.
+
+        >>> import boto3
+        >>> boto3.set_stream_logger('boto3.resources', logging.INFO)
+
+    :type name: string
+    :param name: Log name
+    :type level: int
+    :param level: Logging level, e.g. ``logging.INFO``
+    :type format_string: str
+    :param format_string: Log message format
+    """
+    if format_string is None:
+        format_string = "%(asctime)s %(name)s [%(levelname)s] %(message)s"
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    handler = logging.StreamHandler()
+    handler.setLevel(level)
+    formatter = logging.Formatter(format_string)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+def _get_default_session():
+    """
+    Get the default session, creating one if needed.
+
+    :rtype: :py:class:`~boto3.session.Sesssion`
+    :return: The default session
+    """
+    if DEFAULT_SESSION is None:
+        setup_default_session()
+
+    return DEFAULT_SESSION
+
+def client(*args, **kwargs):
     """
     Create a low-level service client by name using the default session.
 
-    :type service: string
-    :param service: The name of a service, e.g. 's3' or 'ec2'
-
-    :return: Service client instance
+    See :py:meth:`boto3.session.Session.client`.
     """
-    if default_session is None:
-        setup_default_session()
+    return _get_default_session().client(*args, **kwargs)
 
-    return default_session.connect(service, **kwargs)
+def resource(*args, **kwargs):
+    """
+    Create a resource service client by name using the default session.
 
+    See :py:meth:`boto3.session.Session.resource`.
+    """
+    return _get_default_session().resource(*args, **kwargs)
 
 # Set up logging to ``/dev/null`` like a library is supposed to.
 # http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
