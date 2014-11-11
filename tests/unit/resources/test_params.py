@@ -12,7 +12,8 @@
 # language governing permissions and limitations under the License.
 
 from boto3.resources.model import Request
-from boto3.resources.params import create_request_parameters
+from boto3.resources.params import create_request_parameters, \
+                                   build_param_structure
 from tests import BaseTestCase, mock
 
 class TestServiceActionParams(BaseTestCase):
@@ -122,3 +123,48 @@ class TestServiceActionParams(BaseTestCase):
             'Parameter list should only have a single item')
         self.assertIn('w-url', params['WarehouseUrls'],
             'Parameter not in expected list')
+
+
+class TestStructBuilder(BaseTestCase):
+    def test_simple_value(self):
+        params = {}
+        build_param_structure(params, 'foo', 'bar')
+        self.assertEqual(params['foo'], 'bar')
+
+    def test_nested_dict(self):
+        params = {}
+        build_param_structure(params, 'foo.bar.baz', 123)
+        self.assertEqual(params['foo']['bar']['baz'], 123)
+
+    def test_nested_list(self):
+        params = {}
+        build_param_structure(params, 'foo.bar[0]', 'test')
+        self.assertEqual(params['foo']['bar'][0], 'test')
+
+    def test_strange_offset(self):
+        params = {}
+        build_param_structure(params, 'foo[2]', 'test')
+        self.assertEqual(params['foo'], [{}, {}, 'test'])
+
+    def test_nested_list_dict(self):
+        params = {}
+        build_param_structure(params, 'foo.bar[0].baz', 123)
+        self.assertEqual(params['foo']['bar'][0]['baz'], 123)
+
+    def test_modify_existing(self):
+        params = {
+            'foo': [
+                {'key': 'abc'}
+            ]
+        }
+        build_param_structure(params, 'foo[0].secret', 123)
+        self.assertEqual(params['foo'][0]['key'], 'abc')
+        self.assertEqual(params['foo'][0]['secret'], 123)
+
+    def test_append_no_index(self):
+        params = {}
+        build_param_structure(params, 'foo[]', 123)
+        self.assertEqual(params['foo'], [123])
+
+        build_param_structure(params, 'foo[]', 456)
+        self.assertEqual(params['foo'], [123, 456])
