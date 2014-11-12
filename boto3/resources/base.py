@@ -21,6 +21,21 @@ class ServiceResource(object):
     :type client: botocore.client
     :param client: A low-level Botocore client instance
     """
+
+    meta = None
+    """
+    Stores metadata about this resource instance, such as the
+    ``service_name``, the low-level ``client`` and any cached ``data``
+    from when the instance was hydrated. For example::
+
+        # Get a low-level client from a resource instance
+        client = resource.meta['client']
+        response = client.operation(Param='foo')
+
+        # Print the resource instance's service short name
+        print(resource.meta['service_name'])
+    """
+
     def __init__(self, *args, **kwargs):
         # Always work on a copy of meta, otherwise we would affect other
         # instances of the same subclass.
