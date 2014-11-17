@@ -43,8 +43,8 @@ class ResourceFactory(object):
         with the correct properties and methods, named based on the service
         and resource name, e.g. EC2.Instance.
 
-        :type service: string
-        :param service: Name of the service to look up
+        :type service_name: string
+        :param service_name: Name of the service to look up
         :type resource_name: string
         :param resource_name: Name of the resource to look up. For services,
                               this should match the ``service_name``.

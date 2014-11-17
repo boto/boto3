@@ -41,8 +41,8 @@ def build_identifiers(identifiers, parent, params, raw_response):
     :param parent: The resource instance to which this action is attached.
     :type params: dict
     :param params: Request parameters sent to the service.
-    :type response: dict
-    :param response: Low-level operation response.
+    :type raw_response: dict
+    :param raw_response: Low-level operation response.
     """
     results = {}
 
