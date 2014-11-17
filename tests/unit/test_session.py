@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from boto3 import __version__
 from boto3.exceptions import NoVersionFound
 from boto3.session import Session
 from tests import mock, BaseTestCase
@@ -78,6 +79,30 @@ class TestSession(BaseTestCase):
 
         # No new session was created
         self.assertFalse(self.bc_session_cls.called)
+
+    def test_user_agent(self):
+        bc_session = self.bc_session_cls()
+        bc_session.user_agent_name = 'Botocore'
+        bc_session.user_agent_version = '0.68.0'
+        bc_session.user_agent_extra = ''
+
+        Session()
+
+        self.assertEqual(bc_session.user_agent_name, 'Boto3')
+        self.assertEqual(bc_session.user_agent_version, __version__)
+        self.assertEqual(bc_session.user_agent_extra, 'Botocore/0.68.0')
+
+    def test_user_agent_extra(self):
+        bc_session = self.bc_session_cls()
+        bc_session.user_agent_name = 'Botocore'
+        bc_session.user_agent_version = '0.68.0'
+        bc_session.user_agent_extra = 'foo'
+
+        Session()
+
+        self.assertEqual(bc_session.user_agent_name, 'Boto3')
+        self.assertEqual(bc_session.user_agent_version, __version__)
+        self.assertEqual(bc_session.user_agent_extra, 'foo Botocore/0.68.0')
 
     def test_get_available_services(self):
         bc_session = self.bc_session_cls.return_value
