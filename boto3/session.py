@@ -15,6 +15,8 @@ import os
 
 import botocore.session
 
+import boto3
+
 from .exceptions import NoVersionFound
 from .resources.factory import ResourceFactory
 
@@ -47,7 +49,6 @@ class Session(object):
 
         # Setup custom user-agent string if it isn't already customized
         if self._session.user_agent_name == 'Botocore':
-            import boto3
             botocore_info = 'Botocore/{0}'.format(
                 self._session.user_agent_version)
             if self._session.user_agent_extra:
