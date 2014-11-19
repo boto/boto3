@@ -4,6 +4,9 @@ Changelog
 Unreleased
 ----------
 
+* Adds resources for
+  `AWS CloudFormation <http://aws.amazon.com/cloudformation/>`_ and
+  `AWS OpsWorks <http://aws.amazon.com/opsworks/>`_.
 * Update to Botocore 0.73.0 and JMESPath 0.5.0
 * Adds support for
   `AWS CodeDeploy <http://aws.amazon.com/codedeploy/>`_,
