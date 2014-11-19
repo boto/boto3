@@ -100,8 +100,7 @@ def docs_for(service_name):
 
     print('Processing {0}-{1}'.format(service_name, service_model.api_version))
 
-    official_name = service_model.metadata.get(
-        'serviceAbbreviation', service_model.metadata.get('serviceFullName'))
+    official_name = service_model.metadata.get('serviceFullName')
 
     docs = '{0}\n{1}\n\n'.format(official_name, '=' * len(official_name))
 
