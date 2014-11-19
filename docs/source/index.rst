@@ -26,6 +26,7 @@ User Guide
 .. toctree::
    :maxdepth: 2
 
+   guide/new
    guide/quickstart
    guide/resources
    guide/collections
