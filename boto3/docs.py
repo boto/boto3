@@ -74,6 +74,11 @@ def html_to_rst(html, indent=0, indentFirst=False):
     :rtype: string
     """
     doc = ReSTDocument()
+
+    # TODO: Remove me, temp workaround to fix doc building
+    # because of smart quotes that aren't currently supported.
+    html = html.replace(u'\u2019', "'")
+
     doc.include_doc_string(html)
     rst = doc.getvalue().decode('utf-8')
 
