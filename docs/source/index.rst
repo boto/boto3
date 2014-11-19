@@ -16,6 +16,10 @@ direct service access.
    yet. However, we would greatly appreciate it if you try out Boto 3 and
    give us some `feedback <https://github.com/boto/boto3>`_!
 
+.. raw:: html
+
+   <div style="text-align:center;margin:1em"><iframe width="560" height="315" src="//www.youtube.com/embed/Cb2czfCV4Dg" frameborder="0" allowfullscreen></iframe></div>
+
 User Guide
 ----------
 
