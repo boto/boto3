@@ -144,12 +144,11 @@ def document_client(service_name, official_name, service_model):
                           region_name='us-east-1')
 
     wdoc = ''
-    waiters = client.all_waiters()
-    if waiters:
+    if client.waiter_names:
         # This gets included in alphabetical order below!
         wdoc += '   .. py:method:: get_waiter(name)\n\n'
         wdoc += '      Get a waiter by name. Available waiters:\n\n'
-        for waiter in waiters:
+        for waiter in client.waiter_names:
             wdoc += '      * {0}\n'.format(waiter)
         wdoc += '\n'
 
