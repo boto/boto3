@@ -28,11 +28,6 @@ def test_create_all_resources():
                       aws_secret_access_key='dummy',
                       region_name='us-east-1')
     for service_name in session.get_available_resources():
-        # TODO: Remove items once supported by Botocore!
-        if service_name in ['glacier']:
-            # Not supported by Botocore yet...
-            continue
-
         yield _test_create_resource, session, service_name
 
 def _test_create_resource(session, service_name):

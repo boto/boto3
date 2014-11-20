@@ -143,6 +143,10 @@ class Session(object):
         service_names = set()
 
         for path in self._get_resource_files():
+            # TODO: Glacier is not yet supported by Botocore.
+            if 'glacier' in path:
+                continue
+
             # 'foo-bar-2006-03-01' => 'foo-bar'
             service_names.add('-'.join(path.split('-')[:-3]))
 
