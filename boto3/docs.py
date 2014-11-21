@@ -138,7 +138,11 @@ def document_client(service_name, official_name, service_model):
     """
     docs = 'Client\n------\n\n'
     docs += '.. py:class:: {0}.Client\n\n'.format(service_name)
-    docs += '   A low-level client representing {0}.\n\n'.format(official_name)
+    docs += '   A low-level client representing {0}::\n\n'.format(
+        official_name)
+    docs += '       import boto3\n\n'
+    docs += '       {service} = boto3.client(\'{service}\')\n\n'.format(
+        service=service_name)
 
     # TODO: Get this information from the model somehow in the future.
     #       For now creating and introspecing a client is a quick and
@@ -187,10 +191,21 @@ def document_resource(service_name, official_name, resource_model,
             [xform_name(i.name) for i in resource_model.identifiers]))
 
     if is_service_resource:
-        docs += ('   A resource representing {0}.\n\n').format(official_name)
+        docs += ('   A resource representing {0}::\n\n').format(official_name)
+        docs += '       import boto3\n\n'
+        docs += '       {service} = boto3.resource(\'{service}\')\n\n'.format(
+            service=service_name)
     else:
-        docs += ('   A resource representing an {0} {1}.\n\n').format(
+        identifiers = ', '.join(
+            ["'{0}'".format(xform_name(i.name)) for i in
+             resource_model.identifiers])
+        docs += ('   A resource representing an {0} {1}::\n\n').format(
             official_name, model_name)
+        docs += '       import boto3\n\n'
+        docs += ('       {service} = boto3.resource(\'{service}\')\n'
+                 '       {var} = {service}.{model}({identifiers})\n\n').format(
+                    var=xform_name(model_name), service=service_name,
+                    model=model_name, identifiers=identifiers)
 
     if not is_service_resource:
         docs += ('   .. rst-class:: admonition-title\n\n   Attributes &'
