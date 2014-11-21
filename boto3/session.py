@@ -15,6 +15,8 @@ import os
 
 import botocore.session
 
+import boto3
+
 from .exceptions import NoVersionFound
 from .resources.factory import ResourceFactory
 
@@ -44,6 +46,17 @@ class Session(object):
         else:
             # Create a new default session
             self._session = botocore.session.Session()
+
+        # Setup custom user-agent string if it isn't already customized
+        if self._session.user_agent_name == 'Botocore':
+            botocore_info = 'Botocore/{0}'.format(
+                self._session.user_agent_version)
+            if self._session.user_agent_extra:
+                self._session.user_agent_extra += ' ' + botocore_info
+            else:
+                self._session.user_agent_extra = botocore_info
+            self._session.user_agent_name = 'Boto3'
+            self._session.user_agent_version = boto3.__version__
 
         if aws_access_key_id or aws_secret_access_key or aws_session_token:
             self._session.set_credentials(aws_access_key_id,
@@ -130,6 +143,10 @@ class Session(object):
         service_names = set()
 
         for path in self._get_resource_files():
+            # TODO: Glacier is not yet supported by Botocore.
+            if 'glacier' in path:
+                continue
+
             # 'foo-bar-2006-03-01' => 'foo-bar'
             service_names.add('-'.join(path.split('-')[:-3]))
 

@@ -74,6 +74,11 @@ def html_to_rst(html, indent=0, indentFirst=False):
     :rtype: string
     """
     doc = ReSTDocument()
+
+    # TODO: Remove me, temp workaround to fix doc building
+    # because of smart quotes that aren't currently supported.
+    html = html.replace(u'\u2019', "'")
+
     doc.include_doc_string(html)
     rst = doc.getvalue().decode('utf-8')
 
@@ -100,8 +105,7 @@ def docs_for(service_name):
 
     print('Processing {0}-{1}'.format(service_name, service_model.api_version))
 
-    official_name = service_model.metadata.get(
-        'serviceAbbreviation', service_model.metadata.get('serviceFullName'))
+    official_name = service_model.metadata.get('serviceFullName')
 
     docs = '{0}\n{1}\n\n'.format(official_name, '=' * len(official_name))
 
@@ -134,7 +138,11 @@ def document_client(service_name, official_name, service_model):
     """
     docs = 'Client\n------\n\n'
     docs += '.. py:class:: {0}.Client\n\n'.format(service_name)
-    docs += '   A low-level client representing {0}.\n\n'.format(official_name)
+    docs += '   A low-level client representing {0}::\n\n'.format(
+        official_name)
+    docs += '       import boto3\n\n'
+    docs += '       {service} = boto3.client(\'{service}\')\n\n'.format(
+        service=service_name)
 
     # TODO: Get this information from the model somehow in the future.
     #       For now creating and introspecing a client is a quick and
@@ -144,12 +152,11 @@ def document_client(service_name, official_name, service_model):
                           region_name='us-east-1')
 
     wdoc = ''
-    waiters = client.all_waiters()
-    if waiters:
+    if client.waiter_names:
         # This gets included in alphabetical order below!
         wdoc += '   .. py:method:: get_waiter(name)\n\n'
         wdoc += '      Get a waiter by name. Available waiters:\n\n'
-        for waiter in waiters:
+        for waiter in client.waiter_names:
             wdoc += '      * {0}\n'.format(waiter)
         wdoc += '\n'
 
@@ -184,10 +191,21 @@ def document_resource(service_name, official_name, resource_model,
             [xform_name(i.name) for i in resource_model.identifiers]))
 
     if is_service_resource:
-        docs += ('   A resource representing {0}.\n\n').format(official_name)
+        docs += ('   A resource representing {0}::\n\n').format(official_name)
+        docs += '       import boto3\n\n'
+        docs += '       {service} = boto3.resource(\'{service}\')\n\n'.format(
+            service=service_name)
     else:
-        docs += ('   A resource representing an {0} {1}.\n\n').format(
+        identifiers = ', '.join(
+            ["'{0}'".format(xform_name(i.name)) for i in
+             resource_model.identifiers])
+        docs += ('   A resource representing an {0} {1}::\n\n').format(
             official_name, model_name)
+        docs += '       import boto3\n\n'
+        docs += ('       {service} = boto3.resource(\'{service}\')\n'
+                 '       {var} = {service}.{model}({identifiers})\n\n').format(
+                    var=xform_name(model_name), service=service_name,
+                    model=model_name, identifiers=identifiers)
 
     if not is_service_resource:
         docs += ('   .. rst-class:: admonition-title\n\n   Attributes &'

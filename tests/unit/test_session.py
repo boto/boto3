@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from boto3 import __version__
 from boto3.exceptions import NoVersionFound
 from boto3.session import Session
 from tests import mock, BaseTestCase
@@ -27,11 +28,6 @@ def test_create_all_resources():
                       aws_secret_access_key='dummy',
                       region_name='us-east-1')
     for service_name in session.get_available_resources():
-        # TODO: Remove items once supported by Botocore!
-        if service_name in ['glacier']:
-            # Not supported by Botocore yet...
-            continue
-
         yield _test_create_resource, session, service_name
 
 def _test_create_resource(session, service_name):
@@ -78,6 +74,45 @@ class TestSession(BaseTestCase):
 
         # No new session was created
         self.assertFalse(self.bc_session_cls.called)
+
+    def test_user_agent(self):
+        # Here we get the underlying Botocore session, create a Boto 3
+        # session, and ensure that the user-agent is modified as expected
+        bc_session = self.bc_session_cls.return_value
+        bc_session.user_agent_name = 'Botocore'
+        bc_session.user_agent_version = '0.68.0'
+        bc_session.user_agent_extra = ''
+
+        Session(botocore_session=bc_session)
+
+        self.assertEqual(bc_session.user_agent_name, 'Boto3')
+        self.assertEqual(bc_session.user_agent_version, __version__)
+        self.assertEqual(bc_session.user_agent_extra, 'Botocore/0.68.0')
+
+    def test_user_agent_extra(self):
+        # This test is the same as above, but includes custom extra content
+        # which must still be in the final modified user-agent.
+        bc_session = self.bc_session_cls.return_value
+        bc_session.user_agent_name = 'Botocore'
+        bc_session.user_agent_version = '0.68.0'
+        bc_session.user_agent_extra = 'foo'
+
+        Session(botocore_session=bc_session)
+
+        self.assertEqual(bc_session.user_agent_extra, 'foo Botocore/0.68.0')
+
+    def test_custom_user_agent(self):
+        # This test ensures that a customized user-agent is left untouched.
+        bc_session = self.bc_session_cls.return_value
+        bc_session.user_agent_name = 'Custom'
+        bc_session.user_agent_version = '1.0'
+        bc_session.user_agent_extra = ''
+
+        Session(botocore_session=bc_session)
+
+        self.assertEqual(bc_session.user_agent_name, 'Custom')
+        self.assertEqual(bc_session.user_agent_version, '1.0')
+        self.assertEqual(bc_session.user_agent_extra, '')
 
     def test_get_available_services(self):
         bc_session = self.bc_session_cls.return_value

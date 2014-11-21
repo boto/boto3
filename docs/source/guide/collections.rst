@@ -121,7 +121,7 @@ or keyword argument::
 
 By default, S3 will return 1000 objects at a time, so the above code
 would let you process the items in smaller batches, which could be
-benefitial for slow or unreliable internet connections.
+beneficial for slow or unreliable internet connections.
 
 Batch Actions
 -------------

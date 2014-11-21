@@ -30,7 +30,7 @@ The general order in which they are checked is as follows:
 If a configuration value is set in multiple places, then the first
 will be used according the the order above. For example, if I have
 set a default region in both my environment variables and configuration
-file, then the envirnment variable is used.
+file, then the environment variable is used.
 
 Available Options
 -----------------
