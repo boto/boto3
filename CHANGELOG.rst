@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.2 - 2014-11-20
+------------------
 
 * Adds resources for
   `AWS CloudFormation <http://aws.amazon.com/cloudformation/>`_ and
