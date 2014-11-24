@@ -10,6 +10,7 @@ Resource Model
 .. automodule:: boto3.resources.model
    :members:
    :undoc-members:
+   :inherited-members:
 
 Request Parameters
 ------------------

@@ -70,18 +70,18 @@ class Action(object):
         self.path = definition.get('path')
 
 
-class Request(object):
+
+class ItemWithParameters(object):
     """
-    A service operation action request.
+    An item which has parameters exposed via the ``params`` property.
+    A request has an operation and parameters, while a waiter has
+    a name, a low-level waiter name and parameters.
 
     :type definition: dict
     :param definition: The JSON definition
     """
     def __init__(self, definition):
         self._definition = definition
-
-        #: (``string``) The name of the low-level service operation
-        self.operation = definition.get('operation')
 
     @property
     def params(self):
@@ -119,6 +119,39 @@ class Parameter(object):
         self.source_type = source_type
         #: (``string``) The source name
         self.source = source
+
+
+class Request(ItemWithParameters):
+    """
+    A service operation action request.
+
+    :type definition: dict
+    :param definition: The JSON definition
+    """
+    def __init__(self, definition):
+        super(Request, self).__init__(definition)
+
+        #: (``string``) The name of the low-level service operation
+        self.operation = definition.get('operation')
+
+
+class Waiter(ItemWithParameters):
+    """
+    An event waiter specification.
+
+    :type name: string
+    :param name: Name of the waiter
+    :type definition: dict
+    :param definition: The JSON definition
+    """
+    def __init__(self, name, definition):
+        super(Waiter, self).__init__(definition)
+
+        #: (``string``) The name of this waiter
+        self.name = name
+
+        #: (``string``) The name of the underlying event waiter
+        self.waiter_name = definition.get('waiterName')
 
 
 class ResponseResource(object):
@@ -285,6 +318,20 @@ class ResourceModel(object):
         return actions
 
     @property
+    def batch_actions(self):
+        """
+        Get a list of batch actions for this resource.
+
+        :type: list(:py:class:`Action`)
+        """
+        actions = []
+
+        for name, item in self._definition.get('batchActions', {}).items():
+            actions.append(Action(name, item, self._resource_defs))
+
+        return actions
+
+    @property
     def references(self):
         """
         Get a list of reference resources.
@@ -355,3 +402,17 @@ class ResourceModel(object):
             collections.append(Collection(name, item, self._resource_defs))
 
         return collections
+
+    @property
+    def waiters(self):
+        """
+        Get a list of waiters for this resource.
+
+        :type: list(:py:class:`Waiter`)
+        """
+        waiters = []
+
+        for name, item in self._definition.get('waiters', {}).items():
+            waiters.append(Waiter(name, item))
+
+        return waiters
