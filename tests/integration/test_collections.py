@@ -26,6 +26,7 @@ REGION_MAP = {
 # or are very slow to run.
 BLACKLIST = {
     'ec2': ['images'],
+    'iam': ['signing_certificates'],
     'sqs': ['dead_letter_source_queues']
 }
 
