@@ -1,6 +1,21 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature: Update to Botocore 0.76.0.
+
+  * Add support for using AWS Data Pipeline templates to create
+    pipelines and bind values to parameters in the pipeline
+  * Add support to Amazon Elastic Transcoder client for encryption of files
+    in Amazon S3.
+  * Fix issue where Amazon S3 requests were not being
+    resigned correctly when using Signature Version 4.
+    (`botocore issue 388 <https://github.com/boto/botocore/pull/388>`__)
+  * Add support for custom response parsing in Botocore clients.
+    (`botocore issue 387 <https://github.com/boto/botocore/pull/387>`__)
+
 0.0.2 - 2014-11-20
 ------------------
 
