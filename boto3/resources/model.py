@@ -71,7 +71,7 @@ class Action(object):
 
 
 
-class ItemWithParameters(object):
+class DefinitionWithParams(object):
     """
     An item which has parameters exposed via the ``params`` property.
     A request has an operation and parameters, while a waiter has
@@ -121,7 +121,7 @@ class Parameter(object):
         self.source = source
 
 
-class Request(ItemWithParameters):
+class Request(DefinitionWithParams):
     """
     A service operation action request.
 
@@ -135,7 +135,7 @@ class Request(ItemWithParameters):
         self.operation = definition.get('operation')
 
 
-class Waiter(ItemWithParameters):
+class Waiter(DefinitionWithParams):
     """
     An event waiter specification.
 
