@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from boto3.resources.model import ResourceModel, Action, SubResourceList,\
-                                  Collection
+                                  Collection, Waiter
 from tests import BaseTestCase
 
 
@@ -100,6 +100,28 @@ class TestModels(BaseTestCase):
         self.assertIsInstance(model.load, Action)
         self.assertEqual(model.load.request.operation, 'GetFrobInfo')
         self.assertEqual(model.load.path, '$')
+
+    def test_resource_batch_action(self):
+        model = ResourceModel('test', {
+            'batchActions': {
+                'Delete': {
+                    'request': {
+                        'operation': 'DeleteObjects',
+                        'params': [
+                            {'target': 'Bucket', 'sourceType': 'identifier',
+                             'source': 'BucketName'}
+                        ]
+                    }
+                }
+            }
+        }, {})
+
+        self.assertIsInstance(model.batch_actions, list)
+
+        action = model.batch_actions[0]
+        self.assertIsInstance(action, Action)
+        self.assertEqual(action.request.operation, 'DeleteObjects')
+        self.assertEqual(action.request.params[0].target, 'Bucket')
 
     def test_sub_resources(self):
         model = ResourceModel('test', {
@@ -223,3 +245,24 @@ class TestModels(BaseTestCase):
         self.assertEqual(model.collections[0].resource.type, 'Frob')
         self.assertEqual(model.collections[0].resource.model.name, 'Frob')
         self.assertEqual(model.collections[0].path, 'FrobList[]')
+
+    def test_waiter(self):
+        model = ResourceModel('test', {
+            'waiters': {
+                'Exists': {
+                    'waiterName': 'ObjectExists',
+                    'params': [
+                        {'target': 'Bucket', 'sourceType': 'identifier',
+                         'source': 'BucketName'}
+                    ]
+                }
+            }
+        }, {})
+
+        self.assertIsInstance(model.waiters, list)
+
+        waiter = model.waiters[0]
+        self.assertIsInstance(waiter, Waiter)
+        self.assertEqual(waiter.name, 'Exists')
+        self.assertEqual(waiter.waiter_name, 'ObjectExists')
+        self.assertEqual(waiter.params[0].target, 'Bucket')
