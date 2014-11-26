@@ -103,7 +103,7 @@ class TestServiceActionParams(BaseTestCase):
         with self.assertRaises(NotImplementedError):
             create_request_parameters(None, request_model)
 
-    def test_action_params_list(self):
+    def test_service_action_params_list(self):
         request_model = Request({
             'operation': 'GetFrobs',
             'params': [
@@ -123,6 +123,38 @@ class TestServiceActionParams(BaseTestCase):
             'Parameter list should only have a single item')
         self.assertIn('w-url', params['WarehouseUrls'],
             'Parameter not in expected list')
+
+    def test_service_action_params_reuse(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {
+                    'target': 'Delete.Objects[].Key',
+                    'sourceType': 'dataMember',
+                    'source': 'Key'
+                }
+            ]
+        })
+
+        item1 = mock.Mock()
+        item1.key = 'item1'
+
+        item2 = mock.Mock()
+        item2.key = 'item2'
+
+        # Here we create params and then re-use it to build up a more
+        # complex structure over multiple calls.
+        params = create_request_parameters(item1, request_model)
+        create_request_parameters(item2, request_model, params=params)
+
+        self.assertEqual(params, {
+            'Delete': {
+                'Objects': [
+                    {'Key': 'item1'},
+                    {'Key': 'item2'}
+                ]
+            }
+        })
 
 
 class TestStructBuilder(BaseTestCase):

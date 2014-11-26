@@ -18,7 +18,7 @@ from botocore import xform_name
 
 from .action import ServiceAction
 from .base import ServiceResource
-from .collection import CollectionManager
+from .collection import CollectionFactory
 from .model import ResourceModel
 from .response import all_not_none, build_identifiers
 from ..exceptions import ResourceLoadException
@@ -35,6 +35,9 @@ class ResourceFactory(object):
     SQS resource) and another on models contained within the service (e.g. an
     SQS Queue resource).
     """
+    def __init__(self):
+        self._collection_factory = CollectionFactory()
+
     def load_from_definition(self, service_name, resource_name, model,
                              resource_defs, service_model):
         """
@@ -184,7 +187,8 @@ class ResourceFactory(object):
             snake_cased = self._check_allowed_name(
                 attrs, snake_cased, 'collection', model.name)
 
-            attrs[snake_cased] = self._create_collection(snake_cased,
+            attrs[snake_cased] = self._create_collection(
+                attrs['meta']['service_name'], model.name, snake_cased,
                 collection_model, resource_defs, service_model)
 
     def _load_references(self, attrs, service_name, resource_name,
@@ -267,14 +271,19 @@ class ResourceFactory(object):
         property_loader.__doc__ = 'TODO'
         return property(property_loader)
 
-    def _create_collection(factory_self, snake_cased, collection_model,
+    def _create_collection(factory_self, service_name, resource_name,
+                           snake_cased, collection_model,
                            resource_defs, service_model):
         """
         Creates a new property on the resource to lazy-load a collection.
         """
+        cls = factory_self._collection_factory.load_from_definition(
+            service_name, resource_name, collection_model.name,
+            collection_model, resource_defs)
+
         def get_collection(self):
-            return CollectionManager(collection_model,
-                self, factory_self, resource_defs, service_model)
+            return cls(collection_model, self, factory_self,
+                       resource_defs, service_model)
 
         get_collection.__name__ = str(snake_cased)
         get_collection.__doc__ = 'TODO'

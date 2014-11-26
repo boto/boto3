@@ -210,7 +210,16 @@ class Collection(Action):
     :type resource_defs: dict
     :param resource_defs: All resources defined in the service
     """
-    pass
+    @property
+    def batch_actions(self):
+        """
+        Get a list of batch actions supported by the resource type
+        contained in this action. This is a shortcut for accessing
+        the same information through the resource model.
+
+        :rtype: list(:py:class:`Action`)
+        """
+        return self.resource.model.batch_actions
 
 
 class SubResourceList(object):
