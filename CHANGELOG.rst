@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.3 - 2014-11-26
+------------------
 
 * feature: Update to Botocore 0.76.0.
 
