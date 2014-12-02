@@ -154,11 +154,6 @@ class TestModels(BaseTestCase):
                             {'target':'Id', 'sourceType':'dataMember',
                              'source':'FrobId'}
                         ]
-                    },
-                },
-                'Frobs': {
-                    'resource': {
-                        'type': 'Frob'
                     }
                 }
             }
@@ -169,7 +164,7 @@ class TestModels(BaseTestCase):
         model = ResourceModel('test', model_def, resource_defs)
 
         self.assertIsInstance(model.references, list)
-        self.assertEqual(len(model.references), 2)
+        self.assertEqual(len(model.references), 1)
 
         ref = model.references[0]
         self.assertEqual(ref.name, 'Frob')
@@ -178,11 +173,6 @@ class TestModels(BaseTestCase):
         self.assertEqual(ref.resource.identifiers[0].source_type,
                          'dataMember')
         self.assertEqual(ref.resource.identifiers[0].source, 'FrobId')
-
-        ref2 = model.references[1]
-        self.assertEqual(ref2.name, 'Frobs')
-        self.assertEqual(ref2.resource.type, 'Frob')
-        self.assertEqual(len(ref2.resource.identifiers), 0)
 
     def test_reverse_reference(self):
         # Here the Code resource has no explicit ``hasOne`` defined, however
