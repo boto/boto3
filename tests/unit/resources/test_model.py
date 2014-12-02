@@ -74,7 +74,8 @@ class TestModels(BaseTestCase):
             'actions': {
                 'GetFrobs': {
                     'resource': {
-                        'type': 'Frob'
+                        'type': 'Frob',
+                        'path': 'Container.Frobs[]'
                     }
                 }
             }
@@ -84,6 +85,7 @@ class TestModels(BaseTestCase):
 
         action = model.actions[0]
         self.assertEqual(action.resource.type, 'Frob')
+        self.assertEqual(action.resource.path, 'Container.Frobs[]')
         self.assertIsInstance(action.resource.model, ResourceModel)
         self.assertEqual(action.resource.model.name, 'Frob')
 
@@ -144,7 +146,7 @@ class TestModels(BaseTestCase):
 
     def test_resource_references(self):
         model_def = {
-            'hasOne': {
+            'belongsTo': {
                 'Frob': {
                     'resource': {
                         'type': 'Frob',
@@ -153,9 +155,7 @@ class TestModels(BaseTestCase):
                              'source':'FrobId'}
                         ]
                     },
-                }
-            },
-            'hasSome': {
+                },
                 'Frobs': {
                     'resource': {
                         'type': 'Frob'

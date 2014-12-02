@@ -92,9 +92,9 @@ class TestServiceActionCall(BaseTestCase):
     @mock.patch('boto3.resources.action.ResourceHandler')
     def test_service_action_calls_resource_handler(self, handler_mock, params_mock):
         self.action_def['resource'] = {
-            'type': 'Frob'
+            'type': 'Frob',
+            'path': 'Container'
         }
-        self.action_def['path'] = 'Container'
 
         resource = mock.Mock()
         resource.meta = {
