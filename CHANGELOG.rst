@@ -1,6 +1,15 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature: Update `Amazon EC2 <http://aws.amazon.com/ec2/>`_ resource model.
+* feature: Support `belongsTo` resource reference as well as `path`
+  specified in an action's resource definition.
+* bugfix: Fix an issue accessing SQS message bodies
+  (`issue 33 <https://github.com/boto/boto3/issues/33>`__)
+
 0.0.3 - 2014-11-26
 ------------------
 

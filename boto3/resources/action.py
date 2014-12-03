@@ -43,16 +43,15 @@ class ServiceAction(object):
                  service_model=None):
         self.action_model = action_model
 
-        search_path = action_model.path
-
         # In the simplest case we just return the response, but if a
         # resource is defined, then we must create these before returning.
-        if action_model.resource:
-            self.response_handler = ResourceHandler(search_path, factory,
-                resource_defs, service_model, action_model.resource,
+        resource = action_model.resource
+        if resource:
+            self.response_handler = ResourceHandler(resource.path,
+                factory, resource_defs, service_model, resource,
                 action_model.request.operation)
         else:
-            self.response_handler = RawHandler(search_path)
+            self.response_handler = RawHandler(action_model.path)
 
     def __call__(self, parent, *args, **kwargs):
         """

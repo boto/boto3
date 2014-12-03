@@ -170,6 +170,9 @@ class ResponseResource(object):
         #: (``string``) The name of the response resource type
         self.type = definition.get('type')
 
+        #: (``string``) The JMESPath search query or ``None``
+        self.path = definition.get('path')
+
     @property
     def identifiers(self):
         """
@@ -340,7 +343,7 @@ class ResourceModel(object):
         """
         references = []
 
-        for key in ['hasOne', 'hasSome']:
+        for key in ['belongsTo']:
             for name, definition in self._definition.get(key, {}).items():
                 references.append(
                     Action(name, definition, self._resource_defs))
