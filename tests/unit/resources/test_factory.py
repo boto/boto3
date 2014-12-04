@@ -493,7 +493,7 @@ class TestResourceFactory(BaseTestCase):
         model = {
             'shape': 'InstanceShape',
             'identifiers': [{'name': 'GroupId'}],
-            'hasOne': {
+            'belongsTo': {
                 'Subnet': {
                     'resource': {
                         'type': 'Subnet',

@@ -1,6 +1,29 @@
 Changelog
 =========
 
+0.0.4 - 2014-12-04
+------------------
+
+* feature: Update to Botocore 0.77.0
+
+  * Add support for Kinesis PutRecords operation. It writes multiple
+    data records from a producer into an Amazon Kinesis stream in a
+    single call.
+  * Add support for IAM GetAccountAuthorizationDetails operation. It
+    retrieves information about all IAM users, groups, and roles in
+    your account, including their relationships to one another and
+    their attached policies.
+  * Add support for updating the comment of a Route53 hosted zone.
+  * Fix base64 serialization for JSON protocol services.
+  * Fix issue where certain timestamps were not being accepted as valid input
+  (`botocore issue 389 <https://github.com/boto/botocore/pull/389>`__)
+
+* feature: Update `Amazon EC2 <http://aws.amazon.com/ec2/>`_ resource model.
+* feature: Support `belongsTo` resource reference as well as `path`
+  specified in an action's resource definition.
+* bugfix: Fix an issue accessing SQS message bodies
+  (`issue 33 <https://github.com/boto/boto3/issues/33>`__)
+
 0.0.3 - 2014-11-26
 ------------------
 

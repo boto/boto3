@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from boto3.resources.model import ResourceModel, Action, SubResourceList,\
-                                  Collection
+                                  Collection, Waiter
 from tests import BaseTestCase
 
 
@@ -74,7 +74,8 @@ class TestModels(BaseTestCase):
             'actions': {
                 'GetFrobs': {
                     'resource': {
-                        'type': 'Frob'
+                        'type': 'Frob',
+                        'path': 'Container.Frobs[]'
                     }
                 }
             }
@@ -84,6 +85,7 @@ class TestModels(BaseTestCase):
 
         action = model.actions[0]
         self.assertEqual(action.resource.type, 'Frob')
+        self.assertEqual(action.resource.path, 'Container.Frobs[]')
         self.assertIsInstance(action.resource.model, ResourceModel)
         self.assertEqual(action.resource.model.name, 'Frob')
 
@@ -100,6 +102,28 @@ class TestModels(BaseTestCase):
         self.assertIsInstance(model.load, Action)
         self.assertEqual(model.load.request.operation, 'GetFrobInfo')
         self.assertEqual(model.load.path, '$')
+
+    def test_resource_batch_action(self):
+        model = ResourceModel('test', {
+            'batchActions': {
+                'Delete': {
+                    'request': {
+                        'operation': 'DeleteObjects',
+                        'params': [
+                            {'target': 'Bucket', 'sourceType': 'identifier',
+                             'source': 'BucketName'}
+                        ]
+                    }
+                }
+            }
+        }, {})
+
+        self.assertIsInstance(model.batch_actions, list)
+
+        action = model.batch_actions[0]
+        self.assertIsInstance(action, Action)
+        self.assertEqual(action.request.operation, 'DeleteObjects')
+        self.assertEqual(action.request.params[0].target, 'Bucket')
 
     def test_sub_resources(self):
         model = ResourceModel('test', {
@@ -122,7 +146,7 @@ class TestModels(BaseTestCase):
 
     def test_resource_references(self):
         model_def = {
-            'hasOne': {
+            'belongsTo': {
                 'Frob': {
                     'resource': {
                         'type': 'Frob',
@@ -130,13 +154,6 @@ class TestModels(BaseTestCase):
                             {'target':'Id', 'sourceType':'dataMember',
                              'source':'FrobId'}
                         ]
-                    },
-                }
-            },
-            'hasSome': {
-                'Frobs': {
-                    'resource': {
-                        'type': 'Frob'
                     }
                 }
             }
@@ -147,7 +164,7 @@ class TestModels(BaseTestCase):
         model = ResourceModel('test', model_def, resource_defs)
 
         self.assertIsInstance(model.references, list)
-        self.assertEqual(len(model.references), 2)
+        self.assertEqual(len(model.references), 1)
 
         ref = model.references[0]
         self.assertEqual(ref.name, 'Frob')
@@ -156,11 +173,6 @@ class TestModels(BaseTestCase):
         self.assertEqual(ref.resource.identifiers[0].source_type,
                          'dataMember')
         self.assertEqual(ref.resource.identifiers[0].source, 'FrobId')
-
-        ref2 = model.references[1]
-        self.assertEqual(ref2.name, 'Frobs')
-        self.assertEqual(ref2.resource.type, 'Frob')
-        self.assertEqual(len(ref2.resource.identifiers), 0)
 
     def test_reverse_reference(self):
         # Here the Code resource has no explicit ``hasOne`` defined, however
@@ -223,3 +235,24 @@ class TestModels(BaseTestCase):
         self.assertEqual(model.collections[0].resource.type, 'Frob')
         self.assertEqual(model.collections[0].resource.model.name, 'Frob')
         self.assertEqual(model.collections[0].path, 'FrobList[]')
+
+    def test_waiter(self):
+        model = ResourceModel('test', {
+            'waiters': {
+                'Exists': {
+                    'waiterName': 'ObjectExists',
+                    'params': [
+                        {'target': 'Bucket', 'sourceType': 'identifier',
+                         'source': 'BucketName'}
+                    ]
+                }
+            }
+        }, {})
+
+        self.assertIsInstance(model.waiters, list)
+
+        waiter = model.waiters[0]
+        self.assertIsInstance(waiter, Waiter)
+        self.assertEqual(waiter.name, 'Exists')
+        self.assertEqual(waiter.waiter_name, 'ObjectExists')
+        self.assertEqual(waiter.params[0].target, 'Bucket')
