@@ -39,6 +39,9 @@ As can be seen above, the method arguments map directly to the associated
 
    The method names have been snake-cased for better looking Python code.
 
+   Parameters **must** be sent as keyword arguments. They will not work
+   as positional arguments.
+
 Handling Responses
 ------------------
 Responses are returned as python dictionaries. It is up to you to traverse

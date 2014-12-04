@@ -61,6 +61,32 @@ def py_type_name(type_name):
     }.get(type_name, type_name)
 
 
+def py_default(type_name):
+    """
+    Get the Python default value for a given model type, useful
+    for generated examples.
+
+        >>> py_default('string')
+        '\'string\''
+        >>> py_default('list')
+        '[...]'
+        >>> py_default('unknown')
+        '...'
+
+    :rtype: string
+    """
+    return {
+        'double': '123.0',
+        'long': '123',
+        'integer': '123',
+        'string': "'string'",
+        'blob': "b'bytes'",
+        'list': '[...]',
+        'map': '{...}',
+        'structure': '{...}',
+        'timestamp': 'datetime(2015, 1, 1)',
+    }.get(type_name, '...')
+
 def html_to_rst(html, indent=0, indentFirst=False):
     """
     Use bcdoc to convert html to rst.
@@ -169,7 +195,8 @@ def document_client(service_name, official_name, service_model):
         operation = service_model.operation_model(operation_name)
         docs += document_operation(
             operation, service_name,
-            paginated=client.can_paginate(xform_name(operation_name)))
+            paginated=client.can_paginate(xform_name(operation_name)),
+            example_instance='client', example_response='response')
 
     return docs
 
@@ -324,9 +351,11 @@ def document_action(action, service_name, resource_model, service_model,
                        ' :py:meth:`{0}.Client.{1}`.').format(
                             service_name,
                             xform_name(action.request.operation))
+        example_response = 'response'
         if action.resource:
             rtype = ':py:class:`{0}.{1}`'.format(
                 service_name, action.resource.type)
+            example_response = xform_name(action.resource.type)
 
             # Is the response plural? If so we are returning a list!
             if action.path and '[]' in action.path:
@@ -334,11 +363,13 @@ def document_action(action, service_name, resource_model, service_model,
 
     return document_operation(
         operation_model, service_name, operation_name=xform_name(action.name),
-        description=description, ignore_params=ignore_params, rtype=rtype)
+        description=description, ignore_params=ignore_params, rtype=rtype,
+        example_instance=service_name, example_response=example_response)
 
 def document_operation(operation_model, service_name, operation_name=None,
                        description=None, ignore_params=None, rtype='dict',
-                       paginated=False):
+                       paginated=False, example_instance=None,
+                       example_response=None):
     """
     Document an operation. The description can be overridden and certain
     params hidden to support documenting resource actions.
@@ -361,7 +392,7 @@ def document_operation(operation_model, service_name, operation_name=None,
     optional_params = [k for k in params.keys() if k not in required and \
                        k not in ignore_params]
     param_desc = ', '.join([
-        ', '.join(required_params),
+        ', '.join(['{0}=None'.format(k) for k in required_params]),
         ', '.join(['{0}=None'.format(k) for k in optional_params])
     ])
 
@@ -379,13 +410,28 @@ def document_operation(operation_model, service_name, operation_name=None,
     if paginated:
         docs += '      This operation can be paginated.\n\n'
 
+    if example_instance:
+        dummy_params = []
+        for key, value in params.items():
+            if key in ignore_params:
+                continue
+            if key in required_params:
+                default = py_default(value.type_name)
+                dummy_params.append('{0}={1}'.format(
+                    key, default))
+        docs += '      Example::\n\n          {0} = {1}.{2}({3})\n\n'.format(
+            example_response, example_instance, operation_name,
+            ', '.join(dummy_params))
+
     for key, value in params.items():
         # Skip identifiers as these are automatically set!
         if key in ignore_params:
             continue
         param_type = py_type_name(value.type_name)
-        docs += ('      :param {0} {1}: {2}\n'.format(
-            param_type, key, html_to_rst(value.documentation, indent=9)))
+        required = key in required_params and 'Required' or 'Optional'
+        docs += ('      :param {0} {1}: *{2}* - {3}\n'.format(
+            param_type, key, required,
+            html_to_rst(value.documentation, indent=9)))
 
     docs += '\n\n      :rtype: {0}\n\n'.format(rtype)
 
