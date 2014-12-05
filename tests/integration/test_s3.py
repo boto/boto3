@@ -11,17 +11,16 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-import time
 import boto3.session
 
-from tests import unittest
+from tests import unittest, unique_id
 
 
 class TestS3Resource(unittest.TestCase):
     def setUp(self):
         self.session = boto3.session.Session(region_name='us-west-2')
         self.s3 = self.session.resource('s3')
-        self.bucket_name = 'boto3-test-{0}'.format(int(time.time()))
+        self.bucket_name = unique_id('boto3-test')
 
     def test_s3(self):
         client = self.s3.meta['client']

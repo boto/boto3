@@ -11,7 +11,9 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+import random
 import sys
+import time
 
 
 # The unittest module got a significant overhaul
@@ -28,6 +30,17 @@ if sys.version_info[0] == 2:
     import mock
 else:
     from unittest import mock
+
+
+def unique_id(name):
+    """
+    Generate a unique ID that includes the given name,
+    a timestamp and a random number. This helps when running
+    integration tests in parallel that must create remote
+    resources.
+    """
+    return '{0}-{1}-{2}'.format(name, int(time.time()),
+                                random.randint(0, 10000))
 
 
 class BaseTestCase(unittest.TestCase):

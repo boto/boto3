@@ -11,17 +11,16 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-import time
 import boto3.session
 
-from tests import unittest
+from tests import unittest, unique_id
 
 
 class TestSQSResource(unittest.TestCase):
     def setUp(self):
         self.session = boto3.session.Session(region_name='us-west-2')
         self.sqs = self.session.resource('sqs')
-        self.queue_name = 'boto3-test-{0}'.format(int(time.time()))
+        self.queue_name = unique_id('boto3-test')
 
     def test_s3(self):
         # Create a new resource
