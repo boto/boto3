@@ -19,7 +19,7 @@ from tests import unittest
 
 class TestSQSResource(unittest.TestCase):
     def setUp(self):
-        self.session = boto3.session.Session()
+        self.session = boto3.session.Session(region_name='us-west-2')
         self.sqs = self.session.resource('sqs')
         self.queue_name = 'boto3-test-{0}'.format(int(time.time()))
 

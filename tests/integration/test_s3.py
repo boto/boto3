@@ -19,9 +19,7 @@ from tests import unittest
 
 class TestS3Resource(unittest.TestCase):
     def setUp(self):
-        # We use the us-east-1 region here to prevent needing
-        # to set up special bucket configuration.
-        self.session = boto3.session.Session(region_name='us-east-1')
+        self.session = boto3.session.Session(region_name='us-west-2')
         self.s3 = self.session.resource('s3')
         self.bucket_name = 'boto3-test-{0}'.format(int(time.time()))
 
@@ -29,7 +27,11 @@ class TestS3Resource(unittest.TestCase):
         client = self.s3.meta['client']
 
         # Create a bucket (resource action with a resource response)
-        bucket = self.s3.create_bucket(Bucket=self.bucket_name)
+        bucket = self.s3.create_bucket(
+            Bucket=self.bucket_name,
+            CreateBucketConfiguration={
+                'LocationConstraint': 'us-west-2'
+            })
         waiter = client.get_waiter('bucket_exists')
         waiter.wait(Bucket=self.bucket_name)
         self.addCleanup(bucket.delete)
