@@ -1,6 +1,24 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature: Add support for batch actions on collections.
+  (`issue 32 <https://github.com/boto/boto3/pull/32>`__)
+* feature: Update to Botocore 0.78.0
+
+  * Add support for Amazon Simple Queue Service purge queue which allows
+    users to delete the messages in their queue.
+  * Add AWS OpsWorks support for registering and assigning existing Amazon
+    EC2 instances and on-premises servers.
+  * Fix issue with expired signatures when retrying failed requests
+    (`botocore issue 399 <https://github.com/boto/botocore/pull/399>`__)
+  * Port Route53 resource ID customizations from AWS CLI to Botocore.
+    (`botocore issue 398 <https://github.com/boto/botocore/pull/398>`__)
+  * Fix handling of blob type serialization for JSON services.
+    (`botocore issue 397 <https://github.com/boto/botocore/pull/397>`__)
+
 0.0.4 - 2014-12-04
 ------------------
 
@@ -16,7 +34,7 @@ Changelog
   * Add support for updating the comment of a Route53 hosted zone.
   * Fix base64 serialization for JSON protocol services.
   * Fix issue where certain timestamps were not being accepted as valid input
-  (`botocore issue 389 <https://github.com/boto/botocore/pull/389>`__)
+    (`botocore issue 389 <https://github.com/boto/botocore/pull/389>`__)
 
 * feature: Update `Amazon EC2 <http://aws.amazon.com/ec2/>`_ resource model.
 * feature: Support `belongsTo` resource reference as well as `path`
