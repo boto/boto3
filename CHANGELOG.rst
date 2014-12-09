@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.5 - 2014-12-09
+------------------
 
 * feature: Add support for batch actions on collections.
   (`issue 32 <https://github.com/boto/boto3/pull/32>`__)
