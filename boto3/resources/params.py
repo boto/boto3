@@ -19,19 +19,27 @@ from botocore import xform_name
 INDEX_RE = re.compile('\[(.*)\]$')
 
 
-def create_request_parameters(parent, request_model):
+def create_request_parameters(parent, request_model, params=None):
     """
     Handle request parameters that can be filled in from identifiers,
     resource data members or constants.
+
+    By passing ``params``, you can invoke this method multiple times and
+    build up a parameter dict over time, which is particularly useful
+    for reverse JMESPath expressions that append to lists.
 
     :type parent: ServiceResource
     :param parent: The resource instance to which this action is attached.
     :type request_model: :py:class:`~boto3.resources.model.Request`
     :param request_model: The action request model.
+    :type params: dict
+    :param params: If set, then add to this existing dict. It is both
+                   edited in-place and returned.
     :rtype: dict
     :return: Pre-filled parameters to be sent to the request operation.
     """
-    params = {}
+    if params is None:
+        params = {}
 
     for param in request_model.params:
         source = param.source

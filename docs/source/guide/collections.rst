@@ -32,6 +32,10 @@ the following conditions:
 
       buckets = list(s3.buckets.all())
 
+* **Batch actions (see below)**::
+
+      s3.Bucket('my-bucket').objects.delete()
+
 Filtering
 ---------
 Some collections support extra arguments to filter the returned data set,

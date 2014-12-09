@@ -131,7 +131,18 @@ def docs_for(service_name):
 
     print('Processing {0}-{1}'.format(service_name, service_model.api_version))
 
+    # The following creates an official name of 'Amazon Simple Storage
+    # Service (S3)' our of 'Amazon Simple Storage Service' and 'Amazon S3'.
+    # It tries to be smart, so for `Amazon DynamoDB' and 'DynamoDB' we would
+    # get an official name of 'Amazon DynamoDB'.
     official_name = service_model.metadata.get('serviceFullName')
+    short_name = service_model.metadata.get('serviceAbbreviation', '')
+    if short_name.startswith('Amazon'):
+        short_name = short_name[7:]
+    if short_name.startswith('AWS'):
+        short_name = short_name[4:]
+    if short_name and short_name.lower() not in official_name.lower():
+        official_name += ' ({0})'.format(short_name)
 
     docs = '{0}\n{1}\n\n'.format(official_name, '=' * len(official_name))
 
@@ -142,18 +153,47 @@ def docs_for(service_name):
     filename = (os.path.dirname(__file__) + '/data/resources/'
                 '{0}-{1}.resources.json').format(service_name,
                                                  service_model.api_version)
+    # We can't use a set here because dicts aren't hashable!
+    models = {}
     if os.path.exists(filename):
         data = json.load(open(filename))
         model = ResourceModel(service_name, data['service'], data['resources'])
 
+        for collection_model in model.collections:
+            collection_model.parent_name = model.name
+            models[collection_model.name] = {
+                'type': 'collection',
+                'model': collection_model
+            }
+
         docs += document_resource(service_name, official_name, model,
                                   service_model)
 
+        # First, collect all the models...
         for name, model in sorted(data['resources'].items(),
                                   key=lambda i:i[0]):
             resource_model = ResourceModel(name, model, data['resources'])
-            docs += document_resource(service_name, official_name,
-                                      resource_model, service_model)
+            if name not in models:
+                models[name] = {'type': 'resource', 'model': resource_model}
+
+            for collection_model in resource_model.collections:
+                collection_model.parent_name = xform_name(resource_model.name)
+
+                cname = collection_model.name + 'CollectionManager'
+                if cname not in models:
+                    models[cname] = {'type': 'collection',
+                                     'model': collection_model}
+
+        # Then render them out in alphabetical order.
+        for name, item in sorted(models.items()):
+            model = item['model']
+            if item['type'] == 'resource':
+                docs += document_resource(service_name, official_name,
+                                          model, service_model)
+            elif item['type'] == 'collection':
+                docs += document_collection(
+                    service_name, official_name, model,
+                    model.resource.model, service_model)
 
     return docs
 
@@ -320,13 +360,50 @@ def document_resource(service_name, official_name, resource_model,
         for collection in sorted(resource_model.collections,
                                  key=lambda i: i.name):
             docs += ('   .. py:attribute:: {0}\n\n      '
-                     '(:py:class:`~boto3.resources.collection.CollectionManager`)'
-                     ' A collection of :py:class:`{1}.{2}` instances. This'
-                     ' collection uses the :py:meth:`{3}.Client.{4}` operation'
+                     '(:py:class:`{1}.{2}CollectionManager`)'
+                     ' A collection of :py:class:`{3}.{4}` instances. This'
+                     ' collection uses the :py:meth:`{5}.Client.{6}` operation'
                      ' to get items.\n\n').format(
                         xform_name(collection.name), service_name,
+                        collection.name, service_name,
                         collection.resource.type, service_name,
                         xform_name(collection.request.operation))
+
+    return docs
+
+def document_collection(service_name, official_name, collection_model,
+                        resource_model, service_model):
+    """
+    Generate reference documentation about a collection and any
+    batch actions it might have.
+    """
+    title = collection_model.name + 'Collection'
+    docs = '{0}\n{1}\n\n'.format(title, '-' * len(title))
+    docs += '.. py:class:: {0}.{1}CollectionManager()\n\n'.format(
+        service_name, collection_model.name)
+    docs += ('   A collection of :py:class:`{0}.{1}` resources for {2}. See'
+             '   the'
+             '   :py:class:`~boto3.resources.collection.CollectionManager`'
+             '   base class for additional methods.\n\n'
+             '   This collection uses the :py:meth:`{3}.Client.{4}`'
+             '   operation to get items, and its parameters can be'
+             '   used as filters::\n\n').format(
+                service_name, resource_model.name, official_name,
+                service_name, xform_name(collection_model.request.operation))
+    docs += ('       for {0} in {1}.{2}.all():\n'
+             '           print({0})\n\n').format(
+                xform_name(collection_model.resource.type),
+                collection_model.parent_name,
+                xform_name(collection_model.name),
+                xform_name(collection_model.resource.type))
+
+    if collection_model.batch_actions:
+        docs += ('   .. rst-class:: admonition-title\n\n   Batch Actions\n\n'
+                 '   Batch actions provide a way to manipulate groups of'
+                 '   resources in a single service operation call.\n\n')
+    for action in sorted(collection_model.batch_actions, key=lambda i:i.name):
+        docs += document_action(action, service_name, resource_model,
+                                service_model)
 
     return docs
 
@@ -343,7 +420,8 @@ def document_action(action, service_name, resource_model, service_model,
         print('Cannot get operation ' + action.request.operation)
         return ''
 
-    ignore_params = [p.target for p in action.request.params]
+    # Here we split because we only care about top-level parameter names
+    ignore_params = [p.target.split('.')[0] for p in action.request.params]
 
     rtype = 'dict'
     if action_type == 'action':
