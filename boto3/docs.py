@@ -146,9 +146,10 @@ def docs_for(service_name):
 
     docs = '{0}\n{1}\n\n'.format(official_name, '=' * len(official_name))
 
-    docs += '.. contents:: Table of Contents\n\n'
+    docs += '.. contents:: Table of Contents\n   :depth: 2\n\n'
 
-    docs += document_client(service_name, official_name, service_model)
+    docs += document_client(service_name, official_name, service_model,
+                            session)
 
     filename = (os.path.dirname(__file__) + '/data/resources/'
                 '{0}-{1}.resources.json').format(service_name,
@@ -167,7 +168,7 @@ def docs_for(service_name):
             }
 
         docs += document_resource(service_name, official_name, model,
-                                  service_model)
+                                  service_model, session)
 
         # First, collect all the models...
         for name, model in sorted(data['resources'].items(),
@@ -189,7 +190,7 @@ def docs_for(service_name):
             model = item['model']
             if item['type'] == 'resource':
                 docs += document_resource(service_name, official_name,
-                                          model, service_model)
+                                          model, service_model, session)
             elif item['type'] == 'collection':
                 docs += document_collection(
                     service_name, official_name, model,
@@ -197,7 +198,7 @@ def docs_for(service_name):
 
     return docs
 
-def document_client(service_name, official_name, service_model):
+def document_client(service_name, official_name, service_model, session):
     """
     Generate low-level client documentation for a service. This generates
     documentation for all available operations.
@@ -217,15 +218,8 @@ def document_client(service_name, official_name, service_model):
                           aws_secret_access_key='dummy',
                           region_name='us-east-1')
 
-    wdoc = ''
-    if client.waiter_names:
-        # This gets included in alphabetical order below!
-        wdoc += '   .. py:method:: get_waiter(name)\n\n'
-        wdoc += '      Get a waiter by name. Available waiters:\n\n'
-        for waiter in client.waiter_names:
-            wdoc += '      * {0}\n'.format(waiter)
-        wdoc += '\n'
-
+    wdoc = document_client_waiter(session, official_name, service_name, client,
+                                  service_model)
     waiter_included = False
     for operation_name in service_model.operation_names:
         if not waiter_included and xform_name(operation_name) > 'get_waiter':
@@ -240,8 +234,43 @@ def document_client(service_name, official_name, service_model):
 
     return docs
 
+def document_client_waiter(session, official_name, service_name, client,
+                           service_model):
+    wdoc = ''
+    waiter_spec_doc = ''
+    if client.waiter_names:
+        service_waiter_model = session.get_waiter_model(service_name)
+        # This gets included in alphabetical order below!
+        wdoc += '   .. py:method:: get_waiter(name)\n\n'
+        wdoc += '      Get a waiter by name. Available waiters:\n\n'
+        for waiter in service_waiter_model.waiter_names:
+            snake_cased = xform_name(waiter)
+            wdoc += '      * `{0}`_\n'.format(snake_cased)
+            waiter_spec_doc += '{0}\n{1}\n\n'.format(snake_cased,
+                '~' * len(snake_cased))
+            waiter_model = service_waiter_model.get_waiter(waiter)
+            operation_model = service_model.operation_model(
+                waiter_model.operation)
+            description = (
+                '      This polls :py:meth:`{0}.Client.{1}` every {2} '
+                'seconds until a successful state is reached. An error is '
+                'returned after {3} failed checks.'.format(
+                    service_name, xform_name(waiter_model.operation),
+                    waiter_model.delay, waiter_model.max_attempts)
+            )
+            waiter_spec_doc += document_operation(
+                operation_model=operation_model, service_name=service_name,
+                operation_name='wait', rtype=None, description=description,
+                example_instance='client.get_waiter(\'{0}\')'.format(
+                    snake_cased))
+
+        wdoc += '\n'
+        waiter_spec_doc += '\n'
+
+    return wdoc + waiter_spec_doc
+
 def document_resource(service_name, official_name, resource_model,
-                      service_model):
+                      service_model, session):
     """
     Generate reference documentation from a resource model.
     """
@@ -369,6 +398,16 @@ def document_resource(service_name, official_name, resource_model,
                         collection.resource.type, service_name,
                         xform_name(collection.request.operation))
 
+    if resource_model.waiters:
+        docs += ('   .. rst-class:: admonition-title\n\n   Waiters\n\n'
+                 '   Waiters provide an interface to wait for a resource'
+                 ' to reach a specific state.\n\n')
+        service_waiter_model = session.get_waiter_model(service_name)
+        for waiter in sorted(resource_model.waiters,
+                             key=lambda i: i.resource_waiter_name):
+            docs += document_waiter(waiter, service_name, resource_model,
+                                    service_model, service_waiter_model)
+
     return docs
 
 def document_collection(service_name, official_name, collection_model,
@@ -407,6 +446,42 @@ def document_collection(service_name, official_name, collection_model,
 
     return docs
 
+def document_waiter(waiter, service_name, resource_model, service_model,
+                    service_waiter_model):
+    """
+    Document a resource waiter, including the low-level client waiter
+    and parameters.
+    """
+    try:
+        waiter_model = service_waiter_model.get_waiter(waiter.waiter_name)
+    except:
+        print('Cannot get waiter ' + waiter.waiter_name)
+        return ''
+
+    try:
+        operation_model = service_model.operation_model(waiter_model.operation)
+    except:
+        print('Cannot get operation ' + action.request.operation +
+              ' for waiter ' + waiter.waiter_name)
+        return ''
+    description = ('      Waits until this {0} is {1}.\n'
+                   '      This method calls ``wait()`` on'
+                   ' :py:meth:`{2}.Client.get_waiter` using `{3}`_ .').format(
+                        resource_model.name,
+                        xform_name(waiter.name).replace('_', ' '),
+                        service_name,
+                        xform_name(waiter.waiter_name))
+
+    # Here we split because we only care about top-level parameter names
+    ignore_params = [p.target.split('.')[0].strip('[]') for p in waiter.params]
+
+    return document_operation(
+        operation_model=operation_model, service_name=service_name,
+        operation_name=xform_name(waiter.resource_waiter_name),
+        description=description,
+        example_instance = xform_name(resource_model.name),
+        ignore_params=ignore_params, rtype=None)
+
 def document_action(action, service_name, resource_model, service_model,
                     action_type='action'):
     """
@@ -421,7 +496,8 @@ def document_action(action, service_name, resource_model, service_model,
         return ''
 
     # Here we split because we only care about top-level parameter names
-    ignore_params = [p.target.split('.')[0] for p in action.request.params]
+    ignore_params = [p.target.split('.')[0].strip('[]')
+                     for p in action.request.params]
 
     rtype = 'dict'
     if action_type == 'action':
@@ -442,7 +518,8 @@ def document_action(action, service_name, resource_model, service_model,
     return document_operation(
         operation_model, service_name, operation_name=xform_name(action.name),
         description=description, ignore_params=ignore_params, rtype=rtype,
-        example_instance=service_name, example_response=example_response)
+        example_instance=xform_name(resource_model.name),
+        example_response=example_response)
 
 def document_operation(operation_model, service_name, operation_name=None,
                        description=None, ignore_params=None, rtype='dict',
@@ -497,8 +574,10 @@ def document_operation(operation_model, service_name, operation_name=None,
                 default = py_default(value.type_name)
                 dummy_params.append('{0}={1}'.format(
                     key, default))
-        docs += '      Example::\n\n          {0} = {1}.{2}({3})\n\n'.format(
-            example_response, example_instance, operation_name,
+        docs +=  '      Example::\n\n          '
+        if example_response is not None:
+            docs += '{0} = '.format(example_response)
+        docs += '{0}.{1}({2})\n\n'.format(example_instance, operation_name,
             ', '.join(dummy_params))
 
     for key, value in params.items():
@@ -510,7 +589,7 @@ def document_operation(operation_model, service_name, operation_name=None,
         docs += ('      :param {0} {1}: *{2}* - {3}\n'.format(
             param_type, key, required,
             html_to_rst(value.documentation, indent=9)))
-
-    docs += '\n\n      :rtype: {0}\n\n'.format(rtype)
+    if rtype is not None:
+        docs += '\n\n      :rtype: {0}\n\n'.format(rtype)
 
     return docs

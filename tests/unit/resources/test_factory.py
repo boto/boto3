@@ -16,6 +16,7 @@ from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
+from boto3.resources.action import WaiterAction
 from tests import BaseTestCase, mock
 
 
@@ -581,3 +582,48 @@ class TestResourceFactory(BaseTestCase):
             'Resource should expose queues collection')
         self.assertIsInstance(resource.queues, CollectionManager,
             'Queues collection should be a collection manager')
+
+    def test_resource_loads_waiters(self):
+        model = {
+            "waiters": {
+                "Exists": {
+                "waiterName": "BucketExists",
+                "params": [
+                    {"target": "Bucket", "sourceType": "identifier",
+                     "source": "Name"}]
+                }
+            }
+        }
+        
+        defs = {
+            'Bucket': {}
+        }
+        service_model = ServiceModel({})
+
+        resource = self.load('test', 'test', model, defs, service_model)()
+
+        self.assertTrue(hasattr(resource, 'wait_until_exists'),
+            'Resource should expose resource waiter: wait_until_exists')
+
+    @mock.patch('boto3.resources.factory.WaiterAction')
+    def test_resource_waiter_calls_waiter_method(self, waiter_action_cls):
+        model = {
+            "waiters": {
+                "Exists": {
+                "waiterName": "BucketExists",
+                "params": [
+                    {"target": "Bucket", "sourceType": "identifier",
+                     "source": "Name"}]
+                }
+            }
+        }
+
+        defs = {
+            'Bucket': {}
+        }
+        service_model = ServiceModel({})
+
+        waiter_action = waiter_action_cls.return_value
+        resource = self.load('test', 'test', model, defs, service_model)()
+
+        resource.wait_until_exists('arg1', arg2=2)
