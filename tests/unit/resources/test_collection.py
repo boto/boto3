@@ -12,10 +12,106 @@
 # language governing permissions and limitations under the License.
 
 from botocore.model import ServiceModel
-from boto3.resources.collection import CollectionManager
+from boto3.resources.collection import CollectionFactory, CollectionManager, \
+                                       ResourceCollection
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.model import Collection
 from tests import BaseTestCase, mock
+
+
+class TestCollectionFactory(BaseTestCase):
+    def setUp(self):
+        super(TestCollectionFactory, self).setUp()
+
+        self.client = mock.Mock()
+        self.client.can_paginate.return_value = False
+        meta = {
+            'client': self.client,
+            'service_name': 'test'
+        }
+        self.parent = mock.Mock()
+        self.parent.meta = meta
+        self.resource_factory = ResourceFactory()
+        self.service_model = ServiceModel({})
+
+        self.factory = CollectionFactory()
+        self.load = self.factory.load_from_definition
+
+    def test_create_subclasses(self):
+        resource_defs = {
+            'Frob': {},
+            'Chain': {
+                'hasMany': {
+                    'Frobs': {
+                        'request': {
+                            'operation': 'GetFrobs'
+                        },
+                        'resource': {
+                            'type': 'Frob'
+                        }
+                    }
+                }
+            }
+        }
+        collection_model = Collection(
+            'Frobs', resource_defs['Chain']['hasMany']['Frobs'],
+            resource_defs)
+
+        collection_cls = self.load('test', 'Chain', 'Frobs',
+                                   collection_model, resource_defs)
+
+        collection = collection_cls(
+            collection_model, self.parent, self.resource_factory,
+            resource_defs, self.service_model)
+
+        self.assertEqual(collection_cls.__name__,
+                        'test.Chain.FrobsCollectionManager')
+        self.assertIsInstance(collection, CollectionManager)
+
+        self.assertIsInstance(collection.all(), ResourceCollection)
+
+    @mock.patch('boto3.resources.collection.BatchAction')
+    def test_create_batch_actions(self, action_mock):
+        resource_defs = {
+            'Frob': {
+                'batchActions': {
+                    'Delete': {
+                        'request': {
+                            'operation': 'DeleteFrobs'
+                        }
+                    }
+                }
+            },
+            'Chain': {
+                'hasMany': {
+                    'Frobs': {
+                        'request': {
+                            'operation': 'GetFrobs'
+                        },
+                        'resource': {
+                            'type': 'Frob'
+                        }
+                    }
+                }
+            }
+        }
+
+        collection_model = Collection(
+            'Frobs', resource_defs['Chain']['hasMany']['Frobs'],
+            resource_defs)
+
+        collection_cls = self.load('test', 'Chain', 'Frobs',
+                                   collection_model, resource_defs)
+
+        collection = collection_cls(
+            collection_model, self.parent, self.resource_factory,
+            resource_defs, self.service_model)
+
+        self.assertTrue(hasattr(collection, 'delete'))
+
+        collection.delete()
+
+        action_mock.return_value.assert_called_with(collection)
 
 
 class TestResourceCollection(BaseTestCase):
@@ -194,6 +290,67 @@ class TestResourceCollection(BaseTestCase):
 
         # Note - limit is not passed through to the low-level call
         self.client.get_frobs.assert_called_with(Param1='foo', Param2=3)
+
+    def test_page_iterator_returns_pages_of_items(self):
+        self.collection_def = {
+            'request': {
+                'operation': 'GetFrobs'
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {
+                        'target': 'Id',
+                        'sourceType': 'responsePath',
+                        'source': 'Frobs[].Id'
+                    }
+                ]
+            }
+        }
+        self.client.can_paginate.return_value = True
+        self.client.get_paginator.return_value.paginate.return_value = [
+            {
+                'Frobs': [
+                    {'Id': 'one'},
+                    {'Id': 'two'}
+                ]
+            }, {
+                'Frobs': [
+                    {'Id': 'three'},
+                    {'Id': 'four'}
+                ]
+            }
+        ]
+        collection = self.get_collection()
+        pages = list(collection.limit(3).pages())
+        self.assertEqual(len(pages), 2)
+        self.assertEqual(len(pages[0]), 2)
+        self.assertEqual(len(pages[1]), 1)
+
+    def test_page_iterator_page_size(self):
+        self.collection_def = {
+            'request': {
+                'operation': 'GetFrobs'
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {
+                        'target': 'Id',
+                        'sourceType': 'responsePath',
+                        'source': 'Frobs[].Id'
+                    }
+                ]
+            }
+        }
+        self.client.can_paginate.return_value = True
+        paginator = self.client.get_paginator.return_value
+        paginator.paginate.return_value = []
+
+        collection = self.get_collection()
+        list(collection.page_size(5).pages())
+
+        paginator.paginate.assert_called_with(page_size=5, max_items=None)
 
     def test_iteration_paginated(self):
         self.collection_def = {

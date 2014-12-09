@@ -61,6 +61,32 @@ def py_type_name(type_name):
     }.get(type_name, type_name)
 
 
+def py_default(type_name):
+    """
+    Get the Python default value for a given model type, useful
+    for generated examples.
+
+        >>> py_default('string')
+        '\'string\''
+        >>> py_default('list')
+        '[...]'
+        >>> py_default('unknown')
+        '...'
+
+    :rtype: string
+    """
+    return {
+        'double': '123.0',
+        'long': '123',
+        'integer': '123',
+        'string': "'string'",
+        'blob': "b'bytes'",
+        'list': '[...]',
+        'map': '{...}',
+        'structure': '{...}',
+        'timestamp': 'datetime(2015, 1, 1)',
+    }.get(type_name, '...')
+
 def html_to_rst(html, indent=0, indentFirst=False):
     """
     Use bcdoc to convert html to rst.
@@ -105,7 +131,18 @@ def docs_for(service_name):
 
     print('Processing {0}-{1}'.format(service_name, service_model.api_version))
 
+    # The following creates an official name of 'Amazon Simple Storage
+    # Service (S3)' our of 'Amazon Simple Storage Service' and 'Amazon S3'.
+    # It tries to be smart, so for `Amazon DynamoDB' and 'DynamoDB' we would
+    # get an official name of 'Amazon DynamoDB'.
     official_name = service_model.metadata.get('serviceFullName')
+    short_name = service_model.metadata.get('serviceAbbreviation', '')
+    if short_name.startswith('Amazon'):
+        short_name = short_name[7:]
+    if short_name.startswith('AWS'):
+        short_name = short_name[4:]
+    if short_name and short_name.lower() not in official_name.lower():
+        official_name += ' ({0})'.format(short_name)
 
     docs = '{0}\n{1}\n\n'.format(official_name, '=' * len(official_name))
 
@@ -116,18 +153,47 @@ def docs_for(service_name):
     filename = (os.path.dirname(__file__) + '/data/resources/'
                 '{0}-{1}.resources.json').format(service_name,
                                                  service_model.api_version)
+    # We can't use a set here because dicts aren't hashable!
+    models = {}
     if os.path.exists(filename):
         data = json.load(open(filename))
         model = ResourceModel(service_name, data['service'], data['resources'])
 
+        for collection_model in model.collections:
+            collection_model.parent_name = model.name
+            models[collection_model.name] = {
+                'type': 'collection',
+                'model': collection_model
+            }
+
         docs += document_resource(service_name, official_name, model,
                                   service_model)
 
+        # First, collect all the models...
         for name, model in sorted(data['resources'].items(),
                                   key=lambda i:i[0]):
             resource_model = ResourceModel(name, model, data['resources'])
-            docs += document_resource(service_name, official_name,
-                                      resource_model, service_model)
+            if name not in models:
+                models[name] = {'type': 'resource', 'model': resource_model}
+
+            for collection_model in resource_model.collections:
+                collection_model.parent_name = xform_name(resource_model.name)
+
+                cname = collection_model.name + 'CollectionManager'
+                if cname not in models:
+                    models[cname] = {'type': 'collection',
+                                     'model': collection_model}
+
+        # Then render them out in alphabetical order.
+        for name, item in sorted(models.items()):
+            model = item['model']
+            if item['type'] == 'resource':
+                docs += document_resource(service_name, official_name,
+                                          model, service_model)
+            elif item['type'] == 'collection':
+                docs += document_collection(
+                    service_name, official_name, model,
+                    model.resource.model, service_model)
 
     return docs
 
@@ -169,7 +235,8 @@ def document_client(service_name, official_name, service_model):
         operation = service_model.operation_model(operation_name)
         docs += document_operation(
             operation, service_name,
-            paginated=client.can_paginate(xform_name(operation_name)))
+            paginated=client.can_paginate(xform_name(operation_name)),
+            example_instance='client', example_response='response')
 
     return docs
 
@@ -293,13 +360,50 @@ def document_resource(service_name, official_name, resource_model,
         for collection in sorted(resource_model.collections,
                                  key=lambda i: i.name):
             docs += ('   .. py:attribute:: {0}\n\n      '
-                     '(:py:class:`~boto3.resources.collection.CollectionManager`)'
-                     ' A collection of :py:class:`{1}.{2}` instances. This'
-                     ' collection uses the :py:meth:`{3}.Client.{4}` operation'
+                     '(:py:class:`{1}.{2}CollectionManager`)'
+                     ' A collection of :py:class:`{3}.{4}` instances. This'
+                     ' collection uses the :py:meth:`{5}.Client.{6}` operation'
                      ' to get items.\n\n').format(
                         xform_name(collection.name), service_name,
+                        collection.name, service_name,
                         collection.resource.type, service_name,
                         xform_name(collection.request.operation))
+
+    return docs
+
+def document_collection(service_name, official_name, collection_model,
+                        resource_model, service_model):
+    """
+    Generate reference documentation about a collection and any
+    batch actions it might have.
+    """
+    title = collection_model.name + 'Collection'
+    docs = '{0}\n{1}\n\n'.format(title, '-' * len(title))
+    docs += '.. py:class:: {0}.{1}CollectionManager()\n\n'.format(
+        service_name, collection_model.name)
+    docs += ('   A collection of :py:class:`{0}.{1}` resources for {2}. See'
+             '   the'
+             '   :py:class:`~boto3.resources.collection.CollectionManager`'
+             '   base class for additional methods.\n\n'
+             '   This collection uses the :py:meth:`{3}.Client.{4}`'
+             '   operation to get items, and its parameters can be'
+             '   used as filters::\n\n').format(
+                service_name, resource_model.name, official_name,
+                service_name, xform_name(collection_model.request.operation))
+    docs += ('       for {0} in {1}.{2}.all():\n'
+             '           print({0})\n\n').format(
+                xform_name(collection_model.resource.type),
+                collection_model.parent_name,
+                xform_name(collection_model.name),
+                xform_name(collection_model.resource.type))
+
+    if collection_model.batch_actions:
+        docs += ('   .. rst-class:: admonition-title\n\n   Batch Actions\n\n'
+                 '   Batch actions provide a way to manipulate groups of'
+                 '   resources in a single service operation call.\n\n')
+    for action in sorted(collection_model.batch_actions, key=lambda i:i.name):
+        docs += document_action(action, service_name, resource_model,
+                                service_model)
 
     return docs
 
@@ -316,7 +420,8 @@ def document_action(action, service_name, resource_model, service_model,
         print('Cannot get operation ' + action.request.operation)
         return ''
 
-    ignore_params = [p.target for p in action.request.params]
+    # Here we split because we only care about top-level parameter names
+    ignore_params = [p.target.split('.')[0] for p in action.request.params]
 
     rtype = 'dict'
     if action_type == 'action':
@@ -324,9 +429,11 @@ def document_action(action, service_name, resource_model, service_model,
                        ' :py:meth:`{0}.Client.{1}`.').format(
                             service_name,
                             xform_name(action.request.operation))
+        example_response = 'response'
         if action.resource:
             rtype = ':py:class:`{0}.{1}`'.format(
                 service_name, action.resource.type)
+            example_response = xform_name(action.resource.type)
 
             # Is the response plural? If so we are returning a list!
             if action.path and '[]' in action.path:
@@ -334,11 +441,13 @@ def document_action(action, service_name, resource_model, service_model,
 
     return document_operation(
         operation_model, service_name, operation_name=xform_name(action.name),
-        description=description, ignore_params=ignore_params, rtype=rtype)
+        description=description, ignore_params=ignore_params, rtype=rtype,
+        example_instance=service_name, example_response=example_response)
 
 def document_operation(operation_model, service_name, operation_name=None,
                        description=None, ignore_params=None, rtype='dict',
-                       paginated=False):
+                       paginated=False, example_instance=None,
+                       example_response=None):
     """
     Document an operation. The description can be overridden and certain
     params hidden to support documenting resource actions.
@@ -361,7 +470,7 @@ def document_operation(operation_model, service_name, operation_name=None,
     optional_params = [k for k in params.keys() if k not in required and \
                        k not in ignore_params]
     param_desc = ', '.join([
-        ', '.join(required_params),
+        ', '.join(['{0}=None'.format(k) for k in required_params]),
         ', '.join(['{0}=None'.format(k) for k in optional_params])
     ])
 
@@ -379,13 +488,28 @@ def document_operation(operation_model, service_name, operation_name=None,
     if paginated:
         docs += '      This operation can be paginated.\n\n'
 
+    if example_instance:
+        dummy_params = []
+        for key, value in params.items():
+            if key in ignore_params:
+                continue
+            if key in required_params:
+                default = py_default(value.type_name)
+                dummy_params.append('{0}={1}'.format(
+                    key, default))
+        docs += '      Example::\n\n          {0} = {1}.{2}({3})\n\n'.format(
+            example_response, example_instance, operation_name,
+            ', '.join(dummy_params))
+
     for key, value in params.items():
         # Skip identifiers as these are automatically set!
         if key in ignore_params:
             continue
         param_type = py_type_name(value.type_name)
-        docs += ('      :param {0} {1}: {2}\n'.format(
-            param_type, key, html_to_rst(value.documentation, indent=9)))
+        required = key in required_params and 'Required' or 'Optional'
+        docs += ('      :param {0} {1}: *{2}* - {3}\n'.format(
+            param_type, key, required,
+            html_to_rst(value.documentation, indent=9)))
 
     docs += '\n\n      :rtype: {0}\n\n'.format(rtype)
 

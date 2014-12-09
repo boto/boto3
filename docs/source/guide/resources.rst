@@ -128,6 +128,11 @@ Examples of sending additional parameters::
     # SQS Queue
     queue.send_message(MessageBody='hello')
 
+.. note::
+
+   Parameters **must** be passed as keyword arguments. They will not work
+   as positional arguments.
+
 References
 ----------
 A reference is an attribute which may be ``None`` or a related resource

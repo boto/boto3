@@ -41,34 +41,34 @@ class ServiceAction(object):
     """
     def __init__(self, action_model, factory=None, resource_defs=None,
                  service_model=None):
-        self.action_model = action_model
+        self._action_model = action_model
 
         # In the simplest case we just return the response, but if a
         # resource is defined, then we must create these before returning.
         resource = action_model.resource
         if resource:
-            self.response_handler = ResourceHandler(resource.path,
+            self._response_handler = ResourceHandler(resource.path,
                 factory, resource_defs, service_model, resource,
                 action_model.request.operation)
         else:
-            self.response_handler = RawHandler(action_model.path)
+            self._response_handler = RawHandler(action_model.path)
 
     def __call__(self, parent, *args, **kwargs):
         """
         Perform the action's request operation after building operation
         parameters and build any defined resources from the response.
 
-        :type parent: ServiceResource
+        :type parent: :py:class:`~boto3.resources.base.ServiceResource`
         :param parent: The resource instance to which this action is attached.
         :rtype: dict or ServiceResource or list(ServiceResource)
         :return: The response, either as a raw dict or resource instance(s).
         """
-        operation_name = xform_name(self.action_model.request.operation)
+        operation_name = xform_name(self._action_model.request.operation)
 
         # First, build predefined params and then update with the
         # user-supplied kwargs, which allows overriding the pre-built
         # params if needed.
-        params = create_request_parameters(parent, self.action_model.request)
+        params = create_request_parameters(parent, self._action_model.request)
         params.update(kwargs)
 
         logger.info('Calling %s:%s with %r', parent.meta['service_name'],
@@ -78,4 +78,74 @@ class ServiceAction(object):
 
         logger.debug('Response: %r', response)
 
-        return self.response_handler(parent, params, response)
+        return self._response_handler(parent, params, response)
+
+
+class BatchAction(ServiceAction):
+    """
+    An action which operates on a batch of items in a collection, typically
+    a single page of results from the collection's underlying service
+    operation call. For example, this allows you to delete up to 999
+    S3 objects in a single operation rather than calling ``.delete()`` on
+    each one individually.
+
+    :type action_model: :py:class:`~boto3.resources.model.Action`
+    :param action_model: The action model.
+    :type factory: ResourceFactory
+    :param factory: The factory that created the resource class to which
+                    this action is attached.
+    :type resource_defs: dict
+    :param resource_defs: Service resource definitions.
+    :type service_model: :ref:`botocore.model.ServiceModel`
+    :param service_model: The Botocore service model
+    """
+    def __call__(self, parent, *args, **kwargs):
+        """
+        Perform the batch action's operation on every page of results
+        from the collection.
+
+        :type parent: :py:class:`~boto3.resources.collection.ResourceCollection`
+        :param parent: The collection iterator to which this action
+                       is attached.
+        :rtype: list(dict)
+        :return: A list of low-level response dicts from each call.
+        """
+        service_name = None
+        client = None
+        responses = []
+        operation_name = xform_name(self._action_model.request.operation)
+
+        # Unlike the simple action above, a batch action must operate
+        # on batches (or pages) of items. So we get each page, construct
+        # the necessary parameters and call the batch operation.
+        for page in parent.pages():
+            params = {}
+            for resource in page:
+                # There is no public interface to get a service name
+                # or low-level client from a collection, so we get
+                # these from the first resource in the collection.
+                if service_name is None:
+                    service_name = resource.meta['service_name']
+                if client is None:
+                    client = resource.meta['client']
+
+                create_request_parameters(
+                    resource, self._action_model.request, params=params)
+
+            if not params:
+                # There are no items, no need to make a call.
+                break
+
+            params.update(kwargs)
+
+            logger.info('Calling %s:%s with %r',
+                        service_name, operation_name, params)
+
+            response = getattr(client, operation_name)(**params)
+
+            logger.debug('Response: %r', response)
+
+            responses.append(
+                self._response_handler(parent, params, response))
+
+        return responses
