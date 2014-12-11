@@ -16,11 +16,12 @@ except ImportError:
 ROOT = os.path.dirname(__file__)
 VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
+
 def get_version():
     init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
     return VERSION_RE.search(init).group(1)
 
-packages = [ 
+packages = [
     'boto3',
     'boto3.resources',
 ]
@@ -29,7 +30,7 @@ requires = [
     'botocore==0.78.0',
     'bcdoc==0.12.2',
     'jmespath==0.5.0',
-    'six==1.7.3',
+    'six>=1.7.3,<=1.8.0',
 ]
 
 setup(
