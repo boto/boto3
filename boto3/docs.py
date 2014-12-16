@@ -150,6 +150,8 @@ def docs_for(service_name):
 
     docs += document_client(service_name, official_name, service_model,
                             session)
+    docs += document_client_waiter(session, official_name, service_name,
+                                   service_model)
 
     filename = (os.path.dirname(__file__) + '/data/resources/'
                 '{0}-{1}.resources.json').format(service_name,
@@ -218,8 +220,15 @@ def document_client(service_name, official_name, service_model, session):
                           aws_secret_access_key='dummy',
                           region_name='us-east-1')
 
-    wdoc = document_client_waiter(session, official_name, service_name, client,
-                                  service_model)
+    wdoc = ''
+    if client.waiter_names:
+        # This gets included in alphabetical order below!
+        wdoc += '   .. py:method:: get_waiter(name)\n\n'
+        wdoc += '      Get a waiter by name. Available waiters:\n\n'
+        for waiter in client.waiter_names:
+            wdoc += '      * `{0}`_\n'.format(waiter)
+        wdoc += '\n'
+
     waiter_included = False
     for operation_name in service_model.operation_names:
         if not waiter_included and xform_name(operation_name) > 'get_waiter':
@@ -234,18 +243,17 @@ def document_client(service_name, official_name, service_model, session):
 
     return docs
 
-def document_client_waiter(session, official_name, service_name, client,
+def document_client_waiter(session, official_name, service_name,
                            service_model):
-    wdoc = ''
+    client = boto3.client(service_name, aws_access_key_id='dummy',
+                          aws_secret_access_key='dummy',
+                          region_name='us-east-1')
     waiter_spec_doc = ''
     if client.waiter_names:
+        waiter_spec_doc = 'Waiter\n------\n\n'
         service_waiter_model = session.get_waiter_model(service_name)
-        # This gets included in alphabetical order below!
-        wdoc += '   .. py:method:: get_waiter(name)\n\n'
-        wdoc += '      Get a waiter by name. Available waiters:\n\n'
         for waiter in service_waiter_model.waiter_names:
             snake_cased = xform_name(waiter)
-            wdoc += '      * `{0}`_\n'.format(snake_cased)
             waiter_spec_doc += '{0}\n{1}\n\n'.format(snake_cased,
                 '~' * len(snake_cased))
             waiter_model = service_waiter_model.get_waiter(waiter)
@@ -263,11 +271,9 @@ def document_client_waiter(session, official_name, service_name, client,
                 operation_name='wait', rtype=None, description=description,
                 example_instance='client.get_waiter(\'{0}\')'.format(
                     snake_cased))
-
-        wdoc += '\n'
         waiter_spec_doc += '\n'
 
-    return wdoc + waiter_spec_doc
+    return waiter_spec_doc
 
 def document_resource(service_name, official_name, resource_model,
                       service_model, session):
