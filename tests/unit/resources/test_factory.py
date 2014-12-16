@@ -627,3 +627,4 @@ class TestResourceFactory(BaseTestCase):
         resource = self.load('test', 'test', model, defs, service_model)()
 
         resource.wait_until_exists('arg1', arg2=2)
+        waiter_action.assert_called_with(resource, 'arg1', arg2=2)

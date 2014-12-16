@@ -88,7 +88,7 @@ class ResourceFactory(object):
                                service_model)
         self._load_references(attrs, service_name, resource_name,
                               resource_model, resource_defs, service_model)
-        self._load_waiters(attrs, resource_model, resource_defs, service_model)
+        self._load_waiters(attrs, resource_model)
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
@@ -216,7 +216,7 @@ class ResourceFactory(object):
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
 
-    def _load_waiters(self, attrs, model, resource_defs, service_model):
+    def _load_waiters(self, attrs, model):
         """
         Load resource waiters from the model. Each waiter allows you to
         wait until a resource reaches a specific state by polling the state

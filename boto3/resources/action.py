@@ -159,10 +159,11 @@ class WaiterAction(object):
     identifiers.
 
     :type waiter_model: :py:class`~boto3.resources.model.Waiter`
-    :param action_model: The action waiter.
+    :param waiter_model: The action waiter.
     :type waiter_resource_name: string
-    :param waiter_resource_name: The name of the waiter action for the resource
-                                 It usually begins with the ``wait_until_``
+    :param waiter_resource_name: The name of the waiter action for the
+                                 resource. It usually begins with a
+                                 ``wait_until_``
     """
     def __init__(self, waiter_model, waiter_resource_name):
         self._waiter_model = waiter_model

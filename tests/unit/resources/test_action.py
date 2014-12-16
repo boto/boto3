@@ -147,7 +147,6 @@ class TestWaiterActionCall(BaseTestCase):
             'client': mock.Mock(),
         }
 
-        print(self.waiter.__dict__)
         action = WaiterAction(self.waiter, self.waiter_resource_name)
 
         action(resource, foo=1)

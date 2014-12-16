@@ -148,8 +148,7 @@ def docs_for(service_name):
 
     docs += '.. contents:: Table of Contents\n   :depth: 2\n\n'
 
-    docs += document_client(service_name, official_name, service_model,
-                            session)
+    docs += document_client(service_name, official_name, service_model)
     docs += document_client_waiter(session, official_name, service_name,
                                    service_model)
 
@@ -200,7 +199,7 @@ def docs_for(service_name):
 
     return docs
 
-def document_client(service_name, official_name, service_model, session):
+def document_client(service_name, official_name, service_model):
     """
     Generate low-level client documentation for a service. This generates
     documentation for all available operations.
