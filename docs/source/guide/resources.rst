@@ -170,3 +170,18 @@ can be considered one-to-many. Examples of sub-resources::
 
 Because an SQS message cannot exist without a queue, and an S3 object cannot
 exist without a bucket, these are parent to child relationships.
+
+Waiters
+-------
+A waiter is similiar to an action. A waiter will poll the status of a
+resource and suspend execution until the resource reaches the state that is
+being polling for or a failure occurs while polling.
+Waiters automatically set the resource
+identifiers as parameters, but allow you to pass additional parameters via
+keyword arguments. Examples of waiters include::
+
+    # S3: Wait for a bucket to exist.
+    bucket.wait_until_exists()
+
+    # EC2: Wait for an instance to reach the running state.
+    instance.wait_until_running()
