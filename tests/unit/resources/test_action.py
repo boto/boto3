@@ -11,8 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from boto3.resources.action import BatchAction, ServiceAction
-from boto3.resources.model import Action
+from boto3.resources.action import BatchAction, ServiceAction, WaiterAction
+from boto3.resources.model import Action, Waiter
 from tests import BaseTestCase, mock
 
 
@@ -121,6 +121,57 @@ class TestServiceActionCall(BaseTestCase):
             service_model, action_model.resource,
             self.action_def['request']['operation'])
         handler_mock.return_value.assert_called_with(resource, {}, 'response')
+
+
+class TestWaiterActionCall(BaseTestCase):
+    def setUp(self):
+        super(TestWaiterActionCall, self).setUp()
+        self.waiter_resource_name = 'wait_until_exists'
+        self.waiter_def = {
+            "waiterName": "FrobExists",
+            "params": [
+                {"target": "Frob", "sourceType": "identifier",
+                 "source": "Name"}]
+        }
+
+    @property
+    def waiter(self):
+        return Waiter('test', self.waiter_def)
+
+    @mock.patch('boto3.resources.action.create_request_parameters',
+                return_value={})
+    def test_service_waiter_creates_params(self, params_mock):
+        resource = mock.Mock()
+        resource.meta = {
+            'service_name': 'test',
+            'client': mock.Mock(),
+        }
+
+        action = WaiterAction(self.waiter, self.waiter_resource_name)
+
+        action(resource, foo=1)
+
+        self.assertTrue(params_mock.called,
+            'Parameters for operation not created')
+
+    @mock.patch('boto3.resources.action.create_request_parameters',
+                return_value={'bar': 'baz'})
+    def test_service_action_calls_operation(self, params_mock):
+        resource = mock.Mock()
+        resource.meta = {
+            'service_name': 'test',
+            'client': mock.Mock(),
+        }
+        get_waiter = resource.meta['client'].get_waiter
+        mock_waiter = mock.Mock()
+        get_waiter.return_value = mock_waiter
+
+        action = WaiterAction(self.waiter, self.waiter_resource_name)
+
+        action(resource, foo=1)
+
+        get_waiter.assert_called_with('frob_exists')
+        mock_waiter.wait.assert_called_with(foo=1, bar='baz')
 
 
 class TestBatchActionCall(BaseTestCase):

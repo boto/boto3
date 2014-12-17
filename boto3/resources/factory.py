@@ -17,6 +17,7 @@ from functools import partial
 from botocore import xform_name
 
 from .action import ServiceAction
+from .action import WaiterAction
 from .base import ServiceResource
 from .collection import CollectionFactory
 from .model import ResourceModel
@@ -87,6 +88,7 @@ class ResourceFactory(object):
                                service_model)
         self._load_references(attrs, service_name, resource_name,
                               resource_model, resource_defs, service_model)
+        self._load_waiters(attrs, resource_model)
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
@@ -214,6 +216,18 @@ class ResourceFactory(object):
                 reference.resource.type, snake_cased, reference, service_name,
                 resource_name, model, resource_defs, service_model)
 
+    def _load_waiters(self, attrs, model):
+        """
+        Load resource waiters from the model. Each waiter allows you to
+        wait until a resource reaches a specific state by polling the state
+        of the resource.
+        """
+        for waiter in model.waiters:
+            snake_cased = xform_name(waiter.resource_waiter_name)
+            snake_cased = self._check_allowed_name(
+                attrs, snake_cased, 'waiter', model.name)
+            attrs[snake_cased] = self._create_waiter(waiter, snake_cased)
+
     def _check_allowed_name(self, attrs, name, category, resource_name):
         """
         Determine if a given name is allowed on the instance, and if not,
@@ -270,6 +284,19 @@ class ResourceFactory(object):
         property_loader.__name__ = str(snake_cased)
         property_loader.__doc__ = 'TODO'
         return property(property_loader)
+
+    def _create_waiter(factory_self, waiter_model, snake_cased):
+        """
+        Creates a new wait method for each resource where both a waiter and
+        resource model is defined.
+        """
+        waiter = WaiterAction(waiter_model, waiter_resource_name=snake_cased)
+        def do_waiter(self, *args, **kwargs):
+            waiter(self, *args, **kwargs)
+
+        do_waiter.__name__ = str(snake_cased)
+        do_waiter.__doc__ = 'TODO'
+        return do_waiter
 
     def _create_collection(factory_self, service_name, resource_name,
                            snake_cased, collection_model,

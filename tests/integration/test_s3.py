@@ -18,22 +18,30 @@ from tests import unittest, unique_id
 
 class TestS3Resource(unittest.TestCase):
     def setUp(self):
-        self.session = boto3.session.Session(region_name='us-west-2')
+        self.region = 'us-west-2'
+        self.session = boto3.session.Session(region_name=self.region)
         self.s3 = self.session.resource('s3')
         self.bucket_name = unique_id('boto3-test')
+
+    def create_bucket_resource(self, bucket_name, region=None):
+        if region is None:
+            region = self.region
+        kwargs = {'Bucket': bucket_name}
+        if region != 'us-east-1':
+            kwargs['CreateBucketConfiguration'] = {
+                'LocationConstraint': region
+            }
+        bucket = self.s3.create_bucket(**kwargs)
+        self.addCleanup(bucket.delete)
+        return bucket
 
     def test_s3(self):
         client = self.s3.meta['client']
 
         # Create a bucket (resource action with a resource response)
-        bucket = self.s3.create_bucket(
-            Bucket=self.bucket_name,
-            CreateBucketConfiguration={
-                'LocationConstraint': 'us-west-2'
-            })
+        bucket = self.create_bucket_resource(self.bucket_name)
         waiter = client.get_waiter('bucket_exists')
         waiter.wait(Bucket=self.bucket_name)
-        self.addCleanup(bucket.delete)
 
         # Create an object
         obj = bucket.Object('test.txt')
@@ -52,3 +60,26 @@ class TestS3Resource(unittest.TestCase):
         # Perform a resource action with a low-level response
         self.assertEqual(b'hello, world',
                          obj.get()['Body'].read())
+
+    def test_s3_resource_waiter(self):
+        # Create a bucket
+        bucket = self.create_bucket_resource(self.bucket_name)
+        # Wait till the bucket exists
+        bucket.wait_until_exists()
+        # Confirm the bucket exists by finding it in a list of all of our
+        # buckets
+        self.assertIn(self.bucket_name,
+                      [b.name for b in self.s3.buckets.all()])
+
+
+        # Create an object
+        obj = bucket.Object('test.txt')
+        obj.put(
+            Body='hello, world')
+        self.addCleanup(obj.delete)
+
+        # Wait till the bucket exists
+        obj.wait_until_exists()
+
+        # List objects and make sure ours is present
+        self.assertIn('test.txt', [o.key for o in bucket.objects.all()])        
