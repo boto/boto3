@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.6 - 2014-12-18
+------------------
 
 * feature:Amazon SQS: Add ``purge`` action to queue resources
 * feature:Waiters: Add documentation for client and resource waiters
