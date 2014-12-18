@@ -21,15 +21,6 @@
       }
     },
     "hasMany": {
-      "DeadLetterSourceQueues": {
-        "request": { "operation": "ListDeadLetterSourceQueues" },
-        "resource": {
-          "type": "Queue",
-          "identifiers": [
-            { "target": "Url", "sourceType": "responsePath", "source": "QueueUrls[]" }
-          ]
-        }
-      },
       "Queues": {
         "request": { "operation": "ListQueues" },
         "resource": {
@@ -45,7 +36,7 @@
     "Message": {
       "identifiers": [
         { "name": "QueueUrl" },
-        { "name": "ReceiptHandle" }
+        { "name": "ReceiptHandle", "memberName": "ReceiptHandle" }
       ],
       "shape": "Message",
       "actions": {
@@ -129,6 +120,14 @@
             ]
           }
         },
+        "Purge": {
+          "request": {
+            "operation": "PurgeQueue",
+            "params": [
+              { "target": "QueueUrl", "sourceType": "identifier", "source": "Url" }
+            ]
+          }
+        },
         "ReceiveMessages": {
           "request": {
             "operation": "ReceiveMessage",
@@ -181,6 +180,22 @@
       "subResources": {
         "resources": [ "Message" ],
         "identifiers": { "Url": "QueueUrl" }
+      },
+      "hasMany" : {
+        "DeadLetterSourceQueues": {
+          "request": {
+            "operation": "ListDeadLetterSourceQueues",
+            "params": [
+              { "target": "QueueUrl", "sourceType": "identifier", "source": "Url" }
+            ]
+          },
+          "resource": {
+            "type": "Queue",
+            "identifiers": [
+              { "target": "Url", "sourceType": "responsePath", "source": "QueueUrls[]" }
+            ]
+          }
+        }
       }
     }
   }
