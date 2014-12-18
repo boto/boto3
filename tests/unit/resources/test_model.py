@@ -255,4 +255,5 @@ class TestModels(BaseTestCase):
         self.assertIsInstance(waiter, Waiter)
         self.assertEqual(waiter.name, 'Exists')
         self.assertEqual(waiter.waiter_name, 'ObjectExists')
+        self.assertEqual(waiter.resource_waiter_name, 'WaitUntilExists')
         self.assertEqual(waiter.params[0].target, 'Bucket')

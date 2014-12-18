@@ -150,6 +150,9 @@ class Waiter(DefinitionWithParams):
         #: (``string``) The name of this waiter
         self.name = name
 
+        #: (``string``) The name of the waiter in the resource
+        self.resource_waiter_name = 'WaitUntil' + name
+
         #: (``string``) The name of the underlying event waiter
         self.waiter_name = definition.get('waiterName')
 

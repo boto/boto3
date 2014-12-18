@@ -1,6 +1,25 @@
 Changelog
 =========
 
+0.0.6 - 2014-12-18
+------------------
+
+* feature:Amazon SQS: Add ``purge`` action to queue resources
+* feature:Waiters: Add documentation for client and resource waiters
+  (`issue 44 <https://github.com/boto/boto3/pull/44>`__)
+* feature:Waiters: Add support for resource waiters
+  (`issue 43 <https://github.com/boto/boto3/pull/43>`__)
+* bugfix:Installation: Remove dependency on the unused ``six`` module
+  (`issue 42 <https://github.com/boto/boto3/pull/42>`__)
+* feature:Botocore: Update to Botocore 0.80.0
+
+  * Update Amazon Simple Workflow Service (SWF) to the latest version
+  * Update AWS Storage Gateway to the latest version
+  * Update AWS Elastic MapReduce (EMR) to the latest version
+  * Update AWS Elastic Transcoder to the latest version
+  * Enable use of ``page_size`` for clients
+    (`botocore issue 408 <https://github.com/boto/botocore/pull/408>`__)
+
 0.0.5 - 2014-12-09
 ------------------
 

@@ -1,6 +1,5 @@
 -e git://github.com/boto/botocore.git@develop#egg=botocore
 -e git://github.com/boto/bcdoc.git@develop#egg=bcdoc
 -e git://github.com/boto/jmespath.git@develop#egg=jmespath
-six==1.7.3
 nose==1.3.3
 mock==1.0.1
