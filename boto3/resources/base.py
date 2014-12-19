@@ -22,26 +22,35 @@ class ResourceMeta(object):
                  data=None):
         #: (``string``) The service name, e.g. 's3'
         self.service_name = service_name
+
+        if identifiers is None:
+            identifiers = []
         #: (``list``) List of identifier names
-        self.identifiers = identifiers or []
+        self.identifiers = identifiers
+
         #: (:py:class:`~botocore.client.BaseClient`) Low-level Botocore client
         self.client = client
         #: (``dict``) Loaded resource data attributes
         self.data = data
 
+    def __repr__(self):
+        return 'ResourceMeta({0}, identifiers={1})'.format(
+            self.service_name, self.identifiers)
+
     def __eq__(self, other):
         # Two metas are equal if their components are all equal
-        return self.service_name == other.service_name and \
-               self.identifiers == other.identifiers and \
-               self.client == other.client and \
-               self.data == other.data
+        if other.__class__.__name__ != self.__class__.__name__:
+            return False
+
+        return self.__dict__ == other.__dict__
 
     def copy(self):
         """
         Create a copy of this metadata object.
         """
-        return ResourceMeta(self.service_name, identifiers=self.identifiers,
-                            client=self.client, data=self.data)
+        params = self.__dict__.copy()
+        service_name = params.pop('service_name')
+        return ResourceMeta(service_name, **params)
 
 
 class ServiceResource(object):

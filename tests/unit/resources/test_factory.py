@@ -342,6 +342,7 @@ class TestResourceFactory(BaseTestCase):
             'Modified queue instance data should not modify the class data')
         self.assertNotEqual(queue1.meta, queue2.meta,
             'Queue data should be unique to queue instance')
+        self.assertNotEqual(queue1.meta, 'bad-value')
 
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_calls_action(self, action_cls):
