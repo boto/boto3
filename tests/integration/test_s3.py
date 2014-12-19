@@ -36,7 +36,7 @@ class TestS3Resource(unittest.TestCase):
         return bucket
 
     def test_s3(self):
-        client = self.s3.meta['client']
+        client = self.s3.meta.client
 
         # Create a bucket (resource action with a resource response)
         bucket = self.create_bucket_resource(self.bucket_name)

@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from boto3.resources.action import BatchAction, ServiceAction, WaiterAction
+from boto3.resources.base import ResourceMeta
 from boto3.resources.model import Action, Waiter
 from tests import BaseTestCase, mock
 
@@ -35,10 +36,7 @@ class TestServiceActionCall(BaseTestCase):
                 return_value={})
     def test_service_action_creates_params(self, params_mock):
         resource = mock.Mock()
-        resource.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
+        resource.meta = ResourceMeta('test', client=mock.Mock())
 
         action = ServiceAction(self.action)
 
@@ -51,11 +49,8 @@ class TestServiceActionCall(BaseTestCase):
                 return_value={'bar': 'baz'})
     def test_service_action_calls_operation(self, params_mock):
         resource = mock.Mock()
-        resource.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
-        operation = resource.meta['client'].get_frobs
+        resource.meta = ResourceMeta('test', client=mock.Mock())
+        operation = resource.meta.client.get_frobs
         operation.return_value = 'response'
 
         action = ServiceAction(self.action)
@@ -71,11 +66,8 @@ class TestServiceActionCall(BaseTestCase):
     @mock.patch('boto3.resources.action.RawHandler')
     def test_service_action_calls_raw_handler(self, handler_mock, params_mock):
         resource = mock.Mock()
-        resource.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
-        operation = resource.meta['client'].get_frobs
+        resource.meta = ResourceMeta('test', client=mock.Mock())
+        operation = resource.meta.client.get_frobs
         operation.return_value = 'response'
 
         action = ServiceAction(self.action)
@@ -97,11 +89,8 @@ class TestServiceActionCall(BaseTestCase):
         }
 
         resource = mock.Mock()
-        resource.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
-        operation = resource.meta['client'].get_frobs
+        resource.meta = ResourceMeta('test', client=mock.Mock())
+        operation = resource.meta.client.get_frobs
         operation.return_value = 'response'
 
         factory = mock.Mock()
@@ -142,10 +131,7 @@ class TestWaiterActionCall(BaseTestCase):
                 return_value={})
     def test_service_waiter_creates_params(self, params_mock):
         resource = mock.Mock()
-        resource.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
+        resource.meta = ResourceMeta('test', client=mock.Mock())
 
         action = WaiterAction(self.waiter, self.waiter_resource_name)
 
@@ -158,11 +144,8 @@ class TestWaiterActionCall(BaseTestCase):
                 return_value={'bar': 'baz'})
     def test_service_action_calls_operation(self, params_mock):
         resource = mock.Mock()
-        resource.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
-        get_waiter = resource.meta['client'].get_waiter
+        resource.meta = ResourceMeta('test', client=mock.Mock())
+        get_waiter = resource.meta.client.get_waiter
         mock_waiter = mock.Mock()
         get_waiter.return_value = mock_waiter
 
@@ -209,10 +192,7 @@ class TestBatchActionCall(BaseTestCase):
         client = mock.Mock()
 
         item1 = mock.Mock()
-        item1.meta = {
-            'service_name': 'test',
-            'client': client
-        }
+        item1.meta = ResourceMeta('test', client=client)
         item1.bucket_name = 'bucket'
         item1.key = 'item1'
 
@@ -242,10 +222,7 @@ class TestBatchActionCall(BaseTestCase):
         client = mock.Mock()
 
         item = mock.Mock()
-        item.meta = {
-            'service_name': 'test',
-            'client': client
-        }
+        item.meta = ResourceMeta('test', client=client)
 
         collection = mock.Mock()
         collection.pages.return_value = [[item]]
@@ -269,10 +246,7 @@ class TestBatchActionCall(BaseTestCase):
         client = mock.Mock()
 
         item = mock.Mock()
-        item.meta = {
-            'service_name': 'test',
-            'client': client
-        }
+        item.meta = ResourceMeta('test', client=client)
 
         collection = mock.Mock()
         collection.pages.return_value = [[item]]

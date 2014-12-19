@@ -187,7 +187,7 @@ class ResourceHandler(object):
         """
         resource_name = self.resource_model.type
         resource_cls = self.factory.load_from_definition(
-            parent.meta['service_name'], resource_name,
+            parent.meta.service_name, resource_name,
             self.resource_defs.get(resource_name), self.resource_defs,
             self.service_model)
 
@@ -196,7 +196,7 @@ class ResourceHandler(object):
 
         # Anytime a path is defined, it means the response contains the
         # resource's attributes, so resource_data gets set here. It
-        # eventually ends up in resource.meta['data'], which is where
+        # eventually ends up in resource.meta.data, which is where
         # the attribute properties look for data.
         if self.search_path:
             search_response = jmespath.search(self.search_path, raw_response)
@@ -258,7 +258,7 @@ class ResourceHandler(object):
         :return: New resource instance.
         """
         kwargs = {
-            'client': parent.meta.get('client'),
+            'client': parent.meta.client,
         }
 
         for name, value in identifiers.items():
@@ -271,6 +271,6 @@ class ResourceHandler(object):
         resource = resource_cls(**kwargs)
 
         if resource_data is not None:
-            resource.meta['data'] = resource_data
+            resource.meta.data = resource_data
 
         return resource

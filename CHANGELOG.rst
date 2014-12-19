@@ -1,6 +1,14 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature:Resources: Make ``resource.meta`` a proper object. This allows
+  you to do things like ``resource.meta.client``. This is a **backward-
+  incompatible** change.
+  (`issue 45 <https://github.com/boto/boto3/pull/45>`__)
+
 0.0.6 - 2014-12-18
 ------------------
 

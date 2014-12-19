@@ -14,6 +14,7 @@
 from botocore.model import ServiceModel
 from boto3.resources.collection import CollectionFactory, CollectionManager, \
                                        ResourceCollection
+from boto3.resources.base import ResourceMeta
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.model import Collection
 from tests import BaseTestCase, mock
@@ -25,12 +26,8 @@ class TestCollectionFactory(BaseTestCase):
 
         self.client = mock.Mock()
         self.client.can_paginate.return_value = False
-        meta = {
-            'client': self.client,
-            'service_name': 'test'
-        }
         self.parent = mock.Mock()
-        self.parent.meta = meta
+        self.parent.meta = ResourceMeta('test', client=self.client)
         self.resource_factory = ResourceFactory()
         self.service_model = ServiceModel({})
 
@@ -129,12 +126,8 @@ class TestResourceCollection(BaseTestCase):
         }
         self.client = mock.Mock()
         self.client.can_paginate.return_value = False
-        meta = {
-            'client': self.client,
-            'service_name': 'test'
-        }
         self.parent = mock.Mock()
-        self.parent.meta = meta
+        self.parent.meta = ResourceMeta('test', client=self.client)
         self.factory = ResourceFactory()
         self.service_model = ServiceModel({})
    

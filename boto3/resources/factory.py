@@ -18,7 +18,7 @@ from botocore import xform_name
 
 from .action import ServiceAction
 from .action import WaiterAction
-from .base import ServiceResource
+from .base import ResourceMeta, ServiceResource
 from .collection import CollectionFactory
 from .model import ResourceModel
 from .response import all_not_none, build_identifiers
@@ -65,11 +65,7 @@ class ResourceFactory(object):
         :return: The service or resource class.
         """
         # Set some basic info
-        meta = {
-            'service_name': service_name,
-            'identifiers': [],
-            'data': None,
-        }
+        meta = ResourceMeta(service_name)
         attrs = {
             'meta': meta,
         }
@@ -107,7 +103,7 @@ class ResourceFactory(object):
             snake_cased = xform_name(identifier.name)
             snake_cased = self._check_allowed_name(
                 attrs, snake_cased, 'identifier', model.name)
-            meta['identifiers'].append(snake_cased)
+            meta.identifiers.append(snake_cased)
             attrs[snake_cased] = None
 
     def _load_subresources(self, attrs, service_name, resource_name,
@@ -168,7 +164,7 @@ class ResourceFactory(object):
 
             for name, member in shape.members.items():
                 snake_cased = xform_name(name)
-                if snake_cased in meta['identifiers']:
+                if snake_cased in meta.identifiers:
                     # Skip identifiers, these are set through other means
                     continue
 
@@ -190,7 +186,7 @@ class ResourceFactory(object):
                 attrs, snake_cased, 'collection', model.name)
 
             attrs[snake_cased] = self._create_collection(
-                attrs['meta']['service_name'], model.name, snake_cased,
+                attrs['meta'].service_name, model.name, snake_cased,
                 collection_model, resource_defs, service_model)
 
     def _load_references(self, attrs, service_name, resource_name,
@@ -272,14 +268,14 @@ class ResourceFactory(object):
         # it first checks to see if it CAN be loaded (raise if not), then
         # calls the load before returning the value.
         def property_loader(self):
-            if self.meta['data'] is None:
+            if self.meta.data is None:
                 if hasattr(self, 'load'):
                     self.load()
                 else:
                     raise ResourceLoadException(
                         '{0} has no load method'.format(self.__class__.__name__))
 
-            return self.meta['data'].get(name)
+            return self.meta.data.get(name)
 
         property_loader.__name__ = str(snake_cased)
         property_loader.__doc__ = 'TODO'
@@ -366,12 +362,12 @@ class ResourceFactory(object):
                     pargs.append(getattr(self, xform_name(key)))
 
             return partial(resource_cls, *pargs,
-                client=self.meta.get('client'))(*args, **kwargs)
+                client=self.meta.client)(*args, **kwargs)
 
         # Generate documentation about required and optional params
         doc = 'Create a new instance of {0}\n\nRequired identifiers:\n'
 
-        for identifier in resource_cls.meta['identifiers']:
+        for identifier in resource_cls.meta.identifiers:
             doc += ':type {0}: string\n'.format(identifier)
             doc += ':param {0}: {0} identifier\n'.format(identifier)
 
@@ -405,7 +401,7 @@ class ResourceFactory(object):
             # instance via ``self``.
             def do_action(self, *args, **kwargs):
                 response = action(self, *args, **kwargs)
-                self.meta['data'] = response
+                self.meta.data = response
         else:
             # We need a new method here because we want access to the
             # instance via ``self``.
@@ -416,7 +412,7 @@ class ResourceFactory(object):
                     # Clear cached data. It will be reloaded the next
                     # time that an attribute is accessed.
                     # TODO: Make this configurable in the future?
-                    self.meta['data'] = None
+                    self.meta.data = None
 
                 return response
 

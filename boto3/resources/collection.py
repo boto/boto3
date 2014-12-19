@@ -54,7 +54,7 @@ class ResourceCollection(object):
             self.__class__.__name__,
             self._parent,
             '{0}.{1}'.format(
-                self._parent.meta['service_name'],
+                self._parent.meta.service_name,
                 self._model.resource.type
             )
         )
@@ -131,7 +131,7 @@ class ResourceCollection(object):
         :rtype: list(:py:class:`~boto3.resources.base.ServiceResource`)
         :return: List of resource instances
         """
-        client = self._parent.meta['client']
+        client = self._parent.meta.client
         cleaned_params = self._params.copy()
         limit = cleaned_params.pop('limit', None)
         page_size = cleaned_params.pop('page_size', None)
@@ -147,14 +147,14 @@ class ResourceCollection(object):
         # the page size parameter.
         if client.can_paginate(self._py_operation_name):
             logger.info('Calling paginated %s:%s with %r',
-                        self._parent.meta['service_name'],
+                        self._parent.meta.service_name,
                         self._py_operation_name, params)
             paginator = client.get_paginator(self._py_operation_name)
             pages = paginator.paginate(
                 max_items=limit, page_size=page_size, **params)
         else:
             logger.info('Calling %s:%s with %r',
-                        self._parent.meta['service_name'],
+                        self._parent.meta.service_name,
                         self._py_operation_name, params)
             pages = [getattr(client, self._py_operation_name)(**params)]
 
@@ -321,7 +321,7 @@ class CollectionManager(object):
             self.__class__.__name__,
             self._parent,
             '{0}.{1}'.format(
-                self._parent.meta['service_name'],
+                self._parent.meta.service_name,
                 self._model.resource.type
             )
         )
