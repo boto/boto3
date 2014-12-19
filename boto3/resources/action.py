@@ -71,10 +71,10 @@ class ServiceAction(object):
         params = create_request_parameters(parent, self._action_model.request)
         params.update(kwargs)
 
-        logger.info('Calling %s:%s with %r', parent.meta['service_name'],
+        logger.info('Calling %s:%s with %r', parent.meta.service_name,
             operation_name, params)
 
-        response = getattr(parent.meta['client'], operation_name)(**params)
+        response = getattr(parent.meta.client, operation_name)(**params)
 
         logger.debug('Response: %r', response)
 
@@ -125,9 +125,9 @@ class BatchAction(ServiceAction):
                 # or low-level client from a collection, so we get
                 # these from the first resource in the collection.
                 if service_name is None:
-                    service_name = resource.meta['service_name']
+                    service_name = resource.meta.service_name
                 if client is None:
-                    client = resource.meta['client']
+                    client = resource.meta.client
 
                 create_request_parameters(
                     resource, self._action_model.request, params=params)
@@ -186,10 +186,10 @@ class WaiterAction(object):
         params.update(kwargs)
 
         logger.info('Calling %s:%s with %r',
-                    parent.meta['service_name'],
+                    parent.meta.service_name,
                     self._waiter_resource_name, params)
 
-        client = parent.meta['client']
+        client = parent.meta.client
         waiter = client.get_waiter(client_waiter_name)
         response = waiter.wait(**params)
 

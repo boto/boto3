@@ -44,7 +44,7 @@ class TestResourceFactory(BaseTestCase):
     def test_factory_sets_service_name(self):
         QueueResource = self.load('test', 'Queue', {}, {}, None)
 
-        self.assertEqual(QueueResource.meta['service_name'], 'test',
+        self.assertEqual(QueueResource.meta.service_name, 'test',
             'Service name not set')
 
     def test_factory_sets_identifiers(self):
@@ -57,11 +57,9 @@ class TestResourceFactory(BaseTestCase):
 
         MessageResource = self.load('test', 'Message', model, {}, None)
 
-        self.assertTrue('identifiers' in MessageResource.meta,
-            'Class has no identifiers')
-        self.assertIn('queue_url', MessageResource.meta['identifiers'],
+        self.assertIn('queue_url', MessageResource.meta.identifiers,
             'Missing queue_url identifier from model')
-        self.assertIn('receipt_handle', MessageResource.meta['identifiers'],
+        self.assertIn('receipt_handle', MessageResource.meta.identifiers,
             'Missing receipt_handle identifier from model')
 
     def test_identifiers_in_repr(self):
@@ -208,7 +206,7 @@ class TestResourceFactory(BaseTestCase):
         resource = self.load('test', 'test', {}, defs, None)()
         q = resource.Queue('test')
 
-        self.assertEqual(resource.meta['client'], q.meta['client'],
+        self.assertEqual(resource.meta.client, q.meta.client,
             'Client was not shared to dangling resource instance')
 
     def test_dangling_resource_requires_identifier(self):
@@ -337,13 +335,20 @@ class TestResourceFactory(BaseTestCase):
         self.assertEqual(queue1.meta, queue2.meta,
             'Queue meta copies not equal after creation')
 
-        queue1.meta['data'] = {'id': 'foo'}
-        queue2.meta['data'] = {'id': 'bar'}
+        queue1.meta.data = {'id': 'foo'}
+        queue2.meta.data = {'id': 'bar'}
 
         self.assertNotEqual(queue_cls.meta, queue1.meta,
             'Modified queue instance data should not modify the class data')
         self.assertNotEqual(queue1.meta, queue2.meta,
             'Queue data should be unique to queue instance')
+        self.assertNotEqual(queue1.meta, 'bad-value')
+
+    def test_resource_meta_repr(self):
+        queue_cls = self.load('test', 'Queue', {}, {}, None)
+        queue = queue_cls()
+        self.assertEqual(repr(queue.meta),
+                         'ResourceMeta(\'test\', identifiers=[])')
 
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_calls_action(self, action_cls):
@@ -384,13 +389,13 @@ class TestResourceFactory(BaseTestCase):
         queue = self.load('test', 'Queue', model, {}, None)()
 
         # Simulate loaded data
-        queue.meta['data'] = {'some': 'data'}
+        queue.meta.data = {'some': 'data'}
 
         # Perform a call
         queue.get_message_status()
 
         # Cached data should be cleared
-        self.assertIsNone(queue.meta['data'])
+        self.assertIsNone(queue.meta.data)
 
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_action_leaves_data(self, action_cls):
@@ -409,13 +414,13 @@ class TestResourceFactory(BaseTestCase):
         queue = self.load('test', 'Queue', model, {}, None)()
 
         # Simulate loaded data
-        queue.meta['data'] = {'some': 'data'}
+        queue.meta.data = {'some': 'data'}
 
         # Perform a call
         queue.get_message_status()
 
         # Cached data should not be cleared
-        self.assertEqual(queue.meta['data'], {'some': 'data'})
+        self.assertEqual(queue.meta.data, {'some': 'data'})
 
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_lazy_loads_properties(self, action_cls):
@@ -455,8 +460,8 @@ class TestResourceFactory(BaseTestCase):
         action.assert_called_once()
 
         # Both params should have been loaded into the data bag
-        self.assertIn('ETag', resource.meta['data'])
-        self.assertIn('LastModified', resource.meta['data'])
+        self.assertIn('ETag', resource.meta.data)
+        self.assertIn('LastModified', resource.meta.data)
 
         # Accessing another property should use cached value
         # instead of making a second call.
@@ -542,7 +547,7 @@ class TestResourceFactory(BaseTestCase):
                              service_model)('group-id')
 
         # Load the resource with no data
-        resource.meta['data'] = {}
+        resource.meta.data = {}
 
         self.assertTrue(hasattr(resource, 'subnet'),
                         'Resource should have a subnet reference')
@@ -552,7 +557,7 @@ class TestResourceFactory(BaseTestCase):
                         'Resource should have a group reverse ref')
 
         # Load the resource with data to instantiate a reference
-        resource.meta['data'] = {'SubnetId': 'abc123'}
+        resource.meta.data = {'SubnetId': 'abc123'}
         self.assertIsInstance(resource.subnet, ServiceResource)
         self.assertEqual(resource.subnet.id, 'abc123')
 

@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from tests import BaseTestCase, mock
-from boto3.resources.base import ServiceResource
+from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.response import build_identifiers, build_empty_response,\
@@ -327,10 +327,7 @@ class TestResourceHandler(BaseTestCase):
         self.service_model.operation_model.return_value = operation_model
 
         self.parent = mock.Mock()
-        self.parent.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
+        self.parent.meta = ResourceMeta('test', client=mock.Mock())
         self.params = {}
 
     def get_resource(self, search_path, response):
