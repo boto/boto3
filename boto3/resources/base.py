@@ -34,7 +34,7 @@ class ResourceMeta(object):
         self.data = data
 
     def __repr__(self):
-        return 'ResourceMeta({0}, identifiers={1})'.format(
+        return 'ResourceMeta(\'{0}\', identifiers={1})'.format(
             self.service_name, self.identifiers)
 
     def __eq__(self, other):

@@ -344,6 +344,12 @@ class TestResourceFactory(BaseTestCase):
             'Queue data should be unique to queue instance')
         self.assertNotEqual(queue1.meta, 'bad-value')
 
+    def test_resource_meta_repr(self):
+        queue_cls = self.load('test', 'Queue', {}, {}, None)
+        queue = queue_cls()
+        self.assertEqual(repr(queue.meta),
+                         'ResourceMeta(\'test\', identifiers=[])')
+
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_calls_action(self, action_cls):
         model = {
