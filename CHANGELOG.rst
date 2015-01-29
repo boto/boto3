@@ -4,6 +4,8 @@ Changelog
 Unreleased
 ----------
 
+* feature:Resources: Update to the latest resource JSON format.
+  (`issue 51 <https://github.com/boto/boto3/pull/51>`__)
 * feature:Resources: Make ``resource.meta`` a proper object. This allows
   you to do things like ``resource.meta.client``. This is a **backward-
   incompatible** change.

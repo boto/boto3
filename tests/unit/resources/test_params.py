@@ -23,8 +23,8 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'WarehouseUrl',
-                    'sourceType': 'identifier',
-                    'source': 'Url'
+                    'source': 'identifier',
+                    'name': 'Url'
                 }
             ]
         })
@@ -43,8 +43,8 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'WarehouseUrl',
-                    'sourceType': 'dataMember',
-                    'source': 'some_member'
+                    'source': 'data',
+                    'path': 'some_member'
                 }
             ]
         })
@@ -63,18 +63,18 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'Param1',
-                    'sourceType': 'string',
-                    'source': 'param1'
+                    'source': 'string',
+                    'value': 'param1'
                 },
                 {
                     'target': 'Param2',
-                    'sourceType': 'integer',
-                    'source': 123
+                    'source': 'integer',
+                    'value': 123
                 },
                 {
                     'target': 'Param3',
-                    'sourceType': 'boolean',
-                    'source': True
+                    'source': 'boolean',
+                    'value': True
                 }
             ]
         })
@@ -88,14 +88,25 @@ class TestServiceActionParams(BaseTestCase):
         self.assertEqual(params['Param3'], True,
             'Parameter not set from boolean constant')
 
+    def test_service_action_params_input(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {'target': 'Param1', 'source': 'input'}
+            ]
+        })
+
+        params = create_request_parameters(None, request_model)
+
+        self.assertEqual(params, {})
+
     def test_service_action_params_invalid(self):
         request_model = Request({
             'operation': 'GetFrobs',
             'params': [
                 {
                     'target': 'Param1',
-                    'sourceType': 'invalid',
-                    'source': 'param1'
+                    'source': 'invalid'
                 }
             ]
         })
@@ -109,8 +120,8 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'WarehouseUrls[0]',
-                    'sourceType': 'string',
-                    'source': 'w-url'
+                    'source': 'string',
+                    'value': 'w-url'
                 }
             ]
         })
@@ -130,8 +141,8 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'Delete.Objects[].Key',
-                    'sourceType': 'dataMember',
-                    'source': 'Key'
+                    'source': 'data',
+                    'path': 'Key'
                 }
             ]
         })

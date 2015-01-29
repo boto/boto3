@@ -178,8 +178,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -210,8 +210,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -242,8 +242,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -294,8 +294,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -330,8 +330,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -355,8 +355,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -398,8 +398,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -436,8 +436,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }
@@ -511,8 +511,8 @@ class TestResourceCollection(BaseTestCase):
                 'identifiers': [
                     {
                         'target': 'Id',
-                        'sourceType': 'responsePath',
-                        'source': 'Frobs[].Id'
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
                     }
                 ]
             }

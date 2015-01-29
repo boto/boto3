@@ -43,20 +43,25 @@ def create_request_parameters(parent, request_model, params=None):
 
     for param in request_model.params:
         source = param.source
-        source_type = param.source_type
         target = param.target
 
-        if source_type in ['identifier', 'dataMember']:
+        if source == 'identifier':
             # Resource identifier, e.g. queue.url
+            value = getattr(parent, xform_name(param.name))
+        elif source == 'data':
             # If this is a dataMember then it may incur a load
             # action before returning the value.
-            value = getattr(parent, xform_name(source))
-        elif source_type in ['string', 'integer', 'boolean']:
+            # TODO: This should be a JMESPath query on the parent
+            value = getattr(parent, xform_name(param.path))
+        elif source in ['string', 'integer', 'boolean']:
             # These are hard-coded values in the definition
-            value = source
+            value = param.value
+        elif source == 'input':
+            # This is provided by the user, so ignore it here
+            continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source_type))
+                'Unsupported source type: {0}'.format(source))
 
         build_param_structure(params, target, value)
 

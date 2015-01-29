@@ -87,6 +87,7 @@ def py_default(type_name):
         'timestamp': 'datetime(2015, 1, 1)',
     }.get(type_name, '...')
 
+
 def html_to_rst(html, indent=0, indentFirst=False):
     """
     Use bcdoc to convert html to rst.
@@ -345,7 +346,7 @@ def document_resource(service_name, official_name, resource_model,
         docs += document_action(action, service_name, resource_model,
                                 service_model)
 
-    if resource_model.sub_resources or is_service_resource:
+    if resource_model.subresources:
         docs += ('   .. rst-class:: admonition-title\n\n   Sub-resources\n\n'
                  '   Sub-resources are methods that create a new instance of a'
                  ' child resource. This resource\'s identifiers get passed'
@@ -353,34 +354,26 @@ def document_resource(service_name, official_name, resource_model,
 
         preset = len(resource_model.identifiers)
 
-        if resource_model.sub_resources:
-            for resource in sorted(resource_model.sub_resources.resources,
-                                   key=lambda i: i.name):
+        if resource_model.subresources:
+            for subresource in sorted(resource_model.subresources,
+                                      key=lambda i: i.name):
+                identifiers = [
+                    xform_name(i.target) for i in \
+                    subresource.resource.identifiers if i.source == 'input']
                 docs += '   .. py:method:: {0}({1})\n\n'.format(
-                    resource.name,
-                    ', '.join([xform_name(i.name) for i in \
-                               resource.identifiers[preset:]]))
+                    subresource.name,
+                    ', '.join(identifiers))
                 docs += ('      Create a :py:class:`{0}.{1}`'
-                         ' instance.\n\n').format(service_name, resource.name)
-
-        if is_service_resource:
-            # TODO: expose service-level subresources via the model
-            for name, resource_def in sorted(resource_model._resource_defs.items()):
-                docs += '   .. py:method:: {0}({1})\n\n'.format(
-                    name,
-                    ', '.join([xform_name(i['name']) for i in \
-                               resource_def['identifiers'][preset:]]))
-                docs += ('      Create a :py:class:`{0}.{1}`'
-                         ' instance.\n\n').format(service_name, name)
+                         ' instance.\n\n').format(service_name,
+                                                  subresource.resource.type)
 
         docs += '\n\n'
 
-    refs = resource_model.references + resource_model.reverse_references
-    if sorted(refs, key=lambda i: i.name):
+    if resource_model.references:
         docs += ('   .. rst-class:: admonition-title\n\n   References\n\n'
                  '   References are related resource instances that have'
                  ' a belongs-to relationship.\n\n')
-        for ref in refs:
+        for ref in sorted(resource_model.references, key=lambda i: i.name):
             docs += ('   .. py:attribute:: {0}\n\n      '
                      '(:py:class:`{1}.{2}`) The related {3} if set,'
                      ' otherwise ``None``.\n\n').format(

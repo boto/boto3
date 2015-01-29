@@ -183,10 +183,9 @@ class TestBatchActionCall(BaseTestCase):
 
     def test_batch_action_creates_parameters_from_items(self):
         self.action_def['request']['params'] = [
-            {'target': 'Bucket', 'sourceType': 'dataMember',
-             'source': 'BucketName'},
-            {'target': 'Delete.Objects[].Key', 'sourceType': 'dataMember',
-             'source': 'Key'}
+            {'target': 'Bucket', 'source': 'data', 'path': 'BucketName'},
+            {'target': 'Delete.Objects[].Key', 'source': 'data',
+             'path': 'Key'}
         ]
 
         client = mock.Mock()
