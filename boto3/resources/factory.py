@@ -80,8 +80,8 @@ class ResourceFactory(object):
         self._load_attributes(attrs, meta, resource_model, service_model)
         self._load_collections(attrs, resource_model, resource_defs,
                                service_model)
-        self._load_references(attrs, service_name, resource_name,
-                              resource_model, resource_defs, service_model)
+        self._load_has_relations(attrs, service_name, resource_name,
+                                 resource_model, resource_defs, service_model)
         self._load_waiters(attrs, resource_model)
 
         # Create the name based on the requested service and resource
@@ -160,11 +160,11 @@ class ResourceFactory(object):
                 attrs['meta'].service_name, model.name, snake_cased,
                 collection_model, resource_defs, service_model)
 
-    def _load_references(self, attrs, service_name, resource_name,
-                         model, resource_defs, service_model):
+    def _load_has_relations(self, attrs, service_name, resource_name,
+                            model, resource_defs, service_model):
         """
-        Load references, which are defined via a ``has`` relationship
-        but conceptually come in two forms:
+        Load related resources, which are defined via a ``has``
+        relationship but conceptually come in two forms:
 
         1. A reference, which is a related resource instance and can be
            ``None``, such as an EC2 instance's ``vpc``.
@@ -333,7 +333,7 @@ class ResourceFactory(object):
         # We need a new method here because we want access to the
         # instance's client.
         def create_resource(self, *args, **kwargs):
-            pargs = []
+            positional_args = []
 
             # We lazy-load the class to handle circular references.
             resource_cls = factory_self.load_from_definition(
@@ -348,9 +348,9 @@ class ResourceFactory(object):
             identifiers = subresource.resource.identifiers
             if identifiers is not None:
                 for identifier, value in build_identifiers(identifiers, self):
-                    pargs.append(value)
+                    positional_args.append(value)
 
-            return partial(resource_cls, *pargs,
+            return partial(resource_cls, *positional_args,
                 client=self.meta.client)(*args, **kwargs)
 
         create_resource.__name__ = str(name)

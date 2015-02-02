@@ -185,210 +185,6 @@ class TestResourceFactory(BaseTestCase):
         self.assertIsInstance(resource, ServiceResource,
             'Object is not an instance of ServiceResource')
 
-    def test_dangling_resources_create_resource_instance(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-        q = resource.Queue('test')
-
-        self.assertIsInstance(q, ServiceResource,
-            'Dangling resource instance not a ServiceResource')
-
-    def test_dangling_resource_create_with_kwarg(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-        q = resource.Queue(url='test')
-
-        self.assertIsInstance(q, ServiceResource,
-            'Dangling resource created with kwargs is not a ServiceResource')
-
-    def test_dangling_resource_shares_client(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-        q = resource.Queue('test')
-
-        self.assertEqual(resource.meta.client, q.meta.client,
-            'Client was not shared to dangling resource instance')
-
-    def test_dangling_resource_requires_identifier(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-
-        with self.assertRaises(ValueError):
-            resource.Queue()
-
-    def test_dangling_resource_raises_for_unknown_arg(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-
-        with self.assertRaises(ValueError):
-            resource.Queue(url='foo', bar='baz')
-
-    def test_dangling_resource_equality(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-
-        q1 = resource.Queue('url')
-        q2 = resource.Queue('url')
-
-        self.assertEqual(q1, q2)
-
-    def test_dangling_resource_inequality(self):
-        model = {
-            'has': {
-                'Queue': {
-                    'resource': {
-                        'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Queue': {
-                'identifiers': [{'name': 'Url'}],
-                'has': {
-                    'Message': {
-                        'resource': {
-                            'type': 'Message',
-                            'identifiers': [
-                                {'target': 'QueueUrl', 'source': 'identifier',
-                                 'name': 'Url'},
-                                {'target': 'Handle', 'source': 'input'}
-                            ]
-                        }
-                    }
-                }
-            },
-            'Message': {
-                'identifiers': [{'name': 'QueueUrl'}, {'name': 'Handle'}]
-            }
-        }
-
-        resource = self.load('test', 'test', model, defs, None)()
-
-        q1 = resource.Queue('url')
-        q2 = resource.Queue('different')
-        m = q1.Message('handle')
-
-        self.assertNotEqual(q1, q2)
-        self.assertNotEqual(q1, m)
-
     def test_non_service_resource_missing_defs(self):
         # Only services should get dangling defs
         defs = {
@@ -748,3 +544,101 @@ class TestResourceFactory(BaseTestCase):
 
         resource.wait_until_exists('arg1', arg2=2)
         waiter_action.assert_called_with(resource, 'arg1', arg2=2)
+
+
+class TestResourceFactoryDanglingResource(TestResourceFactory):
+    def setUp(self):
+        super(TestResourceFactoryDanglingResource, self).setUp()
+
+        self.model = {
+            'has': {
+                'Queue': {
+                    'resource': {
+                        'type': 'Queue',
+                        'identifiers': [
+                            {'target': 'Url', 'source': 'input'}
+                        ]
+                    }
+                }
+            }
+        }
+
+        self.defs = {
+            'Queue': {
+                'identifiers': [
+                    {'name': 'Url'}
+                ]
+            }
+        }
+
+    def test_dangling_resources_create_resource_instance(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+        q = resource.Queue('test')
+
+        self.assertIsInstance(q, ServiceResource,
+            'Dangling resource instance not a ServiceResource')
+
+    def test_dangling_resource_create_with_kwarg(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+        q = resource.Queue(url='test')
+
+        self.assertIsInstance(q, ServiceResource,
+            'Dangling resource created with kwargs is not a ServiceResource')
+
+    def test_dangling_resource_shares_client(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+        q = resource.Queue('test')
+
+        self.assertEqual(resource.meta.client, q.meta.client,
+            'Client was not shared to dangling resource instance')
+
+    def test_dangling_resource_requires_identifier(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+
+        with self.assertRaises(ValueError):
+            resource.Queue()
+
+    def test_dangling_resource_raises_for_unknown_arg(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+
+        with self.assertRaises(ValueError):
+            resource.Queue(url='foo', bar='baz')
+
+    def test_dangling_resource_equality(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+
+        q1 = resource.Queue('url')
+        q2 = resource.Queue('url')
+
+        self.assertEqual(q1, q2)
+
+    def test_dangling_resource_inequality(self):
+        self.defs = {
+            'Queue': {
+                'identifiers': [{'name': 'Url'}],
+                'has': {
+                    'Message': {
+                        'resource': {
+                            'type': 'Message',
+                            'identifiers': [
+                                {'target': 'QueueUrl', 'source': 'identifier',
+                                 'name': 'Url'},
+                                {'target': 'Handle', 'source': 'input'}
+                            ]
+                        }
+                    }
+                }
+            },
+            'Message': {
+                'identifiers': [{'name': 'QueueUrl'}, {'name': 'Handle'}]
+            }
+        }
+
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+
+        q1 = resource.Queue('url')
+        q2 = resource.Queue('different')
+        m = q1.Message('handle')
+
+        self.assertNotEqual(q1, q2)
+        self.assertNotEqual(q1, m)

@@ -105,8 +105,6 @@ class ServiceResource(object):
                 continue
 
             if name not in self.meta.identifiers:
-                logger.debug('kwargs: %s', kwargs)
-                logger.debug('valid identifiers: %s', self.meta.identifiers)
                 raise ValueError('Unknown keyword argument: {0}'.format(name))
 
             setattr(self, name, value)

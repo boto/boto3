@@ -317,7 +317,8 @@ class ResourceModel(object):
         Get a list of sub-resources or references.
 
         :type subresources: bool
-        :param subresources: True to get sub-resources, otherwise False
+        :param subresources: ``True`` to get sub-resources, ``False`` to
+                             get references.
         :rtype: list(:py:class:`ResponseResource`)
         """
         resources = []

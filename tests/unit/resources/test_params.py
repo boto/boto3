@@ -97,8 +97,11 @@ class TestServiceActionParams(BaseTestCase):
         })
 
         params = create_request_parameters(None, request_model)
-
         self.assertEqual(params, {})
+
+        params['param1'] = 'myinput'
+        params = create_request_parameters(None, request_model, params=params)
+        self.assertEqual(params, {'param1': 'myinput'})
 
     def test_service_action_params_invalid(self):
         request_model = Request({
