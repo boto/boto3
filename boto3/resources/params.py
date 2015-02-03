@@ -51,7 +51,13 @@ def create_request_parameters(parent, request_model, params=None):
         elif source == 'data':
             # If this is a dataMember then it may incur a load
             # action before returning the value.
-            # TODO: This should be a JMESPath query on the parent
+            # TODO: Use ``jmespath.search``
+            # Data members are accessed via a ``path``, which is
+            # a JMESPath query. JMESPath does not support attribute
+            # access on an object yet. Once it does, we should
+            # use it here. Until then, ``getattr`` works in most
+            # simple cases, but will fail if path is something
+            # like ``Items[0].id``.
             value = getattr(parent, xform_name(param.path))
         elif source in ['string', 'integer', 'boolean']:
             # These are hard-coded values in the definition

@@ -12,7 +12,6 @@ tests/.coverage
 # Test state / virtualenvs
 .tox
 .coverage
-cover
 
 # Common virtualenv names
 venv
