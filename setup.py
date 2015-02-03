@@ -28,7 +28,7 @@ packages = [
 requires = [
     'botocore==0.80.0',
     'bcdoc==0.12.2',
-    'jmespath==0.6.0',
+    'jmespath==0.6.1',
 ]
 
 setup(

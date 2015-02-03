@@ -4,7 +4,7 @@ Changelog
 Unreleased
 ----------
 
-* feature:Dependency: Update to JMESPath 0.6.0
+* feature:Dependency: Update to JMESPath 0.6.1
 * feature:Resources: Update to the latest resource JSON format.
   (`issue 51 <https://github.com/boto/boto3/pull/51>`__)
 * feature:Resources: Make ``resource.meta`` a proper object. This allows
