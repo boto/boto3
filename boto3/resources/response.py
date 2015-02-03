@@ -83,13 +83,20 @@ def build_empty_response(search_path, operation_name, service_model):
     :type search_path: string
     :param search_path: JMESPath expression to search in the response
     :type operation_name: string
-    :param operation_name: Name of the underlying service operation
+    :param operation_name: Name of the underlying service operation. If
+                           this is ``None`` then the empty response will
+                           always be ``None`` as well.
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
     :rtype: dict, list, or None
     :return: An appropriate empty value
     """
     response = None
+
+    # If this isn't a real service operation, then the response should
+    # just be ``None``.
+    if operation_name is None:
+        return response
 
     operation_model = service_model.operation_model(operation_name)
     shape = operation_model.output_shape

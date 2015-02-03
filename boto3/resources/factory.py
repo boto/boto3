@@ -21,7 +21,7 @@ from .action import WaiterAction
 from .base import ResourceMeta, ServiceResource
 from .collection import CollectionFactory
 from .model import ResourceModel
-from .response import all_not_none, build_identifiers
+from .response import build_identifiers, ResourceHandler
 from ..exceptions import ResourceLoadException
 
 
@@ -299,24 +299,19 @@ class ResourceFactory(object):
         """
         Creates a new property on the resource to lazy-load a reference.
         """
+        # References are essentially an action with no request
+        # or response, so we can re-use the response handlers to
+        # build up resources from identifiers and data members.
+        handler = ResourceHandler('', factory_self, resource_defs,
+                                  service_model, reference.resource, None)
+
         def get_reference(self):
             # We need to lazy-evaluate the reference to handle circular
             # references between resources. We do this by loading the class
             # when first accessed.
             # First, though, we need to see if we have the required
             # identifiers to instantiate the resource reference.
-            identifiers = dict(build_identifiers(
-                reference.resource.identifiers, self))
-            resource = None
-            if all_not_none(identifiers.values()):
-                # Identifiers are present, so now we can create the resource
-                # instance using them.
-                resource_type = reference.resource.type
-                cls = factory_self.load_from_definition(
-                    service_name, name, resource_defs.get(resource_type),
-                    resource_defs, service_model)
-                resource = cls(**identifiers)
-            return resource
+            return handler(self, {}, {})
 
         get_reference.__name__ = str(snake_cased)
         get_reference.__doc__ = 'TODO'
