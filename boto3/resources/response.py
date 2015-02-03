@@ -27,7 +27,7 @@ def all_not_none(iterable):
     return True
 
 
-def build_identifiers(identifiers, parent, params, raw_response):
+def build_identifiers(identifiers, parent, params=None, raw_response=None):
     """
     Builds a mapping of identifier names to values based on the
     identifier source location, type, and target. Identifier
@@ -43,26 +43,32 @@ def build_identifiers(identifiers, parent, params, raw_response):
     :param params: Request parameters sent to the service.
     :type raw_response: dict
     :param raw_response: Low-level operation response.
+    :rtype: list
+    :return: An ordered list of ``(name, value)`` identifier tuples.
     """
-    results = {}
+    results = []
 
     for identifier in identifiers:
         source = identifier.source
-        source_type = identifier.source_type
         target = identifier.target
 
-        if source_type == 'responsePath':
-            value = jmespath.search(source, raw_response)
-            results[xform_name(target)] = value
-        elif source_type in ['identifier', 'dataMember']:
-            value = getattr(parent, xform_name(source))
-            results[xform_name(target)] = value
-        elif source_type == 'requestParameter':
-            value = params[source]
-            results[xform_name(target)] = value
+        if source == 'response':
+            value = jmespath.search(identifier.path, raw_response)
+        elif source == 'requestParameter':
+            value = jmespath.search(identifier.path, params)
+        elif source == 'identifier':
+            value = getattr(parent, xform_name(identifier.name))
+        elif source == 'data':
+            # TODO: This should be a JMESPath query
+            value = getattr(parent, xform_name(identifier.path))
+        elif source == 'input':
+            # This value is set by the user, so ignore it here
+            continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source_type))
+                'Unsupported source type: {0}'.format(source))
+
+        results.append((xform_name(target), value))
 
     return results
 
@@ -206,9 +212,9 @@ class ResourceHandler(object):
         # will have one item consumed from the front of the list for each
         # resource that is instantiated. Items which are not a list will
         # be set as the same value on each new resource instance.
-        identifiers = build_identifiers(
+        identifiers = dict(build_identifiers(
             self.resource_model.identifiers, parent, params,
-            raw_response)
+            raw_response))
 
         # If any of the identifiers is a list, then the response is plural
         plural = [v for v in identifiers.values() if isinstance(v, list)]

@@ -11,8 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from boto3.resources.model import ResourceModel, Action, SubResourceList,\
-                                  Collection, Waiter
+from boto3.resources.model import ResourceModel, Action, Collection, Waiter
 from tests import BaseTestCase
 
 
@@ -47,8 +46,8 @@ class TestModels(BaseTestCase):
                     'request': {
                         'operation': 'GetFrobsOperation',
                         'params': [
-                            {'target': 'FrobId', 'sourceType': 'identifier',
-                             'source': 'Id'}
+                            {'target': 'FrobId', 'source': 'identifier',
+                             'name': 'Id'}
                         ]
                     },
                     'path': 'Container.Frobs[]'
@@ -65,8 +64,8 @@ class TestModels(BaseTestCase):
         self.assertIsInstance(action.request.params, list)
         self.assertEqual(len(action.request.params), 1)
         self.assertEqual(action.request.params[0].target, 'FrobId')
-        self.assertEqual(action.request.params[0].source_type, 'identifier')
-        self.assertEqual(action.request.params[0].source, 'Id')
+        self.assertEqual(action.request.params[0].source, 'identifier')
+        self.assertEqual(action.request.params[0].name, 'Id')
         self.assertEqual(action.path, 'Container.Frobs[]')
 
     def test_resource_action_response_resource(self):
@@ -127,32 +126,39 @@ class TestModels(BaseTestCase):
 
     def test_sub_resources(self):
         model = ResourceModel('test', {
-            'subResources': {
-                'identifiers': {
-                    'FrobId': 'Id'
-                },
-                'resources': ['Frob']
+            'has': {
+                'Frob': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target': 'Id', 'source': 'input'}
+                        ]
+                    }
+                }
             }
         }, {
             'Frob': {}
         })
 
-        self.assertIsInstance(model.sub_resources, SubResourceList)
-        self.assertEqual(model.sub_resources.identifiers['FrobId'], 'Id')
-        self.assertEqual(model.sub_resources.resource_names[0], 'Frob')
+        self.assertIsInstance(model.subresources, list)
 
-        resource = model.sub_resources.resources[0]
-        self.assertEqual(resource.name, 'Frob')
+        action = model.subresources[0]
+        resource = action.resource
+
+        self.assertEqual(action.name, 'Frob')
+        self.assertEqual(resource.identifiers[0].target, 'Id')
+        self.assertEqual(resource.identifiers[0].source, 'input')
+        self.assertEqual(resource.type, 'Frob')
 
     def test_resource_references(self):
         model_def = {
-            'belongsTo': {
+            'has': {
                 'Frob': {
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
-                            {'target':'Id', 'sourceType':'dataMember',
-                             'source':'FrobId'}
+                            {'target':'Id', 'source':'data',
+                             'path':'FrobId'}
                         ]
                     }
                 }
@@ -170,46 +176,8 @@ class TestModels(BaseTestCase):
         self.assertEqual(ref.name, 'Frob')
         self.assertEqual(ref.resource.type, 'Frob')
         self.assertEqual(ref.resource.identifiers[0].target, 'Id')
-        self.assertEqual(ref.resource.identifiers[0].source_type,
-                         'dataMember')
-        self.assertEqual(ref.resource.identifiers[0].source, 'FrobId')
-
-    def test_reverse_reference(self):
-        # Here the Code resource has no explicit ``hasOne`` defined, however
-        # by accessing the model's ``reverse_references`` you can see that
-        # it provides such a relation to Frob based on the Code resource's
-        # own identifiers (FrobId in this case).
-        resource_defs = {
-            'Frob': {
-                'identifiers': [{'name': 'Id'}],
-                'subResources': {
-                    'identifiers': {'FrobId': 'Id'},
-                    'resources': ['Code']
-                }
-            },
-            'Code': {
-                'identifiers': [
-                    {'name': 'FrobId'},
-                    {'name': 'Id'}
-                ]
-            }
-        }
-        model_def = resource_defs['Code']
-        model = ResourceModel('Code', model_def, resource_defs)
-
-        references = model.reverse_references
-
-        self.assertIsInstance(references, list)
-        self.assertEqual(len(references), 1,
-                         'Code should have a single reverse ref to Frob')
-
-        ref = references[0]
-        self.assertEqual(ref.name, 'Frob')
-        self.assertEqual(ref.resource.type, 'Frob')
-        self.assertEqual(ref.resource.identifiers[0].target, 'FrobId')
-        self.assertEqual(ref.resource.identifiers[0].source_type,
-                         'identifier')
-        self.assertEqual(ref.resource.identifiers[0].source, 'Id')
+        self.assertEqual(ref.resource.identifiers[0].source, 'data')
+        self.assertEqual(ref.resource.identifiers[0].path, 'FrobId')
 
     def test_resource_collections(self):
         model = ResourceModel('test', {

@@ -6,7 +6,7 @@
         "resource": {
           "type": "DhcpOptions",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "DhcpOptions.DhcpOptionsId" }
+            { "target": "Id", "source": "response", "path": "DhcpOptions.DhcpOptionsId" }
           ],
           "path": "DhcpOptions"
         }
@@ -16,7 +16,7 @@
         "resource": {
           "type": "Instance",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Instances[].InstanceId" }
+            { "target": "Id", "source": "response", "path": "Instances[].InstanceId" }
           ],
           "path": "Instances[]"
         }
@@ -26,7 +26,7 @@
         "resource": {
           "type": "InternetGateway",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "InternetGateway.InternetGatewayId" }
+            { "target": "Id", "source": "response", "path": "InternetGateway.InternetGatewayId" }
           ],
           "path": "InternetGateway"
         }
@@ -36,7 +36,7 @@
         "resource": {
           "type": "KeyPair",
           "identifiers": [
-            { "target": "Name", "sourceType": "responsePath", "source": "KeyName" }
+            { "target": "Name", "source": "response", "path": "KeyName" }
           ]
         }
       },
@@ -45,7 +45,7 @@
         "resource": {
           "type": "NetworkAcl",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "NetworkAcl.NetworkAclId" }
+            { "target": "Id", "source": "response", "path": "NetworkAcl.NetworkAclId" }
           ],
           "path": "NetworkAcl"
         }
@@ -55,7 +55,7 @@
         "resource": {
           "type": "NetworkInterface",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "NetworkInterface.NetworkInterfaceId" }
+            { "target": "Id", "source": "response", "path": "NetworkInterface.NetworkInterfaceId" }
           ],
           "path": "NetworkInterface"
         }
@@ -65,7 +65,7 @@
         "resource": {
           "type": "PlacementGroup",
           "identifiers": [
-            { "target": "Id", "sourceType": "requestParameter", "source": "GroupName" }
+            { "target": "Id", "source": "requestParameter", "path": "GroupName" }
           ]
         }
       },
@@ -74,7 +74,7 @@
         "resource": {
           "type": "RouteTable",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "RouteTable.RouteTableId" }
+            { "target": "Id", "source": "response", "path": "RouteTable.RouteTableId" }
           ],
           "path": "RouteTable"
         }
@@ -84,7 +84,7 @@
         "resource": {
           "type": "SecurityGroup",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "GroupId" }
+            { "target": "Id", "source": "response", "path": "GroupId" }
           ]
         }
       },
@@ -93,9 +93,9 @@
         "resource": {
           "type": "Snapshot",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "SnapshotId" }
+            { "target": "Id", "source": "response", "path": "SnapshotId" }
           ],
-          "path": "$"
+          "path": "@"
         }
       },
       "CreateSubnet": {
@@ -103,7 +103,7 @@
         "resource": {
           "type": "Subnet",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Subnet.SubnetId" }
+            { "target": "Id", "source": "response", "path": "Subnet.SubnetId" }
           ],
           "path": "Subnet"
         }
@@ -113,9 +113,9 @@
         "resource": {
           "type": "Tag",
           "identifiers": [
-            { "target": "ResourceId", "sourceType": "requestParameter", "source": "Resources[]" },
-            { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-            { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+            { "target": "ResourceId", "source": "requestParameter", "path": "Resources[]" },
+            { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+            { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
           ]
         }
       },
@@ -124,9 +124,9 @@
         "resource": {
           "type": "Image",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "VolumeId" }
+            { "target": "Id", "source": "response", "path": "VolumeId" }
           ],
-          "path": "$"
+          "path": "@"
         }
       },
       "CreateVpc": {
@@ -134,7 +134,7 @@
         "resource": {
           "type": "Vpc",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Vpc.VpcId" }
+            { "target": "Id", "source": "response", "path": "Vpc.VpcId" }
           ],
           "path": "Vpc"
         }
@@ -144,7 +144,7 @@
         "resource": {
           "type": "VpcPeeringConnection",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "VpcPeeringConnection.VpcPeeringConnectionId" }
+            { "target": "Id", "source": "response", "path": "VpcPeeringConnection.VpcPeeringConnectionId" }
           ],
           "path": "VpcPeeringConnection"
         }
@@ -157,7 +157,7 @@
         "resource": {
           "type": "KeyPair",
           "identifiers": [
-            { "target": "Name", "sourceType": "responsePath", "source": "KeyName" }
+            { "target": "Name", "source": "response", "path": "KeyName" }
           ]
         }
       },
@@ -166,7 +166,137 @@
         "resource": {
           "type": "Image",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "ImageId" }
+            { "target": "Id", "source": "response", "path": "ImageId" }
+          ]
+        }
+      }
+    },
+    "has": {
+      "DhcpOptions": {
+        "resource": {
+          "type": "DhcpOptions",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Image": {
+        "resource": {
+          "type": "Image",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Instance": {
+        "resource": {
+          "type": "Instance",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "InternetGateway": {
+        "resource": {
+          "type": "InternetGateway",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "KeyPair": {
+        "resource": {
+          "type": "KeyPair",
+          "identifiers": [
+            { "target": "Name", "source": "input" }
+          ]
+        }
+      },
+      "NetworkAcl": {
+        "resource": {
+          "type": "NetworkAcl",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "NetworkInterface": {
+        "resource": {
+          "type": "NetworkInterface",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "PlacementGroup": {
+        "resource": {
+          "type": "PlacementGroup",
+          "identifiers": [
+            { "target": "Name", "source": "input" }
+          ]
+        }
+      },
+      "RouteTable": {
+        "resource": {
+          "type": "RouteTable",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "RouteTableAssociation": {
+        "resource": {
+          "type": "RouteTableAssociation",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "SecurityGroup": {
+        "resource": {
+          "type": "SecurityGroup",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Snapshot": {
+        "resource": {
+          "type": "Snapshot",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Subnet": {
+        "resource": {
+          "type": "Subnet",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Volume": {
+        "resource": {
+          "type": "Volume",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Vpc": {
+        "resource": {
+          "type": "Vpc",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "VpcPeeringConnection": {
+        "resource": {
+          "type": "VpcPeeringConnection",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
           ]
         }
       }
@@ -177,7 +307,7 @@
         "resource": {
           "type": "DhcpOptions",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "DhcpOptions[].DhcpOptionsId" }
+            { "target": "Id", "source": "response", "path": "DhcpOptions[].DhcpOptionsId" }
           ],
           "path": "DhcpOptions[]"
         }
@@ -187,7 +317,7 @@
         "resource": {
           "type": "Image",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Images[].ImageId" }
+            { "target": "Id", "source": "response", "path": "Images[].ImageId" }
           ],
           "path": "Images[]"
         }
@@ -197,7 +327,7 @@
         "resource": {
           "type": "Instance",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Reservations[].Instances[].InstanceId" }
+            { "target": "Id", "source": "response", "path": "Reservations[].Instances[].InstanceId" }
           ],
           "path": "Reservations[].Instances[]"
         }
@@ -207,7 +337,7 @@
         "resource": {
           "type": "InternetGateway",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "InternetGateways[].InternetGatewayId" }
+            { "target": "Id", "source": "response", "path": "InternetGateways[].InternetGatewayId" }
           ],
           "path": "InternetGateways[]"
         }
@@ -217,7 +347,7 @@
         "resource": {
           "type": "KeyPair",
           "identifiers": [
-            { "target": "Name", "sourceType": "responsePath", "source": "KeyPairs[].KeyName" }
+            { "target": "Name", "source": "response", "path": "KeyPairs[].KeyName" }
           ],
           "path": "KeyPairs[]"
         }
@@ -227,7 +357,7 @@
         "resource": {
           "type": "NetworkAcl",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "NetworkAcls[].NetworkAclId" }
+            { "target": "Id", "source": "response", "path": "NetworkAcls[].NetworkAclId" }
           ],
           "path": "NetworkAcls[]"
         }
@@ -237,7 +367,7 @@
         "resource": {
           "type": "NetworkInterface",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "NetworkInterfaces[].NetworkInterfaceId" }
+            { "target": "Id", "source": "response", "path": "NetworkInterfaces[].NetworkInterfaceId" }
           ],
           "path": "NetworkInterfaces[]"
         }
@@ -247,7 +377,7 @@
         "resource": {
           "type": "PlacementGroup",
           "identifiers": [
-            { "target": "Name", "sourceType": "responsePath", "source": "PlacementGroups[].GroupName" }
+            { "target": "Name", "source": "response", "path": "PlacementGroups[].GroupName" }
           ],
           "path": "PlacementGroups[]"
         }
@@ -257,7 +387,7 @@
         "resource": {
           "type": "RouteTable",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "RouteTables[].RouteTableId" }
+            { "target": "Id", "source": "response", "path": "RouteTables[].RouteTableId" }
           ],
           "path": "RouteTables[]"
         }
@@ -267,7 +397,7 @@
         "resource": {
           "type": "SecurityGroup",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "SecurityGroups[].GroupId" }
+            { "target": "Id", "source": "response", "path": "SecurityGroups[].GroupId" }
           ],
           "path": "SecurityGroups[]"
         }
@@ -277,7 +407,7 @@
         "resource": {
           "type": "Snapshot",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Snapshots[].SnapshotId" }
+            { "target": "Id", "source": "response", "path": "Snapshots[].SnapshotId" }
           ],
           "path": "Snapshots[]"
         }
@@ -287,7 +417,7 @@
         "resource": {
           "type": "Subnet",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Subnets[].SubnetId" }
+            { "target": "Id", "source": "response", "path": "Subnets[].SubnetId" }
           ],
           "path": "Subnets[]"
         }
@@ -297,7 +427,7 @@
         "resource": {
           "type": "Volume",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Volumes[].VolumeId" }
+            { "target": "Id", "source": "response", "path": "Volumes[].VolumeId" }
           ],
           "path": "Volumes[]"
         }
@@ -307,7 +437,7 @@
         "resource": {
           "type": "VpcPeeringConnection",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "VpcPeeringConnections[].VpcPeeringConnectionId" }
+            { "target": "Id", "source": "response", "path": "VpcPeeringConnections[].VpcPeeringConnectionId" }
           ],
           "path": "VpcPeeringConnections[]"
         }
@@ -317,7 +447,7 @@
         "resource": {
           "type": "Vpc",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Vpcs[].VpcId" }
+            { "target": "Id", "source": "response", "path": "Vpcs[].VpcId" }
           ],
           "path": "Vpcs[]"
         }
@@ -337,7 +467,7 @@
         "request": {
           "operation": "DescribeDhcpOptions",
           "params": [
-            { "target": "DhcpOptionsIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "DhcpOptionsIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "DhcpOptions[0]"
@@ -347,7 +477,7 @@
           "request": {
             "operation": "AssociateDhcpOptions",
             "params": [
-              { "target": "DhcpOptionsId", "sourceType": "identifier", "source": "Id" }
+              { "target": "DhcpOptionsId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -355,15 +485,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -371,7 +501,7 @@
           "request": {
             "operation": "DeleteDhcpOptions",
             "params": [
-              { "target": "DhcpOptionsId", "sourceType": "identifier", "source": "Id" }
+              { "target": "DhcpOptionsId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -389,7 +519,7 @@
         "request": {
           "operation": "DescribeImages",
           "params": [
-            { "target": "ImageIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "ImageIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Images[0]"
@@ -399,15 +529,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -415,7 +545,7 @@
           "request": {
             "operation": "DeregisterImage",
             "params": [
-              { "target": "ImageId", "sourceType": "identifier", "source": "Id" }
+              { "target": "ImageId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -423,7 +553,7 @@
           "request": {
             "operation": "DescribeImageAttribute",
             "params": [
-              { "target": "ImageId", "sourceType": "identifier", "source": "Id" }
+              { "target": "ImageId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -431,7 +561,7 @@
           "request": {
             "operation": "ModifyImageAttribute",
             "params": [
-              { "target": "ImageId", "sourceType": "identifier", "source": "Id" }
+              { "target": "ImageId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -439,7 +569,7 @@
           "request": {
             "operation": "ResetImageAttribute",
             "params": [
-              { "target": "ImageId", "sourceType": "identifier", "source": "Id" }
+              { "target": "ImageId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -457,7 +587,7 @@
         "request": {
           "operation": "DescribeInstances",
           "params": [
-            { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Reservations[0].Instances[0]"
@@ -467,7 +597,7 @@
           "request": {
             "operation": "AttachVolume",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -475,7 +605,7 @@
           "request": {
             "operation": "GetConsoleOutput",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -483,13 +613,13 @@
           "request": {
             "operation": "CreateImage",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Image",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "ImageId" }
+              { "target": "Id", "source": "response", "path": "ImageId" }
             ]
           }
         },
@@ -497,15 +627,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -513,7 +643,7 @@
           "request": {
             "operation": "DescribeInstanceAttribute",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -521,7 +651,7 @@
           "request": {
             "operation": "DetachVolume",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -529,7 +659,7 @@
           "request": {
             "operation": "ModifyInstanceAttribute",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -537,7 +667,7 @@
           "request": {
             "operation": "MonitorInstances",
             "params": [
-              { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -545,7 +675,7 @@
           "request": {
             "operation": "GetPasswordData",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -553,7 +683,7 @@
           "request": {
             "operation": "RebootInstances",
             "params": [
-              { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -561,7 +691,7 @@
           "request": {
             "operation": "ReportInstanceStatus",
             "params": [
-              { "target": "Instances[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Instances[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -569,7 +699,7 @@
           "request": {
             "operation": "ResetInstanceAttribute",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -577,8 +707,8 @@
           "request": {
             "operation": "ResetInstanceAttribute",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Attribute", "sourceType": "string", "source": "kernel" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" },
+              { "target": "Attribute", "source": "string", "value": "kernel" }
             ]
           }
         },
@@ -586,8 +716,8 @@
           "request": {
             "operation": "ResetInstanceAttribute",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Attribute", "sourceType": "string", "source": "ramdisk" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" },
+              { "target": "Attribute", "source": "string", "value": "ramdisk" }
             ]
           }
         },
@@ -595,8 +725,8 @@
           "request": {
             "operation": "ResetInstanceAttribute",
             "params": [
-              { "target": "InstanceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Attribute", "sourceType": "string", "source": "sourceDestCheck" }
+              { "target": "InstanceId", "source": "identifier", "name": "Id" },
+              { "target": "Attribute", "source": "string", "value": "sourceDestCheck" }
             ]
           }
         },
@@ -604,7 +734,7 @@
           "request": {
             "operation": "StartInstances",
             "params": [
-              { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -612,7 +742,7 @@
           "request": {
             "operation": "StopInstances",
             "params": [
-              { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -620,7 +750,7 @@
           "request": {
             "operation": "TerminateInstances",
             "params": [
-              { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -628,7 +758,7 @@
           "request": {
             "operation": "UnmonitorInstances",
             "params": [
-              { "target": "InstanceIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -638,7 +768,7 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -646,7 +776,7 @@
           "request": {
             "operation": "MonitorInstances",
             "params": [
-              { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -654,7 +784,7 @@
           "request": {
             "operation": "RebootInstances",
             "params": [
-              { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -662,7 +792,7 @@
           "request": {
             "operation": "StartInstances",
             "params": [
-              { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -670,7 +800,7 @@
           "request": {
             "operation": "StopInstances",
             "params": [
-              { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -678,7 +808,7 @@
           "request": {
             "operation": "TerminateInstances",
             "params": [
-              { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -686,7 +816,7 @@
           "request": {
             "operation": "UnmonitorInstances",
             "params": [
-              { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+              { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -695,49 +825,31 @@
         "Running": {
           "waiterName": "InstanceRunning",
           "params": [
-            { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+            { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
           ],
           "path": "Reservations[0].Instances[0]"
         },
         "Stopped": {
           "waiterName": "InstanceStopped",
           "params": [
-            { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+            { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
           ],
           "path": "Reservations[0].Instances[0]"
         },
         "Terminated": {
           "waiterName": "InstanceTerminated",
           "params": [
-            { "target": "InstanceIds[]", "sourceType": "identifier", "source": "Id" }
+            { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
           ],
           "path": "Reservations[0].Instances[0]"
         }
       },
-      "hasMany": {
-        "Volumes": {
-          "request": {
-            "operation": "DescribeVolumes",
-            "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "attachment.instance-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
-            ]
-          },
-          "resource": {
-            "type": "Volume",
-            "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Volumes[].VolumeId" }
-            ],
-            "path": "Volumes[]"
-          }
-        }
-      },
-      "belongsTo": {
+      "has": {
         "Image": {
           "resource": {
             "type": "Image",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "ImageId" }
+              { "target": "Id", "source": "data", "path": "ImageId" }
             ]
           }
         },
@@ -745,7 +857,7 @@
           "resource": {
             "type": "KeyPair",
             "identifiers": [
-              { "target": "Name", "sourceType": "dataMember", "source": "KeyName" }
+              { "target": "Name", "source": "data", "path": "KeyName" }
             ]
           }
         },
@@ -753,7 +865,7 @@
           "resource": {
             "type": "PlacementGroup",
             "identifiers": [
-              { "target": "Name", "sourceType": "dataMember", "source": "Placement.GroupName" }
+              { "target": "Name", "source": "data", "path": "Placement.GroupName" }
             ]
           }
         },
@@ -761,7 +873,7 @@
           "resource": {
             "type": "Subnet",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "SubnetId" }
+              { "target": "Id", "source": "data", "path": "SubnetId" }
             ]
           }
         },
@@ -769,8 +881,26 @@
           "resource": {
             "type": "Vpc",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "VpcId" }
+              { "target": "Id", "source": "data", "path": "VpcId" }
             ]
+          }
+        }
+      },
+      "hasMany": {
+        "Volumes": {
+          "request": {
+            "operation": "DescribeVolumes",
+            "params": [
+              { "target": "Filters[0].Name", "source": "string", "value": "attachment.instance-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "Volume",
+            "identifiers": [
+              { "target": "Id", "source": "response", "path": "Volumes[].VolumeId" }
+            ],
+            "path": "Volumes[]"
           }
         }
       }
@@ -787,7 +917,7 @@
         "request": {
           "operation": "DescribeInternetGateways",
           "params": [
-            { "target": "InternetGatewayIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "InternetGatewayIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "InternetGateways[0]"
@@ -797,7 +927,7 @@
           "request": {
             "operation": "AttachInternetGateway",
             "params": [
-              { "target": "InternetGatewayId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InternetGatewayId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -805,15 +935,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -821,7 +951,7 @@
           "request": {
             "operation": "DeleteInternetGateway",
             "params": [
-              { "target": "InternetGatewayId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InternetGatewayId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -829,7 +959,7 @@
           "request": {
             "operation": "DetachInternetGateway",
             "params": [
-              { "target": "InternetGatewayId", "sourceType": "identifier", "source": "Id" }
+              { "target": "InternetGatewayId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -847,7 +977,7 @@
         "request": {
           "operation": "DescribeKeyPairs",
           "params": [
-            { "target": "KeyNames[0]", "sourceType": "identifier", "source": "Name" }
+            { "target": "KeyNames[0]", "source": "identifier", "name": "Name" }
           ]
         },
         "path": "KeyPairs[0]"
@@ -857,7 +987,7 @@
           "request": {
             "operation": "DeleteKeyPair",
             "params": [
-              { "target": "KeyName", "sourceType": "identifier", "source": "Name" }
+              { "target": "KeyName", "source": "identifier", "name": "Name" }
             ]
           }
         }
@@ -875,7 +1005,7 @@
         "request": {
           "operation": "DescribeNetworkAcls",
           "params": [
-            { "target": "NetworkAclIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "NetworkAclIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "NetworkAcls[0]"
@@ -885,7 +1015,7 @@
           "request": {
             "operation": "CreateNetworkAclEntry",
             "params": [
-              { "target": "NetworkAclId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkAclId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -893,15 +1023,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -909,7 +1039,7 @@
           "request": {
             "operation": "DeleteNetworkAcl",
             "params": [
-              { "target": "NetworkAclId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkAclId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -917,7 +1047,7 @@
           "request": {
             "operation": "DeleteNetworkAclEntry",
             "params": [
-              { "target": "NetworkAclId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkAclId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -925,7 +1055,7 @@
           "request": {
             "operation": "ReplaceNetworkAclAssociation",
             "params": [
-              { "target": "NetworkAclId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkAclId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -933,17 +1063,17 @@
           "request": {
             "operation": "ReplaceNetworkAclEntry",
             "params": [
-              { "target": "NetworkAclId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkAclId", "source": "identifier", "name": "Id" }
             ]
           }
         }
       },
-      "belongsTo": {
+      "has": {
         "Vpc": {
           "resource": {
             "type": "Vpc",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "VpcId" }
+              { "target": "Id", "source": "data", "path": "VpcId" }
             ]
           }
         }
@@ -961,7 +1091,7 @@
         "request": {
           "operation": "DescribeNetworkInterfaces",
           "params": [
-            { "target": "NetworkInterfaceIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "NetworkInterfaceIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "NetworkInterfaces[0]"
@@ -971,7 +1101,7 @@
           "request": {
             "operation": "AssignPrivateIpAddresses",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -979,7 +1109,7 @@
           "request": {
             "operation": "AttachNetworkInterface",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -987,15 +1117,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -1003,7 +1133,7 @@
           "request": {
             "operation": "DeleteNetworkInterface",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1011,7 +1141,7 @@
           "request": {
             "operation": "DescribeNetworkInterfaceAttribute",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1019,7 +1149,7 @@
           "request": {
             "operation": "DetachNetworkInterface",
             "params": [
-              { "target": "AttachmentId", "sourceType": "dataMember", "source": "Attachment.AttachmentId" }
+              { "target": "AttachmentId", "source": "data", "path": "Attachment.AttachmentId" }
             ]
           }
         },
@@ -1027,7 +1157,7 @@
           "request": {
             "operation": "ModifyNetworkInterfaceAttribute",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1035,7 +1165,7 @@
           "request": {
             "operation": "ResetNetworkInterfaceAttribute",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1043,17 +1173,17 @@
           "request": {
             "operation": "UnassignPrivateIpAddresses",
             "params": [
-              { "target": "NetworkInterfaceId", "sourceType": "identifier", "source": "Id" }
+              { "target": "NetworkInterfaceId", "source": "identifier", "name": "Id" }
             ]
           }
         }
       },
-      "belongsTo": {
+      "has": {
         "Subnet": {
           "resource": {
             "type": "Subnet",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "SubnetId" }
+              { "target": "Id", "source": "data", "path": "SubnetId" }
             ]
           }
         },
@@ -1061,7 +1191,7 @@
           "resource": {
             "type": "Vpc",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "VpcId" }
+              { "target": "Id", "source": "data", "path": "VpcId" }
             ]
           }
         }
@@ -1079,7 +1209,7 @@
         "request": {
           "operation": "DescribePlacementGroups",
           "params": [
-            { "target": "GroupNames[0]", "sourceType": "identifier", "source": "Name" }
+            { "target": "GroupNames[0]", "source": "identifier", "name": "Name" }
           ]
         },
         "path": "PlacementGroups[0]"
@@ -1089,7 +1219,7 @@
           "request": {
             "operation": "DeletePlacementGroup",
             "params": [
-              { "target": "GroupName", "sourceType": "identifier", "source": "Name" }
+              { "target": "GroupName", "source": "identifier", "name": "Name" }
             ]
           }
         }
@@ -1099,14 +1229,14 @@
           "request": {
             "operation": "DescribeInstances",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "placement-group-name" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Name" }
+              { "target": "Filters[0].Name", "source": "string", "value": "placement-group-name" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Name" }
             ]
           },
           "resource": {
             "type": "Instance",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Reservations[].Instances[].InstanceId" }
+              { "target": "Id", "source": "response", "path": "Reservations[].Instances[].InstanceId" }
             ],
             "path": "Reservations[].Instances[]"
           }
@@ -1125,7 +1255,7 @@
         "request": {
           "operation": "DescribeRouteTables",
           "params": [
-            { "target": "RouteTableIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "RouteTableIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "RouteTables[0]"
@@ -1135,13 +1265,13 @@
           "request": {
             "operation": "AssociateRouteTable",
             "params": [
-              { "target": "RouteTableId", "sourceType": "identifier", "source": "Id" }
+              { "target": "RouteTableId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "RouteTableAssociation",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "AssociationId" }
+              { "target": "Id", "source": "response", "path": "AssociationId" }
             ]
           }
         },
@@ -1149,7 +1279,7 @@
           "request": {
             "operation": "CreateRoute",
             "params": [
-              { "target": "RouteTableId", "sourceType": "identifier", "source": "Id" }
+              { "target": "RouteTableId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1157,15 +1287,25 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Vpc": {
+          "resource": {
+            "type": "Vpc",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "VpcId" }
             ]
           }
         }
@@ -1175,25 +1315,15 @@
           "request": {
             "operation": "DescribeRouteTables",
             "params": [
-              { "target": "RouteTableIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "RouteTableIds[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "RouteTableAssociation",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "RouteTables[0].Associations[].RouteTableAssociationId" }
+              { "target": "Id", "source": "response", "path": "RouteTables[0].Associations[].RouteTableAssociationId" }
             ],
             "path": "RouteTables[0].Associations[]"
-          }
-        }
-      },
-      "belongsTo": {
-        "Vpc": {
-          "resource": {
-            "type": "Vpc",
-            "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "VpcId" }
-            ]
           }
         }
       }
@@ -1211,7 +1341,7 @@
           "request": {
             "operation": "DisassociateRouteTable",
             "params": [
-              { "target": "AssociationId", "sourceType": "identifier", "source": "Id" }
+              { "target": "AssociationId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1219,23 +1349,23 @@
           "request": {
             "operation": "ReplaceRouteTableAssociation",
             "params": [
-              { "target": "AssociationId", "sourceType": "identifier", "source": "Id" }
+              { "target": "AssociationId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "RouteTableAssociation",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "NewAssociationId" }
+              { "target": "Id", "source": "response", "path": "NewAssociationId" }
             ]
           }
         }
       },
-      "belongsTo": {
+      "has": {
         "RouteTable": {
           "resource": {
             "type": "RouteTable",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "RouteTableId" }
+              { "target": "Id", "source": "data", "path": "RouteTableId" }
             ]
           }
         },
@@ -1243,7 +1373,7 @@
           "resource": {
             "type": "Subnet",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "SubnetId" }
+              { "target": "Id", "source": "data", "path": "SubnetId" }
             ]
           }
         }
@@ -1261,7 +1391,7 @@
         "request": {
           "operation": "DescribeSecurityGroups",
           "params": [
-            { "target": "GroupIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "GroupIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "SecurityGroups[0]"
@@ -1271,7 +1401,7 @@
           "request": {
             "operation": "AuthorizeSecurityGroupEgress",
             "params": [
-              { "target": "GroupId", "sourceType": "identifier", "source": "Id" }
+              { "target": "GroupId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1279,7 +1409,7 @@
           "request": {
             "operation": "AuthorizeSecurityGroupIngress",
             "params": [
-              { "target": "GroupId", "sourceType": "identifier", "source": "Id" }
+              { "target": "GroupId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1287,15 +1417,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -1303,7 +1433,7 @@
           "request": {
             "operation": "DeleteSecurityGroup",
             "params": [
-              { "target": "GroupId", "sourceType": "identifier", "source": "Id" }
+              { "target": "GroupId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1311,7 +1441,7 @@
           "request": {
             "operation": "RevokeSecurityGroupEgress",
             "params": [
-              { "target": "GroupId", "sourceType": "identifier", "source": "Id" }
+              { "target": "GroupId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1319,7 +1449,7 @@
           "request": {
             "operation": "RevokeSecurityGroupIngress",
             "params": [
-              { "target": "GroupId", "sourceType": "identifier", "source": "Id" }
+              { "target": "GroupId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -1337,7 +1467,7 @@
         "request": {
           "operation": "DescribeSnapshots",
           "params": [
-            { "target": "SnapshotIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "SnapshotIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Snapshots[0]"
@@ -1347,7 +1477,7 @@
           "request": {
             "operation": "CopySnapshot",
             "params": [
-              { "target": "SourceSnapshotId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SourceSnapshotId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1355,15 +1485,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -1371,7 +1501,7 @@
           "request": {
             "operation": "DeleteSnapshot",
             "params": [
-              { "target": "SnapshotId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SnapshotId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1379,7 +1509,7 @@
           "request": {
             "operation": "DescribeSnapshotAttribute",
             "params": [
-              { "target": "SnapshotId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SnapshotId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1387,7 +1517,7 @@
           "request": {
             "operation": "ModifySnapshotAttribute",
             "params": [
-              { "target": "SnapshotId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SnapshotId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1395,17 +1525,17 @@
           "request": {
             "operation": "ResetSnapshotAttribute",
             "params": [
-              { "target": "SnapshotId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SnapshotId", "source": "identifier", "name": "Id" }
             ]
           }
         }
       },
-      "belongsTo": {
+      "has": {
         "Volume": {
           "resource": {
             "type": "Volume",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "VolumeId" }
+              { "target": "Id", "source": "data", "path": "VolumeId" }
             ]
           }
         }
@@ -1423,7 +1553,7 @@
         "request": {
           "operation": "DescribeSubnets",
           "params": [
-            { "target": "SubnetIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "SubnetIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Subnets[0]"
@@ -1433,13 +1563,13 @@
           "request": {
             "operation": "RunInstances",
             "params": [
-              { "target": "SubnetId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SubnetId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Instance",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Instances[].InstanceId" }
+              { "target": "Id", "source": "response", "path": "Instances[].InstanceId" }
             ],
             "path": "Instances[]"
           }
@@ -1448,13 +1578,13 @@
           "request": {
             "operation": "CreateNetworkInterface",
             "params": [
-              { "target": "SubnetId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SubnetId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "NetworkInterface",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "NetworkInterface.NetworkInterfaceId" }
+              { "target": "Id", "source": "response", "path": "NetworkInterface.NetworkInterfaceId" }
             ],
             "path": "NetworkInterface"
           }
@@ -1463,15 +1593,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -1479,7 +1609,17 @@
           "request": {
             "operation": "DeleteSubnet",
             "params": [
-              { "target": "SubnetId", "sourceType": "identifier", "source": "Id" }
+              { "target": "SubnetId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Vpc": {
+          "resource": {
+            "type": "Vpc",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "VpcId" }
             ]
           }
         }
@@ -1489,14 +1629,14 @@
           "request": {
             "operation": "DescribeInstances",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "subnet-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "subnet-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Instance",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Reservations[].Instances[].InstanceId" }
+              { "target": "Id", "source": "response", "path": "Reservations[].Instances[].InstanceId" }
             ],
             "path": "Reservations[].Instances[]"
           }
@@ -1505,26 +1645,16 @@
           "request": {
             "operation": "DescribeNetworkInterfaces",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "subnet-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "subnet-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "NetworkInterface",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "NetworkInterfaces[].NetworkInterfaceId" }
+              { "target": "Id", "source": "response", "path": "NetworkInterfaces[].NetworkInterfaceId" }
             ],
             "path": "NetworkInterfaces[]"
-          }
-        }
-      },
-      "belongsTo": {
-        "Vpc": {
-          "resource": {
-            "type": "Vpc",
-            "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "VpcId" }
-            ]
           }
         }
       }
@@ -1549,10 +1679,10 @@
         "request": {
           "operation": "DescribeTags",
           "params": [
-            { "target": "Filters[0].Name", "sourceType": "string", "source": "key" },
-            { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Key" },
-            { "target": "Filters[1].Name", "sourceType": "string", "source": "value" },
-            { "target": "Filters[1].Values[0]", "sourceType": "identifier", "source": "Value" }
+            { "target": "Filters[0].Name", "source": "string", "value": "key" },
+            { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Key" },
+            { "target": "Filters[1].Name", "source": "string", "value": "value" },
+            { "target": "Filters[1].Values[0]", "source": "identifier", "name": "Value" }
           ]
         },
         "path": "Tags[0]"
@@ -1562,9 +1692,9 @@
           "request": {
             "operation": "DeleteTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "ResourceId" },
-              { "target": "Tags[0].Key", "sourceType": "identifier", "source": "Key" },
-              { "target": "Tags[0].Value", "sourceType": "identifier", "source": "Value" }
+              { "target": "Resources[0]", "source": "identifier", "name": "ResourceId" },
+              { "target": "Tags[0].Key", "source": "identifier", "name": "Key" },
+              { "target": "Tags[0].Value", "source": "identifier", "name": "Value" }
             ]
           }
         }
@@ -1574,9 +1704,9 @@
           "request": {
             "operation": "DeleteTags",
             "params": [
-              { "target": "Resources[]", "sourceType": "identifier", "source": "ResourceId" },
-              { "target": "Tags[*].Key", "sourceType": "identifier", "source": "Key" },
-              { "target": "Tags[*].Value", "sourceType": "identifier", "source": "Value" }
+              { "target": "Resources[]", "source": "identifier", "name": "ResourceId" },
+              { "target": "Tags[*].Key", "source": "identifier", "name": "Key" },
+              { "target": "Tags[*].Value", "source": "identifier", "name": "Value" }
             ]
           }
         }
@@ -1594,7 +1724,7 @@
         "request": {
           "operation": "DescribeVolumes",
           "params": [
-            { "target": "VolumeIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "VolumeIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Volumes[0]"
@@ -1604,7 +1734,7 @@
           "request": {
             "operation": "AttachVolume",
             "params": [
-              { "target": "VolumeId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1612,30 +1742,30 @@
           "request": {
             "operation": "CreateSnapshot",
             "params": [
-              { "target": "VolumeId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Snapshot",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "SnapshotId" }
+              { "target": "Id", "source": "response", "path": "SnapshotId" }
             ],
-            "path": "$"
+            "path": "@"
           }
         },
         "CreateTags": {
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -1643,7 +1773,7 @@
           "request": {
             "operation": "DescribeVolumeAttribute",
             "params": [
-              { "target": "VolumeId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1651,7 +1781,7 @@
           "request": {
             "operation": "DescribeVolumeStatus",
             "params": [
-              { "target": "VolumeIds[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeIds[0]", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1659,7 +1789,7 @@
           "request": {
             "operation": "DetachVolume",
             "params": [
-              { "target": "VolumeId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1667,7 +1797,7 @@
           "request": {
             "operation": "EnableVolumeIO",
             "params": [
-              { "target": "VolumeId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1675,7 +1805,7 @@
           "request": {
             "operation": "ModifyVolumeAttribute",
             "params": [
-              { "target": "VolumeId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -1685,14 +1815,14 @@
           "request": {
             "operation": "DescribeSnapshots",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "volume-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "volume-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Snapshot",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Snapshots[].SnapshotId" }
+              { "target": "Id", "source": "response", "path": "Snapshots[].SnapshotId" }
             ],
             "path": "Snapshots[]"
           }
@@ -1711,7 +1841,7 @@
         "request": {
           "operation": "DescribeVpcs",
           "params": [
-            { "target": "VpcIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "VpcIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Vpcs[0]"
@@ -1721,7 +1851,7 @@
           "request": {
             "operation": "AssociateDhcpOptions",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1729,7 +1859,7 @@
           "request": {
             "operation": "AttachInternetGateway",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1737,13 +1867,13 @@
           "request": {
             "operation": "CreateNetworkAcl",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "NetworkAcl",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "NetworkAcl.NetworkAclId" }
+              { "target": "Id", "source": "response", "path": "NetworkAcl.NetworkAclId" }
             ],
             "path": "NetworkAcl"
           }
@@ -1752,13 +1882,13 @@
           "request": {
             "operation": "CreateRouteTable",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "RouteTable",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "RouteTable.RouteTableId" }
+              { "target": "Id", "source": "response", "path": "RouteTable.RouteTableId" }
             ],
             "path": "RouteTable"
           }
@@ -1767,13 +1897,13 @@
           "request": {
             "operation": "CreateSecurityGroup",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "SecurityGroup",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "GroupId" }
+              { "target": "Id", "source": "response", "path": "GroupId" }
             ]
           }
         },
@@ -1781,13 +1911,13 @@
           "request": {
             "operation": "CreateSubnet",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Subnet",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Subnet.SubnetId" }
+              { "target": "Id", "source": "response", "path": "Subnet.SubnetId" }
             ],
             "path": "Subnet"
           }
@@ -1796,15 +1926,15 @@
           "request": {
             "operation": "CreateTags",
             "params": [
-              { "target": "Resources[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Resources[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Tag",
             "identifiers": [
-              { "target": "ResourceId", "sourceType": "identifier", "source": "Id" },
-              { "target": "Key", "sourceType": "requestParameter", "source": "Tags[].Key" },
-              { "target": "Value", "sourceType": "requestParameter", "source": "Tags[].Value" }
+              { "target": "ResourceId", "source": "identifier", "name": "Id" },
+              { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
+              { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
         },
@@ -1812,7 +1942,7 @@
           "request": {
             "operation": "DeleteVpc",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1820,7 +1950,7 @@
           "request": {
             "operation": "DescribeVpcAttribute",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1828,7 +1958,7 @@
           "request": {
             "operation": "DetachInternetGateway",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1836,7 +1966,7 @@
           "request": {
             "operation": "ModifyVpcAttribute",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -1844,15 +1974,25 @@
           "request": {
             "operation": "CreateVpcPeeringConnection",
             "params": [
-              { "target": "VpcId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "VpcPeeringConnection",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "VpcPeeringConnection.VpcPeeringConnectionId" }
+              { "target": "Id", "source": "response", "path": "VpcPeeringConnection.VpcPeeringConnectionId" }
             ],
             "path": "VpcPeeringConnection"
+          }
+        }
+      },
+      "has": {
+        "DhcpOptions": {
+          "resource": {
+            "type": "DhcpOptions",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "DhcpOptionsId" }
+            ]
           }
         }
       },
@@ -1861,14 +2001,14 @@
           "request": {
             "operation": "DescribeVpcPeeringConnections",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "accepter-vpc-info.vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "accepter-vpc-info.vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "VpcPeeringConnection",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "VpcPeeringConnections[].VpcPeeringConnectionId" }
+              { "target": "Id", "source": "response", "path": "VpcPeeringConnections[].VpcPeeringConnectionId" }
             ],
             "path": "VpcPeeringConnections[]"
           }
@@ -1877,14 +2017,14 @@
           "request": {
             "operation": "DescribeInstances",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Instance",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Reservations[].Instances[].InstanceId" }
+              { "target": "Id", "source": "response", "path": "Reservations[].Instances[].InstanceId" }
             ],
             "path": "Reservations[].Instances[]"
           }
@@ -1893,14 +2033,14 @@
           "request": {
             "operation": "DescribeInternetGateways",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "attachment.vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "attachment.vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "InternetGateway",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "InternetGateways[].InternetGatewayId" }
+              { "target": "Id", "source": "response", "path": "InternetGateways[].InternetGatewayId" }
             ],
             "path": "InternetGateways[]"
           }
@@ -1909,14 +2049,14 @@
           "request": {
             "operation": "DescribeNetworkAcls",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "NetworkAcl",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "NetworkAcls[].NetworkAclId" }
+              { "target": "Id", "source": "response", "path": "NetworkAcls[].NetworkAclId" }
             ],
             "path": "NetworkAcls[]"
           }
@@ -1925,14 +2065,14 @@
           "request": {
             "operation": "DescribeNetworkInterfaces",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "NetworkInterface",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "NetworkInterfaces[].NetworkInterfaceId" }
+              { "target": "Id", "source": "response", "path": "NetworkInterfaces[].NetworkInterfaceId" }
             ],
             "path": "NetworkInterfaces[]"
           }
@@ -1941,14 +2081,14 @@
           "request": {
             "operation": "DescribeVpcPeeringConnections",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "requester-vpc-info.vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "requester-vpc-info.vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "VpcPeeringConnection",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "VpcPeeringConnections[].VpcPeeringConnectionId" }
+              { "target": "Id", "source": "response", "path": "VpcPeeringConnections[].VpcPeeringConnectionId" }
             ],
             "path": "VpcPeeringConnections[]"
           }
@@ -1957,14 +2097,14 @@
           "request": {
             "operation": "DescribeRouteTables",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "RouteTable",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "RouteTables[].RouteTableId" }
+              { "target": "Id", "source": "response", "path": "RouteTables[].RouteTableId" }
             ],
             "path": "RouteTables[]"
           }
@@ -1973,14 +2113,14 @@
           "request": {
             "operation": "DescribeSecurityGroups",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "SecurityGroup",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "SecurityGroups[].GroupId" }
+              { "target": "Id", "source": "response", "path": "SecurityGroups[].GroupId" }
             ],
             "path": "SecurityGroups[]"
           }
@@ -1989,26 +2129,16 @@
           "request": {
             "operation": "DescribeSubnets",
             "params": [
-              { "target": "Filters[0].Name", "sourceType": "string", "source": "vpc-id" },
-              { "target": "Filters[0].Values[0]", "sourceType": "identifier", "source": "Id" }
+              { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Subnet",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Subnets[].SubnetId" }
+              { "target": "Id", "source": "response", "path": "Subnets[].SubnetId" }
             ],
             "path": "Subnets[]"
-          }
-        }
-      },
-      "belongsTo": {
-        "DhcpOptions": {
-          "resource": {
-            "type": "DhcpOptions",
-            "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "DhcpOptionsId" }
-            ]
           }
         }
       }
@@ -2025,7 +2155,7 @@
         "request": {
           "operation": "DescribeVpcPeeringConnections",
           "params": [
-            { "target": "VpcPeeringConnectionIds[0]", "sourceType": "identifier", "source": "Id" }
+            { "target": "VpcPeeringConnectionIds[0]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "VpcPeeringConnections[0]"
@@ -2035,7 +2165,7 @@
           "request": {
             "operation": "AcceptVpcPeeringConnection",
             "params": [
-              { "target": "VpcPeeringConnectionId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcPeeringConnectionId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -2043,7 +2173,7 @@
           "request": {
             "operation": "DeleteVpcPeeringConnection",
             "params": [
-              { "target": "VpcPeeringConnectionId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcPeeringConnectionId", "source": "identifier", "name": "Id" }
             ]
           }
         },
@@ -2051,17 +2181,17 @@
           "request": {
             "operation": "RejectVpcPeeringConnection",
             "params": [
-              { "target": "VpcPeeringConnectionId", "sourceType": "identifier", "source": "Id" }
+              { "target": "VpcPeeringConnectionId", "source": "identifier", "name": "Id" }
             ]
           }
         }
       },
-      "belongsTo": {
+      "has": {
         "AccepterVpc": {
           "resource": {
             "type": "Vpc",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "AccepterVpcInfo.VpcId" }
+              { "target": "Id", "source": "data", "path": "AccepterVpcInfo.VpcId" }
             ]
           }
         },
@@ -2069,7 +2199,7 @@
           "resource": {
             "type": "Vpc",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "RequesterVpcInfo.VpcId" }
+              { "target": "Id", "source": "data", "path": "RequesterVpcInfo.VpcId" }
             ]
           }
         }
