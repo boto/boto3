@@ -105,6 +105,7 @@ def html_to_rst(html, indent=0, indentFirst=False):
     # TODO: Remove me, temp workaround to fix doc building
     # because of smart quotes that aren't currently supported.
     html = html.replace(u'\u2019', "'")
+    html = html.replace(u'\u2014', '-')
 
     doc.include_doc_string(html)
     rst = doc.getvalue().decode('utf-8')
