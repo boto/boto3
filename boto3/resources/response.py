@@ -93,11 +93,6 @@ def build_empty_response(search_path, operation_name, service_model):
     """
     response = None
 
-    # If this isn't a real service operation, then the response should
-    # just be ``None``.
-    if operation_name is None:
-        return response
-
     operation_model = service_model.operation_model(operation_name)
     shape = operation_model.output_shape
 
@@ -176,12 +171,13 @@ class ResourceHandler(object):
     :type resource_model: :py:class:`~boto3.resources.model.ResponseResource`
     :param resource_model: Response resource model.
     :type operation_name: string
-    :param operation_name: Name of the underlying service operation
+    :param operation_name: Name of the underlying service operation, if it
+                           exists.
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """
     def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_model, operation_name):
+                 resource_model, operation_name=None):
         self.search_path = search_path
         self.factory = factory
         self.resource_defs = resource_defs
@@ -246,10 +242,16 @@ class ResourceHandler(object):
             response = self.handle_response_item(resource_cls,
                 parent, identifiers, search_response)
         else:
-            # The response is should be empty, but that may mean an
-            # empty dict, list, or None.
-            response = build_empty_response(self.search_path,
-                self.operation_name, self.service_model)
+            # The response should be empty, but that may mean an
+            # empty dict, list, or None based on whether we make
+            # a remote service call and what shape it is expected
+            # to return.
+            response = None
+            if self.operation_name is not None:
+                # A remote service call was made, so try and determine
+                # its shape.
+                response = build_empty_response(self.search_path,
+                    self.operation_name, self.service_model)
 
         return response
 

@@ -303,7 +303,7 @@ class ResourceFactory(object):
         # or response, so we can re-use the response handlers to
         # build up resources from identifiers and data members.
         handler = ResourceHandler('', factory_self, resource_defs,
-                                  service_model, reference.resource, None)
+                                  service_model, reference.resource)
 
         def get_reference(self):
             # We need to lazy-evaluate the reference to handle circular
