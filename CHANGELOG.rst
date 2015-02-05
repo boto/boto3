@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.7 - 2015-02-05
+------------------
 
 * feature:Resources: Enable support for Amazon Glacier.
 * feature:Resources: Support plural references and nested JMESPath
