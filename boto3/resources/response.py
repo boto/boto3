@@ -14,6 +14,9 @@
 import jmespath
 from botocore import xform_name
 
+from ..exceptions import ResourceLoadException
+from .params import get_data_member
+
 
 def all_not_none(iterable):
     """
@@ -59,8 +62,9 @@ def build_identifiers(identifiers, parent, params=None, raw_response=None):
         elif source == 'identifier':
             value = getattr(parent, xform_name(identifier.name))
         elif source == 'data':
-            # TODO: This should be a JMESPath query
-            value = getattr(parent, xform_name(identifier.path))
+            # If this is a data member then it may incur a load
+            # action before returning the value.
+            value = get_data_member(parent, identifier.path)
         elif source == 'input':
             # This value is set by the user, so ignore it here
             continue

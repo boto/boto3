@@ -83,7 +83,9 @@ class TestBuildIdentifiers(BaseTestCase):
                        path='Member')]
 
         parent = mock.Mock()
-        parent.member = 'data-member'
+        parent.meta = ResourceMeta('test', data={
+            'Member': 'data-member'
+        })
         params = {}
         response = {
             'Container': {

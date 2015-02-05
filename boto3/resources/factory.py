@@ -176,7 +176,7 @@ class ResourceFactory(object):
             # This is a dangling reference, i.e. we have all
             # the data we need to create the resource, so
             # this instance becomes an attribute on the class.
-            snake_cased = xform_name(reference.resource.type)
+            snake_cased = xform_name(reference.name)
             snake_cased = self._check_allowed_name(
                 attrs, snake_cased, 'reference', model.name)
             attrs[snake_cased] = self._create_reference(
