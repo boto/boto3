@@ -11,6 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from boto3.exceptions import ResourceLoadException
+from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import Request
 from boto3.resources.params import create_request_parameters, \
                                    build_param_structure
@@ -44,18 +46,67 @@ class TestServiceActionParams(BaseTestCase):
                 {
                     'target': 'WarehouseUrl',
                     'source': 'data',
-                    'path': 'some_member'
+                    'path': 'SomeMember'
                 }
             ]
         })
 
         parent = mock.Mock()
-        parent.some_member = 'w-url'
+        parent.meta = ResourceMeta('test', data={
+            'SomeMember': 'w-url'
+        })
 
         params = create_request_parameters(parent, request_model)
 
         self.assertEqual(params['WarehouseUrl'], 'w-url',
             'Parameter not set from resource property')
+
+    def test_service_action_params_data_member_missing(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {
+                    'target': 'WarehouseUrl',
+                    'source': 'data',
+                    'path': 'SomeMember'
+                }
+            ]
+        })
+
+        parent = mock.Mock()
+
+        def load_data():
+            parent.meta.data = {
+                'SomeMember': 'w-url'
+            }
+
+        parent.load.side_effect = load_data
+        parent.meta = ResourceMeta('test')
+
+        params = create_request_parameters(parent, request_model)
+
+        parent.load.assert_called_with()
+        self.assertEqual(params['WarehouseUrl'], 'w-url',
+            'Parameter not set from resource property')
+
+    def test_service_action_params_data_member_missing_no_load(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {
+                    'target': 'WarehouseUrl',
+                    'source': 'data',
+                    'path': 'SomeMember'
+                }
+            ]
+        })
+
+        # This mock has no ``load`` method.
+        parent = mock.Mock(spec=ServiceResource)
+        parent.meta = ResourceMeta('test', data=None)
+
+        with self.assertRaises(ResourceLoadException):
+            params = create_request_parameters(parent, request_model)
 
     def test_service_action_params_constants(self):
         request_model = Request({
@@ -151,10 +202,14 @@ class TestServiceActionParams(BaseTestCase):
         })
 
         item1 = mock.Mock()
-        item1.key = 'item1'
+        item1.meta = ResourceMeta('test', data={
+            'Key': 'item1'
+        })
 
         item2 = mock.Mock()
-        item2.key = 'item2'
+        item2.meta = ResourceMeta('test', data={
+            'Key': 'item2'
+        })
 
         # Here we create params and then re-use it to build up a more
         # complex structure over multiple calls.

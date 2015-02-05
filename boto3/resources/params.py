@@ -13,10 +13,39 @@
 
 import re
 
+import jmespath
 from botocore import xform_name
+
+from ..exceptions import ResourceLoadException
 
 
 INDEX_RE = re.compile('\[(.*)\]$')
+
+
+def get_data_member(parent, path):
+    """
+    Get a data member from a parent using a JMESPath search query,
+    loading the parent if required. If the parent cannot be loaded
+    and no data is present then an exception is raised.
+
+    :type parent: ServiceResource
+    :param parent: The resource instance to which contains data we
+                   are interested in.
+    :type path: string
+    :param path: The JMESPath expression to query
+    :raises ResourceLoadException: When no data is present and the
+                                   resource cannot be loaded.
+    :returns: The queried data or ``None``.
+    """
+    # Ensure the parent has its data loaded, if possible.
+    if parent.meta.data is None:
+        if hasattr(parent, 'load'):
+            parent.load()
+        else:
+            raise ResourceLoadException(
+                '{0} has no load method!'.format(parent.__class__.__name__))
+
+    return jmespath.search(path, parent.meta.data)
 
 
 def create_request_parameters(parent, request_model, params=None):
@@ -49,16 +78,9 @@ def create_request_parameters(parent, request_model, params=None):
             # Resource identifier, e.g. queue.url
             value = getattr(parent, xform_name(param.name))
         elif source == 'data':
-            # If this is a dataMember then it may incur a load
+            # If this is a data member then it may incur a load
             # action before returning the value.
-            # TODO: Use ``jmespath.search``
-            # Data members are accessed via a ``path``, which is
-            # a JMESPath query. JMESPath does not support attribute
-            # access on an object yet. Once it does, we should
-            # use it here. Until then, ``getattr`` works in most
-            # simple cases, but will fail if path is something
-            # like ``Items[0].id``.
-            value = getattr(parent, xform_name(param.path))
+            value = get_data_member(parent, param.path)
         elif source in ['string', 'integer', 'boolean']:
             # These are hard-coded values in the definition
             value = param.value

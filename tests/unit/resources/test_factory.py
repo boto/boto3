@@ -432,11 +432,23 @@ class TestResourceFactory(BaseTestCase):
                              'path': 'SubnetId'}
                         ]
                     }
+                },
+                'Vpcs': {
+                    'resource': {
+                        'type': 'Vpc',
+                        'identifiers': [
+                            {'target': 'Id', 'source': 'data',
+                             'path': 'Vpcs[].Id'}
+                        ]
+                    }
                 }
             }
         }
         defs = {
             'Subnet': {
+                'identifiers': [{'name': 'Id'}]
+            },
+            'Vpc': {
                 'identifiers': [{'name': 'Id'}]
             }
         }
@@ -462,15 +474,31 @@ class TestResourceFactory(BaseTestCase):
         # Load the resource with no data
         resource.meta.data = {}
 
-        self.assertTrue(hasattr(resource, 'subnet'),
-                        'Resource should have a subnet reference')
-        self.assertIsNone(resource.subnet,
-                          'Missing identifier, should return None')
+        self.assertTrue(
+            hasattr(resource, 'subnet'),
+            'Resource should have a subnet reference')
+        self.assertIsNone(
+            resource.subnet,
+            'Missing identifier, should return None')
+        self.assertIsNone(resource.vpcs)
 
         # Load the resource with data to instantiate a reference
-        resource.meta.data = {'SubnetId': 'abc123'}
+        resource.meta.data = {
+            'SubnetId': 'abc123',
+            'Vpcs': [
+                {'Id': 'vpc1'},
+                {'Id': 'vpc2'}
+            ]
+        }
+
         self.assertIsInstance(resource.subnet, ServiceResource)
         self.assertEqual(resource.subnet.id, 'abc123')
+
+        vpcs = resource.vpcs
+        self.assertIsInstance(vpcs, list)
+        self.assertEqual(len(vpcs), 2)
+        self.assertEqual(vpcs[0].id, 'vpc1')
+        self.assertEqual(vpcs[1].id, 'vpc2')
 
     @mock.patch('boto3.resources.model.Collection')
     def test_resource_loads_collections(self, mock_model):

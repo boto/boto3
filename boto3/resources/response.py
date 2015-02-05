@@ -14,6 +14,9 @@
 import jmespath
 from botocore import xform_name
 
+from ..exceptions import ResourceLoadException
+from .params import get_data_member
+
 
 def all_not_none(iterable):
     """
@@ -59,8 +62,9 @@ def build_identifiers(identifiers, parent, params=None, raw_response=None):
         elif source == 'identifier':
             value = getattr(parent, xform_name(identifier.name))
         elif source == 'data':
-            # TODO: This should be a JMESPath query
-            value = getattr(parent, xform_name(identifier.path))
+            # If this is a data member then it may incur a load
+            # action before returning the value.
+            value = get_data_member(parent, identifier.path)
         elif source == 'input':
             # This value is set by the user, so ignore it here
             continue
@@ -83,7 +87,7 @@ def build_empty_response(search_path, operation_name, service_model):
     :type search_path: string
     :param search_path: JMESPath expression to search in the response
     :type operation_name: string
-    :param operation_name: Name of the underlying service operation
+    :param operation_name: Name of the underlying service operation.
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
     :rtype: dict, list, or None
@@ -169,12 +173,13 @@ class ResourceHandler(object):
     :type resource_model: :py:class:`~boto3.resources.model.ResponseResource`
     :param resource_model: Response resource model.
     :type operation_name: string
-    :param operation_name: Name of the underlying service operation
+    :param operation_name: Name of the underlying service operation, if it
+                           exists.
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """
     def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_model, operation_name):
+                 resource_model, operation_name=None):
         self.search_path = search_path
         self.factory = factory
         self.resource_defs = resource_defs
@@ -239,10 +244,16 @@ class ResourceHandler(object):
             response = self.handle_response_item(resource_cls,
                 parent, identifiers, search_response)
         else:
-            # The response is should be empty, but that may mean an
-            # empty dict, list, or None.
-            response = build_empty_response(self.search_path,
-                self.operation_name, self.service_model)
+            # The response should be empty, but that may mean an
+            # empty dict, list, or None based on whether we make
+            # a remote service call and what shape it is expected
+            # to return.
+            response = None
+            if self.operation_name is not None:
+                # A remote service call was made, so try and determine
+                # its shape.
+                response = build_empty_response(self.search_path,
+                    self.operation_name, self.service_model)
 
         return response
 

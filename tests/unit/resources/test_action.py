@@ -191,13 +191,16 @@ class TestBatchActionCall(BaseTestCase):
         client = mock.Mock()
 
         item1 = mock.Mock()
-        item1.meta = ResourceMeta('test', client=client)
-        item1.bucket_name = 'bucket'
-        item1.key = 'item1'
+        item1.meta = ResourceMeta('test', client=client, data={
+            'BucketName': 'bucket',
+            'Key': 'item1'
+        })
 
         item2 = mock.Mock()
-        item2.bucket_name = 'bucket'
-        item2.key = 'item2'
+        item2.meta = ResourceMeta('test', client=client, data={
+            'BucketName': 'bucket',
+            'Key': 'item2'
+        })
 
         collection = mock.Mock()
         collection.pages.return_value = [[item1, item2]]
