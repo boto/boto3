@@ -1,6 +1,40 @@
 Changelog
 =========
 
+0.0.7 - 2015-02-05
+------------------
+
+* feature:Resources: Enable support for Amazon Glacier.
+* feature:Resources: Support plural references and nested JMESPath
+  queries for data members when building parameters and identifiers.
+  (`issue 52 <https://github.com/boto/boto3/pull/52>`__)
+* feature:Resources: Update to the latest resource JSON format.
+  (`issue 51 <https://github.com/boto/boto3/pull/51>`__)
+* feature:Resources: Make ``resource.meta`` a proper object. This allows
+  you to do things like ``resource.meta.client``. This is a **backward-
+  incompatible** change.
+  (`issue 45 <https://github.com/boto/boto3/pull/45>`__)
+* feature:Dependency: Update to JMESPath 0.6.1
+* feature:Botocore: Update to Botocore 0.86.0
+
+  * Add support for AWS CloudHSM
+  * Add support for Amazon EC2 and Autoscaling ClassicLink
+  * Add support for Amazon EC2 Container Service (ECS)
+  * Add support for encryption at rest and CloudHSM to Amazon RDS
+  * Add support for Amazon DynamoDB online indexing.
+  * Add support for AWS ImportExport ``get_shipping_label``.
+  * Add support for Amazon Glacier.
+  * Add waiters for AWS ElastiCache.
+    (`botocore issue 443 <https://github.com/boto/botocore/pull/443>`__)
+  * Fix an issue with Amazon CloudFront waiters.
+    (`botocore issue 426 <https://github.com/boto/botocore/pull/426>`_)
+  * Allow binary data to be passed to ``UserData``.
+    (`botocore issue 416 <https://github.com/boto/botocore/pull/416>`_)
+  * Fix Amazon EMR endpoints for ``eu-central-1`` and ``cn-north-1``.
+    (`botocore issue 423 <https://github.com/boto/botocore/pull/423>`__)
+  * Fix issue with base64 encoding of blob types for Amazon EMR.
+    (`botocore issue 413 <https://github.com/boto/botocore/pull/413>`__)
+
 0.0.6 - 2014-12-18
 ------------------
 
@@ -15,7 +49,7 @@ Changelog
 
   * Update Amazon Simple Workflow Service (SWF) to the latest version
   * Update AWS Storage Gateway to the latest version
-  * Update AWS Elastic MapReduce (EMR) to the latest version
+  * Update Amazon Elastic MapReduce (EMR) to the latest version
   * Update AWS Elastic Transcoder to the latest version
   * Enable use of ``page_size`` for clients
     (`botocore issue 408 <https://github.com/boto/botocore/pull/408>`__)

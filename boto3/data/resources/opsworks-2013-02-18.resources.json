@@ -6,7 +6,25 @@
         "resource": {
           "type": "Stack",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "StackId" }
+            { "target": "Id", "source": "response", "path": "StackId" }
+          ]
+        }
+      }
+    },
+    "has": {
+      "Layer": {
+        "resource": {
+          "type": "Layer",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Stack": {
+        "resource": {
+          "type": "Stack",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
           ]
         }
       }
@@ -17,7 +35,7 @@
         "resource": {
           "type": "Stack",
           "identifiers": [
-            { "target": "Id", "sourceType": "responsePath", "source": "Stacks[].StackId" }
+            { "target": "Id", "source": "response", "path": "Stacks[].StackId" }
           ],
           "path": "Stacks[]"
         }
@@ -34,7 +52,7 @@
         "request": {
           "operation": "DescribeLayers",
           "params": [
-            { "target": "LayerIds[]", "sourceType": "identifier", "source": "Id" }
+            { "target": "LayerIds[]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Layers[0]"
@@ -44,17 +62,17 @@
           "request": {
             "operation": "DeleteLayer",
             "params": [
-              { "target": "LayerId", "sourceType": "identifier", "source": "Id" }
+              { "target": "LayerId", "source": "identifier", "name": "Id" }
             ]
           }
         }
       },
-      "belongsTo": {
+      "has": {
         "Stack": {
           "resource": {
             "type": "Stack",
             "identifiers": [
-              { "target": "Id", "sourceType": "dataMember", "source": "StackId" }
+              { "target": "Id", "source": "data", "path": "StackId" }
             ]
           }
         }
@@ -69,7 +87,7 @@
         "request": {
           "operation": "DescribeStacks",
           "params": [
-            { "target": "StackIds[]", "sourceType": "identifier", "source": "Id" }
+            { "target": "StackIds[]", "source": "identifier", "name": "Id" }
           ]
         },
         "path": "Stacks[0]"
@@ -79,13 +97,13 @@
           "request": {
             "operation": "CreateLayer",
             "params": [
-              { "target": "StackId", "sourceType": "identifier", "source": "Id" }
+              { "target": "StackId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Layer",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "LayerId" }
+              { "target": "Id", "source": "response", "path": "LayerId" }
             ]
           }
         },
@@ -93,7 +111,17 @@
           "request": {
             "operation": "DeleteStack",
             "params": [
-              { "target": "StackId", "sourceType": "identifier", "source": "Id" }
+              { "target": "StackId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Summary": {
+          "resource": {
+            "type": "StackSummary",
+            "identifiers": [
+              { "target": "StackId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -103,21 +131,17 @@
           "request": {
             "operation": "DescribeLayers",
             "params": [
-              { "target": "StackId", "sourceType": "identifier", "source": "Id" }
+              { "target": "StackId", "source": "identifier", "name": "Id" }
             ]
           },
           "resource": {
             "type": "Layer",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "Layers[].LayerId" }
+              { "target": "Id", "source": "response", "path": "Layers[].LayerId" }
             ],
             "path": "Layers[]"
           }
         }
-      },
-      "subResources": {
-        "resources": [ "StackSummary" ],
-        "identifiers": { "Id": "StackId" }
       }
     },
     "StackSummary": {
@@ -129,10 +153,20 @@
         "request": {
           "operation": "DescribeStackSummary",
           "params": [
-            { "target": "StackId", "sourceType": "identifier", "source": "StackId" }
+            { "target": "StackId", "source": "identifier", "name": "StackId" }
           ]
         },
         "path": "StackSummary"
+      },
+      "has": {
+        "Stack": {
+          "resource": {
+            "type": "Stack",
+            "identifiers": [
+              { "target": "Id", "source": "identifier", "name": "StackId" }
+            ]
+          }
+        }
       }
     }
   }

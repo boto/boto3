@@ -93,8 +93,7 @@ class DefinitionWithParams(object):
         params = []
 
         for item in self._definition.get('params', []):
-            params.append(
-                Parameter(item['target'], item['sourceType'], item['source']))
+            params.append(Parameter(**item))
 
         return params
 
@@ -112,13 +111,22 @@ class Parameter(object):
     :type source: string
     :param source: The source name, e.g. ``Url``
     """
-    def __init__(self, target, source_type, source):
+    def __init__(self, target, source, name=None, path=None, value=None,
+                 **kwargs):
         #: (``string``) The destination parameter name
         self.target = target
         #: (``string``) Where the source is defined
-        self.source_type = source_type
-        #: (``string``) The source name
         self.source = source
+        #: (``string``) The name of the source, if given
+        self.name = name
+        #: (``string``) The JMESPath query of the source
+        self.path = path
+        #: (``string|int|float|bool``) The source constant value
+        self.value = value
+
+        # Complain if we encounter any unknown values.
+        if kwargs:
+            logger.warning('Unknown parameter options found: %s', kwargs)
 
 
 class Request(DefinitionWithParams):
@@ -187,7 +195,7 @@ class ResponseResource(object):
 
         for item in self._definition.get('identifiers', []):
             identifiers.append(
-                Parameter(item['target'], item['sourceType'], item['source']))
+                Parameter(**item))
 
         return identifiers
 
@@ -225,43 +233,6 @@ class Collection(Action):
         return self.resource.model.batch_actions
 
 
-class SubResourceList(object):
-    """
-    A list of information about sub-resources. It includes access
-    to identifiers as well as resource names and models.
-
-    :type definition: dict
-    :param definition: The JSON definition
-    :type resource_defs: dict
-    :param resource_defs: All resources defined in the service
-    """
-    def __init__(self, definition, resource_defs):
-        self._definition = definition
-        self._resource_defs = resource_defs
-
-        #: (``dict``) Identifier key:value pairs
-        self.identifiers = definition.get('identifiers', {})
-        #: (``list``) A list of resource names
-        self.resource_names = definition.get('resources', [])
-
-    @property
-    def resources(self):
-        """
-        Get a list of resource models contained in this sub-resource
-        entry.
-
-        :type: list(:py:class:`ResourceModel`)
-        """
-        resources = []
-
-        for name in self.resource_names:
-            resources.append(
-                ResourceModel(name, self._resource_defs.get(name, {}),
-                              self._resource_defs))
-
-        return resources
-
-
 class ResourceModel(object):
     """
     A model representing a resource, defined via a JSON description
@@ -284,11 +255,6 @@ class ResourceModel(object):
         self.name = name
         #: (``string``) The service shape name for this resource or ``None``
         self.shape = definition.get('shape')
-        #: (:py:class:`SubResourceList`) Sub-resource information or ``None``
-        self.sub_resources = None
-        if 'subResources' in definition:
-            self.sub_resources = SubResourceList(
-                definition.get('subResources', {}), resource_defs)
 
     @property
     def identifiers(self):
@@ -346,6 +312,42 @@ class ResourceModel(object):
 
         return actions
 
+    def _get_related_resources(self, subresources):
+        """
+        Get a list of sub-resources or references.
+
+        :type subresources: bool
+        :param subresources: ``True`` to get sub-resources, ``False`` to
+                             get references.
+        :rtype: list(:py:class:`ResponseResource`)
+        """
+        resources = []
+
+        for name, definition in self._definition.get('has', {}).items():
+            action = Action(name, definition, self._resource_defs)
+
+            data_required = False
+            for identifier in action.resource.identifiers:
+                if identifier.source == 'data':
+                    data_required = True
+                    break
+
+            if subresources and not data_required:
+                resources.append(action)
+            elif not subresources and data_required:
+                resources.append(action)
+
+        return resources
+
+    @property
+    def subresources(self):
+        """
+        Get a list of sub-resources.
+
+        :type: list(:py:class`ResponseResource`)
+        """
+        return self._get_related_resources(True)
+
     @property
     def references(self):
         """
@@ -353,56 +355,7 @@ class ResourceModel(object):
 
         :type: list(:py:class:`ResponseResource`)
         """
-        references = []
-
-        for key in ['belongsTo']:
-            for name, definition in self._definition.get(key, {}).items():
-                references.append(
-                    Action(name, definition, self._resource_defs))
-
-        return references
-
-    @property
-    def reverse_references(self):
-        """
-        Get a list of reverse reference resources. E.g. an S3 object has
-        a ``bucket_name`` identifier that can be used to instantiate a
-        bucket resource instance.
-        """
-        references = []
-
-        # First, we search for possible reverse references based on the
-        # defined sub-resources in each resource. If the name of this
-        # resource is present, then we are a child. Next, we use the
-        # identifiers to construct a reference definition, append it
-        # to the list of references and return.
-
-        for name, definition in self._resource_defs.items():
-            sub_resources = definition.get('subResources', {})
-            resource_names = sub_resources.get('resources', [])
-
-            if self.name in resource_names:
-                logger.debug('Discovered reverse reference from {0}'
-                             ' to {1}'.format(self.name, name))
-
-                identifiers = sub_resources.get('identifiers', {})
-
-                has_one_def = {
-                    'resource': {
-                        'type': name,
-                        'identifiers': []
-                    }
-                }
-
-                for target, source in identifiers.items():
-                    has_one_def['resource']['identifiers'].append(
-                        {'target': target, 'sourceType': 'identifier',
-                         'source': source})
-
-                references.append(
-                    Action(name, has_one_def, self._resource_defs))
-
-        return references
+        return self._get_related_resources(False)
 
     @property
     def collections(self):

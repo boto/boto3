@@ -13,10 +13,39 @@
 
 import re
 
+import jmespath
 from botocore import xform_name
+
+from ..exceptions import ResourceLoadException
 
 
 INDEX_RE = re.compile('\[(.*)\]$')
+
+
+def get_data_member(parent, path):
+    """
+    Get a data member from a parent using a JMESPath search query,
+    loading the parent if required. If the parent cannot be loaded
+    and no data is present then an exception is raised.
+
+    :type parent: ServiceResource
+    :param parent: The resource instance to which contains data we
+                   are interested in.
+    :type path: string
+    :param path: The JMESPath expression to query
+    :raises ResourceLoadException: When no data is present and the
+                                   resource cannot be loaded.
+    :returns: The queried data or ``None``.
+    """
+    # Ensure the parent has its data loaded, if possible.
+    if parent.meta.data is None:
+        if hasattr(parent, 'load'):
+            parent.load()
+        else:
+            raise ResourceLoadException(
+                '{0} has no load method!'.format(parent.__class__.__name__))
+
+    return jmespath.search(path, parent.meta.data)
 
 
 def create_request_parameters(parent, request_model, params=None):
@@ -43,20 +72,24 @@ def create_request_parameters(parent, request_model, params=None):
 
     for param in request_model.params:
         source = param.source
-        source_type = param.source_type
         target = param.target
 
-        if source_type in ['identifier', 'dataMember']:
+        if source == 'identifier':
             # Resource identifier, e.g. queue.url
-            # If this is a dataMember then it may incur a load
+            value = getattr(parent, xform_name(param.name))
+        elif source == 'data':
+            # If this is a data member then it may incur a load
             # action before returning the value.
-            value = getattr(parent, xform_name(source))
-        elif source_type in ['string', 'integer', 'boolean']:
+            value = get_data_member(parent, param.path)
+        elif source in ['string', 'integer', 'boolean']:
             # These are hard-coded values in the definition
-            value = source
+            value = param.value
+        elif source == 'input':
+            # This is provided by the user, so ignore it here
+            continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source_type))
+                'Unsupported source type: {0}'.format(source))
 
         build_param_structure(params, target, value)
 

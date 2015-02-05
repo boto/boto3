@@ -11,6 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from boto3.exceptions import ResourceLoadException
+from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import Request
 from boto3.resources.params import create_request_parameters, \
                                    build_param_structure
@@ -23,8 +25,8 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'WarehouseUrl',
-                    'sourceType': 'identifier',
-                    'source': 'Url'
+                    'source': 'identifier',
+                    'name': 'Url'
                 }
             ]
         })
@@ -43,19 +45,68 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'WarehouseUrl',
-                    'sourceType': 'dataMember',
-                    'source': 'some_member'
+                    'source': 'data',
+                    'path': 'SomeMember'
                 }
             ]
         })
 
         parent = mock.Mock()
-        parent.some_member = 'w-url'
+        parent.meta = ResourceMeta('test', data={
+            'SomeMember': 'w-url'
+        })
 
         params = create_request_parameters(parent, request_model)
 
         self.assertEqual(params['WarehouseUrl'], 'w-url',
             'Parameter not set from resource property')
+
+    def test_service_action_params_data_member_missing(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {
+                    'target': 'WarehouseUrl',
+                    'source': 'data',
+                    'path': 'SomeMember'
+                }
+            ]
+        })
+
+        parent = mock.Mock()
+
+        def load_data():
+            parent.meta.data = {
+                'SomeMember': 'w-url'
+            }
+
+        parent.load.side_effect = load_data
+        parent.meta = ResourceMeta('test')
+
+        params = create_request_parameters(parent, request_model)
+
+        parent.load.assert_called_with()
+        self.assertEqual(params['WarehouseUrl'], 'w-url',
+            'Parameter not set from resource property')
+
+    def test_service_action_params_data_member_missing_no_load(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {
+                    'target': 'WarehouseUrl',
+                    'source': 'data',
+                    'path': 'SomeMember'
+                }
+            ]
+        })
+
+        # This mock has no ``load`` method.
+        parent = mock.Mock(spec=ServiceResource)
+        parent.meta = ResourceMeta('test', data=None)
+
+        with self.assertRaises(ResourceLoadException):
+            params = create_request_parameters(parent, request_model)
 
     def test_service_action_params_constants(self):
         request_model = Request({
@@ -63,18 +114,18 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'Param1',
-                    'sourceType': 'string',
-                    'source': 'param1'
+                    'source': 'string',
+                    'value': 'param1'
                 },
                 {
                     'target': 'Param2',
-                    'sourceType': 'integer',
-                    'source': 123
+                    'source': 'integer',
+                    'value': 123
                 },
                 {
                     'target': 'Param3',
-                    'sourceType': 'boolean',
-                    'source': True
+                    'source': 'boolean',
+                    'value': True
                 }
             ]
         })
@@ -88,14 +139,28 @@ class TestServiceActionParams(BaseTestCase):
         self.assertEqual(params['Param3'], True,
             'Parameter not set from boolean constant')
 
+    def test_service_action_params_input(self):
+        request_model = Request({
+            'operation': 'GetFrobs',
+            'params': [
+                {'target': 'Param1', 'source': 'input'}
+            ]
+        })
+
+        params = create_request_parameters(None, request_model)
+        self.assertEqual(params, {})
+
+        params['param1'] = 'myinput'
+        params = create_request_parameters(None, request_model, params=params)
+        self.assertEqual(params, {'param1': 'myinput'})
+
     def test_service_action_params_invalid(self):
         request_model = Request({
             'operation': 'GetFrobs',
             'params': [
                 {
                     'target': 'Param1',
-                    'sourceType': 'invalid',
-                    'source': 'param1'
+                    'source': 'invalid'
                 }
             ]
         })
@@ -109,8 +174,8 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'WarehouseUrls[0]',
-                    'sourceType': 'string',
-                    'source': 'w-url'
+                    'source': 'string',
+                    'value': 'w-url'
                 }
             ]
         })
@@ -130,17 +195,21 @@ class TestServiceActionParams(BaseTestCase):
             'params': [
                 {
                     'target': 'Delete.Objects[].Key',
-                    'sourceType': 'dataMember',
-                    'source': 'Key'
+                    'source': 'data',
+                    'path': 'Key'
                 }
             ]
         })
 
         item1 = mock.Mock()
-        item1.key = 'item1'
+        item1.meta = ResourceMeta('test', data={
+            'Key': 'item1'
+        })
 
         item2 = mock.Mock()
-        item2.key = 'item2'
+        item2.meta = ResourceMeta('test', data={
+            'Key': 'item2'
+        })
 
         # Here we create params and then re-use it to build up a more
         # complex structure over multiple calls.

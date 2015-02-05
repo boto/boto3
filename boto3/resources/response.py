@@ -14,6 +14,9 @@
 import jmespath
 from botocore import xform_name
 
+from ..exceptions import ResourceLoadException
+from .params import get_data_member
+
 
 def all_not_none(iterable):
     """
@@ -27,7 +30,7 @@ def all_not_none(iterable):
     return True
 
 
-def build_identifiers(identifiers, parent, params, raw_response):
+def build_identifiers(identifiers, parent, params=None, raw_response=None):
     """
     Builds a mapping of identifier names to values based on the
     identifier source location, type, and target. Identifier
@@ -43,26 +46,33 @@ def build_identifiers(identifiers, parent, params, raw_response):
     :param params: Request parameters sent to the service.
     :type raw_response: dict
     :param raw_response: Low-level operation response.
+    :rtype: list
+    :return: An ordered list of ``(name, value)`` identifier tuples.
     """
-    results = {}
+    results = []
 
     for identifier in identifiers:
         source = identifier.source
-        source_type = identifier.source_type
         target = identifier.target
 
-        if source_type == 'responsePath':
-            value = jmespath.search(source, raw_response)
-            results[xform_name(target)] = value
-        elif source_type in ['identifier', 'dataMember']:
-            value = getattr(parent, xform_name(source))
-            results[xform_name(target)] = value
-        elif source_type == 'requestParameter':
-            value = params[source]
-            results[xform_name(target)] = value
+        if source == 'response':
+            value = jmespath.search(identifier.path, raw_response)
+        elif source == 'requestParameter':
+            value = jmespath.search(identifier.path, params)
+        elif source == 'identifier':
+            value = getattr(parent, xform_name(identifier.name))
+        elif source == 'data':
+            # If this is a data member then it may incur a load
+            # action before returning the value.
+            value = get_data_member(parent, identifier.path)
+        elif source == 'input':
+            # This value is set by the user, so ignore it here
+            continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source_type))
+                'Unsupported source type: {0}'.format(source))
+
+        results.append((xform_name(target), value))
 
     return results
 
@@ -77,7 +87,7 @@ def build_empty_response(search_path, operation_name, service_model):
     :type search_path: string
     :param search_path: JMESPath expression to search in the response
     :type operation_name: string
-    :param operation_name: Name of the underlying service operation
+    :param operation_name: Name of the underlying service operation.
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
     :rtype: dict, list, or None
@@ -163,12 +173,13 @@ class ResourceHandler(object):
     :type resource_model: :py:class:`~boto3.resources.model.ResponseResource`
     :param resource_model: Response resource model.
     :type operation_name: string
-    :param operation_name: Name of the underlying service operation
+    :param operation_name: Name of the underlying service operation, if it
+                           exists.
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """
     def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_model, operation_name):
+                 resource_model, operation_name=None):
         self.search_path = search_path
         self.factory = factory
         self.resource_defs = resource_defs
@@ -187,7 +198,7 @@ class ResourceHandler(object):
         """
         resource_name = self.resource_model.type
         resource_cls = self.factory.load_from_definition(
-            parent.meta['service_name'], resource_name,
+            parent.meta.service_name, resource_name,
             self.resource_defs.get(resource_name), self.resource_defs,
             self.service_model)
 
@@ -196,7 +207,7 @@ class ResourceHandler(object):
 
         # Anytime a path is defined, it means the response contains the
         # resource's attributes, so resource_data gets set here. It
-        # eventually ends up in resource.meta['data'], which is where
+        # eventually ends up in resource.meta.data, which is where
         # the attribute properties look for data.
         if self.search_path:
             search_response = jmespath.search(self.search_path, raw_response)
@@ -206,9 +217,9 @@ class ResourceHandler(object):
         # will have one item consumed from the front of the list for each
         # resource that is instantiated. Items which are not a list will
         # be set as the same value on each new resource instance.
-        identifiers = build_identifiers(
+        identifiers = dict(build_identifiers(
             self.resource_model.identifiers, parent, params,
-            raw_response)
+            raw_response))
 
         # If any of the identifiers is a list, then the response is plural
         plural = [v for v in identifiers.values() if isinstance(v, list)]
@@ -233,10 +244,16 @@ class ResourceHandler(object):
             response = self.handle_response_item(resource_cls,
                 parent, identifiers, search_response)
         else:
-            # The response is should be empty, but that may mean an
-            # empty dict, list, or None.
-            response = build_empty_response(self.search_path,
-                self.operation_name, self.service_model)
+            # The response should be empty, but that may mean an
+            # empty dict, list, or None based on whether we make
+            # a remote service call and what shape it is expected
+            # to return.
+            response = None
+            if self.operation_name is not None:
+                # A remote service call was made, so try and determine
+                # its shape.
+                response = build_empty_response(self.search_path,
+                    self.operation_name, self.service_model)
 
         return response
 
@@ -258,7 +275,7 @@ class ResourceHandler(object):
         :return: New resource instance.
         """
         kwargs = {
-            'client': parent.meta.get('client'),
+            'client': parent.meta.client,
         }
 
         for name, value in identifiers.items():
@@ -271,6 +288,6 @@ class ResourceHandler(object):
         resource = resource_cls(**kwargs)
 
         if resource_data is not None:
-            resource.meta['data'] = resource_data
+            resource.meta.data = resource_data
 
         return resource

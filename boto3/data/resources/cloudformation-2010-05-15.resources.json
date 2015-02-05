@@ -6,7 +6,25 @@
         "resource": {
           "type": "Stack",
           "identifiers": [
-            { "target": "Name", "sourceType": "requestParameter", "source": "StackName" }
+            { "target": "Name", "source": "requestParameter", "path": "StackName" }
+          ]
+        }
+      }
+    },
+    "has": {
+      "Event": {
+        "resource": {
+          "type": "Event",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "Stack": {
+        "resource": {
+          "type": "Stack",
+          "identifiers": [
+            { "target": "Name", "source": "input" }
           ]
         }
       }
@@ -17,7 +35,7 @@
         "resource": {
           "type": "Stack",
           "identifiers": [
-            { "target": "Name", "sourceType": "responsePath", "source": "Stacks[].StackName" }
+            { "target": "Name", "source": "response", "path": "Stacks[].StackName" }
           ]
         }
       }
@@ -39,7 +57,7 @@
         "request": {
           "operation": "DescribeStacks",
           "params": [
-            { "target": "StackName", "sourceType": "identifier", "source": "Name" }
+            { "target": "StackName", "source": "identifier", "name": "Name" }
           ]
         },
         "path": "Stacks[0]"
@@ -49,7 +67,7 @@
           "request": {
             "operation": "CancelUpdateStack",
             "params": [
-              { "target": "StackName", "sourceType": "identifier", "source": "Name" }
+              { "target": "StackName", "source": "identifier", "name": "Name" }
             ]
           }
         },
@@ -57,7 +75,7 @@
           "request": {
             "operation": "DeleteStack",
             "params": [
-              { "target": "StackName", "sourceType": "identifier", "source": "Name" }
+              { "target": "StackName", "source": "identifier", "name": "Name" }
             ]
           }
         },
@@ -65,7 +83,18 @@
           "request": {
             "operation": "UpdateStack",
             "params": [
-              { "target": "StackName", "sourceType": "identifier", "source": "Name" }
+              { "target": "StackName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Resource": {
+          "resource": {
+            "type": "StackResource",
+            "identifiers": [
+              { "target": "StackName", "source": "identifier", "name": "Name" },
+              { "target": "StackName", "source": "input" }
             ]
           }
         }
@@ -75,13 +104,13 @@
           "request": {
             "operation": "DescribeStackEvents",
             "params": [
-              { "target": "StackName", "sourceType": "identifier", "source": "Name" }
+              { "target": "StackName", "source": "identifier", "name": "Name" }
             ]
           },
           "resource": {
             "type": "Event",
             "identifiers": [
-              { "target": "Id", "sourceType": "responsePath", "source": "StackEvents[].EventId" }
+              { "target": "Id", "source": "response", "path": "StackEvents[].EventId" }
             ],
             "path": "StackEvents[]"
           }
@@ -90,22 +119,18 @@
           "request": {
             "operation": "ListStackResources",
             "params": [
-              { "target": "StackName", "sourceType": "identifier", "source": "Name" }
+              { "target": "StackName", "source": "identifier", "name": "Name" }
             ]
           },
           "resource": {
             "type": "StackResourceSummary",
             "identifiers": [
-              { "target": "LogicalId", "sourceType": "responsePath", "source": "StackResourceSummaries[].LogicalResourceId" },
-              { "target": "StackName", "sourceType": "requestParameter", "source": "StackName" }
+              { "target": "LogicalId", "source": "response", "path": "StackResourceSummaries[].LogicalResourceId" },
+              { "target": "StackName", "source": "requestParameter", "path": "StackName" }
             ],
             "path": "StackResourceSummaries[]"
           }
         }
-      },
-      "subResources": {
-        "resources": [ "StackResource" ],
-        "identifiers": { "Name": "StackName" }
       }
     },
     "StackResource": {
@@ -118,11 +143,21 @@
         "request": {
           "operation": "DescribeStackResource",
           "params": [
-            { "target": "LogicalResourceId", "sourceType": "identifier", "source": "LogicalId" },
-            { "target": "StackName", "sourceType": "identifier", "source": "StackName" }
+            { "target": "LogicalResourceId", "source": "identifier", "name": "LogicalId" },
+            { "target": "StackName", "source": "identifier", "name": "StackName" }
           ]
         },
         "path": "StackResourceDetail"
+      },
+      "has": {
+        "Stack": {
+          "resource": {
+            "type": "Stack",
+            "identifiers": [
+              { "target": "Name", "source": "identifier", "name": "StackName" }
+            ]
+          }
+        }
       }
     },
     "StackResourceSummary": {
@@ -131,13 +166,13 @@
         { "name": "StackName" }
       ],
       "shape": "StackResourceSummary",
-      "belongsTo": {
+      "has": {
         "Resource": {
           "resource": {
             "type": "StackResource",
             "identifiers": [
-              { "target": "LogicalId", "sourceType": "identifier", "source": "LogicalId" },
-              { "target": "StackName", "sourceType": "identifier", "source": "StackName" }
+              { "target": "LogicalId", "source": "identifier", "name": "LogicalId" },
+              { "target": "StackName", "source": "identifier", "name": "StackName" }
             ]
           }
         }

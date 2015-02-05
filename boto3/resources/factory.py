@@ -18,10 +18,10 @@ from botocore import xform_name
 
 from .action import ServiceAction
 from .action import WaiterAction
-from .base import ServiceResource
+from .base import ResourceMeta, ServiceResource
 from .collection import CollectionFactory
 from .model import ResourceModel
-from .response import all_not_none, build_identifiers
+from .response import build_identifiers, ResourceHandler
 from ..exceptions import ResourceLoadException
 
 
@@ -65,11 +65,7 @@ class ResourceFactory(object):
         :return: The service or resource class.
         """
         # Set some basic info
-        meta = {
-            'service_name': service_name,
-            'identifiers': [],
-            'data': None,
-        }
+        meta = ResourceMeta(service_name)
         attrs = {
             'meta': meta,
         }
@@ -79,15 +75,13 @@ class ResourceFactory(object):
         resource_model = ResourceModel(resource_name, model, resource_defs)
 
         self._load_identifiers(attrs, meta, resource_model)
-        self._load_subresources(attrs, service_name, resource_name,
-                                resource_model, resource_defs, service_model)
         self._load_actions(attrs, resource_model, resource_defs,
                            service_model)
         self._load_attributes(attrs, meta, resource_model, service_model)
         self._load_collections(attrs, resource_model, resource_defs,
                                service_model)
-        self._load_references(attrs, service_name, resource_name,
-                              resource_model, resource_defs, service_model)
+        self._load_has_relations(attrs, service_name, resource_name,
+                                 resource_model, resource_defs, service_model)
         self._load_waiters(attrs, resource_model)
 
         # Create the name based on the requested service and resource
@@ -107,35 +101,8 @@ class ResourceFactory(object):
             snake_cased = xform_name(identifier.name)
             snake_cased = self._check_allowed_name(
                 attrs, snake_cased, 'identifier', model.name)
-            meta['identifiers'].append(snake_cased)
+            meta.identifiers.append(snake_cased)
             attrs[snake_cased] = None
-
-    def _load_subresources(self, attrs, service_name, resource_name,
-                           model, resource_defs, service_model):
-        """
-        Creates subresource classes which hang off the instance. Each
-        subresource is a bound partial method that returns a resource
-        instance which shares the client and identifiers of the parent.
-        """
-        # Create dangling classes, e.g. SQS.Queue, SQS.Message
-        if service_name == resource_name:
-            # This is a service, so dangle all the resource_defs as if
-            # they were subresources of the service itself.
-            for name, resource_def in resource_defs.items():
-                cls = self.load_from_definition(
-                    service_name, name, resource_defs.get(name, {}),
-                    resource_defs, service_model)
-                attrs[name] = self._create_class_partial(cls)
-
-        # For non-services, subresources are explicitly listed
-        if model.sub_resources:
-            identifiers = model.sub_resources.identifiers
-            for name in model.sub_resources.resource_names:
-                cls = self.load_from_definition(
-                    service_name, name, resource_defs.get(name, {}),
-                    resource_defs, service_model)
-                attrs[name] = self._create_class_partial(
-                    cls, identifiers=identifiers)
 
     def _load_actions(self, attrs, model, resource_defs, service_model):
         """
@@ -168,7 +135,7 @@ class ResourceFactory(object):
 
             for name, member in shape.members.items():
                 snake_cased = xform_name(name)
-                if snake_cased in meta['identifiers']:
+                if snake_cased in meta.identifiers:
                     # Skip identifiers, these are set through other means
                     continue
 
@@ -190,31 +157,41 @@ class ResourceFactory(object):
                 attrs, snake_cased, 'collection', model.name)
 
             attrs[snake_cased] = self._create_collection(
-                attrs['meta']['service_name'], model.name, snake_cased,
+                attrs['meta'].service_name, model.name, snake_cased,
                 collection_model, resource_defs, service_model)
 
-    def _load_references(self, attrs, service_name, resource_name,
-                         model, resource_defs, service_model):
+    def _load_has_relations(self, attrs, service_name, resource_name,
+                            model, resource_defs, service_model):
         """
-        Load references, which are related resource instances. For example,
-        an EC2 instance would have a ``vpc`` reference, which is an instance
-        of an EC2 VPC resource.
+        Load related resources, which are defined via a ``has``
+        relationship but conceptually come in two forms:
+
+        1. A reference, which is a related resource instance and can be
+           ``None``, such as an EC2 instance's ``vpc``.
+        2. A subresource, which is a resource constructor that will always
+           return a resource instance which shares identifiers/data with
+           this resource, such as ``s3.Bucket('name').Object('key')``.
         """
         for reference in model.references:
-            snake_cased = xform_name(reference.resource.type)
+            # This is a dangling reference, i.e. we have all
+            # the data we need to create the resource, so
+            # this instance becomes an attribute on the class.
+            snake_cased = xform_name(reference.name)
             snake_cased = self._check_allowed_name(
                 attrs, snake_cased, 'reference', model.name)
             attrs[snake_cased] = self._create_reference(
-                reference.resource.type, snake_cased, reference, service_name,
-                resource_name, model, resource_defs, service_model)
+                reference.resource.type, snake_cased, reference,
+                service_name, resource_name, model, resource_defs,
+                service_model)
 
-        for reference in model.reverse_references:
-            snake_cased = xform_name(reference.resource.type)
-            snake_cased = self._check_allowed_name(
-                attrs, snake_cased, 'reference', model.name)
-            attrs[snake_cased] = self._create_reference(
-                reference.resource.type, snake_cased, reference, service_name,
-                resource_name, model, resource_defs, service_model)
+        for subresource in model.subresources:
+            # This is a sub-resource class you can create
+            # by passing in an identifier, e.g. s3.Bucket(name).
+            name = subresource.resource.type
+            attrs[name] = self._create_class_partial(
+                name, subresource, service_name, resource_name, model,
+                resource_defs, service_model)
+
 
     def _load_waiters(self, attrs, model):
         """
@@ -272,14 +249,14 @@ class ResourceFactory(object):
         # it first checks to see if it CAN be loaded (raise if not), then
         # calls the load before returning the value.
         def property_loader(self):
-            if self.meta['data'] is None:
+            if self.meta.data is None:
                 if hasattr(self, 'load'):
                     self.load()
                 else:
                     raise ResourceLoadException(
                         '{0} has no load method'.format(self.__class__.__name__))
 
-            return self.meta['data'].get(name)
+            return self.meta.data.get(name)
 
         property_loader.__name__ = str(snake_cased)
         property_loader.__doc__ = 'TODO'
@@ -322,30 +299,27 @@ class ResourceFactory(object):
         """
         Creates a new property on the resource to lazy-load a reference.
         """
+        # References are essentially an action with no request
+        # or response, so we can re-use the response handlers to
+        # build up resources from identifiers and data members.
+        handler = ResourceHandler('', factory_self, resource_defs,
+                                  service_model, reference.resource)
+
         def get_reference(self):
             # We need to lazy-evaluate the reference to handle circular
             # references between resources. We do this by loading the class
             # when first accessed.
             # First, though, we need to see if we have the required
             # identifiers to instantiate the resource reference.
-            identifiers = build_identifiers(
-                reference.resource.identifiers, self, {}, {})
-            resource = None
-            if all_not_none(identifiers.values()):
-                # Identifiers are present, so now we can create the resource
-                # instance using them.
-                resource_type = reference.resource.type
-                cls = factory_self.load_from_definition(
-                    service_name, name, resource_defs.get(resource_type),
-                    resource_defs, service_model)
-                resource = cls(**identifiers)
-            return resource
+            return handler(self, {}, {})
 
         get_reference.__name__ = str(snake_cased)
         get_reference.__doc__ = 'TODO'
         return property(get_reference)
 
-    def _create_class_partial(factory_self, resource_cls, identifiers=None):
+    def _create_class_partial(factory_self, name, subresource,
+                              service_name, resource_name, model,
+                              resource_defs, service_model):
         """
         Creates a new method which acts as a functools.partial, passing
         along the instance's low-level `client` to the new resource
@@ -354,36 +328,28 @@ class ResourceFactory(object):
         # We need a new method here because we want access to the
         # instance's client.
         def create_resource(self, *args, **kwargs):
-            pargs = []
+            positional_args = []
+
+            # We lazy-load the class to handle circular references.
+            resource_cls = factory_self.load_from_definition(
+                service_name, name, resource_defs.get(name, {}),
+                resource_defs, service_model)
 
             # Assumes that identifiers are in order, which lets you do
             # e.g. ``sqs.Queue('foo').Message('bar')`` to create a new message
             # linked with the ``foo`` queue and which has a ``bar`` receipt
             # handle. If we did kwargs here then future positional arguments
             # would lead to failure.
+            identifiers = subresource.resource.identifiers
             if identifiers is not None:
-                for key, value in identifiers.items():
-                    pargs.append(getattr(self, xform_name(key)))
+                for identifier, value in build_identifiers(identifiers, self):
+                    positional_args.append(value)
 
-            return partial(resource_cls, *pargs,
-                client=self.meta.get('client'))(*args, **kwargs)
+            return partial(resource_cls, *positional_args,
+                client=self.meta.client)(*args, **kwargs)
 
-        # Generate documentation about required and optional params
-        doc = 'Create a new instance of {0}\n\nRequired identifiers:\n'
-
-        for identifier in resource_cls.meta['identifiers']:
-            doc += ':type {0}: string\n'.format(identifier)
-            doc += ':param {0}: {0} identifier\n'.format(identifier)
-
-        doc += '\nOptional params:\n'
-        doc += ':type client: botocore.client\n'
-        doc += ':param client: Low-level Botocore client instance\n'
-
-        doc += '\n:rtype: {0}\n'.format(resource_cls)
-        doc += ':return: A new resource instance'
-
-        create_resource.__name__ = str(resource_cls.__name__)
-        create_resource.__doc__ = doc.format(resource_cls)
+        create_resource.__name__ = str(name)
+        create_resource.__doc__ = 'TODO'
         return create_resource
 
     def _create_action(factory_self, snake_cased, action_model, resource_defs,
@@ -405,7 +371,7 @@ class ResourceFactory(object):
             # instance via ``self``.
             def do_action(self, *args, **kwargs):
                 response = action(self, *args, **kwargs)
-                self.meta['data'] = response
+                self.meta.data = response
         else:
             # We need a new method here because we want access to the
             # instance via ``self``.
@@ -416,7 +382,7 @@ class ResourceFactory(object):
                     # Clear cached data. It will be reloaded the next
                     # time that an attribute is accessed.
                     # TODO: Make this configurable in the future?
-                    self.meta['data'] = None
+                    self.meta.data = None
 
                 return response
 

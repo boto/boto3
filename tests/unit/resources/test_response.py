@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from tests import BaseTestCase, mock
-from boto3.resources.base import ServiceResource
+from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.response import build_identifiers, build_empty_response,\
@@ -21,8 +21,8 @@ from boto3.resources.response import build_identifiers, build_empty_response,\
 
 class TestBuildIdentifiers(BaseTestCase):
     def test_build_identifier_from_res_path_scalar(self):
-        identifiers = [Parameter(target='Id', source_type='responsePath',
-                                 source='Container.Frob.Id')]
+        identifiers = [Parameter(target='Id', source='response',
+                                 path='Container.Frob.Id')]
 
         parent = mock.Mock()
         params = {}
@@ -36,12 +36,12 @@ class TestBuildIdentifiers(BaseTestCase):
 
         values = build_identifiers(identifiers, parent, params, response)
 
-        self.assertEqual(values['id'], 'response-path',
+        self.assertEqual(values[0][1], 'response-path',
             'Identifier loaded from responsePath scalar not set')
 
     def test_build_identifier_from_res_path_list(self):
-        identifiers = [Parameter(target='Id', source_type='responsePath',
-                       source='Container.Frobs[].Id')]
+        identifiers = [Parameter(target='Id', source='response',
+                       path='Container.Frobs[].Id')]
 
         parent = mock.Mock()
         params = {}
@@ -57,12 +57,12 @@ class TestBuildIdentifiers(BaseTestCase):
 
         values = build_identifiers(identifiers, parent, params, response)
 
-        self.assertEqual(values['id'], ['response-path'],
+        self.assertEqual(values[0][1], ['response-path'],
             'Identifier loaded from responsePath list not set')
 
     def test_build_identifier_from_parent_identifier(self):
-        identifiers = [Parameter(target='Id', source_type='identifier',
-                       source='Id')]
+        identifiers = [Parameter(target='Id', source='identifier',
+                       name='Id')]
 
         parent = mock.Mock()
         parent.id = 'identifier'
@@ -75,15 +75,17 @@ class TestBuildIdentifiers(BaseTestCase):
 
         values = build_identifiers(identifiers, parent, params, response)
 
-        self.assertEqual(values['id'], 'identifier',
+        self.assertEqual(values[0][1], 'identifier',
             'Identifier loaded from parent identifier not set')
 
     def test_build_identifier_from_parent_data_member(self):
-        identifiers = [Parameter(target='Id', source_type='dataMember',
-                       source='Member')]
+        identifiers = [Parameter(target='Id', source='data',
+                       path='Member')]
 
         parent = mock.Mock()
-        parent.member = 'data-member'
+        parent.meta = ResourceMeta('test', data={
+            'Member': 'data-member'
+        })
         params = {}
         response = {
             'Container': {
@@ -93,12 +95,12 @@ class TestBuildIdentifiers(BaseTestCase):
 
         values = build_identifiers(identifiers, parent, params, response)
 
-        self.assertEqual(values['id'], 'data-member',
+        self.assertEqual(values[0][1], 'data-member',
             'Identifier loaded from parent data member not set')
 
     def test_build_identifier_from_req_param(self):
-        identifiers = [Parameter(target='Id', source_type='requestParameter',
-                       source='Param')]
+        identifiers = [Parameter(target='Id', source='requestParameter',
+                       path='Param')]
 
         parent = mock.Mock()
         params = {
@@ -112,12 +114,11 @@ class TestBuildIdentifiers(BaseTestCase):
 
         values = build_identifiers(identifiers, parent, params, response)
 
-        self.assertEqual(values['id'], 'request-param',
+        self.assertEqual(values[0][1], 'request-param',
             'Identifier loaded from request parameter not set')
 
     def test_build_identifier_from_invalid_source_type(self):
-        identifiers = [Parameter(target='Id', source_type='invalid',
-                       source='abc')]
+        identifiers = [Parameter(target='Id', source='invalid')]
 
         parent = mock.Mock()
         params = {}
@@ -295,7 +296,7 @@ class TestRawHandler(BaseTestCase):
 class TestResourceHandler(BaseTestCase):
     def setUp(self):
         super(TestResourceHandler, self).setUp()
-        self.identifier_source = ''
+        self.identifier_path = ''
         self.factory = ResourceFactory()
         self.resource_defs = {
             'Frob': {
@@ -327,18 +328,15 @@ class TestResourceHandler(BaseTestCase):
         self.service_model.operation_model.return_value = operation_model
 
         self.parent = mock.Mock()
-        self.parent.meta = {
-            'service_name': 'test',
-            'client': mock.Mock(),
-        }
+        self.parent.meta = ResourceMeta('test', client=mock.Mock())
         self.params = {}
 
     def get_resource(self, search_path, response):
         request_resource_def = {
             'type': 'Frob',
             'identifiers': [
-                {'target': 'Id', 'sourceType': 'responsePath',
-                 'source': self.identifier_source},
+                {'target': 'Id', 'source': 'response',
+                 'path': self.identifier_path},
             ]
         }
         resource_model = ResponseResource(
@@ -350,7 +348,7 @@ class TestResourceHandler(BaseTestCase):
         return handler(self.parent, self.params, response)
 
     def test_create_resource_scalar(self):
-        self.identifier_source = 'Container.Id'
+        self.identifier_path = 'Container.Id'
         search_path = 'Container'
         response = {
             'Container': {
@@ -365,7 +363,7 @@ class TestResourceHandler(BaseTestCase):
 
     @mock.patch('boto3.resources.response.build_empty_response')
     def test_missing_data_scalar_builds_empty_response(self, build_mock):
-        self.identifier_source = 'Container.Id'
+        self.identifier_path = 'Container.Id'
         search_path = 'Container'
         response = {
             'something': 'irrelevant'
@@ -379,7 +377,7 @@ class TestResourceHandler(BaseTestCase):
             'build_empty_response return value was not returned')
 
     def test_create_resource_list(self):
-        self.identifier_source = 'Container.Frobs[].Id'
+        self.identifier_path = 'Container.Frobs[].Id'
         search_path = 'Container.Frobs[]'
         response = {
             'Container': {
@@ -406,7 +404,7 @@ class TestResourceHandler(BaseTestCase):
             'List items are not resource instances')
 
     def test_create_resource_list_no_search_path(self):
-        self.identifier_source = '[].Id'
+        self.identifier_path = '[].Id'
         search_path = ''
         response = [
             {
@@ -426,7 +424,7 @@ class TestResourceHandler(BaseTestCase):
 
     @mock.patch('boto3.resources.response.build_empty_response')
     def test_missing_data_list_builds_empty_response(self, build_mock):
-        self.identifier_source = 'Container.Frobs[].Id'
+        self.identifier_path = 'Container.Frobs[].Id'
         search_path = 'Container.Frobs[]'
         response = {
             'something': 'irrelevant'

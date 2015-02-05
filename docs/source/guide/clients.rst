@@ -22,7 +22,7 @@ resource::
     sqs_resource = boto3.resource('sqs')
 
     # Get the client from the resource
-    sqs = sqs_resource.meta['client']
+    sqs = sqs_resource.meta.client
 
 Service Operations
 ------------------
