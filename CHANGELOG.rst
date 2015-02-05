@@ -4,6 +4,9 @@ Changelog
 Unreleased
 ----------
 
+* feature:Resources: Support plural references and nested JMESPath
+  queries for data members when building parameters and identifiers.
+  (`issue 52 <https://github.com/boto/boto3/pull/52>`__)
 * feature:Dependency: Update to JMESPath 0.6.1
 * feature:Resources: Update to the latest resource JSON format.
   (`issue 51 <https://github.com/boto/boto3/pull/51>`__)
