@@ -8,7 +8,10 @@ Changelog
 * feature:Resources: Support plural references and nested JMESPath
   queries for data members when building parameters and identifiers.
   (`issue 52 <https://github.com/boto/boto3/pull/52>`__)
-* feature:Resources: Update to the latest resource JSON format.
+* feature:Resources: Update to the latest resource JSON format. This is
+  a **backward-incompatible** change as not all resources are exposed
+  at the service level anymore. For example, ``s3.Object('bucket', 'key')``
+  is now ``s3.Bucket('bucket').Object('key')``.
   (`issue 51 <https://github.com/boto/boto3/pull/51>`__)
 * feature:Resources: Make ``resource.meta`` a proper object. This allows
   you to do things like ``resource.meta.client``. This is a **backward-
