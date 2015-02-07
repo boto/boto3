@@ -670,3 +670,54 @@ class TestResourceFactoryDanglingResource(TestResourceFactory):
 
         self.assertNotEqual(q1, q2)
         self.assertNotEqual(q1, m)
+
+
+class TestServiceResourceSubresources(TestResourceFactory):
+    def setUp(self):
+        super(TestServiceResourceSubresources, self).setUp()
+
+        self.model = {
+            'has': {
+                'QueueObject': {
+                    'resource': {
+                        'type': 'Queue',
+                        'identifiers': [
+                            {'target': 'Url', 'source': 'input'}
+                        ]
+                    }
+                }
+            }
+        }
+
+        self.defs = {
+            'Queue': {
+                'identifiers': [
+                    {'name': 'Url'}
+                ]
+            },
+            'Message': {
+                'identifiers': [
+                    {'name': 'QueueUrl'},
+                    {'name': 'ReceiptHandle'}
+                ]
+            }
+        }
+
+    def test_subresource_custom_name(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+
+        self.assertTrue(hasattr(resource, 'QueueObject'))
+
+    def test_contains_all_subresources(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+
+        self.assertIn('QueueObject', dir(resource))
+        self.assertIn('Message', dir(resource))
+
+    def test_subresource_missing_all_subresources(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+        message = resource.Message('url', 'handle')
+
+        self.assertNotIn('QueueObject', dir(message))
+        self.assertNotIn('Queue', dir(message))
+        self.assertNotIn('Message', dir(message))
