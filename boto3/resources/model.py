@@ -320,8 +320,8 @@ class ResourceModel(object):
         allows things like ``s3.Object('bucket-name', 'key')`` to
         work even though the JSON doesn't define it explicitly.
 
-        @rtype: dict
-        @return: Mapping of names to subresource and reference
+        :rtype: dict
+        :return: Mapping of names to subresource and reference
                  definitions.
         """
         if self.name not in self._resource_defs:
