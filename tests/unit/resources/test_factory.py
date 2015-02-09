@@ -685,6 +685,14 @@ class TestServiceResourceSubresources(TestResourceFactory):
                             {'target': 'Url', 'source': 'input'}
                         ]
                     }
+                },
+                'PriorityQueue': {
+                    'resource': {
+                        'type': 'Queue',
+                        'identifiers': [
+                            {'target': 'Url', 'source': 'input'}
+                        ]
+                    }
                 }
             }
         }
@@ -712,6 +720,7 @@ class TestServiceResourceSubresources(TestResourceFactory):
         resource = self.load('test', 'test', self.model, self.defs, None)()
 
         self.assertIn('QueueObject', dir(resource))
+        self.assertIn('PriorityQueue', dir(resource))
         self.assertIn('Message', dir(resource))
 
     def test_subresource_missing_all_subresources(self):
@@ -719,5 +728,6 @@ class TestServiceResourceSubresources(TestResourceFactory):
         message = resource.Message('url', 'handle')
 
         self.assertNotIn('QueueObject', dir(message))
+        self.assertNotIn('PriorityQueue', dir(message))
         self.assertNotIn('Queue', dir(message))
         self.assertNotIn('Message', dir(message))

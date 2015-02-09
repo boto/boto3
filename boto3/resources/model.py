@@ -331,14 +331,17 @@ class ResourceModel(object):
 
             for name, resource_def in self._resource_defs.items():
                 # It's possible for the service to have renamed a
-                # resource, so we need to take that into account and
-                # search for the same resource type.
+                # resource or to have defined multiple names that
+                # point to the same resource type, so we need to
+                # take that into account.
+                found = False
                 has_items = self._definition.get('has', {}).items()
                 for has_name, has_def in has_items:
                     if has_def.get('resource', {}).get('type') == name:
                         definition[has_name] = has_def
-                        break
-                else:
+                        found = True
+
+                if not found:
                     # Create a relationship definition and attach it
                     # to the model, such that all identifiers must be
                     # supplied by the user. It will look something like:
