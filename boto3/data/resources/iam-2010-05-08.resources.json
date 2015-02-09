@@ -376,7 +376,7 @@
           "request": {
             "operation": "UpdateAssumeRolePolicy",
             "params": [
-              { "target": "RoleName", "source": "identifier", "name": "Name" }
+              { "target": "RoleName", "source": "identifier", "name": "RoleName" }
             ]
           }
         }

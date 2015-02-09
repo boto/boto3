@@ -110,11 +110,11 @@
             ]
           }
         },
-        "InitiateArchiveRetreival": {
+        "InitiateArchiveRetrieval": {
           "request": {
             "operation": "InitiateJob",
             "params": [
-              { "target": "vaultName", "source": "identifier", "name": "Name" },
+              { "target": "vaultName", "source": "identifier", "name": "VaultName" },
               { "target": "accountId", "source": "identifier", "name": "AccountId" },
               { "target": "jobParameters.Type", "source": "string", "value": "archive-retrieval" },
               { "target": "jobParameters.ArchiveId", "source": "identifier", "name": "Id" }
@@ -125,7 +125,7 @@
             "identifiers": [
               { "target": "Id", "source": "response", "path": "jobId" },
               { "target": "AccountId", "source": "identifier", "name": "AccountId" },
-              { "target": "VaultName", "source": "identifier", "name": "Name" }
+              { "target": "VaultName", "source": "identifier", "name": "VaultName" }
             ]
           }
         }
