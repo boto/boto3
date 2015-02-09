@@ -154,7 +154,7 @@ class TestModels(BaseTestCase):
         action = model.subresources[0]
         resource = action.resource
 
-        self.assertEqual(action.name, 'RedFrob')
+        self.assertIn(action.name, ['RedFrob', 'GreenFrob'])
         self.assertEqual(resource.identifiers[0].target, 'Id')
         self.assertEqual(resource.identifiers[0].source, 'input')
         self.assertEqual(resource.type, 'Frob')
