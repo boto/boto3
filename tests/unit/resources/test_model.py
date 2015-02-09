@@ -187,9 +187,9 @@ class TestModels(BaseTestCase):
                         'operation': 'GetFrobList'
                     },
                     'resource': {
-                        'type': 'Frob'
-                    },
-                    'path': 'FrobList[]'
+                        'type': 'Frob',
+                        'path': 'FrobList[]'
+                    }
                 }
             }
         }, {
@@ -202,7 +202,7 @@ class TestModels(BaseTestCase):
         self.assertEqual(model.collections[0].request.operation, 'GetFrobList')
         self.assertEqual(model.collections[0].resource.type, 'Frob')
         self.assertEqual(model.collections[0].resource.model.name, 'Frob')
-        self.assertEqual(model.collections[0].path, 'FrobList[]')
+        self.assertEqual(model.collections[0].resource.path, 'FrobList[]')
 
     def test_waiter(self):
         model = ResourceModel('test', {
