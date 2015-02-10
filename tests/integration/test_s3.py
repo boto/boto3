@@ -82,4 +82,10 @@ class TestS3Resource(unittest.TestCase):
         obj.wait_until_exists()
 
         # List objects and make sure ours is present
-        self.assertIn('test.txt', [o.key for o in bucket.objects.all()])        
+        self.assertIn('test.txt', [o.key for o in bucket.objects.all()])
+
+    def test_can_create_object_directly(self):
+        obj = self.s3.Object(self.bucket_name, 'test.txt')
+
+        self.assertEqual(obj.bucket_name, self.bucket_name)
+        self.assertEqual(obj.key, 'test.txt')

@@ -127,7 +127,15 @@ class TestModels(BaseTestCase):
     def test_sub_resources(self):
         model = ResourceModel('test', {
             'has': {
-                'Frob': {
+                'RedFrob': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target': 'Id', 'source': 'input'}
+                        ]
+                    }
+                },
+                'GreenFrob': {
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
@@ -141,11 +149,12 @@ class TestModels(BaseTestCase):
         })
 
         self.assertIsInstance(model.subresources, list)
+        self.assertEqual(len(model.subresources), 2)
 
         action = model.subresources[0]
         resource = action.resource
 
-        self.assertEqual(action.name, 'Frob')
+        self.assertIn(action.name, ['RedFrob', 'GreenFrob'])
         self.assertEqual(resource.identifiers[0].target, 'Id')
         self.assertEqual(resource.identifiers[0].source, 'input')
         self.assertEqual(resource.type, 'Frob')

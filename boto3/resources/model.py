@@ -312,6 +312,69 @@ class ResourceModel(object):
 
         return actions
 
+    def _get_has_definition(self):
+        """
+        Get a ``has`` relationship definition from a model, where the
+        service resource model is treated special in that it contains
+        a relationship to every resource defined for the service. This
+        allows things like ``s3.Object('bucket-name', 'key')`` to
+        work even though the JSON doesn't define it explicitly.
+
+        :rtype: dict
+        :return: Mapping of names to subresource and reference
+                 definitions.
+        """
+        if self.name not in self._resource_defs:
+            # This is the service resource, so let us expose all of
+            # the defined resources as subresources.
+            definition = {}
+
+            for name, resource_def in self._resource_defs.items():
+                # It's possible for the service to have renamed a
+                # resource or to have defined multiple names that
+                # point to the same resource type, so we need to
+                # take that into account.
+                found = False
+                has_items = self._definition.get('has', {}).items()
+                for has_name, has_def in has_items:
+                    if has_def.get('resource', {}).get('type') == name:
+                        definition[has_name] = has_def
+                        found = True
+
+                if not found:
+                    # Create a relationship definition and attach it
+                    # to the model, such that all identifiers must be
+                    # supplied by the user. It will look something like:
+                    #
+                    # {
+                    #   'resource': {
+                    #     'type': 'ResourceName',
+                    #     'identifiers': [
+                    #       {'target': 'Name1', 'source': 'input'},
+                    #       {'target': 'Name2', 'source': 'input'},
+                    #       ...
+                    #     ]
+                    #   }
+                    # }
+                    #
+                    fake_has = {
+                        'resource': {
+                            'type': name,
+                            'identifiers': []
+                        }
+                    }
+
+                    for identifier in resource_def.get('identifiers', []):
+                        fake_has['resource']['identifiers'].append({
+                            'target': identifier['name'], 'source': 'input'
+                        })
+
+                    definition[name] = fake_has
+        else:
+            definition = self._definition.get('has', {})
+
+        return definition
+
     def _get_related_resources(self, subresources):
         """
         Get a list of sub-resources or references.
@@ -323,7 +386,7 @@ class ResourceModel(object):
         """
         resources = []
 
-        for name, definition in self._definition.get('has', {}).items():
+        for name, definition in self._get_has_definition().items():
             action = Action(name, definition, self._resource_defs)
 
             data_required = False

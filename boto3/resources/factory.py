@@ -188,7 +188,7 @@ class ResourceFactory(object):
             # This is a sub-resource class you can create
             # by passing in an identifier, e.g. s3.Bucket(name).
             name = subresource.resource.type
-            attrs[name] = self._create_class_partial(
+            attrs[subresource.name] = self._create_class_partial(
                 name, subresource, service_name, resource_name, model,
                 resource_defs, service_model)
 
