@@ -104,7 +104,7 @@ class TestS3Resource(unittest.TestCase):
 
         # Create and upload a part
         part = mpu.Part(1)
-        response = part.upload(b'hello, world!')
+        response = part.upload(Body='hello, world!')
 
         # Complete the upload, which requires info on all of the parts
         part_info = {
@@ -118,3 +118,6 @@ class TestS3Resource(unittest.TestCase):
 
         mpu.complete(MultipartUpload=part_info)
         self.addCleanup(bucket.Object('mp-test.txt').delete)
+
+        contents = bucket.Object('mp-test.txt').get()['Body'].read()
+        self.assertEqual(contents, b'hello, world!')
