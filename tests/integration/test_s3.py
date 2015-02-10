@@ -92,3 +92,29 @@ class TestS3Resource(unittest.TestCase):
 
         self.assertEqual(obj.bucket_name, self.bucket_name)
         self.assertEqual(obj.key, 'test.txt')
+
+    def test_s3_multipart(self):
+        # Create the bucket
+        bucket = self.create_bucket_resource(self.bucket_name)
+        bucket.wait_until_exists()
+
+        # Create the multipart upload
+        mpu = bucket.Object('mp-test.txt').initiate_multipart_upload()
+        self.addCleanup(mpu.abort)
+
+        # Create and upload a part
+        part = mpu.Part(1)
+        response = part.upload(b'hello, world!')
+
+        # Complete the upload, which requires info on all of the parts
+        part_info = {
+            'Parts': [
+                {
+                    'PartNumber': 1,
+                    'ETag': response['ETag']
+                }
+            ]
+        }
+
+        mpu.complete(MultipartUpload=part_info)
+        self.addCleanup(bucket.Object('mp-test.txt').delete)
