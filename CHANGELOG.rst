@@ -1,6 +1,17 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* bugfix:Resources: Fix Amazon S3 resource identifier order.
+  (`issue 62 <https://github.com/boto/boto3/pull/62>`__)
+* bugfix:Resources: Fix collection resource hydration path.
+  (`issue 61 <https://github.com/boto/boto3/pull/61>`__)
+* bugfix:Resources: Re-enable service-level access to all resources,
+  allowing e.g. ``obj = s3.Object('bucket', 'key')``.
+  (`issue 60 <https://github.com/boto/boto3/pull/60>`__)
+
 0.0.7 - 2015-02-05
 ------------------
 
