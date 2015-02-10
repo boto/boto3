@@ -57,6 +57,9 @@ class TestS3Resource(unittest.TestCase):
         # Lazy-loaded attribute
         self.assertEqual(12, obj.content_length)
 
+        # Load a similar attribute from the collection response
+        self.assertEqual(12, list(bucket.objects.all())[0].size)
+
         # Perform a resource action with a low-level response
         self.assertEqual(b'hello, world',
                          obj.get()['Body'].read())
