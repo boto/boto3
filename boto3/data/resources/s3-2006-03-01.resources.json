@@ -698,8 +698,8 @@
             "type": "MultipartUploadPart",
             "identifiers": [
               { "target": "BucketName", "source": "identifier", "name": "BucketName" },
-              { "target": "MultipartUploadId", "source": "identifier", "name": "Id" },
               { "target": "ObjectKey", "source": "identifier", "name": "ObjectKey" },
+              { "target": "MultipartUploadId", "source": "identifier", "name": "Id" },
               { "target": "PartNumber", "source": "input" }
             ]
           }
@@ -770,8 +770,8 @@
             "type": "MultipartUpload",
             "identifiers": [
               { "target": "BucketName", "source": "identifier", "name": "BucketName" },
-              { "target": "Id", "source": "identifier", "name": "MultipartUploadId" },
-              { "target": "ObjectKey", "source": "identifier", "name": "ObjectKey" }
+              { "target": "ObjectKey", "source": "identifier", "name": "ObjectKey" },
+              { "target": "Id", "source": "identifier", "name": "MultipartUploadId" }
             ]
           }
         }
