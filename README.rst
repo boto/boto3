@@ -40,22 +40,30 @@ pull requests on this repository. Thanks!
 
 Quick Start
 -----------
-First, install the library and set a default region::
+First, install the library and set a default region:
+
+.. code-block:: sh
 
     $ pip install boto3
 
-Next, set up credentials (in e.g. ``~/.aws/credentials``)::
+Next, set up credentials (in e.g. ``~/.aws/credentials``):
+
+.. code-block:: ini
 
     [default]
     aws_access_key_id = YOUR_KEY
     aws_secret_access_key = YOUR_SECRET
 
-Then, set up a default region (in e.g. ``~/.aws/config``)::
+Then, set up a default region (in e.g. ``~/.aws/config``):
+
+.. code-block:: ini
 
     [default]
     region=us-east-1
 
-Then, from a Python interpreter::
+Then, from a Python interpreter:
+
+.. code-block:: python
 
     >>> import boto3
     >>> s3 = boto3.resource('s3')
@@ -69,7 +77,9 @@ Getting Started
 ~~~~~~~~~~~~~~~
 Assuming that you have Python and ``virtualenv`` installed, set up your
 environment and install the required dependencies like this instead of
-the ``pip install boto3`` defined above::
+the ``pip install boto3`` defined above:
+
+.. code-block:: sh
 
     $ git clone https://github.com/boto/boto3.git
     $ cd boto3
@@ -85,20 +95,26 @@ You can run tests in all supported Python versions using ``tox``. Be default,
 it will run all of the unit tests, but you can also specify your own
 ``nosetests`` options. Note that this requires that you have all supported
 versions of Python installed, otherwise you must pass ``-e`` or run the
-``nosetests`` command directly::
+``nosetests`` command directly:
+
+.. code-block:: sh
 
     $ tox
     $ tox tests/unit/test_session.py
     $ tox -e py26,py33 tests/integration
 
-You can also run individual tests with your default Python version::
+You can also run individual tests with your default Python version:
+
+.. code-block:: sh
 
     $ nosetests tests/unit
 
 Generating Documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Sphinx is used for documentation. You can generate HTML locally with the
-following::
+following:
+
+.. code-block:: sh
 
     $ pip install sphinx sphinx_rtd_theme
     $ cd docs

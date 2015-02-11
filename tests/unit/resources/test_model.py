@@ -127,7 +127,15 @@ class TestModels(BaseTestCase):
     def test_sub_resources(self):
         model = ResourceModel('test', {
             'has': {
-                'Frob': {
+                'RedFrob': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target': 'Id', 'source': 'input'}
+                        ]
+                    }
+                },
+                'GreenFrob': {
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
@@ -141,11 +149,12 @@ class TestModels(BaseTestCase):
         })
 
         self.assertIsInstance(model.subresources, list)
+        self.assertEqual(len(model.subresources), 2)
 
         action = model.subresources[0]
         resource = action.resource
 
-        self.assertEqual(action.name, 'Frob')
+        self.assertIn(action.name, ['RedFrob', 'GreenFrob'])
         self.assertEqual(resource.identifiers[0].target, 'Id')
         self.assertEqual(resource.identifiers[0].source, 'input')
         self.assertEqual(resource.type, 'Frob')
@@ -187,9 +196,9 @@ class TestModels(BaseTestCase):
                         'operation': 'GetFrobList'
                     },
                     'resource': {
-                        'type': 'Frob'
-                    },
-                    'path': 'FrobList[]'
+                        'type': 'Frob',
+                        'path': 'FrobList[]'
+                    }
                 }
             }
         }, {
@@ -202,7 +211,7 @@ class TestModels(BaseTestCase):
         self.assertEqual(model.collections[0].request.operation, 'GetFrobList')
         self.assertEqual(model.collections[0].resource.type, 'Frob')
         self.assertEqual(model.collections[0].resource.model.name, 'Frob')
-        self.assertEqual(model.collections[0].path, 'FrobList[]')
+        self.assertEqual(model.collections[0].resource.path, 'FrobList[]')
 
     def test_waiter(self):
         model = ResourceModel('test', {

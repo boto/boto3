@@ -1,6 +1,23 @@
 Changelog
 =========
 
+0.0.8 - 2015-02-10
+------------------
+
+* bugfix:Resources: Fix Amazon S3 resource identifier order.
+  (`issue 62 <https://github.com/boto/boto3/pull/62>`__)
+* bugfix:Resources: Fix collection resource hydration path.
+  (`issue 61 <https://github.com/boto/boto3/pull/61>`__)
+* bugfix:Resources: Re-enable service-level access to all resources,
+  allowing e.g. ``obj = s3.Object('bucket', 'key')``.
+  (`issue 60 <https://github.com/boto/boto3/pull/60>`__)
+* feature:Botocore: Update to Botocore 0.87.0
+
+  * Add support for Amazon DynamoDB secondary index scanning.
+  * Upgrade to ``requests`` 2.5.1.
+  * Add support for anonymous (unsigned) clients.
+    (`botocore issue 448 <https://github.com/boto/botocore/pull/448>`__)
+
 0.0.7 - 2015-02-05
 ------------------
 
@@ -8,7 +25,10 @@ Changelog
 * feature:Resources: Support plural references and nested JMESPath
   queries for data members when building parameters and identifiers.
   (`issue 52 <https://github.com/boto/boto3/pull/52>`__)
-* feature:Resources: Update to the latest resource JSON format.
+* feature:Resources: Update to the latest resource JSON format. This is
+  a **backward-incompatible** change as not all resources are exposed
+  at the service level anymore. For example, ``s3.Object('bucket', 'key')``
+  is now ``s3.Bucket('bucket').Object('key')``.
   (`issue 51 <https://github.com/boto/boto3/pull/51>`__)
 * feature:Resources: Make ``resource.meta`` a proper object. This allows
   you to do things like ``resource.meta.client``. This is a **backward-

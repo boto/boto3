@@ -110,7 +110,6 @@
           "resource": {
             "type": "PlatformEndpoint",
             "identifiers": [
-              { "target": "PlatformApplicationArn", "source": "identifier", "name": "Arn" },
               { "target": "Arn", "source": "response", "path": "EndpointArn" }
             ]
           }

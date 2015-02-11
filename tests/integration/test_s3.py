@@ -57,6 +57,9 @@ class TestS3Resource(unittest.TestCase):
         # Lazy-loaded attribute
         self.assertEqual(12, obj.content_length)
 
+        # Load a similar attribute from the collection response
+        self.assertEqual(12, list(bucket.objects.all())[0].size)
+
         # Perform a resource action with a low-level response
         self.assertEqual(b'hello, world',
                          obj.get()['Body'].read())
@@ -82,4 +85,39 @@ class TestS3Resource(unittest.TestCase):
         obj.wait_until_exists()
 
         # List objects and make sure ours is present
-        self.assertIn('test.txt', [o.key for o in bucket.objects.all()])        
+        self.assertIn('test.txt', [o.key for o in bucket.objects.all()])
+
+    def test_can_create_object_directly(self):
+        obj = self.s3.Object(self.bucket_name, 'test.txt')
+
+        self.assertEqual(obj.bucket_name, self.bucket_name)
+        self.assertEqual(obj.key, 'test.txt')
+
+    def test_s3_multipart(self):
+        # Create the bucket
+        bucket = self.create_bucket_resource(self.bucket_name)
+        bucket.wait_until_exists()
+
+        # Create the multipart upload
+        mpu = bucket.Object('mp-test.txt').initiate_multipart_upload()
+        self.addCleanup(mpu.abort)
+
+        # Create and upload a part
+        part = mpu.Part(1)
+        response = part.upload(Body='hello, world!')
+
+        # Complete the upload, which requires info on all of the parts
+        part_info = {
+            'Parts': [
+                {
+                    'PartNumber': 1,
+                    'ETag': response['ETag']
+                }
+            ]
+        }
+
+        mpu.complete(MultipartUpload=part_info)
+        self.addCleanup(bucket.Object('mp-test.txt').delete)
+
+        contents = bucket.Object('mp-test.txt').get()['Body'].read()
+        self.assertEqual(contents, b'hello, world!')
