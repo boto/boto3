@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.8 - 2015-02-10
+------------------
 
 * bugfix:Resources: Fix Amazon S3 resource identifier order.
   (`issue 62 <https://github.com/boto/boto3/pull/62>`__)
@@ -11,6 +11,12 @@ Unreleased
 * bugfix:Resources: Re-enable service-level access to all resources,
   allowing e.g. ``obj = s3.Object('bucket', 'key')``.
   (`issue 60 <https://github.com/boto/boto3/pull/60>`__)
+* feature:Botocore: Update to Botocore 0.87.0
+
+  * Add support for Amazon DynamoDB secondary index scanning.
+  * Upgrade to ``requests`` 2.5.1.
+  * Add support for anonymous (unsigned) clients.
+    (`botocore issue 448 <https://github.com/boto/botocore/pull/448>`__)
 
 0.0.7 - 2015-02-05
 ------------------

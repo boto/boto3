@@ -26,7 +26,7 @@ packages = [
 ]
 
 requires = [
-    'botocore==0.86.0',
+    'botocore==0.87.0',
     'bcdoc==0.12.2',
     'jmespath==0.6.1',
 ]
