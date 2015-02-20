@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.9 - 2015-02-19
+------------------
 
 * feature:Botocore: Update to Botocore 0.92.0
 
