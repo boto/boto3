@@ -1,6 +1,25 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature:Botocore: Update to Botocore 0.92.0
+
+  * Add support for the latest Amazon EC2 Container Service API.
+  * Allow calling AWS STS ``assume_role_with_saml`` without credentials.
+  * Update to latest Amazon CloudFront API
+  * Add support for AWS STS regionalized calls by passing both a region
+    name and an endpoint URL.
+    (`botocore issue 464 <https://github.com/boto/botocore/pull/464>`__)
+  * Add support for Amazon Simple Systems Management Service (SSM)
+  * Fix Amazon S3 auth errors when uploading large files
+    to the ``eu-central-1`` and ``cn-north-1`` regions.
+    (`botocore issue 462 <https://github.com/boto/botocore/pull/462>`__)
+  * Add support for AWS IAM managed policies
+  * Add support for Amazon ElastiCache tagging
+  * Add support for Amazon Route53 Domains tagging of domains
+
 0.0.8 - 2015-02-10
 ------------------
 
