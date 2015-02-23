@@ -74,6 +74,11 @@ class ResourceFactory(object):
 
         resource_model = ResourceModel(resource_name, model, resource_defs)
 
+        shape = None
+        if resource_model.shape:
+            shape = service_model.shape_for(resource_model.shape)
+        resource_model.load_rename_map(shape)
+
         self._load_identifiers(attrs, meta, resource_model)
         self._load_actions(attrs, resource_model, resource_defs,
                            service_model)
@@ -99,8 +104,6 @@ class ResourceFactory(object):
         """
         for identifier in model.identifiers:
             snake_cased = xform_name(identifier.name)
-            snake_cased = self._check_allowed_name(
-                attrs, snake_cased, 'identifier', model.name)
             meta.identifiers.append(snake_cased)
             attrs[snake_cased] = None
 
@@ -118,8 +121,6 @@ class ResourceFactory(object):
 
         for action in model.actions:
             snake_cased = xform_name(action.name)
-            snake_cased = self._check_allowed_name(
-                attrs, snake_cased, 'action', model.name)
             attrs[snake_cased] = self._create_action(snake_cased,
                 action, resource_defs, service_model)
 
@@ -133,16 +134,8 @@ class ResourceFactory(object):
         if model.shape:
             shape = service_model.shape_for(model.shape)
 
-            for name, member in shape.members.items():
-                snake_cased = xform_name(name)
-                if snake_cased in meta.identifiers:
-                    # Skip identifiers, these are set through other means
-                    continue
-
-                snake_cased = self._check_allowed_name(
-                    attrs, snake_cased, 'attribute', model.name)
-                attrs[snake_cased] = self._create_autoload_property(name,
-                    snake_cased)
+            for name, member in model.get_attributes(shape).items():
+                attrs[name] = self._create_autoload_property(member.name, name)
 
     def _load_collections(self, attrs, model, resource_defs, service_model):
         """
@@ -153,8 +146,6 @@ class ResourceFactory(object):
         """
         for collection_model in model.collections:
             snake_cased = xform_name(collection_model.name)
-            snake_cased = self._check_allowed_name(
-                attrs, snake_cased, 'collection', model.name)
 
             attrs[snake_cased] = self._create_collection(
                 attrs['meta'].service_name, model.name, snake_cased,
@@ -177,8 +168,6 @@ class ResourceFactory(object):
             # the data we need to create the resource, so
             # this instance becomes an attribute on the class.
             snake_cased = xform_name(reference.name)
-            snake_cased = self._check_allowed_name(
-                attrs, snake_cased, 'reference', model.name)
             attrs[snake_cased] = self._create_reference(
                 reference.resource.type, snake_cased, reference,
                 service_name, resource_name, model, resource_defs,
@@ -201,43 +190,7 @@ class ResourceFactory(object):
         """
         for waiter in model.waiters:
             snake_cased = xform_name(waiter.resource_waiter_name)
-            snake_cased = self._check_allowed_name(
-                attrs, snake_cased, 'waiter', model.name)
             attrs[snake_cased] = self._create_waiter(waiter, snake_cased)
-
-    def _check_allowed_name(self, attrs, name, category, resource_name):
-        """
-        Determine if a given name is allowed on the instance, and if not,
-        then raise an exception. This prevents public attributes of the
-        class from being clobbered, e.g. since we define ``Resource.meta``,
-        no identifier may be named ``meta``. Another example: no action
-        named ``queue_items`` may be added after an identifier of the same
-        name has been added.
-
-        One attempt is made in the event of a collision to remedy the
-        situation. The ``category`` is appended to the name and the
-        check is performed again. For example, if an action named
-        ``get_frobs`` fails the test, then we try ``get_frobs_action``
-        after logging a warning.
-
-        :raises: ValueError
-        """
-        if name in attrs:
-            logger.warning('%s `%s` would clobber existing %s'
-                           ' resource attribute, going to try'
-                           ' %s instead...', category, name,
-                           resource_name, name + '_' + category)
-            # TODO: Move this logic into the model and strictly
-            #       define the loading order of categories. This
-            #       will make documentation much simpler.
-            name = name + '_' + category
-
-        if name in attrs:
-            raise ValueError('{0} `{1}` would clobber existing '
-                             '{2} resource attribute'.format(
-                                category, name, resource_name))
-
-        return name
 
     def _create_autoload_property(factory_self, name, snake_cased):
         """

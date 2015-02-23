@@ -25,6 +25,8 @@ classes as well as by the documentation generator.
 
 import logging
 
+from botocore import xform_name
+
 
 logger = logging.getLogger(__name__)
 
@@ -250,11 +252,161 @@ class ResourceModel(object):
     def __init__(self, name, definition, resource_defs):
         self._definition = definition
         self._resource_defs = resource_defs
+        self._renamed = {}
 
         #: (``string``) The name of this resource
         self.name = name
         #: (``string``) The service shape name for this resource or ``None``
         self.shape = definition.get('shape')
+
+    def load_rename_map(self, shape=None):
+        """
+        Load a name translation map given a shape. This will set
+        up renamed values for any collisions, e.g. if the shape,
+        an action, and a subresource all are all named ``foo``
+        then the resource will have an action ``foo``, a subresource
+        named ``Foo`` and a property named ``foo_attribute``.
+        This is the order of precedence, from most important to
+        least important:
+
+        * Load action (resource.load)
+        * Identifiers
+        * Actions
+        * Subresources
+        * References
+        * Collections
+        * Attributes (shape members)
+
+        Batch actions are only exposed on collections, so do not
+        get modified here. Subresources use upper camel casing, so
+        are unlikely to collide with anything but other subresources.
+
+        Creates a structure like this::
+
+            renames = {
+                ('action', 'id'): 'id_action',
+                ('collection', 'id'): 'id_collection',
+                ('attribute', 'id'): 'id_attribute'
+            }
+
+            # Get the final name for an action named 'id'
+            name = renames.get(('action', 'id'), 'id')
+
+        :type shape: botocore.model.Shape
+        :param shape: The underlying shape for this resource.
+        """
+        # Meta is a reserved name for resources
+        names = set(['meta'])
+        self._renamed = {}
+
+        if self._definition.get('load'):
+            names.add('load')
+
+        for item in self._definition.get('identifiers', []):
+            self._load_name_with_category(names, item['name'], 'identifier')
+
+        for name in self._definition.get('actions', {}).keys():
+            self._load_name_with_category(names, name, 'action')
+
+        for name, ref in self._get_has_definition().items():
+            # Subresources require no data members, just typically
+            # identifiers and user input.
+            data_required = False
+            for identifier in ref['resource']['identifiers']:
+                if identifier['source'] == 'data':
+                    data_required = True
+                    break
+
+            if not data_required:
+                self._load_name_with_category(names, name, 'subresource',
+                                              snake_case=False)
+            else:
+                self._load_name_with_category(names, name, 'reference')
+
+        for name in self._definition.get('hasMany', {}).keys():
+            self._load_name_with_category(names, name, 'collection')
+
+        if shape is not None:
+            for name in shape.members.keys():
+                self._load_name_with_category(names, name, 'attribute')
+
+    def _load_name_with_category(self, names, name, category,
+                                 snake_case=True):
+        """
+        Load a name with a given category, possibly renaming it
+        if that name is already in use. The name will be stored
+        in ``names`` and possibly be set up in ``self._renamed``.
+
+        :type names: set
+        :param names: Existing names (Python attributes, properties, or
+                      methods) on the resource.
+        :type name: string
+        :param name: The original name of the value.
+        :type category: string
+        :param category: The value type, such as 'identifier' or 'action'
+        :type snake_case: bool
+        :param snake_case: True (default) if the name should be snake cased.
+        """
+        if snake_case:
+            name = xform_name(name)
+
+        if name in names:
+            logger.debug('Renaming %s %s %s' % (self.name, category, name))
+            self._renamed[(category, name)] = name + '_' + category
+            name += '_' + category
+
+            if name in names:
+                # This isn't good, let's raise instead of trying to keep
+                # renaming this value.
+                raise ValueError('Problem renaming {0} {1} to {2}!'.format(
+                    self.name, category, name))
+
+        names.add(name)
+
+    def _get_name(self, category, name, snake_case=True):
+        """
+        Get a possibly renamed value given a category and name. This
+        uses the rename map set up in ``load_rename_map``, so that
+        method must be called once first.
+
+        :type category: string
+        :param category: The value type, such as 'identifier' or 'action'
+        :type name: string
+        :param name: The original name of the value
+        :type snake_case: bool
+        :param snake_case: True (default) if the name should be snake cased.
+        :rtype: string
+        :return: Either the renamed value if it is set, otherwise the
+                 original name.
+        """
+        if snake_case:
+            name = xform_name(name)
+
+        return self._renamed.get((category, name), name)
+
+    def get_attributes(self, shape):
+        """
+        Get a dictionary of attribute names to shape models that
+        represent the attributes of this resource.
+
+        :type shape: botocore.model.Shape
+        :param shape: The underlying shape for this resource.
+        :rtype: dict
+        :return: Mapping of resource attributes.
+        """
+        attributes = {}
+        identifier_names = [i.name for i in self.identifiers]
+
+        for name, member in shape.members.items():
+            snake_cased = xform_name(name)
+            if snake_cased in identifier_names:
+                # Skip identifiers, these are set through other means
+                continue
+            snake_cased = self._get_name('attribute', snake_cased,
+                                         snake_case=False)
+            attributes[snake_cased] = member
+
+        return attributes
 
     @property
     def identifiers(self):
@@ -266,7 +418,8 @@ class ResourceModel(object):
         identifiers = []
 
         for item in self._definition.get('identifiers', []):
-            identifiers.append(Identifier(item['name']))
+            name = self._get_name('identifier', item['name'])
+            identifiers.append(Identifier(name))
 
         return identifiers
 
@@ -294,6 +447,7 @@ class ResourceModel(object):
         actions = []
 
         for name, item in self._definition.get('actions', {}).items():
+            name = self._get_name('action', name)
             actions.append(Action(name, item, self._resource_defs))
 
         return actions
@@ -308,6 +462,7 @@ class ResourceModel(object):
         actions = []
 
         for name, item in self._definition.get('batchActions', {}).items():
+            name = self._get_name('batch_action', name)
             actions.append(Action(name, item, self._resource_defs))
 
         return actions
@@ -387,6 +542,10 @@ class ResourceModel(object):
         resources = []
 
         for name, definition in self._get_has_definition().items():
+            if subresources:
+                name = self._get_name('subresource', name, snake_case=False)
+            else:
+                name = self._get_name('reference', name)
             action = Action(name, definition, self._resource_defs)
 
             data_required = False
@@ -430,6 +589,7 @@ class ResourceModel(object):
         collections = []
 
         for name, item in self._definition.get('hasMany', {}).items():
+            name = self._get_name('collection', name)
             collections.append(Collection(name, item, self._resource_defs))
 
         return collections

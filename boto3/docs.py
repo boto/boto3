@@ -177,6 +177,12 @@ def docs_for(service_name):
         for name, model in sorted(data['resources'].items(),
                                   key=lambda i:i[0]):
             resource_model = ResourceModel(name, model, data['resources'])
+
+            shape = None
+            if resource_model.shape:
+                shape = service_model.shape_for(resource_model.shape)
+            resource_model.load_rename_map(shape)
+
             if name not in models:
                 models[name] = {'type': 'resource', 'model': resource_model}
 
@@ -333,7 +339,7 @@ def document_resource(service_name, official_name, resource_model,
             docs += '   Attributes:\n\n'
             shape = service_model.shape_for(resource_model.shape)
 
-            for name, member in sorted(shape.members.items()):
+            for name, member in sorted(resource_model.get_attributes(shape).items()):
                 docs += ('   .. py:attribute:: {0}\n\n      (``{1}``)'
                          ' {2}\n\n').format(
                     xform_name(name), py_type_name(member.type_name),

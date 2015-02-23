@@ -11,7 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from botocore.model import ServiceModel, StructureShape
+from botocore.model import ServiceModel, StructureShape, Shape
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
@@ -127,11 +127,13 @@ class TestResourceFactory(BaseTestCase):
                 }
             }
         }
-        shape = mock.Mock()
-        shape.members = {
-            'ETag': None,
-            'LastModified': None,
-        }
+        shape = StructureShape('TestShape', {
+            'type': 'structure',
+            'members': {}
+        })
+        shape.members['ETag'] = Shape('ETag', {'type': 'string'})
+        shape.members['LastModified'] = Shape(
+            'LastModified', {'type': 'date'})
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -358,12 +360,14 @@ class TestResourceFactory(BaseTestCase):
                 }
             }
         }
-        shape = mock.Mock()
-        shape.members = {
-            'Url': None,
-            'ETag': None,
-            'LastModified': None,
-        }
+        shape = StructureShape('TestShape', {
+            'type': 'structure',
+            'members': {}
+        })
+        shape.members['ETag'] = Shape('ETag', {'type': 'string'})
+        shape.members['LastModified'] = Shape(
+            'LastModified', {'type': 'date'})
+        shape.members['Url'] = Shape('Url', {'type': 'string'})
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -402,12 +406,14 @@ class TestResourceFactory(BaseTestCase):
             # Note the lack of a `load` method. These resources
             # are usually loaded via a call on a parent resource.
         }
-        shape = mock.Mock()
-        shape.members = {
-            'Url': None,
-            'ETag': None,
-            'LastModified': None,
-        }
+        shape = StructureShape('TestShape', {
+            'type': 'structure',
+            'members': {}
+        })
+        shape.members['ETag'] = Shape('ETag', {'type': 'string'})
+        shape.members['LastModified'] = Shape(
+            'LastModified', {'type': 'date'})
+        shape.members['Url'] = Shape('Url', {'type': 'string'})
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 

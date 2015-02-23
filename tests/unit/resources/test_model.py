@@ -182,7 +182,7 @@ class TestModels(BaseTestCase):
         self.assertEqual(len(model.references), 1)
 
         ref = model.references[0]
-        self.assertEqual(ref.name, 'Frob')
+        self.assertEqual(ref.name, 'frob')
         self.assertEqual(ref.resource.type, 'Frob')
         self.assertEqual(ref.resource.identifiers[0].target, 'Id')
         self.assertEqual(ref.resource.identifiers[0].source, 'data')
