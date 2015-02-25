@@ -11,7 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from botocore.model import ServiceModel, StructureShape, Shape
+from botocore.model import DenormalizedStructureBuilder, ServiceModel
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
@@ -127,13 +127,14 @@ class TestResourceFactory(BaseTestCase):
                 }
             }
         }
-        shape = StructureShape('TestShape', {
-            'type': 'structure',
-            'members': {}
-        })
-        shape.members['ETag'] = Shape('ETag', {'type': 'string'})
-        shape.members['LastModified'] = Shape(
-            'LastModified', {'type': 'date'})
+        shape = DenormalizedStructureBuilder().with_members({
+            'ETag': {
+                'type': 'string',
+            },
+            'LastModified': {
+                'type': 'string'
+            }
+        }).build_model()
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -360,14 +361,20 @@ class TestResourceFactory(BaseTestCase):
                 }
             }
         }
-        shape = StructureShape('TestShape', {
-            'type': 'structure',
-            'members': {}
-        })
-        shape.members['ETag'] = Shape('ETag', {'type': 'string'})
-        shape.members['LastModified'] = Shape(
-            'LastModified', {'type': 'date'})
-        shape.members['Url'] = Shape('Url', {'type': 'string'})
+        shape = DenormalizedStructureBuilder().with_members({
+            'ETag': {
+                'type': 'string',
+                'shape_name': 'ETag'
+            },
+            'LastModified': {
+                'type': 'string',
+                'shape_name': 'LastModified'
+            },
+            'Url': {
+                'type': 'string',
+                'shape_name': 'Url'
+            }
+        }).build_model()
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -406,14 +413,17 @@ class TestResourceFactory(BaseTestCase):
             # Note the lack of a `load` method. These resources
             # are usually loaded via a call on a parent resource.
         }
-        shape = StructureShape('TestShape', {
-            'type': 'structure',
-            'members': {}
-        })
-        shape.members['ETag'] = Shape('ETag', {'type': 'string'})
-        shape.members['LastModified'] = Shape(
-            'LastModified', {'type': 'date'})
-        shape.members['Url'] = Shape('Url', {'type': 'string'})
+        shape = DenormalizedStructureBuilder().with_members({
+            'ETag': {
+                'type': 'string',
+            },
+            'LastModified': {
+                'type': 'string'
+            },
+            'Url': {
+                'type': 'string'
+            }
+        }).build_model()
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 

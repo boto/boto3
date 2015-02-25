@@ -386,8 +386,13 @@ class ResourceModel(object):
 
     def get_attributes(self, shape):
         """
-        Get a dictionary of attribute names to shape models that
-        represent the attributes of this resource.
+        Get a dictionary of attribute names to original name and shape
+        models that represent the attributes of this resource. Looks
+        like the following:
+
+            {
+                'some_name': ('SomeName', <Shape...>)
+            }
 
         :type shape: botocore.model.Shape
         :param shape: The underlying shape for this resource.
@@ -404,7 +409,7 @@ class ResourceModel(object):
                 continue
             snake_cased = self._get_name('attribute', snake_cased,
                                          snake_case=False)
-            attributes[snake_cased] = member
+            attributes[snake_cased] = (name, member)
 
         return attributes
 

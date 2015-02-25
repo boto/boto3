@@ -11,6 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from botocore.model import DenormalizedStructureBuilder
+
 from boto3.resources.model import ResourceModel, Action, Collection, Waiter
 from tests import BaseTestCase
 
@@ -234,3 +236,172 @@ class TestModels(BaseTestCase):
         self.assertEqual(waiter.waiter_name, 'ObjectExists')
         self.assertEqual(waiter.resource_waiter_name, 'WaitUntilExists')
         self.assertEqual(waiter.params[0].target, 'Bucket')
+
+class TestRenaming(BaseTestCase):
+    def test_multiple(self):
+        # This tests a bunch of different renames working together
+        model = ResourceModel('test', {
+            'identifiers': [{'name': 'Foo'}],
+            'actions': {
+                'Foo': {}
+            },
+            'has': {
+                'Foo': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target':'Id', 'source':'data',
+                             'path': 'FrobId'}
+                        ]
+                    }
+                }
+            },
+            'hasMany': {
+                'Foo': {}
+            }
+        }, {
+            'Frob': {}
+        })
+
+        shape = DenormalizedStructureBuilder().with_members({
+            'Foo': {
+                'type': 'string',
+            },
+            'Bar': {
+                'type': 'string'
+            }
+        }).build_model()
+
+        model.load_rename_map(shape)
+
+        self.assertEqual(model.identifiers[0].name, 'foo')
+        self.assertEqual(model.actions[0].name, 'foo_action')
+        self.assertEqual(model.references[0].name, 'foo_reference')
+        self.assertEqual(model.collections[0].name, 'foo_collection')
+
+        # If an identifier and an attribute share the same name, then
+        # the attribute is essentially hidden.
+        self.assertNotIn('foo_attribute', model.get_attributes(shape))
+
+        # Other attributes need to be there, though
+        self.assertIn('bar', model.get_attributes(shape))
+
+    # The rest of the tests below ensure the correct order of precedence
+    # for the various categories of attributes/properties/methods on the
+    # resource model.
+    def test_meta_beats_identifier(self):
+        model = ResourceModel('test', {
+            'identifiers': [{'name': 'Meta'}]
+        }, {})
+
+        model.load_rename_map()
+
+        self.assertEqual(model.identifiers[0].name, 'meta_identifier')
+
+    def test_load_beats_identifier(self):
+        model = ResourceModel('test', {
+            'identifiers': [{'name': 'Load'}],
+            'load': {
+                'request': {
+                    'operation': 'GetFrobs'
+                }
+            }
+        }, {})
+
+        model.load_rename_map()
+
+        self.assertTrue(model.load)
+        self.assertEqual(model.identifiers[0].name, 'load_identifier')
+
+    def test_identifier_beats_action(self):
+        model = ResourceModel('test', {
+            'identifiers': [{'name': 'foo'}],
+            'actions': {
+                'Foo': {
+                    'request': {
+                        'operation': 'GetFoo'
+                    }
+                }
+            }
+        }, {})
+
+        model.load_rename_map()
+
+        self.assertEqual(model.identifiers[0].name, 'foo')
+        self.assertEqual(model.actions[0].name, 'foo_action')
+
+    def test_action_beats_reference(self):
+        model = ResourceModel('test', {
+            'actions': {
+                'Foo': {
+                    'request': {
+                        'operation': 'GetFoo'
+                    }
+                }
+            },
+            'has': {
+                'Foo': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target':'Id', 'source':'data',
+                             'path': 'FrobId'}
+                        ]
+                    }
+                }
+            }
+        }, {'Frob': {}})
+
+        model.load_rename_map()
+
+        self.assertEqual(model.actions[0].name, 'foo')
+        self.assertEqual(model.references[0].name, 'foo_reference')
+
+    def test_reference_beats_collection(self):
+        model = ResourceModel('test', {
+            'has': {
+                'Foo': {
+                    'resource': {
+                        'type': 'Frob',
+                        'identifiers': [
+                            {'target':'Id', 'source':'data',
+                             'path': 'FrobId'}
+                        ]
+                    }
+                }
+            },
+            'hasMany': {
+                'Foo': {
+                    'resource': {
+                        'type': 'Frob'
+                    }
+                }
+            }
+        }, {'Frob': {}})
+
+        model.load_rename_map()
+
+        self.assertEqual(model.references[0].name, 'foo')
+        self.assertEqual(model.collections[0].name, 'foo_collection')
+
+    def test_collection_beats_attribute(self):
+        model = ResourceModel('test', {
+            'hasMany': {
+                'Foo': {
+                    'resource': {
+                        'type': 'Frob'
+                    }
+                }
+            }
+        }, {'Frob': {}})
+
+        shape = DenormalizedStructureBuilder().with_members({
+            'Foo': {
+                'type': 'string',
+            }
+        }).build_model()
+
+        model.load_rename_map(shape)
+
+        self.assertEqual(model.collections[0].name, 'foo')
+        self.assertIn('foo_attribute', model.get_attributes(shape))

@@ -134,8 +134,9 @@ class ResourceFactory(object):
         if model.shape:
             shape = service_model.shape_for(model.shape)
 
-            for name, member in model.get_attributes(shape).items():
-                attrs[name] = self._create_autoload_property(member.name, name)
+            attributes = model.get_attributes(shape)
+            for name, (orig_name, member) in attributes.items():
+                attrs[name] = self._create_autoload_property(orig_name, name)
 
     def _load_collections(self, attrs, model, resource_defs, service_model):
         """

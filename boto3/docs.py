@@ -339,7 +339,8 @@ def document_resource(service_name, official_name, resource_model,
             docs += '   Attributes:\n\n'
             shape = service_model.shape_for(resource_model.shape)
 
-            for name, member in sorted(resource_model.get_attributes(shape).items()):
+            attributes = resource_model.get_attributes(shape)
+            for name, (orig_name, member) in sorted(attributes.items()):
                 docs += ('   .. py:attribute:: {0}\n\n      (``{1}``)'
                          ' {2}\n\n').format(
                     xform_name(name), py_type_name(member.type_name),
