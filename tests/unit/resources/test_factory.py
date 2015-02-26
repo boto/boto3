@@ -20,15 +20,14 @@ from boto3.resources.action import WaiterAction
 from tests import BaseTestCase, mock
 
 
-class TestResourceFactory(BaseTestCase):
+class BaseTestResourceFactory(BaseTestCase):
     def setUp(self):
-        super(TestResourceFactory, self).setUp()
+        super(BaseTestResourceFactory, self).setUp()
         self.factory = ResourceFactory()
         self.load = self.factory.load_from_definition
 
-    def tearDown(self):
-        super(TestResourceFactory, self).tearDown()
 
+class TestResourceFactory(BaseTestResourceFactory):
     def test_get_service_returns_resource_class(self):
         TestResource = self.load('test', 'test', {}, {}, None)
 
@@ -574,7 +573,7 @@ class TestResourceFactory(BaseTestCase):
         waiter_action.assert_called_with(resource, 'arg1', arg2=2)
 
 
-class TestResourceFactoryDanglingResource(TestResourceFactory):
+class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
     def setUp(self):
         super(TestResourceFactoryDanglingResource, self).setUp()
 
@@ -672,7 +671,7 @@ class TestResourceFactoryDanglingResource(TestResourceFactory):
         self.assertNotEqual(q1, m)
 
 
-class TestServiceResourceSubresources(TestResourceFactory):
+class TestServiceResourceSubresources(BaseTestResourceFactory):
     def setUp(self):
         super(TestServiceResourceSubresources, self).setUp()
 
