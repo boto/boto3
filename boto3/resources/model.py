@@ -154,14 +154,13 @@ class Waiter(DefinitionWithParams):
     :type definition: dict
     :param definition: The JSON definition
     """
+    PREFIX = 'WaitUntil'
+
     def __init__(self, name, definition):
         super(Waiter, self).__init__(definition)
 
         #: (``string``) The name of this waiter
         self.name = name
-
-        #: (``string``) The name of the waiter in the resource
-        self.resource_waiter_name = 'WaitUntil' + name
 
         #: (``string``) The name of the underlying event waiter
         self.waiter_name = definition.get('waiterName')
@@ -275,6 +274,7 @@ class ResourceModel(object):
         * Subresources
         * References
         * Collections
+        * Waiters
         * Attributes (shape members)
 
         Batch actions are only exposed on collections, so do not
@@ -305,7 +305,7 @@ class ResourceModel(object):
         for item in self._definition.get('identifiers', []):
             self._load_name_with_category(names, item['name'], 'identifier')
 
-        for name in self._definition.get('actions', {}).keys():
+        for name in self._definition.get('actions', {}):
             self._load_name_with_category(names, name, 'action')
 
         for name, ref in self._get_has_definition().items():
@@ -323,8 +323,12 @@ class ResourceModel(object):
             else:
                 self._load_name_with_category(names, name, 'reference')
 
-        for name in self._definition.get('hasMany', {}).keys():
+        for name in self._definition.get('hasMany', {}):
             self._load_name_with_category(names, name, 'collection')
+
+        for name in self._definition.get('waiters', {}):
+            self._load_name_with_category(names, Waiter.PREFIX + name,
+                                          'waiter')
 
         if shape is not None:
             for name in shape.members.keys():
@@ -609,6 +613,7 @@ class ResourceModel(object):
         waiters = []
 
         for name, item in self._definition.get('waiters', {}).items():
+            name = self._get_name('waiter', Waiter.PREFIX + name)
             waiters.append(Waiter(name, item))
 
         return waiters

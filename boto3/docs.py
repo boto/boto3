@@ -410,7 +410,7 @@ def document_resource(service_name, official_name, resource_model,
                  ' to reach a specific state.\n\n')
         service_waiter_model = session.get_waiter_model(service_name)
         for waiter in sorted(resource_model.waiters,
-                             key=lambda i: i.resource_waiter_name):
+                             key=lambda i: i.name):
             docs += document_waiter(waiter, service_name, resource_model,
                                     service_model, service_waiter_model)
 
@@ -474,7 +474,7 @@ def document_waiter(waiter, service_name, resource_model, service_model,
                    '      This method calls ``wait()`` on'
                    ' :py:meth:`{2}.Client.get_waiter` using `{3}`_ .').format(
                         resource_model.name,
-                        xform_name(waiter.name).replace('_', ' '),
+                        ' '.join(waiter.name.split('_')[2:]),
                         service_name,
                         xform_name(waiter.waiter_name))
 
@@ -483,7 +483,7 @@ def document_waiter(waiter, service_name, resource_model, service_model,
 
     return document_operation(
         operation_model=operation_model, service_name=service_name,
-        operation_name=xform_name(waiter.resource_waiter_name),
+        operation_name=xform_name(waiter.name),
         description=description,
         example_instance = xform_name(resource_model.name),
         ignore_params=ignore_params, rtype=None)

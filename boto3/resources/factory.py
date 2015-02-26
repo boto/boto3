@@ -190,8 +190,7 @@ class ResourceFactory(object):
         of the resource.
         """
         for waiter in model.waiters:
-            snake_cased = xform_name(waiter.resource_waiter_name)
-            attrs[snake_cased] = self._create_waiter(waiter, snake_cased)
+            attrs[waiter.name] = self._create_waiter(waiter)
 
     def _create_autoload_property(factory_self, name, snake_cased):
         """
@@ -216,16 +215,17 @@ class ResourceFactory(object):
         property_loader.__doc__ = 'TODO'
         return property(property_loader)
 
-    def _create_waiter(factory_self, waiter_model, snake_cased):
+    def _create_waiter(factory_self, waiter_model):
         """
         Creates a new wait method for each resource where both a waiter and
         resource model is defined.
         """
-        waiter = WaiterAction(waiter_model, waiter_resource_name=snake_cased)
+        waiter = WaiterAction(waiter_model,
+                              waiter_resource_name=waiter_model.name)
         def do_waiter(self, *args, **kwargs):
             waiter(self, *args, **kwargs)
 
-        do_waiter.__name__ = str(snake_cased)
+        do_waiter.__name__ = str(waiter_model.name)
         do_waiter.__doc__ = 'TODO'
         return do_waiter
 
