@@ -14,8 +14,6 @@
 import logging
 from functools import partial
 
-from botocore import xform_name
-
 from .action import ServiceAction
 from .action import WaiterAction
 from .base import ResourceMeta, ServiceResource
@@ -103,9 +101,8 @@ class ResourceFactory(object):
         operations on the resource.
         """
         for identifier in model.identifiers:
-            snake_cased = xform_name(identifier.name)
-            meta.identifiers.append(snake_cased)
-            attrs[snake_cased] = None
+            meta.identifiers.append(identifier.name)
+            attrs[identifier.name] = None
 
     def _load_actions(self, attrs, model, resource_defs, service_model):
         """
@@ -115,14 +112,12 @@ class ResourceFactory(object):
         """
         if model.load:
             attrs['load'] = self._create_action(
-                'load', model.load, resource_defs, service_model,
-                is_load=True)
+                model.load, resource_defs, service_model, is_load=True)
             attrs['reload'] = attrs['load']
 
         for action in model.actions:
-            snake_cased = xform_name(action.name)
-            attrs[snake_cased] = self._create_action(snake_cased,
-                action, resource_defs, service_model)
+            attrs[action.name] = self._create_action(action, resource_defs,
+                                                     service_model)
 
     def _load_attributes(self, attrs, meta, model, service_model):
         """
@@ -146,10 +141,8 @@ class ResourceFactory(object):
         through the collection's items.
         """
         for collection_model in model.collections:
-            snake_cased = xform_name(collection_model.name)
-
-            attrs[snake_cased] = self._create_collection(
-                attrs['meta'].service_name, model.name, snake_cased,
+            attrs[collection_model.name] = self._create_collection(
+                attrs['meta'].service_name, model.name,
                 collection_model, resource_defs, service_model)
 
     def _load_has_relations(self, attrs, service_name, resource_name,
@@ -168,9 +161,8 @@ class ResourceFactory(object):
             # This is a dangling reference, i.e. we have all
             # the data we need to create the resource, so
             # this instance becomes an attribute on the class.
-            snake_cased = xform_name(reference.name)
-            attrs[snake_cased] = self._create_reference(
-                reference.resource.type, snake_cased, reference,
+            attrs[reference.name] = self._create_reference(
+                reference.resource.type, reference,
                 service_name, resource_name, model, resource_defs,
                 service_model)
 
@@ -230,8 +222,7 @@ class ResourceFactory(object):
         return do_waiter
 
     def _create_collection(factory_self, service_name, resource_name,
-                           snake_cased, collection_model,
-                           resource_defs, service_model):
+                           collection_model, resource_defs, service_model):
         """
         Creates a new property on the resource to lazy-load a collection.
         """
@@ -243,13 +234,12 @@ class ResourceFactory(object):
             return cls(collection_model, self, factory_self,
                        resource_defs, service_model)
 
-        get_collection.__name__ = str(snake_cased)
+        get_collection.__name__ = str(collection_model.name)
         get_collection.__doc__ = 'TODO'
         return property(get_collection)
 
-    def _create_reference(factory_self, name, snake_cased, reference,
-                          service_name, resource_name, model, resource_defs,
-                          service_model):
+    def _create_reference(factory_self, name, reference, service_name,
+                          resource_name, model, resource_defs, service_model):
         """
         Creates a new property on the resource to lazy-load a reference.
         """
@@ -267,7 +257,7 @@ class ResourceFactory(object):
             # identifiers to instantiate the resource reference.
             return handler(self, {}, {})
 
-        get_reference.__name__ = str(snake_cased)
+        get_reference.__name__ = str(reference.name)
         get_reference.__doc__ = 'TODO'
         return property(get_reference)
 
@@ -306,7 +296,7 @@ class ResourceFactory(object):
         create_resource.__doc__ = 'TODO'
         return create_resource
 
-    def _create_action(factory_self, snake_cased, action_model, resource_defs,
+    def _create_action(factory_self, action_model, resource_defs,
                        service_model, is_load=False):
         """
         Creates a new method which makes a request to the underlying
@@ -340,6 +330,6 @@ class ResourceFactory(object):
 
                 return response
 
-        do_action.__name__ = str(snake_cased)
+        do_action.__name__ = str(action_model.name)
         do_action.__doc__ = 'TODO'
         return do_action

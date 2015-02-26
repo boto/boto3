@@ -534,7 +534,7 @@ class TestResourceFactory(BaseTestCase):
             'Queue': {}
         }
         service_model = ServiceModel({})
-        mock_model.return_value.name = 'Queues'
+        mock_model.return_value.name = 'queues'
 
         resource = self.load('test', 'test', model, defs, service_model)()
 
