@@ -37,10 +37,13 @@ class Session(object):
     :type botocore_session: botocore.session.Session
     :param botocore_session: Use this Botocore session instead of creating
                              a new default one.
+    :type profile_name: string
+    :param profile_name: The name of a profile to use. If not given, then
+                         the default profile is used.
     """
     def __init__(self, aws_access_key_id=None, aws_secret_access_key=None,
                  aws_session_token=None, region_name=None,
-                 botocore_session=None):
+                 botocore_session=None, profile_name=None):
         if botocore_session is not None:
             self._session = botocore_session
         else:
@@ -58,6 +61,9 @@ class Session(object):
             self._session.user_agent_name = 'Boto3'
             self._session.user_agent_version = boto3.__version__
 
+        if profile_name is not None:
+            self._session.profile = profile_name
+
         if aws_access_key_id or aws_secret_access_key or aws_session_token:
             self._session.set_credentials(aws_access_key_id,
                 aws_secret_access_key, aws_session_token)
@@ -71,6 +77,13 @@ class Session(object):
     def __repr__(self):
         return 'Session(region={0})'.format(
             repr(self._session.get_config_variable('region')))
+
+    @property
+    def profile_name(self):
+        """
+        The **read-only** profile name.
+        """
+        return self._session.profile or 'default'
 
     def _setup_loader(self):
         """
