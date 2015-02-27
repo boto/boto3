@@ -1,6 +1,14 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* bugfix:Documentation: Name collisions are now handled at the resource
+  model layer instead of the factory, meaning that the documentation
+  now uses the correct names.
+  (`issue 67 <https://github.com/boto/boto3/pull/67>`__)
+
 0.0.9 - 2015-02-19
 ------------------
 

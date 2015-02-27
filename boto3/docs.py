@@ -177,6 +177,12 @@ def docs_for(service_name):
         for name, model in sorted(data['resources'].items(),
                                   key=lambda i:i[0]):
             resource_model = ResourceModel(name, model, data['resources'])
+
+            shape = None
+            if resource_model.shape:
+                shape = service_model.shape_for(resource_model.shape)
+            resource_model.load_rename_map(shape)
+
             if name not in models:
                 models[name] = {'type': 'resource', 'model': resource_model}
 
@@ -333,7 +339,8 @@ def document_resource(service_name, official_name, resource_model,
             docs += '   Attributes:\n\n'
             shape = service_model.shape_for(resource_model.shape)
 
-            for name, member in sorted(shape.members.items()):
+            attributes = resource_model.get_attributes(shape)
+            for name, (orig_name, member) in sorted(attributes.items()):
                 docs += ('   .. py:attribute:: {0}\n\n      (``{1}``)'
                          ' {2}\n\n').format(
                     xform_name(name), py_type_name(member.type_name),
@@ -403,7 +410,7 @@ def document_resource(service_name, official_name, resource_model,
                  ' to reach a specific state.\n\n')
         service_waiter_model = session.get_waiter_model(service_name)
         for waiter in sorted(resource_model.waiters,
-                             key=lambda i: i.resource_waiter_name):
+                             key=lambda i: i.name):
             docs += document_waiter(waiter, service_name, resource_model,
                                     service_model, service_waiter_model)
 
@@ -467,7 +474,7 @@ def document_waiter(waiter, service_name, resource_model, service_model,
                    '      This method calls ``wait()`` on'
                    ' :py:meth:`{2}.Client.get_waiter` using `{3}`_ .').format(
                         resource_model.name,
-                        xform_name(waiter.name).replace('_', ' '),
+                        ' '.join(waiter.name.split('_')[2:]),
                         service_name,
                         xform_name(waiter.waiter_name))
 
@@ -476,7 +483,7 @@ def document_waiter(waiter, service_name, resource_model, service_model,
 
     return document_operation(
         operation_model=operation_model, service_name=service_name,
-        operation_name=xform_name(waiter.resource_waiter_name),
+        operation_name=xform_name(waiter.name),
         description=description,
         example_instance = xform_name(resource_model.name),
         ignore_params=ignore_params, rtype=None)
