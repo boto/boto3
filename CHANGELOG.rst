@@ -8,6 +8,9 @@ Unreleased
   model layer instead of the factory, meaning that the documentation
   now uses the correct names.
   (`issue 67 <https://github.com/boto/boto3/pull/67>`__)
+* feature:Session: Add a ``region_name`` option when creating a session.
+  (`issue 69 <https://github.com/boto/boto3/pull/69>`__,
+  `issue 21 <https://github.com/boto/boto3/issues/21>`__)
 
 0.0.9 - 2015-02-19
 ------------------
