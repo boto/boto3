@@ -11,7 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-from botocore.model import ServiceModel, StructureShape
+from botocore.model import DenormalizedStructureBuilder, ServiceModel
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
@@ -20,15 +20,14 @@ from boto3.resources.action import WaiterAction
 from tests import BaseTestCase, mock
 
 
-class TestResourceFactory(BaseTestCase):
+class BaseTestResourceFactory(BaseTestCase):
     def setUp(self):
-        super(TestResourceFactory, self).setUp()
+        super(BaseTestResourceFactory, self).setUp()
         self.factory = ResourceFactory()
         self.load = self.factory.load_from_definition
 
-    def tearDown(self):
-        super(TestResourceFactory, self).tearDown()
 
+class TestResourceFactory(BaseTestResourceFactory):
     def test_get_service_returns_resource_class(self):
         TestResource = self.load('test', 'test', {}, {}, None)
 
@@ -127,11 +126,14 @@ class TestResourceFactory(BaseTestCase):
                 }
             }
         }
-        shape = mock.Mock()
-        shape.members = {
-            'ETag': None,
-            'LastModified': None,
-        }
+        shape = DenormalizedStructureBuilder().with_members({
+            'ETag': {
+                'type': 'string',
+            },
+            'LastModified': {
+                'type': 'string'
+            }
+        }).build_model()
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -358,12 +360,20 @@ class TestResourceFactory(BaseTestCase):
                 }
             }
         }
-        shape = mock.Mock()
-        shape.members = {
-            'Url': None,
-            'ETag': None,
-            'LastModified': None,
-        }
+        shape = DenormalizedStructureBuilder().with_members({
+            'ETag': {
+                'type': 'string',
+                'shape_name': 'ETag'
+            },
+            'LastModified': {
+                'type': 'string',
+                'shape_name': 'LastModified'
+            },
+            'Url': {
+                'type': 'string',
+                'shape_name': 'Url'
+            }
+        }).build_model()
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -402,12 +412,17 @@ class TestResourceFactory(BaseTestCase):
             # Note the lack of a `load` method. These resources
             # are usually loaded via a call on a parent resource.
         }
-        shape = mock.Mock()
-        shape.members = {
-            'Url': None,
-            'ETag': None,
-            'LastModified': None,
-        }
+        shape = DenormalizedStructureBuilder().with_members({
+            'ETag': {
+                'type': 'string',
+            },
+            'LastModified': {
+                'type': 'string'
+            },
+            'Url': {
+                'type': 'string'
+            }
+        }).build_model()
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -518,7 +533,7 @@ class TestResourceFactory(BaseTestCase):
             'Queue': {}
         }
         service_model = ServiceModel({})
-        mock_model.return_value.name = 'Queues'
+        mock_model.return_value.name = 'queues'
 
         resource = self.load('test', 'test', model, defs, service_model)()
 
@@ -574,7 +589,7 @@ class TestResourceFactory(BaseTestCase):
         waiter_action.assert_called_with(resource, 'arg1', arg2=2)
 
 
-class TestResourceFactoryDanglingResource(TestResourceFactory):
+class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
     def setUp(self):
         super(TestResourceFactoryDanglingResource, self).setUp()
 
@@ -672,7 +687,7 @@ class TestResourceFactoryDanglingResource(TestResourceFactory):
         self.assertNotEqual(q1, m)
 
 
-class TestServiceResourceSubresources(TestResourceFactory):
+class TestServiceResourceSubresources(BaseTestResourceFactory):
     def setUp(self):
         super(TestServiceResourceSubresources, self).setUp()
 

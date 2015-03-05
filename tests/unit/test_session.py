@@ -66,6 +66,23 @@ class TestSession(BaseTestCase):
         bc_session.set_credentials.assert_called_with(
             'key', 'secret', 'token')
 
+    def test_profile_can_be_set(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(profile_name='foo')
+
+        self.assertEqual(bc_session.profile, 'foo')
+
+        # We should also be able to read the value
+        self.assertEqual(session.profile_name, 'foo')
+
+    def test_profile_default(self):
+        self.bc_session_cls.return_value.profile = None
+
+        session = Session()
+
+        self.assertEqual(session.profile_name, 'default')
+
     def test_custom_session(self):
         bc_session = self.bc_session_cls()
         self.bc_session_cls.reset_mock()

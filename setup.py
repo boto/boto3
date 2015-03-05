@@ -20,13 +20,13 @@ def get_version():
     init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
     return VERSION_RE.search(init).group(1)
 
-packages = [ 
+packages = [
     'boto3',
     'boto3.resources',
 ]
 
 requires = [
-    'botocore==0.92.0',
+    'botocore==0.94.0',
     'bcdoc==0.12.2',
     'jmespath==0.6.1',
 ]

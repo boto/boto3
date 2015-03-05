@@ -1,8 +1,31 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.10 - 2015-03-05
+-------------------
+
+* bugfix:Documentation: Name collisions are now handled at the resource
+  model layer instead of the factory, meaning that the documentation
+  now uses the correct names.
+  (`issue 67 <https://github.com/boto/boto3/pull/67>`__)
+* feature:Session: Add a ``region_name`` option when creating a session.
+  (`issue 69 <https://github.com/boto/boto3/pull/69>`__,
+  `issue 21 <https://github.com/boto/boto3/issues/21>`__)
+* feature:Botocore: Update to Botocore 0.94.0
+
+  * Update to the latest Amazon CloudeSearch API.
+  * Add support for near-realtime data updates and exporting historical
+    data from Amazon Cognito Sync.
+  * **Removed** the ability to clone a low-level client. Instead, create
+    a new client with the same parameters.
+  * Add support for URL paths in an endpoint URL.
+  * Multithreading signature fixes.
+  * Add support for listing hosted zones by name and getting hosted zone
+    counts from Amazon Route53.
+  * Add support for tagging to AWS Data Pipeline.
+
+0.0.9 - 2015-02-19
+------------------
 
 * feature:Botocore: Update to Botocore 0.92.0
 
