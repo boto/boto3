@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.10 - 2015-03-05
+-------------------
 
 * bugfix:Documentation: Name collisions are now handled at the resource
   model layer instead of the factory, meaning that the documentation
