@@ -854,9 +854,28 @@
          "path": "Policy"
       },
       "actions": {
-        "Create": {
+        "AttachGroup": {
           "request": {
-            "operation": "CreatePolicy"
+            "operation": "AttachGroupPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "AttachRole": {
+          "request": {
+            "operation": "AttachRolePolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "AttachUser": {
+          "request": {
+            "operation": "AttachUserPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
           }
         },
         "CreateVersion": {
@@ -877,6 +896,30 @@
         "Delete": {
           "request": {
             "operation": "DeletePolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "DetachGroup": {
+          "request": {
+            "operation": "DetachGroupPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "DetachRole": {
+          "request": {
+            "operation": "DetachRolePolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "DetachUser": {
+          "request": {
+            "operation": "DetachUserPolicy",
             "params": [
               { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
             ]
