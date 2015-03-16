@@ -72,6 +72,15 @@
           "path": "Certificate"
         }
       },
+      "CreatePolicy": {
+        "request": { "operation": "CreatePolicy" },
+        "resource": {
+          "type": "Policy",
+          "identifiers": [
+            { "target": "Arn", "source": "response", "path": "Policy.Arn" }
+          ]
+        }
+      },
       "CreateUser": {
         "request": { "operation": "CreateUser" },
         "resource": {
@@ -128,6 +137,14 @@
           ]
         }
       },
+      "Policy": {
+        "resource": {
+          "type": "Policy",
+          "identifiers": [
+            { "target": "PolicyArn", "source": "input" }
+          ]
+        }
+      },
       "Role": {
         "resource": {
           "type": "Role",
@@ -178,6 +195,16 @@
             { "target": "Name", "source": "response", "path": "Groups[].GroupName" }
           ],
           "path": "Groups[]"
+        }
+      },
+      "Policies": {
+        "request": { "operation": "ListPolicies" },
+        "resource": {
+          "type": "Policy",
+          "identifiers": [
+            { "target": "Arn", "source": "response", "path": "Policies[].Arn" }
+          ],
+          "path": "Policies[]"
         }
       },
       "InstanceProfiles": {
@@ -455,6 +482,14 @@
             ]
           }
         },
+        "AttachPolicy": {
+          "request": {
+            "operation": "AttachGroupPolicy",
+            "params": [
+              { "target": "GroupName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        },
         "Create": {
           "request": {
             "operation": "CreateGroup",
@@ -488,6 +523,14 @@
         "Delete": {
           "request": {
             "operation": "DeleteGroup",
+            "params": [
+              { "target": "GroupName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        },
+        "DetachPolicy": {
+          "request": {
+            "operation": "DetachGroupPolicy",
             "params": [
               { "target": "GroupName", "source": "identifier", "name": "Name" }
             ]
@@ -528,6 +571,20 @@
         }
       },
       "hasMany": {
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedGroupPolicies",
+            "params": [
+              { "target": "GroupName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "Policy",
+            "identifiers": [
+              { "target": "Arn", "source": "response", "path": "AttachedPolicies[].PolicyArn" }
+            ]
+          }
+        },
         "Policies": {
           "request": {
             "operation": "ListGroupPolicies",
@@ -781,6 +838,209 @@
         }
       }
     },
+    "Policy": {
+      "identifiers": [
+      { "name": "Arn",
+          "memberName": "PolicyArn" }
+      ],
+      "shape": "Policy",
+      "load": {
+         "request": {
+            "operation": "GetPolicy",
+            "params": [
+               { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+         },
+         "path": "Policy"
+      },
+      "actions": {
+        "AttachGroup": {
+          "request": {
+            "operation": "AttachGroupPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "AttachRole": {
+          "request": {
+            "operation": "AttachRolePolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "AttachUser": {
+          "request": {
+            "operation": "AttachUserPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "CreateVersion": {
+          "request": {
+            "operation": "CreatePolicyVersion",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          },
+          "resource": {
+            "type": "PolicyVersion",
+            "identifiers": [
+              { "target": "Arn", "source": "identifier", "name": "Arn" },
+              { "target": "VersionId", "source": "response", "path": "PolicyVersion.VersionId" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeletePolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "DetachGroup": {
+          "request": {
+            "operation": "DetachGroupPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "DetachRole": {
+          "request": {
+            "operation": "DetachRolePolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        },
+        "DetachUser": {
+          "request": {
+            "operation": "DetachUserPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "DefaultVersion": {
+          "resource": {
+            "type": "PolicyVersion",
+            "identifiers": [
+              { "target": "Arn", "source": "identifier", "name": "Arn" },
+              { "target": "VersionId", "source": "data", "name": "DefaultVersionId", "path": "DefaultVersionId" }
+            ]
+          }
+        }
+      },
+      "hasMany": {
+        "Versions": {
+          "request": {
+            "operation": "ListPolicyVersions",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+            ]
+          },
+          "resource": {
+            "type": "PolicyVersion",
+            "identifiers": [
+              { "target": "Arn", "source": "identifier", "name": "Arn" },
+              { "target": "VersionId", "source": "response", "path": "Versions[].VersionId" }
+            ],
+            "path": "Versions[]"
+          }
+        },
+        "AttachedGroups": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "EntityFilter", "source": "string", "value": "Group" }
+            ]
+          },
+          "resource": {
+            "type": "Group",
+            "identifiers": [
+              { "target": "Name", "source": "response", "path": "PolicyGroups[].GroupName" }
+            ]
+          },
+          "path": "PolicyGroups[]"
+        },
+        "AttachedRoles": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "EntityFilter", "source": "string", "value": "Role" }
+            ]
+          },
+          "resource": {
+            "type": "Role",
+            "identifiers": [
+              { "target": "Name", "source": "response", "path": "PolicyRoles[].RoleName" }
+            ]
+          },
+          "path": "PolicyRoles[]"
+        },
+        "AttachedUsers": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "EntityFilter", "source": "string", "value": "User" }
+            ]
+          },
+          "resource": {
+            "type": "User",
+            "identifiers": [
+              { "target": "Name", "source": "response", "path": "PolicyUsers[].UserName" }
+            ]
+          },
+          "path": "PolicyUsers[]"
+        }
+      }
+    },
+    "PolicyVersion": {
+      "identifiers": [
+        { "name": "Arn" },
+        { "name": "VersionId" }
+      ],
+      "shape": "PolicyVersion",
+      "load": {
+        "request": {
+          "operation": "GetPolicyVersion",
+          "params": [
+            { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+            { "target": "VersionId", "source": "identifier", "name": "VersionId" }
+          ]
+        },
+        "path": "PolicyVersion"
+      },
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeletePolicyVersion",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "VersionId", "source": "identifier", "name": "VersionId" }
+            ]
+          }
+        },
+        "SetAsDefault": {
+          "request": {
+            "operation": "SetDefaultPolicyVersion",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "VersionId", "source": "identifier", "name": "VersionId" }
+            ]
+          }
+        }
+      }
+    },
     "Role": {
       "identifiers": [
         {
@@ -799,9 +1059,25 @@
         "path": "Role"
       },
       "actions": {
+        "AttachPolicy": {
+          "request": {
+            "operation": "AttachRolePolicy",
+            "params": [
+              { "target": "RoleName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        },
         "Delete": {
           "request": {
             "operation": "DeleteRole",
+            "params": [
+              { "target": "RoleName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        },
+        "DetachPolicy": {
+          "request": {
+            "operation": "DetachRolePolicy",
             "params": [
               { "target": "RoleName", "source": "identifier", "name": "Name" }
             ]
@@ -828,6 +1104,20 @@
         }
       },
       "hasMany": {
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedRolePolicies",
+            "params": [
+              { "target": "RoleName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "Policy",
+            "identifiers": [
+              { "target": "Arn", "source": "response", "path": "AttachedPolicies[].PolicyArn" }
+            ]
+          }
+        },
         "InstanceProfiles": {
           "request": {
             "operation": "ListInstanceProfilesForRole",
@@ -1065,6 +1355,14 @@
             ]
           }
         },
+        "AttachPolicy": {
+          "request": {
+            "operation": "AttachUserPolicy",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        },
         "Create": {
           "request": {
             "operation": "CreateUser",
@@ -1130,6 +1428,14 @@
         "Delete": {
           "request": {
             "operation": "DeleteUser",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        },
+        "DetachPolicy": {
+          "request": {
+            "operation": "DetachUserPolicy",
             "params": [
               { "target": "UserName", "source": "identifier", "name": "Name" }
             ]
@@ -1220,6 +1526,20 @@
         }
       },
       "hasMany": {
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedUserPolicies",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "Policy",
+            "identifiers": [
+              { "target": "Arn", "source": "response", "path": "AttachedPolicies[].PolicyArn" }
+            ]
+          }
+        },
         "AccessKeys": {
           "request": {
             "operation": "ListAccessKeys",
