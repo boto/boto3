@@ -420,6 +420,23 @@
       }
     },
     "CurrentUser": {
+      "shape": "User",
+      "load": {
+        "request": {
+          "operation": "GetUser"
+        },
+        "path": "User"
+      },
+      "has": {
+        "User": {
+          "resource": {
+            "type": "User",
+            "identifiers": [
+              { "target": "Name", "source": "data", "path": "UserName" }
+            ]
+          }
+        }
+      },
       "hasMany": {
         "AccessKeys": {
           "request": { "operation": "ListAccessKeys" },
