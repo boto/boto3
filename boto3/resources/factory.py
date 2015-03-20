@@ -246,16 +246,28 @@ class ResourceFactory(object):
         # References are essentially an action with no request
         # or response, so we can re-use the response handlers to
         # build up resources from identifiers and data members.
-        handler = ResourceHandler('', factory_self, resource_defs,
-                                  service_model, reference.resource)
+        handler = ResourceHandler(reference.resource.path, factory_self,
+                                  resource_defs, service_model,
+                                  reference.resource)
+
+        # Are there any identifiers that need access to data members?
+        # This is important when building the resource below since
+        # it requires the data to be loaded.
+        needs_data = False
+        if [i for i in reference.resource.identifiers if i.source == 'data']:
+            needs_data = True
 
         def get_reference(self):
             # We need to lazy-evaluate the reference to handle circular
             # references between resources. We do this by loading the class
             # when first accessed.
-            # First, though, we need to see if we have the required
-            # identifiers to instantiate the resource reference.
-            return handler(self, {}, {})
+            # This is using a *response handler* so we need to make sure
+            # our data is loaded (if possible) and pass that data into
+            # the handler as if it were a response. This allows references
+            # to have their data loaded properly.
+            if needs_data and self.meta.data is None and hasattr(self, 'load'):
+                self.load()
+            return handler(self, {}, self.meta.data)
 
         get_reference.__name__ = str(reference.name)
         get_reference.__doc__ = 'TODO'
