@@ -1,6 +1,15 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature:Resources: Add a ``load`` operation and ``user`` reference
+  to AWS IAM's ``CurrentUser`` resource.
+  (`issue 72 <https://github.com/boto/boto3/pull/72>`__,
+* feature:Resources: Add resources for AWS IAM managed policies.
+  (`issue 71 <https://github.com/boto/boto3/pull/71>`__)
+
 0.0.10 - 2015-03-05
 -------------------
 
