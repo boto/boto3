@@ -601,6 +601,14 @@
             ]
           }
         },
+        "AttachClassicLinkVpc": {
+          "request": {
+            "operation": "AttachClassicLinkVpc",
+            "params": [
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
         "ConsoleOutput": {
           "request": {
             "operation": "GetConsoleOutput",
@@ -642,6 +650,14 @@
         "DescribeAttribute": {
           "request": {
             "operation": "DescribeInstanceAttribute",
+            "params": [
+              { "target": "InstanceId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "DetachClassicLinkVpc": {
+          "request": {
+            "operation": "DetachClassicLinkVpc",
             "params": [
               { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
@@ -1769,6 +1785,14 @@
             ]
           }
         },
+        "Delete": {
+          "request": {
+            "operation": "DeleteVolume",
+            "params": [
+              { "target": "VolumeId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
         "DescribeAttribute": {
           "request": {
             "operation": "DescribeVolumeAttribute",
@@ -1850,6 +1874,14 @@
         "AssociateDhcpOptions": {
           "request": {
             "operation": "AssociateDhcpOptions",
+            "params": [
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "AttachClassicLinkInstance": {
+          "request": {
+            "operation": "AttachClassicLinkVpc",
             "params": [
               { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
@@ -1954,9 +1986,33 @@
             ]
           }
         },
+        "DetachClassicLinkInstance": {
+          "request": {
+            "operation": "DetachClassicLinkVpc",
+            "params": [
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
         "DetachInternetGateway": {
           "request": {
             "operation": "DetachInternetGateway",
+            "params": [
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "DisableClassicLink": {
+          "request": {
+            "operation": "DisableVpcClassicLink",
+            "params": [
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "EnableClassicLink": {
+          "request": {
+            "operation": "EnableVpcClassicLink",
             "params": [
               { "target": "VpcId", "source": "identifier", "name": "Id" }
             ]
