@@ -4,6 +4,8 @@ Changelog
 Unreleased
 ----------
 
+* feature:Resources: Add Amazon EC2 support for ClassicLink actions
+  and add a delete action to EC2 ``Volume`` resources.
 * feature:Resources: Add a ``load`` operation and ``user`` reference
   to AWS IAM's ``CurrentUser`` resource.
   (`issue 72 <https://github.com/boto/boto3/pull/72>`__,
