@@ -37,13 +37,3 @@ Boto 3 is built atop of a library called
 `AWS CLI <http://aws.amazon.com/cli/>`_. Botocore provides the low level
 clients, session, and credential & configuration data. Boto 3 builds on top
 of Botocore by providing its own session, resources and collections.
-
-Migration
----------
-Current Boto users can begin using Boto 3 right away. The two modules can
-live side-by-side in the same project, which means that a piecemeal
-approach can be used. New features can be written in Boto 3, or existing
-code can be migrated over as needed, piece by piece.
-
-Boto 3 is currently in **developer preview**. A full migration guide is
-coming soon.

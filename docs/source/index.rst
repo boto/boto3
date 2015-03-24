@@ -20,6 +20,15 @@ direct service access.
 
    <div style="text-align:center;margin:1em"><iframe width="560" height="315" src="//www.youtube.com/embed/Cb2czfCV4Dg" frameborder="0" allowfullscreen></iframe></div>
 
+Quickstart
+----------
+
+.. toctree::
+   :maxdepth: 2
+
+   guide/quickstart
+   guide/tutorial
+
 User Guide
 ----------
 
@@ -27,10 +36,9 @@ User Guide
    :maxdepth: 2
 
    guide/new
-   guide/quickstart
+   guide/migration
    guide/resources
    guide/collections
-   guide/tutorial
    guide/clients
    guide/session
    guide/configuration
