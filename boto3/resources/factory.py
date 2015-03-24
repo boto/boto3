@@ -253,9 +253,8 @@ class ResourceFactory(object):
         # Are there any identifiers that need access to data members?
         # This is important when building the resource below since
         # it requires the data to be loaded.
-        needs_data = False
-        if [i for i in reference.resource.identifiers if i.source == 'data']:
-            needs_data = True
+        needs_data = any(i.source == 'data' for i in \
+                         reference.resource.identifiers)
 
         def get_reference(self):
             # We need to lazy-evaluate the reference to handle circular

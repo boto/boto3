@@ -702,7 +702,8 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
                         'resource': {
                             'type': 'NetworkInterface',
                             'identifiers': [
-                                {'target': 'Id', 'source': 'data', 'path': 'NetworkInterface.Id'}
+                                {'target': 'Id', 'source': 'data',
+                                 'path': 'NetworkInterface.Id'}
                             ],
                             'path': 'NetworkInterface'
                         }
@@ -725,7 +726,7 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
                     'Id': 'network-interface-id',
                     'PublicIp': '127.0.0.1'
                 }
-        }
+            }
         instance.load = mock.Mock(side_effect=set_meta_data)
 
         # Now, get the reference and make sure it has its identifier
