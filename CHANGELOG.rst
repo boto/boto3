@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.11 - 2015-03-24
+-------------------
 
 * feature:Resources: Add Amazon EC2 support for ClassicLink actions
   and add a delete action to EC2 ``Volume`` resources.
