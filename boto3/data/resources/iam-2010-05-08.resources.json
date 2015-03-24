@@ -949,7 +949,7 @@
             "type": "PolicyVersion",
             "identifiers": [
               { "target": "Arn", "source": "identifier", "name": "Arn" },
-              { "target": "VersionId", "source": "data", "name": "DefaultVersionId", "path": "DefaultVersionId" }
+              { "target": "VersionId", "source": "data", "path": "DefaultVersionId" }
             ]
           }
         }
