@@ -11,6 +11,22 @@ Unreleased
   (`issue 72 <https://github.com/boto/boto3/pull/72>`__,
 * feature:Resources: Add resources for AWS IAM managed policies.
   (`issue 71 <https://github.com/boto/boto3/pull/71>`__)
+* feature:Botocore: Update to Botocore 0.97.0
+
+  * Add new Amazon EC2 waiters.
+  * Add support for Amazon S3 cross region replication.
+  * Fix an issue where empty config values could not be specified for
+    Amazon S3's bucket notifications.
+    (`botocore issue 495 <https://github.com/boto/botocore/pull/495>`__)
+  * Update Amazon CloudWatch Logs to the latest API.
+  * Update Amazon Elastic Transcoder to the latest API.
+  * Update AWS CloudTrail to the latest API.
+  * Fix bug where explicitly passed ``profile_name`` will now override
+    any access and secret keys set in environment variables.
+    (`botocore issue 486 <https://github.com/boto/botocore/pull/486>`__)
+  * Add ``endpoint_url`` to ``client.meta``.
+  * Better error messages for invalid regions.
+  * Fix creating clients with unicode service name.
 
 0.0.10 - 2015-03-05
 -------------------
