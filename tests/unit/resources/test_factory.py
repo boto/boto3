@@ -711,12 +711,24 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
                 }
             },
             'NetworkInterface': {
-                'identifiers': [{'name': 'Id'}]
+                'identifiers': [{'name': 'Id'}],
+                'shape': 'NetworkInterfaceShape'
             }
         }
         self.model = self.defs['Instance']
+        shape = DenormalizedStructureBuilder().with_members({
+            'Id': {
+                'type': 'string',
+            },
+            'PublicIp': {
+                'type': 'string'
+            }
+        }).build_model()
+        service_model = mock.Mock()
+        service_model.shape_for.return_value = shape
 
-        cls = self.load('test', 'Instance', self.model, self.defs, None)
+        cls = self.load('test', 'Instance', self.model, self.defs,
+                        service_model)
         instance = cls('instance-id')
 
         # Set some data as if we had completed a load action.
@@ -729,14 +741,11 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
             }
         instance.load = mock.Mock(side_effect=set_meta_data)
 
-        # Now, get the reference and make sure it has its identifier
-        # and all its data set.
-        network_interface = instance.network_interface
-        self.assertEqual(network_interface.id, 'network-interface-id')
-        self.assertEqual(network_interface.meta.data, {
-            'Id': 'network-interface-id',
-            'PublicIp': '127.0.0.1'
-        })
+        # Now, get the reference and make sure it has its data
+        # set as expected.
+        interface = instance.network_interface
+        self.assertIsNotNone(interface.meta.data)
+        self.assertEqual(interface.public_ip, '127.0.0.1')
 
 
 class TestServiceResourceSubresources(BaseTestResourceFactory):
