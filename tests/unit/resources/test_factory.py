@@ -553,7 +553,7 @@ class TestResourceFactory(BaseTestResourceFactory):
                 }
             }
         }
-        
+
         defs = {
             'Bucket': {}
         }
@@ -685,6 +685,67 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
 
         self.assertNotEqual(q1, q2)
         self.assertNotEqual(q1, m)
+
+    def test_dangling_resource_loads_data(self):
+        # Given a loadable resource instance that contains a reference
+        # to another resource which has a resource data path, the
+        # referenced resource should be loaded with all of the data
+        # contained at that path. This allows loading references
+        # which would otherwise not be loadable (missing load method)
+        # and prevents extra load calls for others when we already
+        # have the data available.
+        self.defs = {
+            'Instance': {
+                'identifiers': [{'name': 'Id'}],
+                'has': {
+                    'NetworkInterface': {
+                        'resource': {
+                            'type': 'NetworkInterface',
+                            'identifiers': [
+                                {'target': 'Id', 'source': 'data',
+                                 'path': 'NetworkInterface.Id'}
+                            ],
+                            'path': 'NetworkInterface'
+                        }
+                    }
+                }
+            },
+            'NetworkInterface': {
+                'identifiers': [{'name': 'Id'}],
+                'shape': 'NetworkInterfaceShape'
+            }
+        }
+        self.model = self.defs['Instance']
+        shape = DenormalizedStructureBuilder().with_members({
+            'Id': {
+                'type': 'string',
+            },
+            'PublicIp': {
+                'type': 'string'
+            }
+        }).build_model()
+        service_model = mock.Mock()
+        service_model.shape_for.return_value = shape
+
+        cls = self.load('test', 'Instance', self.model, self.defs,
+                        service_model)
+        instance = cls('instance-id')
+
+        # Set some data as if we had completed a load action.
+        def set_meta_data():
+            instance.meta.data = {
+                'NetworkInterface': {
+                    'Id': 'network-interface-id',
+                    'PublicIp': '127.0.0.1'
+                }
+            }
+        instance.load = mock.Mock(side_effect=set_meta_data)
+
+        # Now, get the reference and make sure it has its data
+        # set as expected.
+        interface = instance.network_interface
+        self.assertIsNotNone(interface.meta.data)
+        self.assertEqual(interface.public_ip, '127.0.0.1')
 
 
 class TestServiceResourceSubresources(BaseTestResourceFactory):
