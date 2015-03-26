@@ -10,9 +10,11 @@ of services like Amazon S3 and Amazon EC2. You can find the latest, most
 up to date, documentation at `Read the Docs`_, including a list of
 services that are supported.
 
-**WARNING**: Boto 3 is in *developer preview* and **should not** be used in
-production yet! Please try it out and give feedback by opening issues or
-pull requests on this repository. Thanks!
+Boto 3 is in **developer preview**.  This means that until a 1.0 release
+occurs, some of the interfaces may change based on your feedback.
+Once a 1.0 release happens, we guarantee backwards compatibility
+for all future 1.x.x releases.  Try out boto3 and give us
+`feedback <https://github.com/boto/boto3/issues>`__ today!
 
 .. _boto: https://docs.pythonboto.org/
 .. _`Read the Docs`: https://boto3.readthedocs.org/en/latest/
