@@ -2,7 +2,7 @@
 
 Amazon S3
 =========
-Boto 2.x contains a number of customizations to make working with Amazon S3 buckets and keys easy.
+Boto 2.x contains a number of customizations to make working with Amazon S3 buckets and keys easy. Boto 3 exposes these same objects through its resources interface in a unified and consistent way.
 
 Creating the Connection
 -----------------------
@@ -27,7 +27,7 @@ Creating a bucket in Boto 2 and Boto 3 is very similar, except that in Boto 3 al
     # Boto 3
     s3.create_bucket(Bucket='mybucket')
     s3.create_bucket(Bucket='mybucket', CreateBucketConfiguration={
-        'Location': 'us-west-1'})
+        'LocationConstraint': 'us-west-1'})
 
 Storing Data
 ------------
@@ -53,11 +53,15 @@ Getting a bucket is easy with Boto 3's resources, however these do not automatic
     # Boto 3
     bucket = s3.Bucket('mybucket')
     bucket.wait_until_exists(max_attempts=2, service_args={'Foo': 1})
+    exists = True
     try:
         s3.meta.client.head_bucket(Bucket='mybucket')
-        exists = True
-    except ClientError:
-        exists = False
+    except ClientError as e:
+        # If a client error is thrown, then check that it was a 404 error.
+        # If it was a 404 error, then the bucket does not exist.
+        error_code = int(e.response['Error']['Code'])
+        if error_code == 404:
+            exists = False
 
 Deleting a Bucket
 -----------------
