@@ -1,6 +1,15 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* feature:Resources: Add the ability to load resource data from a
+  ``has`` relationship. This saves a call to ``load`` when available,
+  and otherwise fixes a problem where there was no way to get at
+  certain resource data.
+  (`issue 74 <https://github.com/boto/boto3/pull/72>`__,
+
 0.0.11 - 2015-03-24
 -------------------
 
