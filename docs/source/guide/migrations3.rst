@@ -52,7 +52,6 @@ Getting a bucket is easy with Boto 3's resources, however these do not automatic
 
     # Boto 3
     bucket = s3.Bucket('mybucket')
-    bucket.wait_until_exists(max_attempts=2, service_args={'Foo': 1})
     exists = True
     try:
         s3.meta.client.head_bucket(Bucket='mybucket')
