@@ -2,7 +2,7 @@
 
 Amazon EC2
 ==========
-Boto 2.x contains a number of customizations to make working with Amazon EC2 instances, storage and networks easy.
+Boto 2.x contains a number of customizations to make working with Amazon EC2 instances, storage and networks easy. Boto 3 exposes these same objects through its resources interface in a unified and consistent way.
 
 Creating the Connection
 -----------------------
@@ -43,7 +43,7 @@ Stopping and terminating multiple instances given a list of instance IDs uses Bo
 
 Checking What Instances Are Running
 -----------------------------------
-Boto 3 collections come in handy when listing all your running instances as well::
+Boto 3 collections come in handy when listing all your running instances as well. Every collection exposes a ``filter`` method that allows you to pass additional parameters to the underlying service API operation. The EC2 instances collection takes a parameter called ``Filters`` which is a list of names and values, for example::
 
     # Boto 2.x
     reservations = ec2_connection.get_all_reservations(
@@ -53,6 +53,8 @@ Boto 3 collections come in handy when listing all your running instances as well
             print(instance.instance_id, instance.instance_type)
 
     # Boto 3
+    # Use the filter() method of the instances collection to retrieve
+    # all running EC2 instances.
     instances = ec2.instances.filter(
         Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
     for instance in instances:
