@@ -52,6 +52,7 @@ def py_type_name(type_name):
     :rtype: string
     """
     return {
+        'blob': 'bytes',
         'character': 'string',
         'double': 'float',
         'long': 'integer',
@@ -88,7 +89,7 @@ def py_default(type_name):
     }.get(type_name, '...')
 
 
-def html_to_rst(html, indent=0, indentFirst=False):
+def html_to_rst(html, indent=0, indent_first=False):
     """
     Use bcdoc to convert html to rst.
 
@@ -96,8 +97,8 @@ def html_to_rst(html, indent=0, indentFirst=False):
     :param html: Input HTML to be converted
     :type indent: int
     :param indent: Number of spaces to indent each line
-    :type indentFirst: boolean
-    :param indentFirst: Whether to indent the first line
+    :type indent_first: boolean
+    :param indent_first: Whether to indent the first line
     :rtype: string
     """
     doc = ReSTDocument()
@@ -113,7 +114,7 @@ def html_to_rst(html, indent=0, indentFirst=False):
     if indent:
         rst = '\n'.join([(' ' * indent) + line for line in rst.splitlines()])
 
-        if not indentFirst:
+        if not indent_first:
             rst = rst.strip()
 
     return rst
@@ -563,7 +564,7 @@ def document_operation(operation_model, service_name, operation_name=None,
     if description is None:
         description = html_to_rst(
             operation_model._operation_model.get('documentation', ''),
-            indent=6, indentFirst=True)
+            indent=6, indent_first=True)
 
     docs = '   .. py:method:: {0}({1})\n\n{2}\n\n'.format(
                 operation_name, param_desc, description)
@@ -591,11 +592,97 @@ def document_operation(operation_model, service_name, operation_name=None,
         if key in ignore_params:
             continue
         param_type = py_type_name(value.type_name)
+
+        # Convert the description from HTML to RST (to later be converted
+        # into HTML... don't ask). If the parameter is a nested structure
+        # then we also describe its members.
+        param_desc = html_to_rst(
+            value.documentation, indent=9, indent_first=True)
+        if param_type in ['list', 'dict']:
+            param_desc = ('\n         Structure description::\n\n' +
+                          '            ' + key + ' = ' +
+                          document_structure(
+                            key, value, indent=12, indent_first=False) +
+                          '\n' + param_desc)
         required = key in required_params and 'Required' or 'Optional'
         docs += ('      :param {0} {1}: *{2}* - {3}\n'.format(
-            param_type, key, required,
-            html_to_rst(value.documentation, indent=9)))
+            param_type, key, required, param_desc))
     if rtype is not None:
-        docs += '\n\n      :rtype: {0}\n\n'.format(rtype)
+        docs += '      :rtype: {0}\n\n'.format(rtype)
+
+    # Only document the return structure if it isn't a resource. Usually
+    # this means either a list or structure.
+    output_shape = operation_model.output_shape
+    if rtype in ['list', 'dict'] and output_shape is not None:
+        docs += ('      :return:\n         Structure description::\n\n' +
+                 document_structure(None, output_shape, indent=12) + '\n')
+
+    return docs
+
+
+def document_structure(name, shape, indent=0, indent_first=True,
+                       parent_type=None, eol='\n'):
+    """
+    Document a nested structure (list or dict) parameter or return value as
+    a snippet of Python code with dummy placeholders. For example:
+
+        {
+            'Param1': [
+                STRING,
+                ...
+            ],
+            'Param2': BOOLEAN,
+            'Param3': {
+                'Param4': FLOAT,
+                'Param5': INTEGER
+            }
+        }
+
+    """
+    docs = ''
+
+    # Add spaces if the first line is indented.
+    if indent_first:
+        docs += (' ' * indent)
+
+    if shape.type_name == 'structure':
+        # Only include the name if the parent is also a structure.
+        if parent_type == 'structure':
+            docs += "'" + name + '\': {\n'
+        else:
+            docs += '{\n'
+
+        # Go through each member and recursively process them.
+        for i, member_name in enumerate(shape.members):
+            member_eol = '\n'
+            if i < len(shape.members) - 1:
+                member_eol = ',\n'
+            docs += document_structure(
+                member_name, shape.members[member_name],
+                indent=indent + 2, parent_type=shape.type_name,
+                eol=member_eol)
+        docs += (' ' * indent) + '}' + eol
+    elif shape.type_name == 'list':
+        # Only include the name if the parent is a structure.
+        if parent_type == 'structure':
+            docs += "'" + name + '\': [\n'
+        else:
+            docs += '[\n'
+
+        # Lists have only a single member. Here we document it, plus add
+        # an ellipsis to signify that more of the same member type can be
+        # added in a list.
+        docs += document_structure(
+            None, shape.member, indent=indent + 2, eol=',\n')
+        docs += (' ' * indent) + '  ...\n'
+        docs += (' ' * indent) + ']' + eol
+    else:
+        # It's not a structure or list, so document the type. Here we
+        # try to use the equivalent Python type name for clarity.
+        if name is not None:
+            docs += ("'" + name + '\': ' +
+                     py_type_name(shape.type_name).upper() + eol)
+        else:
+            docs += py_type_name(shape.type_name).upper() + eol
 
     return docs
