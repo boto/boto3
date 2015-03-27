@@ -1,14 +1,19 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.12 - 2015-03-26
+-------------------
 
 * feature:Resources: Add the ability to load resource data from a
   ``has`` relationship. This saves a call to ``load`` when available,
   and otherwise fixes a problem where there was no way to get at
   certain resource data.
   (`issue 74 <https://github.com/boto/boto3/pull/72>`__,
+* feature:Botocore: Update to Botocore 0.99.0
+
+  * Update service models for amazon Elastic Transcoder, AWS IAM
+    and AWS OpsWorks to the latest versions.
+  * Add deprecation warnings for old interface.
 
 0.0.11 - 2015-03-24
 -------------------
