@@ -620,6 +620,14 @@ def document_operation(operation_model, service_name, operation_name=None,
     return docs
 
 
+PARAM_NAME = "'{name}': "
+ELLIPSIS = '...\n'
+STRUCT_START = '{\n'
+STRUCT_END = '}'
+LIST_START = '[\n'
+LIST_END = ']'
+
+
 def document_structure(name, shape, indent=0, indent_first=True,
                        parent_type=None, eol='\n'):
     """
@@ -638,51 +646,68 @@ def document_structure(name, shape, indent=0, indent_first=True,
             }
         }
 
+    :type name: string
+    :param name: The shape name.
+    :type shape: botocore.model.Shape
+    :param shape: The shape structure.
+    :type indent: integer
+    :param indent: The number of spaces to indent each line.
+    :type indent_first: boolean
+    :param indent_first: Whether to indent the first line.
+    :type parent_type: string
+    :param parent_type: The type name of the parent, which determines
+                        whether a name is printed for nested members.
+    :type eol: string
+    :param eol: The end-of-line string to use when finishing a member.
+    :rtype: string
     """
     docs = ''
+    spaces = ' ' * indent
 
     # Add spaces if the first line is indented.
     if indent_first:
-        docs += (' ' * indent)
+        docs += spaces
 
     if shape.type_name == 'structure':
         # Only include the name if the parent is also a structure.
         if parent_type == 'structure':
-            docs += "'" + name + '\': {\n'
-        else:
-            docs += '{\n'
+            docs += PARAM_NAME.format(name=name)
+
+        docs += STRUCT_START
 
         # Go through each member and recursively process them.
         for i, member_name in enumerate(shape.members):
+            # Individual members get a trailing comma only if they
+            # are not the last item.
             member_eol = '\n'
             if i < len(shape.members) - 1:
-                member_eol = ',\n'
+                member_eol = ',' + member_eol
+
             docs += document_structure(
                 member_name, shape.members[member_name],
-                indent=indent + 2, parent_type=shape.type_name,
+                indent=indent + 4, parent_type=shape.type_name,
                 eol=member_eol)
-        docs += (' ' * indent) + '}' + eol
+        docs += spaces + STRUCT_END + eol
     elif shape.type_name == 'list':
         # Only include the name if the parent is a structure.
         if parent_type == 'structure':
-            docs += "'" + name + '\': [\n'
-        else:
-            docs += '[\n'
+            docs += PARAM_NAME.format(name=name)
+
+        docs += LIST_START
 
         # Lists have only a single member. Here we document it, plus add
         # an ellipsis to signify that more of the same member type can be
         # added in a list.
         docs += document_structure(
-            None, shape.member, indent=indent + 2, eol=',\n')
-        docs += (' ' * indent) + '  ...\n'
-        docs += (' ' * indent) + ']' + eol
+            None, shape.member, indent=indent + 4, eol=',\n')
+        docs += spaces + '    ' + ELLIPSIS
+        docs += spaces + LIST_END + eol
     else:
         # It's not a structure or list, so document the type. Here we
         # try to use the equivalent Python type name for clarity.
         if name is not None:
-            docs += ("'" + name + '\': ' +
-                     py_type_name(shape.type_name).upper() + eol)
-        else:
-            docs += py_type_name(shape.type_name).upper() + eol
+            docs += PARAM_NAME.format(name=name)
+
+        docs += py_type_name(shape.type_name).upper() + eol
 
     return docs
