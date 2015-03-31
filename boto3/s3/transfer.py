@@ -324,10 +324,11 @@ class MultipartDownloader(object):
         part_size = self._config.multipart_chunksize
         num_parts = int(math.ceil(object_size / float(part_size)))
         max_workers = self._config.max_concurrency
-        with open(filename, 'wb') as f:
+        with self._os.open(filename, 'wb') as f:
+            thread_safe_fileobj = self._os.wrap_thread_safe_writer(f)
             download_partial = functools.partial(
                 self._download_range, bucket, key, filename,
-                part_size, num_parts, callback, f)
+                part_size, num_parts, callback, thread_safe_fileobj)
             with self._executor_cls(max_workers=max_workers) as executor:
                 list(executor.map(download_partial, range(num_parts)))
 
@@ -345,16 +346,15 @@ class MultipartDownloader(object):
             response['Body'], callback)
         buffer_size = 1024 * 16
         current_index = start_range
-        safe_writer = self._os.wrap_thread_safe_writer(fileobj)
         for chunk in iter(lambda: streaming_body.read(buffer_size), b''):
-            safe_writer.pwrite(chunk, current_index)
+            fileobj.pwrite(chunk, current_index)
             current_index += len(chunk)
 
 
 class TransferConfig(object):
     def __init__(self,
                  multipart_threshold=8 * MB,
-                 max_concurrency=1,
+                 max_concurrency=2,
                  multipart_chunksize=8 * MB,
                  num_download_attempts=5):
         self.multipart_threshold = multipart_threshold
