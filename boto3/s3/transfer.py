@@ -46,16 +46,16 @@ The ``upload_file`` and ``download_file`` methods also accept
 client operation.  Here are a few examples using ``upload_file``::
 
     # Making the object public
-    transfer.upload_file('/tmp/myfile', 'bucket', 'key', ACL='public-read')
+    transfer.upload_file('/tmp/myfile', 'bucket', 'key',
+                         extra_args={'ACL': 'public-read'})
 
     # Setting metadata
     transfer.upload_file('/tmp/myfile', 'bucket', 'key',
-                         Metadata={'a': 'b', 'c': 'd'})
+                         extra_args={'Metadata': {'a': 'b', 'c': 'd'}})
 
     # Setting content type
     transfer.upload_file('/tmp/myfile.json', 'bucket', 'key',
-                         ContentType="application/json")
-
+                         extra_args={'ContentType': "application/json"})
 
 
 The ``S3Transfer`` clas also supports progress callbacks so you can
@@ -102,8 +102,7 @@ transfer.  For example:
     config = TransferConfig(
         multipart_threshold=8 * 1024 * 1024,
         max_concurrency=10,
-        max_retries=10,
-        socket_timeout=120,
+        num_download_attempts=10,
     )
     transfer = S3Transfer(client, config)
     transfer.upload_file('/tmp/foo', 'bucket', 'key')
