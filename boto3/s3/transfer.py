@@ -128,7 +128,6 @@ import functools
 import logging
 import socket
 from concurrent import futures
-import contextlib
 
 import six
 from botocore.vendored.requests.packages.urllib3.exceptions import \
@@ -400,7 +399,7 @@ class MultipartDownloader(object):
                 task = self._ioqueue.get()
                 if task is SHUTDOWN_SENTINEL:
                     logger.debug("Shutdown sentinel received in IO handler, "
-                                "shutting down IO handler.")
+                                 "shutting down IO handler.")
                     return
                 else:
                     offset, data = task
