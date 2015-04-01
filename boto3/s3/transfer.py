@@ -416,6 +416,7 @@ class S3Transfer(object):
     def _get_object(self, bucket, key, filename, callback):
         # precondition: num_download_attempts > 0
         max_attempts = self._config.num_download_attempts
+        last_exception = None
         for i in range(max_attempts):
             try:
                 return self._do_get_object(bucket, key, filename, callback)
@@ -426,8 +427,9 @@ class S3Transfer(object):
                 logger.debug("Retrying exception caught (%s), "
                              "retrying request, (attempt %s / %s)", e, i,
                              max_attempts, exc_info=True)
+                last_exception = None
                 continue
-        raise RetriesExceededError(e)
+        raise RetriesExceededError(last_exception)
 
     def _do_get_object(self, bucket, key, filename, callback):
         response = self._client.get_object(Bucket=bucket, Key=key)
