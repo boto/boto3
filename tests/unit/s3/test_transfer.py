@@ -152,9 +152,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_read_entire_chunk(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'onetwothreefourfivesixseveneightnineten')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'onetwothreefourfivesixseveneightnineten')
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=0, chunk_size=3)
         self.assertEqual(chunk.read(), b'one')
@@ -162,9 +161,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_read_with_amount_size(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'onetwothreefourfivesixseveneightnineten')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'onetwothreefourfivesixseveneightnineten')
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=11, chunk_size=4)
         self.assertEqual(chunk.read(1), b'f')
@@ -175,9 +173,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_reset_stream_emulation(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'onetwothreefourfivesixseveneightnineten')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'onetwothreefourfivesixseveneightnineten')
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=11, chunk_size=4)
         self.assertEqual(chunk.read(), b'four')
@@ -186,9 +183,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_read_past_end_of_file(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'onetwothreefourfivesixseveneightnineten')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'onetwothreefourfivesixseveneightnineten')
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=36, chunk_size=100000)
         self.assertEqual(chunk.read(), b'ten')
@@ -197,9 +193,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_tell_and_seek(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'onetwothreefourfivesixseveneightnineten')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'onetwothreefourfivesixseveneightnineten')
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=36, chunk_size=100000)
         self.assertEqual(chunk.tell(), 0)
@@ -210,9 +205,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_callback_is_invoked_on_read(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'abc')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'abc')
         amounts_seen = []
         def callback(amount):
             amounts_seen.append(amount)
@@ -226,9 +220,8 @@ class TestReadFileChunk(unittest.TestCase):
 
     def test_file_chunk_supports_context_manager(self):
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb')
-        f.write(b'abc')
-        f.flush()
+        with open(filename, 'wb') as f:
+            f.write(b'abc')
         with ReadFileChunk.from_filename(filename,
                                          start_byte=0,
                                          chunk_size=2) as chunk:

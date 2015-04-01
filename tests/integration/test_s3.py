@@ -289,7 +289,19 @@ class TestS3Transfers(unittest.TestCase):
         self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
 
     def test_can_send_extra_params_on_upload(self):
-        pass
+        transfer = self.create_s3_transfer()
+        filename = self.files.create_file_with_size('foo.txt', filesize=1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             'foo.txt', extra_args={'ACL': 'public-read'})
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        response = self.client.get_object_acl(
+            Bucket=self.bucket_name, Key='foo.txt')
+        # Verify the object has an acl of public-read.
+        grants = response['Grants']
+        public_read = [g['Grantee'].get('URI', '') for g in grants
+                       if g['Permission'] == 'READ']
+        self.assertIn('groups/global/AllUsers', public_read[0])
 
     def test_can_configure_threshold(self):
         config = boto3.s3.transfer.TransferConfig(
@@ -306,19 +318,23 @@ class TestS3Transfers(unittest.TestCase):
 
     def test_can_send_extra_params_on_download(self):
         transfer = self.create_s3_transfer()
-        extra_args = {'ACL': 'public-read'}
+
         filename = self.files.create_file_with_size(
             'foo.txt', filesize=1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             'foo.txt', extra_args=extra_args)
-        self.addCleanup(self.delete_object, 'foo.txt')
+        with open(filename, 'rb') as f:
+            self.client.put_object(Bucket=self.bucket_name,
+                                   Key='foo.txt',
+                                   Body=f)
+            self.addCleanup(self.delete_object, 'foo.txt')
 
-        self.assertTrue(self.object_exists('foo.txt'))
-        # TODO: Verify we can download the object
-        # I'd like to create an anonymous client in boto3, but that doesn't
-        # appear possible.
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        transfer.download_file(self.bucket_name, 'foo.txt',
+                               download_path)
+        assert_files_equal(filename, download_path)
 
     def test_progress_callback_on_download(self):
+        # TODO: This will need to wait until the extra_args
+        # are blacklisted.
         pass
 
     def test_download_below_threshold(self):
