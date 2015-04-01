@@ -26,7 +26,6 @@ from boto3.exceptions import RetriesExceededError
 from boto3.s3.transfer import ReadFileChunk, StreamReaderProgress
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig
-from boto3.s3.transfer import ThreadSafeWriter
 from boto3.s3.transfer import MultipartDownloader, MultipartUploader
 
 
@@ -71,46 +70,6 @@ class SequentialExecutor(object):
         future = futures.Future()
         future.set_result(function())
         return future
-
-
-class TestThreadSafeWriter(unittest.TestCase):
-    def setUp(self):
-        self.tempdir = tempfile.mkdtemp()
-        self.filename = os.path.join(self.tempdir, 'foo')
-        self.fileobj = open(self.filename, 'w')
-
-    def tearDown(self):
-        self.fileobj.close()
-        shutil.rmtree(self.tempdir)
-
-    def test_pwrite_to_beginning_of_file(self):
-        # We're not actually interested in unit testing the threading logic
-        # via a unit test.  Any concurrency issues will crop up in integration
-        # tests.
-        writer = ThreadSafeWriter(self.fileobj)
-        writer.pwrite('foobar', 0)
-        self.fileobj.flush()
-        with open(self.filename, 'r') as f:
-            self.assertEqual(f.read(), 'foobar')
-        writer.close()
-
-    def test_pwrite_to_offset_not_at_start(self):
-        writer = ThreadSafeWriter(self.fileobj)
-        writer.pwrite('foobar', 5)
-        self.fileobj.flush()
-        with open(self.filename, 'r') as f:
-            # Because we used an offset of 5 above, we should have
-            # the first 5 bytes filled with 0.
-            self.assertEqual(
-                f.read(), '\x00\x00\x00\x00\x00foobar')
-
-    def test_multiple_pwrite_calls(self):
-        writer = ThreadSafeWriter(self.fileobj)
-        writer.pwrite('first', 8)
-        writer.pwrite('second', 1)
-        self.fileobj.flush()
-        with open(self.filename, 'r') as f:
-            self.assertEqual(f.read(), '\x00second\x00first')
 
 
 class TestOSUtils(unittest.TestCase):

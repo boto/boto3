@@ -273,20 +273,6 @@ class StreamReaderProgress(object):
         return value
 
 
-class ThreadSafeWriter(object):
-    def __init__(self, write_stream):
-        self._write_stream = write_stream
-        self._lock = threading.Lock()
-
-    def pwrite(self, data, offset):
-        with self._lock:
-            self._write_stream.seek(offset)
-            self._write_stream.write(data)
-
-    def close(self):
-        return self._write_stream.close()
-
-
 class OSUtils(object):
     def get_file_size(self, filename):
         return os.path.getsize(filename)
