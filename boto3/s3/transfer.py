@@ -116,7 +116,9 @@ import functools
 import logging
 import socket
 from concurrent import futures
+import contextlib
 
+import six
 from botocore.vendored.requests.packages.urllib3.exceptions import \
     ReadTimeoutError
 from botocore.exceptions import IncompleteReadError
@@ -125,7 +127,10 @@ from boto3.exceptions import RetriesExceededError
 
 
 logger = logging.getLogger(__name__)
+queue = six.moves.queue
+
 MB = 1024 * 1024
+SHUTDOWN_SENTINEL = object()
 
 
 class ReadFileChunk(object):
@@ -317,22 +322,48 @@ class MultipartDownloader(object):
         self._config = config
         self._os = osutil
         self._executor_cls = executor_cls
+        self._ioqueue = queue.Queue(self._config.max_io_queue)
 
     def download_file(self, bucket, key, filename, object_size,
                       callback=None):
+        with self._executor_cls(max_workers=2) as controller:
+            # 1 thread for the future that manages the uploading of files
+            # 1 thread for the future that manages IO writes.
+            download_parts_handler = functools.partial(
+                self._download_file_as_future,
+                bucket, key, filename, object_size, callback)
+            parts_future = controller.submit(download_parts_handler)
+
+            io_writes_handler = functools.partial(
+                self._perform_io_writes, filename)
+            io_future = controller.submit(io_writes_handler)
+            results = futures.wait([parts_future, io_future],
+                                   return_when=futures.FIRST_EXCEPTION)
+            assert not results[1], "wait() returned incomplete futures"
+            self._process_future_results(results[0])
+
+    def _process_future_results(self, futures):
+        for future in futures:
+            future.result()
+
+    def _download_file_as_future(self, bucket, key, filename, object_size,
+                                 callback):
         part_size = self._config.multipart_chunksize
         num_parts = int(math.ceil(object_size / float(part_size)))
         max_workers = self._config.max_concurrency
-        with self._os.open(filename, 'wb') as f:
-            thread_safe_fileobj = self._os.wrap_thread_safe_writer(f)
-            download_partial = functools.partial(
-                self._download_range, bucket, key, filename,
-                part_size, num_parts, callback, thread_safe_fileobj)
-            with self._executor_cls(max_workers=max_workers) as executor:
-                list(executor.map(download_partial, range(num_parts)))
+        download_partial = functools.partial(
+            self._download_range, bucket, key, filename,
+            part_size, num_parts, callback)
+        logger.debug("Starting download partials.")
+        with self._executor_cls(max_workers=max_workers) as executor:
+            list(executor.map(download_partial, range(num_parts)))
+        logger.debug("Done with download_partials.")
+        self._ioqueue.put(SHUTDOWN_SENTINEL)
+        logger.debug("Adding SHUTDOWN_SENTINEL to io queue.")
 
     def _download_range(self, bucket, key, filename,
-                        part_size, num_parts, callback, fileobj, i):
+                        part_size, num_parts, callback, i):
+        logger.debug("In _download_range.")
         start_range = i * part_size
         if i == num_parts - 1:
             end_range = ''
@@ -345,21 +376,38 @@ class MultipartDownloader(object):
             response['Body'], callback)
         buffer_size = 1024 * 16
         current_index = start_range
+        logger.debug("Starting: %s", i)
         for chunk in iter(lambda: streaming_body.read(buffer_size), b''):
-            fileobj.pwrite(chunk, current_index)
+            self._ioqueue.put((current_index, chunk))
             current_index += len(chunk)
+        logger.debug("Part done: %s", i)
+
+    def _perform_io_writes(self, filename):
+        with self._os.open(filename, 'wb') as f:
+            while True:
+                task = self._ioqueue.get()
+                if task is SHUTDOWN_SENTINEL:
+                    logger.debug("Shutdown sentinel received in IO handler, "
+                                "shutting down IO handler.")
+                    return
+                else:
+                    offset, data = task
+                    f.seek(offset)
+                    f.write(data)
 
 
 class TransferConfig(object):
     def __init__(self,
                  multipart_threshold=8 * MB,
-                 max_concurrency=2,
+                 max_concurrency=10,
                  multipart_chunksize=8 * MB,
-                 num_download_attempts=5):
+                 num_download_attempts=5,
+                 max_io_queue=100):
         self.multipart_threshold = multipart_threshold
         self.max_concurrency = max_concurrency
         self.multipart_chunksize = multipart_chunksize
         self.num_download_attempts = num_download_attempts
+        self.max_io_queue = max_io_queue
 
 
 class S3Transfer(object):

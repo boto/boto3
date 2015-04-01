@@ -20,6 +20,7 @@ from contextlib import closing
 import mock
 from botocore.vendored import six
 from botocore.client import BaseClient
+from concurrent import futures
 
 from boto3.exceptions import RetriesExceededError
 from boto3.s3.transfer import ReadFileChunk, StreamReaderProgress
@@ -37,7 +38,6 @@ class InMemoryOSLayer(OSUtils):
         return len(self._filemap[filename])
 
     def open_file_chunk_reader(self, filename, start_byte, size, callback):
-        # TODO: handle the case for partial reads.
         return closing(six.BytesIO(self._filemap[filename]))
 
     def open(self, filename, mode):
@@ -66,6 +66,11 @@ class SequentialExecutor(object):
         for arg in args:
             results.append(function(arg))
         return results
+
+    def submit(self, function):
+        future = futures.Future()
+        future.set_result(function())
+        return future
 
 
 class TestThreadSafeWriter(unittest.TestCase):
