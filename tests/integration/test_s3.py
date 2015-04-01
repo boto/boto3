@@ -20,7 +20,7 @@ import shutil
 import hashlib
 
 from tests import unittest, unique_id
-from botocore.vendored import six
+from botocore.compat import six
 
 import boto3.session
 import boto3.s3.transfer
@@ -245,11 +245,14 @@ class TestS3Transfers(unittest.TestCase):
                                 Key=key)
         return True
 
-    def create_s3_transfer(self):
-        return boto3.s3.transfer.S3Transfer(self.client)
+    def create_s3_transfer(self, config=None):
+        return boto3.s3.transfer.S3Transfer(self.client,
+                                            config=config)
 
     def test_upload_below_threshold(self):
-        transfer = self.create_s3_transfer()
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=2 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
             'foo.txt', filesize=1024 * 1024)
         transfer.upload_file(filename, self.bucket_name,
@@ -259,7 +262,9 @@ class TestS3Transfers(unittest.TestCase):
         self.assertTrue(self.object_exists('foo.txt'))
 
     def test_upload_above_threshold(self):
-        transfer = self.create_s3_transfer()
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=2 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
             '20mb.txt', filesize=20 * 1024 * 1024)
         transfer.upload_file(filename, self.bucket_name,
@@ -307,7 +312,7 @@ class TestS3Transfers(unittest.TestCase):
         config = boto3.s3.transfer.TransferConfig(
             multipart_threshold=6 * 1024 * 1024
         )
-        transfer = boto3.s3.transfer.S3Transfer(self.client, config)
+        transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
             'foo.txt', filesize=8 * 1024 * 1024)
         transfer.upload_file(filename, self.bucket_name,

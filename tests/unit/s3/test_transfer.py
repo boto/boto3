@@ -134,14 +134,6 @@ class TestOSUtils(unittest.TestCase):
         fileobj = OSUtils().open(os.path.join(self.tempdir, 'foo'), 'w')
         self.assertTrue(hasattr(fileobj, 'write'))
 
-    def test_wrap_thread_safe_writer(self):
-        wrapped = OSUtils().wrap_thread_safe_writer(None)
-        self.assertIsInstance(wrapped, ThreadSafeWriter)
-
-    def test_wrap_stream_with_callback(self):
-        wrapped = OSUtils().wrap_stream_with_callback(None, None)
-        self.assertIsInstance(wrapped, StreamReaderProgress)
-
 
 class TestReadFileChunk(unittest.TestCase):
     def setUp(self):

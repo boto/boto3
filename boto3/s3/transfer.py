@@ -104,7 +104,7 @@ to the user:
 
 
 
-You can also provide an TransferConfig object to the S3Transfer
+You can also provide a TransferConfig object to the S3Transfer
 object that gives you more fine grained control over the
 transfer.  For example:
 
@@ -129,7 +129,7 @@ import logging
 import socket
 from concurrent import futures
 
-import six
+from botocore.compat import six
 from botocore.vendored.requests.packages.urllib3.exceptions import \
     ReadTimeoutError
 from botocore.exceptions import IncompleteReadError
@@ -186,7 +186,27 @@ class ReadFileChunk(object):
 
     @classmethod
     def from_filename(cls, filename, start_byte, chunk_size, callback=None):
-        """Convenience factory function to create from a filename."""
+        """Convenience factory function to create from a filename.
+
+        :type start_byte: int
+        :param start_byte: The first byte from which to start reading.
+
+        :type chunk_size: int
+        :param chunk_size: The max chunk size to read.  Trying to read
+            pass the end of the chunk size will behave like you've
+            reached the end of the file.
+
+        :type full_file_size: int
+        :param full_file_size: The entire content length associated
+            with ``fileobj``.
+
+        :type callback: function(amount_read)
+        :param callback: Called whenever data is read from this object.
+
+        :rtype: ``ReadFileChunk``
+        :return: A new instance of ``ReadFileChunk``
+
+        """
         f = open(filename, 'rb')
         file_size = os.fstat(f.fileno()).st_size
         return cls(f, start_byte, chunk_size, file_size, callback)
@@ -236,7 +256,7 @@ class ReadFileChunk(object):
         # Basically httplib will try to iterate over the contents, even
         # if its a file like object.  This wasn't noticed because we've
         # already exhausted the stream so iterating over the file immediately
-        # steps, which is what we're simulating here.
+        # stops, which is what we're simulating here.
         return iter([])
 
 
@@ -277,12 +297,6 @@ class OSUtils(object):
 
     def open(self, filename, mode):
         return open(filename, mode)
-
-    def wrap_stream_with_callback(self, stream, callback):
-        return StreamReaderProgress(stream, callback)
-
-    def wrap_thread_safe_writer(self, stream):
-        return ThreadSafeWriter(stream)
 
 
 class MultipartUploader(object):
@@ -383,7 +397,7 @@ class MultipartDownloader(object):
         range_param = 'bytes=%s-%s' % (start_range, end_range)
         response = self._client.get_object(
             Bucket=bucket, Key=key, Range=range_param)
-        streaming_body = self._os.wrap_stream_with_callback(
+        streaming_body = StreamReaderProgress(
             response['Body'], callback)
         buffer_size = 1024 * 16
         current_index = start_range
@@ -492,7 +506,7 @@ class S3Transfer(object):
 
     def _do_get_object(self, bucket, key, filename, callback):
         response = self._client.get_object(Bucket=bucket, Key=key)
-        streaming_body = self._osutil.wrap_stream_with_callback(
+        streaming_body = StreamReaderProgress(
             response['Body'], callback)
         with self._osutil.open(filename, 'wb') as f:
             for chunk in iter(lambda: streaming_body.read(8192), b''):
