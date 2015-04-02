@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.0.13 - 2015-04-02
+-------------------
+
+* feature:Botocore: Update to Botocore 0.100.0.
+
+  * Update AWS CodeDeploy to the latest service API.
+  * Update Amazon RDS to support the ``describe_certificates``
+    service operation.
+  * Update Amazon Elastic Transcoder to support PlayReady DRM.
+  * Update Amazon EC2 to support D2 instance types.
+
 0.0.12 - 2015-03-26
 -------------------
 
