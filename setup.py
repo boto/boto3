@@ -26,7 +26,7 @@ packages = [
 ]
 
 requires = [
-    'botocore==0.97.0',
+    'botocore==0.100.0',
     'bcdoc==0.12.2',
     'jmespath==0.6.1',
 ]
@@ -50,7 +50,7 @@ setup(
     install_requires=requires,
     license=open("LICENSE").read(),
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: Apache Software License',

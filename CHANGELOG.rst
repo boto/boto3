@@ -1,6 +1,31 @@
 Changelog
 =========
 
+0.0.13 - 2015-04-02
+-------------------
+
+* feature:Botocore: Update to Botocore 0.100.0.
+
+  * Update AWS CodeDeploy to the latest service API.
+  * Update Amazon RDS to support the ``describe_certificates``
+    service operation.
+  * Update Amazon Elastic Transcoder to support PlayReady DRM.
+  * Update Amazon EC2 to support D2 instance types.
+
+0.0.12 - 2015-03-26
+-------------------
+
+* feature:Resources: Add the ability to load resource data from a
+  ``has`` relationship. This saves a call to ``load`` when available,
+  and otherwise fixes a problem where there was no way to get at
+  certain resource data.
+  (`issue 74 <https://github.com/boto/boto3/pull/72>`__,
+* feature:Botocore: Update to Botocore 0.99.0
+
+  * Update service models for amazon Elastic Transcoder, AWS IAM
+    and AWS OpsWorks to the latest versions.
+  * Add deprecation warnings for old interface.
+
 0.0.11 - 2015-03-24
 -------------------
 
