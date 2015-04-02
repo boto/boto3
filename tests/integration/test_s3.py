@@ -322,25 +322,47 @@ class TestS3Transfers(unittest.TestCase):
         self.assertTrue(self.object_exists('foo.txt'))
 
     def test_can_send_extra_params_on_download(self):
+        # We're picking the customer provided sse feature
+        # of S3 to test the extra_args functionality of
+        # S3.
+        key_bytes = os.urandom(32)
+        extra_args = {
+            'SSECustomerKey': key_bytes,
+            'SSECustomerAlgorithm': 'AES256',
+        }
+        self.client.put_object(Bucket=self.bucket_name,
+                               Key='foo.txt',
+                               Body=b'hello world',
+                               **extra_args)
+        self.addCleanup(self.delete_object, 'foo.txt')
         transfer = self.create_s3_transfer()
-
-        filename = self.files.create_file_with_size(
-            'foo.txt', filesize=1024 * 1024)
-        with open(filename, 'rb') as f:
-            self.client.put_object(Bucket=self.bucket_name,
-                                   Key='foo.txt',
-                                   Body=f)
-            self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         transfer.download_file(self.bucket_name, 'foo.txt',
-                               download_path)
-        assert_files_equal(filename, download_path)
+                               download_path, extra_args=extra_args)
+        with open(download_path, 'rb') as f:
+            self.assertEqual(f.read(), b'hello world')
 
     def test_progress_callback_on_download(self):
-        # TODO: This will need to wait until the extra_args
-        # are blacklisted.
-        pass
+        self.amount_seen = 0
+        lock = threading.Lock()
+
+        def progress_callback(amount):
+            with lock:
+                self.amount_seen += amount
+
+        transfer = self.create_s3_transfer()
+        filename = self.files.create_file_with_size(
+            '20mb.txt', filesize=20 * 1024 * 1024)
+        with open(filename, 'rb') as f:
+            self.client.put_object(Bucket=self.bucket_name,
+                                   Key='20mb.txt', Body=f)
+        self.addCleanup(self.delete_object, '20mb.txt')
+
+        transfer.download_file(self.bucket_name, '20mb.txt',
+                               'foo.txt', callback=progress_callback)
+
+        self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
 
     def test_download_below_threshold(self):
         transfer = self.create_s3_transfer()

@@ -244,7 +244,8 @@ class TestMultipartDownloader(unittest.TestCase):
         downloader = MultipartDownloader(client, TransferConfig(),
                                          InMemoryOSLayer({}),
                                          SequentialExecutor)
-        downloader.download_file('bucket', 'key', 'filename', len(response_body))
+        downloader.download_file('bucket', 'key', 'filename',
+                                 len(response_body), {})
 
         client.get_object.assert_called_with(
             Range='bytes=0-',
@@ -267,7 +268,8 @@ class TestMultipartDownloader(unittest.TestCase):
         downloader = MultipartDownloader(client, config,
                                          InMemoryOSLayer({}),
                                          SequentialExecutor)
-        downloader.download_file('bucket', 'key', 'filename', len(response_body))
+        downloader.download_file('bucket', 'key', 'filename',
+                                 len(response_body), {})
 
         # We're storing these in **extra because the assertEqual
         # below is really about verifying we have the correct value
@@ -344,7 +346,42 @@ class TestS3Transfer(unittest.TestCase):
 
             downloader.return_value.download_file.assert_called_with(
                 'bucket', 'key', 'filename', over_multipart_threshold,
-                callback)
+                {}, callback)
+
+    def test_download_file_with_invalid_extra_args(self):
+        below_threshold = 20
+        osutil = InMemoryOSLayer({})
+        transfer = S3Transfer(self.client, osutil=osutil)
+        self.client.head_object.return_value = {
+            'ContentLength': below_threshold}
+        with self.assertRaises(ValueError):
+            transfer.download_file('bucket', 'key', '/tmp/smallfile',
+                                extra_args={'BadValue': 'foo'})
+
+    def test_download_file_fowards_extra_args(self):
+        extra_args = {
+            'SSECustomerKey': 'foo',
+            'SSECustomerAlgorithm': 'AES256',
+        }
+        below_threshold = 20
+        osutil = InMemoryOSLayer({'smallfile': b'hello world'})
+        transfer = S3Transfer(self.client, osutil=osutil)
+        self.client.head_object.return_value = {
+            'ContentLength': below_threshold}
+        self.client.get_object.return_value = {
+            'Body': six.BytesIO(b'foobar')
+        }
+        transfer.download_file('bucket', 'key', '/tmp/smallfile',
+                               extra_args=extra_args)
+
+        # Note that we need to invoke the HeadObject call
+        # and the PutObject call with the extra_args.
+        # This is necessary.  Trying to HeadObject an SSE object
+        # will return a 400 if you don't provide the required
+        # params.
+        self.client.get_object.assert_called_with(
+            Bucket='bucket', Key='key', SSECustomerAlgorithm='AES256',
+            SSECustomerKey='foo')
 
     def test_get_object_stream_is_retried_and_succeeds(self):
         below_threshold = 20

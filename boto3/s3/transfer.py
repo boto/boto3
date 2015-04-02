@@ -336,7 +336,7 @@ class MultipartDownloader(object):
         self._ioqueue = queue.Queue(self._config.max_io_queue)
 
     def download_file(self, bucket, key, filename, object_size,
-                      callback=None):
+                      extra_args, callback=None):
         with self._executor_cls(max_workers=2) as controller:
             # 1 thread for the future that manages the uploading of files
             # 1 thread for the future that manages IO writes.
@@ -423,6 +423,14 @@ class TransferConfig(object):
 
 class S3Transfer(object):
 
+    ALLOWED_DOWNLOAD_ARGS = [
+        'VersionId',
+        'SSECustomerAlgorithm',
+        'SSECustomerKey',
+        'SSECustomerKeyMD5',
+        'RequestPayer',
+    ]
+
     def __init__(self, client, config=None, osutil=None):
         self._client = client
         if config is None:
@@ -452,7 +460,8 @@ class S3Transfer(object):
             self._client.put_object(Bucket=bucket, Key=key, Body=body,
                                     **extra_args)
 
-    def download_file(self, bucket, key, filename, callback=None):
+    def download_file(self, bucket, key, filename, extra_args=None,
+                      callback=None):
         """Download an S3 object to a file.
 
         This method will issue a ``head_object`` request to determine
@@ -460,25 +469,40 @@ class S3Transfer(object):
         object is downloaded in parallel.
 
         """
-        object_size = self._object_size(bucket, key)
+        if extra_args is None:
+            extra_args = {}
+        self._validate_download_args(extra_args)
+        object_size = self._object_size(bucket, key, extra_args)
         if object_size >= self._config.multipart_threshold:
-            self._ranged_download(bucket, key, filename, object_size, callback)
+            self._ranged_download(bucket, key, filename, object_size,
+                                  extra_args, callback)
         else:
-            self._get_object(bucket, key, filename, callback)
+            self._get_object(bucket, key, filename, extra_args, callback)
 
-    def _ranged_download(self, bucket, key, filename, object_size, callback):
+    def _validate_download_args(self, kwargs):
+        allowed = self.ALLOWED_DOWNLOAD_ARGS
+        for kwarg in kwargs:
+            if kwarg not in allowed:
+                raise ValueError(
+                    "Invalid extra_args key '%s', "
+                    "must be one of: %s" % (
+                        kwarg, ', '.join(allowed)))
+
+    def _ranged_download(self, bucket, key, filename, object_size,
+                         extra_args, callback):
         downloader = MultipartDownloader(self._client, self._config,
                                          self._osutil)
         downloader.download_file(bucket, key, filename, object_size,
-                                 callback)
+                                 extra_args, callback)
 
-    def _get_object(self, bucket, key, filename, callback):
+    def _get_object(self, bucket, key, filename, extra_args, callback):
         # precondition: num_download_attempts > 0
         max_attempts = self._config.num_download_attempts
         last_exception = None
         for i in range(max_attempts):
             try:
-                return self._do_get_object(bucket, key, filename, callback)
+                return self._do_get_object(bucket, key, filename,
+                                           extra_args, callback)
             except (socket.timeout, socket.error,
                     ReadTimeoutError, IncompleteReadError) as e:
                 # TODO: we need a way to reset the callback if the
@@ -490,17 +514,18 @@ class S3Transfer(object):
                 continue
         raise RetriesExceededError(last_exception)
 
-    def _do_get_object(self, bucket, key, filename, callback):
-        response = self._client.get_object(Bucket=bucket, Key=key)
+    def _do_get_object(self, bucket, key, filename, extra_args, callback):
+        response = self._client.get_object(Bucket=bucket, Key=key,
+                                           **extra_args)
         streaming_body = StreamReaderProgress(
             response['Body'], callback)
         with self._osutil.open(filename, 'wb') as f:
             for chunk in iter(lambda: streaming_body.read(8192), b''):
                 f.write(chunk)
 
-    def _object_size(self, bucket, key):
+    def _object_size(self, bucket, key, extra_args):
         return self._client.head_object(
-            Bucket=bucket, Key=key)['ContentLength']
+            Bucket=bucket, Key=key, **extra_args)['ContentLength']
 
     def _multipart_upload(self, filename, bucket, key, callback, extra_args):
         uploader = MultipartUploader(self._client, self._config, self._osutil)
