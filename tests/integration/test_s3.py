@@ -249,6 +249,12 @@ class TestS3Transfers(unittest.TestCase):
         return boto3.s3.transfer.S3Transfer(self.client,
                                             config=config)
 
+    def assert_has_public_read_acl(self, response):
+        grants = response['Grants']
+        public_read = [g['Grantee'].get('URI', '') for g in grants
+                       if g['Permission'] == 'READ']
+        self.assertIn('groups/global/AllUsers', public_read[0])
+
     def test_upload_below_threshold(self):
         config = boto3.s3.transfer.TransferConfig(
             multipart_threshold=2 * 1024 * 1024)
@@ -271,6 +277,25 @@ class TestS3Transfers(unittest.TestCase):
                              '20mb.txt')
         self.addCleanup(self.delete_object, '20mb.txt')
         self.assertTrue(self.object_exists('20mb.txt'))
+
+    def test_upload_file_above_threshold_with_acl(self):
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=5 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            '6mb.txt', filesize=6 * 1024 * 1024)
+        extra_args = {'ACL': 'public-read'}
+        transfer.upload_file(filename, self.bucket_name,
+                             '6mb.txt', extra_args=extra_args)
+        self.addCleanup(self.delete_object, '6mb.txt')
+
+        self.assertTrue(self.object_exists('6mb.txt'))
+        response = self.client.get_object_acl(
+            Bucket=self.bucket_name, Key='6mb.txt')
+        self.assert_has_public_read_acl(response)
+
+    def test_upload_file_above_threshold_with_ssec(self):
+        pass
 
     def test_progress_callback_on_upload(self):
         self.amount_seen = 0
@@ -302,11 +327,7 @@ class TestS3Transfers(unittest.TestCase):
 
         response = self.client.get_object_acl(
             Bucket=self.bucket_name, Key='foo.txt')
-        # Verify the object has an acl of public-read.
-        grants = response['Grants']
-        public_read = [g['Grantee'].get('URI', '') for g in grants
-                       if g['Permission'] == 'READ']
-        self.assertIn('groups/global/AllUsers', public_read[0])
+        self.assert_has_public_read_acl(response)
 
     def test_can_configure_threshold(self):
         config = boto3.s3.transfer.TransferConfig(

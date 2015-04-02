@@ -123,7 +123,6 @@ transfer.  For example:
 """
 import os
 import math
-import threading
 import functools
 import logging
 import socket
