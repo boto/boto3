@@ -19,7 +19,6 @@ from contextlib import closing
 
 import mock
 from botocore.vendored import six
-from botocore.client import BaseClient
 from concurrent import futures
 
 from boto3.exceptions import RetriesExceededError
@@ -159,8 +158,10 @@ class TestReadFileChunk(unittest.TestCase):
         with open(filename, 'wb') as f:
             f.write(b'abc')
         amounts_seen = []
+
         def callback(amount):
             amounts_seen.append(amount)
+
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=0, chunk_size=3, callback=callback)
         chunk.read(1)
@@ -183,7 +184,7 @@ class TestReadFileChunk(unittest.TestCase):
         # This tests the workaround for the httplib bug (see
         # the source for more info).
         filename = os.path.join(self.tempdir, 'foo')
-        f = open(filename, 'wb').close()
+        open(filename, 'wb').close()
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=0, chunk_size=10)
         self.assertEqual(list(chunk), [])
@@ -198,8 +199,10 @@ class TestStreamReaderProgress(unittest.TestCase):
 
     def test_callback_invoked(self):
         amounts_seen = []
+
         def callback(amount):
             amounts_seen.append(amount)
+
         original_stream = six.StringIO('foobarbaz')
         wrapped = StreamReaderProgress(original_stream, callback)
         self.assertEqual(wrapped.read(), 'foobarbaz')
@@ -209,13 +212,13 @@ class TestStreamReaderProgress(unittest.TestCase):
 class TestMultipartUploader(unittest.TestCase):
     def test_multipart_upload_uses_correct_client_calls(self):
         client = mock.Mock()
-        uploader = MultipartUploader(client, TransferConfig(),
-                                     InMemoryOSLayer({'filename': b'foobar'}), SequentialExecutor)
+        uploader = MultipartUploader(
+            client, TransferConfig(),
+            InMemoryOSLayer({'filename': b'foobar'}), SequentialExecutor)
         client.create_multipart_upload.return_value = {'UploadId': 'upload_id'}
         client.upload_part.return_value = {'ETag': 'first'}
 
         uploader.upload_file('filename', 'bucket', 'key', None, {})
-
 
         # We need to check both the sequence of calls (create/upload/complete)
         # as well as the params passed between the calls, including
@@ -239,7 +242,6 @@ class TestMultipartDownloader(unittest.TestCase):
         client = mock.Mock()
         response_body = b'foobarbaz'
         client.get_object.return_value = {'Body': six.BytesIO(response_body)}
-
 
         downloader = MultipartDownloader(client, TransferConfig(),
                                          InMemoryOSLayer({}),
@@ -292,7 +294,6 @@ class TestS3Transfer(unittest.TestCase):
         self.client = mock.Mock()
 
     def test_upload_below_multipart_threshold_uses_put_object(self):
-        below_multipart_threshold = 10
         fake_files = {
             'smallfile': b'foobar',
         }
@@ -304,7 +305,6 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_extra_args_on_uploaded_passed_to_api_call(self):
-        below_multipart_threshold = 10
         extra_args = {'ACL': 'public-read'}
         fake_files = {
             'smallfile': b'hello world'
@@ -356,7 +356,7 @@ class TestS3Transfer(unittest.TestCase):
             'ContentLength': below_threshold}
         with self.assertRaises(ValueError):
             transfer.download_file('bucket', 'key', '/tmp/smallfile',
-                                extra_args={'BadValue': 'foo'})
+                                   extra_args={'BadValue': 'foo'})
 
     def test_download_file_fowards_extra_args(self):
         extra_args = {
