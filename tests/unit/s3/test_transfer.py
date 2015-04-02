@@ -238,6 +238,9 @@ class TestMultipartUploader(unittest.TestCase):
 
 
 class TestMultipartDownloader(unittest.TestCase):
+
+    maxDiff = None
+
     def test_multipart_download_uses_correct_client_calls(self):
         client = mock.Mock()
         response_body = b'foobarbaz'
@@ -286,7 +289,36 @@ class TestMultipartDownloader(unittest.TestCase):
     def test_retry_on_failures_from_stream_reads(self):
         # If we get an exception during a call to the response body's .read()
         # method, we should retry the request.
-        pass
+        client = mock.Mock()
+        response_body = b'foobarbaz'
+        stream_with_errors = mock.Mock()
+        stream_with_errors.read.side_effect = [
+            socket.error("fake error"),
+            response_body
+        ]
+        client.get_object.return_value = {'Body': stream_with_errors}
+        config = TransferConfig(multipart_threshold=4,
+                                multipart_chunksize=4)
+
+        downloader = MultipartDownloader(client, config,
+                                         InMemoryOSLayer({}),
+                                         SequentialExecutor)
+        downloader.download_file('bucket', 'key', 'filename',
+                                 len(response_body), {})
+
+        # We're storing these in **extra because the assertEqual
+        # below is really about verifying we have the correct value
+        # for the Range param.
+        extra = {'Bucket': 'bucket', 'Key': 'key'}
+        self.assertEqual(client.get_object.call_args_list,
+                         # The first call to range=0-3 fails because of the
+                         # side_effect above where we make the .read() raise a
+                         # socket.error.
+                         # The second call to range=0-3 then succeeds.
+                         [mock.call(Range='bytes=0-3', **extra),
+                          mock.call(Range='bytes=0-3', **extra),
+                          mock.call(Range='bytes=4-7', **extra),
+                          mock.call(Range='bytes=8-', **extra)])
 
 
 class TestS3Transfer(unittest.TestCase):

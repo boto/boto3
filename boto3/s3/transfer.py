@@ -371,26 +371,42 @@ class MultipartDownloader(object):
         self._ioqueue.put(SHUTDOWN_SENTINEL)
         logger.debug("Adding SHUTDOWN_SENTINEL to io queue.")
 
-    def _download_range(self, bucket, key, filename,
-                        part_size, num_parts, callback, i):
-        logger.debug("In _download_range.")
-        start_range = i * part_size
-        if i == num_parts - 1:
+    def _calculate_range_param(self, part_size, part_number, num_parts):
+        start_range = part_number * part_size
+        if part_number == num_parts - 1:
             end_range = ''
         else:
             end_range = start_range + part_size - 1
         range_param = 'bytes=%s-%s' % (start_range, end_range)
-        response = self._client.get_object(
-            Bucket=bucket, Key=key, Range=range_param)
-        streaming_body = StreamReaderProgress(
-            response['Body'], callback)
-        buffer_size = 1024 * 16
-        current_index = start_range
-        logger.debug("Starting: %s", i)
-        for chunk in iter(lambda: streaming_body.read(buffer_size), b''):
-            self._ioqueue.put((current_index, chunk))
-            current_index += len(chunk)
-        logger.debug("Part done: %s", i)
+        return range_param
+
+    def _download_range(self, bucket, key, filename,
+                        part_size, num_parts, callback, i):
+        range_param = self._calculate_range_param(
+            part_size, i, num_parts)
+
+        max_attempts = self._config.num_download_attempts
+        last_exception = None
+        for i in range(max_attempts):
+            try:
+                response = self._client.get_object(
+                    Bucket=bucket, Key=key, Range=range_param)
+                streaming_body = StreamReaderProgress(
+                    response['Body'], callback)
+                buffer_size = 1024 * 16
+                current_index = part_size * i
+                for chunk in iter(lambda: streaming_body.read(buffer_size), b''):
+                    self._ioqueue.put((current_index, chunk))
+                    current_index += len(chunk)
+                return
+            except (socket.timeout, socket.error,
+                    ReadTimeoutError, IncompleteReadError) as e:
+                logger.debug("Retrying exception caught (%s), "
+                             "retrying request, (attempt %s / %s)", e, i,
+                             max_attempts, exc_info=True)
+                last_exception = e
+                continue
+        raise RetriesExceededError(last_exception)
 
     def _perform_io_writes(self, filename):
         with self._os.open(filename, 'wb') as f:
@@ -532,7 +548,7 @@ class S3Transfer(object):
                 logger.debug("Retrying exception caught (%s), "
                              "retrying request, (attempt %s / %s)", e, i,
                              max_attempts, exc_info=True)
-                last_exception = None
+                last_exception = e
                 continue
         raise RetriesExceededError(last_exception)
 
