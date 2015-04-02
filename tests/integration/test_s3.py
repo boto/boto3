@@ -295,7 +295,25 @@ class TestS3Transfers(unittest.TestCase):
         self.assert_has_public_read_acl(response)
 
     def test_upload_file_above_threshold_with_ssec(self):
-        pass
+        key_bytes = os.urandom(32)
+        extra_args = {
+            'SSECustomerKey': key_bytes,
+            'SSECustomerAlgorithm': 'AES256',
+        }
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=5 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            '6mb.txt', filesize=6 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             '6mb.txt', extra_args=extra_args)
+        # A head object will fail if it has a customer key
+        # associated with it and it's not provided in the HeadObject
+        # request so we can use this to verify our functionality.
+        response = self.client.head_object(
+            Bucket=self.bucket_name,
+            Key='6mb.txt', **extra_args)
+        self.assertEqual(response['SSECustomerAlgorithm'], 'AES256')
 
     def test_progress_callback_on_upload(self):
         self.amount_seen = 0

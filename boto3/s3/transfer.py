@@ -430,6 +430,28 @@ class S3Transfer(object):
         'RequestPayer',
     ]
 
+    ALLOWED_UPLOAD_ARGS = [
+        'ACL',
+        'CacheControl',
+        'ContentDisposition',
+        'ContentEncoding',
+        'ContentLanguage',
+        'ContentType',
+        'Expires',
+        'GrantFullControl',
+        'GrantRead',
+        'GrantReadACP',
+        'GrantWriteACL',
+        'Metadata',
+        'RequestPayer',
+        'ServerSideEncryption',
+        'StorageClass',
+        'SSECustomerAlgorithm',
+        'SSECustomerKey',
+        'SSECustomerKeyMD5',
+        'SSEKMSKeyId',
+    ]
+
     def __init__(self, client, config=None, osutil=None):
         self._client = client
         if config is None:
@@ -443,11 +465,13 @@ class S3Transfer(object):
                     callback=None, extra_args=None):
         if extra_args is None:
             extra_args = {}
+        self._validate_all_known_args(extra_args, self.ALLOWED_UPLOAD_ARGS)
         if self._osutil.get_file_size(filename) >= \
                 self._config.multipart_threshold:
             self._multipart_upload(filename, bucket, key, callback, extra_args)
         else:
             self._put_object(filename, bucket, key, callback, extra_args)
+
 
     def _put_object(self, filename, bucket, key, callback, extra_args):
         # We're using open_file_chunk_reader so we can take advantage of the
@@ -470,7 +494,7 @@ class S3Transfer(object):
         """
         if extra_args is None:
             extra_args = {}
-        self._validate_download_args(extra_args)
+        self._validate_all_known_args(extra_args, self.ALLOWED_DOWNLOAD_ARGS)
         object_size = self._object_size(bucket, key, extra_args)
         if object_size >= self._config.multipart_threshold:
             self._ranged_download(bucket, key, filename, object_size,
@@ -478,9 +502,8 @@ class S3Transfer(object):
         else:
             self._get_object(bucket, key, filename, extra_args, callback)
 
-    def _validate_download_args(self, kwargs):
-        allowed = self.ALLOWED_DOWNLOAD_ARGS
-        for kwarg in kwargs:
+    def _validate_all_known_args(self, actual, allowed):
+        for kwarg in actual:
             if kwarg not in allowed:
                 raise ValueError(
                     "Invalid extra_args key '%s', "

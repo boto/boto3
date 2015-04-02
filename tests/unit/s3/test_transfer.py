@@ -358,6 +358,14 @@ class TestS3Transfer(unittest.TestCase):
             transfer.download_file('bucket', 'key', '/tmp/smallfile',
                                    extra_args={'BadValue': 'foo'})
 
+    def test_upload_file_with_invalid_extra_args(self):
+        osutil = InMemoryOSLayer({})
+        transfer = S3Transfer(self.client, osutil=osutil)
+        bad_args = {"WebsiteRedirectLocation": "/foo"}
+        with self.assertRaises(ValueError):
+            transfer.upload_file('bucket', 'key', '/tmp/smallfile',
+                                  extra_args=bad_args)
+
     def test_download_file_fowards_extra_args(self):
         extra_args = {
             'SSECustomerKey': 'foo',
