@@ -488,7 +488,6 @@ class S3Transfer(object):
         else:
             self._put_object(filename, bucket, key, callback, extra_args)
 
-
     def _put_object(self, filename, bucket, key, callback, extra_args):
         # We're using open_file_chunk_reader so we can take advantage of the
         # progress callback functionality.
