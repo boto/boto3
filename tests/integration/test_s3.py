@@ -307,6 +307,7 @@ class TestS3Transfers(unittest.TestCase):
             '6mb.txt', filesize=6 * 1024 * 1024)
         transfer.upload_file(filename, self.bucket_name,
                              '6mb.txt', extra_args=extra_args)
+        self.addCleanup(self.delete_object, '6mb.txt')
         # A head object will fail if it has a customer key
         # associated with it and it's not provided in the HeadObject
         # request so we can use this to verify our functionality.

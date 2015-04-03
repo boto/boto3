@@ -236,6 +236,43 @@ class TestMultipartUploader(unittest.TestCase):
             UploadId='upload_id',
             Key='key')
 
+    def test_multipart_upload_injects_proper_kwargs(self):
+        client = mock.Mock()
+        uploader = MultipartUploader(
+            client, TransferConfig(),
+            InMemoryOSLayer({'filename': b'foobar'}), SequentialExecutor)
+        client.create_multipart_upload.return_value = {'UploadId': 'upload_id'}
+        client.upload_part.return_value = {'ETag': 'first'}
+
+        extra_args = {
+            'SSECustomerKey': 'fakekey',
+            'SSECustomerAlgorithm': 'AES256',
+            'StorageClass': 'REDUCED_REDUNDANCY'
+        }
+        uploader.upload_file('filename', 'bucket', 'key', None, extra_args)
+
+        client.create_multipart_upload.assert_called_with(
+            Bucket='bucket', Key='key',
+            # The initial call should inject all the storage class params.
+            SSECustomerKey='fakekey',
+            SSECustomerAlgorithm='AES256',
+            StorageClass='REDUCED_REDUNDANCY')
+        # Should be two parts.
+        client.upload_part.assert_called_with(
+            Body=mock.ANY, Bucket='bucket',
+            UploadId='upload_id', Key='key', PartNumber=1,
+            # We only have to forward certain **extra_args in subsequent
+            # UploadPart calls.
+            SSECustomerKey='fakekey',
+            SSECustomerAlgorithm='AES256',
+        )
+        client.complete_multipart_upload.assert_called_with(
+            MultipartUpload={'Parts': [{'PartNumber': 1, 'ETag': 'first'}]},
+            Bucket='bucket',
+            UploadId='upload_id',
+            Key='key')
+
+
 
 class TestMultipartDownloader(unittest.TestCase):
 

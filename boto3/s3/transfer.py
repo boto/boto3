@@ -285,6 +285,15 @@ class OSUtils(object):
 
 
 class MultipartUploader(object):
+    # These are the extra_args that need to be forwarded onto
+    # subsequent upload_parts.
+    UPLOAD_PART_ARGS = [
+        'SSECustomerKey',
+        'SSECustomerAlgorithm',
+        'SSECustomerKeyMD5',
+        'RequestPayer',
+    ]
+
     def __init__(self, client, config, osutil,
                  executor_cls=futures.ThreadPoolExecutor):
         self._client = client
@@ -292,9 +301,19 @@ class MultipartUploader(object):
         self._os = osutil
         self._executor_cls = executor_cls
 
+    def _extra_upload_part_args(self, extra_args):
+        # Only the args in UPLOAD_PART_ARGS actually need to be passed
+        # onto the upload_part calls.
+        upload_parts_args = {}
+        for key, value in extra_args.items():
+            if key in self.UPLOAD_PART_ARGS:
+                upload_parts_args[key] = value
+        return upload_parts_args
+
     def upload_file(self, filename, bucket, key, callback, extra_args):
         response = self._client.create_multipart_upload(Bucket=bucket,
                                                         Key=key, **extra_args)
+        upload_parts_extra_args = self._extra_upload_part_args(extra_args)
         upload_id = response['UploadId']
         parts = []
         part_size = self._config.multipart_chunksize
@@ -304,7 +323,7 @@ class MultipartUploader(object):
         with self._executor_cls(max_workers=max_workers) as executor:
             upload_partial = functools.partial(
                 self._upload_one_part, filename, bucket, key, upload_id,
-                part_size, callback)
+                part_size, upload_parts_extra_args, callback)
             for part in executor.map(upload_partial, range(1, num_parts + 1)):
                 parts.append(part)
         # Parts have to be ordered by part number.
@@ -314,13 +333,15 @@ class MultipartUploader(object):
             MultipartUpload={'Parts': parts})
 
     def _upload_one_part(self, filename, bucket, key,
-                         upload_id, part_size, callback, part_number):
+                         upload_id, part_size, extra_args,
+                         callback, part_number):
         open_chunk_reader = self._os.open_file_chunk_reader
         with open_chunk_reader(filename, part_size * (part_number - 1),
                                part_size, callback) as body:
             response = self._client.upload_part(
                 Bucket=bucket, Key=key,
-                UploadId=upload_id, PartNumber=part_number, Body=body)
+                UploadId=upload_id, PartNumber=part_number, Body=body,
+                **extra_args)
             etag = response['ETag']
             return {'ETag': etag, 'PartNumber': part_number}
 
@@ -364,16 +385,13 @@ class MultipartDownloader(object):
         download_partial = functools.partial(
             self._download_range, bucket, key, filename,
             part_size, num_parts, callback)
-        logger.debug("Starting download partials.")
         with self._executor_cls(max_workers=max_workers) as executor:
             list(executor.map(download_partial, range(num_parts)))
-        logger.debug("Done with download_partials.")
         self._ioqueue.put(SHUTDOWN_SENTINEL)
-        logger.debug("Adding SHUTDOWN_SENTINEL to io queue.")
 
-    def _calculate_range_param(self, part_size, part_number, num_parts):
-        start_range = part_number * part_size
-        if part_number == num_parts - 1:
+    def _calculate_range_param(self, part_size, part_index, num_parts):
+        start_range = part_index * part_size
+        if part_index == num_parts - 1:
             end_range = ''
         else:
             end_range = start_range + part_size - 1
@@ -381,9 +399,9 @@ class MultipartDownloader(object):
         return range_param
 
     def _download_range(self, bucket, key, filename,
-                        part_size, num_parts, callback, i):
+                        part_size, num_parts, callback, part_index):
         range_param = self._calculate_range_param(
-            part_size, i, num_parts)
+            part_size, part_index, num_parts)
 
         max_attempts = self._config.num_download_attempts
         last_exception = None
@@ -394,7 +412,7 @@ class MultipartDownloader(object):
                 streaming_body = StreamReaderProgress(
                     response['Body'], callback)
                 buffer_size = 1024 * 16
-                current_index = part_size * i
+                current_index = part_size * part_index
                 for chunk in iter(lambda: streaming_body.read(buffer_size), b''):
                     self._ioqueue.put((current_index, chunk))
                     current_index += len(chunk)
