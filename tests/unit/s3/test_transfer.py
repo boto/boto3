@@ -22,6 +22,7 @@ from botocore.vendored import six
 from concurrent import futures
 
 from boto3.exceptions import RetriesExceededError
+from boto3.exceptions import S3UploadFailedError
 from boto3.s3.transfer import ReadFileChunk, StreamReaderProgress
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig
@@ -257,7 +258,6 @@ class TestMultipartUploader(unittest.TestCase):
             SSECustomerKey='fakekey',
             SSECustomerAlgorithm='AES256',
             StorageClass='REDUCED_REDUNDANCY')
-        # Should be two parts.
         client.upload_part.assert_called_with(
             Body=mock.ANY, Bucket='bucket',
             UploadId='upload_id', Key='key', PartNumber=1,
@@ -272,6 +272,22 @@ class TestMultipartUploader(unittest.TestCase):
             UploadId='upload_id',
             Key='key')
 
+    def test_multipart_upload_is_aborted_on_error(self):
+        # If the create_multipart_upload succeeds and any upload_part
+        # fails, then abort_multipart_upload will be called.
+        client = mock.Mock()
+        uploader = MultipartUploader(
+            client, TransferConfig(),
+            InMemoryOSLayer({'filename': b'foobar'}), SequentialExecutor)
+        client.create_multipart_upload.return_value = {'UploadId': 'upload_id'}
+        client.upload_part.side_effect = Exception(
+            "Some kind of error occurred.")
+
+        with self.assertRaises(S3UploadFailedError):
+            uploader.upload_file('filename', 'bucket', 'key', None, {})
+
+        client.abort_multipart_upload.assert_called_with(
+            Bucket='bucket', Key='key', UploadId='upload_id')
 
 
 class TestMultipartDownloader(unittest.TestCase):

@@ -133,7 +133,7 @@ from botocore.vendored.requests.packages.urllib3.exceptions import \
     ReadTimeoutError
 from botocore.exceptions import IncompleteReadError
 
-from boto3.exceptions import RetriesExceededError
+from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 
 logger = logging.getLogger(__name__)
@@ -313,8 +313,25 @@ class MultipartUploader(object):
     def upload_file(self, filename, bucket, key, callback, extra_args):
         response = self._client.create_multipart_upload(Bucket=bucket,
                                                         Key=key, **extra_args)
-        upload_parts_extra_args = self._extra_upload_part_args(extra_args)
         upload_id = response['UploadId']
+        try:
+            parts = self._upload_parts(upload_id, filename, bucket, key,
+                                    callback, extra_args)
+        except Exception as e:
+            logger.debug("Exception raised while uploading parts, "
+                         "aborting multipart upload.", exc_info=True)
+            self._client.abort_multipart_upload(
+                Bucket=bucket, Key=key, UploadId=upload_id)
+            raise S3UploadFailedError(
+                "Failed to upload %s to %s: %s" % (
+                    filename, '/'.join([bucket, key]), e))
+        self._client.complete_multipart_upload(
+            Bucket=bucket, Key=key, UploadId=upload_id,
+            MultipartUpload={'Parts': parts})
+
+    def _upload_parts(self, upload_id, filename, bucket, key, callback,
+                      extra_args):
+        upload_parts_extra_args = self._extra_upload_part_args(extra_args)
         parts = []
         part_size = self._config.multipart_chunksize
         num_parts = int(
@@ -326,11 +343,7 @@ class MultipartUploader(object):
                 part_size, upload_parts_extra_args, callback)
             for part in executor.map(upload_partial, range(1, num_parts + 1)):
                 parts.append(part)
-        # Parts have to be ordered by part number.
-        parts.sort(key=lambda x: x['PartNumber'])
-        self._client.complete_multipart_upload(
-            Bucket=bucket, Key=key, UploadId=upload_id,
-            MultipartUpload={'Parts': parts})
+        return parts
 
     def _upload_one_part(self, filename, bucket, key,
                          upload_id, part_size, extra_args,
@@ -413,7 +426,8 @@ class MultipartDownloader(object):
                     response['Body'], callback)
                 buffer_size = 1024 * 16
                 current_index = part_size * part_index
-                for chunk in iter(lambda: streaming_body.read(buffer_size), b''):
+                for chunk in iter(lambda: streaming_body.read(buffer_size),
+                                  b''):
                     self._ioqueue.put((current_index, chunk))
                     current_index += len(chunk)
                 return
