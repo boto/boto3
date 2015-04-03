@@ -84,8 +84,7 @@ class TestPythonTypeName(BaseTestCase):
 
 class TestDocumentStructure(BaseTestCase):
     def test_nested_structure(self):
-        shape = DenormalizedStructureBuilder(
-            dict_type=OrderedDict).with_members(
+        shape = DenormalizedStructureBuilder().with_members(
                 load_json('''{
                     "Param1": {
                         "type": "list",
