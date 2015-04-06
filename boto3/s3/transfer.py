@@ -384,7 +384,6 @@ class MultipartUploader(object):
             return {'ETag': etag, 'PartNumber': part_number}
 
 
-
 class ShutdownQueue(queue.Queue):
     """A queue implementation that can be shutdown.
 
@@ -617,7 +616,7 @@ class S3Transfer(object):
         try:
             self._download_file(bucket, key, temp_filename, object_size,
                                 extra_args, callback)
-        except Exception as e:
+        except Exception:
             logger.debug("Exception caught in download_file, removing partial "
                          "file: %s", temp_filename, exc_info=True)
             self._osutil.remove_file(temp_filename)

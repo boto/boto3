@@ -415,7 +415,7 @@ class TestMultipartDownloader(unittest.TestCase):
                                          SequentialExecutor)
         with self.assertRaises(RetriesExceededError):
             downloader.download_file('bucket', 'key', 'filename',
-                                    len(response_body), {})
+                                     len(response_body), {})
 
     def test_io_thread_failure_triggers_shutdown(self):
         client = mock.Mock()
@@ -433,11 +433,9 @@ class TestMultipartDownloader(unittest.TestCase):
         # propogates back up via download_file().
         with self.assertRaisesRegexp(Exception, "fake IO error"):
             downloader.download_file('bucket', 'key', 'filename',
-                                    len(response_body), {})
+                                     len(response_body), {})
 
     def test_download_futures_fail_triggers_shutdown(self):
-        fake_io_error = Exception("fake IO error")
-
         class FailedDownloadParts(SequentialExecutor):
             def __init__(self, max_workers):
                 self.is_first = True
@@ -446,7 +444,8 @@ class TestMultipartDownloader(unittest.TestCase):
                 future = super(FailedDownloadParts, self).submit(function)
                 if self.is_first:
                     # This is the download_parts_thread.
-                    future.set_exception(Exception("fake download parts error"))
+                    future.set_exception(
+                        Exception("fake download parts error"))
                     self.is_first = False
                 return future
 
@@ -459,7 +458,7 @@ class TestMultipartDownloader(unittest.TestCase):
                                          FailedDownloadParts)
         with self.assertRaisesRegexp(Exception, "fake download parts error"):
             downloader.download_file('bucket', 'key', 'filename',
-                                    len(response_body), {})
+                                     len(response_body), {})
 
 
 class TestS3Transfer(unittest.TestCase):
@@ -545,7 +544,7 @@ class TestS3Transfer(unittest.TestCase):
         bad_args = {"WebsiteRedirectLocation": "/foo"}
         with self.assertRaises(ValueError):
             transfer.upload_file('bucket', 'key', '/tmp/smallfile',
-                                  extra_args=bad_args)
+                                 extra_args=bad_args)
 
     def test_download_file_fowards_extra_args(self):
         extra_args = {
