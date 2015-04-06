@@ -126,6 +126,7 @@ import math
 import functools
 import logging
 import socket
+import threading
 from concurrent import futures
 
 from botocore.compat import six
@@ -141,6 +142,10 @@ queue = six.moves.queue
 
 MB = 1024 * 1024
 SHUTDOWN_SENTINEL = object()
+
+
+class QueueShutdownError(Exception):
+    pass
 
 
 class ReadFileChunk(object):
@@ -316,7 +321,7 @@ class MultipartUploader(object):
         upload_id = response['UploadId']
         try:
             parts = self._upload_parts(upload_id, filename, bucket, key,
-                                    callback, extra_args)
+                                       callback, extra_args)
         except Exception as e:
             logger.debug("Exception raised while uploading parts, "
                          "aborting multipart upload.", exc_info=True)
@@ -359,6 +364,39 @@ class MultipartUploader(object):
             return {'ETag': etag, 'PartNumber': part_number}
 
 
+
+class ShutdownQueue(queue.Queue):
+    """A queue implementation that can be shutdown.
+
+    Shutting down a queue means that this class adds a
+    trigger_shutdown method that will trigger all subsequent
+    calls to put() to fail with a ``QueueShutdownError``.
+
+    It purposefully deviates from queue.Queue, and is *not* meant
+    to be a drop in replacement for ``queue.Queue``.
+
+    """
+    def _init(self, maxsize):
+        self._shutdown = False
+        self._shutdown_lock = threading.Lock()
+        # queue.Queue is an old style class so we don't use super().
+        return queue.Queue._init(self, maxsize)
+
+    def trigger_shutdown(self):
+        with self._shutdown_lock:
+            self._shutdown = True
+            logger.debug("The IO queue is now shutdown.")
+
+    def put(self, item):
+        # Note: this is not sufficient, it's still possible to deadlock!
+        # Need to hook into the condition vars used by this class.
+        with self._shutdown_lock:
+            if self._shutdown:
+                raise QueueShutdownError("Cannot put item to queue when "
+                                         "queue has been shutdown.")
+        return queue.Queue.put(self, item)
+
+
 class MultipartDownloader(object):
     def __init__(self, client, config, osutil,
                  executor_cls=futures.ThreadPoolExecutor):
@@ -366,7 +404,7 @@ class MultipartDownloader(object):
         self._config = config
         self._os = osutil
         self._executor_cls = executor_cls
-        self._ioqueue = queue.Queue(self._config.max_io_queue)
+        self._ioqueue = ShutdownQueue(self._config.max_io_queue)
 
     def download_file(self, bucket, key, filename, object_size,
                       extra_args, callback=None):
@@ -383,11 +421,11 @@ class MultipartDownloader(object):
             io_future = controller.submit(io_writes_handler)
             results = futures.wait([parts_future, io_future],
                                    return_when=futures.FIRST_EXCEPTION)
-            assert not results[1], "wait() returned incomplete futures"
-            self._process_future_results(results[0])
+            self._process_future_results(results)
 
     def _process_future_results(self, futures):
-        for future in futures:
+        finished, unfinished = futures
+        for future in finished:
             future.result()
 
     def _download_file_as_future(self, bucket, key, filename, object_size,
@@ -398,9 +436,11 @@ class MultipartDownloader(object):
         download_partial = functools.partial(
             self._download_range, bucket, key, filename,
             part_size, num_parts, callback)
-        with self._executor_cls(max_workers=max_workers) as executor:
-            list(executor.map(download_partial, range(num_parts)))
-        self._ioqueue.put(SHUTDOWN_SENTINEL)
+        try:
+            with self._executor_cls(max_workers=max_workers) as executor:
+                list(executor.map(download_partial, range(num_parts)))
+        finally:
+            self._ioqueue.put(SHUTDOWN_SENTINEL)
 
     def _calculate_range_param(self, part_size, part_index, num_parts):
         start_range = part_index * part_size
@@ -413,32 +453,36 @@ class MultipartDownloader(object):
 
     def _download_range(self, bucket, key, filename,
                         part_size, num_parts, callback, part_index):
-        range_param = self._calculate_range_param(
-            part_size, part_index, num_parts)
+        try:
+            range_param = self._calculate_range_param(
+                part_size, part_index, num_parts)
 
-        max_attempts = self._config.num_download_attempts
-        last_exception = None
-        for i in range(max_attempts):
-            try:
-                response = self._client.get_object(
-                    Bucket=bucket, Key=key, Range=range_param)
-                streaming_body = StreamReaderProgress(
-                    response['Body'], callback)
-                buffer_size = 1024 * 16
-                current_index = part_size * part_index
-                for chunk in iter(lambda: streaming_body.read(buffer_size),
-                                  b''):
-                    self._ioqueue.put((current_index, chunk))
-                    current_index += len(chunk)
-                return
-            except (socket.timeout, socket.error,
-                    ReadTimeoutError, IncompleteReadError) as e:
-                logger.debug("Retrying exception caught (%s), "
-                             "retrying request, (attempt %s / %s)", e, i,
-                             max_attempts, exc_info=True)
-                last_exception = e
-                continue
-        raise RetriesExceededError(last_exception)
+            max_attempts = self._config.num_download_attempts
+            last_exception = None
+            for i in range(max_attempts):
+                try:
+                    logger.debug("Making get_object call.")
+                    response = self._client.get_object(
+                        Bucket=bucket, Key=key, Range=range_param)
+                    streaming_body = StreamReaderProgress(
+                        response['Body'], callback)
+                    buffer_size = 1024 * 16
+                    current_index = part_size * part_index
+                    for chunk in iter(lambda: streaming_body.read(buffer_size),
+                                      b''):
+                        self._ioqueue.put((current_index, chunk))
+                        current_index += len(chunk)
+                    return
+                except (socket.timeout, socket.error,
+                        ReadTimeoutError, IncompleteReadError) as e:
+                    logger.debug("Retrying exception caught (%s), "
+                                 "retrying request, (attempt %s / %s)", e, i,
+                                 max_attempts, exc_info=True)
+                    last_exception = e
+                    continue
+            raise RetriesExceededError(last_exception)
+        finally:
+            logger.debug("EXITING _download_range for part: %s", part_index)
 
     def _perform_io_writes(self, filename):
         with self._os.open(filename, 'wb') as f:
@@ -449,9 +493,15 @@ class MultipartDownloader(object):
                                  "shutting down IO handler.")
                     return
                 else:
-                    offset, data = task
-                    f.seek(offset)
-                    f.write(data)
+                    try:
+                        offset, data = task
+                        f.seek(offset)
+                        f.write(data)
+                    except Exception as e:
+                        logger.debug("Caught exception in IO thread: %s",
+                                     e, exc_info=True)
+                        self._ioqueue.trigger_shutdown()
+                        raise
 
 
 class TransferConfig(object):

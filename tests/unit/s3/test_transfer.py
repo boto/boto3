@@ -27,6 +27,8 @@ from boto3.s3.transfer import ReadFileChunk, StreamReaderProgress
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig
 from boto3.s3.transfer import MultipartDownloader, MultipartUploader
+from boto3.s3.transfer import ShutdownQueue
+from boto3.s3.transfer import QueueShutdownError
 
 
 class InMemoryOSLayer(OSUtils):
@@ -373,6 +375,66 @@ class TestMultipartDownloader(unittest.TestCase):
                           mock.call(Range='bytes=4-7', **extra),
                           mock.call(Range='bytes=8-', **extra)])
 
+    def test_exception_raised_on_exceeded_retries(self):
+        client = mock.Mock()
+        response_body = b'foobarbaz'
+        stream_with_errors = mock.Mock()
+        stream_with_errors.read.side_effect = socket.error("fake error")
+        client.get_object.return_value = {'Body': stream_with_errors}
+        config = TransferConfig(multipart_threshold=4,
+                                multipart_chunksize=4)
+
+        downloader = MultipartDownloader(client, config,
+                                         InMemoryOSLayer({}),
+                                         SequentialExecutor)
+        with self.assertRaises(RetriesExceededError):
+            downloader.download_file('bucket', 'key', 'filename',
+                                    len(response_body), {})
+
+    def test_io_thread_failure_triggers_shutdown(self):
+        client = mock.Mock()
+        response_body = b'foobarbaz'
+        client.get_object.return_value = {'Body': six.BytesIO(response_body)}
+        os_layer = mock.Mock()
+        mock_fileobj = mock.MagicMock()
+        mock_fileobj.__enter__.return_value = mock_fileobj
+        mock_fileobj.write.side_effect = Exception("fake IO error")
+        os_layer.open.return_value = mock_fileobj
+
+        downloader = MultipartDownloader(client, TransferConfig(),
+                                         os_layer, SequentialExecutor)
+        # We're verifying that the exception raised from the IO future
+        # propogates back up via download_file().
+        with self.assertRaisesRegexp(Exception, "fake IO error"):
+            downloader.download_file('bucket', 'key', 'filename',
+                                    len(response_body), {})
+
+    def test_download_futures_fail_triggers_shutdown(self):
+        fake_io_error = Exception("fake IO error")
+
+        class FailedDownloadParts(SequentialExecutor):
+            def __init__(self, max_workers):
+                self.is_first = True
+
+            def submit(self, function):
+                future = super(FailedDownloadParts, self).submit(function)
+                if self.is_first:
+                    # This is the download_parts_thread.
+                    future.set_exception(Exception("fake download parts error"))
+                    self.is_first = False
+                return future
+
+        client = mock.Mock()
+        response_body = b'foobarbaz'
+        client.get_object.return_value = {'Body': six.BytesIO(response_body)}
+
+        downloader = MultipartDownloader(client, TransferConfig(),
+                                         InMemoryOSLayer({}),
+                                         FailedDownloadParts)
+        with self.assertRaisesRegexp(Exception, "fake download parts error"):
+            downloader.download_file('bucket', 'key', 'filename',
+                                    len(response_body), {})
+
 
 class TestS3Transfer(unittest.TestCase):
     def setUp(self):
@@ -523,3 +585,16 @@ class TestS3Transfer(unittest.TestCase):
     def test_can_create_with_just_client(self):
         transfer = S3Transfer(client=mock.Mock())
         self.assertIsInstance(transfer, S3Transfer)
+
+
+class TestShutdownQueue(unittest.TestCase):
+    def test_handles_normal_put_get_requests(self):
+        q = ShutdownQueue()
+        q.put('foo')
+        self.assertEqual(q.get(), 'foo')
+
+    def test_put_raises_error_on_shutdown(self):
+        q = ShutdownQueue()
+        q.trigger_shutdown()
+        with self.assertRaises(QueueShutdownError):
+            q.put('foo')
