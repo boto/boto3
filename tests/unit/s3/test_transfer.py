@@ -29,25 +29,35 @@ from boto3.s3.transfer import OSUtils, TransferConfig
 from boto3.s3.transfer import MultipartDownloader, MultipartUploader
 from boto3.s3.transfer import ShutdownQueue
 from boto3.s3.transfer import QueueShutdownError
+from boto3.s3.transfer import random_file_extension
 
 
 class InMemoryOSLayer(OSUtils):
     def __init__(self, filemap):
-        self._filemap = filemap
+        self.filemap = filemap
 
     def get_file_size(self, filename):
-        return len(self._filemap[filename])
+        return len(self.filemap[filename])
 
     def open_file_chunk_reader(self, filename, start_byte, size, callback):
-        return closing(six.BytesIO(self._filemap[filename]))
+        return closing(six.BytesIO(self.filemap[filename]))
 
     def open(self, filename, mode):
         if 'wb' in mode:
             fileobj = six.BytesIO()
-            self._filemap = fileobj
+            self.filemap[filename] = fileobj
             return closing(fileobj)
         else:
-            return closing(self._filemap[filename])
+            return closing(self.filemap[filename])
+
+    def remove_file(self, filename):
+        if filename in self.filemap:
+            del self.filemap[filename]
+
+    def rename_file(self, current_filename, new_filename):
+        if current_filename in self.filemap:
+            self.filemap[new_filename] = self.filemap.pop(
+                current_filename)
 
 
 class SequentialExecutor(object):
@@ -94,6 +104,22 @@ class TestOSUtils(unittest.TestCase):
     def test_open_file(self):
         fileobj = OSUtils().open(os.path.join(self.tempdir, 'foo'), 'w')
         self.assertTrue(hasattr(fileobj, 'write'))
+
+    def test_remove_file_ignores_errors(self):
+        with mock.patch('os.remove') as remove:
+            remove.side_effect = OSError('fake error')
+            OSUtils().remove_file('foo')
+        remove.assert_called_with('foo')
+
+    def test_remove_file_proxies_remove_file(self):
+        with mock.patch('os.remove') as remove:
+            OSUtils().remove_file('foo')
+            remove.assert_called_with('foo')
+
+    def test_rename_file(self):
+        with mock.patch('boto3.compat.rename_file') as rename_file:
+            OSUtils().rename_file('foo', 'newfoo')
+            rename_file.assert_called_with('foo', 'newfoo')
 
 
 class TestReadFileChunk(unittest.TestCase):
@@ -439,6 +465,13 @@ class TestMultipartDownloader(unittest.TestCase):
 class TestS3Transfer(unittest.TestCase):
     def setUp(self):
         self.client = mock.Mock()
+        self.random_file_patch = mock.patch(
+            'boto3.s3.transfer.random_file_extension')
+        self.random_file = self.random_file_patch.start()
+        self.random_file.return_value = 'RANDOM'
+
+    def tearDown(self):
+        self.random_file_patch.stop()
 
     def test_upload_below_multipart_threshold_uses_put_object(self):
         fake_files = {
@@ -492,7 +525,8 @@ class TestS3Transfer(unittest.TestCase):
                                    callback=callback)
 
             downloader.return_value.download_file.assert_called_with(
-                'bucket', 'key', 'filename', over_multipart_threshold,
+                # Note how we're downloading to a temorary random file.
+                'bucket', 'key', 'filename.RANDOM', over_multipart_threshold,
                 {}, callback)
 
     def test_download_file_with_invalid_extra_args(self):
@@ -556,7 +590,7 @@ class TestS3Transfer(unittest.TestCase):
 
     def test_get_object_stream_uses_all_retries_and_errors_out(self):
         below_threshold = 20
-        osutil = InMemoryOSLayer({'smallfile': b'hello world'})
+        osutil = InMemoryOSLayer({})
         transfer = S3Transfer(self.client, osutil=osutil)
         self.client.head_object.return_value = {
             'ContentLength': below_threshold}
@@ -565,9 +599,12 @@ class TestS3Transfer(unittest.TestCase):
         # RetriesExceededError.
         self.client.get_object.side_effect = socket.error("fake error")
         with self.assertRaises(RetriesExceededError):
-            transfer.download_file('bucket', 'key', '/tmp/smallfile')
+            transfer.download_file('bucket', 'key', 'smallfile')
 
         self.assertEqual(self.client.get_object.call_count, 5)
+        # We should have also cleaned up the in progress file
+        # we were downloading to.
+        self.assertEqual(osutil.filemap, {})
 
     def test_download_below_multipart_threshold(self):
         below_threshold = 20
@@ -578,7 +615,7 @@ class TestS3Transfer(unittest.TestCase):
         self.client.get_object.return_value = {
             'Body': six.BytesIO(b'foobar')
         }
-        transfer.download_file('bucket', 'key', '/tmp/smallfile')
+        transfer.download_file('bucket', 'key', 'smallfile')
 
         self.client.get_object.assert_called_with(Bucket='bucket', Key='key')
 
@@ -598,3 +635,9 @@ class TestShutdownQueue(unittest.TestCase):
         q.trigger_shutdown()
         with self.assertRaises(QueueShutdownError):
             q.put('foo')
+
+
+class TestRandomFileExtension(unittest.TestCase):
+    def test_has_proper_length(self):
+        self.assertEqual(
+            len(random_file_extension(num_digits=4)), 4)

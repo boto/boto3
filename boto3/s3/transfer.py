@@ -127,6 +127,9 @@ import functools
 import logging
 import socket
 import threading
+import random
+import string
+import boto3
 from concurrent import futures
 
 from botocore.compat import six
@@ -134,6 +137,7 @@ from botocore.vendored.requests.packages.urllib3.exceptions import \
     ReadTimeoutError
 from botocore.exceptions import IncompleteReadError
 
+import boto3.compat
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 
@@ -142,6 +146,10 @@ queue = six.moves.queue
 
 MB = 1024 * 1024
 SHUTDOWN_SENTINEL = object()
+
+
+def random_file_extension(num_digits=8):
+    return ''.join(random.choice(string.hexdigits) for _ in range(num_digits))
 
 
 class QueueShutdownError(Exception):
@@ -287,6 +295,18 @@ class OSUtils(object):
 
     def open(self, filename, mode):
         return open(filename, mode)
+
+    def remove_file(self, filename):
+        """Remove a file, noop if file does not exist."""
+        # Unlike os.remove, if the file does not exist,
+        # then this method does nothing.
+        try:
+            os.remove(filename)
+        except OSError:
+            pass
+
+    def rename_file(self, current_filename, new_filename):
+        boto3.compat.rename_file(current_filename, new_filename)
 
 
 class MultipartUploader(object):
@@ -593,6 +613,20 @@ class S3Transfer(object):
             extra_args = {}
         self._validate_all_known_args(extra_args, self.ALLOWED_DOWNLOAD_ARGS)
         object_size = self._object_size(bucket, key, extra_args)
+        temp_filename = filename + os.extsep + random_file_extension()
+        try:
+            self._download_file(bucket, key, temp_filename, object_size,
+                                extra_args, callback)
+        except Exception as e:
+            logger.debug("Exception caught in download_file, removing partial "
+                         "file: %s", temp_filename, exc_info=True)
+            self._osutil.remove_file(temp_filename)
+            raise
+        else:
+            self._osutil.rename_file(temp_filename, filename)
+
+    def _download_file(self, bucket, key, filename, object_size,
+                       extra_args, callback):
         if object_size >= self._config.multipart_threshold:
             self._ranged_download(bucket, key, filename, object_size,
                                   extra_args, callback)
