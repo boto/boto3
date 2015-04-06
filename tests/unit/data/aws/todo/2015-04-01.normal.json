@@ -1,0 +1,185 @@
+{
+  "metadata":{
+    "apiVersion":"2015-04-01",
+    "endpointPrefix":"todo",
+    "jsonVersion":"1.1",
+    "serviceFullName":"AWS ToDo Sample API for Tasks",
+    "serviceAbbreviation":"AWS ToDo Tasks",
+    "signatureVersion":"v4",
+    "protocol":"json"
+  },
+  "documentation":"<p>AWS sample API that tracks to-do items.</p><ul></ul>",
+  "operations":{
+    "CreateToDo":{
+      "name":"CreateToDo",
+      "http":{
+        "method":"POST",
+        "requestUri":"/todos"
+      },
+      "input":{
+        "shape":"CreateToDoInput",
+        "documentation":"<p>Container of the newly created to-do's values.</p>"
+      },
+      "output":{
+        "shape":"ToDoItem",
+        "documentation":"<p>A single ToDo item.</p>"
+      },
+      "errors":[
+        {
+          "shape":"ToDoServerException",
+          "exception":true,
+          "documentation":"<p>A server-side error occurred during the API call. The error message will contain additional details about the cause.</p>"
+        },
+        {
+          "shape":"ToDoClientException",
+          "exception":true,
+          "documentation":"<p>The API was called with invalid parameters. The error message will contain additional details about the cause.</p>"
+        }
+      ],
+      "documentation":"<p>Create a new to-do item.</p>"
+    },
+    "DescribeToDos": {
+      "name":"DescribeToDos",
+      "http":{
+        "method":"GET",
+        "requestUri":"/todos"
+      },
+      "output":{
+        "shape":"ToDoList",
+        "documentation":"<p>List of to-do items.</p>"
+      },
+      "errors":[
+        {
+          "shape":"ToDoServerException",
+          "exception":true,
+          "documentation":"<p>A server-side error occurred during the API call. The error message will contain additional details about the cause.</p>"
+        }
+      ],
+      "documentation":"<p>Create a new to-do item.</p>"
+    },
+    "GetToDo":{
+      "name":"GetToDo",
+      "http":{
+        "method":"GET",
+        "requestUri":"/todos/{Id+}"
+      },
+      "input":{
+        "shape":"ToDoInput"
+      },
+      "output":{
+        "shape":"ToDoItem"
+      },
+      "errors":[
+        {
+          "shape":"ToDoServerException",
+          "exception":true,
+          "documentation":"<p>A server-side error occurred during the API call. The error message will contain additional details about the cause.</p>"
+        },
+        {
+          "shape":"ToDoClientException",
+          "exception":true,
+          "documentation":"<p>The API was called with invalid parameters. The error message will contain additional details about the cause.</p>"
+        }
+      ],
+      "documentation":"<p>Get an existing to-do item.</p>"
+    },
+    "DeleteToDo":{
+      "name":"DeleteToDo",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/todos/{Id+}"
+      },
+      "input":{
+        "shape":"ToDoInput"
+      },
+      "errors":[
+        {
+          "shape":"ToDoServerException",
+          "exception":true,
+          "documentation":"<p>A server-side error occurred during the API call. The error message will contain additional details about the cause.</p>"
+        },
+        {
+          "shape":"ToDoClientException",
+          "exception":true,
+          "documentation":"<p>The API was called with invalid parameters. The error message will contain additional details about the cause.</p>"
+        }
+      ],
+      "documentation":"<p>Delete an existing to-do item.</p>"
+    }
+  },
+  "shapes":{
+    "CreateToDoInput":{
+      "type":"structure",
+      "required":[
+        "Title"
+      ],
+      "members":{
+        "Title":{
+          "shape":"String",
+          "documentation":"The title of the to-do item."
+        }
+      },
+      "documentation":"<p>Container for to-do values.</p>"
+    },
+    "String":{
+      "type":"string"
+    },
+    "ToDoClientException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true,
+      "documentation":"<p>The API was called with invalid parameters. The error message will contain additional details about the cause.</p>"
+    },
+    "ToDoInput":{
+      "type":"structure",
+      "required":[
+        "Id"
+      ],
+      "members":{
+        "Id":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "ToDoItem":{
+      "type":"structure",
+      "members":{
+        "Id":{
+          "shape":"String",
+          "documentation":"Unique identifier"
+        },
+        "Title":{
+          "shape":"String",
+          "documentation":"The title of the to-do item."
+        },
+        "Status":{
+          "shape":"String",
+          "documentation":"The status of the to-do item. Either <i>CREATING</i>, <i>READY</i>, or <i>DONE</i>."
+        }
+      },
+      "documentation":"A single to-do item."
+    },
+    "ToDoList":{
+      "type":"list",
+      "member":{
+        "shape":"ToDoItem",
+        "documentation":"List of to-do items."
+      }
+    },
+    "ToDoServerException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true,
+      "documentation":"<p>A server-side error occurred during the API call. The error message will contain additional details about the cause.</p>"
+    },
+    "ErrorMessage":{
+      "type":"string"
+    }
+  }
+}
