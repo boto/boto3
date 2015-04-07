@@ -4,10 +4,10 @@ python:
   - "2.7"
   - "3.3"
   - "3.4"
-  - "pypy"
 sudo: false
 install:
   - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then travis_retry pip install -r requirements26.txt; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == 2.* ]]; then travis_retry pip install -r requirements2.txt; fi
   - travis_retry pip install -r requirements.txt
   - travis_retry pip install coverage python-coveralls
 script: nosetests --with-coverage --cover-erase

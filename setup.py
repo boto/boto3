@@ -5,6 +5,7 @@ distutils/setuptools install script.
 """
 import os
 import re
+import sys
 
 try:
     from setuptools import setup
@@ -30,6 +31,12 @@ requires = [
     'bcdoc==0.12.2',
     'jmespath==0.6.1',
 ]
+
+if sys.version_info[0] == 2:
+    # concurrent.futures is only in python3, so for
+    # python2 we need to install the backport.
+    requires.append('futures==2.2.0')
+
 
 setup(
     name='boto3',
