@@ -9,7 +9,6 @@ Unreleased
   * AWS CloudFormation
   * Amazon EC2
   * AWS IAM
-  * Amazon S3
 
 0.0.13 - 2015-04-02
 -------------------
