@@ -12,14 +12,20 @@
 # language governing permissions and limitations under the License.
 import sys
 import os
+import errno
 
 
 if sys.platform.startswith('win'):
     def rename_file(current_filename, new_filename):
         try:
             os.remove(new_filename)
-        except OSError:
-            pass
+        except OSError as e:
+            if not e.errno == errno.ENOENT:
+                # We only want to a ignore trying to remove
+                # a file that does not exist.  If it fails
+                # for any other reason we should be propagating
+                # that exception.
+                raise
         os.rename(current_filename, new_filename)
 else:
     rename_file = os.rename
