@@ -10,6 +10,10 @@ Unreleased
   * Amazon EC2
   * AWS IAM
 
+* feature:Amazon S3:  Add an ``upload_file`` and ``download_file``
+  to S3 clients that transparently handle parallel multipart transfers.
+
+
 0.0.13 - 2015-04-02
 -------------------
 
