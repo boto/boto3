@@ -44,13 +44,19 @@
   "resources": {
     "Event": {
       "identifiers": [
-        { "name": "Id" }
+        {
+          "name": "Id",
+          "memberName": "EventId"
+        }
       ],
       "shape": "StackEvent"
     },
     "Stack": {
       "identifiers": [
-        { "name": "Name" }
+        {
+          "name": "Name",
+          "memberName": "StackName"
+        }
       ],
       "shape": "Stack",
       "load": {
@@ -135,8 +141,11 @@
     },
     "StackResource": {
       "identifiers": [
-        { "name": "LogicalId", "memberName": "LogicalResourceId" },
-        { "name": "StackName" }
+        { "name": "StackName" },
+        {
+          "name": "LogicalId",
+          "memberName": "LogicalResourceId"
+        }
       ],
       "shape": "StackResourceDetail",
       "load": {
@@ -162,8 +171,11 @@
     },
     "StackResourceSummary": {
       "identifiers": [
-        { "name": "LogicalId", "memberName": "LogicalResourceId" },
-        { "name": "StackName" }
+        { "name": "StackName" },
+        {
+          "name": "LogicalId",
+          "memberName": "LogicalResourceId"
+        }
       ],
       "shape": "StackResourceSummary",
       "has": {

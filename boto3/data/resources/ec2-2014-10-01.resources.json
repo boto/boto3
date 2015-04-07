@@ -65,7 +65,7 @@
         "resource": {
           "type": "PlacementGroup",
           "identifiers": [
-            { "target": "Id", "source": "requestParameter", "path": "GroupName" }
+            { "target": "Name", "source": "requestParameter", "path": "GroupName" }
           ]
         }
       },
@@ -122,7 +122,7 @@
       "CreateVolume": {
         "request": { "operation": "CreateVolume" },
         "resource": {
-          "type": "Image",
+          "type": "Volume",
           "identifiers": [
             { "target": "Id", "source": "response", "path": "VolumeId" }
           ],
@@ -593,17 +593,17 @@
         "path": "Reservations[0].Instances[0]"
       },
       "actions": {
-        "AttachVolume": {
+        "AttachClassicLinkVpc": {
           "request": {
-            "operation": "AttachVolume",
+            "operation": "AttachClassicLinkVpc",
             "params": [
               { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
           }
         },
-        "AttachClassicLinkVpc": {
+        "AttachVolume": {
           "request": {
-            "operation": "AttachClassicLinkVpc",
+            "operation": "AttachVolume",
             "params": [
               { "target": "InstanceId", "source": "identifier", "name": "Id" }
             ]
@@ -838,6 +838,13 @@
         }
       },
       "waiters": {
+        "Exists": {
+          "waiterName": "InstanceExists",
+          "params": [
+            { "target": "InstanceIds[]", "source": "identifier", "name": "Id" }
+          ],
+          "path": "Reservations[0].Instances[0]"
+        },
         "Running": {
           "waiterName": "InstanceRunning",
           "params": [
@@ -1314,6 +1321,14 @@
               { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
             ]
           }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteRouteTable",
+            "params": [
+              { "target": "RouteTableId", "source": "identifier", "name": "Id" }
+            ]
+          }
         }
       },
       "has": {
@@ -1544,6 +1559,15 @@
               { "target": "SnapshotId", "source": "identifier", "name": "Id" }
             ]
           }
+        }
+      },
+      "waiters": {
+        "Completed": {
+          "waiterName": "SnapshotCompleted",
+          "params": [
+            { "target": "SnapshotIds[]", "source": "identifier", "name": "Id" }
+          ],
+          "path": "Snapshots[]"
         }
       },
       "has": {

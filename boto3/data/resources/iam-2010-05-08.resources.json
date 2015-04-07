@@ -34,6 +34,15 @@
           "path": "InstanceProfile"
         }
       },
+      "CreatePolicy": {
+        "request": { "operation": "CreatePolicy" },
+        "resource": {
+          "type": "Policy",
+          "identifiers": [
+            { "target": "Arn", "source": "response", "path": "Policy.Arn" }
+          ]
+        }
+      },
       "CreateRole": {
         "request": { "operation": "CreateRole" },
         "resource": {
@@ -70,15 +79,6 @@
             { "target": "Id", "source": "response", "path": "Certificate.CertificateId" }
           ],
           "path": "Certificate"
-        }
-      },
-      "CreatePolicy": {
-        "request": { "operation": "CreatePolicy" },
-        "resource": {
-          "type": "Policy",
-          "identifiers": [
-            { "target": "Arn", "source": "response", "path": "Policy.Arn" }
-          ]
         }
       },
       "CreateUser": {
@@ -197,16 +197,6 @@
           "path": "Groups[]"
         }
       },
-      "Policies": {
-        "request": { "operation": "ListPolicies" },
-        "resource": {
-          "type": "Policy",
-          "identifiers": [
-            { "target": "Arn", "source": "response", "path": "Policies[].Arn" }
-          ],
-          "path": "Policies[]"
-        }
-      },
       "InstanceProfiles": {
         "request": { "operation": "ListInstanceProfiles" },
         "resource": {
@@ -215,6 +205,16 @@
             { "target": "Name", "source": "response", "path": "InstanceProfiles[].InstanceProfileName" }
           ],
           "path": "InstanceProfiles[]"
+        }
+      },
+      "Policies": {
+        "request": { "operation": "ListPolicies" },
+        "resource": {
+          "type": "Policy",
+          "identifiers": [
+            { "target": "Arn", "source": "response", "path": "Policies[].Arn" }
+          ],
+          "path": "Policies[]"
         }
       },
       "Roles": {
@@ -420,11 +420,10 @@
       }
     },
     "CurrentUser": {
+      "identifiers": [  ],
       "shape": "User",
       "load": {
-        "request": {
-          "operation": "GetUser"
-        },
+        "request": { "operation": "GetUser" },
         "path": "User"
       },
       "has": {
@@ -857,18 +856,20 @@
     },
     "Policy": {
       "identifiers": [
-      { "name": "Arn",
-          "memberName": "PolicyArn" }
+        {
+          "name": "Arn",
+          "memberName": "PolicyArn"
+        }
       ],
       "shape": "Policy",
       "load": {
-         "request": {
-            "operation": "GetPolicy",
-            "params": [
-               { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
-            ]
-         },
-         "path": "Policy"
+        "request": {
+          "operation": "GetPolicy",
+          "params": [
+            { "target": "PolicyArn", "source": "identifier", "name": "Arn" }
+          ]
+        },
+        "path": "Policy"
       },
       "actions": {
         "AttachGroup": {
@@ -955,6 +956,54 @@
         }
       },
       "hasMany": {
+        "AttachedGroups": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "EntityFilter", "source": "string", "value": "Group" }
+            ]
+          },
+          "resource": {
+            "type": "Group",
+            "identifiers": [
+              { "target": "Name", "source": "response", "path": "PolicyGroups[].GroupName" }
+            ],
+            "path": "PolicyGroups[]"
+          }
+        },
+        "AttachedRoles": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "EntityFilter", "source": "string", "value": "Role" }
+            ]
+          },
+          "resource": {
+            "type": "Role",
+            "identifiers": [
+              { "target": "Name", "source": "response", "path": "PolicyRoles[].RoleName" }
+            ],
+            "path": "PolicyRoles[]"
+          }
+        },
+        "AttachedUsers": {
+          "request": {
+            "operation": "ListEntitiesForPolicy",
+            "params": [
+              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
+              { "target": "EntityFilter", "source": "string", "value": "User" }
+            ]
+          },
+          "resource": {
+            "type": "User",
+            "identifiers": [
+              { "target": "Name", "source": "response", "path": "PolicyUsers[].UserName" }
+            ],
+            "path": "PolicyRoles[]"
+          }
+        },
         "Versions": {
           "request": {
             "operation": "ListPolicyVersions",
@@ -970,54 +1019,6 @@
             ],
             "path": "Versions[]"
           }
-        },
-        "AttachedGroups": {
-          "request": {
-            "operation": "ListEntitiesForPolicy",
-            "params": [
-              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
-              { "target": "EntityFilter", "source": "string", "value": "Group" }
-            ]
-          },
-          "resource": {
-            "type": "Group",
-            "identifiers": [
-              { "target": "Name", "source": "response", "path": "PolicyGroups[].GroupName" }
-            ]
-          },
-          "path": "PolicyGroups[]"
-        },
-        "AttachedRoles": {
-          "request": {
-            "operation": "ListEntitiesForPolicy",
-            "params": [
-              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
-              { "target": "EntityFilter", "source": "string", "value": "Role" }
-            ]
-          },
-          "resource": {
-            "type": "Role",
-            "identifiers": [
-              { "target": "Name", "source": "response", "path": "PolicyRoles[].RoleName" }
-            ]
-          },
-          "path": "PolicyRoles[]"
-        },
-        "AttachedUsers": {
-          "request": {
-            "operation": "ListEntitiesForPolicy",
-            "params": [
-              { "target": "PolicyArn", "source": "identifier", "name": "Arn" },
-              { "target": "EntityFilter", "source": "string", "value": "User" }
-            ]
-          },
-          "resource": {
-            "type": "User",
-            "identifiers": [
-              { "target": "Name", "source": "response", "path": "PolicyUsers[].UserName" }
-            ]
-          },
-          "path": "PolicyUsers[]"
         }
       }
     },
@@ -1543,20 +1544,6 @@
         }
       },
       "hasMany": {
-        "AttachedPolicies": {
-          "request": {
-            "operation": "ListAttachedUserPolicies",
-            "params": [
-              { "target": "UserName", "source": "identifier", "name": "Name" }
-            ]
-          },
-          "resource": {
-            "type": "Policy",
-            "identifiers": [
-              { "target": "Arn", "source": "response", "path": "AttachedPolicies[].PolicyArn" }
-            ]
-          }
-        },
         "AccessKeys": {
           "request": {
             "operation": "ListAccessKeys",
@@ -1571,6 +1558,20 @@
               { "target": "Id", "source": "response", "path": "AccessKeyMetadata[].AccessKeyId" }
             ],
             "path": "AccessKeyMetadata[]"
+          }
+        },
+        "AttachedPolicies": {
+          "request": {
+            "operation": "ListAttachedUserPolicies",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "Policy",
+            "identifiers": [
+              { "target": "Arn", "source": "response", "path": "AttachedPolicies[].PolicyArn" }
+            ]
           }
         },
         "Groups": {
