@@ -29,3 +29,12 @@ def lazy_call(full_name):
         module = import_module(module)
         return getattr(module, function_name)(**kwargs)
     return _handler
+
+
+def inject_attribute(class_attributes, name, value):
+    if name in class_attributes:
+        raise RuntimeError(
+            'Cannot inject class attribute "%s", attribute '
+            'already exists in class dict.' % name)
+    else:
+        class_attributes[name] = value

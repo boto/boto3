@@ -35,3 +35,13 @@ class TestUtils(unittest.TestCase):
         module = utils.import_module('boto3.s3.transfer')
         self.assertEqual(module.__name__, 'boto3.s3.transfer')
         self.assertIsInstance(module, types.ModuleType)
+
+    def test_inject_attributes_with_no_shadowing(self):
+        class_attributes = {}
+        utils.inject_attribute(class_attributes, 'foo', 'bar')
+        self.assertEqual(class_attributes['foo'], 'bar')
+
+    def test_shadowing_existing_var_raises_exception(self):
+        class_attributes = {'foo': 'preexisting'}
+        with self.assertRaises(RuntimeError):
+            utils.inject_attribute(class_attributes, 'foo', 'bar')

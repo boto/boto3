@@ -11,11 +11,12 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 from boto3.s3.transfer import S3Transfer
+from boto3 import utils
 
 
 def inject_s3_transfer_methods(class_attributes, **kwargs):
-    class_attributes['upload_file'] = upload_file
-    class_attributes['download_file'] = download_file
+    utils.inject_attribute(class_attributes, 'upload_file', upload_file)
+    utils.inject_attribute(class_attributes, 'download_file', download_file)
 
 
 def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
