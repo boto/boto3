@@ -129,6 +129,10 @@ def docs_for(service_name, session=None, resource_filename=None):
     :param service_name: The service short-name, like 'ec2'
     :type session: botocore.session.Session
     :param session: Existing pre-setup session or ``None``.
+    :type resource_filename: string
+    :param resource_filename: Full path to the service's resource JSON
+                              description file. If unset, then this is
+                              loaded from the default location.
     :rtype: string
     """
     if session is None:
@@ -752,7 +756,7 @@ def render_map(shape, spaces, indent, eol):
     member in the shape::
 
         {
-            'MemberName': 'Value'
+            'Key': 'Value'
         }
 
     """
