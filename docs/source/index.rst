@@ -10,11 +10,13 @@ developers to write software that makes use of Amazon services like S3 and
 EC2. Boto provides an easy to use, object-oriented API as well as low-level
 direct service access.
 
-.. danger::
+.. note::
 
-   Boto 3 is in *developer preview* and **should not** be used in production
-   yet. However, we would greatly appreciate it if you try out Boto 3 and
-   give us some `feedback <https://github.com/boto/boto3>`_!
+   Boto 3 is in **developer preview**.  This means that until a 1.0 release
+   occurs, some of the interfaces may change based on your feedback. Once a
+   1.0 release happens, we guarantee backwards compatibility for all future
+   1.x.x releases.  Try out Boto 3 and give us
+   `feedback <https://github.com/boto/boto3/issues>`__ today!
 
 .. raw:: html
 
