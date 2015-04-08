@@ -435,3 +435,30 @@ class TestS3Transfers(unittest.TestCase):
         transfer.download_file(self.bucket_name, 'foo.txt',
                                download_path)
         assert_files_equal(filename, download_path)
+
+    def test_transfer_methods_through_client(self):
+        # This is really just a sanity check to ensure that the interface
+        # from the clients work.  We're not exhaustively testing through
+        # this client interface.
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=1024 * 1024)
+        self.client.upload_file(Filename=filename,
+                                Bucket=self.bucket_name,
+                                Key='foo.txt')
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        self.client.download_file(Bucket=self.bucket_name,
+                                  Key='foo.txt',
+                                  Filename=download_path)
+        assert_files_equal(filename, download_path)
+
+
+class TestS3TransferMethodInjection(unittest.TestCase):
+    def test_transfer_methods_injected_to_client(self):
+        session = boto3.session.Session(region_name='us-west-2')
+        client = session.client('s3')
+        self.assertTrue(hasattr(client, 'upload_file'),
+                        'upload_file was not injected onto S3 client')
+        self.assertTrue(hasattr(client, 'download_file'),
+                        'download_file was not injected onto S3 client')
