@@ -399,7 +399,7 @@
       "identifiers": [
         { "name": "BucketName" }
       ],
-      "shape": "GetBucketNotificationOutput",
+      "shape": "NotificationConfigurationDeprecated",
       "load": {
         "request": {
           "operation": "GetBucketNotification",

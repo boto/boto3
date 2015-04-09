@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Unreleased
+----------
+
+* bugfix:Resource: Fix an issue with the Amazon S3 ``BucketNofitication``
+  resource.
+
 0.0.14 - 2015-04-02
 -------------------
 
