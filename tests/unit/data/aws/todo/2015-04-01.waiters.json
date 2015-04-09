@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "waiters": {
+    "ToDoReady": {
+      "delay": 20,
+      "operation": "GetToDo",
+      "maxAttempts": 25,
+      "acceptors": [
+        {
+          "expected": "READY",
+          "matcher": "path",
+          "state": "success",
+          "argument": "ToDo.Status"
+        },
+        {
+          "expected": "DONE",
+          "matcher": "path",
+          "state": "success",
+          "argument": "ToDo.Status"
+        }
+      ]
+    }
+  }
+}

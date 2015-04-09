@@ -120,16 +120,24 @@ def html_to_rst(html, indent=0, indent_first=False):
     return rst
 
 
-def docs_for(service_name):
+def docs_for(service_name, session=None, resource_filename=None):
     """
     Generate reference documentation (low and high level) for a service
     by name. This generates docs for the latest available version.
 
     :type service_name: string
     :param service_name: The service short-name, like 'ec2'
+    :type session: botocore.session.Session
+    :param session: Existing pre-setup session or ``None``.
+    :type resource_filename: string
+    :param resource_filename: Full path to the service's resource JSON
+                              description file. If unset, then this is
+                              loaded from the default location.
     :rtype: string
     """
-    session = botocore.session.get_session()
+    if session is None:
+        session = botocore.session.get_session()
+
     service_model = session.get_service_model(service_name)
 
     print('Processing {0}-{1}'.format(service_name, service_model.api_version))
@@ -151,17 +159,26 @@ def docs_for(service_name):
 
     docs += '.. contents:: Table of Contents\n   :depth: 2\n\n'
 
-    docs += document_client(service_name, official_name, service_model)
-    docs += document_client_waiter(session, official_name, service_name,
-                                   service_model)
+    # TODO: Get this information from the model somehow in the future.
+    #       For now creating and introspecing a client is a quick and
+    #       dirty way to access waiters/paginators.
+    client = session.create_client(service_name, aws_access_key_id='dummy',
+                                   aws_secret_access_key='dummy',
+                                   region_name='us-east-1')
 
-    filename = (os.path.dirname(__file__) + '/data/resources/'
-                '{0}-{1}.resources.json').format(service_name,
-                                                 service_model.api_version)
+    docs += document_client(service_name, official_name, service_model,
+                            client)
+    docs += document_client_waiter(session, official_name, service_name,
+                                   service_model, client)
+
+    if resource_filename is None:
+        resource_filename = (os.path.dirname(__file__) + '/data/resources/'
+                             '{0}-{1}.resources.json').format(
+                                service_name, service_model.api_version)
     # We can't use a set here because dicts aren't hashable!
     models = {}
-    if os.path.exists(filename):
-        data = json.load(open(filename))
+    if os.path.exists(resource_filename):
+        data = json.load(open(resource_filename))
         model = ResourceModel(service_name, data['service'], data['resources'])
 
         for collection_model in model.collections:
@@ -208,7 +225,7 @@ def docs_for(service_name):
 
     return docs
 
-def document_client(service_name, official_name, service_model):
+def document_client(service_name, official_name, service_model, client):
     """
     Generate low-level client documentation for a service. This generates
     documentation for all available operations.
@@ -220,13 +237,6 @@ def document_client(service_name, official_name, service_model):
     docs += '       import boto3\n\n'
     docs += '       {service} = boto3.client(\'{service}\')\n\n'.format(
         service=service_name)
-
-    # TODO: Get this information from the model somehow in the future.
-    #       For now creating and introspecing a client is a quick and
-    #       dirty way to access waiters/paginators.
-    client = boto3.client(service_name, aws_access_key_id='dummy',
-                          aws_secret_access_key='dummy',
-                          region_name='us-east-1')
 
     wdoc = ''
     if client.waiter_names:
@@ -252,10 +262,7 @@ def document_client(service_name, official_name, service_model):
     return docs
 
 def document_client_waiter(session, official_name, service_name,
-                           service_model):
-    client = boto3.client(service_name, aws_access_key_id='dummy',
-                          aws_secret_access_key='dummy',
-                          region_name='us-east-1')
+                           service_model, client):
     waiter_spec_doc = ''
     if client.waiter_names:
         waiter_spec_doc = 'Waiter\n------\n\n'
@@ -556,7 +563,7 @@ def document_operation(operation_model, service_name, operation_name=None,
     param_desc = ', '.join([
         ', '.join(['{0}=None'.format(k) for k in required_params]),
         ', '.join(['{0}=None'.format(k) for k in optional_params])
-    ])
+    ]).strip(', ')
 
     if operation_name is None:
         operation_name = xform_name(operation_model.name)
@@ -601,7 +608,7 @@ def document_operation(operation_model, service_name, operation_name=None,
         if param_type in ['list', 'dict']:
             param_desc = ('\n         Structure description::\n\n' +
                           '            ' + key + ' = ' +
-                          document_structure(
+                          document_param_response(
                             key, value, indent=12, indent_first=False) +
                           '\n' + param_desc)
         required = key in required_params and 'Required' or 'Optional'
@@ -615,13 +622,13 @@ def document_operation(operation_model, service_name, operation_name=None,
     output_shape = operation_model.output_shape
     if rtype in ['list', 'dict'] and output_shape is not None:
         docs += ('      :return:\n         Structure description::\n\n' +
-                 document_structure(None, output_shape, indent=12) + '\n')
+                 document_param_response(None, output_shape, indent=12) + '\n')
 
     return docs
 
 
-def document_structure(name, shape, indent=0, indent_first=True,
-                       parent_type=None, eol='\n'):
+def document_param_response(name, shape, indent=0, indent_first=True,
+                            parent_type=None, eol='\n'):
     """
     Document a nested structure (list or dict) parameter or return value as
     a snippet of Python code with dummy placeholders. For example:
@@ -638,51 +645,126 @@ def document_structure(name, shape, indent=0, indent_first=True,
             }
         }
 
+    :type name: string
+    :param name: The shape name.
+    :type shape: botocore.model.Shape
+    :param shape: The shape structure.
+    :type indent: integer
+    :param indent: The number of spaces to indent each line.
+    :type indent_first: boolean
+    :param indent_first: Whether to indent the first line.
+    :type parent_type: string
+    :param parent_type: The type name of the parent, which determines
+                        whether a name is printed for nested members.
+    :type eol: string
+    :param eol: The end-of-line string to use when finishing a member.
+    :rtype: string
     """
+    param_name = "'{name}': "
     docs = ''
+    spaces = ' ' * indent
 
     # Add spaces if the first line is indented.
     if indent_first:
-        docs += (' ' * indent)
+        docs += spaces
 
     if shape.type_name == 'structure':
         # Only include the name if the parent is also a structure.
         if parent_type == 'structure':
-            docs += "'" + name + '\': {\n'
-        else:
-            docs += '{\n'
+            docs += param_name.format(name=name)
 
-        # Go through each member and recursively process them.
-        for i, member_name in enumerate(shape.members):
-            member_eol = '\n'
-            if i < len(shape.members) - 1:
-                member_eol = ',\n'
-            docs += document_structure(
-                member_name, shape.members[member_name],
-                indent=indent + 2, parent_type=shape.type_name,
-                eol=member_eol)
-        docs += (' ' * indent) + '}' + eol
+        docs += render_structure(shape, spaces, indent, eol)
     elif shape.type_name == 'list':
         # Only include the name if the parent is a structure.
         if parent_type == 'structure':
-            docs += "'" + name + '\': [\n'
-        else:
-            docs += '[\n'
+            docs += param_name.format(name=name)
 
-        # Lists have only a single member. Here we document it, plus add
-        # an ellipsis to signify that more of the same member type can be
-        # added in a list.
-        docs += document_structure(
-            None, shape.member, indent=indent + 2, eol=',\n')
-        docs += (' ' * indent) + '  ...\n'
-        docs += (' ' * indent) + ']' + eol
+        docs += render_list(shape, spaces, indent, eol)
+    elif shape.type_name == 'map':
+        if parent_type == 'structure':
+            docs += param_name.format(name=name)
+
+        docs += render_map(shape, spaces, indent, eol)
     else:
         # It's not a structure or list, so document the type. Here we
         # try to use the equivalent Python type name for clarity.
         if name is not None:
-            docs += ("'" + name + '\': ' +
-                     py_type_name(shape.type_name).upper() + eol)
-        else:
-            docs += py_type_name(shape.type_name).upper() + eol
+            docs += param_name.format(name=name)
+
+        docs += py_type_name(shape.type_name).upper() + eol
+
+    return docs
+
+
+def render_structure(shape, spaces, indent, eol):
+    """
+    Render out a ``structure`` type. This renders info about each
+    member in the shape::
+
+        {
+            'MemberName': 'Value'
+        }
+
+    """
+    docs = '{\n'
+
+    # Go through each member and recursively process them.
+    for i, member_name in enumerate(shape.members):
+        # Individual members get a trailing comma only if they
+        # are not the last item.
+        member_eol = '\n'
+        if i < len(shape.members) - 1:
+            member_eol = ',' + member_eol
+
+        docs += document_param_response(
+            member_name, shape.members[member_name],
+            indent=indent + 4, parent_type=shape.type_name,
+            eol=member_eol)
+    docs += spaces + '}' + eol
+
+    return docs
+
+
+def render_list(shape, spaces, indent, eol):
+    """
+    Render out a ``list`` type. This renders info about the member
+    type of the list and adds an ellipsis to indicate it can contain
+    many items::
+
+        [
+            'STRING',
+            ...
+        ]
+
+    """
+    docs = '[\n'
+
+    # Lists have only a single member. Here we document it, plus add
+    # an ellipsis to signify that more of the same member type can be
+    # added in a list.
+    docs += document_param_response(
+        None, shape.member, indent=indent + 4, eol=',\n')
+    docs += spaces + '    ...\n'
+    docs += spaces + ']' + eol
+
+    return docs
+
+
+def render_map(shape, spaces, indent, eol):
+    """
+    Render out a ``structure`` type. This renders info about each
+    member in the shape::
+
+        {
+            'Key': 'Value'
+        }
+
+    """
+    docs = '{\n'
+
+    # Document the types for the keys and values.
+    docs += (spaces + '    ' + py_type_name(shape.key.type_name).upper()
+             + ': ' + py_type_name(shape.value.type_name).upper() + '\n')
+    docs += spaces + '}' + eol
 
     return docs
