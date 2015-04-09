@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.14 - 2015-04-02
+-------------------
 
 * feature:Resources: Update to the latest resource models for:
 
