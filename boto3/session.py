@@ -16,6 +16,7 @@ import os
 import botocore.session
 
 import boto3
+import boto3.utils
 
 from .exceptions import NoVersionFound
 from .resources.factory import ResourceFactory
@@ -73,6 +74,7 @@ class Session(object):
 
         self.resource_factory = ResourceFactory()
         self._setup_loader()
+        self._register_default_handlers()
 
     def __repr__(self):
         return 'Session(region={0})'.format(
@@ -308,3 +310,9 @@ class Session(object):
             service_name, service_name, model['service'], model['resources'],
             service_model)
         return cls(client=client)
+
+    def _register_default_handlers(self):
+        self._session.register(
+            'creating-client-class.s3',
+            boto3.utils.lazy_call(
+                'boto3.s3.inject.inject_s3_transfer_methods'))

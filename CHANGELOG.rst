@@ -1,6 +1,28 @@
 Changelog
 =========
 
+0.0.14 - 2015-04-02
+-------------------
+
+* feature:Resources: Update to the latest resource models for:
+
+  * AWS CloudFormation
+  * Amazon EC2
+  * AWS IAM
+
+* feature:Amazon S3:  Add an ``upload_file`` and ``download_file``
+  to S3 clients that transparently handle parallel multipart transfers.
+* feature:Botocore: Update to Botocore 0.102.0.
+
+  * Add support for Amazon Machine Learning.
+  * Add support for Amazon Workspaces.
+  * Update ``requests`` to 2.6.0.
+  * Update AWS Lambda to the latest API.
+  * Update Amazon EC2 Container Service to the latest API.
+  * Update Amazon S3 to the latest API.
+  * Add ``DBSnapshotCompleted`` support to Amazon RDS waiters.
+  * Fixes for the REST-JSON protocol.
+
 0.0.13 - 2015-04-02
 -------------------
 

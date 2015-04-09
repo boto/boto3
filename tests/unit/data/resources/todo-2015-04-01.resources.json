@@ -1,0 +1,72 @@
+{
+  "service": {
+    "actions": {
+      "CreateToDo": {
+        "request": { "operation": "CreateToDo" },
+        "resource": {
+          "type": "ToDo",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "Id" }
+          ]
+        }
+      }
+    },
+    "has": {
+      "ToDo": {
+        "resource": {
+          "type": "ToDo",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      }
+    },
+    "hasMany": {
+      "ToDos": {
+        "request": { "operation": "DescribeToDos" },
+        "resource": {
+          "type": "ToDo",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "ToDoList[].Id" }
+          ]
+        }
+      }
+    }
+  },
+  "resources": {
+    "ToDo": {
+      "identifiers": [
+        { "name": "Id" }
+      ],
+      "shape": "ToDoItem",
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteToDo",
+            "params": [
+              { "target": "Id", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "waiters": {
+        "Ready": {
+          "waiterName": "ToDoReady",
+          "params": [
+            { "target": "Id", "source": "identifier", "name": "Id" }
+          ]
+        }
+      },
+      "has": {
+        "MySelf": {
+          "resource": {
+            "type": "ToDo",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "Id" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

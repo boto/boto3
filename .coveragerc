@@ -2,5 +2,3 @@
 branch = True
 include =
     boto3/*
-omit =
-    boto3/docs.py

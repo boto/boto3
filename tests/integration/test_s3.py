@@ -10,10 +10,99 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-
-import boto3.session
+import os
+import threading
+import math
+import time
+import random
+import tempfile
+import shutil
+import hashlib
 
 from tests import unittest, unique_id
+from botocore.compat import six
+
+import boto3.session
+import boto3.s3.transfer
+
+
+urlopen = six.moves.urllib.request.urlopen
+
+
+def assert_files_equal(first, second):
+    if os.path.getsize(first) != os.path.getsize(second):
+        raise AssertionError("Files are not equal: %s, %s" % (first, second))
+    first_md5 = md5_checksum(first)
+    second_md5 = md5_checksum(second)
+    if first_md5 != second_md5:
+        raise AssertionError(
+            "Files are not equal: %s(md5=%s) != %s(md5=%s)" % (
+                first, first_md5, second, second_md5))
+
+
+def md5_checksum(filename):
+    checksum = hashlib.md5()
+    with open(filename, 'rb') as f:
+        for chunk in iter(lambda: f.read(8192), b''):
+            checksum.update(chunk)
+    return checksum.hexdigest()
+
+
+class FileCreator(object):
+    def __init__(self):
+        self.rootdir = tempfile.mkdtemp()
+
+    def remove_all(self):
+        shutil.rmtree(self.rootdir)
+
+    def create_file(self, filename, contents, mode='w'):
+        """Creates a file in a tmpdir
+
+        ``filename`` should be a relative path, e.g. "foo/bar/baz.txt"
+        It will be translated into a full path in a tmp dir.
+
+        ``mode`` is the mode the file should be opened either as ``w`` or
+        `wb``.
+
+        Returns the full path to the file.
+
+        """
+        full_path = os.path.join(self.rootdir, filename)
+        if not os.path.isdir(os.path.dirname(full_path)):
+            os.makedirs(os.path.dirname(full_path))
+        with open(full_path, mode) as f:
+            f.write(contents)
+        return full_path
+
+    def create_file_with_size(self, filename, filesize):
+        filename = self.create_file(filename, contents='')
+        chunksize = 8192
+        with open(filename, 'wb') as f:
+            for i in range(int(math.ceil(filesize / float(chunksize)))):
+                f.write(b'a' * chunksize)
+        return filename
+
+    def append_file(self, filename, contents):
+        """Append contents to a file
+
+        ``filename`` should be a relative path, e.g. "foo/bar/baz.txt"
+        It will be translated into a full path in a tmp dir.
+
+        Returns the full path to the file.
+        """
+        full_path = os.path.join(self.rootdir, filename)
+        if not os.path.isdir(os.path.dirname(full_path)):
+            os.makedirs(os.path.dirname(full_path))
+        with open(full_path, 'a') as f:
+            f.write(contents)
+        return full_path
+
+    def full_path(self, filename):
+        """Translate relative path to full path in temp dir.
+
+        f.full_path('foo/bar.txt') -> /tmp/asdfasd/foo/bar.txt
+        """
+        return os.path.join(self.rootdir, filename)
 
 
 class TestS3Resource(unittest.TestCase):
@@ -74,7 +163,6 @@ class TestS3Resource(unittest.TestCase):
         self.assertIn(self.bucket_name,
                       [b.name for b in self.s3.buckets.all()])
 
-
         # Create an object
         obj = bucket.Object('test.txt')
         obj.put(
@@ -121,3 +209,256 @@ class TestS3Resource(unittest.TestCase):
 
         contents = bucket.Object('mp-test.txt').get()['Body'].read()
         self.assertEqual(contents, b'hello, world!')
+
+
+class TestS3Transfers(unittest.TestCase):
+    """Tests for the high level boto3.s3.transfer module."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.region = 'us-west-2'
+        cls.session = boto3.session.Session(region_name=cls.region)
+        cls.client = cls.session.client('s3', cls.region)
+        cls.bucket_name = 'boto3-integ-transfer-%s-%s' % (
+            int(time.time()), random.randint(1, 100))
+        cls.client.create_bucket(
+            Bucket=cls.bucket_name,
+            CreateBucketConfiguration={'LocationConstraint': cls.region})
+
+    def setUp(self):
+        self.files = FileCreator()
+
+    def tearDown(self):
+        self.files.remove_all()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.client.delete_bucket(Bucket=cls.bucket_name)
+
+    def delete_object(self, key):
+        self.client.delete_object(
+            Bucket=self.bucket_name,
+            Key=key)
+
+    def object_exists(self, key):
+        self.client.head_object(Bucket=self.bucket_name,
+                                Key=key)
+        return True
+
+    def create_s3_transfer(self, config=None):
+        return boto3.s3.transfer.S3Transfer(self.client,
+                                            config=config)
+
+    def assert_has_public_read_acl(self, response):
+        grants = response['Grants']
+        public_read = [g['Grantee'].get('URI', '') for g in grants
+                       if g['Permission'] == 'READ']
+        self.assertIn('groups/global/AllUsers', public_read[0])
+
+    def test_upload_below_threshold(self):
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=2 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             'foo.txt')
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        self.assertTrue(self.object_exists('foo.txt'))
+
+    def test_upload_above_threshold(self):
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=2 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            '20mb.txt', filesize=20 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             '20mb.txt')
+        self.addCleanup(self.delete_object, '20mb.txt')
+        self.assertTrue(self.object_exists('20mb.txt'))
+
+    def test_upload_file_above_threshold_with_acl(self):
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=5 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            '6mb.txt', filesize=6 * 1024 * 1024)
+        extra_args = {'ACL': 'public-read'}
+        transfer.upload_file(filename, self.bucket_name,
+                             '6mb.txt', extra_args=extra_args)
+        self.addCleanup(self.delete_object, '6mb.txt')
+
+        self.assertTrue(self.object_exists('6mb.txt'))
+        response = self.client.get_object_acl(
+            Bucket=self.bucket_name, Key='6mb.txt')
+        self.assert_has_public_read_acl(response)
+
+    def test_upload_file_above_threshold_with_ssec(self):
+        key_bytes = os.urandom(32)
+        extra_args = {
+            'SSECustomerKey': key_bytes,
+            'SSECustomerAlgorithm': 'AES256',
+        }
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=5 * 1024 * 1024)
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            '6mb.txt', filesize=6 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             '6mb.txt', extra_args=extra_args)
+        self.addCleanup(self.delete_object, '6mb.txt')
+        # A head object will fail if it has a customer key
+        # associated with it and it's not provided in the HeadObject
+        # request so we can use this to verify our functionality.
+        response = self.client.head_object(
+            Bucket=self.bucket_name,
+            Key='6mb.txt', **extra_args)
+        self.assertEqual(response['SSECustomerAlgorithm'], 'AES256')
+
+    def test_progress_callback_on_upload(self):
+        self.amount_seen = 0
+        lock = threading.Lock()
+
+        def progress_callback(amount):
+            with lock:
+                self.amount_seen += amount
+
+        transfer = self.create_s3_transfer()
+        filename = self.files.create_file_with_size(
+            '20mb.txt', filesize=20 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             '20mb.txt', callback=progress_callback)
+        self.addCleanup(self.delete_object, '20mb.txt')
+
+        # The callback should have been called enough times such that
+        # the total amount of bytes we've seen (via the "amount"
+        # arg to the callback function) should be the size
+        # of the file we uploaded.
+        self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
+
+    def test_can_send_extra_params_on_upload(self):
+        transfer = self.create_s3_transfer()
+        filename = self.files.create_file_with_size('foo.txt', filesize=1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             'foo.txt', extra_args={'ACL': 'public-read'})
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        response = self.client.get_object_acl(
+            Bucket=self.bucket_name, Key='foo.txt')
+        self.assert_has_public_read_acl(response)
+
+    def test_can_configure_threshold(self):
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_threshold=6 * 1024 * 1024
+        )
+        transfer = self.create_s3_transfer(config)
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=8 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             'foo.txt')
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        self.assertTrue(self.object_exists('foo.txt'))
+
+    def test_can_send_extra_params_on_download(self):
+        # We're picking the customer provided sse feature
+        # of S3 to test the extra_args functionality of
+        # S3.
+        key_bytes = os.urandom(32)
+        extra_args = {
+            'SSECustomerKey': key_bytes,
+            'SSECustomerAlgorithm': 'AES256',
+        }
+        self.client.put_object(Bucket=self.bucket_name,
+                               Key='foo.txt',
+                               Body=b'hello world',
+                               **extra_args)
+        self.addCleanup(self.delete_object, 'foo.txt')
+        transfer = self.create_s3_transfer()
+
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        transfer.download_file(self.bucket_name, 'foo.txt',
+                               download_path, extra_args=extra_args)
+        with open(download_path, 'rb') as f:
+            self.assertEqual(f.read(), b'hello world')
+
+    def test_progress_callback_on_download(self):
+        self.amount_seen = 0
+        lock = threading.Lock()
+
+        def progress_callback(amount):
+            with lock:
+                self.amount_seen += amount
+
+        transfer = self.create_s3_transfer()
+        filename = self.files.create_file_with_size(
+            '20mb.txt', filesize=20 * 1024 * 1024)
+        with open(filename, 'rb') as f:
+            self.client.put_object(Bucket=self.bucket_name,
+                                   Key='20mb.txt', Body=f)
+        self.addCleanup(self.delete_object, '20mb.txt')
+
+        transfer.download_file(self.bucket_name, '20mb.txt',
+                               'foo.txt', callback=progress_callback)
+
+        self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
+
+    def test_download_below_threshold(self):
+        transfer = self.create_s3_transfer()
+
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=1024 * 1024)
+        with open(filename, 'rb') as f:
+            self.client.put_object(Bucket=self.bucket_name,
+                                   Key='foo.txt',
+                                   Body=f)
+            self.addCleanup(self.delete_object, 'foo.txt')
+
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        transfer.download_file(self.bucket_name, 'foo.txt',
+                               download_path)
+        assert_files_equal(filename, download_path)
+
+    def test_download_above_threshold(self):
+        transfer = self.create_s3_transfer()
+
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=20 * 1024 * 1024)
+        with open(filename, 'rb') as f:
+            self.client.put_object(Bucket=self.bucket_name,
+                                   Key='foo.txt',
+                                   Body=f)
+            self.addCleanup(self.delete_object, 'foo.txt')
+
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        transfer.download_file(self.bucket_name, 'foo.txt',
+                               download_path)
+        assert_files_equal(filename, download_path)
+
+    def test_transfer_methods_through_client(self):
+        # This is really just a sanity check to ensure that the interface
+        # from the clients work.  We're not exhaustively testing through
+        # this client interface.
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=1024 * 1024)
+        self.client.upload_file(Filename=filename,
+                                Bucket=self.bucket_name,
+                                Key='foo.txt')
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        self.client.download_file(Bucket=self.bucket_name,
+                                  Key='foo.txt',
+                                  Filename=download_path)
+        assert_files_equal(filename, download_path)
+
+
+class TestS3TransferMethodInjection(unittest.TestCase):
+    def test_transfer_methods_injected_to_client(self):
+        session = boto3.session.Session(region_name='us-west-2')
+        client = session.client('s3')
+        self.assertTrue(hasattr(client, 'upload_file'),
+                        'upload_file was not injected onto S3 client')
+        self.assertTrue(hasattr(client, 'download_file'),
+                        'download_file was not injected onto S3 client')

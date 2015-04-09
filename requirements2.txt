@@ -1,0 +1,4 @@
+# Python2 needs the concurrent.futures backport.
+# We handle this logic in setup.py but we need
+# a separate file to track this in our requirements file.
+futures==2.2.0
