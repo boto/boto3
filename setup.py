@@ -24,6 +24,7 @@ def get_version():
 packages = [
     'boto3',
     'boto3.resources',
+    'boto3.s3',
 ]
 
 requires = [
