@@ -1,0 +1,20 @@
+.. _ref_custom_s3:
+
+==========================
+S3 Customization Reference
+==========================
+
+S3 Command Injection
+--------------------
+
+.. automodule:: boto3.s3.inject
+   :members:
+   :undoc-members:
+   :inherited-members:
+
+S3 Transfers
+------------
+
+.. automodule:: boto3.s3.transfer
+   :members:
+   :undoc-members:
