@@ -66,6 +66,15 @@ Core
 
    reference/core/*
 
+Customizations
+~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   reference/customizations/*
+
 Indices and tables
 ==================
 

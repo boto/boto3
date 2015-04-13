@@ -399,10 +399,10 @@
       "identifiers": [
         { "name": "BucketName" }
       ],
-      "shape": "GetBucketNotificationOutput",
+      "shape": "NotificationConfiguration",
       "load": {
         "request": {
-          "operation": "GetBucketNotification",
+          "operation": "GetBucketNotificationConfiguration",
           "params": [
             { "target": "Bucket", "source": "identifier", "name": "BucketName" }
           ]
@@ -412,7 +412,7 @@
       "actions": {
         "Put": {
           "request": {
-            "operation": "PutBucketNotification",
+            "operation": "PutBucketNotificationConfiguration",
             "params": [
               { "target": "Bucket", "source": "identifier", "name": "BucketName" }
             ]
