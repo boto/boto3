@@ -4,6 +4,9 @@ Changelog
 Unreleased
 ----------
 
+* bugfix:Client: Fix an issue with the Amazon S3 ``upload_file`` and
+  ``download_file`` customization.
+  (`issue 85 <https://github.com/boto/boto3/pull/85>`__,
 * bugfix:Resource: Fix an issue with the Amazon S3 ``BucketNofitication``
   resource.
 
