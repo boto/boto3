@@ -1,10 +1,10 @@
 Changelog
 =========
 
-Unreleased
-----------
+0.0.15 - 2015-04-02
+-------------------
 
-* bugfix:Client: Fix an issue with the Amazon S3 ``upload_file`` and
+* bugfix:Packaging: Fix an issue with the Amazon S3 ``upload_file`` and
   ``download_file`` customization.
   (`issue 85 <https://github.com/boto/boto3/pull/85>`__,
 * bugfix:Resource: Fix an issue with the Amazon S3 ``BucketNofitication``
