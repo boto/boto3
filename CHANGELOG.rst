@@ -9,6 +9,9 @@ Unreleased
   (`issue 85 <https://github.com/boto/boto3/pull/85>`__,
 * bugfix:Resource: Fix an issue with the Amazon S3 ``BucketNofitication``
   resource.
+* feature:Botocore: Update to Botocore 0.103.0.
+
+  * Documentation updates for Amazon EC2 Container Service.
 
 0.0.14 - 2015-04-02
 -------------------
