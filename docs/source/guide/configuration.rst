@@ -72,14 +72,12 @@ Environment Variables
 ``AWS_SECRET_ACCESS_KEY``
     The secret key for your AWS account.
 
-``BOTO_DEFAULT_REGION``
+``AWS_DEFAULT_REGION``
     The default region to use, e.g. `us-east-1`.
 
-``BOTO_DEFAULT_PROFILE``
+``AWS_PROFILE``
     The default credential and configuration profile to use, if any.
 
-``BOTO_DATA_PATH``
-    The data path from which to load service and resource JSON files.
 
 Configuration Files
 ~~~~~~~~~~~~~~~~~~~
