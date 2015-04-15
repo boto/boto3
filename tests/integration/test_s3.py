@@ -18,6 +18,7 @@ import random
 import tempfile
 import shutil
 import hashlib
+import string
 
 from tests import unittest, unique_id
 from botocore.compat import six
@@ -46,6 +47,12 @@ def md5_checksum(filename):
         for chunk in iter(lambda: f.read(8192), b''):
             checksum.update(chunk)
     return checksum.hexdigest()
+
+
+def random_bucket_name(prefix='boto3-transfer', num_chars=10):
+    base = string.ascii_lowercase + string.digits
+    random_bytes = bytearray(os.urandom(num_chars))
+    return prefix + ''.join([base[b % len(base)] for b in random_bytes])
 
 
 class FileCreator(object):
@@ -219,8 +226,7 @@ class TestS3Transfers(unittest.TestCase):
         cls.region = 'us-west-2'
         cls.session = boto3.session.Session(region_name=cls.region)
         cls.client = cls.session.client('s3', cls.region)
-        cls.bucket_name = 'boto3-integ-transfer-%s-%s' % (
-            int(time.time()), random.randint(1, 100))
+        cls.bucket_name = random_bucket_name()
         cls.client.create_bucket(
             Bucket=cls.bucket_name,
             CreateBucketConfiguration={'LocationConstraint': cls.region})
