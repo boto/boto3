@@ -35,6 +35,12 @@ DYNAMODB_CONTEXT = Context(
 
 
 class Binary(object):
+    """A class for representing Binary in dynamodb
+
+    Especially for Python 2, use this class to explicitly specify
+    binary data for item in DynamoDB. It is essentially a wrapper around
+    binary. Unicode and Python 3 string types are not allowed.
+    """
     def __init__(self, value):
         if not isinstance(value, (bytearray, six.binary_type)):
             raise TypeError('Value must be a string of binary data.')
@@ -59,7 +65,30 @@ class Binary(object):
 
 
 class TypeSerializer(object):
+    """This class serializes Python data types to DynamoDB types."""
     def serialize(self, value):
+        """The method to serialize the Python data types.
+
+        :param value: A python value to be serialized to DynamoDB. Here are
+            the various conversions:
+
+            Python                                  DynamoDB
+            ------                                  --------
+            None                                    {'NULL': True}
+            True/False                              {'BOOL': True/False}
+            int/Decimal                             {'N': str(value)}
+            string                                  {'S': string}
+            Binary/bytearray/bytes (py3 only)       {'B': bytes}
+            set([int/Decimal])                      {'NS': [str(value)]}
+            set([string])                           {'SS': [string])
+            set([Binary/bytearray/bytes])           {'BS': [bytes]}
+            list                                    {'L': list}
+            dict                                    {'M': dict}
+
+        :rtype: dict
+        :returns: A dictionary that represents a dynamoDB data type. These
+            dictionaries can be directly passed to botocore methods.
+        """
         dynamodb_type = self._get_dynamodb_type(value)
         serializer = getattr(self, '_serialize_%s' % dynamodb_type.lower())
         return {dynamodb_type: serializer(value)}
@@ -193,7 +222,29 @@ class TypeSerializer(object):
 
 
 class TypeDeserializer(object):
+    """This class deserializes DynamoDB types to Python types."""
     def deserialize(self, value):
+        """The method to deserialize the DynamoDB data types.
+
+        :param value: A DynamoDB value to be deserialized to a pythonic value.
+            Here are the various conversions:
+
+            DynamoDB                                Python
+            --------                                ------
+            {'NULL': True}                          None
+            {'BOOL': True/False}                    True/False
+            {'N': str(value)}                       Decimal(str(value))
+            {'S': string}                           string
+            {'B': bytes}                            Binary(bytes)
+            {'NS': [str(value)]}                    set([Decimal(str(value))])
+            {'SS': [string]}                        set([string])
+            {'BS': [bytes]}                         set([bytes])
+            {'L': list}                             list
+            {'M': dict}                             dict
+
+        :returns: The pythonic value of the DynamoDB type.
+        """
+
         if not value:
             return value
         dynamodb_type = list(value.keys())[0]
