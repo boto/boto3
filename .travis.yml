@@ -7,8 +7,15 @@ python:
 sudo: false
 install:
   - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then travis_retry pip install -r requirements26.txt; fi
-  - if [[ $TRAVIS_PYTHON_VERSION == 2.* ]]; then travis_retry pip install -r requirements2.txt; fi
+  - "rm -rf dist/*"
   - travis_retry pip install -r requirements.txt
   - travis_retry pip install coverage python-coveralls
-script: nosetests --with-coverage --cover-erase
-after_success: coveralls
+  # We're building and installing from a whl file to ensure that
+  # there aren't any packaging issues.
+  - python setup.py bdist_wheel
+  - "pip install dist/*.whl"
+# We're running from a directory other than the repo root so that
+# we can ensure we're importing from our installed whl package
+# instead of the current directory.
+script: cd tests/unit && nosetests --with-coverage --cover-erase --cover-package boto3
+after_success: cp -f tests/unit/.coverage .coverage && coveralls
