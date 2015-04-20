@@ -8,4 +8,4 @@ sudo: false
 install:
   - python scripts/ci/install
 script: python scripts/ci/run-tests
-after_success: coveralls
+after_success: cd tests && coveralls
