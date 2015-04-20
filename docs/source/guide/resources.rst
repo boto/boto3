@@ -90,7 +90,7 @@ the ``load`` or ``reload`` action. Examples of attributes::
 .. warning::
 
    Attributes may incur a load action when first accessed. If latency is
-   a concern, then manually calling ``load`` will allow you to control 
+   a concern, then manually calling ``load`` will allow you to control
    exactly when the load action (and thus latency) is invoked. The
    documentation for each resource explicitly lists its attributes.
 
@@ -185,3 +185,20 @@ keyword arguments. Examples of waiters include::
 
     # EC2: Wait for an instance to reach the running state.
     instance.wait_until_running()
+
+
+Multithreading
+--------------
+It is recommended to create a resource instance for each thread in a multithreaded application rather than sharing a single instance among the threads. For example::
+
+    import boto3
+    import boto3.session
+    import threading
+
+    class MyTask(threading.Thread):
+        def run(self):
+            session = boto3.session.Session()
+            s3 = session.resource('s3')
+            # ... do some work with S3 ...
+
+In the example above, each thread would have its own Boto 3 session and its own instance of the S3 resource. This is a good idea because resources contain shared data when loaded and calling actions, accessing properties, or manually loading or reloading the resource can modify this data.

@@ -7,30 +7,17 @@ import os
 import re
 import sys
 
-try:
-    from setuptools import setup
-    setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
 
 
 ROOT = os.path.dirname(__file__)
 VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
-def get_version():
-    init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
-    return VERSION_RE.search(init).group(1)
-
-packages = [
-    'boto3',
-    'boto3.resources',
-    'boto3.s3',
-]
 
 requires = [
-    'botocore==0.103.0',
+    'botocore>=0.104.0,<1.0.0',
     'bcdoc==0.12.2',
-    'jmespath==0.6.1',
+    'jmespath==0.6.2',
 ]
 
 if sys.version_info[0] == 2:
@@ -39,16 +26,20 @@ if sys.version_info[0] == 2:
     requires.append('futures==2.2.0')
 
 
+def get_version():
+    init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
+    return VERSION_RE.search(init).group(1)
+
+
 setup(
     name='boto3',
     version=get_version(),
     description='The AWS SDK for Python',
     long_description=open('README.rst').read(),
     author='Amazon Web Services',
-    author_email='garnaat@amazon.com',
     url='https://github.com/boto/boto3',
     scripts=[],
-    packages=packages,
+    packages=find_packages(exclude=['tests*']),
     package_data={
         'boto3': [
             'data/aws/resources/*.json',

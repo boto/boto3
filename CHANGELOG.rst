@@ -1,12 +1,18 @@
 Changelog
 =========
 
-0.0.15 - 2015-04-02
+0.0.16 - 2015-04-20
+-------------------
+
+* bugfix:Packaging: Fix release sdist and whl files from 0.0.15.
+* feature:Amazon Dynamodb: Add resource model for Amazon DynamoDB.
+
+0.0.15 - 2015-04-13
 -------------------
 
 * bugfix:Packaging: Fix an issue with the Amazon S3 ``upload_file`` and
   ``download_file`` customization.
-  (`issue 85 <https://github.com/boto/boto3/pull/85>`__,
+  (`issue 85 <https://github.com/boto/boto3/pull/85>`__)
 * bugfix:Resource: Fix an issue with the Amazon S3 ``BucketNofitication``
   resource.
 * feature:Botocore: Update to Botocore 0.103.0.
