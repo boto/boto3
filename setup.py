@@ -21,12 +21,6 @@ requires = [
 ]
 
 
-if sys.version_info[0] == 2:
-    # concurrent.futures is only in python3, so for
-    # python2 we need to install the backport.
-    requires.append('futures==2.2.0')
-
-
 def get_version():
     init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
     return VERSION_RE.search(init).group(1)
@@ -48,6 +42,9 @@ setup(
     },
     include_package_data=True,
     install_requires=requires,
+    extras_require={
+        ':python_version=="2.6" or python_version=="2.7"': ['futures==2.2.0']
+    },
     license="Apache License 2.0",
     classifiers=[
         'Development Status :: 4 - Beta',
