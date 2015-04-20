@@ -18,4 +18,4 @@ install:
 # we can ensure we're importing from our installed whl package
 # instead of the current directory.
 script: cd tests/unit && nosetests --with-coverage --cover-erase --cover-package boto3
-after_success: cp -f tests/unit/.coverage .coverage && coveralls
+after_success: coveralls
