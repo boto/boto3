@@ -17,8 +17,9 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 requires = [
     'botocore>=0.104.0,<1.0.0',
     'bcdoc==0.12.2',
-    'jmespath==0.6.2',
+    'jmespath>=0.6.2,<1.0.0',
 ]
+
 
 if sys.version_info[0] == 2:
     # concurrent.futures is only in python3, so for
