@@ -147,7 +147,8 @@ class TestDeserializer(unittest.TestCase):
             self.deserializer.deserialize({'FOO': 'bar'})
 
     def test_deserialize_empty_structure(self):
-        self.assertEqual(self.deserializer.deserialize({}), {})
+        with self.assertRaisesRegexp(TypeError, 'Value must be a nonempty'):
+            self.assertEqual(self.deserializer.deserialize({}), {})
 
     def test_deserialize_null(self):
         self.assertEqual(self.deserializer.deserialize({"NULL": True}), None)

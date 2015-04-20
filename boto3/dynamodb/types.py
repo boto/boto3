@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from collections import Mapping
+from collections import Mapping, Set
 from decimal import Decimal, Context, Clamped
 from decimal import Overflow, Inexact, Underflow, Rounded
 
@@ -34,6 +34,9 @@ DYNAMODB_CONTEXT = Context(
     traps=[Clamped, Overflow, Inexact, Rounded, Underflow])
 
 
+BINARY_TYPES = (bytearray, six.binary_type)
+
+
 class Binary(object):
     """A class for representing Binary in dynamodb
 
@@ -42,8 +45,9 @@ class Binary(object):
     binary. Unicode and Python 3 string types are not allowed.
     """
     def __init__(self, value):
-        if not isinstance(value, (bytearray, six.binary_type)):
-            raise TypeError('Value must be a string of binary data.')
+        if not isinstance(value, BINARY_TYPES):
+            raise TypeError('Value must be of the following types: %s.' %
+                            ', '.join([str(t) for t in BINARY_TYPES]))
         self.value = value
 
     def __eq__(self, other):
@@ -84,6 +88,11 @@ class TypeSerializer(object):
             set([Binary/bytearray/bytes])           {'BS': [bytes]}
             list                                    {'L': list}
             dict                                    {'M': dict}
+
+            For types that involve numbers, it is recommended that ``Decimal``
+            objects are used to be able to round-trip the Python type.
+            For types that involve binary, it is recommended that ``Binary``
+            objects are used to be able to round-trip the Python type.
 
         :rtype: dict
         :returns: A dictionary that represents a dynamoDB data type. These
@@ -165,7 +174,7 @@ class TypeSerializer(object):
         return False
 
     def _is_set(self, value):
-        if isinstance(value, (set, frozenset)):
+        if isinstance(value, Set):
             return True
         return False
 
@@ -246,7 +255,8 @@ class TypeDeserializer(object):
         """
 
         if not value:
-            return value
+            raise TypeError('Value must be a nonempty dictionary whose key '
+                            'is a valid dynamodb type.')
         dynamodb_type = list(value.keys())[0]
         try:
             deserializer = getattr(
