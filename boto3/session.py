@@ -92,10 +92,10 @@ class Session(object):
         Setup loader paths so that we can load resources.
         """
         self._loader = self._session.get_component('data_loader')
-        self._loader.data_path = ':'.join(
+        self._loader.data_path = os.pathsep.join(
             [self._loader.data_path,
              os.path.join(os.path.dirname(__file__), 'data',
-                          'resources')]).strip(':')
+                          'resources')]).strip(os.pathsep)
 
     def _get_resource_files(self):
         """
