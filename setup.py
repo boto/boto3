@@ -48,7 +48,7 @@ setup(
     },
     include_package_data=True,
     install_requires=requires,
-    license=open("LICENSE").read(),
+    license="Apache License 2.0",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
