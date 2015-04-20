@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.0.16 - 2015-04-20
+-------------------
+
+* bugfix:Packaging: Fix release sdist and whl files from 0.0.15.
+* feature:Amazon Dynamodb: Add resource model for Amazon DynamoDB.
+
 0.0.15 - 2015-04-13
 -------------------
 
