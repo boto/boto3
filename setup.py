@@ -17,13 +17,8 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 requires = [
     'botocore>=0.104.0,<1.0.0',
     'bcdoc==0.12.2',
-    'jmespath==0.6.2',
+    'jmespath>=0.6.2,<1.0.0',
 ]
-
-if sys.version_info[0] == 2:
-    # concurrent.futures is only in python3, so for
-    # python2 we need to install the backport.
-    requires.append('futures==2.2.0')
 
 
 def get_version():
@@ -47,7 +42,10 @@ setup(
     },
     include_package_data=True,
     install_requires=requires,
-    license=open("LICENSE").read(),
+    extras_require={
+        ':python_version=="2.6" or python_version=="2.7"': ['futures==2.2.0']
+    },
+    license="Apache License 2.0",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
