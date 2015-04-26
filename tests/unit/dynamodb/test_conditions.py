@@ -1,0 +1,438 @@
+# Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"). You
+# may not use this file except in compliance with the License. A copy of
+# the License is located at
+#
+# http://aws.amazon.com/apache2.0/
+#
+# or in the "license" file accompanying this file. This file is
+# distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+# ANY KIND, either express or implied. See the License for the specific
+# language governing permissions and limitations under the License.
+from tests import unittest
+
+from boto3.exceptions import DynanmoDBOperationNotSupportedError
+from boto3.exceptions import DynamoDBNeedsConditionError
+from boto3.exceptions import DynamoDBNeedsKeyConditionError
+from boto3.dynamodb.conditions import A, K
+from boto3.dynamodb.conditions import AND, OR, NOT, EQ, LT, LTE, GT, GTE
+from boto3.dynamodb.conditions import BEG, BET, NE, IN, AE, ANE, CONT
+from boto3.dynamodb.conditions import SIZE, AT
+from boto3.dynamodb.conditions import ConditionExpressionBuilder
+
+
+class TestK(unittest.TestCase):
+    def setUp(self):
+        self.attr = K('mykey')
+        self.attr2 = K('myotherkey')
+        self.value = 'foo'
+        self.value2 = 'foo2'
+
+    def test_and(self):
+        with self.assertRaisesRegexp(
+                DynanmoDBOperationNotSupportedError, 'AND'):
+            self.attr & self.attr2
+
+    def test_or(self):
+        with self.assertRaisesRegexp(
+                DynanmoDBOperationNotSupportedError, 'OR'):
+            self.attr | self.attr2
+
+    def test_not(self):
+        with self.assertRaisesRegexp(
+                DynanmoDBOperationNotSupportedError, 'NOT'):
+            ~self.attr
+
+    def test_eq(self):
+        self.assertEqual(self.attr.eq(self.value), EQ(self.attr, self.value))
+
+    def test_lt(self):
+        self.assertEqual(self.attr.lt(self.value), LT(self.attr, self.value))
+
+    def test_lte(self):
+        self.assertEqual(self.attr.lte(self.value), LTE(self.attr, self.value))
+
+    def test_gt(self):
+        self.assertEqual(self.attr.gt(self.value), GT(self.attr, self.value))
+
+    def test_gte(self):
+        self.assertEqual(self.attr.gte(self.value), GTE(self.attr, self.value))
+
+    def test_begins_with(self):
+        self.assertEqual(self.attr.begins_with(self.value),
+                         BEG(self.attr, self.value))
+
+    def test_between(self):
+        self.assertEqual(self.attr.between(self.value, self.value2),
+                         BET(self.attr, self.value, self.value2))
+
+
+class TestA(TestK):
+    def setUp(self):
+        self.attr = A('mykey')
+        self.attr2 = A('myotherkey')
+        self.value = 'foo'
+        self.value2 = 'foo2'
+
+    def test_ne(self):
+        self.assertEqual(self.attr.ne(self.value), NE(self.attr, self.value))
+
+    def test_is_in(self):
+        self.assertEqual(self.attr.is_in([self.value]),
+                         IN(self.attr, [self.value]))
+
+    def test_exists(self):
+        self.assertEqual(self.attr.exists(), AE(self.attr))
+
+    def test_not_exists(self):
+        self.assertEqual(self.attr.not_exists(), ANE(self.attr))
+
+    def test_contains(self):
+        self.assertEqual(self.attr.contains(self.value),
+                         CONT(self.attr, self.value))
+
+    def test_size(self):
+        self.assertEqual(self.attr.size(), SIZE(self.attr))
+
+    def test_attribute_type(self):
+        self.assertEqual(self.attr.attribute_type(self.value),
+                         AT(self.attr, self.value))
+
+
+class TestConditions(unittest.TestCase):
+    def setUp(self):
+        self.value = A('mykey')
+        self.value2 = 'foo'
+
+    def assert_expression_dict(self, condition, exp_format,
+                               exp_operator, values):
+        expression_dict = condition.get_expression()
+        self.assertEqual(expression_dict['format'], exp_format)
+        self.assertEqual(expression_dict['operator'], exp_operator)
+        self.assertEqual(len(expression_dict['values']), len(values))
+        for i, value in enumerate(expression_dict['values']):
+            self.assertEqual(value, values[i])
+
+    def test_equal_operator(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = EQ(self.value, self.value2)
+        self.assertTrue(cond1 == cond2)
+
+    def test_equal_operator_type(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = NE(self.value, self.value2)
+        self.assertFalse(cond1 == cond2)
+
+    def test_equal_operator_value(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = EQ(self.value, self.value)
+        self.assertFalse(cond1 == cond2)
+
+    def test_not_equal_operator(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = NE(self.value, self.value)
+        self.assertTrue(cond1 != cond2)
+
+    def test_and_operator(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = EQ(self.value, self.value2)
+        self.assertEqual(cond1 & cond2, AND(cond1, cond2))
+
+    def test_and_operator_throws_excepetion(self):
+        cond1 = EQ(self.value, self.value2)
+        with self.assertRaisesRegexp(
+                DynanmoDBOperationNotSupportedError, 'AND'):
+            cond1 & self.value2
+
+    def test_or_operator(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = EQ(self.value, self.value2)
+        self.assertEqual(cond1 | cond2, OR(cond1, cond2))
+
+    def test_or_operator_throws_excepetion(self):
+        cond1 = EQ(self.value, self.value2)
+        with self.assertRaisesRegexp(
+                DynanmoDBOperationNotSupportedError, 'OR'):
+            cond1 | self.value2
+
+    def test_not_operator(self):
+        cond1 = EQ(self.value, self.value2)
+        self.assertEqual(~cond1, NOT(cond1))
+
+    def test_eq(self):
+        self.assert_expression_dict(
+            EQ(self.value, self.value2), exp_format='{0} {operator} {1}',
+            exp_operator='=', values=[self.value, self.value2])
+
+    def test_ne(self):
+        self.assert_expression_dict(
+            NE(self.value, self.value2), exp_format='{0} {operator} {1}',
+            exp_operator='<>', values=[self.value, self.value2])
+
+    def test_lt(self):
+        self.assert_expression_dict(
+            LT(self.value, self.value2), exp_format='{0} {operator} {1}',
+            exp_operator='<', values=[self.value, self.value2])
+
+    def test_lte(self):
+        self.assert_expression_dict(
+            LTE(self.value, self.value2), exp_format='{0} {operator} {1}',
+            exp_operator='<=', values=[self.value, self.value2])
+
+    def test_gt(self):
+        self.assert_expression_dict(
+            GT(self.value, self.value2), exp_format='{0} {operator} {1}',
+            exp_operator='>', values=[self.value, self.value2])
+
+    def test_gte(self):
+        self.assert_expression_dict(
+            GTE(self.value, self.value2), exp_format='{0} {operator} {1}',
+            exp_operator='>=', values=[self.value, self.value2])
+
+    def test_in(self):
+        cond = IN(self.value, (self.value2))
+        self.assert_expression_dict(
+            cond, exp_format='{0} {operator} {1}',
+            exp_operator='IN', values=[self.value, (self.value2)])
+        self.assertTrue(cond.has_grouped_values)
+
+    def test_bet(self):
+        self.assert_expression_dict(
+            BET(self.value, self.value2, 'foo2'),
+            exp_format='{0} {operator} {1} AND {2}',
+            exp_operator='BETWEEN', values=[self.value, self.value2, 'foo2'])
+
+    def test_beg(self):
+        self.assert_expression_dict(
+            BEG(self.value, self.value2),
+            exp_format='{operator}({0}, {1})',
+            exp_operator='begins_with', values=[self.value, self.value2])
+
+    def test_cont(self):
+        self.assert_expression_dict(
+            CONT(self.value, self.value2), exp_format='{operator}({0}, {1})',
+            exp_operator='contains', values=[self.value, self.value2])
+
+    def test_ae(self):
+        self.assert_expression_dict(
+            AE(self.value), exp_format='{operator}({0})',
+            exp_operator='attribute_exists', values=[self.value])
+
+    def test_ane(self):
+        self.assert_expression_dict(
+            ANE(self.value), exp_format='{operator}({0})',
+            exp_operator='attribute_not_exists', values=[self.value])
+
+    def test_size(self):
+        self.assert_expression_dict(
+            SIZE(self.value), exp_format='{operator}({0})',
+            exp_operator='size', values=[self.value])
+
+    def test_size_can_use_attr_methods(self):
+        size = SIZE(self.value)
+        self.assert_expression_dict(
+            size.eq(self.value), exp_format='{0} {operator} {1}',
+            exp_operator='=', values=[size, self.value])
+
+    def test_size_can_use_and(self):
+        size = SIZE(self.value)
+        ae = AE(self.value)
+        self.assert_expression_dict(
+            size & ae, exp_format='({0} {operator} {1})',
+            exp_operator='AND', values=[size, ae])
+
+    def test_attribute_type(self):
+        self.assert_expression_dict(
+            AT(self.value, self.value2), exp_format='{operator}({0}, {1})',
+            exp_operator='attribute_type', values=[self.value, self.value2])
+
+    def test_and(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = EQ(self.value, self.value2)
+        and_cond = AND(cond1, cond2)
+        self.assert_expression_dict(
+            and_cond, exp_format='({0} {operator} {1})',
+            exp_operator='AND', values=[cond1, cond2])
+
+    def test_or(self):
+        cond1 = EQ(self.value, self.value2)
+        cond2 = EQ(self.value, self.value2)
+        or_cond = OR(cond1, cond2)
+        self.assert_expression_dict(
+            or_cond, exp_format='({0} {operator} {1})',
+            exp_operator='OR', values=[cond1, cond2])
+
+    def test_not(self):
+        cond = EQ(self.value, self.value2)
+        not_cond = NOT(cond)
+        self.assert_expression_dict(
+            not_cond, exp_format='({operator} {0})',
+            exp_operator='NOT', values=[cond])
+
+
+class TestConditionExpressionBuilder(unittest.TestCase):
+    def setUp(self):
+        self.builder = ConditionExpressionBuilder()
+
+    def assert_condition_expression_build(
+            self, condition, ref_string, ref_names, ref_values,
+            is_key_condition=False):
+        exp_string, names, values = self.builder.build_expression(
+            condition, is_key_condition=is_key_condition)
+        print(names)
+        print(values)
+        self.assertEqual(exp_string, ref_string)
+        self.assertEqual(names, ref_names)
+        self.assertEqual(values, ref_values)
+
+    def test_bad_input(self):
+        a = A('myattr')
+        with self.assertRaises(DynamoDBNeedsConditionError):
+            self.builder.build_expression(a)
+
+    def test_build_expression_eq(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0 = :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_lt(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.lt('foo'), '#n0 < :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_lte(self):
+        a1 = A('myattr')
+        self.assert_condition_expression_build(
+            a1.lte('foo'), '#n0 <= :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_gt(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.gt('foo'), '#n0 > :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_gte(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.gte('foo'), '#n0 >= :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_begins_with(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.begins_with('foo'), 'begins_with(#n0, :v0)',
+            {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_between(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.between('foo', 'foo2'), '#n0 BETWEEN :v0 AND :v1',
+            {'#n0': 'myattr'}, {':v0': 'foo', ':v1': 'foo2'})
+
+    def test_build_expression_ne(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.ne('foo'), '#n0 <> :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_expression_in(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.is_in([1, 2, 3]), '#n0 IN (:v0, :v1, :v2)',
+            {'#n0': 'myattr'}, {':v0': 1, ':v1': 2, ':v2': 3})
+
+    def test_build_expression_exists(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.exists(), 'attribute_exists(#n0)', {'#n0': 'myattr'}, {})
+
+    def test_build_expression_not_exists(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.not_exists(), 'attribute_not_exists(#n0)', {'#n0': 'myattr'}, {})
+
+    def test_build_contains(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.contains('foo'), 'contains(#n0, :v0)',
+            {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_size(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.size(), 'size(#n0)', {'#n0': 'myattr'}, {})
+
+    def test_build_size_with_other_conditons(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.size().eq(5), 'size(#n0) = :v0', {'#n0': 'myattr'}, {':v0': 5})
+
+    def test_build_attribute_type(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            a.attribute_type('foo'), 'attribute_type(#n0, :v0)',
+            {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_and(self):
+        a = A('myattr')
+        a2 = A('myattr2')
+        self.assert_condition_expression_build(
+            a.eq('foo') & a2.eq('bar'), '(#n0 = :v0 AND #n1 = :v1)',
+            {'#n0': 'myattr', '#n1': 'myattr2'}, {':v0': 'foo', ':v1': 'bar'})
+
+    def test_build_or(self):
+        a = A('myattr')
+        a2 = A('myattr2')
+        self.assert_condition_expression_build(
+            a.eq('foo') | a2.eq('bar'), '(#n0 = :v0 OR #n1 = :v1)',
+            {'#n0': 'myattr', '#n1': 'myattr2'}, {':v0': 'foo', ':v1': 'bar'})
+
+    def test_build_not(self):
+        a = A('myattr')
+        self.assert_condition_expression_build(
+            ~a.eq('foo'), '(NOT #n0 = :v0)',
+            {'#n0': 'myattr'}, {':v0': 'foo'})
+
+    def test_build_attribute_with_attr_value(self):
+        a = A('myattr')
+        value = A('myreference')
+        self.assert_condition_expression_build(
+            a.eq(value), '#n0 = #n1',
+            {'#n0': 'myattr', '#n1': 'myreference'}, {})
+
+    def test_build_with_is_key_condition(self):
+        k = K('myattr')
+        self.assert_condition_expression_build(
+            k.eq('foo'), '#n0 = :v0',
+            {'#n0': 'myattr'}, {':v0': 'foo'}, is_key_condition=True)
+
+    def test_build_with_is_key_condition_throws_error(self):
+        a = A('myattr')
+        with self.assertRaises(DynamoDBNeedsKeyConditionError):
+            self.builder.build_expression(a.eq('foo'), is_key_condition=True)
+
+    def test_build_attr_map(self):
+        a = A('MyMap.MyKey')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0.#n1 = :v0', {'#n0': 'MyMap', '#n1': 'MyKey'},
+            {':v0': 'foo'})
+
+    def test_build_attr_list(self):
+        a = A('MyList[0]')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0[0] = :v0', {'#n0': 'MyList'}, {':v0': 'foo'})
+
+    def test_build_nested_attr_map_list(self):
+        a = A('MyMap.MyList[2].MyElement')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0.#n1[2].#n2 = :v0',
+            {'#n0': 'MyMap', '#n1': 'MyList', '#n2': 'MyElement'},
+            {':v0': 'foo'})
+
+    def test_build_double_nested_and_or(self):
+        a = A('myattr')
+        a2 = A('myattr2')
+        self.assert_condition_expression_build(
+            (a.eq('foo') & a2.eq('foo2')) | (a.eq('bar') & a2.eq('bar2')),
+            '((#n0 = :v0 AND #n1 = :v1) OR (#n2 = :v2 AND #n3 = :v3))',
+            {'#n0': 'myattr', '#n1': 'myattr2', '#n2': 'myattr',
+             '#n3': 'myattr2'},
+            {':v0': 'foo', ':v1': 'foo2', ':v2': 'bar', ':v3': 'bar2'})
