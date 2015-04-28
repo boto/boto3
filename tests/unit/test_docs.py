@@ -98,12 +98,12 @@ class TestDocumentService(unittest.TestCase):
         self.session = get_session()
 
         loader = self.session.get_component('data_loader')
-        loader.data_path = os.path.join(ROOT, 'data')
+        loader.search_paths.append(os.path.join(ROOT, 'data'))
 
         self.docs = docs_for(
             'todo', session=self.session,
-            resource_filename=os.path.join(ROOT, 'data', 'resources',
-                                           'todo-2015-04-01.resources.json'))
+            resource_filename=os.path.join(ROOT, 'data', 'todo', '2015-04-01',
+                                           'resources-1.json'))
 
         self.resource_docs = ''
         if 'Service Resource' in self.docs:
