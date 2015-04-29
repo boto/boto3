@@ -48,7 +48,7 @@ class Session(object):
             self._session = botocore_session
         else:
             # Create a new default session
-            self._session = botocore.session.Session()
+            self._session = botocore.session.get_session()
 
         # Setup custom user-agent string if it isn't already customized
         if self._session.user_agent_name == 'Botocore':
@@ -71,7 +71,8 @@ class Session(object):
         if region_name is not None:
             self._session.set_config_variable('region', region_name)
 
-        self.resource_factory = ResourceFactory()
+        self.resource_factory = ResourceFactory(
+            self._session.get_component('event_emitter'))
         self._setup_loader()
         self._register_default_handlers()
 
