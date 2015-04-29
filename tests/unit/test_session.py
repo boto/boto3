@@ -20,25 +20,6 @@ from boto3.session import Session
 from tests import mock, BaseTestCase
 
 
-def test_create_all_resources():
-    """
-    This generator yields test functions for each available
-    resource via its service name. Individual tests can fail
-    indepdendently to let you know which services are not
-    working and why.
-    """
-    session = Session(aws_access_key_id='dummy',
-                      aws_secret_access_key='dummy',
-                      region_name='us-east-1')
-    for service_name in session.get_available_resources():
-        yield _test_create_resource, session, service_name
-
-
-def _test_create_resource(session, service_name):
-    # Instantiate a resource and make sure no exceptions are thrown.
-    session.resource(service_name)
-
-
 class TestSession(BaseTestCase):
     def test_repr(self):
         bc_session = self.bc_session_cls.return_value
