@@ -820,3 +820,6 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         actual_class_attrs = sorted(call_args[1]['class_attributes'])
         self.assertEqual(actual_class_attrs,
                          ['Message', 'PriorityQueue', 'QueueObject', 'meta'])
+
+        base_classes = sorted(call_args[1]['base_classes'])
+        self.assertEqual(base_classes, [ServiceResource])
