@@ -13,6 +13,7 @@
 
 from botocore import loaders
 from botocore.exceptions import DataNotFoundError
+from botocore.client import Config
 
 from boto3 import __version__
 from boto3.exceptions import NoVersionFound
@@ -151,7 +152,8 @@ class TestSession(BaseTestCase):
         bc_session.create_client.assert_called_with(
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=None, region_name='us-west-2', api_version=None)
+            verify=None, region_name='us-west-2', api_version=None,
+            config=None)
 
     def test_create_resource_with_args(self):
         mock_bc_session = mock.Mock()
@@ -168,7 +170,10 @@ class TestSession(BaseTestCase):
         session.client.assert_called_with(
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=False, region_name=None, api_version='2014-11-02')
+            verify=False, region_name=None, api_version='2014-11-02',
+            config=mock.ANY)
+        client_config = session.client.call_args[1]['config']
+        self.assertEqual(client_config.user_agent_extra, 'Resource')
 
     def test_create_resource_latest_version(self):
         mock_bc_session = mock.Mock()
