@@ -10,20 +10,21 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-
 from botocore.model import DenormalizedStructureBuilder, ServiceModel
+from tests import BaseTestCase, mock
+
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.action import WaiterAction
-from tests import BaseTestCase, mock
 
 
 class BaseTestResourceFactory(BaseTestCase):
     def setUp(self):
         super(BaseTestResourceFactory, self).setUp()
-        self.factory = ResourceFactory()
+        self.emitter = mock.Mock()
+        self.factory = ResourceFactory(self.emitter)
         self.load = self.factory.load_from_definition
 
 
@@ -807,3 +808,15 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         self.assertNotIn('PriorityQueue', dir(message))
         self.assertNotIn('Queue', dir(message))
         self.assertNotIn('Message', dir(message))
+
+    def test_event_emitted_when_class_created(self):
+        self.load('test', 'test', self.model, self.defs, None)
+        self.assertTrue(self.emitter.emit.called)
+        call_args = self.emitter.emit.call_args
+        # Verify the correct event name emitted.
+        self.assertEqual(call_args[0][0], 'creating-resource-class.test')
+
+        # Verify we send out the class attributes dict.
+        actual_class_attrs = sorted(call_args[1]['class_attributes'])
+        self.assertEqual(actual_class_attrs,
+                         ['Message', 'PriorityQueue', 'QueueObject', 'meta'])
