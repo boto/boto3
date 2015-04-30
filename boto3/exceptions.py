@@ -38,7 +38,7 @@ class DynanmoDBOperationNotSupportedError(Exception):
     def __init__(self, operation, value):
         msg = (
             '%s operation cannot be applied to value %s of type %s directly. '
-            'Must use AttributeBase object methods (i.e. A().eq()). to '
+            'Must use AttributeBase object methods (i.e. Attr().eq()). to '
             'generate ConditionBase instances first.' %
             (operation, value, type(value)))
         Exception.__init__(self, msg)
@@ -49,7 +49,7 @@ class DynamoDBNeedsConditionError(Exception):
     def __init__(self, value):
         msg = (
             'Expecting a ConditionBase object. Got %s of type %s. '
-            'Use AttributeBase object methods (i.e. A().eq()). to '
+            'Use AttributeBase object methods (i.e. Attr().eq()). to '
             'generate ConditionBase instances.' % (value, type(value)))
         Exception.__init__(self, msg)
 

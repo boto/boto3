@@ -128,7 +128,7 @@ class AttributeBase(object):
 class ConditionAttributeBase(ConditionBase, AttributeBase):
     """This base class is for conditions that can have attribute methods.
 
-    One example is the SIZE condition. To complete a condition, you need
+    One example is the Size condition. To complete a condition, you need
     to apply another AttributeBase method like eq().
     """
     def __init__(self, *values):
@@ -221,11 +221,11 @@ class Not(ConditionBase):
     expression_format = '({operator} {0})'
 
 
-class K(AttributeBase):
+class Key(AttributeBase):
     pass
 
 
-class A(AttributeBase):
+class Attr(AttributeBase):
     """Represents an DynamoDB item's attribute."""
     def ne(self, value):
         """Creates a condtion where the attribute is not equal to the value
@@ -348,11 +348,11 @@ class ConditionExpressionBuilder(object):
         # So we check if it is an attribute and add placeholders for
         # its name
         elif isinstance(value, AttributeBase):
-            if is_key_condition and not isinstance(value, K):
+            if is_key_condition and not isinstance(value, Key):
                 raise DynamoDBNeedsKeyConditionError(
                     'Attribute object %s is of type %s. '
                     'KeyConditionExpression only supports Attribute objects '
-                    'of type K' % (value.name, type(value)))
+                    'of type Key' % (value.name, type(value)))
             return self._build_name_placeholder(
                 value, attribute_name_placeholders)
         # If it is anything else, we treat it as a value and thus placeholders
