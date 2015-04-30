@@ -33,15 +33,15 @@ class ConditionBase(object):
     def __and__(self, other):
         if not isinstance(other, ConditionBase):
             raise DynanmoDBOperationNotSupportedError('AND', other)
-        return AND(self, other)
+        return And(self, other)
 
     def __or__(self, other):
         if not isinstance(other, ConditionBase):
             raise DynanmoDBOperationNotSupportedError('OR', other)
-        return OR(self, other)
+        return Or(self, other)
 
     def __invert__(self):
-        return NOT(self)
+        return Not(self)
 
     def get_expression(self):
         return {'format': self.expression_format,
@@ -76,14 +76,14 @@ class AttributeBase(object):
 
         :param value: The value that the attribute is equal to.
         """
-        return EQ(self, value)
+        return Equals(self, value)
 
     def lt(self, value):
         """Creates a condtion where the attribute is less than the value.
 
         :param value: The value that the attribute is less than.
         """
-        return LT(self, value)
+        return LessThan(self, value)
 
     def lte(self, value):
         """Creates a condtion where the attribute is less than or equal to the
@@ -91,14 +91,14 @@ class AttributeBase(object):
 
         :param value: The value that the attribute is less than or equal to.
         """
-        return LTE(self, value)
+        return LessThanEquals(self, value)
 
     def gt(self, value):
         """Creates a condtion where the attribute is greater than the value.
 
         :param value: The value that the attribute is greater than.
         """
-        return GT(self, value)
+        return GreaterThan(self, value)
 
     def gte(self, value):
         """Creates a condtion where the attribute is greater than or equal to
@@ -106,14 +106,14 @@ class AttributeBase(object):
 
         :param value: The value that the attribute is greater than or equal to.
         """
-        return GTE(self, value)
+        return GreaterThanEquals(self, value)
 
     def begins_with(self, value):
         """Creates a condtion where the attribute begins with the value.
 
         :param value: The value that the attribute begins with.
         """
-        return BEG(self, value)
+        return BeginsWith(self, value)
 
     def between(self, low_value, high_value):
         """Creates a condtion where the attribute is between the low value and
@@ -122,7 +122,7 @@ class AttributeBase(object):
         :param low_value: The value that the attribute is greater than.
         :param high_value: The value that the attribute is less than.
         """
-        return BET(self, low_value, high_value)
+        return Between(self, low_value, high_value)
 
 
 class ConditionAttributeBase(ConditionBase, AttributeBase):
@@ -142,81 +142,81 @@ class ComparisonCondition(ConditionBase):
     expression_format = '{0} {operator} {1}'
 
 
-class EQ(ComparisonCondition):
+class Equals(ComparisonCondition):
     expression_operator = '='
 
 
-class NE(ComparisonCondition):
+class NotEquals(ComparisonCondition):
     expression_operator = '<>'
 
 
-class LT(ComparisonCondition):
+class LessThan(ComparisonCondition):
     expression_operator = '<'
 
 
-class LTE(ComparisonCondition):
+class LessThanEquals(ComparisonCondition):
     expression_operator = '<='
 
 
-class GT(ComparisonCondition):
+class GreaterThan(ComparisonCondition):
     expression_operator = '>'
 
 
-class GTE(ComparisonCondition):
+class GreaterThanEquals(ComparisonCondition):
     expression_operator = '>='
 
 
-class IN(ComparisonCondition):
+class In(ComparisonCondition):
     expression_operator = 'IN'
     has_grouped_values = True
 
 
-class BET(ConditionBase):
+class Between(ConditionBase):
     expression_operator = 'BETWEEN'
     expression_format = '{0} {operator} {1} AND {2}'
 
 
-class BEG(ConditionBase):
+class BeginsWith(ConditionBase):
     expression_operator = 'begins_with'
     expression_format = '{operator}({0}, {1})'
 
 
-class CONT(ConditionBase):
+class Contains(ConditionBase):
     expression_operator = 'contains'
     expression_format = '{operator}({0}, {1})'
 
 
-class SIZE(ConditionAttributeBase):
+class Size(ConditionAttributeBase):
     expression_operator = 'size'
     expression_format = '{operator}({0})'
 
 
-class AT(ConditionBase):
+class AttributeType(ConditionBase):
     expression_operator = 'attribute_type'
     expression_format = '{operator}({0}, {1})'
 
 
-class AE(ConditionBase):
+class AttributeExists(ConditionBase):
     expression_operator = 'attribute_exists'
     expression_format = '{operator}({0})'
 
 
-class ANE(ConditionBase):
+class AttributeNotExists(ConditionBase):
     expression_operator = 'attribute_not_exists'
     expression_format = '{operator}({0})'
 
 
-class AND(ConditionBase):
+class And(ConditionBase):
     expression_operator = 'AND'
     expression_format = '({0} {operator} {1})'
 
 
-class OR(ConditionBase):
+class Or(ConditionBase):
     expression_operator = 'OR'
     expression_format = '({0} {operator} {1})'
 
 
-class NOT(ConditionBase):
+class Not(ConditionBase):
     expression_operator = 'NOT'
     expression_format = '({operator} {0})'
 
@@ -232,7 +232,7 @@ class A(AttributeBase):
 
         :param value: The value that the attribute is not equal to.
         """
-        return NE(self, value)
+        return NotEquals(self, value)
 
     def is_in(self, value):
         """Creates a condtion where the attribute is in the value,
@@ -240,22 +240,22 @@ class A(AttributeBase):
         :type value: list
         :param value: The value that the attribute is in.
         """
-        return IN(self, value)
+        return In(self, value)
 
     def exists(self):
         """Creates a condtion where the attribute exists."""
-        return AE(self)
+        return AttributeExists(self)
 
     def not_exists(self):
         """Creates a condtion where the attribute does not exist."""
-        return ANE(self)
+        return AttributeNotExists(self)
 
     def contains(self, value):
         """Creates a condition where the attribute contains the value.
 
         :param value: The value the attribute contains.
         """
-        return CONT(self, value)
+        return Contains(self, value)
 
     def size(self):
         """Creates a condition for the attribute size.
@@ -263,14 +263,14 @@ class A(AttributeBase):
         Note another AttributeBase method must be called on the returned
         size condition to be a valid DynamoDB condition.
         """
-        return SIZE(self)
+        return Size(self)
 
     def attribute_type(self, value):
         """Creates a condition for the attribute type.
 
         :param value: The type of the attribute.
         """
-        return AT(self, value)
+        return AttributeType(self, value)
 
 
 class ConditionExpressionBuilder(object):

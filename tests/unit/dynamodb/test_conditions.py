@@ -16,9 +16,12 @@ from boto3.exceptions import DynanmoDBOperationNotSupportedError
 from boto3.exceptions import DynamoDBNeedsConditionError
 from boto3.exceptions import DynamoDBNeedsKeyConditionError
 from boto3.dynamodb.conditions import A, K
-from boto3.dynamodb.conditions import AND, OR, NOT, EQ, LT, LTE, GT, GTE
-from boto3.dynamodb.conditions import BEG, BET, NE, IN, AE, ANE, CONT
-from boto3.dynamodb.conditions import SIZE, AT
+from boto3.dynamodb.conditions import And, Or, Not, Equals, LessThan
+from boto3.dynamodb.conditions import LessThanEquals, GreaterThan
+from boto3.dynamodb.conditions import GreaterThanEquals, BeginsWith, Between
+from boto3.dynamodb.conditions import NotEquals, In, AttributeExists
+from boto3.dynamodb.conditions import AttributeNotExists, Contains, Size
+from boto3.dynamodb.conditions import AttributeType
 from boto3.dynamodb.conditions import ConditionExpressionBuilder
 
 
@@ -45,27 +48,33 @@ class TestK(unittest.TestCase):
             ~self.attr
 
     def test_eq(self):
-        self.assertEqual(self.attr.eq(self.value), EQ(self.attr, self.value))
+        self.assertEqual(
+            self.attr.eq(self.value), Equals(self.attr, self.value))
 
     def test_lt(self):
-        self.assertEqual(self.attr.lt(self.value), LT(self.attr, self.value))
+        self.assertEqual(
+            self.attr.lt(self.value), LessThan(self.attr, self.value))
 
     def test_lte(self):
-        self.assertEqual(self.attr.lte(self.value), LTE(self.attr, self.value))
+        self.assertEqual(
+            self.attr.lte(self.value), LessThanEquals(self.attr, self.value))
 
     def test_gt(self):
-        self.assertEqual(self.attr.gt(self.value), GT(self.attr, self.value))
+        self.assertEqual(
+            self.attr.gt(self.value), GreaterThan(self.attr, self.value))
 
     def test_gte(self):
-        self.assertEqual(self.attr.gte(self.value), GTE(self.attr, self.value))
+        self.assertEqual(
+            self.attr.gte(self.value),
+            GreaterThanEquals(self.attr, self.value))
 
     def test_begins_with(self):
         self.assertEqual(self.attr.begins_with(self.value),
-                         BEG(self.attr, self.value))
+                         BeginsWith(self.attr, self.value))
 
     def test_between(self):
         self.assertEqual(self.attr.between(self.value, self.value2),
-                         BET(self.attr, self.value, self.value2))
+                         Between(self.attr, self.value, self.value2))
 
 
 class TestA(TestK):
@@ -76,28 +85,29 @@ class TestA(TestK):
         self.value2 = 'foo2'
 
     def test_ne(self):
-        self.assertEqual(self.attr.ne(self.value), NE(self.attr, self.value))
+        self.assertEqual(self.attr.ne(self.value),
+                         NotEquals(self.attr, self.value))
 
     def test_is_in(self):
         self.assertEqual(self.attr.is_in([self.value]),
-                         IN(self.attr, [self.value]))
+                         In(self.attr, [self.value]))
 
     def test_exists(self):
-        self.assertEqual(self.attr.exists(), AE(self.attr))
+        self.assertEqual(self.attr.exists(), AttributeExists(self.attr))
 
     def test_not_exists(self):
-        self.assertEqual(self.attr.not_exists(), ANE(self.attr))
+        self.assertEqual(self.attr.not_exists(), AttributeNotExists(self.attr))
 
     def test_contains(self):
         self.assertEqual(self.attr.contains(self.value),
-                         CONT(self.attr, self.value))
+                         Contains(self.attr, self.value))
 
     def test_size(self):
-        self.assertEqual(self.attr.size(), SIZE(self.attr))
+        self.assertEqual(self.attr.size(), Size(self.attr))
 
     def test_attribute_type(self):
         self.assertEqual(self.attr.attribute_type(self.value),
-                         AT(self.attr, self.value))
+                         AttributeType(self.attr, self.value))
 
 
 class TestConditions(unittest.TestCase):
@@ -115,83 +125,88 @@ class TestConditions(unittest.TestCase):
             self.assertEqual(value, values[i])
 
     def test_equal_operator(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = EQ(self.value, self.value2)
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
         self.assertTrue(cond1 == cond2)
 
     def test_equal_operator_type(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = NE(self.value, self.value2)
+        cond1 = Equals(self.value, self.value2)
+        cond2 = NotEquals(self.value, self.value2)
         self.assertFalse(cond1 == cond2)
 
     def test_equal_operator_value(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = EQ(self.value, self.value)
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value)
         self.assertFalse(cond1 == cond2)
 
     def test_not_equal_operator(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = NE(self.value, self.value)
+        cond1 = Equals(self.value, self.value2)
+        cond2 = NotEquals(self.value, self.value)
         self.assertTrue(cond1 != cond2)
 
     def test_and_operator(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = EQ(self.value, self.value2)
-        self.assertEqual(cond1 & cond2, AND(cond1, cond2))
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
+        self.assertEqual(cond1 & cond2, And(cond1, cond2))
 
     def test_and_operator_throws_excepetion(self):
-        cond1 = EQ(self.value, self.value2)
+        cond1 = Equals(self.value, self.value2)
         with self.assertRaisesRegexp(
                 DynanmoDBOperationNotSupportedError, 'AND'):
             cond1 & self.value2
 
     def test_or_operator(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = EQ(self.value, self.value2)
-        self.assertEqual(cond1 | cond2, OR(cond1, cond2))
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
+        self.assertEqual(cond1 | cond2, Or(cond1, cond2))
 
     def test_or_operator_throws_excepetion(self):
-        cond1 = EQ(self.value, self.value2)
+        cond1 = Equals(self.value, self.value2)
         with self.assertRaisesRegexp(
                 DynanmoDBOperationNotSupportedError, 'OR'):
             cond1 | self.value2
 
     def test_not_operator(self):
-        cond1 = EQ(self.value, self.value2)
-        self.assertEqual(~cond1, NOT(cond1))
+        cond1 = Equals(self.value, self.value2)
+        self.assertEqual(~cond1, Not(cond1))
 
     def test_eq(self):
         self.assert_expression_dict(
-            EQ(self.value, self.value2), exp_format='{0} {operator} {1}',
+            Equals(self.value, self.value2), exp_format='{0} {operator} {1}',
             exp_operator='=', values=[self.value, self.value2])
 
     def test_ne(self):
         self.assert_expression_dict(
-            NE(self.value, self.value2), exp_format='{0} {operator} {1}',
+            NotEquals(self.value, self.value2),
+            exp_format='{0} {operator} {1}',
             exp_operator='<>', values=[self.value, self.value2])
 
     def test_lt(self):
         self.assert_expression_dict(
-            LT(self.value, self.value2), exp_format='{0} {operator} {1}',
+            LessThan(self.value, self.value2),
+            exp_format='{0} {operator} {1}',
             exp_operator='<', values=[self.value, self.value2])
 
     def test_lte(self):
         self.assert_expression_dict(
-            LTE(self.value, self.value2), exp_format='{0} {operator} {1}',
+            LessThanEquals(self.value, self.value2),
+            exp_format='{0} {operator} {1}',
             exp_operator='<=', values=[self.value, self.value2])
 
     def test_gt(self):
         self.assert_expression_dict(
-            GT(self.value, self.value2), exp_format='{0} {operator} {1}',
+            GreaterThan(self.value, self.value2),
+            exp_format='{0} {operator} {1}',
             exp_operator='>', values=[self.value, self.value2])
 
     def test_gte(self):
         self.assert_expression_dict(
-            GTE(self.value, self.value2), exp_format='{0} {operator} {1}',
+            GreaterThanEquals(self.value, self.value2),
+            exp_format='{0} {operator} {1}',
             exp_operator='>=', values=[self.value, self.value2])
 
     def test_in(self):
-        cond = IN(self.value, (self.value2))
+        cond = In(self.value, (self.value2))
         self.assert_expression_dict(
             cond, exp_format='{0} {operator} {1}',
             exp_operator='IN', values=[self.value, (self.value2)])
@@ -199,73 +214,75 @@ class TestConditions(unittest.TestCase):
 
     def test_bet(self):
         self.assert_expression_dict(
-            BET(self.value, self.value2, 'foo2'),
+            Between(self.value, self.value2, 'foo2'),
             exp_format='{0} {operator} {1} AND {2}',
             exp_operator='BETWEEN', values=[self.value, self.value2, 'foo2'])
 
     def test_beg(self):
         self.assert_expression_dict(
-            BEG(self.value, self.value2),
+            BeginsWith(self.value, self.value2),
             exp_format='{operator}({0}, {1})',
             exp_operator='begins_with', values=[self.value, self.value2])
 
     def test_cont(self):
         self.assert_expression_dict(
-            CONT(self.value, self.value2), exp_format='{operator}({0}, {1})',
+            Contains(self.value, self.value2),
+            exp_format='{operator}({0}, {1})',
             exp_operator='contains', values=[self.value, self.value2])
 
     def test_ae(self):
         self.assert_expression_dict(
-            AE(self.value), exp_format='{operator}({0})',
+            AttributeExists(self.value), exp_format='{operator}({0})',
             exp_operator='attribute_exists', values=[self.value])
 
     def test_ane(self):
         self.assert_expression_dict(
-            ANE(self.value), exp_format='{operator}({0})',
+            AttributeNotExists(self.value), exp_format='{operator}({0})',
             exp_operator='attribute_not_exists', values=[self.value])
 
     def test_size(self):
         self.assert_expression_dict(
-            SIZE(self.value), exp_format='{operator}({0})',
+            Size(self.value), exp_format='{operator}({0})',
             exp_operator='size', values=[self.value])
 
     def test_size_can_use_attr_methods(self):
-        size = SIZE(self.value)
+        size = Size(self.value)
         self.assert_expression_dict(
             size.eq(self.value), exp_format='{0} {operator} {1}',
             exp_operator='=', values=[size, self.value])
 
     def test_size_can_use_and(self):
-        size = SIZE(self.value)
-        ae = AE(self.value)
+        size = Size(self.value)
+        ae = AttributeExists(self.value)
         self.assert_expression_dict(
             size & ae, exp_format='({0} {operator} {1})',
             exp_operator='AND', values=[size, ae])
 
     def test_attribute_type(self):
         self.assert_expression_dict(
-            AT(self.value, self.value2), exp_format='{operator}({0}, {1})',
+            AttributeType(self.value, self.value2),
+            exp_format='{operator}({0}, {1})',
             exp_operator='attribute_type', values=[self.value, self.value2])
 
     def test_and(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = EQ(self.value, self.value2)
-        and_cond = AND(cond1, cond2)
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
+        and_cond = And(cond1, cond2)
         self.assert_expression_dict(
             and_cond, exp_format='({0} {operator} {1})',
             exp_operator='AND', values=[cond1, cond2])
 
     def test_or(self):
-        cond1 = EQ(self.value, self.value2)
-        cond2 = EQ(self.value, self.value2)
-        or_cond = OR(cond1, cond2)
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
+        or_cond = Or(cond1, cond2)
         self.assert_expression_dict(
             or_cond, exp_format='({0} {operator} {1})',
             exp_operator='OR', values=[cond1, cond2])
 
     def test_not(self):
-        cond = EQ(self.value, self.value2)
-        not_cond = NOT(cond)
+        cond = Equals(self.value, self.value2)
+        not_cond = Not(cond)
         self.assert_expression_dict(
             not_cond, exp_format='({operator} {0})',
             exp_operator='NOT', values=[cond])
