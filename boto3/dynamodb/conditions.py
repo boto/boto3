@@ -367,15 +367,7 @@ class ConditionExpressionBuilder(object):
         attribute_name_parts = ATTR_NAME_REGEX.findall(attribute_name)
 
         # Add a temporary placeholder for each of these parts.
-        # We need to create a new method because 2.6 does not support {}
-        # style of string format.
-        def create_format_arg(matching_object_list, matching_object):
-            length_of_list = len(matching_object_list)
-            matching_object_list.append(matching_object)
-            return '{%s}' % length_of_list
-        sub_function = functools.partial(create_format_arg, [])
-
-        placeholder_format = ATTR_NAME_REGEX.sub(sub_function, attribute_name)
+        placeholder_format = ATTR_NAME_REGEX.sub('%s', attribute_name)
         str_format_args = []
         for part in attribute_name_parts:
             name_placeholder = self._get_name_placeholder()
@@ -384,7 +376,7 @@ class ConditionExpressionBuilder(object):
             # Add the placeholder and value to dictionary of name placeholders.
             attribute_name_placeholders[name_placeholder] = part
         # Replace the temporary placeholders with the designated placeholders.
-        return placeholder_format.format(*str_format_args)
+        return placeholder_format % tuple(str_format_args)
 
     def _build_value_placeholder(self, value, attribute_value_placeholders,
                                  has_grouped_values=False):
