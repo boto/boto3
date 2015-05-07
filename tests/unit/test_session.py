@@ -11,28 +11,13 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from botocore import loaders
+from botocore.exceptions import DataNotFoundError
+
 from boto3 import __version__
 from boto3.exceptions import NoVersionFound
 from boto3.session import Session
 from tests import mock, BaseTestCase
-
-
-def test_create_all_resources():
-    """
-    This generator yields test functions for each available
-    resource via its service name. Individual tests can fail
-    indepdendently to let you know which services are not
-    working and why.
-    """
-    session = Session(aws_access_key_id='dummy',
-                      aws_secret_access_key='dummy',
-                      region_name='us-east-1')
-    for service_name in session.get_available_resources():
-        yield _test_create_resource, session, service_name
-
-def _test_create_resource(session, service_name):
-    # Instantiate a resource and make sure no exceptions are thrown.
-    session.resource(service_name)
 
 
 class TestSession(BaseTestCase):
@@ -140,16 +125,15 @@ class TestSession(BaseTestCase):
         self.assertTrue(bc_session.get_available_services.called,
             'Botocore session get_available_services not called')
 
-    @mock.patch('os.path.isdir', return_value=True)
-    @mock.patch('os.path.exists', return_value=True)
-    @mock.patch('os.listdir', return_value=[
-        'sqs-2012-11-05.resources.json', 's3-2006-03-01.resources.json'])
-    def test_get_available_resources(self, list_mock, exist_mock, dir_mock):
-        session = Session()
-        self.loader.get_search_paths.return_value = ['search-path']
+    def test_get_available_resources(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.list_available_services.return_value = ['foo', 'bar']
+        mock_bc_session.get_component.return_value = loader
+        session = Session(botocore_session=mock_bc_session)
 
         names = session.get_available_resources()
-        self.assertEqual(sorted(names), ['s3', 'sqs'])
+        self.assertEqual(names, ['foo', 'bar'])
 
     def test_create_client(self):
         session = Session(region_name='us-east-1')
@@ -169,96 +153,44 @@ class TestSession(BaseTestCase):
             endpoint_url=None, use_ssl=True, aws_session_token=None,
             verify=None, region_name='us-west-2', api_version=None)
 
-    @mock.patch('os.path.isdir', return_value=True)
-    @mock.patch('os.path.exists', return_value=True)
-    @mock.patch('os.listdir', return_value=['sqs-2012-11-05.resources.json'])
-    def test_create_resource(self, list_mock, exist_mock, dir_mock):
-        session = Session()
-        session.client = mock.Mock()
-        load_mock = mock.Mock()
-        session.resource_factory.load_from_definition = load_mock
-        cls = load_mock.return_value
-
-        self.loader.get_search_paths.return_value = ['search-path']
-
-        sqs = session.resource('sqs', verify=False)
-
-        self.assertTrue(session.client.called,
-            'No low-level client was created')
-        self.assertTrue(load_mock.called,
-            'Resource factory did not look up class')
-        self.assertTrue(cls.called,
-            'Resource instance was not created')
-        self.assertEqual(sqs, cls.return_value,
-            'Returned instance is not an instance of the looked up resource '
-            'class from the factory')
-
-    @mock.patch('os.path.isdir', return_value=True)
-    @mock.patch('os.path.exists', return_value=True)
-    @mock.patch('os.listdir', return_value=['sqs-2012-11-05.resources.json'])
-    def test_create_resource_with_args(self, list_mock, exist_mock, dir_mock):
-        session = Session()
-        session.client = mock.Mock()
+    def test_create_resource_with_args(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.determine_latest_version.return_value = '2014-11-02'
+        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        mock_bc_session.get_component.return_value = loader
+        session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
-
-        self.loader.get_search_paths.return_value = ['search-path']
+        session.client = mock.Mock()
 
         session.resource('sqs', verify=False)
 
         session.client.assert_called_with(
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=False, region_name=None, api_version=None)
+            verify=False, region_name=None, api_version='2014-11-02')
 
-    @mock.patch('os.path.isdir', return_value=True)
-    @mock.patch('os.path.exists', return_value=True)
-    @mock.patch('os.listdir',
-                return_value=['sqs-2012-11-05.resources.json',
-                              'sqs-2013-11-05.resources.json',
-                              'sqs-2014-11-05.resources.json'])
-    def test_create_resource_latest_version(self, list_mock, exist_mock,
-                                            dir_mock):
-        session = Session()
-        session.client = mock.Mock()
-        load_mock = mock.Mock()
-        session.resource_factory.load_from_definition = load_mock
-
-        self.loader.get_search_paths.return_value = ['search-path']
+    def test_create_resource_latest_version(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.determine_latest_version.return_value = '2014-11-02'
+        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        mock_bc_session.get_component.return_value = loader
+        session = Session(botocore_session=mock_bc_session)
+        session.resource_factory.load_from_definition = mock.Mock()
 
         session.resource('sqs')
 
-        self.loader.load_data.assert_called_with('sqs-2014-11-05.resources')
+        loader.load_service_model.assert_called_with(
+            'sqs', 'resources-1', '2014-11-02')
 
-    @mock.patch('os.path.isdir', return_value=True)
-    @mock.patch('os.path.exists', return_value=True)
-    @mock.patch('os.listdir', return_value=['s3-2006-03-01.resources.json'])
-    def test_bad_resource_name(self, list_mock, exist_mock, dir_mock):
-        session = Session()
-        session.client = mock.Mock()
-        load_mock = mock.Mock()
-        session.resource_factory.load_from_definition = load_mock
+    def test_bad_resource_name(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.determine_latest_version.side_effect = DataNotFoundError(
+            data_path='foo')
+        mock_bc_session.get_component.return_value = loader
 
-        self.loader.get_search_paths.return_value = ['search-path']
-
-        with self.assertRaises(NoVersionFound):
-            # S3 is defined but not SQS!
-            session.resource('sqs')
-
-    # We make ``isdir`` return ``False``, then ``True`` because we
-    # want the first path to be a file, and the second a directory.
-    # This allows us to test both code paths while searching for
-    # a value, otherwise the ``exists`` check is never performed.
-    @mock.patch('os.path.isdir', side_effect=[False, True])
-    @mock.patch('os.path.exists', return_value=False)
-    def test_no_search_path_resources(self, exist_mock, dir_mock):
-        session = Session()
-        session.client = mock.Mock()
-        load_mock = mock.Mock()
-        session.resource_factory.load_from_definition = load_mock
-
-        self.loader.get_search_paths.return_value = [
-            'search-path1', 'search-path2']
-
-        with self.assertRaises(NoVersionFound):
-            # No resources are defined anywhere
+        session = Session(botocore_session=mock_bc_session)
+        with self.assertRaises(DataNotFoundError):
             session.resource('sqs')

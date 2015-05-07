@@ -15,6 +15,8 @@ import random
 import sys
 import time
 
+from botocore.compat import six
+
 
 # The unittest module got a significant overhaul
 # in 2.7, so if we're in 2.6 we can use the backported
@@ -30,6 +32,14 @@ if sys.version_info[0] == 2:
     import mock
 else:
     from unittest import mock
+
+
+# In python 3, order matters when calling assertEqual to
+# compare lists and dictionaries with lists. Therefore,
+# assertItemsEqual needs to be used but it is renamed to
+# assertCountEqual in python 3.
+if six.PY2:
+    unittest.TestCase.assertCountEqual = unittest.TestCase.assertItemsEqual
 
 
 def unique_id(name):

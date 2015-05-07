@@ -297,7 +297,7 @@ class TestResourceHandler(BaseTestCase):
     def setUp(self):
         super(TestResourceHandler, self).setUp()
         self.identifier_path = ''
-        self.factory = ResourceFactory()
+        self.factory = ResourceFactory(mock.Mock())
         self.resource_defs = {
             'Frob': {
                 'shape': 'Frob',

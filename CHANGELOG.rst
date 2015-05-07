@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.0.17 - 2015-05-07
+-------------------
+
+* feature:Botocore: Update to Botocore 0.107.0.
+
+  * Adopt new data structure model.
+
 0.0.16 - 2015-04-20
 -------------------
 

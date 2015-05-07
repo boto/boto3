@@ -34,8 +34,9 @@ class ResourceFactory(object):
     SQS resource) and another on models contained within the service (e.g. an
     SQS Queue resource).
     """
-    def __init__(self):
+    def __init__(self, emitter):
         self._collection_factory = CollectionFactory()
+        self._emitter = emitter
 
     def load_from_definition(self, service_name, resource_name, model,
                              resource_defs, service_model):
@@ -92,7 +93,12 @@ class ResourceFactory(object):
         if service_name != resource_name:
             cls_name = service_name + '.' + cls_name
 
-        return type(str(cls_name), (ServiceResource,), attrs)
+        base_classes = [ServiceResource]
+        if self._emitter is not None:
+            self._emitter.emit('creating-resource-class.%s' % cls_name,
+                               class_attributes=attrs,
+                               base_classes=base_classes)
+        return type(str(cls_name), tuple(base_classes), attrs)
 
     def _load_identifiers(self, attrs, meta, model):
         """

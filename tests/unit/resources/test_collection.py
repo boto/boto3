@@ -28,7 +28,7 @@ class TestCollectionFactory(BaseTestCase):
         self.client.can_paginate.return_value = False
         self.parent = mock.Mock()
         self.parent.meta = ResourceMeta('test', client=self.client)
-        self.resource_factory = ResourceFactory()
+        self.resource_factory = ResourceFactory(mock.Mock())
         self.service_model = ServiceModel({})
 
         self.factory = CollectionFactory()
@@ -128,9 +128,9 @@ class TestResourceCollection(BaseTestCase):
         self.client.can_paginate.return_value = False
         self.parent = mock.Mock()
         self.parent.meta = ResourceMeta('test', client=self.client)
-        self.factory = ResourceFactory()
+        self.factory = ResourceFactory(mock.Mock())
         self.service_model = ServiceModel({})
-   
+
     def get_collection(self):
         resource_defs = {
             'Frob': {
