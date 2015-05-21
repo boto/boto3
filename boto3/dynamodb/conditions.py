@@ -10,6 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+from collections import namedtuple
 import functools
 import re
 
@@ -273,6 +274,13 @@ class Attr(AttributeBase):
         return AttributeType(self, value)
 
 
+BuiltConditionExpression = namedtuple(
+    'BuiltConditionExpression',
+    ['condition_expression', 'attribute_name_placeholders',
+     'attribute_value_placeholders']
+)
+
+
 class ConditionExpressionBuilder(object):
     """This class is used to build condition expressions with placeholders"""
     def __init__(self):
@@ -313,9 +321,10 @@ class ConditionExpressionBuilder(object):
         condition_expression = self._build_expression(
             condition, attribute_name_placeholders,
             attribute_value_placeholders, is_key_condition=is_key_condition)
-        return (
-            condition_expression, attribute_name_placeholders,
-            attribute_value_placeholders
+        return BuiltConditionExpression(
+            condition_expression=condition_expression,
+            attribute_name_placeholders=attribute_name_placeholders,
+            attribute_value_placeholders=attribute_value_placeholders
         )
 
     def _build_expression(self, condition, attribute_name_placeholders,
