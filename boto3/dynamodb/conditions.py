@@ -295,6 +295,11 @@ class ConditionExpressionBuilder(object):
     def _get_value_placeholder(self):
         return ':' + self._value_placeholder + str(self._value_count)
 
+    def reset(self):
+        """Resets the placeholder name and values"""
+        self._name_count = 0
+        self._value_count = 0
+
     def build_expression(self, condition, is_key_condition=False):
         """Builds the condition expression and the dictionary of placeholders.
 

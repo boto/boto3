@@ -319,6 +319,18 @@ class TestConditionExpressionBuilder(unittest.TestCase):
         self.assert_condition_expression_build(
             a.eq('foo'), '#n0 = :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
 
+    def test_reset(self):
+        a = Attr('myattr')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0 = :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n1 = :v1', {'#n1': 'myattr'}, {':v1': 'foo'})
+
+        self.builder.reset()
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0 = :v0', {'#n0': 'myattr'}, {':v0': 'foo'})
+
     def test_build_expression_lt(self):
         a = Attr('myattr')
         self.assert_condition_expression_build(
