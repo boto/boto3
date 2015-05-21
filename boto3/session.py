@@ -14,6 +14,7 @@
 import os
 
 import botocore.session
+from botocore.client import Config
 
 import boto3
 import boto3.utils
@@ -118,7 +119,7 @@ class Session(object):
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
-               aws_session_token=None):
+               aws_session_token=None, config=None):
         """
         Create a low-level service client by name.
 
@@ -174,14 +175,21 @@ class Session(object):
         :param aws_session_token: The session token to use when creating
             the client.  Same semantics as aws_access_key_id above.
 
+        :type config: botocore.client.Config
+        :param config: Advanced client configuration options. If region_name
+            is specified in the client config, its value will take precedence
+            over environment variables and configuration values, but not over
+            a region_name value passed explicitly to the method.
+
         :return: Service client instance
+
         """
         return self._session.create_client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token)
+            aws_session_token=aws_session_token, config=config)
 
     def resource(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
@@ -253,12 +261,13 @@ class Session(object):
         # and service model, the resource version and resource JSON data.
         # We pass these to the factory and get back a class, which is
         # instantiated on top of the low-level client.
+        config = Config(user_agent_extra='Resource')
         client = self.client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token)
+            aws_session_token=aws_session_token, config=config)
         service_model = client.meta.service_model
         cls = self.resource_factory.load_from_definition(
             service_name, service_name, resource_model['service'],
