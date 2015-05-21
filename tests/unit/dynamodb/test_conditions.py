@@ -115,14 +115,10 @@ class TestConditions(unittest.TestCase):
         self.value = Attr('mykey')
         self.value2 = 'foo'
 
-    def assert_expression_dict(self, condition, exp_format,
-                               exp_operator, values):
+    def build_and_assert_expression(self, condition,
+                                    reference_expression_dict):
         expression_dict = condition.get_expression()
-        self.assertEqual(expression_dict['format'], exp_format)
-        self.assertEqual(expression_dict['operator'], exp_operator)
-        self.assertEqual(len(expression_dict['values']), len(values))
-        for i, value in enumerate(expression_dict['values']):
-            self.assertEqual(value, values[i])
+        self.assertDictEqual(expression_dict, reference_expression_dict)
 
     def test_equal_operator(self):
         cond1 = Equals(self.value, self.value2)
@@ -171,121 +167,133 @@ class TestConditions(unittest.TestCase):
         self.assertEqual(~cond1, Not(cond1))
 
     def test_eq(self):
-        self.assert_expression_dict(
-            Equals(self.value, self.value2), exp_format='{0} {operator} {1}',
-            exp_operator='=', values=[self.value, self.value2])
+        self.build_and_assert_expression(
+            Equals(self.value, self.value2),
+            {'format': '{0} {operator} {1}',
+             'operator': '=', 'values': (self.value, self.value2)})
 
     def test_ne(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             NotEquals(self.value, self.value2),
-            exp_format='{0} {operator} {1}',
-            exp_operator='<>', values=[self.value, self.value2])
+            {'format': '{0} {operator} {1}',
+             'operator': '<>', 'values': (self.value, self.value2)})
 
     def test_lt(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             LessThan(self.value, self.value2),
-            exp_format='{0} {operator} {1}',
-            exp_operator='<', values=[self.value, self.value2])
+            {'format': '{0} {operator} {1}',
+             'operator': '<', 'values': (self.value, self.value2)})
 
     def test_lte(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             LessThanEquals(self.value, self.value2),
-            exp_format='{0} {operator} {1}',
-            exp_operator='<=', values=[self.value, self.value2])
+            {'format': '{0} {operator} {1}',
+             'operator': '<=', 'values': (self.value, self.value2)})
 
     def test_gt(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             GreaterThan(self.value, self.value2),
-            exp_format='{0} {operator} {1}',
-            exp_operator='>', values=[self.value, self.value2])
+            {'format': '{0} {operator} {1}',
+             'operator': '>', 'values': (self.value, self.value2)})
 
     def test_gte(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             GreaterThanEquals(self.value, self.value2),
-            exp_format='{0} {operator} {1}',
-            exp_operator='>=', values=[self.value, self.value2])
+            {'format': '{0} {operator} {1}',
+             'operator': '>=', 'values': (self.value, self.value2)})
 
     def test_in(self):
         cond = In(self.value, (self.value2))
-        self.assert_expression_dict(
-            cond, exp_format='{0} {operator} {1}',
-            exp_operator='IN', values=[self.value, (self.value2)])
+        self.build_and_assert_expression(
+            cond,
+            {'format': '{0} {operator} {1}',
+             'operator': 'IN', 'values': (self.value, (self.value2))})
         self.assertTrue(cond.has_grouped_values)
 
     def test_bet(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             Between(self.value, self.value2, 'foo2'),
-            exp_format='{0} {operator} {1} AND {2}',
-            exp_operator='BETWEEN', values=[self.value, self.value2, 'foo2'])
+            {'format': '{0} {operator} {1} AND {2}',
+             'operator': 'BETWEEN',
+             'values': (self.value, self.value2, 'foo2')})
 
     def test_beg(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             BeginsWith(self.value, self.value2),
-            exp_format='{operator}({0}, {1})',
-            exp_operator='begins_with', values=[self.value, self.value2])
+            {'format': '{operator}({0}, {1})',
+             'operator': 'begins_with', 'values': (self.value, self.value2)})
 
     def test_cont(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             Contains(self.value, self.value2),
-            exp_format='{operator}({0}, {1})',
-            exp_operator='contains', values=[self.value, self.value2])
+            {'format': '{operator}({0}, {1})',
+             'operator': 'contains', 'values': (self.value, self.value2)})
 
     def test_ae(self):
-        self.assert_expression_dict(
-            AttributeExists(self.value), exp_format='{operator}({0})',
-            exp_operator='attribute_exists', values=[self.value])
+        self.build_and_assert_expression(
+            AttributeExists(self.value),
+            {'format': '{operator}({0})',
+             'operator': 'attribute_exists', 'values': (self.value,)})
 
     def test_ane(self):
-        self.assert_expression_dict(
-            AttributeNotExists(self.value), exp_format='{operator}({0})',
-            exp_operator='attribute_not_exists', values=[self.value])
+        self.build_and_assert_expression(
+            AttributeNotExists(self.value),
+            {'format': '{operator}({0})',
+             'operator': 'attribute_not_exists', 'values': (self.value,)})
 
     def test_size(self):
-        self.assert_expression_dict(
-            Size(self.value), exp_format='{operator}({0})',
-            exp_operator='size', values=[self.value])
+        self.build_and_assert_expression(
+            Size(self.value),
+            {'format': '{operator}({0})',
+             'operator': 'size', 'values': (self.value,)})
 
     def test_size_can_use_attr_methods(self):
         size = Size(self.value)
-        self.assert_expression_dict(
-            size.eq(self.value), exp_format='{0} {operator} {1}',
-            exp_operator='=', values=[size, self.value])
+        self.build_and_assert_expression(
+            size.eq(self.value),
+            {'format': '{0} {operator} {1}',
+             'operator': '=', 'values': (size, self.value)})
 
     def test_size_can_use_and(self):
         size = Size(self.value)
         ae = AttributeExists(self.value)
-        self.assert_expression_dict(
-            size & ae, exp_format='({0} {operator} {1})',
-            exp_operator='AND', values=[size, ae])
+        self.build_and_assert_expression(
+            size & ae,
+            {'format': '({0} {operator} {1})',
+             'operator': 'AND', 'values': (size, ae)})
 
     def test_attribute_type(self):
-        self.assert_expression_dict(
+        self.build_and_assert_expression(
             AttributeType(self.value, self.value2),
-            exp_format='{operator}({0}, {1})',
-            exp_operator='attribute_type', values=[self.value, self.value2])
+            {'format': '{operator}({0}, {1})',
+             'operator': 'attribute_type',
+             'values': (self.value, self.value2)})
 
     def test_and(self):
         cond1 = Equals(self.value, self.value2)
         cond2 = Equals(self.value, self.value2)
         and_cond = And(cond1, cond2)
-        self.assert_expression_dict(
-            and_cond, exp_format='({0} {operator} {1})',
-            exp_operator='AND', values=[cond1, cond2])
+        self.build_and_assert_expression(
+            and_cond,
+            {'format': '({0} {operator} {1})',
+             'operator': 'AND', 'values': (cond1, cond2)})
 
     def test_or(self):
         cond1 = Equals(self.value, self.value2)
         cond2 = Equals(self.value, self.value2)
         or_cond = Or(cond1, cond2)
-        self.assert_expression_dict(
-            or_cond, exp_format='({0} {operator} {1})',
-            exp_operator='OR', values=[cond1, cond2])
+        self.build_and_assert_expression(
+            or_cond,
+            {'format': '({0} {operator} {1})',
+             'operator': 'OR', 'values': (cond1, cond2)})
 
     def test_not(self):
         cond = Equals(self.value, self.value2)
         not_cond = Not(cond)
-        self.assert_expression_dict(
-            not_cond, exp_format='({operator} {0})',
-            exp_operator='NOT', values=[cond])
+        self.build_and_assert_expression(
+            not_cond,
+            {'format': '({operator} {0})',
+             'operator': 'NOT', 'values': (cond,)})
 
 
 class TestConditionExpressionBuilder(unittest.TestCase):
