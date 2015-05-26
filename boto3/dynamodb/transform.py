@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from collections import Mapping
+from collections import Mapping, MutableSequence
 
 from boto3.resources.base import ServiceResource
 from boto3.dynamodb.types import TypeSerializer, TypeDeserializer
@@ -215,7 +215,7 @@ class ParameterTransformer(object):
                     value_model, params[key], transformation, target_shape)
 
     def _transform_list(self, model, params, transformation, target_shape):
-        if not isinstance(params, list):
+        if not isinstance(params, MutableSequence):
             return
         member_model = model.member
         member_shape = member_model.name
