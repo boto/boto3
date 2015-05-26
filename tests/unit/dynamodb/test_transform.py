@@ -25,7 +25,7 @@ from boto3.dynamodb.conditions import Attr, Key
 
 class BaseTransformationTest(unittest.TestCase):
     def setUp(self):
-        self.target_shape_name = 'MyShape'
+        self.target_shape = 'MyShape'
         self.original_value = 'orginal'
         self.transformed_value = 'transformed'
         self.transformer = ParameterTransformer()
@@ -44,59 +44,14 @@ class BaseTransformationTest(unittest.TestCase):
                 }
             },
             'shapes': {
-                self.target_shape_name: {
-                    'type': 'string'
-                },
-                'List': {
-                    'type': 'list',
-                    'member': {'shape': self.target_shape_name}
-                },
-                'Map': {
-                    'type': 'map',
-                    'key': {'shape': 'Name'},
-                    'value': {'shape': self.target_shape_name}
-                },
-                'Structure': {
-                    'type': 'structure',
-                    'members': {
-                        'Member': {'shape': self.target_shape_name}
-                    }
-                },
                 'SampleOperationInputOutput': {
                     'type': 'structure',
-                    'members': {
-                        'Structure': {'shape': 'Structure'},
-                        'Map': {'shape': 'Map'},
-                        'List': {'shape': 'List'},
-                    }
+                    'members': {}
                 },
-                'Name': {
+                'String': {
                     'type': 'string'
                 }
             }
-        }
-
-        # Create a more complicated model to test the ability to recurse
-        # through a structure.
-        self.nested_json_model = copy.deepcopy(self.json_model)
-        shapes = self.nested_json_model['shapes']
-        shapes['SampleOperationInputOutput']['members'] = {
-            'Structure': {'shape': 'WrapperStructure'},
-            'Map': {'shape': 'WrapperMap'},
-            'List': {'shape': 'WrapperList'}
-        }
-        shapes['WrapperStructure'] = {
-            'type': 'structure',
-            'members': {'Structure': {'shape': 'Structure'}}
-        }
-        shapes['WrapperMap'] = {
-            'type': 'map',
-            'key': {'shape': 'Name'},
-            'value': {'shape': 'Map'}
-        }
-        shapes['WrapperList'] = {
-            'type': 'list',
-            'member': {'shape': 'List'}
         }
 
     def build_models(self):
@@ -106,157 +61,377 @@ class BaseTransformationTest(unittest.TestCase):
             self.service_model
         )
 
-        self.nested_service_model = ServiceModel(self.nested_json_model)
-        self.nested_operation_model = OperationModel(
-            self.nested_json_model['operations']['SampleOperation'],
-            self.nested_service_model
-        )
+    def add_input_shape(self, shape):
+        self.add_shape(shape)
+        params_shape = self.json_model['shapes']['SampleOperationInputOutput']
+        shape_name = list(shape.keys())[0]
+        params_shape['members'][shape_name] = {'shape': shape_name}
+
+    def add_shape(self, shape):
+        shape_name = list(shape.keys())[0]
+        self.json_model['shapes'][shape_name] = shape[shape_name]
 
 
 class TestInputOutputTransformer(BaseTransformationTest):
     def setUp(self):
         super(TestInputOutputTransformer, self).setUp()
         self.transformation = lambda params: self.transformed_value
+        self.add_shape({self.target_shape: {'type': 'string'}})
 
     def test_transform_structure(self):
         input_params = {
             'Structure': {
-                'Member': self.original_value
+                'TransformMe': self.original_value,
+                'LeaveAlone': self.original_value,
             }
         }
+        input_shape = {
+            'Structure': {
+                'type': 'structure',
+                'members': {
+                    'TransformMe': {'shape': self.target_shape},
+                    'LeaveAlone': {'shape': 'String'}
+                }
+            }
+        }
+
+        self.add_input_shape(input_shape)
         self.transformer.transform(
-            input_params, self.operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation,
+            target_shape=self.target_shape)
         self.assertEqual(
             input_params,
-            {'Structure': {'Member': self.transformed_value}}
+            {'Structure': {
+                'TransformMe': self.transformed_value,
+                'LeaveAlone': self.original_value}}
         )
 
     def test_transform_map(self):
         input_params = {
-            'Map': {
-                'foo': self.original_value
+            'TransformMe': {'foo': self.original_value},
+            'LeaveAlone': {'foo': self.original_value}
+        }
+
+        targeted_input_shape = {
+            'TransformMe': {
+                'type': 'map',
+                'key': {'shape': 'String'},
+                'value': {'shape': self.target_shape}
             }
         }
+
+        untargeted_input_shape = {
+            'LeaveAlone': {
+                'type': 'map',
+                'key': {'shape': 'String'},
+                'value': {'shape': 'String'}
+            }
+        }
+
+        self.add_input_shape(targeted_input_shape)
+        self.add_input_shape(untargeted_input_shape)
+
         self.transformer.transform(
-            input_params, self.operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation,
+            target_shape=self.target_shape)
         self.assertEqual(
             input_params,
-            {'Map': {'foo': self.transformed_value}}
+            {'TransformMe': {'foo': self.transformed_value},
+             'LeaveAlone': {'foo': self.original_value}}
         )
 
     def test_transform_list(self):
         input_params = {
-            'List': [
+            'TransformMe': [
+                self.original_value, self.original_value
+            ],
+            'LeaveAlone': [
                 self.original_value, self.original_value
             ]
         }
+
+        targeted_input_shape = {
+            'TransformMe': {
+                'type': 'list',
+                'member': {'shape': self.target_shape}
+            }
+        }
+
+        untargeted_input_shape = {
+            'LeaveAlone': {
+                'type': 'list',
+                'member': {'shape': 'String'}
+            }
+        }
+
+        self.add_input_shape(targeted_input_shape)
+        self.add_input_shape(untargeted_input_shape)
+
         self.transformer.transform(
-            input_params, self.operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation, target_shape=self.target_shape)
         self.assertEqual(
             input_params,
-            {'List': [self.transformed_value, self.transformed_value]}
+            {'TransformMe': [self.transformed_value, self.transformed_value],
+             'LeaveAlone': [self.original_value, self.original_value]}
         )
 
     def test_transform_nested_structure(self):
         input_params = {
-            'Structure': {
+            'WrapperStructure': {
                 'Structure': {
-                    'Member': self.original_value
+                    'TransformMe': self.original_value,
+                    'LeaveAlone': self.original_value
                 }
             }
         }
+
+        structure_shape = {
+            'Structure': {
+                'type': 'structure',
+                'members': {
+                    'TransformMe': {'shape': self.target_shape},
+                    'LeaveAlone': {'shape': 'String'}
+                }
+            }
+        }
+
+        input_shape = {
+            'WrapperStructure': {
+                'type': 'structure',
+                'members': {'Structure': {'shape': 'Structure'}}}
+        }
+        self.add_shape(structure_shape)
+        self.add_input_shape(input_shape)
+
         self.transformer.transform(
-            input_params, self.nested_operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation,
+            target_shape=self.target_shape)
         self.assertEqual(
             input_params,
-            {'Structure': {
-                'Structure': {'Member': self.transformed_value}}}
+            {'WrapperStructure': {
+                'Structure': {'TransformMe': self.transformed_value,
+                              'LeaveAlone': self.original_value}}}
         )
 
     def test_transform_nested_map(self):
         input_params = {
-            'Map': {
+            'TargetedWrapperMap': {
+                'foo': {
+                    'bar': self.original_value
+                }
+            },
+            'UntargetedWrapperMap': {
                 'foo': {
                     'bar': self.original_value
                 }
             }
+
         }
+
+        targeted_map_shape = {
+            'TransformMeMap': {
+                'type': 'map',
+                'key': {'shape': 'String'},
+                'value': {'shape': self.target_shape}
+            }
+        }
+
+        targeted_wrapper_shape = {
+            'TargetedWrapperMap': {
+                'type': 'map',
+                'key': {'shape': 'Name'},
+                'value': {'shape': 'TransformMeMap'}}
+        }
+
+        self.add_shape(targeted_map_shape)
+        self.add_input_shape(targeted_wrapper_shape)
+
+        untargeted_map_shape = {
+            'LeaveAloneMap': {
+                'type': 'map',
+                'key': {'shape': 'String'},
+                'value': {'shape': 'String'}
+            }
+        }
+
+        untargeted_wrapper_shape = {
+            'UntargetedWrapperMap': {
+                'type': 'map',
+                'key': {'shape': 'Name'},
+                'value': {'shape': 'LeaveAloneMap'}}
+        }
+
+        self.add_shape(untargeted_map_shape)
+        self.add_input_shape(untargeted_wrapper_shape)
+
         self.transformer.transform(
-            input_params, self.nested_operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation, target_shape=self.target_shape)
         self.assertEqual(
             input_params,
-            {'Map': {'foo': {'bar': self.transformed_value}}}
+            {'TargetedWrapperMap': {'foo': {'bar': self.transformed_value}},
+             'UntargetedWrapperMap': {'foo': {'bar': self.original_value}}}
         )
 
     def test_transform_nested_list(self):
         input_params = {
-            'List': [
+            'TargetedWrapperList': [
+                [self.original_value, self.original_value]
+            ],
+            'UntargetedWrapperList': [
                 [self.original_value, self.original_value]
             ]
         }
+
+        targeted_list_shape = {
+            'TransformMe': {
+                'type': 'list',
+                'member': {'shape': self.target_shape}
+            }
+        }
+
+        targeted_wrapper_shape = {
+            'TargetedWrapperList': {
+                'type': 'list',
+                'member': {'shape': 'TransformMe'}}
+        }
+
+        self.add_shape(targeted_list_shape)
+        self.add_input_shape(targeted_wrapper_shape)
+
+        untargeted_list_shape = {
+            'LeaveAlone': {
+                'type': 'list',
+                'member': {'shape': 'String'}
+            }
+        }
+
+        untargeted_wrapper_shape = {
+            'UntargetedWrapperList': {
+                'type': 'list',
+                'member': {'shape': 'LeaveAlone'}}
+        }
+
+        self.add_shape(untargeted_list_shape)
+        self.add_input_shape(untargeted_wrapper_shape)
+
         self.transformer.transform(
-            input_params, self.nested_operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation,
+            target_shape=self.target_shape)
         self.assertEqual(
             input_params,
-            {'List': [[self.transformed_value, self.transformed_value]]}
+            {'TargetedWrapperList': [[
+                self.transformed_value, self.transformed_value]],
+             'UntargetedWrapperList': [[
+                 self.original_value, self.original_value]]}
         )
 
     def test_transform_incorrect_type_for_structure(self):
         input_params = {
             'Structure': 'foo'
         }
+
+        input_shape = {
+            'Structure': {
+                'type': 'structure',
+                'members': {
+                    'TransformMe': {'shape': self.target_shape},
+                }
+            }
+        }
+
+        self.add_input_shape(input_shape)
+
         self.transformer.transform(
-            input_params, self.operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation,
+            target_shape=self.target_shape)
         self.assertEqual(input_params, {'Structure': 'foo'})
 
     def test_transform_incorrect_type_for_map(self):
         input_params = {
             'Map': 'foo'
         }
+
+        input_shape = {
+            'Map': {
+                'type': 'map',
+                'key': {'shape': 'String'},
+                'value': {'shape': self.target_shape}
+            }
+        }
+
+        self.add_input_shape(input_shape)
+
         self.transformer.transform(
-            input_params, self.operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation,
+            target_shape=self.target_shape)
         self.assertEqual(input_params, {'Map': 'foo'})
 
     def test_transform_incorrect_type_for_list(self):
         input_params = {
             'List': 'foo'
         }
+
+        input_shape = {
+            'List': {
+                'type': 'list',
+                'member': {'shape': self.target_shape}
+            }
+        }
+
+        self.add_input_shape(input_shape)
+
         self.transformer.transform(
-            input_params, self.operation_model.input_shape,
-            self.transformation, self.target_shape_name)
+            params=input_params, model=self.operation_model.input_shape,
+            transformation=self.transformation, target_shape=self.target_shape)
         self.assertEqual(input_params, {'List': 'foo'})
 
 
 class BaseTransformAttributeValueTest(BaseTransformationTest):
     def setUp(self):
-        self.target_shape_name = 'AttributeValue'
+        self.target_shape = 'AttributeValue'
         self.setup_models()
         self.build_models()
         self.python_value = 'mystring'
         self.dynamodb_value = {'S': self.python_value}
         self.injector = TransformationInjector()
+        self.add_shape({self.target_shape: {'type': 'string'}})
 
 
 class TestTransformAttributeValueInput(BaseTransformAttributeValueTest):
     def test_handler(self):
         input_params = {
             'Structure': {
-                'Member': self.python_value
+                'TransformMe': self.python_value,
+                'LeaveAlone': 'unchanged'
             }
         }
+        input_shape = {
+            'Structure': {
+                'type': 'structure',
+                'members': {
+                    'TransformMe': {'shape': self.target_shape},
+                    'LeaveAlone': {'shape': 'String'}
+                }
+            }
+        }
+
+        self.add_input_shape(input_shape)
+
         self.injector.inject_attribute_value_input(
-            input_params, self.operation_model)
+            params=input_params, model=self.operation_model)
         self.assertEqual(
             input_params,
-            {'Structure': {'Member': self.dynamodb_value}}
+            {'Structure': {
+                'TransformMe': self.dynamodb_value,
+                'LeaveAlone': 'unchanged'}}
         )
 
 
@@ -264,23 +439,38 @@ class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
     def test_handler(self):
         parsed = {
             'Structure': {
-                'Member': self.dynamodb_value
+                'TransformMe': self.dynamodb_value,
+                'LeaveAlone': 'unchanged'
             }
         }
+        input_shape = {
+            'Structure': {
+                'type': 'structure',
+                'members': {
+                    'TransformMe': {'shape': self.target_shape},
+                    'LeaveAlone': {'shape': 'String'}
+                }
+            }
+        }
+
+        self.add_input_shape(input_shape)
         self.injector.inject_attribute_value_output(
-            parsed, self.operation_model)
+            parsed=parsed, model=self.operation_model)
         self.assertEqual(
             parsed,
-            {'Structure': {'Member': self.python_value}}
+            {'Structure': {
+                'TransformMe': self.python_value,
+                'LeaveAlone': 'unchanged'}}
         )
 
 
 class TestTransformConditionExpression(BaseTransformationTest):
     def setUp(self):
         super(TestTransformConditionExpression, self).setUp()
+        self.add_shape({'ConditionExpression': {'type': 'string'}})
+        self.add_shape({'KeyExpression': {'type': 'string'}})
+
         shapes = self.json_model['shapes']
-        shapes['ConditionExpression'] = {'type': 'string'}
-        shapes['KeyExpression'] = {'type': 'string'}
         input_members = shapes['SampleOperationInputOutput']['members']
         input_members['KeyCondition'] = {'shape': 'KeyExpression'}
         input_members['AttrCondition'] = {'shape': 'ConditionExpression'}
