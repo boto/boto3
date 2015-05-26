@@ -15,10 +15,10 @@ from tests import unittest, mock
 
 from botocore.model import ServiceModel, OperationModel
 
+from boto3.resources.base import ResourceMeta
 from boto3.dynamodb.transform import ParameterTransformer
-from boto3.dynamodb.transform import transform_attribute_value_input
-from boto3.dynamodb.transform import transform_attribute_value_output
-from boto3.dynamodb.transform import transform_condition_expressions
+from boto3.dynamodb.transform import TransformationInjector
+from boto3.dynamodb.transform import DynamoDBHighLevelResource
 from boto3.dynamodb.transform import register_high_level_interface
 from boto3.dynamodb.conditions import Attr, Key
 
@@ -242,6 +242,7 @@ class BaseTransformAttributeValueTest(BaseTransformationTest):
         self.build_models()
         self.python_value = 'mystring'
         self.dynamodb_value = {'S': self.python_value}
+        self.injector = TransformationInjector()
 
 
 class TestTransformAttributeValueInput(BaseTransformAttributeValueTest):
@@ -251,7 +252,8 @@ class TestTransformAttributeValueInput(BaseTransformAttributeValueTest):
                 'Member': self.python_value
             }
         }
-        transform_attribute_value_input(input_params, self.operation_model)
+        self.injector.inject_attribute_value_input(
+            input_params, self.operation_model)
         self.assertEqual(
             input_params,
             {'Structure': {'Member': self.dynamodb_value}}
@@ -265,7 +267,8 @@ class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
                 'Member': self.dynamodb_value
             }
         }
-        transform_attribute_value_output(parsed, self.operation_model)
+        self.injector.inject_attribute_value_output(
+            parsed, self.operation_model)
         self.assertEqual(
             parsed,
             {'Structure': {'Member': self.python_value}}
@@ -281,6 +284,7 @@ class TestTransformConditionExpression(BaseTransformationTest):
         input_members = shapes['SampleOperationInputOutput']['members']
         input_members['KeyCondition'] = {'shape': 'KeyExpression'}
         input_members['AttrCondition'] = {'shape': 'ConditionExpression'}
+        self.injector = TransformationInjector()
         self.build_models()
 
     def test_non_condition_input(self):
@@ -288,7 +292,8 @@ class TestTransformConditionExpression(BaseTransformationTest):
             'KeyCondition': 'foo',
             'AttrCondition': 'bar'
         }
-        transform_condition_expressions(params, self.operation_model)
+        self.injector.inject_condition_expressions(
+            params, self.operation_model)
         self.assertEqual(
             params, {'KeyCondition': 'foo', 'AttrCondition': 'bar'})
 
@@ -296,7 +301,8 @@ class TestTransformConditionExpression(BaseTransformationTest):
         params = {
             'AttrCondition': Attr('foo').eq('bar')
         }
-        transform_condition_expressions(params, self.operation_model)
+        self.injector.inject_condition_expressions(
+            params, self.operation_model)
         self.assertEqual(
             params,
             {'AttrCondition': '#n0 = :v0',
@@ -308,7 +314,8 @@ class TestTransformConditionExpression(BaseTransformationTest):
         params = {
             'KeyCondition': Key('foo').eq('bar')
         }
-        transform_condition_expressions(params, self.operation_model)
+        self.injector.inject_condition_expressions(
+            params, self.operation_model)
         self.assertEqual(
             params,
             {'KeyCondition': '#n0 = :v0',
@@ -321,7 +328,8 @@ class TestTransformConditionExpression(BaseTransformationTest):
             'KeyCondition': Key('foo').eq('bar'),
             'AttrCondition': Attr('biz').eq('baz')
         }
-        transform_condition_expressions(params, self.operation_model)
+        self.injector.inject_condition_expressions(
+            params, self.operation_model)
         self.assertEqual(
             params,
             {'KeyCondition': '#n1 = :v1',
@@ -337,7 +345,8 @@ class TestTransformConditionExpression(BaseTransformationTest):
             'ExpressionAttributeNames': {'#a': 'b'},
             'ExpressionAttributeValues': {':c': 'd'}
         }
-        transform_condition_expressions(params, self.operation_model)
+        self.injector.inject_condition_expressions(
+            params, self.operation_model)
         self.assertEqual(
             params,
             {'KeyCondition': '#n1 = :v1',
@@ -349,42 +358,44 @@ class TestTransformConditionExpression(BaseTransformationTest):
         )
 
 
-class TestRegisterHighLevelInterface(unittest.TestCase):
+class TestDynamoDBHighLevelResource(unittest.TestCase):
     def setUp(self):
-        self.meta = mock.Mock()
         self.events = mock.Mock()
-        self.meta.client.meta.events = self.events
+        self.client = mock.Mock()
+        self.client.meta.events = self.events
+        self.meta = ResourceMeta('dynamodb')
 
-        class MockBaseResourceClass(object):
-            def __init__(self, *args, **kwargs):
-                self.meta = kwargs['meta']
-
-        self.base_class = MockBaseResourceClass
-        self.base_classes = [self.base_class]
-
-    def test_register(self):
-        register_high_level_interface(self.base_classes)
-
-        # Check that the base classes are as expected
-        self.assertEqual(len(self.base_classes), 1)
-        self.assertNotIn(self.base_class, self.base_classes)
-
+    def test_instantiation(self):
         # Instantiate the class.
-        dynamodb = self.base_classes[0](meta=self.meta)
-        # It should have inherited from the base class
-        self.assertIsInstance(dynamodb, self.base_class)
+        dynamodb_class = type(
+            'dynamodb', (DynamoDBHighLevelResource,), {'meta': self.meta})
+        with mock.patch('boto3.dynamodb.transform.TransformationInjector') \
+                as mock_injector:
+            dynamodb_class(client=self.client)
 
         # It should have fired the following events upon instantiation.
         event_call_args = self.events.register.call_args_list
         self.assertEqual(
             event_call_args,
-            [mock.call('before-parameter-build.dynamodb',
-                       transform_condition_expressions,
-                       unique_id='dynamodb-condition-expression'),
-             mock.call('before-parameter-build.dynamodb',
-                       transform_attribute_value_input,
-                       unique_id='dynamodb-attr-value-input'),
-             mock.call('after-call.dynamodb',
-                       transform_attribute_value_output,
-                       unique_id='dynamodb-attr-value-output')]
+            [mock.call(
+                'before-parameter-build.dynamodb',
+                mock_injector.return_value.inject_condition_expressions,
+                unique_id='dynamodb-condition-expression'),
+             mock.call(
+                'before-parameter-build.dynamodb',
+                mock_injector.return_value.inject_attribute_value_input,
+                unique_id='dynamodb-attr-value-input'),
+             mock.call(
+                'after-call.dynamodb',
+                mock_injector.return_value.inject_attribute_value_output,
+                unique_id='dynamodb-attr-value-output')]
         )
+
+
+class TestRegisterHighLevelInterface(unittest.TestCase):
+    def test_register(self):
+        base_classes = [object]
+        register_high_level_interface(base_classes)
+
+        # Check that the base classes are as expected
+        self.assertEqual(base_classes, [DynamoDBHighLevelResource])
