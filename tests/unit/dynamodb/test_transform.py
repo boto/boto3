@@ -10,7 +10,6 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import copy
 from tests import unittest, mock
 
 from botocore.model import ServiceModel, OperationModel
@@ -20,6 +19,7 @@ from boto3.dynamodb.transform import ParameterTransformer
 from boto3.dynamodb.transform import TransformationInjector
 from boto3.dynamodb.transform import DynamoDBHighLevelResource
 from boto3.dynamodb.transform import register_high_level_interface
+from boto3.dynamodb.transform import copy_dynamodb_params
 from boto3.dynamodb.conditions import Attr, Key
 
 
@@ -548,6 +548,14 @@ class TestTransformConditionExpression(BaseTransformationTest):
         )
 
 
+class TestCopyDynamoDBParams(unittest.TestCase):
+    def test_copy_dynamodb_params(self):
+        params = {'foo': 'bar'}
+        new_params = copy_dynamodb_params(params)
+        self.assertEqual(params, new_params)
+        self.assertIsNot(new_params, params)
+
+
 class TestDynamoDBHighLevelResource(unittest.TestCase):
     def setUp(self):
         self.events = mock.Mock()
@@ -568,6 +576,10 @@ class TestDynamoDBHighLevelResource(unittest.TestCase):
         self.assertEqual(
             event_call_args,
             [mock.call(
+                'provide-client-params.dynamodb',
+                copy_dynamodb_params,
+                unique_id='dynamodb-create-params-copy'),
+             mock.call(
                 'before-parameter-build.dynamodb',
                 mock_injector.return_value.inject_condition_expressions,
                 unique_id='dynamodb-condition-expression'),

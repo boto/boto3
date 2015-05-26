@@ -10,7 +10,6 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import copy
 import collections
 from decimal import Decimal
 
@@ -56,7 +55,7 @@ class BaseDynamoDBTest(unittest.TestCase):
 
 class TestDynamoDBTypes(BaseDynamoDBTest):
     def test_put_get_item(self):
-        self.table.put_item(Item=copy.deepcopy(self.item_data))
+        self.table.put_item(Item=self.item_data)
         self.addCleanup(self.table.delete_item, Key={'MyHashKey': 'mykey'})
         response = self.table.get_item(Key={'MyHashKey': 'mykey'})
         self.assertEqual(response['Item'], self.item_data)
@@ -66,7 +65,7 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
     @classmethod
     def setUpClass(cls):
         super(TestDynamoDBConditions, cls).setUpClass()
-        cls.table.put_item(Item=copy.deepcopy(cls.item_data))
+        cls.table.put_item(Item=cls.item_data)
 
     @classmethod
     def tearDownClass(cls):

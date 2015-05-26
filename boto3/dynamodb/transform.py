@@ -10,6 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import copy
 from collections import Mapping, MutableSequence
 
 from boto3.resources.base import ServiceResource
@@ -22,9 +23,21 @@ def register_high_level_interface(base_classes, **kwargs):
     base_classes[0] = DynamoDBHighLevelResource
 
 
+def copy_dynamodb_params(params, **kwargs):
+    return copy.deepcopy(params)
+
+
 class DynamoDBHighLevelResource(ServiceResource):
     def __init__(self, *args, **kwargs):
         super(DynamoDBHighLevelResource, self).__init__(*args, **kwargs)
+
+        # Apply handler that creates a copy of the user provided dynamodb
+        # item such that it can be modified.
+        self.meta.client.meta.events.register(
+            'provide-client-params.dynamodb',
+            copy_dynamodb_params,
+            unique_id='dynamodb-create-params-copy'
+        )
 
         self._injector = TransformationInjector()
         # Apply the handler that generates condition expressions including
