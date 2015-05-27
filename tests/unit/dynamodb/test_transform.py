@@ -14,7 +14,7 @@ from tests import unittest, mock
 
 from botocore.model import ServiceModel, OperationModel
 
-from boto3.resources.base import ResourceMeta
+from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.dynamodb.transform import ParameterTransformer
 from boto3.dynamodb.transform import TransformationInjector
 from boto3.dynamodb.transform import DynamoDBHighLevelResource
@@ -566,7 +566,8 @@ class TestDynamoDBHighLevelResource(unittest.TestCase):
     def test_instantiation(self):
         # Instantiate the class.
         dynamodb_class = type(
-            'dynamodb', (DynamoDBHighLevelResource,), {'meta': self.meta})
+            'dynamodb', (DynamoDBHighLevelResource, ServiceResource),
+            {'meta': self.meta})
         with mock.patch('boto3.dynamodb.transform.TransformationInjector') \
                 as mock_injector:
             dynamodb_class(client=self.client)
@@ -600,4 +601,4 @@ class TestRegisterHighLevelInterface(unittest.TestCase):
         register_high_level_interface(base_classes)
 
         # Check that the base classes are as expected
-        self.assertEqual(base_classes, [DynamoDBHighLevelResource])
+        self.assertEqual(base_classes, [DynamoDBHighLevelResource, object])

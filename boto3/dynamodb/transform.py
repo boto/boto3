@@ -13,21 +13,20 @@
 import copy
 from collections import Mapping, MutableSequence
 
-from boto3.resources.base import ServiceResource
 from boto3.dynamodb.types import TypeSerializer, TypeDeserializer
 from boto3.dynamodb.conditions import ConditionBase
 from boto3.dynamodb.conditions import ConditionExpressionBuilder
 
 
 def register_high_level_interface(base_classes, **kwargs):
-    base_classes[0] = DynamoDBHighLevelResource
+    base_classes.insert(0, DynamoDBHighLevelResource)
 
 
 def copy_dynamodb_params(params, **kwargs):
     return copy.deepcopy(params)
 
 
-class DynamoDBHighLevelResource(ServiceResource):
+class DynamoDBHighLevelResource(object):
     def __init__(self, *args, **kwargs):
         super(DynamoDBHighLevelResource, self).__init__(*args, **kwargs)
 
