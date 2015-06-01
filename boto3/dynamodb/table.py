@@ -98,20 +98,20 @@ class BatchWriter(object):
             self._flush()
 
     def _flush(self):
-        logger.debug("Batch writer flushing pending items.")
         response = self._client.batch_write_item(
-            RequestItems={self._table_name: self._items_buffer})
+            RequestItems={self._table_name: self._items_buffer},
+            ReturnConsumedCapacity='TOTAL',
+            ReturnItemCollectionMetrics='SIZE')
         unprocessed_items = response['UnprocessedItems']
 
         if unprocessed_items and unprocessed_items[self._table_name]:
             # Any unprocessed_items are immediately added to the
             # next batch we send.
             self._items_buffer = unprocessed_items[self._table_name]
-            logger.debug("Batch writer received %s unprocessed items.",
-                         len(self._items_buffer))
         else:
             self._items_buffer = []
-        logger.debug("Batch write sent %s, unprocessed: %s",
+        logger.debug("Batch write sent %s, unprocessed: %s, "
+                     "consumed capacity: %s",
                      self._flush_amount, len(self._items_buffer))
 
     def __enter__(self):
