@@ -1,6 +1,17 @@
 Changelog
 =========
 
+0.0.18 - 2015-06-01
+-------------------
+
+* feature:DynamoDB: Add document level interface for Table resource
+  (`issue 103 <https://github.com/boto/boto3/pull/103>`__)
+* feature:DynamoDB: Add ConditionExpression interface for querying and
+  filtering Table resource.
+  (`issue 103 <https://github.com/boto/boto3/pull/103>`__)
+* feature:Clients: Add support for passing of ``botocore.client.Config`` object
+  to instantiation of clients.
+
 0.0.17 - 2015-05-07
 -------------------
 
