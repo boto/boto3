@@ -70,7 +70,7 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
     @classmethod
     def tearDownClass(cls):
         cls.table.delete_item(Key={'MyHashKey': 'mykey'})
-        super(TestDynamoDBConditions, cls).setUpClass()
+        super(TestDynamoDBConditions, cls).tearDownClass()
 
     def test_filter_expression(self):
         r = self.table.scan(
