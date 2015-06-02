@@ -343,7 +343,8 @@ class TestResourceCollection(BaseTestCase):
         collection = self.get_collection()
         list(collection.page_size(5).pages())
 
-        paginator.paginate.assert_called_with(page_size=5, max_items=None)
+        paginator.paginate.assert_called_with(
+            PaginationConfig={'PageSize': 5, 'MaxItems': None})
 
     def test_iteration_paginated(self):
         self.collection_def = {
@@ -386,7 +387,8 @@ class TestResourceCollection(BaseTestCase):
         # Low-level pagination should have been called
         self.client.get_paginator.assert_called_with('get_frobs')
         paginator = self.client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=None, max_items=None)
+        paginator.paginate.assert_called_with(
+            PaginationConfig={'PageSize': None, 'MaxItems': None})
 
     def test_limit_param_paginated(self):
         self.collection_def = {
@@ -475,7 +477,8 @@ class TestResourceCollection(BaseTestCase):
 
         paginator = self.client.get_paginator.return_value
         paginator.paginate.assert_called_with(
-            page_size=None, max_items=2, Param1='foo', Param2=3)
+            PaginationConfig={'PageSize': None, 'MaxItems': 2},
+            Param1='foo', Param2=3)
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_page_size_param(self, handler):
@@ -487,7 +490,8 @@ class TestResourceCollection(BaseTestCase):
         list(collection.all(page_size=1))
 
         paginator = self.client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=1, max_items=None)
+        paginator.paginate.assert_called_with(
+            PaginationConfig={'PageSize': 1, 'MaxItems': None})
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_page_size_method(self, handler):
@@ -499,7 +503,8 @@ class TestResourceCollection(BaseTestCase):
         list(collection.page_size(1))
 
         paginator = self.client.get_paginator.return_value
-        paginator.paginate.assert_called_with(page_size=1, max_items=None)
+        paginator.paginate.assert_called_with(
+            PaginationConfig={'PageSize': 1, 'MaxItems': None})
 
     def test_chaining(self):
         self.collection_def = {
@@ -546,7 +551,7 @@ class TestResourceCollection(BaseTestCase):
 
         paginator = self.client.get_paginator.return_value
         paginator.paginate.assert_called_with(
-            page_size=3, max_items=3, CustomArg=1)
+            PaginationConfig={'PageSize': 3, 'MaxItems': 3}, CustomArg=1)
 
     def test_chained_repr(self):
         collection = self.get_collection()

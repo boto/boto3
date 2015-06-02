@@ -151,7 +151,8 @@ class ResourceCollection(object):
                         self._py_operation_name, params)
             paginator = client.get_paginator(self._py_operation_name)
             pages = paginator.paginate(
-                max_items=limit, page_size=page_size, **params)
+                PaginationConfig={
+                    'MaxItems': limit, 'PageSize': page_size}, **params)
         else:
             logger.info('Calling %s:%s with %r',
                         self._parent.meta.service_name,
