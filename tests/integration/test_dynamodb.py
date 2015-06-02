@@ -186,3 +186,19 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
         r = self.table.scan(
             FilterExpression=Attr('MyList[0]').eq('foo'))
         self.assertEqual(r['Items'][0]['MyList'][0], 'foo')
+
+
+class TestDynamodbBatchWrite(BaseDynamoDBTest):
+    def test_batch_write_items(self):
+        num_elements = 1000
+        items = []
+        for i in range(num_elements):
+            items.append({'MyHashKey': 'foo%s' % i,
+                          'OtherKey': 'bar%s' % i})
+        with self.table.batch_writer() as batch:
+            for item in items:
+                batch.put_item(Item=item)
+
+        # Verify all the items were added to dynamodb.
+        for obj in self.table.scan()['Items']:
+            self.assertIn(obj, items)
