@@ -179,7 +179,7 @@ class ResourceCollection(object):
             if limit is not None and count >= limit:
                 break
 
-    def all(self, limit=None, page_size=None):
+    def all(self):
         """
         Get all items from the collection, optionally with a custom
         page size and item count limit.
@@ -197,14 +197,8 @@ class ResourceCollection(object):
             >>> queues = list(sqs.queues.all())
             >>> len(queues)
             2
-
-        :type limit: int
-        :param limit: Return no more than this many items
-        :type page_size: int
-        :param page_size: Fetch this many items per request
-        :rtype: :py:class:`ResourceCollection`
         """
-        return self._clone(limit=limit, page_size=page_size)
+        return self._clone()
 
     def filter(self, **kwargs):
         """
@@ -338,8 +332,8 @@ class CollectionManager(object):
                                     self._handler, **kwargs)
 
     # Set up some methods to proxy ResourceCollection methods
-    def all(self, limit=None, page_size=None):
-        return self.iterator(limit=limit, page_size=page_size)
+    def all(self):
+        return self.iterator()
     all.__doc__ = ResourceCollection.all.__doc__
 
     def filter(self, **kwargs):

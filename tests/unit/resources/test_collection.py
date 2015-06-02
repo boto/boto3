@@ -225,7 +225,7 @@ class TestResourceCollection(BaseTestCase):
             ]
         }
         collection = self.get_collection()
-        items = list(collection.all(limit=2))
+        items = list(collection.all().limit(2))
         self.assertEqual(len(items), 2)
 
         # Only the first two should be present
@@ -279,7 +279,7 @@ class TestResourceCollection(BaseTestCase):
         handler.return_value.return_value = []
         collection = self.get_collection()
 
-        list(collection.filter(limit=2, Param1='foo', Param2=3))
+        list(collection.filter(Param1='foo', Param2=3).limit(2))
 
         # Note - limit is not passed through to the low-level call
         self.client.get_frobs.assert_called_with(Param1='foo', Param2=3)
@@ -421,7 +421,7 @@ class TestResourceCollection(BaseTestCase):
             }
         ]
         collection = self.get_collection()
-        items = list(collection.all(limit=2))
+        items = list(collection.all().limit(2))
         self.assertEqual(len(items), 2)
 
         # Only the first two should be present
@@ -459,7 +459,7 @@ class TestResourceCollection(BaseTestCase):
             }
         ]
         collection = self.get_collection()
-        items = list(collection.all(limit=2))
+        items = list(collection.all().limit(2))
         self.assertEqual(len(items), 2)
 
         # Only the first two should be present
@@ -473,7 +473,7 @@ class TestResourceCollection(BaseTestCase):
         handler.return_value.return_value = []
         collection = self.get_collection()
 
-        list(collection.filter(limit=2, Param1='foo', Param2=3))
+        list(collection.filter(Param1='foo', Param2=3).limit(2))
 
         paginator = self.client.get_paginator.return_value
         paginator.paginate.assert_called_with(
@@ -487,7 +487,7 @@ class TestResourceCollection(BaseTestCase):
         handler.return_value.return_value = []
         collection = self.get_collection()
 
-        list(collection.all(page_size=1))
+        list(collection.all().page_size(1))
 
         paginator = self.client.get_paginator.return_value
         paginator.paginate.assert_called_with(
