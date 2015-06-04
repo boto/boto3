@@ -93,15 +93,10 @@ Limiting Results
 ----------------
 It is possible to limit the number of items returned from a collection
 by using either the
-:py:meth:`~boto3.resources.collection.ResourceCollection.limit` method or
-keyword argument::
+:py:meth:`~boto3.resources.collection.ResourceCollection.limit` method::
 
     # S3 iterate over first ten buckets
     for bucket in s3.buckets.limit(10):
-        print(bucket.name)
-
-    # Keyword argument example
-    for bucket in s3.buckets.filter(limit=10):
         print(bucket.name)
 
 In both cases, up to 10 items total will be returned. If you do not
@@ -112,16 +107,12 @@ Controlling Page Size
 Collections automatically handle paging through results, but you may want
 to control the number of items returned from a single service operation
 call. You can do so using the
-:py:meth:`~boto3.resources.collection.ResourceCollection.page_size` method
-or keyword argument::
+:py:meth:`~boto3.resources.collection.ResourceCollection.page_size` method::
 
     # S3 iterate over all objects 100 at a time
     for obj in bucket.objects.page_size(100):
         print(obj.key)
 
-    # Keyword argument example
-    for obj in bucket.objects.all(page_size=100):
-        print(obj.key)
 
 By default, S3 will return 1000 objects at a time, so the above code
 would let you process the items in smaller batches, which could be

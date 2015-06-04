@@ -284,3 +284,8 @@ class Session(object):
             boto3.utils.lazy_call(
                 'boto3.dynamodb.transform.register_high_level_interface'),
             unique_id='high-level-dynamodb')
+        self._session.register(
+            'creating-resource-class.dynamodb.Table',
+            boto3.utils.lazy_call(
+                'boto3.dynamodb.table.register_table_methods'),
+            unique_id='high-level-dynamodb-table')
