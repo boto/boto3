@@ -172,9 +172,9 @@ def docs_for(service_name, session=None, resource_filename=None):
                                    service_model, client)
 
     if resource_filename is None:
-        resource_filename = (os.path.dirname(__file__) + '/data/resources/'
-                             '{0}-{1}.resources.json').format(
-                                service_name, service_model.api_version)
+        resource_filename = os.path.join(
+            os.path.dirname(__file__), 'data', service_name,
+            service_model.api_version, 'resources-1.json')
     # We can't use a set here because dicts aren't hashable!
     models = {}
     if os.path.exists(resource_filename):
