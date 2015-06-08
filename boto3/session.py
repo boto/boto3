@@ -280,6 +280,10 @@ class Session(object):
             boto3.utils.lazy_call(
                 'boto3.s3.inject.inject_s3_transfer_methods'))
         self._session.register(
+            'creating-resource-class.s3.Bucket',
+            boto3.utils.lazy_call(
+                'boto3.s3.inject.inject_bucket_load'))
+        self._session.register(
             'creating-resource-class.dynamodb',
             boto3.utils.lazy_call(
                 'boto3.dynamodb.transform.register_high_level_interface'),

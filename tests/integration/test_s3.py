@@ -19,6 +19,7 @@ import tempfile
 import shutil
 import hashlib
 import string
+import datetime
 
 from tests import unittest, unique_id
 from botocore.compat import six
@@ -460,7 +461,7 @@ class TestS3Transfers(unittest.TestCase):
         assert_files_equal(filename, download_path)
 
 
-class TestS3TransferMethodInjection(unittest.TestCase):
+class TestS3MethodInjection(unittest.TestCase):
     def test_transfer_methods_injected_to_client(self):
         session = boto3.session.Session(region_name='us-west-2')
         client = session.client('s3')
@@ -468,3 +469,33 @@ class TestS3TransferMethodInjection(unittest.TestCase):
                         'upload_file was not injected onto S3 client')
         self.assertTrue(hasattr(client, 'download_file'),
                         'download_file was not injected onto S3 client')
+
+    def test_bucket_resource_has_load_method(self):
+        session = boto3.session.Session(region_name='us-west-2')
+        bucket = session.resource('s3').Bucket('fakebucket')
+        self.assertTrue(hasattr(bucket, 'load'),
+                        'load() was not injected onto S3 Bucket resource.')
+
+
+class TestCustomS3BucketLoad(unittest.TestCase):
+    def setUp(self):
+        self.region = 'us-west-2'
+        self.session = boto3.session.Session(region_name=self.region)
+        self.s3 = self.session.resource('s3')
+        self.bucket_name = unique_id('boto3-test')
+
+    def create_bucket_resource(self, bucket_name, region=None):
+        if region is None:
+            region = self.region
+        kwargs = {'Bucket': bucket_name}
+        if region != 'us-east-1':
+            kwargs['CreateBucketConfiguration'] = {
+                'LocationConstraint': region
+            }
+        bucket = self.s3.create_bucket(**kwargs)
+        self.addCleanup(bucket.delete)
+        return bucket
+
+    def test_can_access_buckets_creation_date(self):
+        bucket = self.create_bucket_resource(random_bucket_name())
+        self.assertIsInstance(bucket.creation_date, datetime.datetime)
