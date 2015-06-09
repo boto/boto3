@@ -53,21 +53,25 @@ class TestBucketLoad(unittest.TestCase):
 
     def test_bucket_load_finds_bucket(self):
         self.resource.name = 'MyBucket'
-        self.client.list_buckets.return_value = [
-            {'Name': 'NotMyBucket', 'CreationDate': 1},
-            {'Name': resource.name, 'CreationDate': 2}
-        ]
+        self.client.list_buckets.return_value = {
+            'Buckets': [
+                {'Name': 'NotMyBucket', 'CreationDate': 1},
+                {'Name': self.resource.name, 'CreationDate': 2},
+            ],
+        }
 
         inject.bucket_load(self.resource)
         self.assertEqual(
             self.resource.meta.data,
-            {'Name': resource.name, 'CreationDate': 2})
+            {'Name': self.resource.name, 'CreationDate': 2})
 
     def test_bucket_load_raise_error(self):
         self.resource.name = 'MyBucket'
-        self.client.list_buckets.return_value = [
-            {'Name': 'NotMyBucket', 'CreationDate': 1},
-            {'Name': 'NotMine2', 'CreationDate': 2}
-        ]
+        self.client.list_buckets.return_value = {
+            'Buckets': [
+                {'Name': 'NotMyBucket', 'CreationDate': 1},
+                {'Name': 'NotMine2', 'CreationDate': 2},
+            ],
+        }
         with self.assertRaises(ClientError):
             inject.bucket_load(self.resource)
