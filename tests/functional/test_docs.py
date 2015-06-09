@@ -13,7 +13,32 @@
 from tests import unittest
 
 import botocore.session
+
+import boto3
 from boto3.docs import docs_for
+
+
+def test_resource_docs_generated():
+    service_with_resources = boto3.Session().get_available_resources()
+    session = botocore.session.get_session()
+    for service_name in service_with_resources:
+        yield _assert_has_resource_documentation, service_name, session
+
+
+def _assert_has_resource_documentation(service_name, session):
+    generated_docs = docs_for(service_name, session)
+    service_documentation_bits = [
+        # Nothing too specific.  Just documentation that should be
+        # in the generated docs if the resource docs were generated.
+        # Things will likely never change as the resource docs
+        # evolve.
+        'Service Resource',
+        'A resource representing',
+    ]
+    for part in service_documentation_bits:
+        if part not in generated_docs:
+            raise AssertionError(
+                "Missing resource documentation for: %s" % service_name)
 
 
 class TestDocs(unittest.TestCase):
