@@ -50,7 +50,7 @@ def _test_create_client(session, service_name):
 
 def test_api_versions_synced_with_botocore():
     botocore_session = botocore.session.get_session()
-    boto3_session = Session()
+    boto3_session = create_session()
     for service_name in boto3_session.get_available_resources():
         yield (_assert_same_api_versions, service_name,
                botocore_session, boto3_session)
