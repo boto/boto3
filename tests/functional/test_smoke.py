@@ -59,7 +59,10 @@ def test_api_versions_synced_with_botocore():
 def _assert_same_api_versions(service_name, botocore_session, boto3_session):
     resource = boto3_session.resource(service_name)
     boto3_api_version = resource.meta.client.meta.service_model.api_version
-    client = botocore_session.create_client(service_name)
+    client = botocore_session.create_client(service_name,
+                                            region_name='us-east-1',
+                                            aws_access_key_id='foo',
+                                            aws_secret_access_key='bar')
     botocore_api_version = client.meta.service_model.api_version
     if botocore_api_version != boto3_api_version:
         raise AssertionError(
