@@ -63,11 +63,7 @@ class ResourceFactory(object):
         :rtype: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         :return: The service or resource class.
         """
-        # Set some basic info
-        meta = ResourceMeta(service_name)
-        attrs = {
-            'meta': meta,
-        }
+
 
         logger.debug('Loading %s:%s', service_name, resource_name)
 
@@ -77,6 +73,13 @@ class ResourceFactory(object):
         if resource_model.shape:
             shape = service_model.shape_for(resource_model.shape)
         resource_model.load_rename_map(shape)
+
+
+        # Set some basic info
+        meta = ResourceMeta(service_name, resource_model=resource_model)
+        attrs = {
+            'meta': meta,
+        }
 
         self._load_identifiers(attrs, meta, resource_model)
         self._load_actions(attrs, resource_model, resource_defs,
