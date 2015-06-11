@@ -461,22 +461,6 @@ class TestS3Transfers(unittest.TestCase):
         assert_files_equal(filename, download_path)
 
 
-class TestS3MethodInjection(unittest.TestCase):
-    def test_transfer_methods_injected_to_client(self):
-        session = boto3.session.Session(region_name='us-west-2')
-        client = session.client('s3')
-        self.assertTrue(hasattr(client, 'upload_file'),
-                        'upload_file was not injected onto S3 client')
-        self.assertTrue(hasattr(client, 'download_file'),
-                        'download_file was not injected onto S3 client')
-
-    def test_bucket_resource_has_load_method(self):
-        session = boto3.session.Session(region_name='us-west-2')
-        bucket = session.resource('s3').Bucket('fakebucket')
-        self.assertTrue(hasattr(bucket, 'load'),
-                        'load() was not injected onto S3 Bucket resource.')
-
-
 class TestCustomS3BucketLoad(unittest.TestCase):
     def setUp(self):
         self.region = 'us-west-2'
