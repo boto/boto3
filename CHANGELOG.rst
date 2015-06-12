@@ -1,6 +1,32 @@
 Changelog
 =========
 
+0.0.21 - 2015-06-12
+-------------------
+
+* bugfix:Installation: Fix regression when installing via older versions of
+  pip on python 2.6.
+  (`issue 132 <https://github.com/boto/boto3/pull/132`__)
+
+
+0.0.20 - 2015-06-11
+-------------------
+
+* feature:ec2: Update resource model.
+  (`issue 129 <https://github.com/boto/boto3/pull/129>`__)
+
+
+0.0.19 - 2015-06-04
+-------------------
+
+* breakingchange:Collections: Remove the ``page_count`` and ``limit``
+  arguments from ``all()``. Undocument support for the two arguments in the
+  ``filter()`` method.
+  (`issue 119 <https://github.com/boto/boto3/pull/119>`__)
+* feature:DynamoDB: Add batch writer.
+  (`issue 118 <https://github.com/boto/boto3/pull/118>`__)
+
+
 0.0.18 - 2015-06-01
 -------------------
 

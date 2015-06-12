@@ -15,10 +15,16 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore==1.0.0b2',
+    'botocore==1.0.0b3',
     'bcdoc>=0.16.0,<0.17.0',
     'jmespath>=0.6.2,<1.0.0',
 ]
+
+
+if sys.version_info[0] == 2:
+    # concurrent.futures is only in python3, so for
+    # python2 we need to install the backport.
+    requires.append('futures==2.2.0')
 
 
 def get_version():
