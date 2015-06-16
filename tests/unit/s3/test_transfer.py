@@ -30,6 +30,7 @@ from boto3.s3.transfer import MultipartDownloader, MultipartUploader
 from boto3.s3.transfer import ShutdownQueue
 from boto3.s3.transfer import QueueShutdownError
 from boto3.s3.transfer import random_file_extension
+from boto3.s3.transfer import disable_upload_callbacks, enable_upload_callbacks
 
 
 class InMemoryOSLayer(OSUtils):
@@ -99,7 +100,8 @@ class TestOSUtils(unittest.TestCase):
     def test_open_file_chunk_reader(self):
         with mock.patch('boto3.s3.transfer.ReadFileChunk') as m:
             OSUtils().open_file_chunk_reader('myfile', 0, 100, None)
-            m.from_filename.assert_called_with('myfile', 0, 100, None)
+            m.from_filename.assert_called_with('myfile', 0, 100,
+                                               None, enable_callback=False)
 
     def test_open_file(self):
         fileobj = OSUtils().open(os.path.join(self.tempdir, 'foo'), 'w')
@@ -198,6 +200,23 @@ class TestReadFileChunk(unittest.TestCase):
         chunk.read(1)
 
         self.assertEqual(amounts_seen, [1, 1, 1])
+
+    def test_callback_can_be_disabled(self):
+        filename = os.path.join(self.tempdir, 'foo')
+        with open(filename, 'wb') as f:
+            f.write(b'abc')
+        callback_calls = []
+
+        def callback(amount):
+            callback_calls.append(amount)
+
+        chunk = ReadFileChunk.from_filename(
+            filename, start_byte=0, chunk_size=3, callback=callback)
+        chunk.disable_callback()
+        # Now reading from the ReadFileChunk should not invoke
+        # the callback.
+        chunk.read()
+        self.assertEqual(callback_calls, [])
 
     def test_file_chunk_supports_context_manager(self):
         filename = os.path.join(self.tempdir, 'foo')
@@ -472,6 +491,22 @@ class TestS3Transfer(unittest.TestCase):
     def tearDown(self):
         self.random_file_patch.stop()
 
+    def test_callback_handlers_register_on_put_item(self):
+        osutil = InMemoryOSLayer({'smallfile': b'foobar'})
+        transfer = S3Transfer(self.client, osutil=osutil)
+        transfer.upload_file('smallfile', 'bucket', 'key')
+        events = self.client.meta.events
+        events.register_first.assert_called_with(
+            'request-created.s3',
+            disable_upload_callbacks,
+            unique_id='s3upload-callback-disable',
+        )
+        events.register_last.assert_called_with(
+            'request-created.s3',
+            enable_upload_callbacks,
+            unique_id='s3upload-callback-enable',
+        )
+
     def test_upload_below_multipart_threshold_uses_put_object(self):
         fake_files = {
             'smallfile': b'foobar',
@@ -640,3 +675,52 @@ class TestRandomFileExtension(unittest.TestCase):
     def test_has_proper_length(self):
         self.assertEqual(
             len(random_file_extension(num_digits=4)), 4)
+
+
+class TestCallbackHandlers(unittest.TestCase):
+    def setUp(self):
+        self.request = mock.Mock()
+
+    def test_disable_request_on_put_object(self):
+        disable_upload_callbacks(self.request,
+                                 'PutObject')
+        self.request.body.disable_callback.assert_called_with()
+
+    def test_disable_request_on_upload_part(self):
+        disable_upload_callbacks(self.request,
+                                 'UploadPart')
+        self.request.body.disable_callback.assert_called_with()
+
+    def test_enable_object_on_put_object(self):
+        enable_upload_callbacks(self.request,
+                                 'PutObject')
+        self.request.body.enable_callback.assert_called_with()
+
+    def test_enable_object_on_upload_part(self):
+        enable_upload_callbacks(self.request,
+                                 'UploadPart')
+        self.request.body.enable_callback.assert_called_with()
+
+    def test_dont_disable_if_missing_interface(self):
+        del self.request.body.disable_callback
+        disable_upload_callbacks(self.request,
+                                 'PutObject')
+        self.assertEqual(self.request.body.method_calls, [])
+
+    def test_dont_enable_if_missing_interface(self):
+        del self.request.body.enable_callback
+        enable_upload_callbacks(self.request,
+                                'PutObject')
+        self.assertEqual(self.request.body.method_calls, [])
+
+    def test_dont_disable_if_wrong_operation(self):
+        disable_upload_callbacks(self.request,
+                                 'OtherOperation')
+        self.assertFalse(
+            self.request.body.disable_callback.called)
+
+    def test_dont_enable_if_wrong_operation(self):
+        enable_upload_callbacks(self.request,
+                                'OtherOperation')
+        self.assertFalse(
+            self.request.body.enable_callback.called)

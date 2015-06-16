@@ -152,13 +152,25 @@ def random_file_extension(num_digits=8):
     return ''.join(random.choice(string.hexdigits) for _ in range(num_digits))
 
 
+def disable_upload_callbacks(request, operation_name, **kwargs):
+    if operation_name in ['PutObject', 'UploadPart'] and \
+            hasattr(request.body, 'disable_callback'):
+        request.body.disable_callback()
+
+
+def enable_upload_callbacks(request, operation_name, **kwargs):
+    if operation_name in ['PutObject', 'UploadPart'] and \
+            hasattr(request.body, 'enable_callback'):
+        request.body.enable_callback()
+
+
 class QueueShutdownError(Exception):
     pass
 
 
 class ReadFileChunk(object):
     def __init__(self, fileobj, start_byte, chunk_size, full_file_size,
-                 callback=None):
+                 callback=None, enable_callback=True):
         """
 
         Given a file object shown below:
@@ -195,9 +207,11 @@ class ReadFileChunk(object):
         self._fileobj.seek(self._start_byte)
         self._amount_read = 0
         self._callback = callback
+        self._callback_enabled = enable_callback
 
     @classmethod
-    def from_filename(cls, filename, start_byte, chunk_size, callback=None):
+    def from_filename(cls, filename, start_byte, chunk_size, callback=None,
+                      enable_callback=True):
         """Convenience factory function to create from a filename.
 
         :type start_byte: int
@@ -215,13 +229,18 @@ class ReadFileChunk(object):
         :type callback: function(amount_read)
         :param callback: Called whenever data is read from this object.
 
+        :type enable_callback: bool
+        :param enable_callback: Indicate whether to invoke callback
+            during read() calls.
+
         :rtype: ``ReadFileChunk``
         :return: A new instance of ``ReadFileChunk``
 
         """
         f = open(filename, 'rb')
         file_size = os.fstat(f.fileno()).st_size
-        return cls(f, start_byte, chunk_size, file_size, callback)
+        return cls(f, start_byte, chunk_size, file_size, callback,
+                   enable_callback)
 
     def _calculate_file_size(self, fileobj, requested_size, start_byte,
                              actual_file_size):
@@ -235,9 +254,15 @@ class ReadFileChunk(object):
             amount_to_read = min(self._size - self._amount_read, amount)
         data = self._fileobj.read(amount_to_read)
         self._amount_read += len(data)
-        if self._callback is not None:
+        if self._callback is not None and self._callback_enabled:
             self._callback(len(data))
         return data
+
+    def enable_callback(self):
+        self._callback_enabled = True
+
+    def disable_callback(self):
+        self._callback_enabled = False
 
     def seek(self, where):
         self._fileobj.seek(self._start_byte + where)
@@ -291,7 +316,8 @@ class OSUtils(object):
 
     def open_file_chunk_reader(self, filename, start_byte, size, callback):
         return ReadFileChunk.from_filename(filename, start_byte,
-                                           size, callback)
+                                           size, callback,
+                                           enable_callback=False)
 
     def open(self, filename, mode):
         return open(filename, mode)
@@ -583,6 +609,13 @@ class S3Transfer(object):
         if extra_args is None:
             extra_args = {}
         self._validate_all_known_args(extra_args, self.ALLOWED_UPLOAD_ARGS)
+        events = self._client.meta.events
+        events.register_first('request-created.s3',
+                              disable_upload_callbacks,
+                              unique_id='s3upload-callback-disable')
+        events.register_last('request-created.s3',
+                             enable_upload_callbacks,
+                             unique_id='s3upload-callback-enable')
         if self._osutil.get_file_size(filename) >= \
                 self._config.multipart_threshold:
             self._multipart_upload(filename, bucket, key, callback, extra_args)

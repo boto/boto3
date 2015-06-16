@@ -23,6 +23,7 @@ import datetime
 
 from tests import unittest, unique_id
 from botocore.compat import six
+from botocore.client import Config
 
 import boto3.session
 import boto3.s3.transfer
@@ -343,6 +344,27 @@ class TestS3Transfers(unittest.TestCase):
         # arg to the callback function) should be the size
         # of the file we uploaded.
         self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
+
+    def test_callback_called_once_with_sigv4(self):
+        # Verify #98, where the callback was being invoked
+        # twice when using signature version 4.
+        self.amount_seen = 0
+        lock = threading.Lock()
+        def progress_callback(amount):
+            with lock:
+                self.amount_seen += amount
+
+        client = self.session.client(
+            's3', self.region,
+            config=Config(signature_version='s3v4'))
+        transfer = boto3.s3.transfer.S3Transfer(client)
+        filename = self.files.create_file_with_size(
+            '10mb.txt', filesize=10 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             '10mb.txt', callback=progress_callback)
+        self.addCleanup(self.delete_object, '10mb.txt')
+
+        self.assertEqual(self.amount_seen, 10 * 1024 * 1024)
 
     def test_can_send_extra_params_on_upload(self):
         transfer = self.create_s3_transfer()
