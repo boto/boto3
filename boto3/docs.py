@@ -33,7 +33,7 @@ import os
 import botocore.session
 
 from botocore import xform_name
-from bcdoc.restdoc import ReSTDocument
+from botocore.docs.bcdoc.restdoc import ReSTDocument
 
 import boto3
 

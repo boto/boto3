@@ -13,10 +13,12 @@
 from tests import unittest
 import mock
 
+from botocore.exceptions import ClientError
+
 from boto3.s3 import inject
 
 
-class TestInject(unittest.TestCase):
+class TestInjectTransferMethods(unittest.TestCase):
     def test_inject_upload_download_file_to_client(self):
         class_attributes = {}
         inject.inject_s3_transfer_methods(class_attributes=class_attributes)
@@ -41,3 +43,35 @@ class TestInject(unittest.TestCase):
             transfer.return_value.download_file.assert_called_with(
                 bucket='bucket', key='key', filename='filename',
                 extra_args=None, callback=None)
+
+
+class TestBucketLoad(unittest.TestCase):
+    def setUp(self):
+        self.client = mock.Mock()
+        self.resource = mock.Mock()
+        self.resource.meta.client = self.client
+
+    def test_bucket_load_finds_bucket(self):
+        self.resource.name = 'MyBucket'
+        self.client.list_buckets.return_value = {
+            'Buckets': [
+                {'Name': 'NotMyBucket', 'CreationDate': 1},
+                {'Name': self.resource.name, 'CreationDate': 2},
+            ],
+        }
+
+        inject.bucket_load(self.resource)
+        self.assertEqual(
+            self.resource.meta.data,
+            {'Name': self.resource.name, 'CreationDate': 2})
+
+    def test_bucket_load_raise_error(self):
+        self.resource.name = 'MyBucket'
+        self.client.list_buckets.return_value = {
+            'Buckets': [
+                {'Name': 'NotMyBucket', 'CreationDate': 1},
+                {'Name': 'NotMine2', 'CreationDate': 2},
+            ],
+        }
+        with self.assertRaises(ClientError):
+            inject.bucket_load(self.resource)

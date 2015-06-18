@@ -19,9 +19,11 @@ import tempfile
 import shutil
 import hashlib
 import string
+import datetime
 
 from tests import unittest, unique_id
 from botocore.compat import six
+from botocore.client import Config
 
 import boto3.session
 import boto3.s3.transfer
@@ -343,6 +345,27 @@ class TestS3Transfers(unittest.TestCase):
         # of the file we uploaded.
         self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
 
+    def test_callback_called_once_with_sigv4(self):
+        # Verify #98, where the callback was being invoked
+        # twice when using signature version 4.
+        self.amount_seen = 0
+        lock = threading.Lock()
+        def progress_callback(amount):
+            with lock:
+                self.amount_seen += amount
+
+        client = self.session.client(
+            's3', self.region,
+            config=Config(signature_version='s3v4'))
+        transfer = boto3.s3.transfer.S3Transfer(client)
+        filename = self.files.create_file_with_size(
+            '10mb.txt', filesize=10 * 1024 * 1024)
+        transfer.upload_file(filename, self.bucket_name,
+                             '10mb.txt', callback=progress_callback)
+        self.addCleanup(self.delete_object, '10mb.txt')
+
+        self.assertEqual(self.amount_seen, 10 * 1024 * 1024)
+
     def test_can_send_extra_params_on_upload(self):
         transfer = self.create_s3_transfer()
         filename = self.files.create_file_with_size('foo.txt', filesize=1024)
@@ -460,11 +483,25 @@ class TestS3Transfers(unittest.TestCase):
         assert_files_equal(filename, download_path)
 
 
-class TestS3TransferMethodInjection(unittest.TestCase):
-    def test_transfer_methods_injected_to_client(self):
-        session = boto3.session.Session(region_name='us-west-2')
-        client = session.client('s3')
-        self.assertTrue(hasattr(client, 'upload_file'),
-                        'upload_file was not injected onto S3 client')
-        self.assertTrue(hasattr(client, 'download_file'),
-                        'download_file was not injected onto S3 client')
+class TestCustomS3BucketLoad(unittest.TestCase):
+    def setUp(self):
+        self.region = 'us-west-2'
+        self.session = boto3.session.Session(region_name=self.region)
+        self.s3 = self.session.resource('s3')
+        self.bucket_name = unique_id('boto3-test')
+
+    def create_bucket_resource(self, bucket_name, region=None):
+        if region is None:
+            region = self.region
+        kwargs = {'Bucket': bucket_name}
+        if region != 'us-east-1':
+            kwargs['CreateBucketConfiguration'] = {
+                'LocationConstraint': region
+            }
+        bucket = self.s3.create_bucket(**kwargs)
+        self.addCleanup(bucket.delete)
+        return bucket
+
+    def test_can_access_buckets_creation_date(self):
+        bucket = self.create_bucket_resource(random_bucket_name())
+        self.assertIsInstance(bucket.creation_date, datetime.datetime)
