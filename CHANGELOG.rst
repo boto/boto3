@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.0.22 - 2015-08-12
+-------------------
+
+* bugfix:``s3.client.upload_file``: Fix double invocation of callbacks when
+  using signature version 4.
+  (`issue 133 <https://github.com/boto/boto3/pull/133>`__)
+* bugfix::``s3.Bucket.load``: Add custom load method for Bucket resource.
+  (`issue 128 <https://github.com/boto/boto3/pull/128>`__)
+
+
 0.0.21 - 2015-06-12
 -------------------
 
