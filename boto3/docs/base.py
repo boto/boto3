@@ -22,7 +22,7 @@ class BaseDocumenter(object):
         self._resource_name = self._resource.meta.resource_model.name
         self._service_name = self._service_model.service_name
         self._service_docs_name = self._client.__class__.__name__
-        self.member_map =  OrderedDict()
+        self.member_map = OrderedDict()
         self.represents_service_resource = (
             self._service_name == self._resource_name)
 

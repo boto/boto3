@@ -97,7 +97,7 @@ class ServiceDocumenter(object):
                 section)
 
     def _document_resources(self, section):
-        temp_identifier_value='foo'
+        temp_identifier_value = 'foo'
         loader = self._botocore_session.get_component('data_loader')
         json_resource_model = loader.load_service_model(
             self._service_name, 'resources-1')
@@ -108,8 +108,8 @@ class ServiceDocumenter(object):
                 resource_name=resource_name,
                 model=resource_model,
                 resource_defs=json_resource_model['resources'],
-                service_model=self._service_resource.meta.\
-                    client.meta.service_model
+                service_model=self._service_resource.meta.
+                client.meta.service_model
             )
             identifiers = resource_cls.meta.resource_model.identifiers
             args = []

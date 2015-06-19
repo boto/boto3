@@ -25,9 +25,9 @@ class SubResourceDocumenter(BaseDocumenter):
             section=section,
             resource_type='Sub-resources',
             description=(
-                 'Sub-resources are methods that create a new instance of a'
-                 ' child resource. This resource\'s identifiers get passed'
-                 ' along to the child.'),
+                'Sub-resources are methods that create a new instance of a'
+                ' child resource. This resource\'s identifiers get passed'
+                ' along to the child.'),
             intro_link='subresources_intro')
         sub_resources = sorted(
             self._resource.meta.resource_model.subresources,

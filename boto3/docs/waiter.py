@@ -16,7 +16,6 @@ from botocore.docs.method import document_model_driven_method
 from boto3.docs.base import BaseDocumenter
 from boto3.docs.utils import get_resource_ignore_params
 from boto3.docs.utils import add_resource_type_overview
-from boto3.docs.utils import add_resource_type_overview
 
 
 class WaiterResourceDocumenter(BaseDocumenter):
@@ -30,8 +29,8 @@ class WaiterResourceDocumenter(BaseDocumenter):
             section=section,
             resource_type='Waiters',
             description=(
-                 'Waiters provide an interface to wait for a resource'
-                 ' to reach a specific state.'),
+                'Waiters provide an interface to wait for a resource'
+                ' to reach a specific state.'),
             intro_link='waiters_intro')
         waiter_list = []
         self.member_map['waiters'] = waiter_list

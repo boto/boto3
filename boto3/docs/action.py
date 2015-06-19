@@ -10,8 +10,6 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import inspect
-
 from botocore import xform_name
 from botocore.model import OperationModel
 from botocore.docs.method import document_model_driven_method
@@ -40,7 +38,7 @@ class ActionDocumenter(BaseDocumenter):
                 'Actions call operations on resources.  They may '
                 'automatically handle the passing in of arguments set '
                 'from identifiers and some attributes.'),
-            intro_link='actions_intro') 
+            intro_link='actions_intro')
         for action_name in sorted(resource_actions):
             action_section = section.add_new_section(action_name)
             if action_name in ['load', 'reload'] and self._resource_model.load:
@@ -59,7 +57,7 @@ class ActionDocumenter(BaseDocumenter):
 
         ignore_params = get_resource_ignore_params(action.request.params)
 
-        example_return_value  = 'response'
+        example_return_value = 'response'
         if action.resource:
             example_return_value = xform_name(action.resource.type)
         resource_name = xform_name(self._resource_name)

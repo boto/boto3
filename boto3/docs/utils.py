@@ -36,6 +36,7 @@ def get_resource_public_actions(resource_class):
                         resource_methods[name] = member
     return resource_methods
 
+
 def get_identifier_values_for_example(identifier_names):
     example_values = ['\'%s\'' % identifier for identifier in identifier_names]
     return ','.join(example_values)
@@ -48,6 +49,7 @@ def get_identifier_args_for_signature(identifier_names):
 def get_identifier_description(resource_name, identifier_name):
     return "The %s's %s identifier. This **must** be set." % (
         resource_name, identifier_name)
+
 
 def add_resource_type_overview(section, resource_type, description,
                                intro_link=None):
@@ -63,7 +65,7 @@ def add_resource_type_overview(section, resource_type, description,
     if intro_link is not None:
         section.write('For more information about %s refer to the '
                       ':ref:`Resources Introduction Guide<%s>`.' % (
-                        resource_type.lower(), intro_link))
+                          resource_type.lower(), intro_link))
         section.style.new_line()
 
 
@@ -99,7 +101,7 @@ class DocumentModifiedShape(object):
             for section_name in section.available_sections:
                 # Delete any extra members as a new shape is being
                 # used.
-                if section_name not in ['param-name', 'param-documentation',    
+                if section_name not in ['param-name', 'param-documentation',
                                         'end-structure', 'param-type',
                                         'end-param']:
                     section.delete_section(section_name)

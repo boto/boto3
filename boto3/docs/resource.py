@@ -13,8 +13,6 @@
 from botocore import xform_name
 from botocore.docs.utils import get_official_service_name
 from botocore.docs.utils import py_type_name
-from botocore.docs.method import document_model_driven_method
-from botocore.compat import OrderedDict
 
 from boto3.docs.base import BaseDocumenter
 from boto3.docs.action import ActionDocumenter
@@ -132,7 +130,7 @@ class ResourceDocumenter(BaseDocumenter):
                 description=(
                     'Identifiers are properties of a resource that are '
                     'set upon instantation of the resource.'),
-                intro_link='identifiers_attributes_intro') 
+                intro_link='identifiers_attributes_intro')
         for identifier in identifiers:
             identifier_section = section.add_new_section(identifier.name)
             member_list.append(identifier.name)
@@ -161,7 +159,7 @@ class ResourceDocumenter(BaseDocumenter):
                     ' to the properties of a resource. Attributes are lazy-'
                     'loaded the first time one is accessed via the'
                     ' :py:meth:`load` method.'),
-                intro_link='identifiers_attributes_intro') 
+                intro_link='identifiers_attributes_intro')
             self.member_map['attributes'] = attribute_list
         for attr_name, (_, attr_shape) in attributes.items():
             attribute_section = section.add_new_section(attr_name)
@@ -182,7 +180,7 @@ class ResourceDocumenter(BaseDocumenter):
                 description=(
                     'References are related resource instances that have '
                     'a belongs-to relationship.'),
-                intro_link='references_intro') 
+                intro_link='references_intro')
             self.member_map['references'] = reference_list
         for reference in references:
             reference_section = section.add_new_section(reference.name)
@@ -229,11 +227,11 @@ class ResourceDocumenter(BaseDocumenter):
             documenter.member_map = self.member_map
             documenter.document_resource_waiters(section)
 
-class ServiceResourceDocumenter(ResourceDocumenter):
 
+class ServiceResourceDocumenter(ResourceDocumenter):
     @property
     def class_name(self):
-        return '%s.ServiceResource' % self._service_docs_name 
+        return '%s.ServiceResource' % self._service_docs_name
 
     def _add_title(self, section):
         section.style.h2('Service Resource')

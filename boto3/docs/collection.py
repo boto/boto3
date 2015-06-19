@@ -11,7 +11,6 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 from botocore import xform_name
-from botocore.docs.method import document_custom_method
 from botocore.docs.method import get_instance_public_methods
 from botocore.docs.utils import DocumentedShape
 
@@ -31,7 +30,7 @@ class CollectionDocumenter(BaseDocumenter):
             description=(
                 'Collections provide an interface to iterate over and '
                 'manipulate groups of resources. '),
-            intro_link='guide_collections') 
+            intro_link='guide_collections')
         self.member_map['collections'] = collections_list
         for collection in collections:
             collection_section = section.add_new_section(collection.name)
@@ -60,7 +59,7 @@ class CollectionDocumenter(BaseDocumenter):
             action.request.operation)
         ignore_params = get_resource_ignore_params(action.request.params)
 
-        example_return_value  = 'response'
+        example_return_value = 'response'
         if action.resource:
             example_return_value = xform_name(action.resource.type)
         resource_name = xform_name(self._resource_name)
@@ -134,7 +133,7 @@ class CollectionDocumenter(BaseDocumenter):
                     'Creates an iterable of all %s resources '
                     'in the collection, but limits the number of '
                     'items returned by each service call by the specified '
-                    'amount.'  % collection.resource.type),
+                    'amount.' % collection.resource.type),
                 'example_prefix': '%s_iterator = %s.%s.page_size' % (
                     xform_name(collection.resource.type),
                     resource_name, collection.name),

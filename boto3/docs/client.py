@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 from botocore.docs.client import ClientDocumenter
 
+
 class Boto3ClientDocumenter(ClientDocumenter):
     def _add_client_creation_example(self, section):
         section.style.start_codeblock()
