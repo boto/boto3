@@ -56,7 +56,7 @@ class BaseDocsTest(unittest.TestCase):
         self.botocore_session = botocore.session.get_session()
         self.botocore_session.register_component('data_loader', self.loader)
         self.session = Session(botocore_session=self.botocore_session)
-        self.client = self.session.client('myservice')
+        self.client = self.session.client('myservice', 'us-east-1')
 
     def tearDown(self):
         shutil.rmtree(self.root_dir)

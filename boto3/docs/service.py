@@ -28,10 +28,11 @@ class ServiceDocumenter(object):
         self._service_name = service_name
         self._botocore_session = botocore.session.get_session()
         self._session = Session(botocore_session=self._botocore_session)
-        self._client = self._session.client(service_name)
+        self._client = self._session.client(service_name, 'us-east-1')
         self._service_resource = None
         if self._service_name in self._session.get_available_resources():
-            self._service_resource = self._session.resource(service_name)
+            self._service_resource = self._session.resource(
+                service_name, 'us-east-1')
         self.sections = [
             'title',
             'table-of-contents',
