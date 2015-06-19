@@ -13,7 +13,7 @@
 from botocore.docs.client import ClientDocumenter
 
 class Boto3ClientDocumenter(ClientDocumenter):
-    def _add_class_creation_example(self, section):
+    def _add_client_creation_example(self, section):
         section.style.start_codeblock()
         section.style.new_line()
         section.write('import boto3')

@@ -118,7 +118,7 @@ class ResourceDocumenter(BaseDocumenter):
                                             'references', 'collections']:
                     section.style.li(':py:attr:`%s`' % member)
                 else:
-                    section.style.li(':py:attr:`%s()`' % member)
+                    section.style.li(':py:meth:`%s()`' % member)
 
     def _add_identifiers(self, section):
         identifiers = self._resource.meta.resource_model.identifiers
