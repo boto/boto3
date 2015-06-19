@@ -57,7 +57,9 @@ class TestSession(BaseTestCase):
 
         session = Session(profile_name='foo')
 
-        self.assertEqual(bc_session.profile, 'foo')
+        bc_session.set_config_variable.assert_called_with(
+            'profile', 'foo')
+        bc_session.profile = 'foo'
 
         # We should also be able to read the value
         self.assertEqual(session.profile_name, 'foo')

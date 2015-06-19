@@ -43,7 +43,7 @@ class TestDynamoDB(unittest.TestCase):
         # Make sure it uses the high level interface
         table.scan(FilterExpression=Attr('mykey').eq('myvalue'))
         request = self.make_request_mock.call_args_list[0][0][1]
-        request_params = json.loads(request['body'])
+        request_params = json.loads(request['body'].decode('utf-8'))
         self.assertEqual(
             request_params,
             {'TableName': 'MyTable',
@@ -62,7 +62,7 @@ class TestDynamoDB(unittest.TestCase):
             ExpressionAttributeValues={':v0': {'S': 'myvalue'}}
         )
         request = self.make_request_mock.call_args_list[0][0][1]
-        request_params = json.loads(request['body'])
+        request_params = json.loads(request['body'].decode('utf-8'))
         self.assertEqual(
             request_params,
             {'TableName': 'MyTable',
