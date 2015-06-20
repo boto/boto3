@@ -52,10 +52,10 @@ Services
 ~~~~~~~~
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
-   reference/services/*
+   reference/services/index
 
 Core
 ~~~~
@@ -64,7 +64,7 @@ Core
    :maxdepth: 2
    :glob:
 
-   reference/core/*
+   reference/core/index
 
 Customizations
 ~~~~~~~~~~~~~~
@@ -73,7 +73,7 @@ Customizations
    :maxdepth: 2
    :glob:
 
-   reference/customizations/*
+   reference/customizations/index
 
 Indices and tables
 ==================

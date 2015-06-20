@@ -24,7 +24,7 @@ class ResourceMeta(object):
     An object containing metadata about a resource.
     """
     def __init__(self, service_name, identifiers=None, client=None,
-                 data=None):
+                 data=None, resource_model=None):
         #: (``string``) The service name, e.g. 's3'
         self.service_name = service_name
 
@@ -37,6 +37,9 @@ class ResourceMeta(object):
         self.client = client
         #: (``dict``) Loaded resource data attributes
         self.data = data
+
+        # The resource model for that resource
+        self.resource_model = resource_model
 
     def __repr__(self):
         return 'ResourceMeta(\'{0}\', identifiers={1})'.format(

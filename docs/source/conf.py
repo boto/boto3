@@ -15,29 +15,10 @@
 import os
 import boto3
 
-from botocore.exceptions import ApiVersionNotFoundError
-from boto3.docs import docs_for
+from boto3.docs import generate_docs
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+generate_docs(os.path.dirname(os.path.abspath(__file__)))
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
-if not os.path.exists('reference/services'):
-  os.makedirs('reference/services')
-
-# Generate reference docs.
-boto3.setup_default_session()
-for service_name in boto3.DEFAULT_SESSION.get_available_services():
-    try:
-        docs = docs_for(service_name)
-    except ApiVersionNotFoundError as e:
-        print(repr(e))
-        continue
-
-    open('reference/services/{0}.rst'.format(service_name), 'w').write(docs)
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -113,6 +94,20 @@ pygments_style = 'sphinx'
 #modindex_common_prefix = []
 
 
+import guzzle_sphinx_theme
+
+extensions.append("guzzle_sphinx_theme")
+html_translator_class = 'guzzle_sphinx_theme.HTMLTranslator'
+html_theme_path = guzzle_sphinx_theme.html_theme_path()
+html_theme = 'guzzle_sphinx_theme'
+# Guzzle theme options (see theme.conf for more information)
+
+html_theme_options = {
+    # hack to add tracking
+    "google_analytics_account": os.getenv('TRACKING', False),
+    "base_url": "http://docs.aws.amazon.com/aws-sdk-php/guide/latest/"
+}
+
 # -- Options for HTML output ---------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -157,7 +152,12 @@ html_static_path = ['.static']
 #html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-#html_sidebars = {}
+html_show_sourcelink = False
+html_sidebars = {
+    '**': [
+        'globaltoc.html',
+        'searchbox.html']
+}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.

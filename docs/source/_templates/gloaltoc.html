@@ -1,0 +1,13 @@
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>{{ _('Table Of Contents') }}</h2>
+  </div>
+  <div class="sidebar-toc">
+    {% set toctree = toctree(maxdepth=4, collapse=True, includehidden=True) %}
+    {% if toctree %}
+      {{ toctree }}
+    {% else %}
+      {{ toc }}
+    {% endif %}
+  </div>
+</div>

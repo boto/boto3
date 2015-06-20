@@ -10,18 +10,18 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest, mock
-
-import boto3
+from botocore.docs.client import ClientDocumenter
 
 
-class TestTableResourceCustomizations(unittest.TestCase):
-
-    maxDiff = None
-
-    def setUp(self):
-        self.resource = boto3.resource('dynamodb', 'us-east-1')
-
-    def test_resource_has_batch_writer_added(self):
-        table = self.resource.Table('mytable')
-        self.assertTrue(hasattr(table, 'batch_writer'))
+class Boto3ClientDocumenter(ClientDocumenter):
+    def _add_client_creation_example(self, section):
+        section.style.start_codeblock()
+        section.style.new_line()
+        section.write('import boto3')
+        section.style.new_line()
+        section.style.new_line()
+        section.write(
+            'client = boto3.client(\'{service}\')'.format(
+                service=self._service_name)
+        )
+        section.style.end_codeblock()
