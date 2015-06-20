@@ -22,6 +22,7 @@ class TestBoto3(unittest.TestCase):
         self.Session = self.session_patch.start()
 
     def tearDown(self):
+        boto3.DEFAULT_SESSION = None
         self.session_patch.stop()
 
     def test_create_default_session(self):

@@ -20,7 +20,7 @@ class TestTableResourceCustomizations(unittest.TestCase):
     maxDiff = None
 
     def setUp(self):
-        self.resource = boto3.resource('dynamodb')
+        self.resource = boto3.resource('dynamodb', 'us-east-1')
 
     def test_resource_has_batch_writer_added(self):
         table = self.resource.Table('mytable')

@@ -27,12 +27,12 @@ class ServiceDocumenter(object):
     def __init__(self, service_name):
         self._service_name = service_name
         self._botocore_session = botocore.session.get_session()
-        self._session = Session(botocore_session=self._botocore_session)
-        self._client = self._session.client(service_name, 'us-east-1')
+        self._session = Session(botocore_session=self._botocore_session,
+                                region_name='us-east-1')
+        self._client = self._session.client(service_name)
         self._service_resource = None
         if self._service_name in self._session.get_available_resources():
-            self._service_resource = self._session.resource(
-                service_name, 'us-east-1')
+            self._service_resource = self._session.resource(service_name)
         self.sections = [
             'title',
             'table-of-contents',
@@ -116,7 +116,7 @@ class ServiceDocumenter(object):
             args = []
             for _ in identifiers:
                 args.append(temp_identifier_value)
-            resource = resource_cls(*args)
+            resource = resource_cls(*args, client=self._client)
             ResourceDocumenter(
                 resource, self._botocore_session).document_resource(
                     section.add_new_section(resource.meta.resource_model.name))

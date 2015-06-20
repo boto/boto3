@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from nose.tools import assert_in
+from nose.tools import assert_true
 import botocore.session
 from botocore import xform_name
 from botocore.exceptions import DataNotFoundError
@@ -20,12 +20,13 @@ from boto3.docs.service import ServiceDocumenter
 
 
 def test_docs_generated():
+    """Verify we can generate the appropriate docs for all services"""
     botocore_session = botocore.session.get_session()
     session = boto3.Session()
     for service_name in session.get_available_services():
         generated_docs = ServiceDocumenter(service_name).document_service()
         generated_docs = generated_docs.decode('utf-8')
-        client = boto3.client(service_name)
+        client = boto3.client(service_name, 'us-east-1')
 
         # Check that all services have the client documented.
         yield (_assert_has_client_documentation, generated_docs, service_name,
@@ -49,14 +50,14 @@ def test_docs_generated():
         # If the service has resources, make sure the service resource
         # is at least documented.
         if service_name in session.get_available_resources():
-            resource = boto3.resource(service_name)
+            resource = boto3.resource(service_name, 'us-east-1')
             yield (_assert_has_resource_documentation, generated_docs,
                    service_name, resource)
 
 
 def _assert_contains_lines_in_order(lines, contents):
     for line in lines:
-        assert_in(line, contents)
+        assert_true(line in contents)
         beginning = contents.find(line)
         contents = contents[(beginning + len(line)):]
 
