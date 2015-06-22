@@ -25,6 +25,9 @@ Resources themselves can also be conceptually split into service resources
 ``sqs.Queue`` or ``s3.Bucket``). Service resources *do not* have
 identifiers or attributes. The two share the same components otherwise.
 
+
+.. _identifiers_attributes_intro:
+
 Identifiers & Attributes
 ------------------------
 An identifier is a unique value that is used to call actions on the resource.
@@ -100,6 +103,8 @@ the ``load`` or ``reload`` action. Examples of attributes::
    called, then the next time you access ``last_modified`` it will
    reload the object's metadata.
 
+.. _actions_intro:
+
 Actions
 -------
 An action is a method which makes a call to the service. Actions may return a
@@ -133,6 +138,8 @@ Examples of sending additional parameters::
    Parameters **must** be passed as keyword arguments. They will not work
    as positional arguments.
 
+.. _references_intro:
+
 References
 ----------
 A reference is an attribute which may be ``None`` or a related resource
@@ -149,6 +156,8 @@ In the above example, an EC2 instance may have exactly one associated
 subnet, and may have exactly one associated VPC. The subnet does not
 require the instance ID to exist, hence it is not a parent to child
 relationship.
+
+.. _subresources_intro:
 
 Sub-resources
 -------------
@@ -170,6 +179,8 @@ can be considered one-to-many. Examples of sub-resources::
 
 Because an SQS message cannot exist without a queue, and an S3 object cannot
 exist without a bucket, these are parent to child relationships.
+
+.. _waiters_intro:
 
 Waiters
 -------

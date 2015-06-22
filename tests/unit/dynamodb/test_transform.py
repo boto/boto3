@@ -570,7 +570,11 @@ class TestDynamoDBHighLevelResource(unittest.TestCase):
             {'meta': self.meta})
         with mock.patch('boto3.dynamodb.transform.TransformationInjector') \
                 as mock_injector:
-            dynamodb_class(client=self.client)
+            with mock.patch(
+                'boto3.dynamodb.transform.DocumentModifiedShape.'
+                'replace_documentation_for_matching_shape') \
+                    as mock_modify_documentation_method:
+                dynamodb_class(client=self.client)
 
         # It should have fired the following events upon instantiation.
         event_call_args = self.events.register.call_args_list
@@ -591,7 +595,19 @@ class TestDynamoDBHighLevelResource(unittest.TestCase):
              mock.call(
                 'after-call.dynamodb',
                 mock_injector.return_value.inject_attribute_value_output,
-                unique_id='dynamodb-attr-value-output')]
+                unique_id='dynamodb-attr-value-output'),
+             mock.call(
+                'docs.*.dynamodb.*.complete-section',
+                mock_modify_documentation_method,
+                unique_id='dynamodb-attr-value-docs'),
+             mock.call(
+                'docs.*.dynamodb.*.complete-section',
+                mock_modify_documentation_method,
+                unique_id='dynamodb-key-expression-docs'),
+             mock.call(
+                'docs.*.dynamodb.*.complete-section',
+                mock_modify_documentation_method,
+                unique_id='dynamodb-cond-expression-docs')]
         )
 
 

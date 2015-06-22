@@ -63,7 +63,7 @@ class Session(object):
             self._session.user_agent_version = boto3.__version__
 
         if profile_name is not None:
-            self._session.profile = profile_name
+            self._session.set_config_variable('profile', profile_name)
 
         if aws_access_key_id or aws_secret_access_key or aws_session_token:
             self._session.set_credentials(aws_access_key_id,

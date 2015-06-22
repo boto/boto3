@@ -10,13 +10,6 @@ developers to write software that makes use of Amazon services like S3 and
 EC2. Boto provides an easy to use, object-oriented API as well as low-level
 direct service access.
 
-.. note::
-
-   Boto 3 is in **developer preview**.  This means that until a 1.0 release
-   occurs, some of the interfaces may change based on your feedback. Once a
-   1.0 release happens, we guarantee backwards compatibility for all future
-   1.x.x releases.  Try out Boto 3 and give us
-   `feedback <https://github.com/boto/boto3/issues>`__ today!
 
 .. raw:: html
 
@@ -52,10 +45,10 @@ Services
 ~~~~~~~~
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
-   reference/services/*
+   reference/services/index
 
 Core
 ~~~~
@@ -64,7 +57,7 @@ Core
    :maxdepth: 2
    :glob:
 
-   reference/core/*
+   reference/core/index
 
 Customizations
 ~~~~~~~~~~~~~~
@@ -73,7 +66,7 @@ Customizations
    :maxdepth: 2
    :glob:
 
-   reference/customizations/*
+   reference/customizations/index
 
 Indices and tables
 ==================
