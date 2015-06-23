@@ -23,7 +23,7 @@ Before creating a queue, you must first get the SQS service resource::
 
     # You can now access identifiers and attributes
     print(queue.url)
-    print(queue.attributes.get['DelaySeconds'])
+    print(queue.attributes.get('DelaySeconds'))
 
 Reference: :py:meth:`sqs.ServiceResource.create_queue`
 
