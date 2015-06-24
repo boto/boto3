@@ -64,9 +64,7 @@ class ServiceDocumenter(object):
         return doc_structure.flush_structure()
 
     def _document_title(self, section):
-        official_service_name = get_official_service_name(
-            self._client.meta.service_model)
-        section.style.h1(official_service_name)
+        section.style.h1(self._client.__class__.__name__)
 
     def _document_table_of_contents(self, section):
         section.style.table_of_contents(title='Table of Contents', depth=2)
