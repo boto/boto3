@@ -22,7 +22,7 @@ Quickstart
    :maxdepth: 2
 
    guide/quickstart
-   guide/tutorial
+   tutorial/index
 
 User Guide
 ----------
