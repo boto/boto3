@@ -15,7 +15,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore==1.0.0',
+    'botocore==1.0.1',
     'jmespath>=0.6.2,<1.0.0',
 ]
 
@@ -52,7 +52,7 @@ setup(
     },
     license="Apache License 2.0",
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: Apache Software License',
