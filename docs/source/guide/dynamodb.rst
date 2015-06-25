@@ -1,11 +1,11 @@
-.. _dynamodb_tutorial
+.. _dynamodb_guide:
 
-DynamoDB Tutorial
-=================
-This tutorial shows how to use
-`Amazon DynamoDB <http://aws.amazon.com/documentation/dynamodb/>`_ with Boto3.
-It will focus on how to use the :py:class:`DynamoDB.ServiceResource` and
-:py:class:`DynamoDB.Table` resources.
+DynamoDB
+========
+By following this guide, you will learn how to use the
+:py:class:`DynamoDB.ServiceResource` and :py:class:`DynamoDB.Table`
+resources in order to create tables, write items to tables, modify existing
+items, retrieve items, and query/filter the items in the table.
 
 
 Creating a New Table

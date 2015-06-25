@@ -1,7 +1,7 @@
-.. _sqs_tutorial:
+.. _sqs_guide:
 
-SQS Tutorial
-============
+SQS
+===
 `Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
 allows you to queue and then process messages. This tutorial covers how to
 create a new queue, get and use an existing queue, push new messages onto the
