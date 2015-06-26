@@ -55,6 +55,9 @@ In order to create a new table, use the
     # Print out some data about the table.
     print(table.item_count)
 
+Expected Output::
+
+    0
 
 This creates a table named ``users`` that respectively has the hash and
 range primary keys ``username`` and ``last_name``.
@@ -83,6 +86,10 @@ an existing table::
     # This will cause a request to be made to DynamoDB and its attribute
     # values will be set based on the response.
     print(table.creation_date_time)
+
+Expected Output (Pleas note that probably the actual times will not match up)::
+
+    2015-06-26 12:42:45.149000-07:00
 
 
 Creating a New Item
@@ -119,6 +126,15 @@ You can then retrieve the object using :py:meth:`DynamoDB.Table.get_item`::
     print(item)
 
 
+Expected Output::
+
+    {u'username': u'janedoe',
+     u'first_name': u'Jane',
+     u'last_name': u'Doe',
+     u'account_type': u'standard_user',
+     u'age': Decimal('25')}
+
+
 Updating Item
 -------------
 
@@ -137,6 +153,15 @@ Then if you retrieve the item again, it will be updated appropriately::
     )
     item = response['Item']
     print(item)
+
+
+Expected Output::
+
+    {u'username': u'janedoe',
+     u'first_name': u'Jane',
+     u'last_name': u'Doe',
+     u'account_type': u'standard_user',
+     u'age': Decimal('26')}
 
 
 Deleting Item
@@ -225,6 +250,31 @@ items you want to add, and ``delete_item`` for any items you want to delete::
             }
         )
 
+The batch writer is even able to handle a very large amount of writes to the
+table.
+
+.. warning::
+    If you are running the code blocks in this guide step by step, it may
+    take a long time to run the following code block given the
+    small write throughput of the table that was chosen. It is
+    recommended that you increase the write throughput of the table
+    before running the following code block to make it run faster. Note
+    that the following code block does not needed to be run in order
+    to successfully run the code blocks in the following sections of the guide.
+
+::
+
+    with table.batch_writer() as batch:
+        for i in range(10000):
+            batch.put_item(
+                Item={
+                    'account_type': 'anonymous',
+                    'username': 'user' + str(i),
+                    'first_name': 'unknown',
+                    'last_name': 'unknown'
+                }
+            )
+
 
 Querying and Scanning
 ---------------------
@@ -251,6 +301,19 @@ This queries for all of the users whose ``username`` key equals ``johndoe``::
     print(items)
 
 
+Expected Output::
+
+    [{u'username': u'johndoe',
+      u'first_name': u'John',
+      u'last_name': u'Doe',
+      u'account_type': u'standard_user',
+      u'age': Decimal('25'),
+      u'address': {u'city': u'Los Angeles',
+                   u'state': u'CA',
+                   u'zipcode': Decimal('90001'),
+                   u'road': u'1 Jefferson Street'}}]
+
+
 Similiarly you can scan the table based on attributes of the items. For
 example, this scans for all the users whose ``age`` is less than ``27``::
 
@@ -259,6 +322,28 @@ example, this scans for all the users whose ``age`` is less than ``27``::
     )
     items = response['Items']
     print(items)
+
+
+Expected Output::
+
+    [{u'username': u'johndoe',
+      u'first_name': u'John',
+      u'last_name': u'Doe',
+      u'account_type': u'standard_user',
+      u'age': Decimal('25'),
+      u'address': {u'city': u'Los Angeles',
+                   u'state': u'CA',
+                   u'zipcode': Decimal('90001'),
+                   u'road': u'1 Jefferson Street'}},
+     {u'username': u'bobsmith',
+      u'first_name': u'Bob',
+      u'last_name': u'Smith',
+      u'account_type': u'standard_user',
+      u'age': Decimal('18'),
+      u'address': {u'city': u'Louisville',
+                   u'state': u'KY',
+                   u'zipcode': Decimal('40213'),
+                   u'road': u'3 Madison Lane'}}]
 
 
 You are also able to chain conditions together using the logical operators:
@@ -272,6 +357,20 @@ users whose ``first_name`` starts with ``J`` and whose ``account_type`` is
     items = response['Items']
     print(items)
 
+
+Expected Output::
+
+    [{u'username': u'janedoering',
+      u'first_name': u'Jane',
+      u'last_name': u'Doering',
+      u'account_type': u'super_user',
+      u'age': Decimal('40'),
+      u'address': {u'city': u'Seattle',
+                   u'state': u'WA',
+                   u'zipcode': Decimal('98109'),
+                   u'road': u'2 Washington Avenue'}}]
+
+
 You can even scan based on conditions of a nested attribute. For example this
 scans for all users whose ``state`` in their ``address`` is ``CA``::
 
@@ -280,6 +379,29 @@ scans for all users whose ``state`` in their ``address`` is ``CA``::
     )
     items = response['Items']
     print(items)
+
+
+Expected Output::
+
+    [{u'username': u'johndoe',
+      u'first_name': u'John',
+      u'last_name': u'Doe',
+      u'account_type': u'standard_user',
+      u'age': Decimal('25'),
+      u'address': {u'city': u'Los Angeles',
+                   u'state': u'CA',
+                   u'zipcode': Decimal('90001'),
+                   u'road': u'1 Jefferson Street'}},
+     {u'username': u'alicedoe',
+      u'first_name': u'Alice',
+      u'last_name': u'Doe',
+      u'account_type': u'super_user',
+      u'age': Decimal('27'),
+      u'address': {u'city': u'Los Angeles',
+                   u'state': u'CA',
+                   u'zipcode': Decimal('90001'),
+                   u'road': u'1 Jefferson Street'}}]
+
 
 For more information on the various conditions you can use for queries and
 scans, refer to :ref:`ref_dynamodb_conditions`.
