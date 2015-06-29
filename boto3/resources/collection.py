@@ -15,6 +15,7 @@ import copy
 import logging
 
 from botocore import xform_name
+from botocore.utils import merge_dicts
 
 from .action import BatchAction
 from .params import create_request_parameters
@@ -106,7 +107,7 @@ class ResourceCollection(object):
         :return: A clone of this resource collection
         """
         params = copy.deepcopy(self._params)
-        params.update(kwargs)
+        merge_dicts(params, kwargs, append_lists=True)
         clone = self.__class__(self._model, self._parent,
                                self._handler, **params)
         return clone
@@ -135,10 +136,9 @@ class ResourceCollection(object):
         cleaned_params = self._params.copy()
         limit = cleaned_params.pop('limit', None)
         page_size = cleaned_params.pop('page_size', None)
-
         params = create_request_parameters(
             self._parent, self._model.request)
-        params.update(cleaned_params)
+        merge_dicts(params, cleaned_params, append_lists=True)
 
         # Is this a paginated operation? If so, we need to get an
         # iterator for the various pages. If not, then we simply
