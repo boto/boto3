@@ -1,9 +1,14 @@
-.. _sqs_guide:
+.. _sample_tutorial:
+
+A Sample Tutorial
+=================
+This tutorial will show you how to use Boto3 with an AWS service. In this
+sample tutorial, you will learn how to use Boto3 with 
+`Amazon Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
 
 SQS
-===
-`Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
-allows you to queue and then process messages. This tutorial covers how to
+---
+SQS allows you to queue and then process messages. This tutorial covers how to
 create a new queue, get and use an existing queue, push new messages onto the
 queue, and process messages from the queue by using
 :ref:`guide_resources` and :ref:`guide_collections`.

@@ -18,6 +18,7 @@ Quickstart
    :maxdepth: 2
 
    guide/quickstart
+   guide/sqs
 
 User Guide
 ----------

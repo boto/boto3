@@ -30,4 +30,3 @@ Service Feature Guides
 .. toctree::
 
    dynamodb
-   sqs
