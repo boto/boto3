@@ -3,7 +3,7 @@
     <h2>{{ _('Table Of Contents') }}</h2>
   </div>
   <div class="sidebar-toc">
-    {% set toctree = toctree(maxdepth=4, collapse=True, includehidden=True) %}
+    {% set toctree = toctree(includehidden=True) %}
     {% if toctree %}
       {{ toctree }}
     {% else %}

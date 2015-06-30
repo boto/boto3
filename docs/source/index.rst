@@ -11,10 +11,6 @@ EC2. Boto provides an easy to use, object-oriented API as well as low-level
 direct service access.
 
 
-.. raw:: html
-
-   <div style="text-align:center;margin:1em"><iframe width="560" height="315" src="//www.youtube.com/embed/Cb2czfCV4Dg" frameborder="0" allowfullscreen></iframe></div>
-
 Quickstart
 ----------
 
@@ -22,21 +18,16 @@ Quickstart
    :maxdepth: 2
 
    guide/quickstart
-   guide/tutorial
+   guide/sqs
 
 User Guide
 ----------
 
 .. toctree::
-   :maxdepth: 2
 
-   guide/new
-   guide/migration
-   guide/resources
-   guide/collections
-   guide/clients
-   guide/session
-   guide/configuration
+   guide/index
+
+
 
 API Reference
 -------------
@@ -46,7 +37,6 @@ Services
 
 .. toctree::
    :maxdepth: 3
-   :glob:
 
    reference/services/index
 
@@ -54,8 +44,7 @@ Core
 ~~~~
 
 .. toctree::
-   :maxdepth: 2
-   :glob:
+   :maxdepth: 3
 
    reference/core/index
 
@@ -63,8 +52,7 @@ Customizations
 ~~~~~~~~~~~~~~
 
 .. toctree::
-   :maxdepth: 2
-   :glob:
+   :maxdepth: 3
 
    reference/customizations/index
 
