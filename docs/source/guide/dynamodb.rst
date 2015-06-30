@@ -253,19 +253,10 @@ items you want to add, and ``delete_item`` for any items you want to delete::
 The batch writer is even able to handle a very large amount of writes to the
 table.
 
-.. warning::
-    If you are running the code blocks in this guide step by step, it may
-    take a long time to run the following code block given the
-    small write throughput of the table that was chosen. It is
-    recommended that you increase the write throughput of the table
-    before running the following code block to make it run faster. Note
-    that the following code block does not needed to be run in order
-    to successfully run the code blocks in the following sections of the guide.
-
 ::
 
     with table.batch_writer() as batch:
-        for i in range(10000):
+        for i in range(50):
             batch.put_item(
                 Item={
                     'account_type': 'anonymous',
