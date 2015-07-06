@@ -39,7 +39,7 @@ Storing data from a file, stream, or string is easy::
     key.set_contents_from_file('/tmp/hello.txt')
 
     # Boto 3
-    s3.Key('mybucket', 'hello.txt').put(Body=open('/tmp/hello.txt'))
+    s3.Object('mybucket', 'hello.txt').put(Body=open('/tmp/hello.txt', 'rb'))
 
 
 Accessing a Bucket
