@@ -481,6 +481,43 @@ class TestResourceCollection(BaseTestCase):
             Param1='foo', Param2=3)
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
+    def test_filter_does_not_clobber_existing_list_values(self, handler):
+        self.collection_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                "params": [
+                    {"target": "Filters[0].Name", "source": "string",
+                     "value": "frob-id"},
+                    {"target": "Filters[0].Values[0]", "source": "identifier",
+                     "name": "Id"}
+                ]
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id', 'source': 'response',
+                     'path': 'Frobs[].Id'}
+                ]
+            }
+        }
+        self.client.can_paginate.return_value = True
+        self.client.get_paginator.return_value.paginate.return_value = []
+        handler.return_value.return_value = []
+        collection = self.get_collection()
+
+        self.parent.id = 'my-id'
+        list(collection.filter(
+            Filters=[{'Name': 'another-filter', 'Values': ['foo']}]))
+        paginator = self.client.get_paginator.return_value
+        paginator.paginate.assert_called_with(
+            PaginationConfig={'PageSize': None, 'MaxItems': None},
+            Filters=[
+                {'Values': ['my-id'], 'Name': 'frob-id'},
+                {'Values': ['foo'], 'Name': 'another-filter'}
+            ]
+        )
+
+    @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_page_size_param(self, handler):
         self.client.can_paginate.return_value = True
         self.client.get_paginator.return_value.paginate.return_value = []
@@ -552,6 +589,46 @@ class TestResourceCollection(BaseTestCase):
         paginator = self.client.get_paginator.return_value
         paginator.paginate.assert_called_with(
             PaginationConfig={'PageSize': 3, 'MaxItems': 3}, CustomArg=1)
+
+    @mock.patch('boto3.resources.collection.ResourceHandler')
+    def test_chaining_filters_does_not_clobber_list_values(self, handler):
+        self.collection_def = {
+            'request': {
+                'operation': 'GetFrobs',
+                "params": [
+                    {"target": "Filters[0].Name", "source": "string",
+                     "value": "frob-id"},
+                    {"target": "Filters[0].Values[0]", "source": "identifier",
+                     "name": "Id"}
+                ]
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {'target': 'Id', 'source': 'response',
+                     'path': 'Frobs[].Id'}
+                ]
+            }
+        }
+        self.client.can_paginate.return_value = True
+        self.client.get_paginator.return_value.paginate.return_value = []
+        handler.return_value.return_value = []
+        collection = self.get_collection()
+
+        self.parent.id = 'my-id'
+        collection = collection.filter(
+            Filters=[{'Name': 'second-filter', 'Values': ['foo']}])
+        list(collection.filter(
+            Filters=[{'Name': 'third-filter', 'Values': ['bar']}]))
+        paginator = self.client.get_paginator.return_value
+        paginator.paginate.assert_called_with(
+            PaginationConfig={'PageSize': None, 'MaxItems': None},
+            Filters=[
+                {'Values': ['my-id'], 'Name': 'frob-id'},
+                {'Values': ['foo'], 'Name': 'second-filter'},
+                {'Values': ['bar'], 'Name': 'third-filter'}
+            ]
+        )
 
     def test_chained_repr(self):
         collection = self.get_collection()

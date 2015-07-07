@@ -28,6 +28,9 @@ def test_docs_generated():
         generated_docs = generated_docs.decode('utf-8')
         client = boto3.client(service_name, 'us-east-1')
 
+        # Check that all of the services have the appropriate title
+        yield (_assert_has_title, generated_docs, client)
+
         # Check that all services have the client documented.
         yield (_assert_has_client_documentation, generated_docs, service_name,
                client)
@@ -60,6 +63,16 @@ def _assert_contains_lines_in_order(lines, contents):
         assert_true(line in contents)
         beginning = contents.find(line)
         contents = contents[(beginning + len(line)):]
+
+
+def _assert_has_title(generated_docs, client):
+    title = client.__class__.__name__
+    ref_lines = [
+        '*' * len(title),
+        title,
+        '*' * len(title)
+    ]
+    _assert_contains_lines_in_order(ref_lines, generated_docs)
 
 
 def _assert_has_client_documentation(generated_docs, service_name, client):

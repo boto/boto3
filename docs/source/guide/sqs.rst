@@ -1,9 +1,14 @@
-.. _guide_tutorial:
+.. _sample_tutorial:
 
-Tutorial
-========
-`Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
-allows you to queue and then process messages. This tutorial covers how to
+A Sample Tutorial
+=================
+This tutorial will show you how to use Boto3 with an AWS service. In this
+sample tutorial, you will learn how to use Boto3 with 
+`Amazon Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
+
+SQS
+---
+SQS allows you to queue and then process messages. This tutorial covers how to
 create a new queue, get and use an existing queue, push new messages onto the
 queue, and process messages from the queue by using
 :ref:`guide_resources` and :ref:`guide_collections`.
@@ -25,7 +30,7 @@ Before creating a queue, you must first get the SQS service resource::
     print(queue.url)
     print(queue.attributes.get('DelaySeconds'))
 
-Reference: :py:meth:`sqs.ServiceResource.create_queue`
+Reference: :py:meth:`SQS.ServiceResource.create_queue`
 
 .. warning::
 
@@ -59,8 +64,8 @@ It is also possible to list all of our existing queues::
    in the queue's ``attributes`` attribute. Using
    ``queue.attributes['QueueArn'].split(':')[-1]`` will return its name.
 
-Reference: :py:meth:`sqs.ServiceResource.get_queue_by_name`,
-:py:attr:`sqs.ServiceResource.queues`
+Reference: :py:meth:`SQS.ServiceResource.get_queue_by_name`,
+:py:attr:`SQS.ServiceResource.queues`
 
 Sending Messages
 ----------------
@@ -114,8 +119,8 @@ described above in a single request would look like the following::
 In this case, the response contains lists of ``Successful`` and ``Failed``
 messages, so you can retry failures if needed.
 
-Reference: :py:meth:`sqs.Queue.send_message`,
-:py:meth:`sqs.Queue.send_messages`
+Reference: :py:meth:`SQS.Queue.send_message`,
+:py:meth:`SQS.Queue.send_messages`
 
 Processing Messages
 -------------------
@@ -143,11 +148,11 @@ Messages are processed in batches::
         message.delete()
 
 Given *only* the messages that were sent in a batch with
-:py:meth:`~sqs.Queue.send_messages` in the previous section, the above code
+:py:meth:`SQS.Queue.send_messages` in the previous section, the above code
 will print out::
 
     Hello, world!
     Hello, boto3! (Daniel)
 
-Reference: :py:meth:`sqs.Queue.receive_messages`,
-:py:meth:`sqs.Message.delete`
+Reference: :py:meth:`SQS.Queue.receive_messages`,
+:py:meth:`SQS.Message.delete`

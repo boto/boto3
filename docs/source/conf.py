@@ -35,7 +35,7 @@ generate_docs(os.path.dirname(os.path.abspath(__file__)))
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['.templates']
+templates_path = ['_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -141,7 +141,7 @@ html_theme_options = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['.static']
+html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -154,9 +154,9 @@ html_static_path = ['.static']
 # Custom sidebar templates, maps document names to template names.
 html_show_sourcelink = False
 html_sidebars = {
-    '**': [
-        'globaltoc.html',
-        'searchbox.html']
+    '**': ['logo-text.html',
+           'globaltoc.html',
+           'searchbox.html']
 }
 
 # Additional templates that should be rendered to pages, maps page names to
