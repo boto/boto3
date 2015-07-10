@@ -13,6 +13,7 @@
 from tests import unittest
 import mock
 
+import boto3.session
 from boto3.ec2 import createtags
 
 
@@ -58,3 +59,15 @@ class TestCreateTags(unittest.TestCase):
 
         # Ensure the return values are as expected.
         self.assertEqual(result_tags, self.ref_tags)
+
+
+class TestCreateTagsInjection(unittest.TestCase):
+    def test_create_tags_injected_to_resource(self):
+        session = boto3.session.Session(region_name='us-west-2')
+        with mock.patch('boto3.ec2.createtags.create_tags') as mock_method:
+            resource = session.resource('ec2')
+            self.assertTrue(hasattr(resource, 'create_tags'),
+                            'EC2 resource does not have create_tags method.')
+            self.assertIs(resource.create_tags, mock_method,
+                          'custom create_tags method was not injected onto '
+                          'EC2 service resource')
