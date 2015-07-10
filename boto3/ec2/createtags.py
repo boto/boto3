@@ -19,8 +19,7 @@ def inject_create_tags(event_name, class_attributes, **kwargs):
     creating multiple tag resources based on the fact you can apply a set
     of tags to multiple ec2 resources.
     """
-    if event_name == 'creating-resource-class.ec2':
-        class_attributes['create_tags'] = create_tags
+    class_attributes['create_tags'] = create_tags
 
 
 def create_tags(self, **kwargs):
