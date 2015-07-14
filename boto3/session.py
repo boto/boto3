@@ -275,6 +275,8 @@ class Session(object):
         return cls(client=client)
 
     def _register_default_handlers(self):
+
+        # S3 customizations
         self._session.register(
             'creating-client-class.s3',
             boto3.utils.lazy_call(
@@ -283,6 +285,8 @@ class Session(object):
             'creating-resource-class.s3.Bucket',
             boto3.utils.lazy_call(
                 'boto3.s3.inject.inject_bucket_load'))
+
+        # DynamoDb customizations
         self._session.register(
             'creating-resource-class.dynamodb',
             boto3.utils.lazy_call(
@@ -293,3 +297,9 @@ class Session(object):
             boto3.utils.lazy_call(
                 'boto3.dynamodb.table.register_table_methods'),
             unique_id='high-level-dynamodb-table')
+
+        # EC2 Customizations
+        self._session.register(
+            'creating-resource-class.ec2.ServiceResource',
+            boto3.utils.lazy_call(
+                'boto3.ec2.createtags.inject_create_tags'))

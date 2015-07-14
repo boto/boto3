@@ -93,8 +93,9 @@ class ResourceFactory(object):
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
-        if service_name != resource_name:
-            cls_name = service_name + '.' + cls_name
+        if service_name == resource_name:
+            cls_name = 'ServiceResource'
+        cls_name = service_name + '.' + cls_name
 
         base_classes = [ServiceResource]
         if self._emitter is not None:
