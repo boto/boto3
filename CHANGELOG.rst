@@ -1,7 +1,32 @@
 Changelog
 =========
 
-0.0.22 - 2015-08-12
+1.1.1 - 2015-07-23
+------------------
+
+* bugfix:``EC2.ServiceResource.create_tags``: Fix issue when creating
+  multiple tags.
+  (`issue 160 <https://github.com/boto/boto3/pull/160>`__)
+
+
+1.1.0 - 2015-07-07
+------------------
+* bugfix:``EC2.Vpc.filter``: Fix issue with clobering of ``Filtering``
+  paramter.
+  (`issue 154 `https://github.com/boto/boto3/pull/154`__)
+
+
+1.0.1 - 2015-06-24
+------------------
+* feature: Update documentation
+
+
+1.0.0 - 2015-06-22
+------------------
+* feature: Announced GA
+
+
+0.0.22 - 2015-06-12
 -------------------
 
 * bugfix:``s3.client.upload_file``: Fix double invocation of callbacks when
