@@ -110,6 +110,6 @@ following:
 
 .. code-block:: sh
 
-    $ pip install sphinx sphinx_rtd_theme
+    $ pip install -r requirements-docs.txt
     $ cd docs
     $ make html

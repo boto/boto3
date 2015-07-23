@@ -814,7 +814,8 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         self.assertTrue(self.emitter.emit.called)
         call_args = self.emitter.emit.call_args
         # Verify the correct event name emitted.
-        self.assertEqual(call_args[0][0], 'creating-resource-class.test')
+        self.assertEqual(call_args[0][0],
+                         'creating-resource-class.test.ServiceResource')
 
         # Verify we send out the class attributes dict.
         actual_class_attrs = sorted(call_args[1]['class_attributes'])
