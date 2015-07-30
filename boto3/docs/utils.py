@@ -11,11 +11,23 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import inspect
+import re
 from botocore.compat import six
+
+TARGET_COMPONENT_RE = re.compile(r'[^.\[\]]+(?![^\[]*\])')
 
 
 def get_resource_ignore_params(params):
-    return [p.target.split('.')[0].strip('[]') for p in params]
+    """Helper method to determine which parameters to ignore for actions
+
+    :returns: A list of the parameter names that does not need to be
+        included in a resource's method call for documentation purposes.
+    """
+    ignore_params = []
+    for param in params:
+        components = TARGET_COMPONENT_RE.findall(param.target)
+        ignore_params.append(components[0])
+    return ignore_params
 
 
 def is_resource_action(action_handle):
