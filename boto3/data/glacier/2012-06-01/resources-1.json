@@ -81,11 +81,16 @@
       },
       "hasMany": {
         "Vaults": {
-          "request": { "operation": "ListVaults" },
+          "request": {
+            "operation": "ListVaults",
+            "params": [
+              { "target": "accountId", "source": "identifier", "name": "Id" }
+            ]
+          },
           "resource": {
             "type": "Vault",
             "identifiers": [
-              { "target": "AccountId", "source": "requestParameter", "path": "accountId" },
+              { "target": "AccountId", "source": "identifier", "name": "Id" },
               { "target": "Name", "source": "response", "path": "VaultList[].VaultName" }
             ],
             "path": "VaultList[]"
