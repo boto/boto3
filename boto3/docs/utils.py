@@ -12,9 +12,10 @@
 # language governing permissions and limitations under the License.
 import inspect
 import re
-from botocore.compat import six
 
-TARGET_COMPONENT_RE = re.compile(r'[^.\[\]]+(?![^\[]*\])')
+import jmespath
+
+from botocore.compat import six
 
 
 def get_resource_ignore_params(params):
@@ -25,8 +26,16 @@ def get_resource_ignore_params(params):
     """
     ignore_params = []
     for param in params:
-        components = TARGET_COMPONENT_RE.findall(param.target)
-        ignore_params.append(components[0])
+        result = jmespath.compile(param.target)
+        current = result.parsed
+        # Use JMESPath to find the left most element in the target expression
+        # which will be the parameter to ignore in the action call.
+        while current['children']:
+            current = current['children'][0]
+        # Make sure the parameter we are about to ignore is a field.
+        # If it is not, we should ignore the result to avoid false positives.
+        if current['type'] == 'field':
+            ignore_params.append(current['value'])
     return ignore_params
 
 
