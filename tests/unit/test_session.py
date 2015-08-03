@@ -201,3 +201,9 @@ class TestSession(BaseTestCase):
         session = Session(botocore_session=mock_bc_session)
         with self.assertRaises(DataNotFoundError):
             session.resource('sqs')
+
+    def test_can_reach_events(self):
+        mock_bc_session = self.bc_session_cls()
+        session = Session(botocore_session=mock_bc_session)
+        session.events
+        mock_bc_session.get_component.assert_called_with('event_emitter')
