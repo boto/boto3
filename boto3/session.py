@@ -88,6 +88,13 @@ class Session(object):
         """
         return self._session.profile or 'default'
 
+    @property
+    def events(self):
+        """
+        The event emitter for a session
+        """
+        return self._session.get_component('event_emitter')
+
     def _setup_loader(self):
         """
         Setup loader paths so that we can load resources.
