@@ -70,7 +70,8 @@ class ServiceDocumenter(object):
         section.style.table_of_contents(title='Table of Contents', depth=2)
 
     def _document_client(self, section):
-        Boto3ClientDocumenter(self._client).document_client(section)
+        examples = self._botocore_session.get_examples(self._service_name)
+        Boto3ClientDocumenter(self._client, examples).document_client(section)
 
     def _document_paginators(self, section):
         try:
