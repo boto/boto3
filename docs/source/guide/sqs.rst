@@ -142,7 +142,7 @@ Messages are processed in batches::
                 author_text = ' ({0})'.format(author_name)
 
         # Print out the body and author (if set)
-        print('Hello, {0}!{1}'.format(message.body, author_name))
+        print('Hello, {0}!{1}'.format(message.body, author_text))
 
         # Let the queue know that the message is processed
         message.delete()
