@@ -33,7 +33,7 @@ class S3UploadFailedError(Exception):
     pass
 
 
-class DynanmoDBOperationNotSupportedError(Exception):
+class DynamoDBOperationNotSupportedError(Exception):
     """Raised for operantions that are not supported for an operand"""
     def __init__(self, operation, value):
         msg = (
