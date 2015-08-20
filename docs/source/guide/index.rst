@@ -22,6 +22,7 @@ General Feature Guides
    clients
    session
    configuration
+   events
 
 
 Service Feature Guides
