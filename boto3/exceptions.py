@@ -43,6 +43,8 @@ class DynamoDBOperationNotSupportedError(Exception):
             (operation, value, type(value)))
         Exception.__init__(self, msg)
 
+# FIXME: Backward compatibility
+DynanmoDBOperationNotSupportedError = DynamoDBOperationNotSupportedError
 
 class DynamoDBNeedsConditionError(Exception):
     """Raised when input is not a condition"""
