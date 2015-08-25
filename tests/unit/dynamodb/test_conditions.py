@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 from tests import unittest
 
-from boto3.exceptions import DynanmoDBOperationNotSupportedError
+from boto3.exceptions import DynamoDBOperationNotSupportedError
 from boto3.exceptions import DynamoDBNeedsConditionError
 from boto3.exceptions import DynamoDBNeedsKeyConditionError
 from boto3.dynamodb.conditions import Attr, Key
@@ -34,17 +34,17 @@ class TestK(unittest.TestCase):
 
     def test_and(self):
         with self.assertRaisesRegexp(
-                DynanmoDBOperationNotSupportedError, 'AND'):
+                DynamoDBOperationNotSupportedError, 'AND'):
             self.attr & self.attr2
 
     def test_or(self):
         with self.assertRaisesRegexp(
-                DynanmoDBOperationNotSupportedError, 'OR'):
+                DynamoDBOperationNotSupportedError, 'OR'):
             self.attr | self.attr2
 
     def test_not(self):
         with self.assertRaisesRegexp(
-                DynanmoDBOperationNotSupportedError, 'NOT'):
+                DynamoDBOperationNotSupportedError, 'NOT'):
             ~self.attr
 
     def test_eq(self):
@@ -148,7 +148,7 @@ class TestConditions(unittest.TestCase):
     def test_and_operator_throws_excepetion(self):
         cond1 = Equals(self.value, self.value2)
         with self.assertRaisesRegexp(
-                DynanmoDBOperationNotSupportedError, 'AND'):
+                DynamoDBOperationNotSupportedError, 'AND'):
             cond1 & self.value2
 
     def test_or_operator(self):
@@ -159,7 +159,7 @@ class TestConditions(unittest.TestCase):
     def test_or_operator_throws_excepetion(self):
         cond1 = Equals(self.value, self.value2)
         with self.assertRaisesRegexp(
-                DynanmoDBOperationNotSupportedError, 'OR'):
+                DynamoDBOperationNotSupportedError, 'OR'):
             cond1 | self.value2
 
     def test_not_operator(self):

@@ -14,7 +14,7 @@ from collections import namedtuple
 import functools
 import re
 
-from boto3.exceptions import DynanmoDBOperationNotSupportedError
+from boto3.exceptions import DynamoDBOperationNotSupportedError
 from boto3.exceptions import DynamoDBNeedsConditionError
 from boto3.exceptions import DynamoDBNeedsKeyConditionError
 
@@ -33,12 +33,12 @@ class ConditionBase(object):
 
     def __and__(self, other):
         if not isinstance(other, ConditionBase):
-            raise DynanmoDBOperationNotSupportedError('AND', other)
+            raise DynamoDBOperationNotSupportedError('AND', other)
         return And(self, other)
 
     def __or__(self, other):
         if not isinstance(other, ConditionBase):
-            raise DynanmoDBOperationNotSupportedError('OR', other)
+            raise DynamoDBOperationNotSupportedError('OR', other)
         return Or(self, other)
 
     def __invert__(self):
@@ -64,13 +64,13 @@ class AttributeBase(object):
         self.name = name
 
     def __and__(self, value):
-        raise DynanmoDBOperationNotSupportedError('AND', self)
+        raise DynamoDBOperationNotSupportedError('AND', self)
 
     def __or__(self, value):
-        raise DynanmoDBOperationNotSupportedError('OR', self)
+        raise DynamoDBOperationNotSupportedError('OR', self)
 
     def __invert__(self):
-        raise DynanmoDBOperationNotSupportedError('NOT', self)
+        raise DynamoDBOperationNotSupportedError('NOT', self)
 
     def eq(self, value):
         """Creates a condtion where the attribute is equal to the value.
