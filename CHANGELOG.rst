@@ -1,6 +1,19 @@
 Changelog
 =========
 
+1.1.2 - 2015-08-25
+------------------
+
+* feature:``session.Session``: Add ``events`` property to access session's
+  event emitter.
+  (`issue 204 <https://github.com/boto/boto3/pull/204`__)
+* bugfix:``Glacier.Account``: Fix issue with resource model.
+  (`issue 196 <https://github.com/boto/boto3/pull/196>`__)
+* bugfix:``DynamoDB``: Fix misspelling of error class to
+  ``DynamoDBOperationNotSupportedError``.
+  (`issue 218 <https://github.com/boto/boto3/pull/218>`__)
+
+
 1.1.1 - 2015-07-23
 ------------------
 
