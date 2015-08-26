@@ -88,7 +88,7 @@ Bucket and key objects are no longer iterable, but now provide collection attrib
     # Boto 3
     for bucket in s3.buckets.all():
         for key in bucket.objects.all():
-            print(key.name)
+            print(key.key)
 
 Access Controls
 ---------------
