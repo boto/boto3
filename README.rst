@@ -85,7 +85,7 @@ the ``pip install boto3`` defined above:
 
 Running Tests
 ~~~~~~~~~~~~~
-You can run tests in all supported Python versions using ``tox``. Be default,
+You can run tests in all supported Python versions using ``tox``. By default,
 it will run all of the unit tests, but you can also specify your own
 ``nosetests`` options. Note that this requires that you have all supported
 versions of Python installed, otherwise you must pass ``-e`` or run the
