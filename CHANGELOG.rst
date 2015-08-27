@@ -24,7 +24,7 @@ Changelog
 
 1.1.0 - 2015-07-07
 ------------------
-* bugfix:``EC2.Vpc.filter``: Fix issue with clobering of ``Filtering``
+* bugfix:``EC2.Vpc.filter``: Fix issue with clobbering of ``Filtering``
   paramter.
   (`issue 154 `https://github.com/boto/boto3/pull/154`__)
 
