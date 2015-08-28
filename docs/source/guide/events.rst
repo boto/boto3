@@ -156,7 +156,7 @@ of using wildcards in the event system::
 The ``'*'`` allows you to register to a group of events without having to
 know the actual name of the event. This is useful when you have to apply
 the same handler in multiple places. Also note that if the wildcard is used,
-it must be isolated. It does not handling globbing with additional characters.
+it must be isolated. It does not handle globbing with additional characters.
 So in the previous example, if the ``my_wildcard_function`` was registered
 to ``'provide-client-params.s3.*objects'``, the handler would not be
 called because it will consider ``'provide-client-params.s3.*objects'`` to be
@@ -384,7 +384,7 @@ provide-client-params
 :Description:
   This event is emitted before validation of the parameters passed to
   client method. Use this event to inject or modify parameters prior
-  to the parameters are validated and built into a request that is sent
+  to the parameters being validated and built into a request that is sent
   over the wire.
 
 :Keyword Arguments Emitted:
