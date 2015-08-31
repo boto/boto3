@@ -142,6 +142,18 @@ class BaseDocsTest(unittest.TestCase):
                             ]
                         }
                     }
+                },
+                "hasMany": {
+                    "Samples": {
+                        "request": {"operation": "SampleOperation"},
+                        "resource": {
+                            "type": "Sample",
+                            "identifiers": [
+                                {"target": "Name", "source": "response",
+                                 "path": "Samples[].Foo"}
+                            ]
+                        }
+                    }
                 }
             },
             "resources": {
