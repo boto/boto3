@@ -38,15 +38,13 @@ class BaseDocsTest(unittest.TestCase):
         self.paginator_model_file = os.path.join(
             self.version_dirs, 'paginators-1.json')
         self.resource_model_file = os.path.join(
-            self.version_dirs, 'resouce-1.json')
+            self.version_dirs, 'resources-1.json')
 
         self.json_model = {}
         self.waiter_json_model = {}
         self.paginator_json_model = {}
         self.resource_json_model = {}
         self._setup_models()
-        self.add_shape_to_params('Foo', 'String', 'Documents Foo')
-        self.add_shape_to_params('Bar', 'String', 'Documents Bar')
         self._write_models()
 
         self.doc_name = 'MyDoc'
@@ -57,6 +55,7 @@ class BaseDocsTest(unittest.TestCase):
         self.botocore_session.register_component('data_loader', self.loader)
         self.session = Session(botocore_session=self.botocore_session)
         self.client = self.session.client('myservice', 'us-east-1')
+        self.resource = self.session.resource('myservice', 'us-east-1')
 
     def tearDown(self):
         shutil.rmtree(self.root_dir)
@@ -80,7 +79,14 @@ class BaseDocsTest(unittest.TestCase):
             'shapes': {
                 'SampleOperationInputOutput': {
                     'type': 'structure',
-                    'members': OrderedDict()
+                    'members': OrderedDict([
+                        ('Foo', {
+                            'shape': 'String',
+                            'documentation': 'Documents Foo'}),
+                        ('Bar', {
+                            'shape': 'String',
+                            'documentation': 'Documents Bar'}),
+                    ])
                 },
                 'String': {
                     'type': 'string'
@@ -116,6 +122,54 @@ class BaseDocsTest(unittest.TestCase):
                     "output_token": "NextResult",
                     "limit_key": "MaxResults",
                     "result_key": "Biz"
+                }
+            }
+        }
+
+        self.resource_json_model = {
+            "service": {
+                "actions": {
+                    "SampleOperation": {
+                        "request": {"operation": "SampleOperation"}
+                    }
+                },
+                "has": {
+                    "Sample": {
+                        "resource": {
+                            "type": "Sample",
+                            "identifiers": [
+                                {"target": "Name", "source": "input"}
+                            ]
+                        }
+                    }
+                }
+            },
+            "resources": {
+                "Sample": {
+                    "identifiers": [
+                        {"name": "Name", "memberName": "Foo"}
+                    ],
+                    "shape": "SampleOperationInputOutput",
+                    "load": {
+                        "request": {
+                            "operation": "SampleOperation",
+                            "params": [
+                                {"target": "Foo", "source": "identifier",
+                                 "name": "Name"}
+                            ]
+                        }
+                    },
+                    "actions": {
+                        "Operate": {
+                            "request": {
+                                "operation": "SampleOperation",
+                                "params": [
+                                    {"target": "Foo", "source": "identifier",
+                                     "name": "Name"}
+                                ]
+                            }
+                        }
+                    }
                 }
             }
         }
