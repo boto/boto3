@@ -169,6 +169,15 @@ class BaseDocsTest(unittest.TestCase):
                                 ]
                             }
                         }
+                    },
+                    "waiters": {
+                        "Complete": {
+                            "waiterName": "SampleOperationComplete",
+                            "params": [
+                                {"target": "Foo", "source": "identifier",
+                                 "name": "Name"}
+                            ]
+                        }
                     }
                 }
             }

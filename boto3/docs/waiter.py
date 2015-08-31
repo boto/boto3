@@ -64,3 +64,11 @@ class WaiterResourceDocumenter(BaseDocumenter):
                 method_description=description,
                 exclude_input=ignore_params
             )
+            if 'return' in waiter_section.available_sections:
+                # Waiters do not return anything so we should remove
+                # any sections that may document the underlying return
+                # value of the client method.
+                return_section = waiter_section.get_section('return')
+                return_section.clear_text()
+                return_section.remove_all_sections()
+                return_section.write(':returns: None')
