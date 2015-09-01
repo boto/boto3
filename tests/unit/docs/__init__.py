@@ -16,7 +16,6 @@ import tempfile
 import shutil
 from tests import unittest
 
-import mock
 import botocore.session
 from botocore.compat import OrderedDict
 from botocore.loaders import Loader
