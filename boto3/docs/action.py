@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 from botocore import xform_name
 from botocore.model import OperationModel
+from botocore.utils import get_service_module_name
 from botocore.docs.method import document_model_driven_method
 from botocore.docs.method import document_custom_method
 
@@ -42,55 +43,104 @@ class ActionDocumenter(BaseDocumenter):
         for action_name in sorted(resource_actions):
             action_section = section.add_new_section(action_name)
             if action_name in ['load', 'reload'] and self._resource_model.load:
-                self._document_load_reload_action(
-                    action_section, action_name, self._resource_model.load)
+                document_load_reload_action(
+                    section=action_section,
+                    action_name=action_name,
+                    resource_name=self._resource_name,
+                    event_emitter=self._resource.meta.client.meta.events,
+                    load_model=self._resource_model.load,
+                    service_model=self._service_model
+                )
             elif action_name in modeled_actions:
-                self._document_modeled_action(
-                    action_section, modeled_actions[action_name])
+                document_action(
+                    section=action_section,
+                    resource_name=self._resource_name,
+                    event_emitter=self._resource.meta.client.meta.events,
+                    action_model=modeled_actions[action_name],
+                    service_model=self._service_model,
+                )
             else:
                 document_custom_method(
                     section, action_name, resource_actions[action_name])
 
-    def _document_modeled_action(self, section, action):
-        operation_model = self._service_model.operation_model(
-            action.request.operation)
 
-        ignore_params = get_resource_ignore_params(action.request.params)
+def document_action(section, resource_name, event_emitter, action_model,
+                    service_model, include_signature=True):
+    """Documents a resource action
 
-        example_return_value = 'response'
-        if action.resource:
-            example_return_value = xform_name(action.resource.type)
-        resource_name = xform_name(self._resource_name)
-        if self.represents_service_resource:
-            resource_name = self._resource_name
-        example_prefix = '%s = %s.%s' % (
-            example_return_value, resource_name, action.name)
-        document_model_driven_resource_method(
-            section=section, method_name=action.name,
-            operation_model=operation_model,
-            event_emitter=self._resource.meta.client.meta.events,
-            method_description=operation_model.documentation,
-            example_prefix=example_prefix,
-            exclude_input=ignore_params,
-            resource_action_model=action
-        )
+    :param section: The section to write to
 
-    def _document_load_reload_action(self, action_section, action_name,
-                                     load_model):
-        description = (
-            'Calls  :py:meth:`%s.Client.%s` to update the attributes of the'
-            ' %s resource' % (
-                self._service_name, xform_name(load_model.request.operation),
-                self._resource_name)
-        )
-        resource_name = xform_name(self._resource_name)
-        if self.represents_service_resource:
-            resource_name = self._resource_name
-        example_prefix = '%s.%s' % (resource_name, action_name)
-        document_model_driven_method(
-            section=action_section, method_name=action_name,
-            operation_model=OperationModel({}, self._service_model),
-            event_emitter=self._resource.meta.client.meta.events,
-            method_description=description,
-            example_prefix=example_prefix
-        )
+    :param resource_name: The name of the resource
+
+    :param event_emitter: The event emitter to use to emit events
+
+    :param action_model: The model of the action
+
+    :param service_model: The model of the service
+
+    :param include_signature: Whether or not to include the signature.
+        It is useful for generating docstrings.
+    """
+    operation_model = service_model.operation_model(
+        action_model.request.operation)
+    ignore_params = get_resource_ignore_params(action_model.request.params)
+
+    example_return_value = 'response'
+    if action_model.resource:
+        example_return_value = xform_name(action_model.resource.type)
+    example_resource_name = xform_name(resource_name)
+    if service_model.service_name == resource_name:
+        example_resource_name = resource_name
+    example_prefix = '%s = %s.%s' % (
+        example_return_value, example_resource_name, action_model.name)
+    document_model_driven_resource_method(
+        section=section, method_name=action_model.name,
+        operation_model=operation_model,
+        event_emitter=event_emitter,
+        method_description=operation_model.documentation,
+        example_prefix=example_prefix,
+        exclude_input=ignore_params,
+        resource_action_model=action_model,
+        include_signature=include_signature
+    )
+
+
+def document_load_reload_action(section, action_name, resource_name,
+                                event_emitter, load_model, service_model,
+                                include_signature=True):
+    """Documents the resource load action
+
+    :param section: The section to write to
+
+    :param action_name: The name of the loading action should be load or reload
+
+    :param resource_name: The name of the resource
+
+    :param event_emitter: The event emitter to use to emit events
+
+    :param load_model: The model of the load action
+
+    :param service_model: The model of the service
+
+    :param include_signature: Whether or not to include the signature.
+        It is useful for generating docstrings.
+    """
+    description = (
+        'Calls  :py:meth:`%s.Client.%s` to update the attributes of the'
+        ' %s resource' % (
+            get_service_module_name(service_model),
+            xform_name(load_model.request.operation),
+            resource_name)
+    )
+    example_resource_name = xform_name(resource_name)
+    if service_model.service_name == resource_name:
+        example_resource_name = resource_name
+    example_prefix = '%s.%s' % (example_resource_name, action_name)
+    document_model_driven_method(
+        section=section, method_name=action_name,
+        operation_model=OperationModel({}, service_model),
+        event_emitter=event_emitter,
+        method_description=description,
+        example_prefix=example_prefix,
+        include_signature=include_signature
+    )

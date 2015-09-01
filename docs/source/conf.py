@@ -13,11 +13,14 @@
 # serve to show the default.
 
 import os
-import boto3
 
+import boto3
+import boto3.session
 from boto3.docs import generate_docs
 
-generate_docs(os.path.dirname(os.path.abspath(__file__)))
+
+session = boto3.session.Session(region_name='us-east-1')
+generate_docs(os.path.dirname(os.path.abspath(__file__)), session)
 
 
 # If extensions (or modules to document with autodoc) are in another directory,

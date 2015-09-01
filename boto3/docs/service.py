@@ -10,25 +10,23 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import botocore.session
 from botocore.exceptions import DataNotFoundError
 from botocore.docs.paginator import PaginatorDocumenter
 from botocore.docs.waiter import WaiterDocumenter
-from botocore.docs.utils import get_official_service_name
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 
-from boto3.session import Session
 from boto3.docs.client import Boto3ClientDocumenter
 from boto3.docs.resource import ResourceDocumenter
 from boto3.docs.resource import ServiceResourceDocumenter
 
 
 class ServiceDocumenter(object):
-    def __init__(self, service_name):
+    def __init__(self, service_name, session):
         self._service_name = service_name
-        self._botocore_session = botocore.session.get_session()
-        self._session = Session(botocore_session=self._botocore_session,
-                                region_name='us-east-1')
+        self._session = session
+        # I know that this is an internal attribute, but the botocore session
+        # is needed to load the paginator and waiter models.
+        self._botocore_session = session._session
         self._client = self._session.client(service_name)
         self._service_resource = None
         if self._service_name in self._session.get_available_resources():

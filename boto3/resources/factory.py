@@ -21,6 +21,7 @@ from .collection import CollectionFactory
 from .model import ResourceModel
 from .response import build_identifiers, ResourceHandler
 from ..exceptions import ResourceLoadException
+from ..docs import docstring
 
 
 logger = logging.getLogger(__name__)
@@ -83,7 +84,7 @@ class ResourceFactory(object):
 
         self._load_identifiers(attrs, meta, resource_model)
         self._load_actions(attrs, resource_model, resource_defs,
-                           service_model)
+                           service_model, resource_name)
         self._load_attributes(attrs, meta, resource_model, service_model)
         self._load_collections(attrs, resource_model, resource_defs,
                                service_model)
@@ -114,7 +115,8 @@ class ResourceFactory(object):
             meta.identifiers.append(identifier.name)
             attrs[identifier.name] = self._create_identifier(identifier.name)
 
-    def _load_actions(self, attrs, model, resource_defs, service_model):
+    def _load_actions(self, attrs, model, resource_defs, service_model,
+                      resource_name):
         """
         Actions on the resource become methods, with the ``load`` method
         being a special case which sets internal data for attributes, and
@@ -122,12 +124,13 @@ class ResourceFactory(object):
         """
         if model.load:
             attrs['load'] = self._create_action(
-                model.load, resource_defs, service_model, is_load=True)
+                model.load, resource_defs, service_model, resource_name,
+                is_load=True)
             attrs['reload'] = attrs['load']
 
         for action in model.actions:
-            attrs[action.name] = self._create_action(action, resource_defs,
-                                                     service_model)
+            attrs[action.name] = self._create_action(
+                action, resource_defs, service_model, resource_name)
 
     def _load_attributes(self, attrs, meta, model, service_model):
         """
@@ -331,11 +334,16 @@ class ResourceFactory(object):
                 client=self.meta.client)(*args, **kwargs)
 
         create_resource.__name__ = str(name)
-        create_resource.__doc__ = 'TODO'
+        create_resource.__doc__ = docstring.SubResourceDocstring(
+            resource_name=resource_name,
+            sub_resource_model=subresource,
+            service_model=service_model,
+            include_signature=False
+        )
         return create_resource
 
     def _create_action(factory_self, action_model, resource_defs,
-                       service_model, is_load=False):
+                       service_model, resource_name, is_load=False):
         """
         Creates a new method which makes a request to the underlying
         AWS service.
@@ -354,6 +362,15 @@ class ResourceFactory(object):
             def do_action(self, *args, **kwargs):
                 response = action(self, *args, **kwargs)
                 self.meta.data = response
+            # Create the docstring for the load/reload mehtods.
+            lazy_docstring = docstring.LoadReloadDocstring(
+                action_name=action_model.name,
+                resource_name=resource_name,
+                event_emitter=factory_self._emitter,
+                load_model=action_model,
+                service_model=service_model,
+                include_signature=False
+            )
         else:
             # We need a new method here because we want access to the
             # instance via ``self``.
@@ -367,7 +384,14 @@ class ResourceFactory(object):
                     self.meta.data = None
 
                 return response
+            lazy_docstring = docstring.ActionDocstring(
+                resource_name=resource_name,
+                event_emitter=factory_self._emitter,
+                action_model=action_model,
+                service_model=service_model,
+                include_signature=False
+            )
 
         do_action.__name__ = str(action_model.name)
-        do_action.__doc__ = 'TODO'
+        do_action.__doc__ = lazy_docstring
         return do_action
