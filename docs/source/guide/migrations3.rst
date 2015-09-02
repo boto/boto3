@@ -51,11 +51,12 @@ Getting a bucket is easy with Boto 3's resources, however these do not automatic
     exists = s3_connection.lookup('mybucket')
 
     # Boto 3
+    import botocore
     bucket = s3.Bucket('mybucket')
     exists = True
     try:
         s3.meta.client.head_bucket(Bucket='mybucket')
-    except ClientError as e:
+    except botocore.exceptions.ClientError as e:
         # If a client error is thrown, then check that it was a 404 error.
         # If it was a 404 error, then the bucket does not exist.
         error_code = int(e.response['Error']['Code'])
