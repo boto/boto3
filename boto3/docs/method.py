@@ -38,7 +38,7 @@ def document_model_driven_resource_method(
         if 'return' in section.available_sections:
             section.delete_section('return')
 		
-		resource_type = resource_action_model.resource.type
+	resource_type = resource_action_model.resource.type
 		
         new_return_section = section.add_new_section('return')
         return_resource_type = '%s.%s' % (
