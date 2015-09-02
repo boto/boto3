@@ -224,8 +224,9 @@ class BaseDocsTest(unittest.TestCase):
             required_list.append(param_name)
             params_shape['required'] = required_list
 
-    def assert_contains_lines_in_order(self, lines):
-        contents = self.doc_structure.flush_structure().decode('utf-8')
+    def assert_contains_lines_in_order(self, lines, contents=None):
+        if contents is None:
+            contents = self.doc_structure.flush_structure().decode('utf-8')
         for line in lines:
             self.assertIn(line, contents)
             beginning = contents.find(line)

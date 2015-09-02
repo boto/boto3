@@ -83,8 +83,8 @@ class TestServiceDocumenter(BaseDocsTest):
             "  These are the resource's available identifiers:",
             '  *   :py:attr:`name`',
             "  These are the resource's available attributes:",
-            '  *   :py:attr:`foo`',
             '  *   :py:attr:`bar`',
+            '  *   :py:attr:`foo`',
             "  These are the resource's available actions:",
             '  *   :py:meth:`load()`',
             '  *   :py:meth:`operate()`',
@@ -92,15 +92,14 @@ class TestServiceDocumenter(BaseDocsTest):
             "  These are the resource's available waiters:",
             '  *   :py:meth:`wait_until_complete()`',
             '  .. py:attribute:: name',
-            '  .. py:attribute:: foo',
             '  .. py:attribute:: bar',
+            '  .. py:attribute:: foo',
             '  .. py:method:: load()',
             '  .. py:method:: operate(**kwargs)',
             '  .. py:method:: reload()',
             '  .. py:method:: wait_until_complete(**kwargs)',
         ]
-        for line in lines:
-            self.assertIn(line, contents)
+        self.assert_contains_lines_in_order(lines, contents)
 
     def test_document_service_no_resource(self):
         os.remove(self.resource_model_file)
