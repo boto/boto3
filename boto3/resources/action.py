@@ -40,7 +40,7 @@ class ServiceAction(object):
     :param service_model: The Botocore service model
     """
     def __init__(self, action_model, factory=None, resource_defs=None,
-                 service_model=None):
+                 service_model=None, service_waiter_model=None):
         self._action_model = action_model
 
         # In the simplest case we just return the response, but if a
@@ -49,7 +49,8 @@ class ServiceAction(object):
         if resource:
             self._response_handler = ResourceHandler(resource.path,
                 factory, resource_defs, service_model, resource,
-                action_model.request.operation)
+                action_model.request.operation,
+                service_waiter_model=service_waiter_model)
         else:
             self._response_handler = RawHandler(action_model.path)
 

@@ -21,6 +21,7 @@ from boto3.docs.attr import document_reference
 from boto3.docs.collection import document_collection_object
 from boto3.docs.collection import document_collection_method
 from boto3.docs.collection import document_batch_action
+from boto3.docs.waiter import document_resource_waiter
 
 
 class ActionDocstring(LazyLoadedDocstring):
@@ -66,3 +67,8 @@ class CollectionMethodDocstring(LazyLoadedDocstring):
 class BatchActionDocstring(LazyLoadedDocstring):
     def _write_docstring(self, *args, **kwargs):
         document_batch_action(*args, **kwargs)
+
+
+class ResourceWaiterDocstring(LazyLoadedDocstring):
+    def _write_docstring(self, *args, **kwargs):
+        document_resource_waiter(*args, **kwargs)

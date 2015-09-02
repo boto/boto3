@@ -40,7 +40,8 @@ class ResourceFactory(object):
         self._emitter = emitter
 
     def load_from_definition(self, service_name, resource_name, model,
-                             resource_defs, service_model):
+                             resource_defs, service_model,
+                             service_waiter_model):
         """
         Loads a resource from a model, creating a new
         :py:class:`~boto3.resources.base.ServiceResource` subclass
@@ -61,6 +62,9 @@ class ResourceFactory(object):
         :param service_model: The Botocore service model, required only if the
                               resource shape contains members. This is used to
                               expose lazy-loaded attributes on the resource.
+        :type service_waiter_model:  ``botocore.waiter.WaiterModel` or
+            can be interchanged with `boto3.utils.LazyLoadedWaiterModel`
+        :param service_waiter_model: The waiter model for the service.
         :rtype: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         :return: The service or resource class.
         """
@@ -87,10 +91,12 @@ class ResourceFactory(object):
                            service_model, resource_name)
         self._load_attributes(attrs, meta, resource_model, service_model)
         self._load_collections(attrs, resource_model, resource_defs,
-                               service_model)
+                               service_model, service_waiter_model)
         self._load_has_relations(attrs, service_name, resource_name,
-                                 resource_model, resource_defs, service_model)
-        self._load_waiters(attrs, resource_model)
+                                 resource_model, resource_defs, service_model,
+                                 service_waiter_model)
+        self._load_waiters(attrs, resource_model, resource_name, service_model,
+                           service_waiter_model)
 
         # Create the name based on the requested service and resource
         cls_name = resource_name
@@ -148,7 +154,8 @@ class ResourceFactory(object):
                 attrs[name] = self._create_autoload_property(
                     orig_name, name, member)
 
-    def _load_collections(self, attrs, model, resource_defs, service_model):
+    def _load_collections(self, attrs, model, resource_defs, service_model,
+                          service_waiter_model):
         """
         Load resource collections from the model. Each collection becomes
         a :py:class:`~boto3.resources.collection.CollectionManager` instance
@@ -158,10 +165,12 @@ class ResourceFactory(object):
         for collection_model in model.collections:
             attrs[collection_model.name] = self._create_collection(
                 attrs['meta'].service_name, model.name,
-                collection_model, resource_defs, service_model)
+                collection_model, resource_defs, service_model,
+                service_waiter_model)
 
     def _load_has_relations(self, attrs, service_name, resource_name,
-                            model, resource_defs, service_model):
+                            model, resource_defs, service_model,
+                            service_waiter_model):
         """
         Load related resources, which are defined via a ``has``
         relationship but conceptually come in two forms:
@@ -179,7 +188,7 @@ class ResourceFactory(object):
             attrs[reference.name] = self._create_reference(
                 reference.resource.type, reference,
                 service_name, resource_name, model, resource_defs,
-                service_model)
+                service_model, service_waiter_model)
 
         for subresource in model.subresources:
             # This is a sub-resource class you can create
@@ -187,17 +196,19 @@ class ResourceFactory(object):
             name = subresource.resource.type
             attrs[subresource.name] = self._create_class_partial(
                 name, subresource, service_name, resource_name, model,
-                resource_defs, service_model)
+                resource_defs, service_model, service_waiter_model)
 
 
-    def _load_waiters(self, attrs, model):
+    def _load_waiters(self, attrs, model, resource_name, service_model,
+                      service_waiter_model):
         """
         Load resource waiters from the model. Each waiter allows you to
         wait until a resource reaches a specific state by polling the state
         of the resource.
         """
         for waiter in model.waiters:
-            attrs[waiter.name] = self._create_waiter(waiter)
+            attrs[waiter.name] = self._create_waiter(
+                waiter, resource_name, service_model, service_waiter_model)
 
     def _create_identifier(factory_self, identifier, resource_name):
         """
@@ -250,7 +261,8 @@ class ResourceFactory(object):
 
         return property(property_loader)
 
-    def _create_waiter(factory_self, waiter_model):
+    def _create_waiter(factory_self, waiter_model, resource_name,
+                       service_model, service_waiter_model):
         """
         Creates a new wait method for each resource where both a waiter and
         resource model is defined.
@@ -261,11 +273,19 @@ class ResourceFactory(object):
             waiter(self, *args, **kwargs)
 
         do_waiter.__name__ = str(waiter_model.name)
-        do_waiter.__doc__ = 'TODO'
+        do_waiter.__doc__ = docstring.ResourceWaiterDocstring(
+            resource_name=resource_name,
+            event_emitter=factory_self._emitter,
+            service_model=service_model,
+            resource_waiter_model=waiter_model,
+            service_waiter_model=service_waiter_model,
+            include_signature=False
+        )
         return do_waiter
 
     def _create_collection(factory_self, service_name, resource_name,
-                           collection_model, resource_defs, service_model):
+                           collection_model, resource_defs, service_model,
+                           service_waiter_model):
         """
         Creates a new property on the resource to lazy-load a collection.
         """
@@ -276,7 +296,7 @@ class ResourceFactory(object):
 
         def get_collection(self):
             return cls(collection_model, self, factory_self,
-                       resource_defs, service_model)
+                       resource_defs, service_model, service_waiter_model)
 
         get_collection.__name__ = str(collection_model.name)
         get_collection.__doc__ = docstring.CollectionDocstring(
@@ -284,7 +304,8 @@ class ResourceFactory(object):
         return property(get_collection)
 
     def _create_reference(factory_self, name, reference, service_name,
-                          resource_name, model, resource_defs, service_model):
+                          resource_name, model, resource_defs, service_model,
+                          service_waiter_model):
         """
         Creates a new property on the resource to lazy-load a reference.
         """
@@ -293,7 +314,8 @@ class ResourceFactory(object):
         # build up resources from identifiers and data members.
         handler = ResourceHandler(reference.resource.path, factory_self,
                                   resource_defs, service_model,
-                                  reference.resource)
+                                  reference.resource,
+                                  service_waiter_model=service_waiter_model)
 
         # Are there any identifiers that need access to data members?
         # This is important when building the resource below since
@@ -322,7 +344,8 @@ class ResourceFactory(object):
 
     def _create_class_partial(factory_self, name, subresource,
                               service_name, resource_name, model,
-                              resource_defs, service_model):
+                              resource_defs, service_model,
+                              service_waiter_model):
         """
         Creates a new method which acts as a functools.partial, passing
         along the instance's low-level `client` to the new resource
@@ -336,7 +359,7 @@ class ResourceFactory(object):
             # We lazy-load the class to handle circular references.
             resource_cls = factory_self.load_from_definition(
                 service_name, name, resource_defs.get(name, {}),
-                resource_defs, service_model)
+                resource_defs, service_model, service_waiter_model)
 
             # Assumes that identifiers are in order, which lets you do
             # e.g. ``sqs.Queue('foo').Message('bar')`` to create a new message
@@ -361,7 +384,8 @@ class ResourceFactory(object):
         return create_resource
 
     def _create_action(factory_self, action_model, resource_defs,
-                       service_model, resource_name, is_load=False):
+                       service_model, resource_name, is_load=False,
+                       service_waiter_model=None):
         """
         Creates a new method which makes a request to the underlying
         AWS service.
@@ -370,7 +394,8 @@ class ResourceFactory(object):
         # method below is invoked, which allows instances of the resource
         # to share the ServiceAction instance.
         action = ServiceAction(action_model, factory=factory_self,
-            resource_defs=resource_defs, service_model=service_model)
+            resource_defs=resource_defs, service_model=service_model,
+            service_waiter_model=service_waiter_model)
 
         # A resource's ``load`` method is special because it sets
         # values on the resource instead of returning the response.

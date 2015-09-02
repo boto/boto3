@@ -264,6 +264,7 @@ class Session(object):
                 service_name, 'resources-1')
         resource_model = self._loader.load_service_model(
             service_name, 'resources-1', api_version)
+
         # Creating a new resource instance requires the low-level client
         # and service model, the resource version and resource JSON data.
         # We pass these to the factory and get back a class, which is
@@ -278,7 +279,10 @@ class Session(object):
         service_model = client.meta.service_model
         cls = self.resource_factory.load_from_definition(
             service_name, service_name, resource_model['service'],
-            resource_model['resources'], service_model)
+            resource_model['resources'], service_model,
+            boto3.utils.LazyLoadedWaiterModel(
+                self._session, service_name, api_version)
+        )
         return cls(client=client)
 
     def _register_default_handlers(self):

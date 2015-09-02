@@ -106,7 +106,8 @@ class ServiceDocumenter(object):
                 model=resource_model,
                 resource_defs=json_resource_model['resources'],
                 service_model=self._service_resource.meta.
-                client.meta.service_model
+                client.meta.service_model,
+                service_waiter_model=None
             )
             identifiers = resource_cls.meta.resource_model.identifiers
             args = []

@@ -62,7 +62,7 @@ class TestCollectionFactory(BaseTestCase):
 
         collection = collection_cls(
             collection_model, self.parent, self.resource_factory,
-            resource_defs, self.service_model)
+            resource_defs, self.service_model, None)
 
         self.assertEqual(collection_cls.__name__,
                         'test.Chain.FrobsCollectionManager')
@@ -106,7 +106,7 @@ class TestCollectionFactory(BaseTestCase):
 
         collection = collection_cls(
             collection_model, self.parent, self.resource_factory,
-            resource_defs, self.service_model)
+            resource_defs, self.service_model, None)
 
         self.assertTrue(hasattr(collection, 'delete'))
 
@@ -158,7 +158,7 @@ class TestResourceCollection(BaseTestCase):
 
         collection = CollectionManager(
             collection_model, self.parent, self.factory,
-            resource_defs, self.service_model)
+            resource_defs, self.service_model, None)
         return collection
 
     def test_repr(self):

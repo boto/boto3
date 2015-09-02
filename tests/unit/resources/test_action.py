@@ -108,7 +108,7 @@ class TestServiceActionCall(BaseTestCase):
 
         handler_mock.assert_called_with('Container', factory, resource_defs,
             service_model, action_model.resource,
-            self.action_def['request']['operation'])
+            self.action_def['request']['operation'], service_waiter_model=None)
         handler_mock.return_value.assert_called_with(resource, {}, 'response')
 
 

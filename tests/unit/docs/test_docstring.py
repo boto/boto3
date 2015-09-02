@@ -203,3 +203,22 @@ class TestResourceDocstrings(BaseDocsTest):
             '        - **Foo** *(string) --* Documents Foo',
             '        - **Bar** *(string) --* Documents Bar',
         ], batch_action_docstring)
+
+    def test_resource_waiter_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.Sample('id').wait_until_complete)
+        resource_waiter_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            ('    Waits until this Sample is complete. This method calls '
+             ':py:meth:`MyService.Waiter.sample_operation_complete.wait` '                   'which polls. :py:meth:`MyService.Client.sample_operation` every '
+             '15 seconds until a successful state is reached. An error '
+             'is returned after 40 failed checks.'),
+            '    **Request Syntax** ',
+            '    ::',
+            '      sample.wait_until_complete(',
+            "          Bar='string'",
+            '      )',
+            '    :type Bar: string',
+            '    :param Bar: Documents Bar',
+            '    :returns: None',
+        ], resource_waiter_docstring)

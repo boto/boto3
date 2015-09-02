@@ -179,13 +179,15 @@ class ResourceHandler(object):
     :return: New resource instance(s).
     """
     def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_model, operation_name=None):
+                 resource_model, operation_name=None,
+                 service_waiter_model=None):
         self.search_path = search_path
         self.factory = factory
         self.resource_defs = resource_defs
         self.service_model = service_model
         self.resource_model = resource_model
         self.operation_name = operation_name
+        self.service_waiter_model = service_waiter_model
 
     def __call__(self, parent, params, response):
         """
@@ -200,7 +202,7 @@ class ResourceHandler(object):
         resource_cls = self.factory.load_from_definition(
             parent.meta.service_name, resource_name,
             self.resource_defs.get(resource_name), self.resource_defs,
-            self.service_model)
+            self.service_model, self.service_waiter_model)
 
         raw_response = response
         search_response = None
