@@ -161,7 +161,8 @@ class ResourceDocumenter(BaseDocumenter):
                     ' :py:meth:`load` method.'),
                 intro_link='identifiers_attributes_intro')
             self.member_map['attributes'] = attribute_list
-        for attr_name, (_, attr_shape) in attributes.items():
+        for attr_name in sorted(attributes):
+            _, attr_shape = attributes[attr_name]
             attribute_section = section.add_new_section(attr_name)
             attribute_list.append(attr_name)
             attribute_section.style.start_sphinx_py_attr(attr_name)
