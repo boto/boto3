@@ -16,7 +16,6 @@ import tempfile
 import shutil
 from tests import unittest
 
-import mock
 import botocore.session
 from botocore.compat import OrderedDict
 from botocore.loaders import Loader
@@ -38,15 +37,13 @@ class BaseDocsTest(unittest.TestCase):
         self.paginator_model_file = os.path.join(
             self.version_dirs, 'paginators-1.json')
         self.resource_model_file = os.path.join(
-            self.version_dirs, 'resouce-1.json')
+            self.version_dirs, 'resources-1.json')
 
         self.json_model = {}
         self.waiter_json_model = {}
         self.paginator_json_model = {}
         self.resource_json_model = {}
         self._setup_models()
-        self.add_shape_to_params('Foo', 'String', 'Documents Foo')
-        self.add_shape_to_params('Bar', 'String', 'Documents Bar')
         self._write_models()
 
         self.doc_name = 'MyDoc'
@@ -57,6 +54,7 @@ class BaseDocsTest(unittest.TestCase):
         self.botocore_session.register_component('data_loader', self.loader)
         self.session = Session(botocore_session=self.botocore_session)
         self.client = self.session.client('myservice', 'us-east-1')
+        self.resource = self.session.resource('myservice', 'us-east-1')
 
     def tearDown(self):
         shutil.rmtree(self.root_dir)
@@ -80,7 +78,14 @@ class BaseDocsTest(unittest.TestCase):
             'shapes': {
                 'SampleOperationInputOutput': {
                     'type': 'structure',
-                    'members': OrderedDict()
+                    'members': OrderedDict([
+                        ('Foo', {
+                            'shape': 'String',
+                            'documentation': 'Documents Foo'}),
+                        ('Bar', {
+                            'shape': 'String',
+                            'documentation': 'Documents Bar'}),
+                    ])
                 },
                 'String': {
                     'type': 'string'
@@ -120,6 +125,75 @@ class BaseDocsTest(unittest.TestCase):
             }
         }
 
+        self.resource_json_model = {
+            "service": {
+                "actions": {
+                    "SampleOperation": {
+                        "request": {"operation": "SampleOperation"}
+                    }
+                },
+                "has": {
+                    "Sample": {
+                        "resource": {
+                            "type": "Sample",
+                            "identifiers": [
+                                {"target": "Name", "source": "input"}
+                            ]
+                        }
+                    }
+                },
+                "hasMany": {
+                    "Samples": {
+                        "request": {"operation": "SampleOperation"},
+                        "resource": {
+                            "type": "Sample",
+                            "identifiers": [
+                                {"target": "Name", "source": "response",
+                                 "path": "Samples[].Foo"}
+                            ]
+                        }
+                    }
+                }
+            },
+            "resources": {
+                "Sample": {
+                    "identifiers": [
+                        {"name": "Name", "memberName": "Foo"}
+                    ],
+                    "shape": "SampleOperationInputOutput",
+                    "load": {
+                        "request": {
+                            "operation": "SampleOperation",
+                            "params": [
+                                {"target": "Foo", "source": "identifier",
+                                 "name": "Name"}
+                            ]
+                        }
+                    },
+                    "actions": {
+                        "Operate": {
+                            "request": {
+                                "operation": "SampleOperation",
+                                "params": [
+                                    {"target": "Foo", "source": "identifier",
+                                     "name": "Name"}
+                                ]
+                            }
+                        }
+                    },
+                    "waiters": {
+                        "Complete": {
+                            "waiterName": "SampleOperationComplete",
+                            "params": [
+                                {"target": "Foo", "source": "identifier",
+                                 "name": "Name"}
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+
     def _write_models(self):
         with open(self.resource_model_file, 'w') as f:
             json.dump(self.resource_json_model, f)
@@ -150,9 +224,15 @@ class BaseDocsTest(unittest.TestCase):
             required_list.append(param_name)
             params_shape['required'] = required_list
 
-    def assert_contains_lines_in_order(self, lines):
-        contents = self.doc_structure.flush_structure().decode('utf-8')
+    def assert_contains_lines_in_order(self, lines, contents=None):
+        if contents is None:
+            contents = self.doc_structure.flush_structure().decode('utf-8')
         for line in lines:
             self.assertIn(line, contents)
             beginning = contents.find(line)
             contents = contents[(beginning + len(line)):]
+
+    def assert_not_contains_lines(self, lines):
+        contents = self.doc_structure.flush_structure().decode('utf-8')
+        for line in lines:
+            self.assertNotIn(line, contents)

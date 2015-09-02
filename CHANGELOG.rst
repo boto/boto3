@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.1.3 - 2015-09-03
+------------------
+
+* feature:``aws storagegateway``: Add support for resource tagging.
+* feature: Add support for customizable timeouts.
+
+
 1.1.2 - 2015-08-25
 ------------------
 

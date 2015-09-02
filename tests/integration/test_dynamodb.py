@@ -57,7 +57,8 @@ class TestDynamoDBTypes(BaseDynamoDBTest):
     def test_put_get_item(self):
         self.table.put_item(Item=self.item_data)
         self.addCleanup(self.table.delete_item, Key={'MyHashKey': 'mykey'})
-        response = self.table.get_item(Key={'MyHashKey': 'mykey'})
+        response = self.table.get_item(Key={'MyHashKey': 'mykey'},
+                                       ConsistentRead=True)
         self.assertEqual(response['Item'], self.item_data)
 
 
