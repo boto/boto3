@@ -37,19 +37,26 @@ def document_model_driven_resource_method(
     if resource_action_model.resource:
         if 'return' in section.available_sections:
             section.delete_section('return')
+		
+		resource_type = resource_action_model.resource.type
+		
         new_return_section = section.add_new_section('return')
         return_resource_type = '%s.%s' % (
             operation_model.service_model.service_name,
-            resource_action_model.resource.type)
+            resource_type)
 
         return_type = ':py:class:`%s`' % return_resource_type
-        return_description = 'A %s resource' % (
-            resource_action_model.resource.type)
+		if resource_type.startswith('A') or resource_type.startswith('a'):
+			return_description = 'An %s resource' % (
+				resource_type)	
+        else:
+			return_description = 'A %s resource' % (
+				resource_type)
 
         if resource_action_model.path and '[]' in resource_action_model.path:
             return_type = 'list(%s)' % return_type
             return_description = 'A list of %s resources' % (
-                resource_action_model.resource.type)
+                resource_type)
 
         new_return_section.style.new_line()
         new_return_section.write(
