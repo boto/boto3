@@ -46,12 +46,12 @@ def document_model_driven_resource_method(
             resource_type)
 
         return_type = ':py:class:`%s`' % return_resource_type
-		if resource_type.startswith('A') or resource_type.startswith('a'):
-			return_description = 'An %s resource' % (
-				resource_type)	
+	if resource_type.startswith('A') or resource_type.startswith('a'):
+		return_description = 'An %s resource' % (
+			resource_type)	
         else:
-			return_description = 'A %s resource' % (
-				resource_type)
+		return_description = 'A %s resource' % (
+			resource_type)
 
         if resource_action_model.path and '[]' in resource_action_model.path:
             return_type = 'list(%s)' % return_type
