@@ -21,8 +21,17 @@ def inject_s3_transfer_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'download_file', download_file)
 
 
-def inject_bucket_load(class_attributes, **kwargs):
+def inject_bucket_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'load', bucket_load)
+    utils.inject_attribute(class_attributes, 'upload_file', bucket_upload_file)
+    utils.inject_attribute(
+        class_attributes, 'download_file', bucket_download_file)
+
+
+def inject_object_methods(class_attributes, **kwargs):
+    utils.inject_attribute(class_attributes, 'upload_file', object_upload_file)
+    utils.inject_attribute(
+        class_attributes, 'download_file', object_download_file)
 
 
 def bucket_load(self, *args, **kwargs):
@@ -56,3 +65,35 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
     return transfer.download_file(
         bucket=Bucket, key=Key, filename=Filename,
         extra_args=ExtraArgs, callback=Callback)
+
+
+def bucket_upload_file(self, Filename, Key,
+                       ExtraArgs=None, Callback=None, Config=None):
+    """Upload a file to an S3 object."""
+    return self.meta.client.upload_file(
+        Filename=Filename, Bucket=self.name, Key=Key,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def bucket_download_file(self, Key, Filename,
+                         ExtraArgs=None, Callback=None, Config=None):
+    """Download an S3 object to a file."""
+    return self.meta.client.download_file(
+        Bucket=self.name, Key=Key, Filename=Filename,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def object_upload_file(self, Filename,
+                       ExtraArgs=None, Callback=None, Config=None):
+    """Upload a file to an S3 object."""
+    return self.meta.client.upload_file(
+        Filename=Filename, Bucket=self.bucket_name, Key=self.key,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def object_download_file(self, Filename,
+                         ExtraArgs=None, Callback=None, Config=None):
+    """Download an S3 object to a file."""
+    return self.meta.client.download_file(
+        Bucket=self.bucket_name, Key=self.key, Filename=Filename,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
