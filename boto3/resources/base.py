@@ -99,7 +99,7 @@ class ServiceResource(object):
         # Allow setting identifiers as positional arguments in the order
         # in which they were defined in the ResourceJSON.
         for i, value in enumerate(args):
-            setattr(self, self.meta.identifiers[i], value)
+            setattr(self, '_' + self.meta.identifiers[i], value)
 
         # Allow setting identifiers via keyword arguments. Here we need
         # extra logic to ignore other keyword arguments like ``client``.
@@ -110,7 +110,7 @@ class ServiceResource(object):
             if name not in self.meta.identifiers:
                 raise ValueError('Unknown keyword argument: {0}'.format(name))
 
-            setattr(self, name, value)
+            setattr(self, '_' + name, value)
 
         # Validate that all identifiers have been set.
         for identifier in self.meta.identifiers:
