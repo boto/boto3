@@ -52,7 +52,7 @@ then an exception will be thrown::
     print(queue.url)
     print(queue.attributes.get('DelaySeconds'))
 
-It is also possible to list all of our existing queues::
+It is also possible to list all of your existing queues::
 
     # Print out each queue name, which is part of its ARN
     for queue in sqs.queues.all():
@@ -137,7 +137,7 @@ Messages are processed in batches::
         # Get the custom author message attribute if it was set
         author_text = ''
         if message.message_attributes is not None:
-            author_name = message.message_attributes.get('Author')
+            author_name = message.message_attributes.get('Author').get('StringValue')
             if author_name:
                 author_text = ' ({0})'.format(author_name)
 
