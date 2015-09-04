@@ -56,7 +56,7 @@ class TestCollectionDocumenter(BaseDocsTest):
             ('    :param count: The limit to the number of resources '
              'in the iterable.'),
             '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :returns: Sample resource',
             '  .. py:method:: page_size(**kwargs)',
             ('    Creates an iterable of all Sample resources in the '
              'collection, but limits the number of items returned by '
