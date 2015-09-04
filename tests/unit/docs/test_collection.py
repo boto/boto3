@@ -71,6 +71,6 @@ class TestCollectionDocumenter(BaseDocsTest):
             ('    :param count: The number of items returned by '
              'each service call'),
             '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :returns: Sample resource',
             '    '
         ])
