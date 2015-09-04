@@ -192,6 +192,17 @@ class BaseDocsTest(unittest.TestCase):
                             }
                         }
                     },
+                    "has": {
+                        "RelatedSample": {
+                            "resource": {
+                                "type": "Sample",
+                                "identifiers": [
+                                    {"target": "Name", "source": "data",
+                                     "path": "Foo"}
+                                ]
+                            }
+                        }
+                    },
                     "waiters": {
                         "Complete": {
                             "waiterName": "SampleOperationComplete",

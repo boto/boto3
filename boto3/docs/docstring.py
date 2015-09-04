@@ -15,21 +15,36 @@ from botocore.docs.docstring import LazyLoadedDocstring
 from boto3.docs.action import document_action
 from boto3.docs.action import document_load_reload_action
 from boto3.docs.subresource import document_sub_resource
+from boto3.docs.attr import document_attribute
+from boto3.docs.attr import document_identifier
+from boto3.docs.attr import document_reference
 
 
 class ActionDocstring(LazyLoadedDocstring):
-    def __init__(self, *args, **kwargs):
-        super(ActionDocstring, self).__init__(*args, **kwargs)
-        self._docstring_writer = document_action
+    def _write_docstring(self, *args, **kwargs):
+        document_action(*args, **kwargs)
 
 
 class LoadReloadDocstring(LazyLoadedDocstring):
-    def __init__(self, *args, **kwargs):
-        super(LoadReloadDocstring, self).__init__(*args, **kwargs)
-        self._docstring_writer = document_load_reload_action
+    def _write_docstring(self, *args, **kwargs):
+        document_load_reload_action(*args, **kwargs)
 
 
 class SubResourceDocstring(LazyLoadedDocstring):
-    def __init__(self, *args, **kwargs):
-        super(SubResourceDocstring, self).__init__(*args, **kwargs)
-        self._docstring_writer = document_sub_resource
+    def _write_docstring(self, *args, **kwargs):
+        document_sub_resource(*args, **kwargs)
+
+
+class AttributeDocstring(LazyLoadedDocstring):
+    def _write_docstring(self, *args, **kwargs):
+        document_attribute(*args, **kwargs)
+
+
+class IdentifierDocstring(LazyLoadedDocstring):
+    def _write_docstring(self, *args, **kwargs):
+        document_identifier(*args, **kwargs)
+
+
+class ReferenceDocstring(LazyLoadedDocstring):
+    def _write_docstring(self, *args, **kwargs):
+        document_references(*args, **kwargs)

@@ -12,12 +12,14 @@
 # language governing permissions and limitations under the License.
 from tests.functional.docs import BaseDocsFunctionalTests
 
+from boto3.session import Session
 from boto3.docs.service import ServiceDocumenter
 
 
 class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
     def setUp(self):
-        self.documenter = ServiceDocumenter('dynamodb')
+        self.documenter = ServiceDocumenter(
+            'dynamodb', session=Session(region_name='us-east-1'))
         self.generated_contents = self.documenter.document_service()
         self.generated_contents = self.generated_contents.decode('utf-8')
 

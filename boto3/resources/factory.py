@@ -82,7 +82,7 @@ class ResourceFactory(object):
             'meta': meta,
         }
 
-        self._load_identifiers(attrs, meta, resource_model)
+        self._load_identifiers(attrs, meta, resource_model, resource_name)
         self._load_actions(attrs, resource_model, resource_defs,
                            service_model, resource_name)
         self._load_attributes(attrs, meta, resource_model, service_model)
@@ -105,7 +105,7 @@ class ResourceFactory(object):
                                base_classes=base_classes)
         return type(str(cls_name), tuple(base_classes), attrs)
 
-    def _load_identifiers(self, attrs, meta, model):
+    def _load_identifiers(self, attrs, meta, model, resource_name):
         """
         Populate required identifiers. These are arguments without which
         the resource cannot be used. Identifiers become arguments for
@@ -113,7 +113,8 @@ class ResourceFactory(object):
         """
         for identifier in model.identifiers:
             meta.identifiers.append(identifier.name)
-            attrs[identifier.name] = self._create_identifier(identifier.name)
+            attrs[identifier.name] = self._create_identifier(
+                identifier, resource_name)
 
     def _load_actions(self, attrs, model, resource_defs, service_model,
                       resource_name):
@@ -144,7 +145,8 @@ class ResourceFactory(object):
 
             attributes = model.get_attributes(shape)
             for name, (orig_name, member) in attributes.items():
-                attrs[name] = self._create_autoload_property(orig_name, name)
+                attrs[name] = self._create_autoload_property(
+                    orig_name, name, member)
 
     def _load_collections(self, attrs, model, resource_defs, service_model):
         """
@@ -197,24 +199,30 @@ class ResourceFactory(object):
         for waiter in model.waiters:
             attrs[waiter.name] = self._create_waiter(waiter)
 
-    def _create_identifier(factory_self, name):
+    def _create_identifier(factory_self, identifier, resource_name):
         """
         Creates a read-only property for identifier attributes.
         """
-        def identifier(self):
+        def get_identifier(self):
             # The default value is set to ``None`` instead of
             # raising an AttributeError because when resources are
             # instantiated a check is made such that none of the
             # identifiers have a value ``None``. If any are ``None``,
             # a more informative user error than a generic AttributeError
             # is raised.
-            return getattr(self, '_' + name, None)
+            return getattr(self, '_' + identifier.name, None)
 
-        identifier.__name__ = str(name)
-        identifier.__doc__ = 'TODO'
-        return property(identifier)
+        get_identifier.__name__ = str(identifier.name)
+        get_identifier.__doc__ = docstring.IdentifierDocstring(
+            resource_name=resource_name,
+            identifier_model=identifier,
+            include_signature=False
+        )
 
-    def _create_autoload_property(factory_self, name, snake_cased):
+        return property(get_identifier)
+
+    def _create_autoload_property(factory_self, name, snake_cased,
+                                  member_model):
         """
         Creates a new property on the resource to lazy-load its value
         via the resource's ``load`` method (if it exists).
@@ -234,7 +242,12 @@ class ResourceFactory(object):
             return self.meta.data.get(name)
 
         property_loader.__name__ = str(snake_cased)
-        property_loader.__doc__ = 'TODO'
+        property_loader.__doc__ = docstring.AttributeDocstring(
+            attr_name=snake_cased,
+            attr_model=member_model,
+            include_signature=False
+        )
+
         return property(property_loader)
 
     def _create_waiter(factory_self, waiter_model):
@@ -299,7 +312,10 @@ class ResourceFactory(object):
             return handler(self, {}, self.meta.data)
 
         get_reference.__name__ = str(reference.name)
-        get_reference.__doc__ = 'TODO'
+        get_reference.__doc__ = docstring.ReferenceDocstring(
+            reference_model=reference,
+            include_signature=False
+        )
         return property(get_reference)
 
     def _create_class_partial(factory_self, name, subresource,

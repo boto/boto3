@@ -72,3 +72,29 @@ class TestResourceDocstrings(BaseDocsTest):
             '  :rtype: :py:class:`MyService.Sample`',
             '  :returns: A Sample resource',
         ], sub_resource_docstring)
+
+    def test_attribute_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.Sample('id').__class__.foo)
+        attribute_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    *(string)* Documents Foo'
+        ], attribute_docstring)
+
+    def test_identifier_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.Sample('id').__class__.name)
+        identifier_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            "    *(string)* The Sample's name identifier. This "
+            "**must** be set."
+        ], identifier_docstring)
+
+    def test_reference_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.Sample('id').__class__.name)
+        identifier_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            "    *(string)* The Sample's name identifier. This "
+            "**must** be set."
+        ], identifier_docstring)
