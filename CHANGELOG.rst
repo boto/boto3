@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Next Release - (TBD)
+--------------------
+
+* bugfix:Identifier: Make resource identifiers immutable.
+  (`issue 246 <https://github.com/boto/boto3/pull/246>`__)
+
+
 1.1.3 - 2015-09-03
 ------------------
 
