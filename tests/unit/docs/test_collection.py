@@ -28,7 +28,7 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    ::',
             '      sample_iterator = myservice.samples.all()',
             '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :returns: Sample resource',
             '  .. py:method:: filter(**kwargs)',
             ('    Creates an iterable of all Sample resources in '
              'the collection filtered by kwargs passed to method.'),
@@ -43,7 +43,7 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    :type Bar: string',
             '    :param Bar: Documents Bar',
             '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :returns: Sample resource',
             '  .. py:method:: limit(**kwargs)',
             ('    Creates an iterable up to a specified amount of '
              'Sample resources in the collection.'),
