@@ -97,16 +97,7 @@ class TestDocumentModelDrivenResourceMethod(BaseDocsTest):
         ])
 
     def test_returns_list_of_resource(self):
-        resource_action = self.service_resource_model.actions[0]
-        # Override the return type of the action to be a resource
-        # instead of the regular dictionary.
-        resource_action.resource = ResponseResource(
-            {'type': 'Sample',
-             'identifiers': [{
-                 'target': 'Name', 'source': 'requestParameter',
-                 'path': '[].Foo'}]},
-            self.resource_json_model)
-        resource_action.path = '[]'
+        resource_action = self.service_resource_model.actions[1]
         document_model_driven_resource_method(
             self.doc_structure, 'foo', self.operation_model,
             event_emitter=self.event_emitter,

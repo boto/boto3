@@ -127,11 +127,22 @@ class BaseDocsTest(unittest.TestCase):
 
         self.resource_json_model = {
             "service": {
-                "actions": {
-                    "SampleOperation": {
+                "actions": OrderedDict([
+                    ("SampleOperation", {
                         "request": {"operation": "SampleOperation"}
-                    }
-                },
+                    }),
+                    ("SampleListReturnOperation", {
+                        "request": {"operation": "SampleOperation"},
+                        "resource": {
+                            "type": "Sample",
+                            "identifiers": [
+                                {"target": "Name", "source": "response",
+                                "path": "Samples[].Name"}
+                            ],
+                            "path": "Samples[]"
+                        }
+                    })
+                ]),
                 "has": {
                     "Sample": {
                         "resource": {
