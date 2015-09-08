@@ -93,7 +93,7 @@ class TestDocumentModelDrivenResourceMethod(BaseDocsTest):
             '  :type Bar: string',
             '  :param Bar: Documents Bar',
             '  :rtype: :py:class:`myservice.Sample`',
-            '  :returns: A Sample resource'
+            '  :returns: Sample resource'
         ])
 
     def test_returns_list_of_resource(self):
