@@ -112,7 +112,7 @@ class ResourceFactory(object):
         """
         for identifier in model.identifiers:
             meta.identifiers.append(identifier.name)
-            attrs[identifier.name] = None
+            attrs[identifier.name] = self._create_identifier(identifier.name)
 
     def _load_actions(self, attrs, model, resource_defs, service_model):
         """
@@ -193,6 +193,23 @@ class ResourceFactory(object):
         """
         for waiter in model.waiters:
             attrs[waiter.name] = self._create_waiter(waiter)
+
+    def _create_identifier(factory_self, name):
+        """
+        Creates a read-only property for identifier attributes.
+        """
+        def identifier(self):
+            # The default value is set to ``None`` instead of
+            # raising an AttributeError because when resources are
+            # instantiated a check is made such that none of the
+            # identifiers have a value ``None``. If any are ``None``,
+            # a more informative user error than a generic AttributeError
+            # is raised.
+            return getattr(self, '_' + name, None)
+
+        identifier.__name__ = str(name)
+        identifier.__doc__ = 'TODO'
+        return property(identifier)
 
     def _create_autoload_property(factory_self, name, snake_cased):
         """
