@@ -199,6 +199,12 @@ class ResourceFactory(object):
         Creates a read-only property for identifier attributes.
         """
         def identifier(self):
+            # The default value is set to ``None`` instead of
+            # raising an AttributeError because when resources are
+            # instantiated a check is made such that none of the
+            # identifiers have a value ``None``. If any are ``None``,
+            # a more informative user error than a generic AttributeError
+            # is raised.
             return getattr(self, '_' + name, None)
 
         identifier.__name__ = str(name)
