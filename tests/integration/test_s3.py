@@ -428,8 +428,9 @@ class TestS3Transfers(unittest.TestCase):
                                    Key='20mb.txt', Body=f)
         self.addCleanup(self.delete_object, '20mb.txt')
 
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         transfer.download_file(self.bucket_name, '20mb.txt',
-                               'foo.txt', callback=progress_callback)
+                               download_path, callback=progress_callback)
 
         self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
 
