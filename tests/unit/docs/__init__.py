@@ -193,6 +193,17 @@ class BaseDocsTest(unittest.TestCase):
                             }
                         }
                     },
+                    "batchActions": {
+                        "Operate": {
+                            "request": {
+                                "operation": "SampleOperation",
+                                "params": [
+                                    {"target": "Samples[].Foo",
+                                     "source": "identifier", "name": "Name"}
+                                ]
+                            }
+                        }
+                    },
                     "has": {
                         "RelatedSample": {
                             "resource": {
