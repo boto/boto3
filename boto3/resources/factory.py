@@ -271,7 +271,8 @@ class ResourceFactory(object):
         """
         cls = factory_self._collection_factory.load_from_definition(
             service_name, resource_name, collection_model.name,
-            collection_model, resource_defs)
+            collection_model, resource_defs, service_model,
+            factory_self._emitter)
 
         def get_collection(self):
             return cls(collection_model, self, factory_self,

@@ -20,6 +20,7 @@ from botocore.utils import merge_dicts
 from .action import BatchAction
 from .params import create_request_parameters
 from .response import ResourceHandler
+from ..docs import docstring
 
 
 logger = logging.getLogger(__name__)
@@ -361,7 +362,8 @@ class CollectionFactory(object):
     model. These subclasses include methods to perform batch operations.
     """
     def load_from_definition(self, service_name, resource_name,
-                             collection_name, model, resource_defs):
+                             collection_name, model, resource_defs,
+                             service_model, event_emitter):
         """
         Loads a collection from a model, creating a new
         :py:class:`CollectionManager` subclass
@@ -380,13 +382,19 @@ class CollectionFactory(object):
         :type resource_defs: dict
         :param resource_defs: The service's resource definitions, used to load
                               collection resources (e.g. ``sqs.Queue``).
+
+        :param service_model: The model for the service
+
+        :param event_emitter: An event emitter
+
         :rtype: Subclass of
                 :py:class:`CollectionManager`
         :return: The collection class.
         """
         attrs = {}
 
-        self._load_batch_actions(attrs, model)
+        self._load_batch_actions(
+            attrs, resource_name, model, service_model,event_emitter)
 
         if service_name == resource_name:
             cls_name = '{0}.{1}Collection'.format(
@@ -403,7 +411,8 @@ class CollectionFactory(object):
 
         return type(str(cls_name), (CollectionManager,), attrs)
 
-    def _load_batch_actions(self, attrs, model):
+    def _load_batch_actions(self, attrs, resource_name, model,
+                            service_model, event_emitter):
         """
         Batch actions on the collection become methods on both
         the collection manager and iterators.
@@ -411,9 +420,12 @@ class CollectionFactory(object):
         for action_model in model.batch_actions:
             snake_cased = xform_name(action_model.name)
             attrs[snake_cased] = self._create_batch_action(
-                snake_cased, action_model)
+                resource_name, snake_cased, action_model, model,
+                service_model, event_emitter)
 
-    def _create_batch_action(factory_self, snake_cased, action_model):
+    def _create_batch_action(factory_self, resource_name, snake_cased,
+                             action_model, collection_model, service_model,
+                             event_emitter):
         """
         Creates a new method which makes a batch operation request
         to the underlying service API.
@@ -424,5 +436,12 @@ class CollectionFactory(object):
             return action(self, *args, **kwargs)
 
         batch_action.__name__ = str(snake_cased)
-        batch_action.__doc__ = 'TODO'
+        batch_action.__doc__ = docstring.BatchActionDocstring(
+            resource_name=resource_name,
+            event_emitter=event_emitter,
+            batch_action_model=action_model,
+            service_model=service_model,
+            collection_model=collection_model,
+            include_signature=False
+        )
         return batch_action

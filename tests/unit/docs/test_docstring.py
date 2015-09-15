@@ -99,3 +99,32 @@ class TestResourceDocstrings(BaseDocsTest):
             "    (:py:class:`Sample`) The related related_sample "
             "if set, otherwise ``None``."
         ], reference_docstring)
+
+    def test_batch_action_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.samples.operate)
+        batch_action_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    **Request Syntax** ',
+            '    ::',
+            '      response = myservice.samples.operate(',
+            "          Foo='string',",
+            "          Bar='string'",
+            '      )',
+            '    :type Foo: string',
+            '    :param Foo: Documents Foo',
+            '    :type Bar: string',
+            '    :param Bar: Documents Bar',
+            '    :rtype: dict',
+            '    :returns: ',
+            '      **Response Syntax** ',
+            '      ::',
+            '        {',
+            "            'Foo': 'string',",
+            "            'Bar': 'string'",
+            '        }',
+            '      **Response Structure** ',
+            '      - *(dict) --* ',
+            '        - **Foo** *(string) --* Documents Foo',
+            '        - **Bar** *(string) --* Documents Bar',
+        ], batch_action_docstring)

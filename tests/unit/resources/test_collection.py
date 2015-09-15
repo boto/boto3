@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from botocore.hooks import HierarchicalEmitter
 from botocore.model import ServiceModel
 from boto3.resources.collection import CollectionFactory, CollectionManager, \
                                        ResourceCollection
@@ -30,6 +31,7 @@ class TestCollectionFactory(BaseTestCase):
         self.parent.meta = ResourceMeta('test', client=self.client)
         self.resource_factory = ResourceFactory(mock.Mock())
         self.service_model = ServiceModel({})
+        self.event_emitter = HierarchicalEmitter()
 
         self.factory = CollectionFactory()
         self.load = self.factory.load_from_definition
@@ -55,7 +57,8 @@ class TestCollectionFactory(BaseTestCase):
             resource_defs)
 
         collection_cls = self.load('test', 'Chain', 'Frobs',
-                                   collection_model, resource_defs)
+                                   collection_model, resource_defs,
+                                   self.service_model, self.event_emitter)
 
         collection = collection_cls(
             collection_model, self.parent, self.resource_factory,
@@ -98,7 +101,8 @@ class TestCollectionFactory(BaseTestCase):
             resource_defs)
 
         collection_cls = self.load('test', 'Chain', 'Frobs',
-                                   collection_model, resource_defs)
+                                   collection_model, resource_defs,
+                                   self.service_model, self.event_emitter)
 
         collection = collection_cls(
             collection_model, self.parent, self.resource_factory,

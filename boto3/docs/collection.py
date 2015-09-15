@@ -66,6 +66,7 @@ class CollectionDocumenter(BaseDocumenter):
                     service_model=self._resource.meta.client.meta.service_model
                 )
 
+
 def document_batch_action(section, resource_name, event_emitter,
                           batch_action_model, service_model, collection_model,
                           include_signature=True):
