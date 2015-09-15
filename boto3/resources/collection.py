@@ -394,7 +394,9 @@ class CollectionFactory(object):
         attrs = {}
 
         self._load_batch_actions(
-            attrs, resource_name, model, service_model,event_emitter)
+            attrs, resource_name, model, service_model, event_emitter)
+        self._load_documented_collection_methods(
+            attrs, resource_name, model, service_model, event_emitter)
 
         if service_name == resource_name:
             cls_name = '{0}.{1}Collection'.format(
@@ -422,6 +424,72 @@ class CollectionFactory(object):
             attrs[snake_cased] = self._create_batch_action(
                 resource_name, snake_cased, action_model, model,
                 service_model, event_emitter)
+
+    def _load_documented_collection_methods(factory_self, attrs, resource_name,
+                                            collection_model, service_model,
+                                            event_emitter):
+
+        # The CollectionManger already has these methods defined. However
+        # the docstrings are generic and not based for a particular service
+        # or resource. So we override these methods by proxying to the
+        # CollectionManager's builtin method and adding a docstring
+        # that pertains to the resource.
+
+        # A collection's all() method.
+        def all(self):
+            return CollectionManager.iterator(self)
+
+        all.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='all',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['all'] = all
+
+        # The collection's filter() method.
+        def filter(self, **kwargs):
+            return CollectionManager.iterator(self, **kwargs)
+
+        filter.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='filter',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['filter'] = filter
+
+        # The collection's limit method.
+        def limit(self, count):
+            return CollectionManager.iterator(self, limit=count)
+
+        limit.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='limit',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['limit'] = limit
+
+        # The collection's page_size method.
+        def page_size(self, count):
+            return CollectionManger.iterator(self, page_size=count)
+
+        page_size.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='page_size',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['page_size'] = page_size
 
     def _create_batch_action(factory_self, resource_name, snake_cased,
                              action_model, collection_model, service_model,
