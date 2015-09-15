@@ -32,7 +32,7 @@ def document_model_driven_resource_method(
         document_output=document_output
     )
 
-    # If this action returns a reource modify the return example to
+    # If this action returns a resource modify the return example to
     # appropriately reflect that.
     if resource_action_model.resource:
         if 'return' in section.available_sections:
@@ -47,7 +47,7 @@ def document_model_driven_resource_method(
         return_type = ':py:class:`%s`' % return_resource_type
         return_description = '%s resource' % (resource_type)
 
-        if resource_action_model.path and '[]' in resource_action_model.path:
+        if _method_returns_resource_list(resource_action_model.resource):
             return_type = 'list(%s)' % return_type
             return_description = 'A list of %s resources' % (
                 resource_type)
@@ -59,3 +59,11 @@ def document_model_driven_resource_method(
         new_return_section.write(
             ':returns: %s' % return_description)
         new_return_section.style.new_line()
+
+
+def _method_returns_resource_list(resource):
+    for identifier in resource.identifiers:
+        if identifier.path and '[]' in identifier.path:
+            return True
+
+    return False
