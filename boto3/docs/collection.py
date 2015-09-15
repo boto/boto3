@@ -38,9 +38,9 @@ class CollectionDocumenter(BaseDocumenter):
             self._document_collection(collection_section, collection)
 
     def _document_collection(self, section, collection):
-        section.style.start_sphinx_py_attr(collection.name)
         methods = get_instance_public_methods(
             getattr(self._resource, collection.name))
+        document_collection_object(section, collection)
         batch_actions = {}
         for batch_action in collection.batch_actions:
             batch_actions[batch_action.name] = batch_action
@@ -65,6 +65,23 @@ class CollectionDocumenter(BaseDocumenter):
                     collection_model=collection,
                     service_model=self._resource.meta.client.meta.service_model
                 )
+
+
+def document_collection_object(section, collection_model,
+                               include_signature=True):
+    """Documents a collection resource object
+
+    :param section: The section to write to
+
+    :param collection_model: The model of the collection
+
+    :param include_signature: Whether or not to include the signature.
+        It is useful for generating docstrings.
+    """
+    if include_signature:
+        section.style.start_sphinx_py_attr(collection_model.name)
+    section.include_doc_string(
+        'A collection of %s resources' % collection_model.resource.type)
 
 
 def document_batch_action(section, resource_name, event_emitter,

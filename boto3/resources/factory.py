@@ -279,7 +279,8 @@ class ResourceFactory(object):
                        resource_defs, service_model)
 
         get_collection.__name__ = str(collection_model.name)
-        get_collection.__doc__ = 'TODO'
+        get_collection.__doc__ = docstring.CollectionDocstring(
+            collection_model=collection_model, include_signature=False)
         return property(get_collection)
 
     def _create_reference(factory_self, name, reference, service_name,

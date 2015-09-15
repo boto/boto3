@@ -100,6 +100,14 @@ class TestResourceDocstrings(BaseDocsTest):
             "if set, otherwise ``None``."
         ], reference_docstring)
 
+    def test_collection_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.__class__.samples)
+        collection_method_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    A collection of Sample resources'
+        ], collection_method_docstring)
+
     def test_collection_all_method_help(self):
         with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
             help(self.resource.samples.all)
