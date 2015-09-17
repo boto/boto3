@@ -395,8 +395,6 @@ class CollectionFactory(object):
 
         self._load_batch_actions(
             attrs, resource_name, model, service_model, event_emitter)
-        self._load_documented_collection_methods(
-            attrs, resource_name, model, service_model, event_emitter)
 
         if service_name == resource_name:
             cls_name = '{0}.{1}Collection'.format(
@@ -408,6 +406,9 @@ class CollectionFactory(object):
         collection_cls = type(str(cls_name), (ResourceCollection,),
                               attrs)
 
+        self._load_documented_collection_methods(
+            attrs, resource_name, model, service_model,
+            event_emitter)
         attrs['_collection_cls'] = collection_cls
         cls_name += 'Manager'
 
@@ -428,7 +429,6 @@ class CollectionFactory(object):
     def _load_documented_collection_methods(factory_self, attrs, resource_name,
                                             collection_model, service_model,
                                             event_emitter):
-
         # The CollectionManger already has these methods defined. However
         # the docstrings are generic and not based for a particular service
         # or resource. So we override these methods by proxying to the
@@ -437,7 +437,7 @@ class CollectionFactory(object):
 
         # A collection's all() method.
         def all(self):
-            return CollectionManager.iterator(self)
+            return CollectionManager.all(self)
 
         all.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
@@ -451,7 +451,7 @@ class CollectionFactory(object):
 
         # The collection's filter() method.
         def filter(self, **kwargs):
-            return CollectionManager.iterator(self, **kwargs)
+            return CollectionManager.filter(self, **kwargs)
 
         filter.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
@@ -465,7 +465,7 @@ class CollectionFactory(object):
 
         # The collection's limit method.
         def limit(self, count):
-            return CollectionManager.iterator(self, limit=count)
+            return CollectionManager.limit(self, count)
 
         limit.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
@@ -479,7 +479,7 @@ class CollectionFactory(object):
 
         # The collection's page_size method.
         def page_size(self, count):
-            return CollectionManger.iterator(self, page_size=count)
+            return CollectionManager.iterator(count)
 
         page_size.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
