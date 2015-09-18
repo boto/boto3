@@ -393,7 +393,8 @@ class CollectionFactory(object):
 
         # Create the batch actions for a collection
         self._load_batch_actions(
-            attrs, resource_name, model, service_model, event_emitter)
+            attrs, resource_name, collection_model,
+            service_context.service_model, event_emitter)
         self._load_documented_collection_methods(
             attrs=attrs, resource_name=resource_name,
             collection_model=collection_model,

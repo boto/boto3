@@ -45,3 +45,15 @@ class TestUtils(unittest.TestCase):
         class_attributes = {'foo': 'preexisting'}
         with self.assertRaises(RuntimeError):
             utils.inject_attribute(class_attributes, 'foo', 'bar')
+
+
+class TestLazyLoadedWaiterModel(unittest.TestCase):
+    def test_get_waiter_model_is_lazy(self):
+        session = mock.Mock()
+        waiter_model = utils.LazyLoadedWaiterModel(
+            session, 'myservice', '2014-01-01')
+        self.assertFalse(session.get_waiter_model.called)
+        waiter_model.get_waiter('Foo')
+        self.assertTrue(session.get_waiter_model.called)
+        session.get_waiter_model.return_value.get_waiter.assert_called_with(
+            'Foo')
