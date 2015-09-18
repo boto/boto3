@@ -11,6 +11,14 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import sys
+from collections import namedtuple
+
+
+ServiceContext = namedtuple(
+    'ServiceContext',
+    ['service_name', 'service_model', 'service_waiter_model',
+     'resource_json_definitions']
+)
 
 
 def import_module(name):

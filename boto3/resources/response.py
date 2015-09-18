@@ -178,16 +178,13 @@ class ResourceHandler(object):
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """
-    def __init__(self, search_path, factory, resource_defs, service_model,
-                 resource_model, operation_name=None,
-                 service_waiter_model=None):
+    def __init__(self, search_path, factory, resource_model,
+                 service_context, operation_name=None):
         self.search_path = search_path
         self.factory = factory
-        self.resource_defs = resource_defs
-        self.service_model = service_model
         self.resource_model = resource_model
         self.operation_name = operation_name
-        self.service_waiter_model = service_waiter_model
+        self.service_context = service_context
 
     def __call__(self, parent, params, response):
         """
@@ -199,11 +196,15 @@ class ResourceHandler(object):
         :param response: Low-level operation response.
         """
         resource_name = self.resource_model.type
-        resource_cls = self.factory.load_from_definition(
-            parent.meta.service_name, resource_name,
-            self.resource_defs.get(resource_name), self.resource_defs,
-            self.service_model, self.service_waiter_model)
+        json_definition = self.service_context.resource_json_definitions.get(
+            resource_name)
 
+        # Load the new resource class that will result from this action.
+        resource_cls = self.factory.load_from_definition(
+            resource_name=resource_name,
+            single_resource_json_definition=json_definition,
+            service_context=self.service_context
+        )
         raw_response = response
         search_response = None
 
@@ -255,7 +256,7 @@ class ResourceHandler(object):
                 # A remote service call was made, so try and determine
                 # its shape.
                 response = build_empty_response(self.search_path,
-                    self.operation_name, self.service_model)
+                    self.operation_name, self.service_context.service_model)
 
         return response
 

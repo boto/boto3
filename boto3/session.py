@@ -277,12 +277,23 @@ class Session(object):
             aws_secret_access_key=aws_secret_access_key,
             aws_session_token=aws_session_token, config=config)
         service_model = client.meta.service_model
-        cls = self.resource_factory.load_from_definition(
-            service_name, service_name, resource_model['service'],
-            resource_model['resources'], service_model,
-            boto3.utils.LazyLoadedWaiterModel(
-                self._session, service_name, api_version)
+
+        # Create a ServiceContext object to serve as a reference to
+        # important read-only information about the general service.
+        service_context = boto3.utils.ServiceContext(
+                service_name=service_name, service_model=service_model,
+                resource_json_definitions=resource_model['resources'],
+                service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
+                    self._session, service_name, api_version) 
         )
+
+        # Create the service resource class.
+        cls = self.resource_factory.load_from_definition(
+            resource_name=service_name,
+            single_resource_json_definition=resource_model['service'],
+            service_context=service_context
+        )
+
         return cls(client=client)
 
     def _register_default_handlers(self):

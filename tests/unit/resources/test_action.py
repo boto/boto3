@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from boto3.utils import ServiceContext
 from boto3.resources.action import BatchAction, ServiceAction, WaiterAction
 from boto3.resources.base import ResourceMeta
 from boto3.resources.model import Action, Waiter
@@ -99,17 +100,28 @@ class TestServiceActionCall(BaseTestCase):
 
         action_model = self.action
 
-        action = ServiceAction(action_model, factory=factory,
-            resource_defs=resource_defs, service_model=service_model)
+        service_context = ServiceContext(
+            service_name='test',
+            service_model=service_model,
+            resource_json_definitions=resource_defs,
+            service_waiter_model=None
+        )
+
+        action = ServiceAction(
+            action_model=action_model, factory=factory,
+            service_context=service_context
+        )
 
         handler_mock.return_value.return_value = 'response'
 
         action(resource)
 
-        handler_mock.assert_called_with('Container', factory, resource_defs,
-            service_model, action_model.resource,
-            self.action_def['request']['operation'], service_waiter_model=None)
-        handler_mock.return_value.assert_called_with(resource, {}, 'response')
+        handler_mock.assert_called_with(
+            search_path='Container', factory=factory,
+            resource_model=action_model.resource,
+            service_context=service_context,
+            operation_name='GetFrobs'
+        )
 
 
 class TestWaiterActionCall(BaseTestCase):

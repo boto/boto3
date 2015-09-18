@@ -39,18 +39,19 @@ class ServiceAction(object):
     :type service_model: :ref:`botocore.model.ServiceModel`
     :param service_model: The Botocore service model
     """
-    def __init__(self, action_model, factory=None, resource_defs=None,
-                 service_model=None, service_waiter_model=None):
+    def __init__(self, action_model, factory=None, service_context=None):
         self._action_model = action_model
 
         # In the simplest case we just return the response, but if a
         # resource is defined, then we must create these before returning.
-        resource = action_model.resource
-        if resource:
-            self._response_handler = ResourceHandler(resource.path,
-                factory, resource_defs, service_model, resource,
-                action_model.request.operation,
-                service_waiter_model=service_waiter_model)
+        resource_response_model = action_model.resource
+        if resource_response_model:
+            self._response_handler = ResourceHandler(
+                search_path=resource_response_model.path,
+                factory=factory, resource_model=resource_response_model,
+                service_context=service_context,
+                operation_name=action_model.request.operation
+            )
         else:
             self._response_handler = RawHandler(action_model.path)
 

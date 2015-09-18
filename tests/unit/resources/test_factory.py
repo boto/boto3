@@ -14,6 +14,7 @@ from botocore.model import DenormalizedStructureBuilder, ServiceModel
 from tests import BaseTestCase, mock
 
 from boto3.exceptions import ResourceLoadException
+from boto3.utils import ServiceContext
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
@@ -25,24 +26,42 @@ class BaseTestResourceFactory(BaseTestCase):
         super(BaseTestResourceFactory, self).setUp()
         self.emitter = mock.Mock()
         self.factory = ResourceFactory(self.emitter)
-        self.load = self.factory.load_from_definition
+
+    def load(self, resource_name, resource_json_definition=None,
+             resource_json_definitions=None, service_model=None):
+        if resource_json_definition is None:
+            resource_json_definition = {}
+        if resource_json_definitions is None:
+            resource_json_definitions = {}
+        service_context=ServiceContext(
+            service_name='test',
+            resource_json_definitions=resource_json_definitions,
+            service_model=service_model,
+            service_waiter_model=None
+        )
+                
+        return self.factory.load_from_definition(
+            resource_name=resource_name,
+            single_resource_json_definition=resource_json_definition,
+            service_context=service_context
+        )
 
 
 class TestResourceFactory(BaseTestResourceFactory):
     def test_get_service_returns_resource_class(self):
-        TestResource = self.load('test', 'test', {}, {}, None, None)
+        TestResource = self.load('test')
 
         self.assertIn(ServiceResource, TestResource.__bases__,
             'Did not return a ServiceResource subclass for service')
 
     def test_get_resource_returns_resource_class(self):
-        QueueResource = self.load('test', 'Queue', {}, {}, None, None)
+        QueueResource = self.load('Queue')
 
         self.assertIn(ServiceResource, QueueResource.__bases__,
             'Did not return a ServiceResource subclass for resource')
 
     def test_factory_sets_service_name(self):
-        QueueResource = self.load('test', 'Queue', {}, {}, None, None)
+        QueueResource = self.load('Queue')
 
         self.assertEqual(QueueResource.meta.service_name, 'test',
             'Service name not set')
@@ -55,7 +74,7 @@ class TestResourceFactory(BaseTestResourceFactory):
             ],
         }
 
-        MessageResource = self.load('test', 'Message', model, {}, None, None)
+        MessageResource = self.load('Message', model)
 
         self.assertIn('queue_url', MessageResource.meta.identifiers,
             'Missing queue_url identifier from model')
@@ -73,8 +92,7 @@ class TestResourceFactory(BaseTestResourceFactory):
             'Message': model
         }
 
-        resource = self.load(
-            'test', 'Message', model, defs, None, None)('url', 'handle')
+        resource = self.load('Message', model, defs)('url', 'handle')
 
         # Class name
         self.assertIn('test.Message', repr(resource))
@@ -112,7 +130,7 @@ class TestResourceFactory(BaseTestResourceFactory):
             'Message': {}
         }
 
-        TestResource = self.load('test', 'test', model, defs, None, None)
+        TestResource = self.load('test', model, defs)
 
         self.assertTrue(hasattr(TestResource, 'Queue'),
             'Missing Queue class from model')
@@ -139,8 +157,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
-        TestResource = self.load(
-            'test', 'test', model, {}, service_model, None)
+        TestResource = self.load('test', model, service_model=service_model)
 
         self.assertTrue(hasattr(TestResource, 'e_tag'),
             'ETag shape member not available on resource')
@@ -156,7 +173,7 @@ class TestResourceFactory(BaseTestResourceFactory):
 
         # Each resource has a ``meta`` defined, so this identifier
         # must be renamed.
-        cls = self.load('test', 'test', model, {}, None, None)
+        cls = self.load('test', model)
 
         self.assertTrue(hasattr(cls, 'meta_identifier'))
 
@@ -178,13 +195,13 @@ class TestResourceFactory(BaseTestResourceFactory):
         # This fails because the resource has an identifier
         # that would be clobbered by the action name.
         with self.assertRaises(ValueError) as cm:
-            self.load('test', 'test', model, {}, None, None)
+            self.load('test', model)
 
         self.assertIn('test', str(cm.exception))
         self.assertIn('action', str(cm.exception))
 
     def test_can_instantiate_service_resource(self):
-        TestResource = self.load('test', 'test', {}, {}, None, None)
+        TestResource = self.load('test')
         resource = TestResource()
 
         self.assertIsInstance(resource, ServiceResource,
@@ -208,7 +225,7 @@ class TestResourceFactory(BaseTestResourceFactory):
 
         model = defs['Queue']
 
-        queue = self.load('test', 'Queue', model, defs, None, None)('url')
+        queue = self.load('Queue', model, defs)('url')
 
         self.assertTrue(not hasattr(queue, 'Queue'))
         self.assertTrue(not hasattr(queue, 'Message'))
@@ -242,7 +259,7 @@ class TestResourceFactory(BaseTestResourceFactory):
 
         model = defs['Queue']
 
-        queue = self.load('test', 'Queue', model, defs, None, None)('url')
+        queue = self.load('Queue', model, defs)('url')
 
         # Let's create a message and only give it a receipt handle
         # The required queue_url identifier should be set from the
@@ -255,7 +272,7 @@ class TestResourceFactory(BaseTestResourceFactory):
             'Wrong receipt handle set on the message resource instance')
 
     def test_resource_meta_unique(self):
-        queue_cls = self.load('test', 'Queue', {}, {}, None, None)
+        queue_cls = self.load('Queue')
 
         queue1 = queue_cls()
         queue2 = queue_cls()
@@ -273,7 +290,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         self.assertNotEqual(queue1.meta, 'bad-value')
 
     def test_resource_meta_repr(self):
-        queue_cls = self.load('test', 'Queue', {}, {}, None, None)
+        queue_cls = self.load('Queue')
         queue = queue_cls()
         self.assertEqual(repr(queue.meta),
                          'ResourceMeta(\'test\', identifiers=[])')
@@ -292,7 +309,7 @@ class TestResourceFactory(BaseTestResourceFactory):
 
         action = action_cls.return_value
 
-        queue = self.load('test', 'Queue', model, {}, None, None)()
+        queue = self.load('Queue', model)()
         queue.get_message_status('arg1', arg2=2)
 
         action.assert_called_with(queue, 'arg1', arg2=2)
@@ -314,7 +331,7 @@ class TestResourceFactory(BaseTestResourceFactory):
             }
         }
 
-        queue = self.load('test', 'Queue', model, {}, None, None)()
+        queue = self.load('Queue', model)()
 
         # Simulate loaded data
         queue.meta.data = {'some': 'data'}
@@ -339,7 +356,7 @@ class TestResourceFactory(BaseTestResourceFactory):
             }
         }
 
-        queue = self.load('test', 'Queue', model, {}, None, None)()
+        queue = self.load('Queue', model)()
 
         # Simulate loaded data
         queue.meta.data = {'some': 'data'}
@@ -384,7 +401,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         action.return_value = {'ETag': 'tag', 'LastModified': 'never'}
 
         resource = self.load(
-            'test', 'test', model, {}, service_model, None)('url')
+            'test', model, service_model=service_model)('url')
 
         # Accessing an identifier should not call load, even if it's in
         # the shape members.
@@ -434,7 +451,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         action.return_value = {'ETag': 'tag', 'LastModified': 'never'}
 
         resource = self.load(
-            'test', 'test', model, {}, service_model, None)('url')
+            'test', model, service_model=service_model)('url')
 
         with self.assertRaises(ResourceLoadException):
             resource.last_modified
@@ -488,8 +505,8 @@ class TestResourceFactory(BaseTestResourceFactory):
             }
         })
 
-        resource = self.load('test', 'Instance', model, defs,
-                             service_model, None)('group-id')
+        resource = self.load('Instance', model, defs,
+                             service_model)('group-id')
 
         # Load the resource with no data
         resource.meta.data = {}
@@ -540,8 +557,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         service_model = ServiceModel({})
         mock_model.return_value.name = 'queues'
 
-        resource = self.load(
-            'test', 'test', model, defs, service_model, None)()
+        resource = self.load('test', model, defs, service_model)()
 
         self.assertTrue(hasattr(resource, 'queues'),
             'Resource should expose queues collection')
@@ -565,8 +581,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         }
         service_model = ServiceModel({})
 
-        resource = self.load(
-            'test', 'test', model, defs, service_model, None)()
+        resource = self.load('test', model, defs, service_model)()
 
         self.assertTrue(hasattr(resource, 'wait_until_exists'),
             'Resource should expose resource waiter: wait_until_exists')
@@ -590,8 +605,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         service_model = ServiceModel({})
 
         waiter_action = waiter_action_cls.return_value
-        resource = self.load(
-            'test', 'test', model, defs, service_model, None)()
+        resource = self.load('test', model, defs, service_model)()
 
         resource.wait_until_exists('arg1', arg2=2)
         waiter_action.assert_called_with(resource, 'arg1', arg2=2)
@@ -623,54 +637,47 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
         }
 
     def test_dangling_resources_create_resource_instance(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
         q = resource.Queue('test')
 
         self.assertIsInstance(q, ServiceResource,
             'Dangling resource instance not a ServiceResource')
 
     def test_dangling_resource_create_with_kwarg(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
         q = resource.Queue(url='test')
 
         self.assertIsInstance(q, ServiceResource,
             'Dangling resource created with kwargs is not a ServiceResource')
 
     def test_dangling_resource_shares_client(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
         q = resource.Queue('test')
 
         self.assertEqual(resource.meta.client, q.meta.client,
             'Client was not shared to dangling resource instance')
 
     def test_dangling_resource_requires_identifier(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
 
         with self.assertRaises(ValueError):
             resource.Queue()
 
     def test_dangling_resource_raises_for_unknown_arg(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
 
         with self.assertRaises(ValueError):
             resource.Queue(url='foo', bar='baz')
 
     def test_dangling_resource_identifier_is_immutable(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
         queue = resource.Queue('url')
         # We should not be able to change the identifier's value
         with self.assertRaises(AttributeError):
             queue.url = 'foo'
 
     def test_dangling_resource_equality(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
 
         q1 = resource.Queue('url')
         q2 = resource.Queue('url')
@@ -699,8 +706,7 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
             }
         }
 
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
 
         q1 = resource.Queue('url')
         q2 = resource.Queue('different')
@@ -750,8 +756,7 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
-        cls = self.load('test', 'Instance', self.model, self.defs,
-                        service_model, None)
+        cls = self.load('Instance', self.model, self.defs, service_model)
         instance = cls('instance-id')
 
         # Set some data as if we had completed a load action.
@@ -811,22 +816,19 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         }
 
     def test_subresource_custom_name(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
 
         self.assertTrue(hasattr(resource, 'QueueObject'))
 
     def test_contains_all_subresources(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
 
         self.assertIn('QueueObject', dir(resource))
         self.assertIn('PriorityQueue', dir(resource))
         self.assertIn('Message', dir(resource))
 
     def test_subresource_missing_all_subresources(self):
-        resource = self.load(
-            'test', 'test', self.model, self.defs, None, None)()
+        resource = self.load('test', self.model, self.defs)()
         message = resource.Message('url', 'handle')
 
         self.assertNotIn('QueueObject', dir(message))
@@ -835,8 +837,7 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         self.assertNotIn('Message', dir(message))
 
     def test_event_emitted_when_class_created(self):
-        self.load(
-            'test', 'test', self.model, self.defs, None, None)
+        self.load('test', self.model, self.defs)
         self.assertTrue(self.emitter.emit.called)
         call_args = self.emitter.emit.call_args
         # Verify the correct event name emitted.

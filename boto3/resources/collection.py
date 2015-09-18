@@ -302,16 +302,18 @@ class CollectionManager(object):
     # The class to use when creating an iterator
     _collection_cls = ResourceCollection
 
-    def __init__(self, model, parent, factory, resource_defs,
-                 service_model, service_waiter_model):
-        self._model = model
+    def __init__(self, collection_model, parent, factory, service_context):
+        self._model = collection_model
         operation_name = self._model.request.operation
         self._parent = parent
 
-        search_path = model.resource.path
-        self._handler = ResourceHandler(search_path, factory, resource_defs,
-            service_model, model.resource, operation_name,
-            service_waiter_model)
+        search_path = collection_model.resource.path
+        self._handler = ResourceHandler(
+            search_path=search_path, factory=factory,
+            resource_model=collection_model.resource,
+            service_context=service_context,
+            operation_name=operation_name
+        )
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(
@@ -362,9 +364,8 @@ class CollectionFactory(object):
     subclasses from a :py:class:`~boto3.resources.model.Collection`
     model. These subclasses include methods to perform batch operations.
     """
-    def load_from_definition(self, service_name, resource_name,
-                             collection_name, model, resource_defs,
-                             service_model, event_emitter):
+    def load_from_definition(self, resource_name, collection_model,
+                             service_context, event_emitter):
         """
         Loads a collection from a model, creating a new
         :py:class:`CollectionManager` subclass
@@ -380,9 +381,6 @@ class CollectionFactory(object):
                               this should match the ``service_name``.
         :type model: dict
         :param model: The collection definition.
-        :type resource_defs: dict
-        :param resource_defs: The service's resource definitions, used to load
-                              collection resources (e.g. ``sqs.Queue``).
 
         :param service_model: The model for the service
 
@@ -393,38 +391,48 @@ class CollectionFactory(object):
         :return: The collection class.
         """
         attrs = {}
+        collection_name = collection_model.name
 
+        # Create the batch actions for a collection
         self._load_batch_actions(
             attrs, resource_name, model, service_model, event_emitter)
+        self._load_documented_collection_methods(
+            attrs=attrs, resource_name=resource_name,
+            collection_model=collection_model,
+            service_model=service_context.service_model,
+            event_emitter=event_emitter)
 
-        if service_name == resource_name:
+        if service_context.service_name == resource_name:
             cls_name = '{0}.{1}Collection'.format(
-                service_name, collection_name)
+                service_context.service_name, collection_name)
         else:
             cls_name = '{0}.{1}.{2}Collection'.format(
-                service_name, resource_name, collection_name)
+                service_context.service_name, resource_name, collection_name)
 
         collection_cls = type(str(cls_name), (ResourceCollection,),
                               attrs)
 
+        # Add the documentation to the collection methods
         self._load_documented_collection_methods(
-            attrs, resource_name, model, service_model,
-            event_emitter)
+            attrs=attrs, resource_name=resource_name,
+            collection_model=collection_model,
+            service_model=service_context.service_model,
+            event_emitter=event_emitter)
         attrs['_collection_cls'] = collection_cls
         cls_name += 'Manager'
 
         return type(str(cls_name), (CollectionManager,), attrs)
 
-    def _load_batch_actions(self, attrs, resource_name, model,
+    def _load_batch_actions(self, attrs, resource_name, collection_model,
                             service_model, event_emitter):
         """
         Batch actions on the collection become methods on both
         the collection manager and iterators.
         """
-        for action_model in model.batch_actions:
+        for action_model in collection_model.batch_actions:
             snake_cased = xform_name(action_model.name)
             attrs[snake_cased] = self._create_batch_action(
-                resource_name, snake_cased, action_model, model,
+                resource_name, snake_cased, action_model, collection_model,
                 service_model, event_emitter)
 
     def _load_documented_collection_methods(factory_self, attrs, resource_name,
