@@ -163,18 +163,21 @@ class ResourceHandler(object):
 
     :type search_path: string
     :param search_path: JMESPath expression to search in the response
+
     :type factory: ResourceFactory
     :param factory: The factory that created the resource class to which
                     this action is attached.
-    :type resource_defs: dict
-    :param resource_defs: Service resource definitions.
-    :type service_model: :ref:`botocore.model.ServiceModel`
-    :param service_model: The Botocore service model
+
     :type resource_model: :py:class:`~boto3.resources.model.ResponseResource`
     :param resource_model: Response resource model.
+
+    :type service_context: :py:class:`~boto3.utils.ServiceContext`
+    :param service_context: Context about the AWS service
+
     :type operation_name: string
     :param operation_name: Name of the underlying service operation, if it
                            exists.
+
     :rtype: ServiceResource or list
     :return: New resource instance(s).
     """

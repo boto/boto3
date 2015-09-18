@@ -14,11 +14,33 @@ import sys
 from collections import namedtuple
 
 
-ServiceContext = namedtuple(
+_ServiceContext = namedtuple(
     'ServiceContext',
     ['service_name', 'service_model', 'service_waiter_model',
      'resource_json_definitions']
 )
+
+
+class ServiceContext(_ServiceContext):
+    """Provides important service-wide, read-only information about a service
+
+    :type service_name: str
+    :param service_name: The name of the service
+
+    :type service_model: :py:class:`botocore.model.ServiceModel`
+    :param service_model: The model of the service.
+
+    :type service_waiter_model: :py:class:`botocore.waiter.WaiterModel` or
+        a waiter model-like object such as
+        :py:class:`boto3.utils.LazyLoadedWaiterModel`
+    :param service_waiter_model: The waiter model of the service.
+
+    :type resource_json_definitions: dict
+    :param resource_json_definitions: The loaded json models of all resource
+        shapes for a service. It is equivalient of loading a
+        ``resource-1.json`` and retrieving the value at the key "resources".
+    """
+    pass
 
 
 def import_module(name):

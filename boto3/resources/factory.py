@@ -47,23 +47,18 @@ class ResourceFactory(object):
         with the correct properties and methods, named based on the service
         and resource name, e.g. EC2.Instance.
 
-        :type service_name: string
-        :param service_name: Name of the service to look up
         :type resource_name: string
         :param resource_name: Name of the resource to look up. For services,
                               this should match the ``service_name``.
-        :type model: dict
-        :param model: The service or resource definition.
-        :type resource_defs: dict
-        :param resource_defs: The service's resource definitions, used to load
-                              subresources (e.g. ``sqs.Queue``).
-        :type service_model: ``botocore.model.ServiceModel``
-        :param service_model: The Botocore service model, required only if the
-                              resource shape contains members. This is used to
-                              expose lazy-loaded attributes on the resource.
-        :type service_waiter_model:  ``botocore.waiter.WaiterModel` or
-            can be interchanged with `boto3.utils.LazyLoadedWaiterModel`
-        :param service_waiter_model: The waiter model for the service.
+
+        :type single_resource_json_definition: dict
+        :param single_resource_json_definition:
+            The loaded json of a single service resource or resource
+            definition.
+
+        :type service_context: :py:class:`~boto3.utils.ServiceContext`
+        :param service_context: Context about the AWS service
+
         :rtype: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         :return: The service or resource class.
         """

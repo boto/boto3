@@ -31,13 +31,13 @@ class ServiceAction(object):
 
     :type action_model: :py:class`~boto3.resources.model.Action`
     :param action_model: The action model.
+
     :type factory: ResourceFactory
     :param factory: The factory that created the resource class to which
                     this action is attached.
-    :type resource_defs: dict
-    :param resource_defs: Service resource definitions.
-    :type service_model: :ref:`botocore.model.ServiceModel`
-    :param service_model: The Botocore service model
+
+    :type service_context: :py:class:`~boto3.utils.ServiceContext`
+    :param service_context: Context about the AWS service
     """
     def __init__(self, action_model, factory=None, service_context=None):
         self._action_model = action_model
@@ -91,15 +91,15 @@ class BatchAction(ServiceAction):
     S3 objects in a single operation rather than calling ``.delete()`` on
     each one individually.
 
-    :type action_model: :py:class:`~boto3.resources.model.Action`
+    :type action_model: :py:class`~boto3.resources.model.Action`
     :param action_model: The action model.
+
     :type factory: ResourceFactory
     :param factory: The factory that created the resource class to which
                     this action is attached.
-    :type resource_defs: dict
-    :param resource_defs: Service resource definitions.
-    :type service_model: :ref:`botocore.model.ServiceModel`
-    :param service_model: The Botocore service model
+
+    :type service_context: :py:class:`~boto3.utils.ServiceContext`
+    :param service_context: Context about the AWS service
     """
     def __call__(self, parent, *args, **kwargs):
         """

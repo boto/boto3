@@ -288,16 +288,17 @@ class CollectionManager(object):
     See the :ref:`guide_collections` guide for a high-level overview
     of collections, including when remote service requests are performed.
 
-    :type model: :py:class:`~boto3.resources.model.Collection`
+    :type collection_model: :py:class:`~boto3.resources.model.Collection`
     :param model: Collection model
+
     :type parent: :py:class:`~boto3.resources.base.ServiceResource`
     :param parent: The collection's parent resource
+
     :type factory: :py:class:`~boto3.resources.factory.ResourceFactory`
     :param factory: The resource factory to create new resources
-    :type resource_defs: dict
-    :param resource_defs: Service resource definitions.
-    :type service_model: :ref:`botocore.model.ServiceModel`
-    :param service_model: The Botocore service model
+
+    :type service_context: :py:class:`~boto3.utils.ServiceContext`
+    :param service_context: Context about the AWS service
     """
     # The class to use when creating an iterator
     _collection_cls = ResourceCollection
@@ -374,20 +375,17 @@ class CollectionFactory(object):
         creates a new :py:class:`ResourceCollection` subclass which is used
         by the new manager class.
 
-        :type service_name: string
-        :param service_name: Name of the service to look up
         :type resource_name: string
         :param resource_name: Name of the resource to look up. For services,
                               this should match the ``service_name``.
-        :type model: dict
-        :param model: The collection definition.
 
-        :param service_model: The model for the service
+        :type service_context: :py:class:`~boto3.utils.ServiceContext`
+        :param service_context: Context about the AWS service
 
+        :type event_emitter: :py:class:`~botocore.hooks.HierarchialEmitter`
         :param event_emitter: An event emitter
 
-        :rtype: Subclass of
-                :py:class:`CollectionManager`
+        :rtype: Subclass of :py:class:`CollectionManager`
         :return: The collection class.
         """
         attrs = {}
