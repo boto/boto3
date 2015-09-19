@@ -38,6 +38,8 @@ There is no support for s3->s3 multipart copies at this
 time.
 
 
+.. _ref_s3transfer_usage:
+
 Usage
 =====
 
@@ -606,6 +608,11 @@ class S3Transfer(object):
 
     def upload_file(self, filename, bucket, key,
                     callback=None, extra_args=None):
+        """Upload a file to an S3 object.
+
+        Variants have also been injected into S3 client, Bucket and Object.
+        You don't have to use S3Transfer.upload_file() directly.
+        """
         if extra_args is None:
             extra_args = {}
         self._validate_all_known_args(extra_args, self.ALLOWED_UPLOAD_ARGS)
@@ -636,11 +643,12 @@ class S3Transfer(object):
                       callback=None):
         """Download an S3 object to a file.
 
-        This method will issue a ``head_object`` request to determine
-        the size of the S3 object.  This is used to determine if the
-        object is downloaded in parallel.
-
+        Variants have also been injected into S3 client, Bucket and Object.
+        You don't have to use S3Transfer.download_file() directly.
         """
+        # This method will issue a ``head_object`` request to determine
+        # the size of the S3 object.  This is used to determine if the
+        # object is downloaded in parallel.
         if extra_args is None:
             extra_args = {}
         self._validate_all_known_args(extra_args, self.ALLOWED_DOWNLOAD_ARGS)
