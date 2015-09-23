@@ -104,12 +104,12 @@ def _assert_has_paginator_documentation(generated_docs, service_name, client,
     for paginator_name in paginator_names:
         ref_lines.append(
             '* :py:class:`%s.Paginator.%s`' % (
-                client.__class__.__name__, xform_name(paginator_name)))
+                client.__class__.__name__, paginator_name))
 
     for paginator_name in paginator_names:
         ref_lines.append(
             '.. py:class:: %s.Paginator.%s' % (
-                client.__class__.__name__, xform_name(paginator_name)))
+                client.__class__.__name__, paginator_name))
         ref_lines.append(
             '  .. py:method:: paginate(')
 
