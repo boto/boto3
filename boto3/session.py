@@ -291,7 +291,11 @@ class Session(object):
         self._session.register(
             'creating-resource-class.s3.Bucket',
             boto3.utils.lazy_call(
-                'boto3.s3.inject.inject_bucket_load'))
+                'boto3.s3.inject.inject_bucket_methods'))
+        self._session.register(
+            'creating-resource-class.s3.Object',
+            boto3.utils.lazy_call(
+                'boto3.s3.inject.inject_object_methods'))
 
         # DynamoDb customizations
         self._session.register(

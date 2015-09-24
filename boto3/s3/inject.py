@@ -21,8 +21,17 @@ def inject_s3_transfer_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'download_file', download_file)
 
 
-def inject_bucket_load(class_attributes, **kwargs):
+def inject_bucket_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'load', bucket_load)
+    utils.inject_attribute(class_attributes, 'upload_file', bucket_upload_file)
+    utils.inject_attribute(
+        class_attributes, 'download_file', bucket_download_file)
+
+
+def inject_object_methods(class_attributes, **kwargs):
+    utils.inject_attribute(class_attributes, 'upload_file', object_upload_file)
+    utils.inject_attribute(
+        class_attributes, 'download_file', object_download_file)
 
 
 def bucket_load(self, *args, **kwargs):
@@ -44,6 +53,18 @@ def bucket_load(self, *args, **kwargs):
 
 def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
                 Callback=None, Config=None):
+    """Upload a file to an S3 object.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.meta.client.upload_file('/tmp/hello.txt', 'mybucket', 'hello.txt')
+
+    Similar behavior as S3Transfer's upload_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
     transfer = S3Transfer(self, Config)
     return transfer.upload_file(
         filename=Filename, bucket=Bucket, key=Key,
@@ -52,7 +73,95 @@ def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
 
 def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
                   Callback=None, Config=None):
+    """Download an S3 object to a file.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.meta.client.download_file('mybucket', 'hello.txt', '/tmp/hello.txt')
+
+    Similar behavior as S3Transfer's download_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
     transfer = S3Transfer(self, Config)
     return transfer.download_file(
         bucket=Bucket, key=Key, filename=Filename,
         extra_args=ExtraArgs, callback=Callback)
+
+
+def bucket_upload_file(self, Filename, Key,
+                       ExtraArgs=None, Callback=None, Config=None):
+    """Upload a file to an S3 object.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.Bucket('mybucket').upload_file('/tmp/hello.txt', 'hello.txt')
+
+    Similar behavior as S3Transfer's upload_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    return self.meta.client.upload_file(
+        Filename=Filename, Bucket=self.name, Key=Key,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def bucket_download_file(self, Key, Filename,
+                         ExtraArgs=None, Callback=None, Config=None):
+    """Download an S3 object to a file.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.Bucket('mybucket').download_file('hello.txt', '/tmp/hello.txt')
+
+    Similar behavior as S3Transfer's download_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    return self.meta.client.download_file(
+        Bucket=self.name, Key=Key, Filename=Filename,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def object_upload_file(self, Filename,
+                       ExtraArgs=None, Callback=None, Config=None):
+    """Upload a file to an S3 object.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.Object('mybucket', 'hello.txt').upload_file('/tmp/hello.txt')
+
+    Similar behavior as S3Transfer's upload_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    return self.meta.client.upload_file(
+        Filename=Filename, Bucket=self.bucket_name, Key=self.key,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def object_download_file(self, Filename,
+                         ExtraArgs=None, Callback=None, Config=None):
+    """Download an S3 object to a file.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.Object('mybucket', 'hello.txt').download_file('/tmp/hello.txt')
+
+    Similar behavior as S3Transfer's download_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    return self.meta.client.download_file(
+        Bucket=self.bucket_name, Key=self.key, Filename=Filename,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
