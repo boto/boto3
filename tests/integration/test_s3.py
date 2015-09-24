@@ -428,8 +428,9 @@ class TestS3Transfers(unittest.TestCase):
                                    Key='20mb.txt', Body=f)
         self.addCleanup(self.delete_object, '20mb.txt')
 
+        download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         transfer.download_file(self.bucket_name, '20mb.txt',
-                               'foo.txt', callback=progress_callback)
+                               download_path, callback=progress_callback)
 
         self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
 
@@ -480,6 +481,28 @@ class TestS3Transfers(unittest.TestCase):
         self.client.download_file(Bucket=self.bucket_name,
                                   Key='foo.txt',
                                   Filename=download_path)
+        assert_files_equal(filename, download_path)
+
+    def test_transfer_methods_through_bucket(self):
+        # This is just a sanity check to ensure that the bucket interface work.
+        key = 'bucket.txt'
+        bucket = self.session.resource('s3').Bucket(self.bucket_name)
+        filename = self.files.create_file_with_size(key, 1024*1024)
+        bucket.upload_file(Filename=filename, Key=key)
+        self.addCleanup(self.delete_object, key)
+        download_path = os.path.join(self.files.rootdir, unique_id('foo'))
+        bucket.download_file(Key=key, Filename=download_path)
+        assert_files_equal(filename, download_path)
+
+    def test_transfer_methods_through_object(self):
+        # This is just a sanity check to ensure that the object interface work.
+        key = 'object.txt'
+        obj = self.session.resource('s3').Object(self.bucket_name, key)
+        filename = self.files.create_file_with_size(key, 1024*1024)
+        obj.upload_file(Filename=filename)
+        self.addCleanup(self.delete_object, key)
+        download_path = os.path.join(self.files.rootdir, unique_id('foo'))
+        obj.download_file(Filename=download_path)
         assert_files_equal(filename, download_path)
 
 

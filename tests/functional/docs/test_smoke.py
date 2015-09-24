@@ -47,8 +47,9 @@ def test_docs_generated():
 
         # If the client has waiters, make sure the waiters are documented
         if client.waiter_names:
+            waiter_model = botocore_session.get_waiter_model(service_name)
             yield (_assert_has_waiter_documentation, generated_docs,
-                   service_name, client)
+                   service_name, client, waiter_model)
 
         # If the service has resources, make sure the service resource
         # is at least documented.
@@ -104,36 +105,37 @@ def _assert_has_paginator_documentation(generated_docs, service_name, client,
     for paginator_name in paginator_names:
         ref_lines.append(
             '* :py:class:`%s.Paginator.%s`' % (
-                client.__class__.__name__, xform_name(paginator_name)))
+                client.__class__.__name__, paginator_name))
 
     for paginator_name in paginator_names:
         ref_lines.append(
             '.. py:class:: %s.Paginator.%s' % (
-                client.__class__.__name__, xform_name(paginator_name)))
+                client.__class__.__name__, paginator_name))
         ref_lines.append(
             '  .. py:method:: paginate(')
 
     _assert_contains_lines_in_order(ref_lines, generated_docs)
 
 
-def _assert_has_waiter_documentation(generated_docs, service_name, client):
+def _assert_has_waiter_documentation(generated_docs, service_name, client,
+                                     waiter_model):
     ref_lines = [
         '=======',
         'Waiters',
         '=======',
         'The available waiters are:'
     ]
-    for waiter_name in client.waiter_names:
+    for waiter_name in waiter_model.waiter_names:
         ref_lines.append(
             '* :py:class:`%s.Waiter.%s`' % (
                 client.__class__.__name__, waiter_name))
 
-    for waiter_name in client.waiter_names:
+    for waiter_name in waiter_model.waiter_names:
         ref_lines.append(
             '.. py:class:: %s.Waiter.%s' % (
                 client.__class__.__name__, waiter_name))
         ref_lines.append(
-            '    waiter = client.get_waiter(\'%s\')' % waiter_name)
+            '    waiter = client.get_waiter(\'%s\')' % xform_name(waiter_name))
         ref_lines.append(
             '  .. py:method:: wait(')
 

@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.1.4 - (2015-09-24)
+--------------------
+
+* bugfix:Identifier: Make resource identifiers immutable.
+  (`issue 246 <https://github.com/boto/boto3/pull/246>`__)
+* feature: Both S3 Bucket and Object obtain upload_file() and download_file()
+  (`issue 243 <https://github.com/boto/boto3/pull/243>`__)
+
+
 1.1.3 - 2015-09-03
 ------------------
 

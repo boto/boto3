@@ -16,7 +16,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 requires = [
     'botocore>=1.2.0,<1.3.0',
-    'jmespath>=0.6.2,<1.0.0',
+    'jmespath>=0.7.1,<1.0.0',
 ]
 
 

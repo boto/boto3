@@ -75,3 +75,39 @@ class TestBucketLoad(unittest.TestCase):
         }
         with self.assertRaises(ClientError):
             inject.bucket_load(self.resource)
+
+
+class TestBucketTransferMethods(unittest.TestCase):
+
+    def setUp(self):
+        self.bucket = mock.Mock(name='my_bucket')
+
+    def test_upload_file_proxies_to_meta_client(self):
+        inject.bucket_upload_file(self.bucket, Filename='foo', Key='key')
+        self.bucket.meta.client.upload_file.assert_called_with(
+            Filename='foo', Bucket=self.bucket.name, Key='key',
+            ExtraArgs=None, Callback=None, Config=None)
+
+    def test_download_file_proxies_to_meta_client(self):
+        inject.bucket_download_file(self.bucket, Key='key', Filename='foo')
+        self.bucket.meta.client.download_file.assert_called_with(
+            Bucket=self.bucket.name, Key='key', Filename='foo',
+            ExtraArgs=None, Callback=None, Config=None)
+
+
+class TestObjectTransferMethods(unittest.TestCase):
+
+    def setUp(self):
+        self.obj = mock.Mock(bucket_name='my_bucket', key='my_key')
+
+    def test_upload_file_proxies_to_meta_client(self):
+        inject.object_upload_file(self.obj, Filename='foo')
+        self.obj.meta.client.upload_file.assert_called_with(
+            Filename='foo', Bucket=self.obj.bucket_name, Key=self.obj.key,
+            ExtraArgs=None, Callback=None, Config=None)
+
+    def test_download_file_proxies_to_meta_client(self):
+        inject.object_download_file(self.obj, Filename='foo')
+        self.obj.meta.client.download_file.assert_called_with(
+            Bucket=self.obj.bucket_name, Key=self.obj.key, Filename='foo',
+            ExtraArgs=None, Callback=None, Config=None)

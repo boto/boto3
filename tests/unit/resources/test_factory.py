@@ -648,6 +648,13 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
         with self.assertRaises(ValueError):
             resource.Queue(url='foo', bar='baz')
 
+    def test_dangling_resource_identifier_is_immutable(self):
+        resource = self.load('test', 'test', self.model, self.defs, None)()
+        queue = resource.Queue('url')
+        # We should not be able to change the identifier's value
+        with self.assertRaises(AttributeError):
+            queue.url = 'foo'
+
     def test_dangling_resource_equality(self):
         resource = self.load('test', 'test', self.model, self.defs, None)()
 

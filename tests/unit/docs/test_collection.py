@@ -27,8 +27,8 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    **Request Syntax** ',
             '    ::',
             '      sample_iterator = myservice.samples.all()',
-            '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
             '  .. py:method:: filter(**kwargs)',
             ('    Creates an iterable of all Sample resources in '
              'the collection filtered by kwargs passed to method.'),
@@ -42,8 +42,8 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    :param Foo: Documents Foo',
             '    :type Bar: string',
             '    :param Bar: Documents Bar',
-            '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
             '  .. py:method:: limit(**kwargs)',
             ('    Creates an iterable up to a specified amount of '
              'Sample resources in the collection.'),
@@ -55,8 +55,8 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    :type count: integer',
             ('    :param count: The limit to the number of resources '
              'in the iterable.'),
-            '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
             '  .. py:method:: page_size(**kwargs)',
             ('    Creates an iterable of all Sample resources in the '
              'collection, but limits the number of items returned by '
@@ -70,7 +70,7 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    :type count: integer',
             ('    :param count: The number of items returned by '
              'each service call'),
-            '    :rtype: :py:class:`myservice.Sample`',
-            '    :returns: A Sample resource',
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
             '    '
         ])
