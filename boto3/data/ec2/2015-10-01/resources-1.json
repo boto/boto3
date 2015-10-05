@@ -37,7 +37,8 @@
           "type": "KeyPair",
           "identifiers": [
             { "target": "Name", "source": "response", "path": "KeyName" }
-          ]
+          ],
+          "path": "@"
         }
       },
       "CreateNetworkAcl": {
@@ -109,15 +110,7 @@
         }
       },
       "CreateTags": {
-        "request": { "operation": "CreateTags" },
-        "resource": {
-          "type": "Tag",
-          "identifiers": [
-            { "target": "ResourceId", "source": "requestParameter", "path": "Resources[]" },
-            { "target": "Key", "source": "requestParameter", "path": "Tags[].Key" },
-            { "target": "Value", "source": "requestParameter", "path": "Tags[].Value" }
-          ]
-        }
+        "request": { "operation": "CreateTags" }
       },
       "CreateVolume": {
         "request": { "operation": "CreateVolume" },
@@ -155,7 +148,7 @@
       "ImportKeyPair": {
         "request": { "operation": "ImportKeyPair" },
         "resource": {
-          "type": "KeyPair",
+          "type": "KeyPairInfo",
           "identifiers": [
             { "target": "Name", "source": "response", "path": "KeyName" }
           ]
@@ -206,7 +199,7 @@
       },
       "KeyPair": {
         "resource": {
-          "type": "KeyPair",
+          "type": "KeyPairInfo",
           "identifiers": [
             { "target": "Name", "source": "input" }
           ]
@@ -302,6 +295,22 @@
       }
     },
     "hasMany": {
+      "ClassicAddresses": {
+        "request": {
+          "operation": "DescribeAddresses",
+          "params": [
+            { "target": "Filters[0].Name", "source": "string", "value": "domain" },
+            { "target": "Filters[0].Values[0]", "source": "string", "value": "standard" }
+          ]
+        },
+        "resource": {
+          "type": "ClassicAddress",
+          "identifiers": [
+            { "target": "PublicIp", "source": "response", "path": "Addresses[].PublicIp" }
+          ],
+          "path": "Addresses[]"
+        }
+      },
       "DhcpOptionsSets": {
         "request": { "operation": "DescribeDhcpOptions" },
         "resource": {
@@ -345,7 +354,7 @@
       "KeyPairs": {
         "request": { "operation": "DescribeKeyPairs" },
         "resource": {
-          "type": "KeyPair",
+          "type": "KeyPairInfo",
           "identifiers": [
             { "target": "Name", "source": "response", "path": "KeyPairs[].KeyName" }
           ],
@@ -432,6 +441,22 @@
           "path": "Volumes[]"
         }
       },
+      "VpcAddresses": {
+        "request": {
+          "operation": "DescribeAddresses",
+          "params": [
+            { "target": "Filters[0].Name", "source": "string", "value": "domain" },
+            { "target": "Filters[0].Values[0]", "source": "string", "value": "vpc" }
+          ]
+        },
+        "resource": {
+          "type": "VpcAddress",
+          "identifiers": [
+            { "target": "AllocationId", "source": "response", "path": "Addresses[].AllocationId" }
+          ],
+          "path": "Addresses[]"
+        }
+      },
       "VpcPeeringConnections": {
         "request": { "operation": "DescribeVpcPeeringConnections" },
         "resource": {
@@ -455,6 +480,49 @@
     }
   },
   "resources": {
+    "ClassicAddress": {
+      "identifiers": [
+        {
+          "name": "PublicIp"
+        }
+      ],
+      "shape": "Address",
+      "load": {
+        "request": {
+          "operation": "DescribeAddresses",
+          "params": [
+            { "target": "PublicIp", "source": "identifier", "name": "PublicIp" }
+          ]
+        },
+        "path": "Addresses[0]"
+      },
+      "actions": {
+        "Associate": {
+          "request": {
+            "operation": "AssociateAddress",
+            "params": [
+              { "target": "PublicIp", "source": "identifier", "name": "PublicIp" }
+            ]
+          }
+        },
+        "Disassociate": {
+          "request": {
+            "operation": "DisassociateAddress",
+            "params": [
+              { "target": "PublicIp", "source": "data", "path": "PublicIp" }
+            ]
+          }
+        },
+        "Release": {
+          "request": {
+            "operation": "ReleaseAddress",
+            "params": [
+              { "target": "PublicIp", "source": "data", "path": "PublicIp" }
+            ]
+          }
+        }
+      }
+    },
     "DhcpOptions": {
       "identifiers": [
         {
@@ -868,6 +936,14 @@
         }
       },
       "has": {
+        "ClassicAddress": {
+          "resource": {
+            "type": "ClassicAddress",
+            "identifiers": [
+              { "target": "PublicIp", "source": "data", "path": "PublicIpAddress" }
+            ]
+          }
+        },
         "Image": {
           "resource": {
             "type": "Image",
@@ -878,10 +954,19 @@
         },
         "KeyPair": {
           "resource": {
-            "type": "KeyPair",
+            "type": "KeyPairInfo",
             "identifiers": [
               { "target": "Name", "source": "data", "path": "KeyName" }
             ]
+          }
+        },
+        "NetworkInterfaces": {
+          "resource": {
+            "type": "NetworkInterface",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "NetworkInterfaces[].NetworkInterfaceId" }
+            ],
+            "path": "NetworkInterfaces[]"
           }
         },
         "PlacementGroup": {
@@ -924,6 +1009,22 @@
               { "target": "Id", "source": "response", "path": "Volumes[].VolumeId" }
             ],
             "path": "Volumes[]"
+          }
+        },
+        "VpcAddresses": {
+          "request": {
+            "operation": "DescribeAddresses",
+            "params": [
+              { "target": "Filters[0].Name", "source": "string", "value": "instance-id" },
+              { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "VpcAddress",
+            "identifiers": [
+              { "target": "AllocationId", "source": "response", "path": "Addresses[].AllocationId" }
+            ],
+            "path": "Addresses[]"
           }
         }
       }
@@ -989,6 +1090,25 @@
       }
     },
     "KeyPair": {
+      "identifiers": [
+        {
+          "name": "Name",
+          "memberName": "KeyName"
+        }
+      ],
+      "shape": "KeyPair",
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteKeyPair",
+            "params": [
+              { "target": "KeyName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        }
+      }
+    },
+    "KeyPairInfo": {
       "identifiers": [
         {
           "name": "Name",
@@ -1202,6 +1322,15 @@
         }
       },
       "has": {
+        "Association": {
+          "resource": {
+            "type": "NetworkInterfaceAssociation",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "Association.AssociationId" }
+            ],
+            "path": "Association"
+          }
+        },
         "Subnet": {
           "resource": {
             "type": "Subnet",
@@ -1215,6 +1344,34 @@
             "type": "Vpc",
             "identifiers": [
               { "target": "Id", "source": "data", "path": "VpcId" }
+            ]
+          }
+        }
+      }
+    },
+    "NetworkInterfaceAssociation": {
+      "identifiers": [
+        {
+          "name": "Id"
+        }
+      ],
+      "shape": "InstanceNetworkInterfaceAssociation",
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DisassociateAddress",
+            "params": [
+              { "target": "AssociationId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Address": {
+          "resource": {
+            "type": "VpcAddress",
+            "identifiers": [
+              { "target": "AllocationId", "source": "data", "path": "AllocationId" }
             ]
           }
         }
@@ -2280,6 +2437,51 @@
             "type": "Vpc",
             "identifiers": [
               { "target": "Id", "source": "data", "path": "RequesterVpcInfo.VpcId" }
+            ]
+          }
+        }
+      }
+    },
+    "VpcAddress": {
+      "identifiers": [
+        {
+          "name": "AllocationId"
+        }
+      ],
+      "shape": "Address",
+      "load": {
+        "request": {
+          "operation": "DescribeAddresses",
+          "params": [
+            { "target": "AllocationIds[0]", "source": "identifier", "name": "AllocationId" }
+          ]
+        },
+        "path": "Addresses[0]"
+      },
+      "actions": {
+        "Associate": {
+          "request": {
+            "operation": "AssociateAddress",
+            "params": [
+              { "target": "AllocationId", "source": "identifier", "name": "AllocationId" }
+            ]
+          }
+        },
+        "Release": {
+          "request": {
+            "operation": "ReleaseAddress",
+            "params": [
+              { "target": "AllocationId", "source": "data", "path": "AllocationId" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Association": {
+          "resource": {
+            "type": "NetworkInterfaceAssociation",
+            "identifiers": [
+              { "target": "Id", "source": "data", "path": "AssociationId" }
             ]
           }
         }
