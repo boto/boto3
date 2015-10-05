@@ -19,3 +19,6 @@ nosetests.xml
 venv
 env2
 env3
+
+# IntelliJ / PyCharm IDE
+.idea/
