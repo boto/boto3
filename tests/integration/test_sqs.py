@@ -22,7 +22,7 @@ class TestSQSResource(unittest.TestCase):
         self.sqs = self.session.resource('sqs')
         self.queue_name = unique_id('boto3-test')
 
-    def test_s3(self):
+    def test_sqs(self):
         # Create a new resource
         queue = self.sqs.create_queue(QueueName=self.queue_name)
         self.addCleanup(queue.delete)
