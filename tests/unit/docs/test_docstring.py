@@ -91,10 +91,11 @@ class TestResourceDocstrings(BaseDocsTest):
         ], identifier_docstring)
 
     def test_reference_help(self):
+        sample_resource = self.resource.Sample('id')
         with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
-            help(self.resource.Sample('id').__class__.name)
-        identifier_docstring = mock_stdout.getvalue()
+            help(sample_resource.__class__.related_sample)
+        reference_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order([
-            "    *(string)* The Sample's name identifier. This "
-            "**must** be set."
-        ], identifier_docstring)
+            "    (:py:class:`Sample`) The related related_sample "
+            "if set, otherwise ``None``."
+        ], reference_docstring)

@@ -47,4 +47,4 @@ class IdentifierDocstring(LazyLoadedDocstring):
 
 class ReferenceDocstring(LazyLoadedDocstring):
     def _write_docstring(self, *args, **kwargs):
-        document_references(*args, **kwargs)
+        document_reference(*args, **kwargs)
