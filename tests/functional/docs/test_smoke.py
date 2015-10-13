@@ -22,9 +22,10 @@ from boto3.docs.service import ServiceDocumenter
 def test_docs_generated():
     """Verify we can generate the appropriate docs for all services"""
     botocore_session = botocore.session.get_session()
-    session = boto3.Session()
+    session = boto3.Session(region_name='us-east-1')
     for service_name in session.get_available_services():
-        generated_docs = ServiceDocumenter(service_name).document_service()
+        generated_docs = ServiceDocumenter(
+            service_name, session=session).document_service()
         generated_docs = generated_docs.decode('utf-8')
         client = boto3.client(service_name, 'us-east-1')
 

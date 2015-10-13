@@ -12,13 +12,15 @@
 # language governing permissions and limitations under the License.
 from botocore import xform_name
 from botocore.docs.utils import get_official_service_name
-from botocore.docs.utils import py_type_name
 
 from boto3.docs.base import BaseDocumenter
 from boto3.docs.action import ActionDocumenter
 from boto3.docs.waiter import WaiterResourceDocumenter
 from boto3.docs.collection import CollectionDocumenter
 from boto3.docs.subresource import SubResourceDocumenter
+from boto3.docs.attr import document_attribute
+from boto3.docs.attr import document_identifier
+from boto3.docs.attr import document_reference
 from boto3.docs.utils import get_identifier_args_for_signature
 from boto3.docs.utils import get_identifier_values_for_example
 from boto3.docs.utils import get_identifier_description
@@ -134,11 +136,11 @@ class ResourceDocumenter(BaseDocumenter):
         for identifier in identifiers:
             identifier_section = section.add_new_section(identifier.name)
             member_list.append(identifier.name)
-            identifier_section.style.start_sphinx_py_attr(identifier.name)
-            description = get_identifier_description(
-                self._resource_name, identifier.name)
-            description = '*(string)* ' + description
-            identifier_section.write(description)
+            document_identifier(
+                section=identifier_section,
+                resource_name=self._resource_name,
+                identifier_model=identifier
+            )
 
     def _add_attributes(self, section):
         service_model = self._resource.meta.client.meta.service_model
@@ -165,10 +167,11 @@ class ResourceDocumenter(BaseDocumenter):
             _, attr_shape = attributes[attr_name]
             attribute_section = section.add_new_section(attr_name)
             attribute_list.append(attr_name)
-            attribute_section.style.start_sphinx_py_attr(attr_name)
-            attr_type = '*(%s)* ' % py_type_name(attr_shape.type_name)
-            attribute_section.write(attr_type)
-            attribute_section.include_doc_string(attr_shape.documentation)
+            document_attribute(
+                section=attribute_section,
+                attr_name=attr_name,
+                attr_model=attr_shape
+            )
 
     def _add_references(self, section):
         section = section.add_new_section('references')
@@ -186,11 +189,9 @@ class ResourceDocumenter(BaseDocumenter):
         for reference in references:
             reference_section = section.add_new_section(reference.name)
             reference_list.append(reference.name)
-            reference_section.style.start_sphinx_py_attr(reference.name)
-            reference_type = '(:py:class:`%s`) ' % reference.resource.type
-            reference_section.write(reference_type)
-            reference_section.include_doc_string(
-                'The related %s if set, otherwise ``None``.' % reference.name
+            document_reference(
+                section=reference_section,
+                reference_model=reference
             )
 
     def _add_actions(self, section):

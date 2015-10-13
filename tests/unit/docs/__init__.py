@@ -52,7 +52,8 @@ class BaseDocsTest(unittest.TestCase):
         self.loader = Loader(extra_search_paths=[self.root_dir])
         self.botocore_session = botocore.session.get_session()
         self.botocore_session.register_component('data_loader', self.loader)
-        self.session = Session(botocore_session=self.botocore_session)
+        self.session = Session(
+            botocore_session=self.botocore_session, region_name='us-east-1')
         self.client = self.session.client('myservice', 'us-east-1')
         self.resource = self.session.resource('myservice', 'us-east-1')
 
@@ -188,6 +189,17 @@ class BaseDocsTest(unittest.TestCase):
                                 "params": [
                                     {"target": "Foo", "source": "identifier",
                                      "name": "Name"}
+                                ]
+                            }
+                        }
+                    },
+                    "has": {
+                        "RelatedSample": {
+                            "resource": {
+                                "type": "Sample",
+                                "identifiers": [
+                                    {"target": "Name", "source": "data",
+                                     "path": "Foo"}
                                 ]
                             }
                         }

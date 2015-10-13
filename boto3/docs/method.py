@@ -17,7 +17,8 @@ def document_model_driven_resource_method(
         section, method_name, operation_model, event_emitter,
         method_description=None, example_prefix=None, include_input=None,
         include_output=None, exclude_input=None, exclude_output=None,
-        document_output=True, resource_action_model=None):
+        document_output=True, resource_action_model=None,
+        include_signature=True):
 
     document_model_driven_method(
         section=section, method_name=method_name,
@@ -29,7 +30,8 @@ def document_model_driven_resource_method(
         include_output=include_output,
         exclude_input=exclude_input,
         exclude_output=exclude_output,
-        document_output=document_output
+        document_output=document_output,
+        include_signature=include_signature
     )
 
     # If this action returns a resource modify the return example to
