@@ -858,7 +858,7 @@
       "identifiers": [
         {
           "name": "Arn",
-          "memberName": "PolicyArn"
+          "memberName": "Arn"
         }
       ],
       "shape": "Policy",
@@ -968,8 +968,7 @@
             "type": "Group",
             "identifiers": [
               { "target": "Name", "source": "response", "path": "PolicyGroups[].GroupName" }
-            ],
-            "path": "PolicyGroups[]"
+            ]
           }
         },
         "AttachedRoles": {
@@ -984,8 +983,7 @@
             "type": "Role",
             "identifiers": [
               { "target": "Name", "source": "response", "path": "PolicyRoles[].RoleName" }
-            ],
-            "path": "PolicyRoles[]"
+            ]
           }
         },
         "AttachedUsers": {
@@ -1000,8 +998,7 @@
             "type": "User",
             "identifiers": [
               { "target": "Name", "source": "response", "path": "PolicyUsers[].UserName" }
-            ],
-            "path": "PolicyRoles[]"
+            ]
           }
         },
         "Versions": {
