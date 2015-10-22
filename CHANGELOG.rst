@@ -1,8 +1,9 @@
 Changelog
 =========
 
-Next Release - (TBD)
+1.2.0 - (2015-10-22)
 --------------------
+
 * feature:Docstrings: Add docstrings for resource identifiers, attributes,
   references, and subresources.
   (`issue 239 <https://github.com/boto/boto3/pull/239>`__)
