@@ -1,6 +1,22 @@
 Changelog
 =========
 
+1.2.0 - (2015-10-22)
+--------------------
+
+* feature:Docstrings: Add docstrings for resource identifiers, attributes,
+  references, and subresources.
+  (`issue 239 <https://github.com/boto/boto3/pull/239>`__)
+* feature:``S3``: Add ability to configure host addressing style when making
+  requests to Amazon S3.
+  (`botocore issue 673 <https://github.com/boto/botocore/pull/673>`__)
+* bugfix:``IAM``: Fix model issue with attached groups, roles, and policies.
+  (`issue 304 <https://github.com/boto/boto3/pull/304>`__)
+* bugfix:``EC2.ServiceResource.create_key_pair``: Fix model issue where
+  creating key pair does not have a ``key_material`` on ``KeyPair`` resource.
+  (`issue 290 <https://github.com/boto/boto3/pull/290>`__)
+
+
 1.1.4 - (2015-09-24)
 --------------------
 
