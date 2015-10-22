@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 import botocore.session
 from botocore import xform_name
-from nose.tools import assert_true
+from nose.tools import assert_false
 
 from boto3.session import Session
 from boto3.resources.model import ResourceModel
@@ -22,7 +22,6 @@ from boto3.resources.model import ResourceModel
 # Note that this list is not comprehensive. It may have to be updated
 # in the future, but this covers a lot of the pagination parameters.
 COMMON_PAGINATION_PARAM_NAMES = [
-    # Most common names
     'nextToken',
     'NextToken',
     'marker',
@@ -30,34 +29,6 @@ COMMON_PAGINATION_PARAM_NAMES = [
     'NextMarker',
     'nextPageToken',
     'NextPageToken',
-
-    # S3 specific
-    'KeyMarker',
-    'NextKeyMarker',
-    'UploadIdMarker',
-    'NextUploadIdMarker',
-    'VersionIdMarker',
-    'NextVersionIdMarker',
-    'PartNumberMarker',
-    'NextPartNumberMarker',
-
-    # DynamoDB specific
-    'ExclusiveStartTableName',
-    'LastEvaluatedTableName',
-    'ExclusiveStartKey',
-    'LastEvaluatedKey',
-
-    # Kinesis specific
-    'ExclusiveStartShardId',
-    'ExclusiveStartStreamName',
-
-    # Route53 specific
-    'StartRecordName',
-    'NextRecordName',
-    'StartRecordType',
-    'NextRecordType',
-    'StartRecordIdentifier',
-    'NextRecordIdentifier',
 ]
 
 
@@ -74,7 +45,7 @@ def operation_looks_paginated(operation_model):
         operation_model.output_shape)
     # If there is a parameter in either the input or output that
     # is used in pagination, mark the operation as paginateable.
-    return (has_input_param or has_output_param)
+    return (has_input_param and has_output_param)
 
 
 def _shape_has_pagination_param(shape):
@@ -136,9 +107,9 @@ def _assert_collection_has_paginator_if_needed(
         client.meta.service_model.operation_model(underlying_operation_name))
     # Make sure that if the operation looks paginated then there is
     # a paginator for the client to use for the collection.
-    if looks_paginated:
-        assert_true(
-            can_paginate_operation,
+    if not can_paginate_operation:
+        assert_false(
+            looks_paginated,
             'Collection %s on resource %s of service %s uses the operation '
             '%s, but the operation has no paginator even though it looks '
             'paginated.' % (
