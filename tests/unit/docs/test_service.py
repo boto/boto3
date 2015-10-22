@@ -12,26 +12,13 @@
 # language governing permissions and limitations under the License.
 import os
 
-import mock
-
 from tests.unit.docs import BaseDocsTest
 from boto3.docs.service import ServiceDocumenter
 
 
 class TestServiceDocumenter(BaseDocsTest):
-    def setUp(self):
-        super(TestServiceDocumenter, self).setUp()
-        self.create_loader_patch = mock.patch(
-            'botocore.session.create_loader',
-            return_value=self.loader)
-        self.create_loader_patch.start()
-
-    def tearDown(self):
-        super(TestServiceDocumenter, self).tearDown()
-        self.create_loader_patch.stop()
-
     def test_document_service(self):
-        service_documenter = ServiceDocumenter('myservice')
+        service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
         lines = [
             '*********',
@@ -103,7 +90,7 @@ class TestServiceDocumenter(BaseDocsTest):
 
     def test_document_service_no_resource(self):
         os.remove(self.resource_model_file)
-        service_documenter = ServiceDocumenter('myservice')
+        service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
         self.assertNotIn('Service Resource', contents)
 
@@ -112,7 +99,7 @@ class TestServiceDocumenter(BaseDocsTest):
         # as it may try to look at the paginator model during documentation.
         os.remove(self.resource_model_file)
         os.remove(self.paginator_model_file)
-        service_documenter = ServiceDocumenter('myservice')
+        service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
         self.assertNotIn('Paginators', contents)
 
@@ -121,6 +108,6 @@ class TestServiceDocumenter(BaseDocsTest):
         # as it may try to look at the waiter model during documentation.
         os.remove(self.resource_model_file)
         os.remove(self.waiter_model_file)
-        service_documenter = ServiceDocumenter('myservice')
+        service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
         self.assertNotIn('Waiters', contents)

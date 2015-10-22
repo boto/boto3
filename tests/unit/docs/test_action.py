@@ -51,7 +51,7 @@ class TestActionDocumenter(BaseDocsTest):
         action_documenter.document_actions(self.doc_structure)
         self.assert_contains_lines_in_order([
             '.. py:method:: load()',
-            ('  Calls :py:meth:`myservice.Client.sample_operation` to update '
+            ('  Calls :py:meth:`MyService.Client.sample_operation` to update '
              'the attributes of the Sample resource'),
             '  **Request Syntax** ',
             '  ::',
@@ -79,7 +79,7 @@ class TestActionDocumenter(BaseDocsTest):
             '      - **Foo** *(string) --* Documents Foo',
             '      - **Bar** *(string) --* Documents Bar',
             '.. py:method:: reload()',
-            ('  Calls :py:meth:`myservice.Client.sample_operation` to update '
+            ('  Calls :py:meth:`MyService.Client.sample_operation` to update '
              'the attributes of the Sample resource'),
             '  **Request Syntax** ',
             '  ::',
