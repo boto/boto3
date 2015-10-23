@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.2.1 - (2015-10-22)
+--------------------
+
+* bugfix:setup.cfg: Fix issue in formatting that broke PyPI distributable
+
+
 1.2.0 - (2015-10-22)
 --------------------
 
