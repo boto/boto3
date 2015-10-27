@@ -176,6 +176,51 @@ class TestSession(BaseTestCase):
             config=mock.ANY)
         client_config = session.client.call_args[1]['config']
         self.assertEqual(client_config.user_agent_extra, 'Resource')
+        self.assertEqual(client_config.signature_version, None)
+
+    def test_create_resource_with_config(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.determine_latest_version.return_value = '2014-11-02'
+        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        mock_bc_session.get_component.return_value = loader
+        session = Session(botocore_session=mock_bc_session)
+        session.resource_factory.load_from_definition = mock.Mock()
+        session.client = mock.Mock()
+        config = Config(signature_version='v4')
+
+        session.resource('sqs', config=config)
+
+        session.client.assert_called_with(
+            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            endpoint_url=None, use_ssl=True, aws_session_token=None,
+            verify=None, region_name=None, api_version='2014-11-02',
+            config=mock.ANY)
+        client_config = session.client.call_args[1]['config']
+        self.assertEqual(client_config.user_agent_extra, 'Resource')
+        self.assertEqual(client_config.signature_version, 'v4')
+
+    def test_create_resource_with_config_override_user_agent_extra(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.determine_latest_version.return_value = '2014-11-02'
+        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        mock_bc_session.get_component.return_value = loader
+        session = Session(botocore_session=mock_bc_session)
+        session.resource_factory.load_from_definition = mock.Mock()
+        session.client = mock.Mock()
+        config = Config(signature_version='v4', user_agent_extra='foo')
+
+        session.resource('sqs', config=config)
+
+        session.client.assert_called_with(
+            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            endpoint_url=None, use_ssl=True, aws_session_token=None,
+            verify=None, region_name=None, api_version='2014-11-02',
+            config=mock.ANY)
+        client_config = session.client.call_args[1]['config']
+        self.assertEqual(client_config.user_agent_extra, 'foo')
+        self.assertEqual(client_config.signature_version, 'v4')
 
     def test_create_resource_latest_version(self):
         mock_bc_session = mock.Mock()

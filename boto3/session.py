@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+import copy
 import os
 
 import botocore.session
@@ -201,7 +202,7 @@ class Session(object):
     def resource(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
-               aws_session_token=None):
+               aws_session_token=None, config=None):
         """
         Create a resource service client by name.
 
@@ -257,6 +258,14 @@ class Session(object):
         :param aws_session_token: The session token to use when creating
             the client.  Same semantics as aws_access_key_id above.
 
+        :type config: botocore.client.Config
+        :param config: Advanced client configuration options. If region_name
+            is specified in the client config, its value will take precedence
+            over environment variables and configuration values, but not over
+            a region_name value passed explicitly to the method.  If
+            user_agent_extra is specified in the client config, it overrides
+            the default user_agent_extra provided by the resource API.
+
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
         if api_version is None:
@@ -268,7 +277,12 @@ class Session(object):
         # and service model, the resource version and resource JSON data.
         # We pass these to the factory and get back a class, which is
         # instantiated on top of the low-level client.
-        config = Config(user_agent_extra='Resource')
+        if config:
+            if config.user_agent_extra is None:
+                config = copy.deepcopy(config)
+                config.user_agent_extra = 'Resource'
+        else:
+            config = Config(user_agent_extra='Resource')
         client = self.client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
