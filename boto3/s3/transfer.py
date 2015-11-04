@@ -148,6 +148,7 @@ queue = six.moves.queue
 
 MB = 1024 * 1024
 SHUTDOWN_SENTINEL = object()
+MAX_MULTIPART_UPLOAD_PARTS = 10000
 
 
 def random_file_extension(num_digits=8):
@@ -389,6 +390,10 @@ class MultipartUploader(object):
         part_size = self._config.multipart_chunksize
         num_parts = int(
             math.ceil(self._os.get_file_size(filename) / float(part_size)))
+        if num_parts > MAX_MULTIPART_UPLOAD_PARTS:
+          raise S3UploadFailedError("%s exceedes max multipart upload parts %s. Specify larger chunk size." % (
+            num_parts, MAX_MULTIPART_UPLOAD_PARTS))
+        
         max_workers = self._config.max_concurrency
         with self._executor_cls(max_workers=max_workers) as executor:
             upload_partial = functools.partial(
