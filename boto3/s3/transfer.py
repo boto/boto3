@@ -387,13 +387,15 @@ class MultipartUploader(object):
                       extra_args):
         upload_parts_extra_args = self._extra_upload_part_args(extra_args)
         parts = []
-        part_size = self._config.multipart_chunksize
-        num_parts = int(
-            math.ceil(self._os.get_file_size(filename) / float(part_size)))
-        if num_parts > MAX_MULTIPART_UPLOAD_PARTS:
-          raise S3UploadFailedError("%s exceeds max multipart upload parts %s. Specify larger chunk size." % (
-            num_parts, MAX_MULTIPART_UPLOAD_PARTS))
+        file_size = self._os.get_file_size(filename)
         
+        # update part size so total number of parts does not exceed maximum (10000)
+        part_size = max(self._config.multipart_chunksize,
+            int(math.ceil(file_size / float(MAX_MULTIPART_UPLOAD_PARTS - 1))))
+
+        num_parts = int(
+            math.ceil(file_size / float(part_size)))
+
         max_workers = self._config.max_concurrency
         with self._executor_cls(max_workers=max_workers) as executor:
             upload_partial = functools.partial(
