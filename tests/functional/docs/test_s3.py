@@ -26,8 +26,10 @@ class TestS3Customizations(BaseDocsFunctionalTests):
     def test_file_transfer_methods_are_documented(self):
         self.assert_contains_lines_in_order([
             '.. py:class:: S3.Client',
+            '  *   :py:meth:`copy_file`',
             '  *   :py:meth:`download_file`',
             '  *   :py:meth:`upload_file`',
+            '  .. py:method:: copy_file(',
             '  .. py:method:: download_file(',
             '  .. py:method:: upload_file('],
             self.generated_contents
