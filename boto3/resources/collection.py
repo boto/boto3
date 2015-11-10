@@ -487,7 +487,7 @@ class CollectionFactory(object):
 
         # The collection's page_size method.
         def page_size(self, count):
-            return CollectionManager.iterator(count)
+            return CollectionManager.page_size(self, count)
 
         page_size.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
