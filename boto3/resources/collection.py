@@ -20,6 +20,7 @@ from botocore.utils import merge_dicts
 from .action import BatchAction
 from .params import create_request_parameters
 from .response import ResourceHandler
+from ..docs import docstring
 
 
 logger = logging.getLogger(__name__)
@@ -287,29 +288,33 @@ class CollectionManager(object):
     See the :ref:`guide_collections` guide for a high-level overview
     of collections, including when remote service requests are performed.
 
-    :type model: :py:class:`~boto3.resources.model.Collection`
+    :type collection_model: :py:class:`~boto3.resources.model.Collection`
     :param model: Collection model
+
     :type parent: :py:class:`~boto3.resources.base.ServiceResource`
     :param parent: The collection's parent resource
+
     :type factory: :py:class:`~boto3.resources.factory.ResourceFactory`
     :param factory: The resource factory to create new resources
-    :type resource_defs: dict
-    :param resource_defs: Service resource definitions.
-    :type service_model: :ref:`botocore.model.ServiceModel`
-    :param service_model: The Botocore service model
+
+    :type service_context: :py:class:`~boto3.utils.ServiceContext`
+    :param service_context: Context about the AWS service
     """
     # The class to use when creating an iterator
     _collection_cls = ResourceCollection
 
-    def __init__(self, model, parent, factory, resource_defs,
-                 service_model):
-        self._model = model
+    def __init__(self, collection_model, parent, factory, service_context):
+        self._model = collection_model
         operation_name = self._model.request.operation
         self._parent = parent
 
-        search_path = model.resource.path
-        self._handler = ResourceHandler(search_path, factory, resource_defs,
-            service_model, model.resource, operation_name)
+        search_path = collection_model.resource.path
+        self._handler = ResourceHandler(
+            search_path=search_path, factory=factory,
+            resource_model=collection_model.resource,
+            service_context=service_context,
+            operation_name=operation_name
+        )
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(
@@ -360,8 +365,8 @@ class CollectionFactory(object):
     subclasses from a :py:class:`~boto3.resources.model.Collection`
     model. These subclasses include methods to perform batch operations.
     """
-    def load_from_definition(self, service_name, resource_name,
-                             collection_name, model, resource_defs):
+    def load_from_definition(self, resource_name, collection_model,
+                             service_context, event_emitter):
         """
         Loads a collection from a model, creating a new
         :py:class:`CollectionManager` subclass
@@ -370,50 +375,133 @@ class CollectionFactory(object):
         creates a new :py:class:`ResourceCollection` subclass which is used
         by the new manager class.
 
-        :type service_name: string
-        :param service_name: Name of the service to look up
         :type resource_name: string
         :param resource_name: Name of the resource to look up. For services,
                               this should match the ``service_name``.
-        :type model: dict
-        :param model: The collection definition.
-        :type resource_defs: dict
-        :param resource_defs: The service's resource definitions, used to load
-                              collection resources (e.g. ``sqs.Queue``).
-        :rtype: Subclass of
-                :py:class:`CollectionManager`
+
+        :type service_context: :py:class:`~boto3.utils.ServiceContext`
+        :param service_context: Context about the AWS service
+
+        :type event_emitter: :py:class:`~botocore.hooks.HierarchialEmitter`
+        :param event_emitter: An event emitter
+
+        :rtype: Subclass of :py:class:`CollectionManager`
         :return: The collection class.
         """
         attrs = {}
+        collection_name = collection_model.name
 
-        self._load_batch_actions(attrs, model)
+        # Create the batch actions for a collection
+        self._load_batch_actions(
+            attrs, resource_name, collection_model,
+            service_context.service_model, event_emitter)
+        self._load_documented_collection_methods(
+            attrs=attrs, resource_name=resource_name,
+            collection_model=collection_model,
+            service_model=service_context.service_model,
+            event_emitter=event_emitter)
 
-        if service_name == resource_name:
+        if service_context.service_name == resource_name:
             cls_name = '{0}.{1}Collection'.format(
-                service_name, collection_name)
+                service_context.service_name, collection_name)
         else:
             cls_name = '{0}.{1}.{2}Collection'.format(
-                service_name, resource_name, collection_name)
+                service_context.service_name, resource_name, collection_name)
 
         collection_cls = type(str(cls_name), (ResourceCollection,),
                               attrs)
 
+        # Add the documentation to the collection methods
+        self._load_documented_collection_methods(
+            attrs=attrs, resource_name=resource_name,
+            collection_model=collection_model,
+            service_model=service_context.service_model,
+            event_emitter=event_emitter)
         attrs['_collection_cls'] = collection_cls
         cls_name += 'Manager'
 
         return type(str(cls_name), (CollectionManager,), attrs)
 
-    def _load_batch_actions(self, attrs, model):
+    def _load_batch_actions(self, attrs, resource_name, collection_model,
+                            service_model, event_emitter):
         """
         Batch actions on the collection become methods on both
         the collection manager and iterators.
         """
-        for action_model in model.batch_actions:
+        for action_model in collection_model.batch_actions:
             snake_cased = xform_name(action_model.name)
             attrs[snake_cased] = self._create_batch_action(
-                snake_cased, action_model)
+                resource_name, snake_cased, action_model, collection_model,
+                service_model, event_emitter)
 
-    def _create_batch_action(factory_self, snake_cased, action_model):
+    def _load_documented_collection_methods(factory_self, attrs, resource_name,
+                                            collection_model, service_model,
+                                            event_emitter):
+        # The CollectionManger already has these methods defined. However
+        # the docstrings are generic and not based for a particular service
+        # or resource. So we override these methods by proxying to the
+        # CollectionManager's builtin method and adding a docstring
+        # that pertains to the resource.
+
+        # A collection's all() method.
+        def all(self):
+            return CollectionManager.all(self)
+
+        all.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='all',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['all'] = all
+
+        # The collection's filter() method.
+        def filter(self, **kwargs):
+            return CollectionManager.filter(self, **kwargs)
+
+        filter.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='filter',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['filter'] = filter
+
+        # The collection's limit method.
+        def limit(self, count):
+            return CollectionManager.limit(self, count)
+
+        limit.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='limit',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['limit'] = limit
+
+        # The collection's page_size method.
+        def page_size(self, count):
+            return CollectionManager.page_size(self, count)
+
+        page_size.__doc__ = docstring.CollectionMethodDocstring(
+            resource_name=resource_name,
+            action_name='page_size',
+            event_emitter=event_emitter,
+            collection_model=collection_model,
+            service_model=service_model,
+            include_signature=False
+        )
+        attrs['page_size'] = page_size
+
+    def _create_batch_action(factory_self, resource_name, snake_cased,
+                             action_model, collection_model, service_model,
+                             event_emitter):
         """
         Creates a new method which makes a batch operation request
         to the underlying service API.
@@ -424,5 +512,12 @@ class CollectionFactory(object):
             return action(self, *args, **kwargs)
 
         batch_action.__name__ = str(snake_cased)
-        batch_action.__doc__ = 'TODO'
+        batch_action.__doc__ = docstring.BatchActionDocstring(
+            resource_name=resource_name,
+            event_emitter=event_emitter,
+            batch_action_model=action_model,
+            service_model=service_model,
+            collection_model=collection_model,
+            include_signature=False
+        )
         return batch_action
