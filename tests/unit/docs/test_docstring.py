@@ -210,7 +210,8 @@ class TestResourceDocstrings(BaseDocsTest):
         resource_waiter_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order([
             ('    Waits until this Sample is complete. This method calls '
-             ':py:meth:`MyService.Waiter.sample_operation_complete.wait` '                   'which polls. :py:meth:`MyService.Client.sample_operation` every '
+             ':py:meth:`MyService.Waiter.sample_operation_complete.wait` '
+             'which polls. :py:meth:`MyService.Client.sample_operation` every '
              '15 seconds until a successful state is reached. An error '
              'is returned after 40 failed checks.'),
             '    **Request Syntax** ',
