@@ -148,6 +148,7 @@ queue = six.moves.queue
 
 MB = 1024 * 1024
 SHUTDOWN_SENTINEL = object()
+MAX_UPLOAD_SIZE = 5 * MB * MB  # 5TB
 MAX_MULTIPART_UPLOAD_PARTS = 10000
 
 
@@ -388,6 +389,10 @@ class MultipartUploader(object):
         upload_parts_extra_args = self._extra_upload_part_args(extra_args)
         parts = []
         file_size = self._os.get_file_size(filename)
+        
+        if file_size > MAX_UPLOAD_SIZE:
+          raise S3UploadFailedError(
+            "%s is more than %s max supported size." % (file_size, MAX_UPLOAD_SIZE))
         
         # update part size so total number of parts does not exceed maximum (10000)
         part_size = max(self._config.multipart_chunksize,
