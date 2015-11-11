@@ -277,7 +277,7 @@ class Session(object):
         # and service model, the resource version and resource JSON data.
         # We pass these to the factory and get back a class, which is
         # instantiated on top of the low-level client.
-        if config:
+        if config is not None:
             if config.user_agent_extra is None:
                 config = copy.deepcopy(config)
                 config.user_agent_extra = 'Resource'
