@@ -122,7 +122,7 @@ class BatchAction(ServiceAction):
         # the necessary parameters and call the batch operation.
         for page in parent.pages():
             params = {}
-            for resource in page:
+            for index, resource in enumerate(page):
                 # There is no public interface to get a service name
                 # or low-level client from a collection, so we get
                 # these from the first resource in the collection.
@@ -132,7 +132,8 @@ class BatchAction(ServiceAction):
                     client = resource.meta.client
 
                 create_request_parameters(
-                    resource, self._action_model.request, params=params)
+                    resource, self._action_model.request,
+                    params=params, index=index)
 
             if not params:
                 # There are no items, no need to make a call.

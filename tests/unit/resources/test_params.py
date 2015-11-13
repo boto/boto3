@@ -269,3 +269,18 @@ class TestStructBuilder(BaseTestCase):
 
         build_param_structure(params, 'foo[]', 456)
         self.assertEqual(params['foo'], [123, 456])
+
+    def test_provided_index_with_wildcard(self):
+        params = {}
+        index = 0
+        build_param_structure(params, 'foo[*].bar', 123, index)
+        build_param_structure(params, 'foo[*].baz', 456, index)
+        self.assertEqual(params['foo'][index], {'bar': 123, 'baz': 456})
+
+        index = 1
+        build_param_structure(params, 'foo[*].bar', 789, index)
+        build_param_structure(params, 'foo[*].baz', 123, index)
+        self.assertEqual(params['foo'], [
+            {'bar': 123, 'baz': 456},
+            {'bar': 789, 'baz': 123}
+        ])

@@ -245,14 +245,14 @@ class TestBatchActionCall(BaseTestCase):
         action = BatchAction(model)
         action(collection)
 
-        crp_mock.assert_called_with(item, model.request, params={})
+        crp_mock.assert_called_with(item, model.request, params={}, index=0)
         client.get_frobs.assert_not_called()
 
     @mock.patch('boto3.resources.action.create_request_parameters')
     def test_batch_action_calls_operation(self, crp_mock):
         # In this test we have an item and parameters, so the call
         # to the batch operation should be made.
-        def side_effect(resource, model, params=None):
+        def side_effect(resource, model, params=None, index=None):
             params['foo'] = 'bar'
 
         crp_mock.side_effect = side_effect
@@ -272,5 +272,5 @@ class TestBatchActionCall(BaseTestCase):
         # Here the call is made with params={}, but they are edited
         # in-place so we need to compare to the final edited value.
         crp_mock.assert_called_with(item, model.request,
-                                    params={'foo': 'bar'})
+                                    params={'foo': 'bar'}, index=0)
         client.get_frobs.assert_called_with(foo='bar')
