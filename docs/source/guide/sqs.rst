@@ -89,7 +89,7 @@ You can also create messages with custom attributes::
     queue.send_message(MessageBody='boto3', MessageAttributes={
         'Author': {
             'StringValue': 'Daniel',
-            'DataType': 'string'
+            'DataType': 'String'
         }
     })
 
@@ -107,7 +107,7 @@ described above in a single request would look like the following::
             'MessageAttributes': {
                 'Author': {
                     'StringValue': 'Daniel',
-                    'DataType': 'string'
+                    'DataType': 'String'
                 }
             }
         }
