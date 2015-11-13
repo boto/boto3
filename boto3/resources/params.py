@@ -48,7 +48,7 @@ def get_data_member(parent, path):
     return jmespath.search(path, parent.meta.data)
 
 
-def create_request_parameters(parent, request_model, params=None):
+def create_request_parameters(parent, request_model, params=None, index=None):
     """
     Handle request parameters that can be filled in from identifiers,
     resource data members or constants.
@@ -64,6 +64,8 @@ def create_request_parameters(parent, request_model, params=None):
     :type params: dict
     :param params: If set, then add to this existing dict. It is both
                    edited in-place and returned.
+    :type index: int
+    :param index: The position of an item within a list
     :rtype: dict
     :return: Pre-filled parameters to be sent to the request operation.
     """
@@ -91,11 +93,12 @@ def create_request_parameters(parent, request_model, params=None):
             raise NotImplementedError(
                 'Unsupported source type: {0}'.format(source))
 
-        build_param_structure(params, target, value)
+        build_param_structure(params, target, value, index)
 
     return params
 
-def build_param_structure(params, target, value):
+
+def build_param_structure(params, target, value, index=None):
     """
     This method provides a basic reverse JMESPath implementation that
     lets you go from a JMESPath-like string to a possibly deeply nested
@@ -125,11 +128,12 @@ def build_param_structure(params, target, value):
         result = INDEX_RE.search(part)
         if result:
             if result.group(1):
-                # We have an explicit index
-                index = int(result.group(1))
-
-                # Strip index off part name
-                part = part[:-len(str(index) + '[]')]
+                if result.group(1) == '*':
+                    part = part[:-3]
+                else:
+                    # We have an explicit index
+                    index = int(result.group(1))
+                    part = part[:-len(str(index) + '[]')]
             else:
                 # Index will be set after we know the proper part
                 # name and that it's a list instance.
