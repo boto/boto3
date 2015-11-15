@@ -23,7 +23,7 @@ requires = [
 if sys.version_info[0] == 2:
     # concurrent.futures is only in python3, so for
     # python2 we need to install the backport.
-    requires.append('futures==2.2.0')
+    requires.append('futures>=3.0.0,<4.0.0')
 
 
 def get_version():
