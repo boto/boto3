@@ -219,6 +219,24 @@ class TestS3Resource(unittest.TestCase):
         contents = bucket.Object('mp-test.txt').get()['Body'].read()
         self.assertEqual(contents, b'hello, world!')
 
+    def test_s3_batch_delete(self):
+        # Create the bucket
+        bucket = self.create_bucket_resource(self.bucket_name)
+        bucket.wait_until_exists()
+        bucket.Versioning().enable()
+
+        # Create several versions of an object
+        obj = bucket.Object('test.txt')
+        for i in range(10):
+            obj.put(Body="Version %s" % i)
+
+        # Delete all the versions of the object
+        bucket.object_versions.all().delete()
+
+        versions = list(bucket.object_versions.all())
+        self.assertEqual(len(versions), 0)
+
+
 
 class TestS3Transfers(unittest.TestCase):
     """Tests for the high level boto3.s3.transfer module."""
