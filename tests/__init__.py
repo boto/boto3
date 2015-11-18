@@ -69,9 +69,9 @@ class BaseTestCase(unittest.TestCase):
         # We also need to patch the global default session.
         # Otherwise it could be a cached real session came from previous
         # "functional" or "integration" tests.
-        _patch_global_session = mock.patch('boto3.DEFAULT_SESSION')
-        _patch_global_session.start()
-        self.addCleanup(_patch_global_session.stop)
+        patch_global_session = mock.patch('boto3.DEFAULT_SESSION')
+        patch_global_session.start()
+        self.addCleanup(patch_global_session.stop)
 
     def tearDown(self):
         self.bc_session_patch.stop()
