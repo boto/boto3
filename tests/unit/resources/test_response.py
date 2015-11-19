@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 
 from tests import BaseTestCase, mock
+from boto3.utils import ServiceContext
 from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
@@ -342,9 +343,17 @@ class TestResourceHandler(BaseTestCase):
         resource_model = ResponseResource(
             request_resource_def, self.resource_defs)
 
-        handler = ResourceHandler(search_path, self.factory,
-            self.resource_defs, self.service_model, resource_model,
-            'GetFrobs')
+        handler = ResourceHandler(
+            search_path=search_path, factory=self.factory,
+            resource_model=resource_model,
+            service_context=ServiceContext(
+                service_name='myservice',
+                resource_json_definitions=self.resource_defs,
+                service_model=self.service_model,
+                service_waiter_model=None
+            ),
+            operation_name='GetFrobs'
+        )
         return handler(self.parent, self.params, response)
 
     def test_create_resource_scalar(self):

@@ -10,8 +10,10 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-
+from botocore.hooks import HierarchicalEmitter
 from botocore.model import ServiceModel
+
+from boto3.utils import ServiceContext
 from boto3.resources.collection import CollectionFactory, CollectionManager, \
                                        ResourceCollection
 from boto3.resources.base import ResourceMeta
@@ -30,6 +32,7 @@ class TestCollectionFactory(BaseTestCase):
         self.parent.meta = ResourceMeta('test', client=self.client)
         self.resource_factory = ResourceFactory(mock.Mock())
         self.service_model = ServiceModel({})
+        self.event_emitter = HierarchicalEmitter()
 
         self.factory = CollectionFactory()
         self.load = self.factory.load_from_definition
@@ -54,12 +57,24 @@ class TestCollectionFactory(BaseTestCase):
             'Frobs', resource_defs['Chain']['hasMany']['Frobs'],
             resource_defs)
 
-        collection_cls = self.load('test', 'Chain', 'Frobs',
-                                   collection_model, resource_defs)
-
+        service_context = ServiceContext(
+            service_name='test',
+            resource_json_definitions=resource_defs,
+            service_model=self.service_model,
+            service_waiter_model=None
+        )
+        collection_cls = self.load(
+            resource_name='Chain',
+            collection_model=collection_model,
+            service_context=service_context,
+            event_emitter=self.event_emitter
+        )
         collection = collection_cls(
-            collection_model, self.parent, self.resource_factory,
-            resource_defs, self.service_model)
+            collection_model=collection_model,
+            parent=self.parent,
+            factory=self.resource_factory,
+            service_context=service_context
+        )
 
         self.assertEqual(collection_cls.__name__,
                         'test.Chain.FrobsCollectionManager')
@@ -97,12 +112,24 @@ class TestCollectionFactory(BaseTestCase):
             'Frobs', resource_defs['Chain']['hasMany']['Frobs'],
             resource_defs)
 
-        collection_cls = self.load('test', 'Chain', 'Frobs',
-                                   collection_model, resource_defs)
-
+        service_context = ServiceContext(
+            service_name='test',
+            resource_json_definitions=resource_defs,
+            service_model=self.service_model,
+            service_waiter_model=None
+        )
+        collection_cls = self.load(
+            resource_name='Chain',
+            collection_model=collection_model,
+            service_context=service_context,
+            event_emitter=self.event_emitter
+        )
         collection = collection_cls(
-            collection_model, self.parent, self.resource_factory,
-            resource_defs, self.service_model)
+            collection_model=collection_model,
+            parent=self.parent,
+            factory=self.resource_factory,
+            service_context=service_context
+        )
 
         self.assertTrue(hasattr(collection, 'delete'))
 
@@ -153,8 +180,16 @@ class TestResourceCollection(BaseTestCase):
             'test', self.collection_def, resource_defs)
 
         collection = CollectionManager(
-            collection_model, self.parent, self.factory,
-            resource_defs, self.service_model)
+            collection_model=collection_model,
+            parent=self.parent,
+            factory=self.factory,
+            service_context=ServiceContext(
+                service_name='test',
+                service_model=self.service_model,
+                resource_json_definitions=resource_defs,
+                service_waiter_model=None
+            )
+        )
         return collection
 
     def test_repr(self):

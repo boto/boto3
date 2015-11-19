@@ -21,6 +21,7 @@ class TestCollectionDocumenter(BaseDocsTest):
         collection_documenter.document_collections(self.doc_structure)
         self.assert_contains_lines_in_order([
             '.. py:attribute:: samples',
+            '  A collection of Sample resources',
             '  .. py:method:: all()',
             ('    Creates an iterable of all Sample resources in the '
              'collection.'),
@@ -57,6 +58,28 @@ class TestCollectionDocumenter(BaseDocsTest):
              'in the iterable.'),
             '    :rtype: list(:py:class:`myservice.Sample`)',
             '    :returns: A list of Sample resources',
+            '  .. py:method:: operate(**kwargs)',
+            '    **Request Syntax** ',
+            '      response = myservice.samples.operate(',
+            "          Foo='string',",
+            "          Bar='string'",
+            '      )',
+            '    :type Foo: string',
+            '    :param Foo: Documents Foo',
+            '    :type Bar: string',
+            '    :param Bar: Documents Bar',
+            '    :rtype: dict',
+            '    :returns: ',
+            '      **Response Syntax** ',
+            '      ::',
+            '        {',
+            "            'Foo': 'string',",
+            "            'Bar': 'string'",
+            '        }',
+            '      **Response Structure** ',
+            '      - *(dict) --* ',
+            '        - **Foo** *(string) --* Documents Foo',
+            '        - **Bar** *(string) --* Documents Bar',
             '  .. py:method:: page_size(**kwargs)',
             ('    Creates an iterable of all Sample resources in the '
              'collection, but limits the number of items returned by '

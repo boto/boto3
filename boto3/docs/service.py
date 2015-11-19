@@ -15,6 +15,7 @@ from botocore.docs.paginator import PaginatorDocumenter
 from botocore.docs.waiter import WaiterDocumenter
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 
+from boto3.utils import ServiceContext
 from boto3.docs.client import Boto3ClientDocumenter
 from boto3.docs.resource import ResourceDocumenter
 from boto3.docs.resource import ServiceResourceDocumenter
@@ -98,15 +99,18 @@ class ServiceDocumenter(object):
         loader = self._botocore_session.get_component('data_loader')
         json_resource_model = loader.load_service_model(
             self._service_name, 'resources-1')
+        service_model = self._service_resource.meta.client.meta.service_model
         for resource_name in json_resource_model['resources']:
             resource_model = json_resource_model['resources'][resource_name]
             resource_cls = self._session.resource_factory.load_from_definition(
-                service_name=self._service_name,
                 resource_name=resource_name,
-                model=resource_model,
-                resource_defs=json_resource_model['resources'],
-                service_model=self._service_resource.meta.
-                client.meta.service_model
+                single_resource_json_definition=resource_model,
+                service_context=ServiceContext(
+                    service_name=self._service_name,
+                    resource_json_definitions=json_resource_model['resources'],
+                    service_model=service_model,
+                    service_waiter_model=None
+                )
             )
             identifiers = resource_cls.meta.resource_model.identifiers
             args = []

@@ -99,3 +99,127 @@ class TestResourceDocstrings(BaseDocsTest):
             "    (:py:class:`Sample`) The related related_sample "
             "if set, otherwise ``None``."
         ], reference_docstring)
+
+    def test_collection_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.__class__.samples)
+        collection_method_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    A collection of Sample resources'
+        ], collection_method_docstring)
+
+    def test_collection_all_method_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.samples.all)
+        collection_method_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            ('    Creates an iterable of all Sample resources in the '
+             'collection.'),
+            '    **Request Syntax** ',
+            '    ::',
+            '      sample_iterator = myservice.samples.all()',
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
+        ], collection_method_docstring)
+
+    def test_collection_filter_method_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.samples.filter)
+        collection_method_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    **Request Syntax** ',
+            '    ::',
+            '      sample_iterator = myservice.samples.filter(',
+            "          Foo='string',",
+            "          Bar='string'",
+            '      )',
+            '    :type Foo: string',
+            '    :param Foo: Documents Foo',
+            '    :type Bar: string',
+            '    :param Bar: Documents Bar',
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
+        ], collection_method_docstring)
+
+    def test_collection_limit_method_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.samples.limit)
+        collection_method_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    **Request Syntax** ',
+            '    ::',
+            '      sample_iterator = myservice.samples.limit(',
+            '          count=123',
+            '      )',
+            '    :type count: integer',
+            ('    :param count: The limit to the number of resources '
+             'in the iterable.'),
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
+        ], collection_method_docstring)
+
+    def test_collection_page_size_method_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.samples.page_size)
+        collection_method_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    **Request Syntax** ',
+            '    ::',
+            '      sample_iterator = myservice.samples.page_size(',
+            '          count=123',
+            '      )',
+            '    :type count: integer',
+            ('    :param count: The number of items returned by '
+             'each service call'),
+            '    :rtype: list(:py:class:`myservice.Sample`)',
+            '    :returns: A list of Sample resources',
+        ], collection_method_docstring)
+
+    def test_batch_action_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.samples.operate)
+        batch_action_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            '    **Request Syntax** ',
+            '    ::',
+            '      response = myservice.samples.operate(',
+            "          Foo='string',",
+            "          Bar='string'",
+            '      )',
+            '    :type Foo: string',
+            '    :param Foo: Documents Foo',
+            '    :type Bar: string',
+            '    :param Bar: Documents Bar',
+            '    :rtype: dict',
+            '    :returns: ',
+            '      **Response Syntax** ',
+            '      ::',
+            '        {',
+            "            'Foo': 'string',",
+            "            'Bar': 'string'",
+            '        }',
+            '      **Response Structure** ',
+            '      - *(dict) --* ',
+            '        - **Foo** *(string) --* Documents Foo',
+            '        - **Bar** *(string) --* Documents Bar',
+        ], batch_action_docstring)
+
+    def test_resource_waiter_help(self):
+        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+            help(self.resource.Sample('id').wait_until_complete)
+        resource_waiter_docstring = mock_stdout.getvalue()
+        self.assert_contains_lines_in_order([
+            ('    Waits until this Sample is complete. This method calls '
+             ':py:meth:`MyService.Waiter.sample_operation_complete.wait` '
+             'which polls. :py:meth:`MyService.Client.sample_operation` every '
+             '15 seconds until a successful state is reached. An error '
+             'is returned after 40 failed checks.'),
+            '    **Request Syntax** ',
+            '    ::',
+            '      sample.wait_until_complete(',
+            "          Bar='string'",
+            '      )',
+            '    :type Bar: string',
+            '    :param Bar: Documents Bar',
+            '    :returns: None',
+        ], resource_waiter_docstring)
