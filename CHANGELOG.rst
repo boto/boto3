@@ -1,6 +1,19 @@
 Changelog
 =========
 
+1.2.2 - (2015-11-19)
+--------------------
+
+* feature:Dependencies: Relax version constraint of ``futures`` to support
+  version 3.x.
+* feature:Resources: Allow ``config`` object to be provided when creating
+  resources
+  (`issue 325 <https://github.com/boto/boto3/pull/325>`__)
+* feature:Documentation: Add docstrings for resource collections and waiters
+  (`issue 267 <https://github.com/boto/boto3/pull/267>`__,
+   `issue 261 <https://github.com/boto/boto3/pull/261>`__)
+
+
 1.2.1 - (2015-10-22)
 --------------------
 
