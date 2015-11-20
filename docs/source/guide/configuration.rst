@@ -25,7 +25,6 @@ The general order in which they are checked is as follows:
 1. Method parameters
 2. Environment variables
 3. Configuration files
-4. EC2 Instance metadata
 
 If a configuration value is set in multiple places, then the first
 will be used according the the order above. For example, if I have
