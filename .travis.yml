@@ -1,9 +1,11 @@
 language: python
+sudo: false
 python:
   - "2.6"
   - "2.7"
   - "3.3"
   - "3.4"
+  - "3.5"
 sudo: false
 install:
   - python scripts/ci/install
