@@ -10,6 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import os
+
 from botocore.exceptions import DataNotFoundError
 from botocore.docs.paginator import PaginatorDocumenter
 from botocore.docs.waiter import WaiterDocumenter
@@ -22,9 +24,12 @@ from boto3.docs.resource import ServiceResourceDocumenter
 
 
 class ServiceDocumenter(object):
-    def __init__(self, service_name, session):
+    def __init__(self, service_name, session, examples_file=None):
         self._service_name = service_name
         self._session = session
+        if examples_file is None:
+            examples_file = self._get_examples_file()
+        self._examples_file = examples_file
         # I know that this is an internal attribute, but the botocore session
         # is needed to load the paginator and waiter models.
         self._botocore_session = session._session
@@ -39,8 +44,16 @@ class ServiceDocumenter(object):
             'paginators',
             'waiters',
             'service-resource',
-            'resources'
+            'resources',
+            'examples'
         ]
+
+    def _get_examples_file(self):
+        path = os.sep.join([os.path.dirname(__file__), '..', 'examples',
+                            self._service_name + '.rst'])
+        path = os.path.realpath(path)
+        if os.path.isfile(path):
+            return path
 
     def document_service(self):
         """Documents an entire service.
@@ -60,6 +73,7 @@ class ServiceDocumenter(object):
             self._document_service_resource(
                 doc_structure.get_section('service-resource'))
             self._document_resources(doc_structure.get_section('resources'))
+        self._document_examples(doc_structure.get_section('examples'))
         return doc_structure.flush_structure()
 
     def _document_title(self, section):
@@ -120,3 +134,10 @@ class ServiceDocumenter(object):
             ResourceDocumenter(
                 resource, self._botocore_session).document_resource(
                     section.add_new_section(resource.meta.resource_model.name))
+
+    def _document_examples(self, section):
+        if self._examples_file:
+            section.style.h2('Examples')
+            section.style.new_line()
+            with open(self._examples_file, 'r') as f:
+                section.write(f.read())

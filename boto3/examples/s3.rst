@@ -1,0 +1,15 @@
+**To list objects in an Amazon S3 bucket**
+
+The following example shows how to use an Amazon S3 bucket resource to list
+the objects in the bucket.
+
+.. code-block:: python
+
+    import boto3
+
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('glacier_test')
+    for obj_sum in bucket.objects.all():
+        obj = s3.Object(obj_sum.bucket_name, obj_sum.key)
+        storage_class = obj.storage_class
+        restore = obj.restore
