@@ -48,7 +48,8 @@ setup(
     include_package_data=True,
     install_requires=requires,
     extras_require={
-        ':python_version=="2.6" or python_version=="2.7"': ['futures==2.2.0']
+        ':python_version=="2.6" or python_version=="2.7"': [
+            'futures>=2.2.0,<4.0.0']
     },
     license="Apache License 2.0",
     classifiers=[
