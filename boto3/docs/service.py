@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 import os
 
+import boto3
 from botocore.exceptions import DataNotFoundError
 from botocore.docs.paginator import PaginatorDocumenter
 from botocore.docs.waiter import WaiterDocumenter
@@ -24,12 +25,12 @@ from boto3.docs.resource import ServiceResourceDocumenter
 
 
 class ServiceDocumenter(object):
-    def __init__(self, service_name, session, examples_file=None):
+    # The path used to find examples
+    EXAMPLE_PATH = os.sep.join([os.path.dirname(boto3.__file__), 'examples'])
+
+    def __init__(self, service_name, session):
         self._service_name = service_name
         self._session = session
-        if examples_file is None:
-            examples_file = self._get_examples_file()
-        self._examples_file = examples_file
         # I know that this is an internal attribute, but the botocore session
         # is needed to load the paginator and waiter models.
         self._botocore_session = session._session
@@ -47,13 +48,6 @@ class ServiceDocumenter(object):
             'resources',
             'examples'
         ]
-
-    def _get_examples_file(self):
-        path = os.sep.join([os.path.dirname(__file__), '..', 'examples',
-                            self._service_name + '.rst'])
-        path = os.path.realpath(path)
-        if os.path.isfile(path):
-            return path
 
     def document_service(self):
         """Documents an entire service.
@@ -135,9 +129,15 @@ class ServiceDocumenter(object):
                 resource, self._botocore_session).document_resource(
                     section.add_new_section(resource.meta.resource_model.name))
 
+    def _get_example_file(self):
+        return os.path.realpath(
+            os.sep.join([self.EXAMPLE_PATH,
+                         self._service_name + '.rst']))
+
     def _document_examples(self, section):
-        if self._examples_file:
+        examples_file = self._get_example_file()
+        if os.path.isfile(examples_file):
             section.style.h2('Examples')
             section.style.new_line()
-            with open(self._examples_file, 'r') as f:
+            with open(examples_file, 'r') as f:
                 section.write(f.read())
