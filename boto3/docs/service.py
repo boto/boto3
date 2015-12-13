@@ -26,7 +26,7 @@ from boto3.docs.resource import ServiceResourceDocumenter
 
 class ServiceDocumenter(object):
     # The path used to find examples
-    EXAMPLE_PATH = os.sep.join([os.path.dirname(boto3.__file__), 'examples'])
+    EXAMPLE_PATH = os.path.join(os.path.dirname(boto3.__file__), 'examples')
 
     def __init__(self, service_name, session):
         self._service_name = service_name
@@ -131,8 +131,8 @@ class ServiceDocumenter(object):
 
     def _get_example_file(self):
         return os.path.realpath(
-            os.sep.join([self.EXAMPLE_PATH,
-                         self._service_name + '.rst']))
+            os.path.join(self.EXAMPLE_PATH,
+                         self._service_name + '.rst'))
 
     def _document_examples(self, section):
         examples_file = self._get_example_file()
