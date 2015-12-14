@@ -184,40 +184,6 @@ class TestReadFileChunk(unittest.TestCase):
         chunk.seek(0)
         self.assertEqual(chunk.tell(), 0)
 
-    def test_callback_is_invoked_on_read(self):
-        filename = os.path.join(self.tempdir, 'foo')
-        with open(filename, 'wb') as f:
-            f.write(b'abc')
-        amounts_seen = []
-
-        def callback(amount):
-            amounts_seen.append(amount)
-
-        chunk = ReadFileChunk.from_filename(
-            filename, start_byte=0, chunk_size=3, callback=callback)
-        chunk.read(1)
-        chunk.read(1)
-        chunk.read(1)
-
-        self.assertEqual(amounts_seen, [1, 1, 1])
-
-    def test_callback_can_be_disabled(self):
-        filename = os.path.join(self.tempdir, 'foo')
-        with open(filename, 'wb') as f:
-            f.write(b'abc')
-        callback_calls = []
-
-        def callback(amount):
-            callback_calls.append(amount)
-
-        chunk = ReadFileChunk.from_filename(
-            filename, start_byte=0, chunk_size=3, callback=callback)
-        chunk.disable_callback()
-        # Now reading from the ReadFileChunk should not invoke
-        # the callback.
-        chunk.read()
-        self.assertEqual(callback_calls, [])
-
     def test_file_chunk_supports_context_manager(self):
         filename = os.path.join(self.tempdir, 'foo')
         with open(filename, 'wb') as f:
@@ -236,6 +202,45 @@ class TestReadFileChunk(unittest.TestCase):
         chunk = ReadFileChunk.from_filename(
             filename, start_byte=0, chunk_size=10)
         self.assertEqual(list(chunk), [])
+
+
+class TestReadFileChunkWithCallback(TestReadFileChunk):
+    def setUp(self):
+        super(TestReadFileChunkWithCallback, self).setUp()
+        self.filename = os.path.join(self.tempdir, 'foo')
+        with open(self.filename, 'wb') as f:
+            f.write(b'abc')
+        self.amounts_seen = []
+
+    def callback(self, amount):
+        self.amounts_seen.append(amount)
+
+    def test_callback_is_invoked_on_read(self):
+        chunk = ReadFileChunk.from_filename(
+            self.filename, start_byte=0, chunk_size=3, callback=self.callback)
+        chunk.read(1)
+        chunk.read(1)
+        chunk.read(1)
+        self.assertEqual(self.amounts_seen, [1, 1, 1])
+
+    def test_callback_can_be_disabled(self):
+        chunk = ReadFileChunk.from_filename(
+            self.filename, start_byte=0, chunk_size=3, callback=self.callback)
+        chunk.disable_callback()
+        # Now reading from the ReadFileChunk should not invoke
+        # the callback.
+        chunk.read()
+        self.assertEqual(self.amounts_seen, [])
+
+    def test_callback_will_also_be_triggered_by_seek(self):
+        chunk = ReadFileChunk.from_filename(
+            self.filename, start_byte=0, chunk_size=3, callback=self.callback)
+        chunk.read(2)
+        chunk.seek(0)
+        chunk.read(2)
+        chunk.seek(1)
+        chunk.read(2)
+        self.assertEqual(self.amounts_seen, [2, -2, 2, -1, 2])
 
 
 class TestStreamReaderProgress(unittest.TestCase):
