@@ -10,6 +10,9 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import os
+
+import boto3
 from botocore.exceptions import DataNotFoundError
 from botocore.docs.paginator import PaginatorDocumenter
 from botocore.docs.waiter import WaiterDocumenter
@@ -22,6 +25,9 @@ from boto3.docs.resource import ServiceResourceDocumenter
 
 
 class ServiceDocumenter(object):
+    # The path used to find examples
+    EXAMPLE_PATH = os.path.join(os.path.dirname(boto3.__file__), 'examples')
+
     def __init__(self, service_name, session):
         self._service_name = service_name
         self._session = session
@@ -39,7 +45,8 @@ class ServiceDocumenter(object):
             'paginators',
             'waiters',
             'service-resource',
-            'resources'
+            'resources',
+            'examples'
         ]
 
     def document_service(self):
@@ -60,6 +67,7 @@ class ServiceDocumenter(object):
             self._document_service_resource(
                 doc_structure.get_section('service-resource'))
             self._document_resources(doc_structure.get_section('resources'))
+        self._document_examples(doc_structure.get_section('examples'))
         return doc_structure.flush_structure()
 
     def _document_title(self, section):
@@ -120,3 +128,19 @@ class ServiceDocumenter(object):
             ResourceDocumenter(
                 resource, self._botocore_session).document_resource(
                     section.add_new_section(resource.meta.resource_model.name))
+
+    def _get_example_file(self):
+        return os.path.realpath(
+            os.path.join(self.EXAMPLE_PATH,
+                         self._service_name + '.rst'))
+
+    def _document_examples(self, section):
+        examples_file = self._get_example_file()
+        if os.path.isfile(examples_file):
+            section.style.h2('Examples')
+            section.style.new_line()
+            section.write(".. contents::\n    :local:\n    :depth: 1")
+            section.style.new_line()
+            section.style.new_line()
+            with open(examples_file, 'r') as f:
+                section.write(f.read())
