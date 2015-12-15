@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Next Release (TBD)
+------------------
+
+* bugfix:Collections: Fix regression where filters could not be chained.
+  (`issue 401 <https://github.com/boto/boto3/pull/401>`__)
+
+
 1.2.2 - (2015-11-19)
 --------------------
 

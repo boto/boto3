@@ -80,7 +80,13 @@ class TestCollectionFactory(BaseTestCase):
                         'test.Chain.FrobsCollectionManager')
         self.assertIsInstance(collection, CollectionManager)
 
+        # Make sure that collection manager created from the factory
+        # returns a ResourceCollection.
         self.assertIsInstance(collection.all(), ResourceCollection)
+
+        # Make sure that the collection returned from the collection
+        # manager can be chained and return a ResourceCollection as well.
+        self.assertIsInstance(collection.all().all(), ResourceCollection)
 
     @mock.patch('boto3.resources.collection.BatchAction')
     def test_create_batch_actions(self, action_mock):
