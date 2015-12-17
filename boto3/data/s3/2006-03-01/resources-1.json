@@ -847,7 +847,7 @@
             ]
           }
         },
-        "StartRestore": {
+        "RestoreObject": {
           "request": {
             "operation": "RestoreObject",
             "params": [
@@ -1023,7 +1023,7 @@
             ]
           }
         },
-        "StartRestore": {
+        "RestoreObject": {
           "request": {
             "operation": "RestoreObject",
             "params": [
