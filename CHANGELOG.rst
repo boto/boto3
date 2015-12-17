@@ -1,13 +1,19 @@
 Changelog
 =========
 
-Next Release (TBD)
-------------------
+1.2.3 - (2015-12-17)
+--------------------
 
 * feature:``CloudWatch``: Add resource model.
-  (`issue 412 `<https://github.com/boto/boto3/pull/412>`__)
+  (`issue 412 <https://github.com/boto/boto3/pull/412>`__)
+* feature:``S3``: Add a start_restore() on Object and ObjectSummary resources.
+  (`issue 408 <https://github.com/boto/boto3/pull/408>`__)
+* feature:Documentation: Add examples for S3.
+  (`issue 402 <https://github.com/boto/boto3/pull/402>`__)
 * bugfix:Collections: Fix regression where filters could not be chained.
   (`issue 401 <https://github.com/boto/boto3/pull/401>`__)
+* bugfix:``S3``: Progress callback will be triggered when rewinding stream.
+  (`issue 395 <https://github.com/boto/boto3/pull/395>`__)
 
 
 1.2.2 - (2015-11-19)
