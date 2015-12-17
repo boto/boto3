@@ -846,6 +846,15 @@
               { "target": "Key", "source": "identifier", "name": "Key" }
             ]
           }
+        },
+        "RestoreObject": {
+          "request": {
+            "operation": "RestoreObject",
+            "params": [
+              { "target": "Bucket", "source": "identifier", "name": "BucketName" },
+              { "target": "Key", "source": "identifier", "name": "Key" }
+            ]
+          }
         }
       },
       "batchActions": {
@@ -1008,6 +1017,15 @@
         "Put": {
           "request": {
             "operation": "PutObject",
+            "params": [
+              { "target": "Bucket", "source": "identifier", "name": "BucketName" },
+              { "target": "Key", "source": "identifier", "name": "Key" }
+            ]
+          }
+        },
+        "RestoreObject": {
+          "request": {
+            "operation": "RestoreObject",
             "params": [
               { "target": "Bucket", "source": "identifier", "name": "BucketName" },
               { "target": "Key", "source": "identifier", "name": "Key" }

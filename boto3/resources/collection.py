@@ -395,11 +395,13 @@ class CollectionFactory(object):
         self._load_batch_actions(
             attrs, resource_name, collection_model,
             service_context.service_model, event_emitter)
+        # Add the documentation to the collection class's methods
         self._load_documented_collection_methods(
             attrs=attrs, resource_name=resource_name,
             collection_model=collection_model,
             service_model=service_context.service_model,
-            event_emitter=event_emitter)
+            event_emitter=event_emitter,
+            base_class=ResourceCollection)
 
         if service_context.service_name == resource_name:
             cls_name = '{0}.{1}Collection'.format(
@@ -411,12 +413,13 @@ class CollectionFactory(object):
         collection_cls = type(str(cls_name), (ResourceCollection,),
                               attrs)
 
-        # Add the documentation to the collection methods
+        # Add the documentation to the collection manager's methods
         self._load_documented_collection_methods(
             attrs=attrs, resource_name=resource_name,
             collection_model=collection_model,
             service_model=service_context.service_model,
-            event_emitter=event_emitter)
+            event_emitter=event_emitter,
+            base_class=CollectionManager)
         attrs['_collection_cls'] = collection_cls
         cls_name += 'Manager'
 
@@ -434,18 +437,18 @@ class CollectionFactory(object):
                 resource_name, snake_cased, action_model, collection_model,
                 service_model, event_emitter)
 
-    def _load_documented_collection_methods(factory_self, attrs, resource_name,
-                                            collection_model, service_model,
-                                            event_emitter):
-        # The CollectionManger already has these methods defined. However
+    def _load_documented_collection_methods(
+            factory_self, attrs, resource_name, collection_model,
+            service_model, event_emitter, base_class):
+        # The base class already has these methods defined. However
         # the docstrings are generic and not based for a particular service
         # or resource. So we override these methods by proxying to the
-        # CollectionManager's builtin method and adding a docstring
+        # base class's builtin method and adding a docstring
         # that pertains to the resource.
 
         # A collection's all() method.
         def all(self):
-            return CollectionManager.all(self)
+            return base_class.all(self)
 
         all.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
@@ -459,7 +462,7 @@ class CollectionFactory(object):
 
         # The collection's filter() method.
         def filter(self, **kwargs):
-            return CollectionManager.filter(self, **kwargs)
+            return base_class.filter(self, **kwargs)
 
         filter.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
@@ -473,7 +476,7 @@ class CollectionFactory(object):
 
         # The collection's limit method.
         def limit(self, count):
-            return CollectionManager.limit(self, count)
+            return base_class.limit(self, count)
 
         limit.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
@@ -487,7 +490,7 @@ class CollectionFactory(object):
 
         # The collection's page_size method.
         def page_size(self, count):
-            return CollectionManager.page_size(self, count)
+            return base_class.page_size(self, count)
 
         page_size.__doc__ = docstring.CollectionMethodDocstring(
             resource_name=resource_name,
