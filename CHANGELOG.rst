@@ -4,6 +4,8 @@ Changelog
 Next Release (TBD)
 ------------------
 
+* feature:``CloudWatch``: Add resource model.
+  (`issue 412 `<https://github.com/boto/boto3/pull/412>`__)
 * bugfix:Collections: Fix regression where filters could not be chained.
   (`issue 401 <https://github.com/boto/boto3/pull/401>`__)
 
