@@ -31,6 +31,15 @@ class TestSession(BaseTestCase):
 
         self.assertEqual(repr(session), 'Session(region=\'us-west-2\')')
 
+    def test_can_access_region_name(self):
+        bc_session = self.bc_session_cls.return_value
+        bc_session.get_config_variable.return_value = 'us-west-2'
+        session = Session('abc123', region_name='us-west-2')
+        bc_session.set_config_variable.assert_called_with('region',
+                                                          'us-west-2')
+
+        self.assertEqual(session.region_name, 'us-west-2')
+
     def test_arguments_not_required(self):
         Session()
 
