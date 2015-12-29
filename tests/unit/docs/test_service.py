@@ -115,12 +115,16 @@ class TestServiceDocumenter(BaseDocsTest):
         self.assertNotIn('Waiters', contents)
 
     def test_creates_correct_path_to_examples_based_on_service_name(self):
-        path = os.sep.join([os.path.dirname(boto3.__file__), 'boto3',
+        path = os.sep.join([os.path.dirname(boto3.__file__),
                             'examples', 'myservice.rst'])
         path = os.path.realpath(path)
-        with mock.patch('os.path.isfile') as patch:
-            ServiceDocumenter('myservice', self.session)
-            patch.assert_has_call_with(path)
+        with mock.patch('os.path.isfile') as isfile:
+            isfile.return_value = False
+            s = ServiceDocumenter('myservice', self.session)
+            s.document_service()
+            self.assertEqual(
+                isfile.call_args_list[-1],
+                mock.call(path))
 
     def test_injects_examples_when_found(self):
         examples_path = os.sep.join([os.path.dirname(__file__), '..', 'data',
