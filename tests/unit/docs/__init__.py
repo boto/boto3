@@ -38,6 +38,8 @@ class BaseDocsTest(unittest.TestCase):
             self.version_dirs, 'paginators-1.json')
         self.resource_model_file = os.path.join(
             self.version_dirs, 'resources-1.json')
+        self.example_model_file = os.path.join(
+            self.version_dirs, 'examples-1.json')
 
         self.json_model = {}
         self.waiter_json_model = {}
@@ -94,6 +96,25 @@ class BaseDocsTest(unittest.TestCase):
             }
         }
 
+        self.example_json_model = {
+            "version": 1,
+            "examples": {
+                "SampleOperation": [{
+                    "id": "sample-id",
+                    "title": "sample-title",
+                    "description": "Sample Description.",
+                    "input": OrderedDict([
+                        ("Foo", "bar"),
+                    ]),
+                    "comments": {
+                        "input": {
+                            "Foo": "biz"
+                        },
+                    }
+                }]
+            }
+        }
+
         self.waiter_json_model = {
             "version": 2,
             "waiters": {
@@ -138,7 +159,7 @@ class BaseDocsTest(unittest.TestCase):
                             "type": "Sample",
                             "identifiers": [
                                 {"target": "Name", "source": "response",
-                                "path": "Samples[].Name"}
+                                 "path": "Samples[].Name"}
                             ],
                             "path": "Samples[]"
                         }
@@ -240,6 +261,9 @@ class BaseDocsTest(unittest.TestCase):
 
         with open(self.model_file, 'w') as f:
             json.dump(self.json_model, f)
+
+        with open(self.example_model_file, 'w') as f:
+            json.dump(self.example_json_model, f)
 
     def add_shape(self, shape):
         shape_name = list(shape.keys())[0]
