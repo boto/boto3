@@ -1,0 +1,200 @@
+.. _s3_guide:
+
+S3
+==
+
+By following this guide, you will learn how to use features of S3 client that
+are unique to the SDK, specifically the generation and use of pre-signed URLs,
+pre-signed POSTs, and the use of the transfer manager.
+
+Using the Transfer Manager
+--------------------------
+
+The `s3 transfer manager`_ provides you with less painful multipart uploads and
+downloads. Its functions are automatically added into the client when you create
+it, so there is no need to create your own transfer manager. Below you will see
+several examples of how to use it.
+
+The methods on the base client are :py:meth:
+`S3.Client.upload_file` and :py:meth: `S3.Client.download_file`.::
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Upload tmp.txt to bucket-name
+    s3.upload_file("tmp.txt", "bucket-name", "tmp.txt")
+
+    # Download tmp.txt as tmp2.txt
+    s3.download_file("bucket-name", "tmp.txt", "tmp2.txt")
+
+If you happen to be using the resource model, the same function are accessed
+through :py:meth: `S3.Object.upload_file` and :py:meth:
+`S3.Object.download_file`.::
+
+    import boto3
+
+    # Get the service resource
+    s3 = boto3.resource('s3')
+
+    # Get bucket-name
+    bucket = s3.Bucket('bucket-name')
+
+    # Get the object representation
+    obj = bucket.Object('tmp.txt')
+
+    # Upload tmp.txt
+    obj.upload_file('tmp.txt')
+
+    # Download tmp.txt as tmp2.txt
+    obj.download_file('tmp2.txt')
+
+
+Generating Presigned URLs
+-------------------------
+
+Pre-signed URLs allow you to give your users access to a specific object in your
+bucket without requiring them to have AWS security credentials or permissions.
+To generate a pre-signed URL, use the :py:meth:
+`S3.Client.generate_presigned_url`. method::
+
+    import boto3
+    import requests
+
+    # Get the service client.
+    s3 = boto3.client('s3')
+
+    # Generate the URL to get 'key-name' from 'bucket-name'
+    url = s3.generate_presigned_url(
+        ClientMethod='get_object',
+        Params={
+            'Bucket': 'bucket-name',
+            'Key': 'key-name'
+        }
+    )
+
+    # Use the URL to perform the GET operation. You can use any method you like
+    # to send the GET, but we will use requests here to keep things simple.
+    response = requests.get(url)
+
+If your bucket requires the use of signature version 4, you can elect to use it
+to sign your URL. This does not fundamentally change how you use generator,
+you only need to make sure that the client used has signature version 4
+configured.::
+
+    import boto3
+    from botocore.client import Config
+
+    # Get the service client with sigv4 configured
+    s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
+
+    # Generate the URL to get 'key-name' from 'bucket-name'
+    url = s3.generate_presigned_url(
+        ClientMethod='get_object',
+        Params={
+            'Bucket': 'bucket-name',
+            'Key': 'key-name'
+        }
+    )
+
+Note: if your bucket is new and you require CORS, it is advised that
+you use signature version 4 signing to avoid virtual host style addressing,
+which can take an hour or more to propagate. Alternatively, you can remove the
+handler which switches the signing method.::
+
+    import boto3
+    from botocore.utils import fix_s3_host
+
+    # Get the service client.
+    s3 = boto3.client('s3')
+
+    # Remove the handler that switches S3 requests to virtual host style
+    # addressing.
+    s3.meta.events.unregister('before-sign.s3', fix_s3_host)
+
+    # Generate the URL to get 'key-name' from 'bucket-name'
+    url = s3.generate_presigned_url(
+        ClientMethod='get_object',
+        Params={
+            'Bucket': 'bucket-name',
+            'Key': 'key-name'
+        }
+    )
+
+
+Generating Presigned POSTs
+--------------------------
+
+Much like pre-signed URLs, pre-signed POSTs allow you to give write access to a
+user without giving them AWS credentials. The information you need to make the
+POST is returned by the :py:meth: `S3.Client.generate_presigned_post` method::
+
+    import boto3
+    import requests
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Generate the POST attributes
+    post = s3.generate_presigned_post(
+        Bucket='bucket-name',
+        Key='key-name'
+    )
+
+    # Use the returned values to POST an object. Note that you need to use ALL
+    # of the returned fields in your post. You can use any method you like to
+    # send the POST, but we will use requests here to keep things simple.
+    files = {"file": "file_content"}
+    response = requests.post(post["url"], data=post["fields"], files=files)
+
+When generating these POSTs, you may wish to auto fill certain fields or
+constrain what your users submit. You can do this by providing those fields and
+conditions when you generate the POST data.::
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Make sure everything posted is publicly readable
+    fields = {"acl": "public-read"}
+
+    # Ensure that the ACL isn't changed and restrict the user to a length
+    # between 10 and 100.
+    conditions = [
+        {"acl": "public-read"},
+        ["content-length-range", 10, 100]
+    ]
+
+    # Generate the POST attributes
+    post = s3.generage_presigned_post(
+        Bucket='bucket-name',
+        Key='key-name'
+    )
+
+If your bucket requires the use of signature version 4, you can elect to use it
+to sign your POST. This does not fundamentally change how you use generator,
+you only need to make sure that the client used has signature version 4
+configured.::
+
+    import boto3
+    import requests
+    from botocore.client import Config
+
+    # Get the service client with sigv4 configured
+    s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
+
+    # Generate the POST attributes. There are no special fields or conidtions
+    # you need to pass in to make sigv4 work.
+    post = s3.generate_presigned_post(
+        Bucket='bucket-name',
+        Key='key-name'
+    )
+
+    # Use the returned values to POST an object. Note that you need to use ALL
+    # of the returned fields in your post.
+    files = {"file": "file_content"}
+    response = requests.post(post["url"], data=post["fields"], files=files)
+
+.. _s3 transfer manager: http://boto3.readthedocs.org/en/latest/reference/customizations/s3.html#module-boto3.s3.transfer
