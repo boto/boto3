@@ -138,10 +138,18 @@ Expected Output::
 Updating Item
 -------------
 
-Using the retrieved item, you can update attributes of the item in the table::
+You can then update attributes of the item in the table::
 
-    item['age'] = 26
-    table.put_item(Item=item)
+    table.update_item(
+        Key={
+            'username': 'janedoe',
+            'last_name': 'Doe'
+        },
+        UpdateExpression='SET age = :val1',
+        ExpressionAttributeValues={
+            ':val1': 26
+        }
+    )
 
 Then if you retrieve the item again, it will be updated appropriately::
 
