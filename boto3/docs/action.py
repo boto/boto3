@@ -40,6 +40,7 @@ class ActionDocumenter(BaseDocumenter):
                 'automatically handle the passing in of arguments set '
                 'from identifiers and some attributes.'),
             intro_link='actions_intro')
+
         for action_name in sorted(resource_actions):
             action_section = section.add_new_section(action_name)
             if action_name in ['load', 'reload'] and self._resource_model.load:
@@ -61,7 +62,7 @@ class ActionDocumenter(BaseDocumenter):
                 )
             else:
                 document_custom_method(
-                    section, action_name, resource_actions[action_name])
+                    action_section, action_name, resource_actions[action_name])
 
 
 def document_action(section, resource_name, event_emitter, action_model,

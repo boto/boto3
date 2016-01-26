@@ -42,19 +42,19 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
         request_syntax_contents = self.get_request_syntax_document_block(
             method_contents)
         self.assert_contains_lines_in_order([
-            '        response = table.put_item(',
-            '            Item={',
-            ('                \'string\': \'string\'|123|Binary(b\'bytes\')'
+            'response = table.put_item(',
+            'Item={',
+            ('\'string\': \'string\'|123|Binary(b\'bytes\')'
              '|True|None|set([\'string\'])|set([123])|'
              'set([Binary(b\'bytes\')])|[]|{}'),
-            '            },',
-            '            Expected={',
-            '                \'string\': {',
-            ('                    \'Value\': \'string\'|123'
+            '},',
+            'Expected={',
+            '\'string\': {',
+            ('\'Value\': \'string\'|123'
              '|Binary(b\'bytes\')|True|None|set([\'string\'])'
              '|set([123])|set([Binary(b\'bytes\')])|[]|{},'),
-            '                    \'AttributeValueList\': [',
-            ('                        \'string\'|123|Binary(b\'bytes\')'
+            '\'AttributeValueList\': [',
+            ('\'string\'|123|Binary(b\'bytes\')'
              '|True|None|set([\'string\'])|set([123])|'
              'set([Binary(b\'bytes\')])|[]|{},')],
             request_syntax_contents)
@@ -63,22 +63,22 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
         response_syntax_contents = self.get_response_syntax_document_block(
             method_contents)
         self.assert_contains_lines_in_order([
-            '          {',
-            '              \'Attributes\': {',
-            ('                  \'string\': \'string\'|123|'
+            '{',
+            '\'Attributes\': {',
+            ('\'string\': \'string\'|123|'
              'Binary(b\'bytes\')|True|None|set([\'string\'])|'
              'set([123])|set([Binary(b\'bytes\')])|[]|{}'),
-            '              },'],
+            '},'],
             response_syntax_contents)
 
         # Make sure the request parameter is documented correctly.
         request_param_contents = self.get_request_parameter_document_block(
             'Item', method_contents)
         self.assert_contains_lines_in_order([
-            '    :type Item: dict',
-            '    :param Item: **[REQUIRED]**',
-            '        - *(string) --*',
-            ('          - *(valid DynamoDB type) --* - The value of the '
+            ':type Item: dict',
+            ':param Item: **[REQUIRED]**',
+            '- *(string) --*',
+            ('- *(valid DynamoDB type) --* - The value of the '
              'attribute. The valid value types are listed in the '
              ':ref:`DynamoDB Reference Guide<ref_valid_dynamodb_types>`.')],
             request_param_contents
@@ -88,9 +88,9 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
         response_param_contents = self.get_response_parameter_document_block(
             'Attributes', method_contents)
         self.assert_contains_lines_in_order([
-            '          - **Attributes** *(dict) --*',
-            '            - *(string) --*',
-            ('              - *(valid DynamoDB type) --* - The value of '
+            '- **Attributes** *(dict) --*',
+            '- *(string) --*',
+            ('- *(valid DynamoDB type) --* - The value of '
              'the attribute. The valid value types are listed in the '
              ':ref:`DynamoDB Reference Guide<ref_valid_dynamodb_types>`.')],
             response_param_contents)
@@ -106,23 +106,23 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
         request_syntax_contents = self.get_request_syntax_document_block(
             method_contents)
         self.assert_contains_lines_in_order([
-            '        response = table.query(',
-            ('            FilterExpression=Attr(\'myattribute\').'
+            'response = table.query(',
+            ('FilterExpression=Attr(\'myattribute\').'
              'eq(\'myvalue\'),'),
-            ('            KeyConditionExpression=Key(\'mykey\')'
+            ('KeyConditionExpression=Key(\'mykey\')'
              '.eq(\'myvalue\'),')],
             request_syntax_contents)
 
         # Make sure the request parameter is documented correctly.
         self.assert_contains_lines_in_order([
-            ('      :type FilterExpression: condition from '
+            (':type FilterExpression: condition from '
              ':py:class:`boto3.dynamodb.conditions.Attr` method'),
-            ('      :param FilterExpression: The condition(s) an '
+            (':param FilterExpression: The condition(s) an '
              'attribute(s) must meet. Valid conditions are listed in '
              'the :ref:`DynamoDB Reference Guide<ref_dynamodb_conditions>`.'),
-            ('      :type KeyConditionExpression: condition from '
+            (':type KeyConditionExpression: condition from '
              ':py:class:`boto3.dynamodb.conditions.Key` method'),
-            ('      :param KeyConditionExpression: The condition(s) a '
+            (':param KeyConditionExpression: The condition(s) a '
              'key(s) must meet. Valid conditions are listed in the '
              ':ref:`DynamoDB Reference Guide<ref_dynamodb_conditions>`.')],
             method_contents)
