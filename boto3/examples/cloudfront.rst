@@ -1,7 +1,7 @@
 Generate a signed URL for Amazon CloudFront
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following example shows how to generate a singed URL for Amazon CloudFront.
+The following example shows how to generate a signed URL for Amazon CloudFront.
 Note that you will need the ``cryptography`` `library <https://cryptography.io/en/latest/>`__ to follow this example::
 
     import datetime
