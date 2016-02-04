@@ -27,6 +27,7 @@ from boto3.s3.transfer import ReadFileChunk, StreamReaderProgress
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig
 from boto3.s3.transfer import MultipartDownloader, MultipartUploader
+from boto3.s3.transfer import MultipartCopier
 from boto3.s3.transfer import ShutdownQueue
 from boto3.s3.transfer import QueueShutdownError
 from boto3.s3.transfer import random_file_extension
@@ -485,6 +486,101 @@ class TestMultipartDownloader(unittest.TestCase):
                                      len(response_body), {})
 
 
+class TestMultipartCopier(unittest.TestCase):
+    def test_multipart_copy_uses_correct_client_calls(self):
+        client = mock.Mock()
+        copier = MultipartCopier(
+            client, TransferConfig(),
+            SequentialExecutor)
+        client.create_multipart_upload.return_value = {'UploadId': 'upload_id'}
+        client.upload_part_copy.return_value = {
+            'CopyPartResult': {
+                'ETag': 'first'
+            }
+        }
+
+        copier.copy_file('bucket1', 'key1', 'bucket2', 'key2', 1,
+                         None, {})
+
+        # We need to check both the sequence of calls (create/upload/complete)
+        # as well as the params passed between the calls, including
+        # 1. The upload_id was plumbed through
+        # 2. The collected etags were added to the complete call.
+        client.create_multipart_upload.assert_called_with(
+            Bucket='bucket2', Key='key2')
+        # Should be two parts.
+        client.upload_part_copy.assert_called_with(
+            CopySource='bucket1/key1',
+            Bucket='bucket2', Key='key2',
+            UploadId='upload_id', PartNumber=1,
+            CopySourceRange='bytes=0-0')
+        client.complete_multipart_upload.assert_called_with(
+            MultipartUpload={'Parts': [{'PartNumber': 1, 'ETag': 'first'}]},
+            Bucket='bucket2',
+            UploadId='upload_id',
+            Key='key2')
+
+    def test_multipart_copy_injects_proper_kwargs(self):
+        client = mock.Mock()
+        copier = MultipartCopier(
+            client, TransferConfig(),
+            SequentialExecutor)
+        client.create_multipart_upload.return_value = {'UploadId': 'upload_id'}
+        client.upload_part_copy.return_value = {
+            'CopyPartResult': {
+                'ETag': 'first'
+            }
+        }
+
+        extra_args = {
+            'SSECustomerKey': 'fakekey',
+            'SSECustomerAlgorithm': 'AES256',
+            'StorageClass': 'REDUCED_REDUNDANCY'
+        }
+        copier.copy_file('bucket1', 'key1', 'bucket2', 'key2', 1,
+                         None, extra_args)
+
+        client.create_multipart_upload.assert_called_with(
+            Bucket='bucket2', Key='key2',
+            # The initial call should inject all the storage class params.
+            SSECustomerKey='fakekey',
+            SSECustomerAlgorithm='AES256',
+            StorageClass='REDUCED_REDUNDANCY')
+        client.upload_part_copy.assert_called_with(
+            CopySource='bucket1/key1',
+            Bucket='bucket2', Key='key2',
+            UploadId='upload_id', PartNumber=1,
+            CopySourceRange='bytes=0-0',
+            # We only have to forward certain **extra_args in subsequent
+            # UploadPart calls.
+            SSECustomerKey='fakekey',
+            SSECustomerAlgorithm='AES256',
+        )
+        client.complete_multipart_upload.assert_called_with(
+            MultipartUpload={'Parts': [{'PartNumber': 1, 'ETag': 'first'}]},
+            Bucket='bucket2',
+            UploadId='upload_id',
+            Key='key2')
+
+    def test_multipart_copy_is_aborted_on_error(self):
+        # If the create_multipart_upload succeeds and any upload_part_copy
+        # fails, then abort_multipart_upload will be called.
+        client = mock.Mock()
+        copier = MultipartCopier(
+            client, TransferConfig(),
+            SequentialExecutor)
+        client.create_multipart_upload.return_value = {'UploadId': 'upload_id'}
+        client.upload_part_copy.side_effect = Exception(
+            "Some kind of error occurred.")
+
+        with self.assertRaises(S3UploadFailedError):
+            copier.copy_file('bucket1', 'key1', 'bucket2', 'key2', 1,
+                             None, {})
+
+        client.abort_multipart_upload.assert_called_with(
+            Bucket='bucket2', Key='key2', UploadId='upload_id')
+
+
 class TestS3Transfer(unittest.TestCase):
     def setUp(self):
         self.client = mock.Mock()
@@ -523,6 +619,18 @@ class TestS3Transfer(unittest.TestCase):
             Bucket='bucket', Key='key', Body=mock.ANY
         )
 
+    def test_copy_below_multipart_threshold_uses_copy_object(self):
+        threshold = 1024
+        config = TransferConfig(multipart_threshold=threshold)
+        transfer = S3Transfer(self.client, config=config)
+        self.client.head_object.return_value = {
+            'ContentLength': threshold - 1,
+        }
+        transfer.copy_file('bucket1', 'key1', 'bucket2', 'key2')
+        self.client.copy_object.assert_called_with(
+            CopySource='bucket1/key1', Bucket='bucket2', Key='key2'
+        )
+
     def test_extra_args_on_uploaded_passed_to_api_call(self):
         extra_args = {'ACL': 'public-read'}
         fake_files = {
@@ -534,6 +642,19 @@ class TestS3Transfer(unittest.TestCase):
                              extra_args=extra_args)
         self.client.put_object.assert_called_with(
             Bucket='bucket', Key='key', Body=mock.ANY,
+            ACL='public-read'
+        )
+
+    def test_extra_args_on_copy_passed_to_api_call(self):
+        extra_args = {'ACL': 'public-read'}
+        transfer = S3Transfer(self.client)
+        self.client.head_object.return_value = {
+            'ContentLength': 1,
+        }
+        transfer.copy_file('bucket1', 'key1', 'bucket2', 'key2',
+                           extra_args=extra_args)
+        self.client.copy_object.assert_called_with(
+            CopySource='bucket1/key1', Bucket='bucket2', Key='key2',
             ACL='public-read'
         )
 
@@ -568,6 +689,20 @@ class TestS3Transfer(unittest.TestCase):
                 'bucket', 'key', 'filename.RANDOM', over_multipart_threshold,
                 {}, callback)
 
+    def test_uses_multipart_copy_when_over_threshold(self):
+        with mock.patch('boto3.s3.transfer.MultipartCopier') as copier:
+            threshold = 1024
+            config = TransferConfig(multipart_threshold=threshold)
+            transfer = S3Transfer(self.client, config=config)
+            self.client.head_object.return_value = {
+                'ContentLength': threshold,
+            }
+            transfer.copy_file('bucket1', 'key1', 'bucket2', 'key2')
+
+            copier.return_value.copy_file.assert_called_with(
+                'bucket1', 'key1', 'bucket2', 'key2', threshold,
+                None, {})
+
     def test_download_file_with_invalid_extra_args(self):
         below_threshold = 20
         osutil = InMemoryOSLayer({})
@@ -585,6 +720,13 @@ class TestS3Transfer(unittest.TestCase):
         with self.assertRaises(ValueError):
             transfer.upload_file('bucket', 'key', '/tmp/smallfile',
                                  extra_args=bad_args)
+
+    def test_copy_file_with_invalid_extra_args(self):
+        transfer = S3Transfer(self.client)
+        bad_args = {"WebsiteRedirectLocation": "/foo"}
+        with self.assertRaises(ValueError):
+            transfer.copy_file('bucket1', 'key1', 'bucket2', 'key2',
+                               extra_args=bad_args)
 
     def test_download_file_fowards_extra_args(self):
         extra_args = {

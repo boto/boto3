@@ -24,6 +24,7 @@ class TestInjectTransferMethods(unittest.TestCase):
         inject.inject_s3_transfer_methods(class_attributes=class_attributes)
         self.assertIn('upload_file', class_attributes)
         self.assertIn('download_file', class_attributes)
+        self.assertIn('copy_file', class_attributes)
 
     def test_upload_file_proxies_to_transfer_object(self):
         with mock.patch('boto3.s3.inject.S3Transfer') as transfer:
@@ -42,6 +43,16 @@ class TestInjectTransferMethods(unittest.TestCase):
                 Filename='filename')
             transfer.return_value.download_file.assert_called_with(
                 bucket='bucket', key='key', filename='filename',
+                extra_args=None, callback=None)
+
+    def test_copy_file_proxies_to_transfer_object(self):
+        with mock.patch('boto3.s3.inject.S3Transfer') as transfer:
+            inject.copy_file(mock.sentinel.CLIENT,
+                             SrcBucket='bucket1', SrcKey='key',
+                             DestBucket='bucket2', DestKey='key')
+            transfer.return_value.copy_file.assert_called_with(
+                src_bucket='bucket1', src_key='key',
+                dest_bucket='bucket2', dest_key='key',
                 extra_args=None, callback=None)
 
 
@@ -94,6 +105,14 @@ class TestBucketTransferMethods(unittest.TestCase):
             Bucket=self.bucket.name, Key='key', Filename='foo',
             ExtraArgs=None, Callback=None, Config=None)
 
+    def test_copy_file_proxies_to_meta_client(self):
+        inject.bucket_copy_file(self.bucket, SrcBucket='foo', SrcKey='key',
+                                DestKey='key')
+        self.bucket.meta.client.copy_file.assert_called_with(
+            SrcBucket='foo', SrcKey='key',
+            DestBucket=self.bucket.name, DestKey='key',
+            ExtraArgs=None, Callback=None, Config=None)
+
 
 class TestObjectTransferMethods(unittest.TestCase):
 
@@ -110,4 +129,11 @@ class TestObjectTransferMethods(unittest.TestCase):
         inject.object_download_file(self.obj, Filename='foo')
         self.obj.meta.client.download_file.assert_called_with(
             Bucket=self.obj.bucket_name, Key=self.obj.key, Filename='foo',
+            ExtraArgs=None, Callback=None, Config=None)
+
+    def test_copy_file_proxies_to_meta_client(self):
+        inject.object_copy_file(self.obj, SrcBucket='foo', SrcKey='key')
+        self.obj.meta.client.copy_file.assert_called_with(
+            SrcBucket='foo', SrcKey='key',
+            DestBucket=self.obj.bucket_name, DestKey=self.obj.key,
             ExtraArgs=None, Callback=None, Config=None)

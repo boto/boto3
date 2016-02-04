@@ -19,6 +19,7 @@ from botocore.exceptions import ClientError
 def inject_s3_transfer_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', upload_file)
     utils.inject_attribute(class_attributes, 'download_file', download_file)
+    utils.inject_attribute(class_attributes, 'copy_file', copy_file)
 
 
 def inject_bucket_methods(class_attributes, **kwargs):
@@ -26,12 +27,14 @@ def inject_bucket_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', bucket_upload_file)
     utils.inject_attribute(
         class_attributes, 'download_file', bucket_download_file)
+    utils.inject_attribute(class_attributes, 'copy_file', bucket_copy_file)
 
 
 def inject_object_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', object_upload_file)
     utils.inject_attribute(
         class_attributes, 'download_file', object_download_file)
+    utils.inject_attribute(class_attributes, 'copy_file', object_copy_file)
 
 
 def bucket_load(self, *args, **kwargs):
@@ -91,6 +94,27 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
         extra_args=ExtraArgs, callback=Callback)
 
 
+def copy_file(self, SrcBucket, SrcKey, DestBucket, DestKey,
+              ExtraArgs=None, Callback=None, Config=None):
+    """Copy one S3 object to another s3 object.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.meta.client.copy_file('bucket1', 'hello.txt', 'bucket2', 'hello.txt')
+
+    Similar behavior as S3Transfer's copy_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    transfer = S3Transfer(self, Config)
+    return transfer.copy_file(
+        src_bucket=SrcBucket, src_key=SrcKey,
+        dest_bucket=DestBucket, dest_key=DestKey,
+        extra_args=ExtraArgs, callback=Callback)
+
+
 def bucket_upload_file(self, Filename, Key,
                        ExtraArgs=None, Callback=None, Config=None):
     """Upload a file to an S3 object.
@@ -129,6 +153,26 @@ def bucket_download_file(self, Key, Filename,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
 
 
+def bucket_copy_file(self, SrcBucket, SrcKey, DestKey,
+                     ExtraArgs=None, Callback=None, Config=None):
+    """Copy one S3 object to another s3 object.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.Bucket('bucket2').copy_file('bucket1', 'hello.txt', 'hello.txt')
+
+    Similar behavior as S3Transfer's copy_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    return self.meta.client.copy_file(
+        SrcBucket=SrcBucket, SrcKey=SrcKey,
+        DestBucket=self.name, DestKey=DestKey,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
 def object_upload_file(self, Filename,
                        ExtraArgs=None, Callback=None, Config=None):
     """Upload a file to an S3 object.
@@ -164,4 +208,24 @@ def object_download_file(self, Filename,
     """
     return self.meta.client.download_file(
         Bucket=self.bucket_name, Key=self.key, Filename=Filename,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def object_copy_file(self, SrcBucket, SrcKey,
+                     ExtraArgs=None, Callback=None, Config=None):
+    """Copy one S3 object to another s3 object.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        s3.Object('bucket2', 'hello.txt').copy_file('bucket1', 'hello.txt')
+
+    Similar behavior as S3Transfer's copy_file() method,
+    except that parameters are capitalized. Detailed examples can be found at
+    :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+    """
+    return self.meta.client.copy_file(
+        SrcBucket=SrcBucket, SrcKey=SrcKey,
+        DestBucket=self.bucket_name, DestKey=self.key,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)

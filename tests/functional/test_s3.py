@@ -23,6 +23,8 @@ class TestS3MethodInjection(unittest.TestCase):
                         'upload_file was not injected onto S3 client')
         self.assertTrue(hasattr(client, 'download_file'),
                         'download_file was not injected onto S3 client')
+        self.assertTrue(hasattr(client, 'copy_file'),
+                        'copy_file was not injected onto S3 client')
 
     def test_bucket_resource_has_load_method(self):
         session = boto3.session.Session(region_name='us-west-2')
@@ -36,6 +38,8 @@ class TestS3MethodInjection(unittest.TestCase):
                         'upload_file was not injected onto S3 bucket')
         self.assertTrue(hasattr(bucket, 'download_file'),
                         'download_file was not injected onto S3 bucket')
+        self.assertTrue(hasattr(bucket, 'copy_file'),
+                        'copy_file was not injected onto S3 bucket')
 
     def test_transfer_methods_injected_to_object(self):
         obj = boto3.resource('s3').Object('my_bucket', 'my_key')
@@ -43,3 +47,5 @@ class TestS3MethodInjection(unittest.TestCase):
                         'upload_file was not injected onto S3 object')
         self.assertTrue(hasattr(obj, 'download_file'),
                         'download_file was not injected onto S3 object')
+        self.assertTrue(hasattr(obj, 'copy_file'),
+                        'copy_file was not injected onto S3 object')

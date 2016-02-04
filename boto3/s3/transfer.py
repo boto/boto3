@@ -13,7 +13,7 @@
 """Abstractions over S3's upload/download operations.
 
 This module provides high level abstractions for efficient
-uploads/downloads.  It handles several things for the user:
+uploads/downloads/copies.  It handles several things for the user:
 
 * Automatically switching to multipart transfers when
   a file is over a specific size threshold
@@ -34,9 +34,6 @@ to configure many aspects of the transfer process including:
 * Socket timeouts
 * Retry amounts
 
-There is no support for s3->s3 multipart copies at this
-time.
-
 
 .. _ref_s3transfer_usage:
 
@@ -55,9 +52,13 @@ The simplest way to use this module is:
     # Download s3://bucket/key to /tmp/myfile
     transfer.download_file('bucket', 'key', '/tmp/myfile')
 
-The ``upload_file`` and ``download_file`` methods also accept
-``**kwargs``, which will be forwarded through to the corresponding
-client operation.  Here are a few examples using ``upload_file``::
+    # Copy s3://bucket1/key to s3://bucket2/key
+    transfer.copy_file('bucket1', 'key', 'bucket2', 'key')
+
+The ``upload_file``, ``download_file`` and ``copy_file`` methods also
+accept ``**kwargs``, which will be forwarded through to the
+corresponding client operation.  Here are a few examples using
+``upload_file``::
 
     # Making the object public
     transfer.upload_file('/tmp/myfile', 'bucket', 'key',
@@ -73,10 +74,10 @@ client operation.  Here are a few examples using ``upload_file``::
 
 
 The ``S3Transfer`` clas also supports progress callbacks so you can
-provide transfer progress to users.  Both the ``upload_file`` and
-``download_file`` methods take an optional ``callback`` parameter.
-Here's an example of how to print a simple progress percentage
-to the user:
+provide transfer progress to users.  All of the ``upload_file``,
+``download_file`` and ``copy_file`` methods take an optional
+``callback`` parameter.  Here's an example of how to print a simple
+progress percentage to the user:
 
 .. code-block:: python
 
@@ -415,6 +416,95 @@ class MultipartUploader(object):
             return {'ETag': etag, 'PartNumber': part_number}
 
 
+class MultipartCopier(object):
+    # These are the extra_args that need to be forwarded onto
+    # subsequent copy_parts.
+    COPY_PART_ARGS = [
+        'CopySourceIfMatch',
+        'CopySourceIfModifiedSince',
+        'CopySourceIfNoneMatch',
+        'CopySourceIfUnmodifiedSince',
+        'CopySourceSSECustomerKey',
+        'CopySourceSSECustomerAlgorithm',
+        'CopySourceSSECustomerKeyMD5',
+        'SSECustomerKey',
+        'SSECustomerAlgorithm',
+        'SSECustomerKeyMD5',
+        'RequestPayer',
+    ]
+
+    def __init__(self, client, config,
+                 executor_cls=futures.ThreadPoolExecutor):
+        self._client = client
+        self._config = config
+        self._executor_cls = executor_cls
+
+    def _extra_copy_part_args(self, extra_args):
+        # Only the args in COPY_PART_ARGS actually need to be passed
+        # onto the upload_part calls.
+        copy_parts_args = {}
+        for key, value in extra_args.items():
+            if key in self.COPY_PART_ARGS:
+                copy_parts_args[key] = value
+        return copy_parts_args
+
+    def copy_file(self, src_bucket, src_key, dest_bucket, dest_key,
+                  object_size, callback, extra_args):
+        response = self._client.create_multipart_upload(Bucket=dest_bucket,
+                                                        Key=dest_key,
+                                                        **extra_args)
+        upload_id = response['UploadId']
+        try:
+            parts = self._copy_parts(upload_id, src_bucket, src_key,
+                                     dest_bucket, dest_key, object_size,
+                                     callback, extra_args)
+        except Exception  as e:
+            logger.debug("Exception raised while copying parts, "
+                         "aborting multipart upload.", exc_info=True)
+            self._client.abort_multipart_upload(
+                Bucket=dest_bucket, Key=dest_key, UploadId=upload_id)
+            raise S3UploadFailedError(
+                "Failed to copy %s to %s: %s" % (
+                    '/'.join([src_bucket, src_key]),
+                    '/'.join([dest_bucket, dest_key]), e))
+        self._client.complete_multipart_upload(
+            Bucket=dest_bucket, Key=dest_key, UploadId=upload_id,
+            MultipartUpload={'Parts': parts})
+
+    def _copy_parts(self, upload_id, src_bucket, src_key,
+                    dest_bucket, dest_key, object_size,
+                    callback, extra_args):
+        copy_parts_extra_args = self._extra_copy_part_args(extra_args)
+        parts = []
+        part_size = self._config.multipart_chunksize
+        num_parts = int(math.ceil(object_size / float(part_size)))
+        max_workers = self._config.max_concurrency
+        with self._executor_cls(max_workers=max_workers) as executor:
+            copy_partial = functools.partial(
+                self._copy_one_part, src_bucket, src_key, dest_bucket,
+                dest_key, upload_id, object_size, part_size,
+                copy_parts_extra_args, callback)
+            for part in executor.map(copy_partial, range(1, num_parts + 1)):
+                parts.append(part)
+        return parts
+
+    def _copy_one_part(self, src_bucket, src_key, dest_bucket, dest_key,
+                       upload_id, object_size, part_size, extra_args,
+                       callback, part_number):
+        start = part_size * (part_number - 1)
+        end = min(start + part_size - 1, object_size - 1)
+        response = self._client.upload_part_copy(
+            Bucket=dest_bucket, Key=dest_key,
+            UploadId=upload_id, PartNumber=part_number,
+            CopySource='/'.join([src_bucket, src_key]),
+            CopySourceRange='bytes=%d-%d' %(start, end),
+            **extra_args)
+        if callback is not None:
+            callback(end - start + 1)
+        etag = response['CopyPartResult']['ETag']
+        return {'ETag': etag, 'PartNumber': part_number}
+
+
 class ShutdownQueue(queue.Queue):
     """A queue implementation that can be shutdown.
 
@@ -600,6 +690,16 @@ class S3Transfer(object):
         'SSEKMSKeyId',
     ]
 
+    ALLOWED_COPY_ARGS = ALLOWED_UPLOAD_ARGS + [
+        'CopySourceIfMatch',
+        'CopySourceIfModifiedSince',
+        'CopySourceIfNoneMatch',
+        'CopySourceIfUnmodifiedSince',
+        'CopySourceSSECustomerAlgorithm',
+        'CopySourceSSECustomerKey',
+        'CopySourceSSECustomerKeyMD5',
+    ]
+
     def __init__(self, client, config=None, osutil=None):
         self._client = client
         if config is None:
@@ -726,3 +826,41 @@ class S3Transfer(object):
     def _multipart_upload(self, filename, bucket, key, callback, extra_args):
         uploader = MultipartUploader(self._client, self._config, self._osutil)
         uploader.upload_file(filename, bucket, key, callback, extra_args)
+
+    def copy_file(self, src_bucket, src_key, dest_bucket, dest_key,
+                    callback=None, extra_args=None):
+        """Copy a file from one S3 object to another.
+
+        Variants have also been injected into S3 client, Bucket and Object.
+        You don't have to use S3Transfer.copy_file() directly.
+        """
+        if extra_args is None:
+            extra_args = {}
+        self._validate_all_known_args(extra_args, self.ALLOWED_COPY_ARGS)
+        # Strip out just download args for getting size
+        size_extra_args = {}
+        for key, value in extra_args.items():
+            if key in self.ALLOWED_DOWNLOAD_ARGS:
+                size_extra_args[key] = value
+        object_size = self._object_size(src_bucket, src_key,
+                                        size_extra_args)
+        if object_size >= self._config.multipart_threshold:
+            self._multipart_copy(src_bucket, src_key, dest_bucket, dest_key,
+                                 object_size, callback, extra_args)
+        else:
+            self._copy_object(src_bucket, src_key, dest_bucket, dest_key,
+                              object_size, callback, extra_args)
+
+    def _multipart_copy(self, src_bucket, src_key, dest_bucket, dest_key,
+                        object_size, callback, extra_args):
+        copier = MultipartCopier(self._client, self._config)
+        copier.copy_file(src_bucket, src_key, dest_bucket, dest_key,
+                         object_size, callback, extra_args)
+
+    def _copy_object(self, src_bucket, src_key, dest_bucket, dest_key,
+                     object_size, callback, extra_args):
+        self._client.copy_object(CopySource='/'.join([src_bucket, src_key]),
+                                 Bucket=dest_bucket, Key=dest_key,
+                                 **extra_args)
+        if callback is not None:
+            callback(object_size)
