@@ -398,7 +398,7 @@ class TestMultipartDownloader(unittest.TestCase):
         response_body = b'foobarbaz'
         stream_with_errors = mock.Mock()
         stream_with_errors.read.side_effect = [
-            socket.error("fake error"),
+            socket.timeout("fake error"),
             response_body
         ]
         client.get_object.return_value = {'Body': stream_with_errors}
@@ -429,7 +429,7 @@ class TestMultipartDownloader(unittest.TestCase):
         client = mock.Mock()
         response_body = b'foobarbaz'
         stream_with_errors = mock.Mock()
-        stream_with_errors.read.side_effect = socket.error("fake error")
+        stream_with_errors.read.side_effect = socket.timeout("fake error")
         client.get_object.return_value = {'Body': stream_with_errors}
         config = TransferConfig(multipart_threshold=4,
                                 multipart_chunksize=4)
@@ -458,6 +458,22 @@ class TestMultipartDownloader(unittest.TestCase):
         with self.assertRaisesRegexp(Exception, "fake IO error"):
             downloader.download_file('bucket', 'key', 'filename',
                                      len(response_body), {})
+
+    def test_io_thread_fails_to_open_triggers_shutdown_error(self):
+        client = mock.Mock()
+        client.get_object.return_value = {
+            'Body': six.BytesIO(b'asdf')
+        }
+        os_layer = mock.Mock(spec=OSUtils)
+        os_layer.open.side_effect = IOError("Can't open file")
+        downloader = MultipartDownloader(
+            client, TransferConfig(),
+            os_layer, SequentialExecutor)
+        # We're verifying that the exception raised from the IO future
+        # propogates back up via download_file().
+        with self.assertRaisesRegexp(IOError, "Can't open file"):
+            downloader.download_file('bucket', 'key', 'filename',
+                                     len(b'asdf'), {})
 
     def test_download_futures_fail_triggers_shutdown(self):
         class FailedDownloadParts(SequentialExecutor):
@@ -619,7 +635,7 @@ class TestS3Transfer(unittest.TestCase):
             'ContentLength': below_threshold}
         self.client.get_object.side_effect = [
             # First request fails.
-            socket.error("fake error"),
+            socket.timeout("fake error"),
             # Second succeeds.
             {'Body': six.BytesIO(b'foobar')}
         ]
@@ -636,7 +652,7 @@ class TestS3Transfer(unittest.TestCase):
         # Here we're raising an exception every single time, which
         # will exhaust our retry count and propogate a
         # RetriesExceededError.
-        self.client.get_object.side_effect = socket.error("fake error")
+        self.client.get_object.side_effect = socket.timeout("fake error")
         with self.assertRaises(RetriesExceededError):
             transfer.download_file('bucket', 'key', 'smallfile')
 
