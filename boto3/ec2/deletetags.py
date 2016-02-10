@@ -10,12 +10,10 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from boto3.utils import inject_attribute
-from boto3.resources.model import Action
-from boto3.docs.docstring import ActionDocstring
+from boto3.resources.action import CustomModeledAction
 
 
-def inject_delete_tags(class_attributes, service_context, emitter, **kwargs):
+def create_delete_tags_action(event_emitter):
     action_model = {
         'request': {
             'operation': 'DeleteTags',
@@ -26,18 +24,7 @@ def inject_delete_tags(class_attributes, service_context, emitter, **kwargs):
             }]
         }
     }
-    action = Action('delete_tags', action_model, {})
-
-    delete_tags_action = delete_tags
-    delete_tags_action.__doc__ = ActionDocstring(
-        resource_name='Instance',
-        event_emitter=emitter,
-        action_model=action,
-        service_model=service_context.service_model,
-        include_signature=False
-    )
-
-    inject_attribute(class_attributes, 'delete_tags', delete_tags_action)
+    return CustomModeledAction('delete_tags', action_model, delete_tags, event_emitter)
 
 
 def delete_tags(self, **kwargs):

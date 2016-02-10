@@ -19,6 +19,7 @@ from botocore.client import Config
 
 import boto3
 import boto3.utils
+from boto3.ec2.deletetags import create_delete_tags_action
 
 from .resources.factory import ResourceFactory
 
@@ -350,7 +351,7 @@ class Session(object):
             'creating-resource-class.ec2.ServiceResource',
             boto3.utils.lazy_call(
                 'boto3.ec2.createtags.inject_create_tags'))
+
+        delete_tags = create_delete_tags_action(self.events)
         self._session.register(
-            'creating-resource-class.ec2.Instance',
-            boto3.utils.lazy_call(
-                'boto3.ec2.deletetags.inject_delete_tags'))
+            'creating-resource-class.ec2.Instance', delete_tags.inject)

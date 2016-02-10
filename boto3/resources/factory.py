@@ -136,7 +136,7 @@ class ResourceFactory(object):
             self._emitter.emit(
                 'creating-resource-class.%s' % cls_name,
                 class_attributes=attrs, base_classes=base_classes,
-                service_context=service_context, emitter=self._emitter)
+                service_context=service_context, resource_name=resource_name)
         return type(str(cls_name), tuple(base_classes), attrs)
 
     def _load_identifiers(self, attrs, meta, resource_model, resource_name):
