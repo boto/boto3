@@ -133,9 +133,10 @@ class ResourceFactory(object):
 
         base_classes = [ServiceResource]
         if self._emitter is not None:
-            self._emitter.emit('creating-resource-class.%s' % cls_name,
-                               class_attributes=attrs,
-                               base_classes=base_classes)
+            self._emitter.emit(
+                'creating-resource-class.%s' % cls_name,
+                class_attributes=attrs, base_classes=base_classes,
+                service_context=service_context)
         return type(str(cls_name), tuple(base_classes), attrs)
 
     def _load_identifiers(self, attrs, meta, resource_model, resource_name):
