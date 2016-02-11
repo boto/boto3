@@ -13,7 +13,7 @@
 from boto3.resources.action import CustomModeledAction
 
 
-def create_delete_tags_action(event_emitter):
+def inject_delete_tags(event_emitter, **kwargs):
     action_model = {
         'request': {
             'operation': 'DeleteTags',
@@ -24,7 +24,9 @@ def create_delete_tags_action(event_emitter):
             }]
         }
     }
-    return CustomModeledAction('delete_tags', action_model, delete_tags, event_emitter)
+    action = CustomModeledAction(
+        'delete_tags', action_model, delete_tags, event_emitter)
+    action.inject(**kwargs)
 
 
 def delete_tags(self, **kwargs):
