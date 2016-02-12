@@ -1,2 +1,4 @@
 formats:
-        - none
+    - none
+python:
+    setup_py_install: true
