@@ -1,6 +1,16 @@
 Changelog
 =========
 
+Next Release - (TBD)
+--------------------
+* feature:``EC2``: Add delete_tags() action to Instance resource.
+  (`issue 459 <https://github.com/boto/boto3/pull/459>`__)
+* feature:``Session``: Add ``region_name`` property on session.
+  (`issue 414 <https://github.com/boto/boto3/pull/414>`__)
+* bugfix:``S3``: Fix issue with hanging downloads.
+  (`issue 471 <https://github.com/boto/boto3/pull/471>`__)
+
+
 1.2.3 - (2015-12-17)
 --------------------
 
