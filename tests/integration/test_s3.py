@@ -484,6 +484,32 @@ class TestS3Transfers(unittest.TestCase):
                                download_path)
         assert_files_equal(filename, download_path)
 
+    def test_download_file_with_directory_not_exist(self):
+        transfer = self.create_s3_transfer()
+        self.client.put_object(Bucket=self.bucket_name,
+                                Key='foo.txt',
+                                Body=b'foo')
+        self.addCleanup(self.delete_object, 'foo.txt')
+        download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
+                                     'downloaded.txt')
+        with self.assertRaises(IOError):
+            transfer.download_file(self.bucket_name, 'foo.txt', download_path)
+
+    def test_download_large_file_directory_not_exist(self):
+        transfer = self.create_s3_transfer()
+
+        filename = self.files.create_file_with_size(
+            'foo.txt', filesize=20 * 1024 * 1024)
+        with open(filename, 'rb') as f:
+            self.client.put_object(Bucket=self.bucket_name,
+                                   Key='foo.txt',
+                                   Body=f)
+            self.addCleanup(self.delete_object, 'foo.txt')
+        download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
+                                     'downloaded.txt')
+        with self.assertRaises(IOError):
+            transfer.download_file(self.bucket_name, 'foo.txt', download_path)
+
     def test_transfer_methods_through_client(self):
         # This is really just a sanity check to ensure that the interface
         # from the clients work.  We're not exhaustively testing through

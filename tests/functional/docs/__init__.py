@@ -59,21 +59,21 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         return contents[:end_index]
 
     def get_request_parameter_document_block(self, param_name, contents):
-        start_param_document = '    :type %s:' % param_name
+        start_param_document = ':type %s:' % param_name
         start_index = contents.find(start_param_document)
         self.assertNotEqual(start_index, -1, 'Param is not found in contents')
         contents = contents[start_index:]
-        end_index = contents.find('    :type', len(start_param_document))
+        end_index = contents.find(':type', len(start_param_document))
         return contents[:end_index]
 
     def get_response_parameter_document_block(self, param_name, contents):
-        start_param_document = '        **Response Structure**'
+        start_param_document = '**Response Structure**'
         start_index = contents.find(start_param_document)
         self.assertNotEqual(start_index, -1, 'There is no response structure')
 
-        start_param_document = '          - **%s**' % param_name
+        start_param_document = '- **%s**' % param_name
         start_index = contents.find(start_param_document)
         self.assertNotEqual(start_index, -1, 'Param is not found in contents')
         contents = contents[start_index:]
-        end_index = contents.find('          - **', len(start_param_document))
+        end_index = contents.find('- **', len(start_param_document))
         return contents[:end_index]

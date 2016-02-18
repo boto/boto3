@@ -31,3 +31,4 @@ Service Feature Guides
 .. toctree::
 
    dynamodb
+   s3

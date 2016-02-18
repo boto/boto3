@@ -90,6 +90,13 @@ class Session(object):
         return self._session.profile or 'default'
 
     @property
+    def region_name(self):
+        """
+        The **read-only** region name.
+        """
+        return self._session.get_config_variable('region')
+
+    @property
     def events(self):
         """
         The event emitter for a session
@@ -102,7 +109,7 @@ class Session(object):
         """
         self._loader = self._session.get_component('data_loader')
         self._loader.search_paths.append(
-             os.path.join(os.path.dirname(__file__), 'data'))
+            os.path.join(os.path.dirname(__file__), 'data'))
 
     def get_available_services(self):
         """
@@ -343,3 +350,9 @@ class Session(object):
             'creating-resource-class.ec2.ServiceResource',
             boto3.utils.lazy_call(
                 'boto3.ec2.createtags.inject_create_tags'))
+
+        self._session.register(
+            'creating-resource-class.ec2.Instance',
+            boto3.utils.lazy_call(
+                'boto3.ec2.deletetags.inject_delete_tags',
+                event_emitter=self.events))

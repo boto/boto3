@@ -411,7 +411,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         # Accessing a property should call load
         self.assertEqual(resource.e_tag, 'tag',
             'ETag property returned wrong value')
-        action.assert_called_once()
+        self.assertEqual(action.call_count, 1)
 
         # Both params should have been loaded into the data bag
         self.assertIn('ETag', resource.meta.data)
@@ -421,7 +421,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         # instead of making a second call.
         self.assertEqual(resource.last_modified, 'never',
             'LastModified property returned wrong value')
-        action.assert_called_once()
+        self.assertEqual(action.call_count, 1)
 
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_lazy_properties_missing_load(self, action_cls):

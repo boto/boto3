@@ -148,6 +148,10 @@ queue = six.moves.queue
 
 MB = 1024 * 1024
 SHUTDOWN_SENTINEL = object()
+S3_RETRYABLE_ERRORS = (
+    socket.timeout, boto3.compat.SOCKET_ERROR,
+    ReadTimeoutError, IncompleteReadError
+)
 
 
 def random_file_extension(num_digits=8):
@@ -523,8 +527,7 @@ class MultipartDownloader(object):
                         self._ioqueue.put((current_index, chunk))
                         current_index += len(chunk)
                     return
-                except (socket.timeout, socket.error,
-                        ReadTimeoutError, IncompleteReadError) as e:
+                except S3_RETRYABLE_ERRORS as e:
                     logger.debug("Retrying exception caught (%s), "
                                  "retrying request, (attempt %s / %s)", e, i,
                                  max_attempts, exc_info=True)
@@ -535,6 +538,15 @@ class MultipartDownloader(object):
             logger.debug("EXITING _download_range for part: %s", part_index)
 
     def _perform_io_writes(self, filename):
+        try:
+            self._loop_on_io_writes(filename)
+        except Exception as e:
+            logger.debug("Caught exception in IO thread: %s",
+                         e, exc_info=True)
+            self._ioqueue.trigger_shutdown()
+            raise
+
+    def _loop_on_io_writes(self, filename):
         with self._os.open(filename, 'wb') as f:
             while True:
                 task = self._ioqueue.get()
@@ -543,15 +555,9 @@ class MultipartDownloader(object):
                                  "shutting down IO handler.")
                     return
                 else:
-                    try:
-                        offset, data = task
-                        f.seek(offset)
-                        f.write(data)
-                    except Exception as e:
-                        logger.debug("Caught exception in IO thread: %s",
-                                     e, exc_info=True)
-                        self._ioqueue.trigger_shutdown()
-                        raise
+                    offset, data = task
+                    f.seek(offset)
+                    f.write(data)
 
 
 class TransferConfig(object):
@@ -699,10 +705,7 @@ class S3Transfer(object):
             try:
                 return self._do_get_object(bucket, key, filename,
                                            extra_args, callback)
-            except (socket.timeout, socket.error,
-                    ReadTimeoutError, IncompleteReadError) as e:
-                # TODO: we need a way to reset the callback if the
-                # download failed.
+            except S3_RETRYABLE_ERRORS as e:
                 logger.debug("Retrying exception caught (%s), "
                              "retrying request, (attempt %s / %s)", e, i,
                              max_attempts, exc_info=True)
