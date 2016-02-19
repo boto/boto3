@@ -391,6 +391,18 @@ class TestMultipartDownloader(unittest.TestCase):
                           mock.call(Range='bytes=4-7', **extra),
                           mock.call(Range='bytes=8-', **extra)])
 
+    def test_multipart_download_with_multiple_parts_and_extra_args(self):
+        client = mock.Mock()
+        response_body = b'foobarbaz'
+        client.get_object.return_value = {'Body': six.BytesIO(response_body)}
+        downloader = MultipartDownloader(
+            client, TransferConfig(), InMemoryOSLayer({}), SequentialExecutor)
+        extra_args = {'RequestPayer': 'requester'}
+        downloader.download_file(
+            'bucket', 'key', 'filename', len(response_body), extra_args)
+        for call_args in client.get_object.call_args_list:
+            self.assertEqual(call_args[1].get('RequestPayer'), 'requester')
+
     def test_retry_on_failures_from_stream_reads(self):
         # If we get an exception during a call to the response body's .read()
         # method, we should retry the request.
