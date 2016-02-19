@@ -18,6 +18,8 @@ from tests import unittest
 from contextlib import closing
 
 import mock
+from botocore.stub import Stubber
+from botocore.session import Session
 from botocore.vendored import six
 from concurrent import futures
 
@@ -392,16 +394,21 @@ class TestMultipartDownloader(unittest.TestCase):
                           mock.call(Range='bytes=8-', **extra)])
 
     def test_multipart_download_with_multiple_parts_and_extra_args(self):
-        client = mock.Mock()
+        client = Session().create_client('s3')
+        stubber = Stubber(client)
         response_body = b'foobarbaz'
-        client.get_object.return_value = {'Body': six.BytesIO(response_body)}
+        response = {'Body': six.BytesIO(response_body)}
+        expected_params = {
+            'Range': mock.ANY, 'Bucket': mock.ANY, 'Key': mock.ANY,
+            'RequestPayer': 'requester'}
+        stubber.add_response('get_object', response, expected_params)
+        stubber.activate()
         downloader = MultipartDownloader(
             client, TransferConfig(), InMemoryOSLayer({}), SequentialExecutor)
-        extra_args = {'RequestPayer': 'requester'}
         downloader.download_file(
-            'bucket', 'key', 'filename', len(response_body), extra_args)
-        for call_args in client.get_object.call_args_list:
-            self.assertEqual(call_args[1].get('RequestPayer'), 'requester')
+            'bucket', 'key', 'filename', len(response_body),
+            {'RequestPayer': 'requester'})
+        stubber.assert_no_pending_responses()
 
     def test_retry_on_failures_from_stream_reads(self):
         # If we get an exception during a call to the response body's .read()
