@@ -467,7 +467,7 @@ class MultipartDownloader(object):
             # 1 thread for the future that manages IO writes.
             download_parts_handler = functools.partial(
                 self._download_file_as_future,
-                bucket, key, filename, object_size, callback)
+                bucket, key, filename, object_size, extra_args, callback)
             parts_future = controller.submit(download_parts_handler)
 
             io_writes_handler = functools.partial(
@@ -483,13 +483,13 @@ class MultipartDownloader(object):
             future.result()
 
     def _download_file_as_future(self, bucket, key, filename, object_size,
-                                 callback):
+                                 extra_args, callback):
         part_size = self._config.multipart_chunksize
         num_parts = int(math.ceil(object_size / float(part_size)))
         max_workers = self._config.max_concurrency
         download_partial = functools.partial(
             self._download_range, bucket, key, filename,
-            part_size, num_parts, callback)
+            part_size, num_parts, extra_args, callback)
         try:
             with self._executor_cls(max_workers=max_workers) as executor:
                 list(executor.map(download_partial, range(num_parts)))
@@ -506,7 +506,8 @@ class MultipartDownloader(object):
         return range_param
 
     def _download_range(self, bucket, key, filename,
-                        part_size, num_parts, callback, part_index):
+                        part_size, num_parts,
+                        extra_args, callback, part_index):
         try:
             range_param = self._calculate_range_param(
                 part_size, part_index, num_parts)
@@ -517,7 +518,8 @@ class MultipartDownloader(object):
                 try:
                     logger.debug("Making get_object call.")
                     response = self._client.get_object(
-                        Bucket=bucket, Key=key, Range=range_param)
+                        Bucket=bucket, Key=key, Range=range_param,
+                        **extra_args)
                     streaming_body = StreamReaderProgress(
                         response['Body'], callback)
                     buffer_size = 1024 * 16
