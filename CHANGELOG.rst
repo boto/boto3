@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.2.5 - (2016-02-25)
+--------------------
+
+* bugfix:``S3``: Forward ``extra_args`` when using multipart
+  downloads.
+  (`issue 503 <https://github.com/boto/boto3/pull/503>`__)
+
+
 1.2.4 - (2016-02-18)
 --------------------
 * feature:``EC2``: Add delete_tags() action to Instance resource.
