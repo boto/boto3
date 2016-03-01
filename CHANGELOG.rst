@@ -1,8 +1,8 @@
 Changelog
 =========
 
-Next Release (TBD)
-------------------
+1.2.6 - (2016-03-01)
+--------------------
 * bugfix:Resources: Properly alias identifiers which are also in the shape.
 
 
