@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Next Release (TBD)
+------------------
+* bugfix:Resources: Properly alias identifiers which are also in the shape.
+
+
 1.2.5 - (2016-02-25)
 --------------------
 

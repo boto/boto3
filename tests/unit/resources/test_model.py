@@ -34,12 +34,13 @@ class TestModels(BaseTestCase):
         model = ResourceModel('test', {
             'identifiers': [
                 {'name': 'one'},
-                {'name': 'two'}
+                {'name': 'two', 'memberName': 'three'}
             ]
         }, {})
 
         self.assertEqual(model.identifiers[0].name, 'one')
         self.assertEqual(model.identifiers[1].name, 'two')
+        self.assertEqual(model.identifiers[1].member_name, 'three')
 
     def test_resource_action_raw(self):
         model = ResourceModel('test', {
