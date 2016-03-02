@@ -14,6 +14,23 @@ the objects in the bucket.
         print(obj.key)
 
 
+List top-level common prefixes in Amazon S3 bucket
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This example shows how to list all of the top-level common prefixes in an
+Amazon S3 bucket:
+
+.. code-block:: python
+
+    import boto3
+
+    client = boto3.client('s3')
+    paginator = client.get_paginator('list_objects')
+    result = paginator.paginate(Bucket='my-bucket', Delimiter='/')
+        for prefix in result.search('CommonPrefixes'):
+            print(prefix.get('Prefix'))
+
+
 Restore Glacier objects in an Amazon S3 bucket
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
