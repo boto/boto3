@@ -21,6 +21,9 @@ that is only a few hours old, you may need to use path style addressing for
 generating pre-signed POSTs and URLs until the necessary DNS changes have time
 to propagagte.
 
+Note: if you set the addressing style to path style, you HAVE to set the correct
+region.
+
 The preferred way to set the addressing style is to use the ``addressing_style``
 config parameter when you create your client or resource.::
 
@@ -28,7 +31,7 @@ config parameter when you create your client or resource.::
     from botocore.client import Config
 
     # Other valid options here are 'auto' (default) and 'virtual'
-    s3 = boto3.client('s3', config=Config(s3={'addressing_style': 'path'}))
+    s3 = boto3.client('s3', 'us-west-2', config=Config(s3={'addressing_style': 'path'}))
 
 
 Using the Transfer Manager
