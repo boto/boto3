@@ -38,9 +38,10 @@ class Identifier(object):
     :type name: string
     :param name: The name of the identifier
     """
-    def __init__(self, name):
+    def __init__(self, name, member_name=None):
         #: (``string``) The name of the identifier
         self.name = name
+        self.member_name = member_name
 
 
 class Action(object):
@@ -428,7 +429,10 @@ class ResourceModel(object):
 
         for item in self._definition.get('identifiers', []):
             name = self._get_name('identifier', item['name'])
-            identifiers.append(Identifier(name))
+            member_name = item.get('memberName', None)
+            if member_name:
+                member_name = self._get_name('attribute', member_name)
+            identifiers.append(Identifier(name, member_name))
 
         return identifiers
 

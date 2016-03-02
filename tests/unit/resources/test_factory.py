@@ -456,6 +456,35 @@ class TestResourceFactory(BaseTestResourceFactory):
         with self.assertRaises(ResourceLoadException):
             resource.last_modified
 
+    @mock.patch('boto3.resources.factory.ServiceAction')
+    def test_resource_aliases_identifiers(self, action_cls):
+        model = {
+            'shape': 'TestShape',
+            'identifiers': [
+                {'name': 'id', 'memberName': 'foo_id'}
+            ]
+        }
+        shape = DenormalizedStructureBuilder().with_members({
+            'foo_id': {
+                'type': 'string',
+            },
+            'bar': {
+                'type': 'string'
+            },
+        }).build_model()
+        service_model = mock.Mock()
+        service_model.shape_for.return_value = shape
+
+        shape_id = 'baz'
+        resource = self.load(
+            'test', model, service_model=service_model)(shape_id)
+
+        try:
+            self.assertEqual(resource.id, shape_id)
+            self.assertEqual(resource.foo_id, shape_id)
+        except ResourceLoadException:
+            self.fail("Load attempted on identifier alias.")
+
     def test_resource_loads_references(self):
         model = {
             'shape': 'InstanceShape',
