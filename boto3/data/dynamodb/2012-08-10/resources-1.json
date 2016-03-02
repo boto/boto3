@@ -130,6 +130,20 @@
             ]
           }
         }
+      },
+      "waiters":{
+        "Exists": {
+          "waiterName": "TableExists",
+          "params": [
+            { "target": "TableName", "source": "identifier", "name": "Name" }
+          ]
+        },
+        "NotExists": {
+          "waiterName": "TableNotExists",
+          "params": [
+            { "target": "TableName", "source": "identifier", "name": "Name" }
+          ]
+        }
       }
     }
   }
