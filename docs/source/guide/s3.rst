@@ -5,7 +5,34 @@ S3
 
 By following this guide, you will learn how to use features of S3 client that
 are unique to the SDK, specifically the generation and use of pre-signed URLs,
-pre-signed POSTs, and the use of the transfer manager.
+pre-signed POSTs, and the use of the transfer manager. You will also learn how
+to use a few common, but important, settings specific to S3.
+
+
+Changing the Addressing Style
+-----------------------------
+
+S3 supports two different ways to address a bucket, Virtual Host Style and Path
+Style. This guide won't cover all the details of `virtual host addressing`_, but
+you can read up on that in S3's docs. In general, the SDK will handle the
+decision of what style to use for you, but there are some cases where you may
+want to set it yourself. For instance, if you have a CORS configured bucket
+that is only a few hours old, you may need to use path style addressing for
+generating pre-signed POSTs and URLs until the necessary DNS changes have time
+to propagagte.
+
+Note: if you set the addressing style to path style, you HAVE to set the correct
+region.
+
+The preferred way to set the addressing style is to use the ``addressing_style``
+config parameter when you create your client or resource.::
+
+    import boto3
+    from botocore.client import Config
+
+    # Other valid options here are 'auto' (default) and 'virtual'
+    s3 = boto3.client('s3', 'us-west-2', config=Config(s3={'addressing_style': 'path'}))
+
 
 Using the Transfer Manager
 --------------------------
@@ -15,8 +42,8 @@ downloads. Its functions are automatically added into the client when you create
 it, so there is no need to create your own transfer manager. Below you will see
 several examples of how to use it.
 
-The methods on the base client are :py:meth:
-`S3.Client.upload_file` and :py:meth: `S3.Client.download_file`.::
+The methods on the base client are :py:meth:`S3.Client.upload_file` and
+:py:meth:`S3.Client.download_file`::
 
     import boto3
 
@@ -30,8 +57,8 @@ The methods on the base client are :py:meth:
     s3.download_file("bucket-name", "tmp.txt", "tmp2.txt")
 
 If you happen to be using the resource model, the same function are accessed
-through :py:meth: `S3.Object.upload_file` and :py:meth:
-`S3.Object.download_file`.::
+through :py:meth:`S3.Object.upload_file` and
+:py:meth:`S3.Object.download_file`::
 
     import boto3
 
@@ -56,8 +83,8 @@ Generating Presigned URLs
 
 Pre-signed URLs allow you to give your users access to a specific object in your
 bucket without requiring them to have AWS security credentials or permissions.
-To generate a pre-signed URL, use the :py:meth:
-`S3.Client.generate_presigned_url`. method::
+To generate a pre-signed URL, use the
+:py:meth:`S3.Client.generate_presigned_url` method::
 
     import boto3
     import requests
@@ -99,28 +126,7 @@ configured.::
     )
 
 Note: if your bucket is new and you require CORS, it is advised that
-you use signature version 4 signing to avoid virtual host style addressing,
-which can take an hour or more to propagate. Alternatively, you can remove the
-handler which switches the signing method.::
-
-    import boto3
-    from botocore.utils import fix_s3_host
-
-    # Get the service client.
-    s3 = boto3.client('s3')
-
-    # Remove the handler that switches S3 requests to virtual host style
-    # addressing.
-    s3.meta.events.unregister('before-sign.s3', fix_s3_host)
-
-    # Generate the URL to get 'key-name' from 'bucket-name'
-    url = s3.generate_presigned_url(
-        ClientMethod='get_object',
-        Params={
-            'Bucket': 'bucket-name',
-            'Key': 'key-name'
-        }
-    )
+you use path style addressing (which is set by default in signature version 4).
 
 
 Generating Presigned POSTs
@@ -128,7 +134,7 @@ Generating Presigned POSTs
 
 Much like pre-signed URLs, pre-signed POSTs allow you to give write access to a
 user without giving them AWS credentials. The information you need to make the
-POST is returned by the :py:meth: `S3.Client.generate_presigned_post` method::
+POST is returned by the :py:meth:`S3.Client.generate_presigned_post` method::
 
     import boto3
     import requests
@@ -173,28 +179,8 @@ conditions when you generate the POST data.::
         Key='key-name'
     )
 
-If your bucket requires the use of signature version 4, you can elect to use it
-to sign your POST. This does not fundamentally change how you use generator,
-you only need to make sure that the client used has signature version 4
-configured.::
-
-    import boto3
-    import requests
-    from botocore.client import Config
-
-    # Get the service client with sigv4 configured
-    s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
-
-    # Generate the POST attributes. There are no special fields or conidtions
-    # you need to pass in to make sigv4 work.
-    post = s3.generate_presigned_post(
-        Bucket='bucket-name',
-        Key='key-name'
-    )
-
-    # Use the returned values to POST an object. Note that you need to use ALL
-    # of the returned fields in your post.
-    files = {"file": "file_content"}
-    response = requests.post(post["url"], data=post["fields"], files=files)
+Note: if your bucket is new and you require CORS, it is advised that
+you use path style addressing (which is set by default in signature version 4).
 
 .. _s3 transfer manager: http://boto3.readthedocs.org/en/latest/reference/customizations/s3.html#module-boto3.s3.transfer
+.. _virtual host addressing: http://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html
