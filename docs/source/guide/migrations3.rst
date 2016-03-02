@@ -101,7 +101,7 @@ Getting and setting canned access control values in Boto 3 operates on an ``ACL`
 
     # Boto 3
     bucket.Acl().put(ACL='public-read')
-    obj.put(ACL='public-read')
+    obj.Acl().put(ACL='public-read')
 
 It's also possible to retrieve the policy grant information::
 

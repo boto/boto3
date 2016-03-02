@@ -175,14 +175,23 @@ class ResourceFactory(object):
         is defined in the Botocore service JSON, hence the need for
         access to the ``service_model``.
         """
-        if resource_model.shape:
-            shape = service_context.service_model.shape_for(
-                resource_model.shape)
+        if not resource_model.shape:
+            return
 
-            attributes = resource_model.get_attributes(shape)
-            for name, (orig_name, member) in attributes.items():
-                attrs[name] = self._create_autoload_property(
+        shape = service_context.service_model.shape_for(
+            resource_model.shape)
+
+        identifiers = dict((i.member_name, i)
+                           for i in resource_model.identifiers if i.member_name)
+        attributes = resource_model.get_attributes(shape)
+        for name, (orig_name, member) in attributes.items():
+            if name in identifiers:
+                prop = self._create_identifier_alias(
+                    identifier=identifiers[name], member_model=member)
+            else:
+                prop = self._create_autoload_property(
                     name=orig_name, snake_cased=name, member_model=member)
+            attrs[name] = prop
 
     def _load_collections(self, attrs, resource_model, service_context):
         """
@@ -260,6 +269,22 @@ class ResourceFactory(object):
         get_identifier.__doc__ = docstring.IdentifierDocstring(
             resource_name=resource_name,
             identifier_model=identifier,
+            include_signature=False
+        )
+
+        return property(get_identifier)
+
+    def _create_identifier_alias(factory_self, identifier, member_model):
+        """
+        Creates a read-only property that aliases an identifier.
+        """
+        def get_identifier(self):
+            return getattr(self, '_' + identifier.name, None)
+
+        get_identifier.__name__ = str(identifier.member_name)
+        get_identifier.__doc__ = docstring.AttributeDocstring(
+            attr_name=identifier.member_name,
+            attr_model=member_model,
             include_signature=False
         )
 
