@@ -19,6 +19,32 @@ class NoVersionFound(Exception):
     pass
 
 
+class UnknownAPIVersionError(Exception):
+    def __init__(self, service_name, bad_api_version,
+                 available_api_versions):
+        msg = (
+            "The '%s' resource does not an API version of: %s\n"
+            "Valid API versions are: %s"
+            % (service_name, bad_api_version, available_api_versions)
+        )
+        super(UnknownAPIVersionError, self).__init__(msg)
+
+
+class ResourceNotExistsError(Exception):
+    """Raised when you attempt to create a resource that does not exist."""
+    def __init__(self, service_name, available_services, has_low_level_client):
+        msg = (
+            "The '%s' resource does not exist.\n"
+            "The available resources are:\n"
+            "   - %s\n" % (service_name, '\n   - '.join(available_services))
+        )
+        if has_low_level_client:
+            msg += (
+                "\nConsider using a boto3.client('%s') instead "
+                "of a resource for '%s'" % (service_name, service_name))
+        super(ResourceNotExistsError, self).__init__(msg)
+
+
 class RetriesExceededError(Exception):
     def __init__(self, last_exception, msg='Max Retries Exceeded'):
         super(RetriesExceededError, self).__init__(msg)
