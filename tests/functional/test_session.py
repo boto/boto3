@@ -36,3 +36,9 @@ class TestSession(unittest.TestCase):
     def test_can_access_region_property(self):
         session = boto3.session.Session(region_name='us-west-1')
         self.assertEqual(session.region_name, 'us-west-1')
+
+    def test_get_available_partitions(self):
+        self.assertTrue(self.session.get_available_partitions())
+
+    def test_get_available_regions(self):
+        self.assertTrue(self.session.get_available_regions('s3'))

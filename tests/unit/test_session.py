@@ -147,6 +147,26 @@ class TestSession(BaseTestCase):
         names = session.get_available_resources()
         self.assertEqual(names, ['foo', 'bar'])
 
+    def test_get_available_partitions(self):
+        bc_session = mock.Mock()
+        bc_session.get_available_partitions.return_value = ['foo']
+        session = Session(botocore_session=bc_session)
+
+        partitions = session.get_available_partitions()
+        self.assertEqual(partitions, ['foo'])
+
+    def test_get_available_regions(self):
+        bc_session = mock.Mock()
+        bc_session.get_available_regions.return_value = ['foo']
+        session = Session(botocore_session=bc_session)
+
+        partitions = session.get_available_regions('myservice')
+        bc_session.get_available_regions.assert_called_with(
+            service_name='myservice', partition_name='aws',
+            allow_non_regional=False
+        )
+        self.assertEqual(partitions, ['foo'])
+
     def test_create_client(self):
         session = Session(region_name='us-east-1')
         client = session.client('sqs', region_name='us-west-2')
