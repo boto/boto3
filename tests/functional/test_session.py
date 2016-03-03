@@ -38,7 +38,11 @@ class TestSession(unittest.TestCase):
         self.assertEqual(session.region_name, 'us-west-1')
 
     def test_get_available_partitions(self):
-        self.assertTrue(self.session.get_available_partitions())
+        partitions = self.session.get_available_partitions()
+        self.assertIsInstance(partitions, list)
+        self.assertTrue(partitions)
 
     def test_get_available_regions(self):
-        self.assertTrue(self.session.get_available_regions('s3'))
+        regions = self.session.get_available_regions('s3')
+        self.assertIsInstance(regions, list)
+        self.assertTrue(regions)
