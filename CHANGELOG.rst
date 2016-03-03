@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Next Release - (TBD)
+--------------------
+* feature:``Session``: Add ``get_available_partitions`` and
+  ``get_available_regions`` methods to determine partitions and a service's
+  available regions.
+
+
 1.2.6 - (2016-03-01)
 --------------------
 * bugfix:Resources: Properly alias identifiers which are also in the shape.
