@@ -131,6 +131,37 @@ class Session(object):
         """
         return self._loader.list_available_services(type_name='resources-1')
 
+    def get_available_partitions(self):
+        """Lists the available partitions
+
+        :rtype: list
+        :return: Returns a list of partition names (e.g., ["aws", "aws-cn"])
+        """
+        return self._session.get_available_partitions()
+
+    def get_available_regions(self, service_name, partition_name='aws',
+                              allow_non_regional=False):
+        """Lists the region and endpoint names of a particular partition.
+
+        :type service_name: string
+        :param service_name: Name of a service to list endpoint for (e.g., s3).
+
+        :type partition_name: string
+        :param partition_name: Name of the partition to limit endpoints to.
+            (e.g., aws for the public AWS endpoints, aws-cn for AWS China
+            endpoints, aws-us-gov for AWS GovCloud (US) Endpoints, etc.)
+
+        :type allow_non_regional: bool
+        :param allow_non_regional: Set to True to include endpoints that are
+             not regional endpoints (e.g., s3-external-1,
+             fips-us-gov-west-1, etc).
+
+        :return: Returns a list of endpoint names (e.g., ["us-east-1"]).
+        """
+        return self._session.get_available_regions(
+            service_name=service_name, partition_name=partition_name,
+            allow_non_regional=allow_non_regional)
+
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
