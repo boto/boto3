@@ -491,7 +491,7 @@
         "request": {
           "operation": "DescribeAddresses",
           "params": [
-            { "target": "PublicIp", "source": "identifier", "name": "PublicIp" }
+            { "target": "PublicIps[]", "source": "identifier", "name": "PublicIp" }
           ]
         },
         "path": "Addresses[0]"
@@ -1356,6 +1356,16 @@
         }
       ],
       "shape": "InstanceNetworkInterfaceAssociation",
+      "load": {
+        "request": {
+          "operation": "DescribeNetworkInterfaces",
+          "params": [
+            { "target": "Filters[0].Name", "source": "string", "value": "association.association-id" },
+            { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
+          ]
+        },
+        "path": "NetworkInterfaces[0].Association"
+      },
       "actions": {
         "Delete": {
           "request": {
@@ -1423,6 +1433,46 @@
         }
       }
     },
+    "Route": {
+      "identifiers": [
+        { "name": "RouteTableId" },
+        {
+          "name": "DestinationCidrBlock",
+          "memberName": "DestinationCidrBlock"
+        }
+      ],
+      "shape": "Route",
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteRoute",
+            "params": [
+              { "target": "RouteTableId", "source": "identifier", "name": "RouteTableId" },
+              { "target": "DestinationCidrBlock", "source": "identifier", "name": "DestinationCidrBlock" }
+            ]
+          }
+        },
+        "Replace": {
+          "request": {
+            "operation": "ReplaceRoute",
+            "params": [
+              { "target": "RouteTableId", "source": "identifier", "name": "RouteTableId" },
+              { "target": "DestinationCidrBlock", "source": "identifier", "name": "DestinationCidrBlock" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "RouteTable": {
+          "resource": {
+            "type": "RouteTable",
+            "identifiers": [
+              { "target": "Id", "source": "identifier", "name": "RouteTableId" }
+            ]
+          }
+        }
+      }
+    },
     "RouteTable": {
       "identifiers": [
         {
@@ -1461,6 +1511,13 @@
             "params": [
               { "target": "RouteTableId", "source": "identifier", "name": "Id" }
             ]
+          },
+          "resource": {
+            "type": "Route",
+            "identifiers": [
+              { "target": "RouteTableId", "source": "identifier", "name": "Id" },
+              { "target": "DestinationCidrBlock", "source": "requestParameter", "path": "DestinationCidrBlock" }
+            ]
           }
         },
         "CreateTags": {
@@ -1489,6 +1546,16 @@
         }
       },
       "has": {
+        "Routes": {
+          "resource": {
+            "type": "Route",
+            "identifiers": [
+              { "target": "RouteTableId", "source": "identifier", "name": "Id" },
+              { "target": "DestinationCidrBlock", "source": "data", "path": "Routes[].DestinationCidrBlock" }
+            ],
+            "path": "Routes[]"
+          }
+        },
         "Vpc": {
           "resource": {
             "type": "Vpc",
@@ -2421,6 +2488,15 @@
               { "target": "VpcPeeringConnectionId", "source": "identifier", "name": "Id" }
             ]
           }
+        }
+      },
+      "waiters": {
+        "Exists": {
+          "waiterName": "VpcPeeringConnectionExists",
+          "params": [
+            { "target": "VpcPeeringConnectionIds[]", "source": "identifier", "name": "Id" }
+          ],
+          "path": "VpcPeeringConnections[0]"
         }
       },
       "has": {
