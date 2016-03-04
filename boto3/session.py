@@ -16,9 +16,11 @@ import os
 
 import botocore.session
 from botocore.client import Config
+from botocore.exceptions import DataNotFoundError, UnknownServiceError
 
 import boto3
 import boto3.utils
+from boto3.exceptions import ResourceNotExistsError, UnknownAPIVersionError
 
 from .resources.factory import ResourceFactory
 
@@ -238,9 +240,9 @@ class Session(object):
             aws_session_token=aws_session_token, config=config)
 
     def resource(self, service_name, region_name=None, api_version=None,
-               use_ssl=True, verify=None, endpoint_url=None,
-               aws_access_key_id=None, aws_secret_access_key=None,
-               aws_session_token=None, config=None):
+                 use_ssl=True, verify=None, endpoint_url=None,
+                 aws_access_key_id=None, aws_secret_access_key=None,
+                 aws_session_token=None, config=None):
         """
         Create a resource service client by name.
 
@@ -306,11 +308,40 @@ class Session(object):
 
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
+        try:
+            resource_model = self._loader.load_service_model(
+                service_name, 'resources-1', api_version)
+        except UnknownServiceError as e:
+            available = self.get_available_resources()
+            has_low_level_client = (
+                service_name in self.get_available_services())
+            raise ResourceNotExistsError(service_name, available,
+                                         has_low_level_client)
+        except DataNotFoundError as e:
+            # This is because we've provided an invalid API version.
+            available_api_versions = self._loader.list_api_versions(
+                service_name, 'resources-1')
+            raise UnknownAPIVersionError(
+                service_name, api_version, ', '.join(available_api_versions))
+
         if api_version is None:
+            # Even though botocore's load_service_model() can handle
+            # using the latest api_version if not provided, we need
+            # to track this api_version in boto3 in order to ensure
+            # we're pairing a resource model with a client model
+            # of the same API version.  It's possible for the latest
+            # API version of a resource model in boto3 to not be
+            # the same API version as a service model in botocore.
+            # So we need to look up the api_version if one is not
+            # provided to ensure we load the same API version of the
+            # client.
+            #
+            # Note: This is relying on the fact that
+            #   loader.load_service_model(..., api_version=None)
+            # and loader.determine_latest_version(..., 'resources-1')
+            # both load the same api version of the file.
             api_version = self._loader.determine_latest_version(
                 service_name, 'resources-1')
-        resource_model = self._loader.load_service_model(
-            service_name, 'resources-1', api_version)
 
         # Creating a new resource instance requires the low-level client
         # and service model, the resource version and resource JSON data.

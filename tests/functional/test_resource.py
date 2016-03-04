@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import boto3
+from boto3.exceptions import ResourceNotExistsError
 
 import botocore.session
 from tests import unittest
@@ -36,3 +37,14 @@ class TestResourceCustomization(unittest.TestCase):
         resource = session.resource('s3')
         self.assertTrue(hasattr(resource, 'my_method'))
         self.assertEqual(resource.my_method('anything'), 'anything')
+
+
+
+class TestSessionErrorMessages(unittest.TestCase):
+    def test_has_good_error_message_when_no_resource(self):
+        bad_resource_name = 'doesnotexist'
+        err_regex = (
+            '%s.*resource does not exist.' % bad_resource_name
+        )
+        with self.assertRaisesRegexp(ResourceNotExistsError, err_regex):
+            boto3.resource(bad_resource_name)

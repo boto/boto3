@@ -12,11 +12,11 @@
 # language governing permissions and limitations under the License.
 
 from botocore import loaders
-from botocore.exceptions import DataNotFoundError
+from botocore.exceptions import DataNotFoundError, UnknownServiceError
 from botocore.client import Config
 
 from boto3 import __version__
-from boto3.exceptions import NoVersionFound
+from boto3.exceptions import NoVersionFound, ResourceNotExistsError
 from boto3.session import Session
 from tests import mock, BaseTestCase
 
@@ -263,18 +263,47 @@ class TestSession(BaseTestCase):
         session.resource('sqs')
 
         loader.load_service_model.assert_called_with(
-            'sqs', 'resources-1', '2014-11-02')
+            'sqs', 'resources-1', None)
 
     def test_bad_resource_name(self):
         mock_bc_session = mock.Mock()
         loader = mock.Mock(spec=loaders.Loader)
-        loader.determine_latest_version.side_effect = DataNotFoundError(
-            data_path='foo')
+        loader.load_service_model.side_effect = UnknownServiceError(
+            service_name='foo', known_service_names='asdf'
+        )
         mock_bc_session.get_component.return_value = loader
+        loader.list_available_services.return_value = ['good-resource']
+        mock_bc_session.get_available_services.return_value = ['sqs']
 
         session = Session(botocore_session=mock_bc_session)
-        with self.assertRaises(DataNotFoundError):
+        with self.assertRaises(ResourceNotExistsError) as e:
             session.resource('sqs')
+        err_msg = str(e.exception)
+        # 1. should say the resource doesn't exist.
+        self.assertIn('resource does not exist', err_msg)
+        self.assertIn('sqs', err_msg)
+        # 2. Should list available resources you can choose.
+        self.assertIn('good-resource', err_msg)
+        # 3. Should list client if available.
+        self.assertIn('client', err_msg)
+
+    def test_bad_resource_name_with_no_client_has_simple_err_msg(self):
+        mock_bc_session = mock.Mock()
+        loader = mock.Mock(spec=loaders.Loader)
+        loader.load_service_model.side_effect = UnknownServiceError(
+            service_name='foo', known_service_names='asdf'
+        )
+        mock_bc_session.get_component.return_value = loader
+        loader.list_available_services.return_value = ['good-resource']
+        mock_bc_session.get_available_services.return_value = ['good-client']
+
+        session = Session(botocore_session=mock_bc_session)
+        with self.assertRaises(ResourceNotExistsError) as e:
+            session.resource('bad-client')
+        err_msg = str(e.exception)
+        # Shouldn't mention anything about clients because
+        # 'bad-client' it not a valid boto3.client(...)
+        self.assertNotIn('boto3.client', err_msg)
 
     def test_can_reach_events(self):
         mock_bc_session = self.bc_session_cls()
