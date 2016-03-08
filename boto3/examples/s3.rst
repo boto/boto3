@@ -27,8 +27,8 @@ Amazon S3 bucket:
     client = boto3.client('s3')
     paginator = client.get_paginator('list_objects')
     result = paginator.paginate(Bucket='my-bucket', Delimiter='/')
-        for prefix in result.search('CommonPrefixes'):
-            print(prefix.get('Prefix'))
+    for prefix in result.search('CommonPrefixes'):
+        print(prefix.get('Prefix'))
 
 
 Restore Glacier objects in an Amazon S3 bucket
