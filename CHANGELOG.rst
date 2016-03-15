@@ -1,7 +1,7 @@
 Changelog
 =========
 
-Next Release - (TBD)
+1.3.0 - (2016-03-15)
 --------------------
 * feature:``Session``: Add ``get_available_partitions`` and
   ``get_available_regions`` methods to determine partitions and a service's
