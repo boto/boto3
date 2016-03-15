@@ -78,7 +78,7 @@ class TestResourceDocstrings(BaseDocsTest):
             help(self.resource.Sample('id').__class__.foo)
         attribute_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order([
-            '    *(string)* Documents Foo'
+            '    - *(string) --* Documents Foo'
         ], attribute_docstring)
 
     def test_identifier_help(self):
