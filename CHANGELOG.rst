@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.3.0 - (2016-03-15)
+--------------------
+* feature:``Session``: Add ``get_available_partitions`` and
+  ``get_available_regions`` methods to determine partitions and a service's
+  available regions.
+* feature:``EC2``: Update resource model to include ``Route`` resources.
+  (`issue 532 <https://github.com/boto/boto3/pull/532>`__)
+
+
 1.2.6 - (2016-03-01)
 --------------------
 * bugfix:Resources: Properly alias identifiers which are also in the shape.

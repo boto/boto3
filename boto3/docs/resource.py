@@ -169,7 +169,10 @@ class ResourceDocumenter(BaseDocumenter):
             attribute_list.append(attr_name)
             document_attribute(
                 section=attribute_section,
+                service_name=self._service_name,
+                resource_name=self._resource_name,
                 attr_name=attr_name,
+                event_emitter=self._resource.meta.client.meta.events,
                 attr_model=attr_shape
             )
 

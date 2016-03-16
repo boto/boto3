@@ -11,16 +11,28 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 from botocore.docs.utils import py_type_name
+from botocore.docs.params import ResponseParamsDocumenter
 
 from boto3.docs.utils import get_identifier_description
 
 
-def document_attribute(section, attr_name, attr_model, include_signature=True):
+class ResourceShapeDocumenter(ResponseParamsDocumenter):
+    EVENT_NAME = 'resource-shape'
+
+
+def document_attribute(section, service_name, resource_name, attr_name,
+                       event_emitter, attr_model, include_signature=True):
     if include_signature:
         section.style.start_sphinx_py_attr(attr_name)
-    attr_type = '*(%s)* ' % py_type_name(attr_model.type_name)
-    section.write(attr_type)
-    section.include_doc_string(attr_model.documentation)
+    # Note that an attribute may have one, may have many, or may have no
+    # operations that back the resource's shape. So we just set the
+    # operation_name to the resource name if we ever to hook in and modify
+    # a particular attribute.
+    ResourceShapeDocumenter(
+        service_name=service_name, operation_name=resource_name,
+        event_emitter=event_emitter).document_params(
+            section=section,
+            shape=attr_model)
 
 
 def document_identifier(section, resource_name, identifier_model,
