@@ -174,7 +174,7 @@ conditions when you generate the POST data.::
     ]
 
     # Generate the POST attributes
-    post = s3.generage_presigned_post(
+    post = s3.generate_presigned_post(
         Bucket='bucket-name',
         Key='key-name'
     )
