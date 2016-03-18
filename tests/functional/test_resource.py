@@ -39,7 +39,6 @@ class TestResourceCustomization(unittest.TestCase):
         self.assertEqual(resource.my_method('anything'), 'anything')
 
 
-
 class TestSessionErrorMessages(unittest.TestCase):
     def test_has_good_error_message_when_no_resource(self):
         bad_resource_name = 'doesnotexist'
@@ -48,3 +47,9 @@ class TestSessionErrorMessages(unittest.TestCase):
         )
         with self.assertRaisesRegexp(ResourceNotExistsError, err_regex):
             boto3.resource(bad_resource_name)
+
+
+class TestGetAvailableSubresources(unittest.TestCase):
+    def test_s3_available_subresources_exists(self):
+        s3 = boto3.resource('s3')
+        self.assertTrue(hasattr(s3, 'get_available_subresources'))

@@ -856,6 +856,13 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         self.assertIn('PriorityQueue', dir(resource))
         self.assertIn('Message', dir(resource))
 
+    def test_get_available_subresources(self):
+        resource = self.load('test', self.model, self.defs)()
+        self.assertTrue(hasattr(resource, 'get_available_subresources'))
+        subresources = sorted(resource.get_available_subresources())
+        expected = sorted(['PriorityQueue', 'Message', 'QueueObject'])
+        self.assertEqual(subresources, expected)
+
     def test_subresource_missing_all_subresources(self):
         resource = self.load('test', self.model, self.defs)()
         message = resource.Message('url', 'handle')
@@ -875,8 +882,9 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
 
         # Verify we send out the class attributes dict.
         actual_class_attrs = sorted(call_args[1]['class_attributes'])
-        self.assertEqual(actual_class_attrs,
-                         ['Message', 'PriorityQueue', 'QueueObject', 'meta'])
+        self.assertEqual(actual_class_attrs, [
+            'Message', 'PriorityQueue', 'QueueObject',
+            'get_available_subresources', 'meta'])
 
         base_classes = sorted(call_args[1]['base_classes'])
         self.assertEqual(base_classes, [ServiceResource])
