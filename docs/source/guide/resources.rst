@@ -88,7 +88,7 @@ the ``load`` or ``reload`` action. Examples of attributes::
 
     # S3 Object
     obj.last_modified
-    obj.md5
+    obj.e_tag
 
 .. warning::
 
