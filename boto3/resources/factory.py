@@ -248,6 +248,26 @@ class ResourceFactory(object):
                 service_context=service_context
             )
 
+        self._create_available_subresources_command(
+            attrs, resource_model.subresources)
+
+    def _create_available_subresources_command(self, attrs, subresources):
+        _subresources = [subresource.name for subresource in subresources]
+        _subresources = sorted(_subresources)
+
+        def get_available_subresources(factory_self):
+            """
+            Returns a list of all the available sub-resources for this
+            Resource.
+
+            :returns: A list containing the name of each sub-resource for this
+                resource
+            :rtype: list of str
+            """
+            return _subresources
+
+        attrs['get_available_subresources'] = get_available_subresources
+
     def _load_waiters(self, attrs, resource_name, resource_model,
                       service_context):
         """
