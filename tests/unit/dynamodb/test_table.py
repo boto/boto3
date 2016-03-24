@@ -166,6 +166,67 @@ class BaseTransformationTest(unittest.TestCase):
             },
         ])
 
+    def test_never_send_more_than_max_batch_size(self):
+        # Suppose the server sends backs a response that indicates that
+        # all the items were unprocessed.
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                        {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {}
+            },
+        ]
+        with BatchWriter(self.table_name, self.client, flush_amount=2) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo2'})
+            b.put_item(Item={'Hash': 'foo3'})
+
+        # Note how we're never sending more than flush_amount=2.
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        # Even when the server sends us unprocessed items of 2 elements,
+        # we'll still only send 2 at a time, in order.
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        # And then we still see one more unprocessed item so
+        # we need to send another batch.
+        third_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        self.assert_batch_write_calls_are([first_batch, second_batch,
+                                           third_batch])
+
+
     def test_repeated_flushing_on_exit(self):
         # We're going to simulate unprocessed_items
         # returning multiple unprocessed items across calls.
