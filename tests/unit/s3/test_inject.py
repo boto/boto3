@@ -111,3 +111,24 @@ class TestObjectTransferMethods(unittest.TestCase):
         self.obj.meta.client.download_file.assert_called_with(
             Bucket=self.obj.bucket_name, Key=self.obj.key, Filename='foo',
             ExtraArgs=None, Callback=None, Config=None)
+
+
+class TestObejctSummaryLoad(unittest.TestCase):
+    def setUp(self):
+        self.client = mock.Mock()
+        self.resource = mock.Mock()
+        self.resource.meta.client = self.client
+        self.head_object_response = {
+            'ContentLength': 5, 'ETag': 'my-etag'
+        }
+        self.client.head_object.return_value = self.head_object_response
+
+    def test_object_summary_load(self):
+        inject.object_summary_load(self.resource)
+        self.assertEqual(
+            self.resource.meta.data, {'Size': 5, 'ETag': 'my-etag'})
+
+    def test_can_handle_missing_content_length(self):
+        self.head_object_response.pop('ContentLength')
+        inject.object_summary_load(self.resource)
+        self.assertEqual(self.resource.meta.data, {'ETag': 'my-etag'})

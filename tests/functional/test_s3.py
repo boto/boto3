@@ -12,6 +12,8 @@
 # language governing permissions and limitations under the License.
 from tests import unittest
 
+from botocore.stub import Stubber
+
 import boto3.session
 
 
@@ -43,3 +45,44 @@ class TestS3MethodInjection(unittest.TestCase):
                         'upload_file was not injected onto S3 object')
         self.assertTrue(hasattr(obj, 'download_file'),
                         'download_file was not injected onto S3 object')
+
+
+class TestS3ObjectSummary(unittest.TestCase):
+    def setUp(self):
+        self.session = boto3.session.Session(
+            aws_access_key_id='foo', aws_secret_access_key='bar',
+            region_name='us-west-2')
+        self.s3 = self.session.resource('s3')
+        self.obj_summary = self.s3.ObjectSummary('my_bucket', 'my_key')
+        self.obj_summary_size = 12
+        self.stubber = Stubber(self.s3.meta.client)
+        self.stubber.activate()
+        self.stubber.add_response(
+            method='head_object',
+            service_response={
+                'ContentLength': self.obj_summary_size, 'ETag': 'my-etag',
+                'ContentType': 'binary'
+            },
+            expected_params={
+                'Bucket': 'my_bucket',
+                'Key': 'my_key'
+            }
+        )
+
+    def tearDown(self):
+        self.stubber.deactivate()
+
+    def test_has_load(self):
+        self.assertTrue(hasattr(self.obj_summary, 'load'),
+                        'load() was not injected onto ObjectSummary resource.')
+
+    def test_autoloads_correctly(self):
+        # In HeadObject the parameter returned is ContentLength, this
+        # should get mapped to Size of ListObject since the resource uses
+        # the shape returned to by ListObjects.
+        self.assertEqual(self.obj_summary.size, self.obj_summary_size)
+
+    def test_cannot_access_other_non_related_parameters(self):
+        # Even though an HeadObject was used to load this, it should
+        # only expose the attributes from its shape defined in ListObjects.
+        self.assertFalse(hasattr(self.obj_summary, 'content_length'))
