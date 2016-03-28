@@ -20,6 +20,7 @@ General Feature Guides
    resources
    collections
    clients
+   paginators
    session
    configuration
    events
