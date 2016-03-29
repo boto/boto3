@@ -164,6 +164,16 @@ class Session(object):
             service_name=service_name, partition_name=partition_name,
             allow_non_regional=allow_non_regional)
 
+    def get_credentials(self):
+        """
+        Return the :class:`botocore.credential.Credential` object
+        associated with this session.  If the credentials have not
+        yet been loaded, this will attempt to load them.  If they
+        have already been loaded, this will return the cached
+        credentials.
+        """
+        return self._session.get_credentials()
+
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,

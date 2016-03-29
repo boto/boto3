@@ -61,6 +61,29 @@ class TestSession(BaseTestCase):
         bc_session.set_credentials.assert_called_with(
             'key', 'secret', 'token')
 
+    def test_can_get_credentials(self):
+        access_key = 'foo'
+        secret_key = 'bar'
+        token = 'baz'
+
+        creds = mock.Mock()
+        creds.access_key = access_key
+        creds.secret_key = secret_key
+        creds.token = token
+
+        bc_session = self.bc_session_cls.return_value
+        bc_session.get_credentials.return_value = creds
+
+        session = Session(
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
+            aws_session_token=token)
+
+        credentials = session.get_credentials()
+        self.assertEqual(credentials.access_key, access_key)
+        self.assertEqual(credentials.secret_key, secret_key)
+        self.assertEqual(credentials.token, token)
+
     def test_profile_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
 
