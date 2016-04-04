@@ -111,7 +111,7 @@ class BatchWriter(object):
         else:
             self._items_buffer = []
         logger.debug("Batch write sent %s, unprocessed: %s",
-                     self._flush_amount, len(self._items_buffer))
+                     len(items_to_send), len(self._items_buffer))
 
     def __enter__(self):
         return self
