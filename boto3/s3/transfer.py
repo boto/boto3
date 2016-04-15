@@ -72,7 +72,7 @@ client operation.  Here are a few examples using ``upload_file``::
                          extra_args={'ContentType': "application/json"})
 
 
-The ``S3Transfer`` clas also supports progress callbacks so you can
+The ``S3Transfer`` class also supports progress callbacks so you can
 provide transfer progress to users.  Both the ``upload_file`` and
 ``download_file`` methods take an optional ``callback`` parameter.
 Here's an example of how to print a simple progress percentage
@@ -94,7 +94,7 @@ to the user:
                 self._seen_so_far += bytes_amount
                 percentage = (self._seen_so_far / self._size) * 100
                 sys.stdout.write(
-                    "\r%s  %s / %s  (%.2f%%)" % (self._filename, self._seen_so_far,
+                    "\\r%s  %s / %s  (%.2f%%)" % (self._filename, self._seen_so_far,
                                                  self._size, percentage))
                 sys.stdout.flush()
 
@@ -179,7 +179,7 @@ class ReadFileChunk(object):
                  callback=None, enable_callback=True):
         """
 
-        Given a file object shown below:
+        Given a file object shown below::
 
             |___________________________________________________|
             0          |                 |                 full_file_size
