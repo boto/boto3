@@ -237,7 +237,10 @@ class Session(object):
         :param config: Advanced client configuration options. If region_name
             is specified in the client config, its value will take precedence
             over environment variables and configuration values, but not over
-            a region_name value passed explicitly to the method.
+            a region_name value passed explicitly to the method. See
+            `botocore config documentation
+            <http://botocore.readthedocs.org/en/latest/reference/config.html>`_
+            for more details.
 
         :return: Service client instance
 
@@ -314,7 +317,10 @@ class Session(object):
             over environment variables and configuration values, but not over
             a region_name value passed explicitly to the method.  If
             user_agent_extra is specified in the client config, it overrides
-            the default user_agent_extra provided by the resource API.
+            the default user_agent_extra provided by the resource API. See
+            `botocore config documentation
+            <http://botocore.readthedocs.org/en/latest/reference/config.html>`_
+            for more details.
 
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
