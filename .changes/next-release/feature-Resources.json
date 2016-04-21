@@ -1,5 +1,0 @@
-{
-  "category": "Resources", 
-  "type": "feature", 
-  "description": "Add get_available_subresources to Resources (`#113 <https://github.com/boto/boto3/issues/113>`__)"
-}
