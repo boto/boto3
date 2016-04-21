@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Dependencies", 
+    "description": "Relax version constraint of ``futures`` to support version 3.x.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Allow ``config`` object to be provided when creating resources (`issue 325 <https://github.com/boto/boto3/pull/325>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Documentation", 
+    "description": "Add docstrings for resource collections and waiters (`issue 267 <https://github.com/boto/boto3/pull/267>`__, `issue 261 <https://github.com/boto/boto3/pull/261>`__)", 
+    "type": "feature"
+  }
+]

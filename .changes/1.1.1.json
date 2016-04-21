@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``EC2.ServiceResource.create_tags``", 
+    "description": "Fix issue when creating multiple tags. (`issue 160 <https://github.com/boto/boto3/pull/160>`__)", 
+    "type": "bugfix"
+  }
+]

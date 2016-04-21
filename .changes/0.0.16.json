@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Packaging", 
+    "description": "Fix release sdist and whl files from 0.0.15.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Amazon Dynamodb", 
+    "description": "Add resource model for Amazon DynamoDB.", 
+    "type": "feature"
+  }
+]

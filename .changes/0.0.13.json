@@ -1,0 +1,7 @@
+[
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.100.0.", 
+    "type": "feature"
+  }
+]

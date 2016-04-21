@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``Session``", 
+    "description": "Add ``region_name`` property on session. (`issue 414 <https://github.com/boto/boto3/pull/414>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "``S3``", 
+    "description": "Fix issue with hanging downloads. (`issue 471 <https://github.com/boto/boto3/pull/471>`__)", 
+    "type": "bugfix"
+  }
+]

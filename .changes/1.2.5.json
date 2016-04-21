@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``S3``", 
+    "description": "Forward ``extra_args`` when using multipart downloads. (`issue 503 <https://github.com/boto/boto3/pull/503>`__)", 
+    "type": "bugfix"
+  }
+]

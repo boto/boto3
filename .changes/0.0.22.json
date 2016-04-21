@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``s3.client.upload_file``", 
+    "description": "Fix double invocation of callbacks when using signature version 4. (`issue 133 <https://github.com/boto/boto3/pull/133>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "", 
+    "description": "``s3.Bucket.load`` (`issue 128 <https://github.com/boto/boto3/pull/128>`__)", 
+    "type": "bugfix"
+  }
+]
