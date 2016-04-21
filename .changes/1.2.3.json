@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``CloudWatch``", 
+    "description": "Add resource model. (`issue 412 <https://github.com/boto/boto3/pull/412>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "``S3``", 
+    "description": "Add a start_restore() on Object and ObjectSummary resources. (`issue 408 <https://github.com/boto/boto3/pull/408>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Documentation", 
+    "description": "Add examples for S3. (`issue 402 <https://github.com/boto/boto3/pull/402>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Collections", 
+    "description": "Fix regression where filters could not be chained. (`issue 401 <https://github.com/boto/boto3/pull/401>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``S3``", 
+    "description": "Progress callback will be triggered when rewinding stream. (`issue 395 <https://github.com/boto/boto3/pull/395>`__)", 
+    "type": "bugfix"
+  }
+]

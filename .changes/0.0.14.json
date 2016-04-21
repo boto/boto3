@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Resources", 
+    "description": "Update to the latest resource models for", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Amazon S3", 
+    "description": "Add an ``upload_file`` and ``download_file`` to S3 clients that transparently handle parallel multipart transfers.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.102.0.", 
+    "type": "feature"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Resources", 
+    "description": "Add support for batch actions on collections. (`issue 32 <https://github.com/boto/boto3/pull/32>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.78.0", 
+    "type": "feature"
+  }
+]

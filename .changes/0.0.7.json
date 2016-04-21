@@ -1,0 +1,32 @@
+[
+  {
+    "category": "Resources", 
+    "description": "Enable support for Amazon Glacier.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Support plural references and nested JMESPath queries for data members when building parameters and identifiers. (`issue 52 <https://github.com/boto/boto3/pull/52>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Update to the latest resource JSON format. This is a **backward-incompatible** change as not all resources are exposed at the service level anymore. For example, ``s3.Object('bucket', 'key')`` is now ``s3.Bucket('bucket').Object('key')``. (`issue 51 <https://github.com/boto/boto3/pull/51>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Make ``resource.meta`` a proper object. This allows you to do things like ``resource.meta.client``. This is a **backward- incompatible** change. (`issue 45 <https://github.com/boto/boto3/pull/45>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Dependency", 
+    "description": "Update to JMESPath 0.6.1", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.86.0", 
+    "type": "feature"
+  }
+]

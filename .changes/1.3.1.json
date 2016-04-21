@@ -1,0 +1,22 @@
+[
+  {
+    "category": "S3", 
+    "description": "Add custom load to ObjectSummary", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Session", 
+    "description": "Add method to get session credentials", 
+    "type": "feature"
+  }, 
+  {
+    "category": "DynamoDB", 
+    "description": "Ensure batch writer never sends more than flush_amount (`#483 <https://github.com/boto/boto3/issues/483>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Add get_available_subresources to Resources (`#113 <https://github.com/boto/boto3/issues/113>`__)", 
+    "type": "feature"
+  }
+]

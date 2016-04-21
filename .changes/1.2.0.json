@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Docstrings", 
+    "description": "Add docstrings for resource identifiers, attributes, references, and subresources. (`issue 239 <https://github.com/boto/boto3/pull/239>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "``S3``", 
+    "description": "Add ability to configure host addressing style when making requests to Amazon S3. (`botocore issue 673 <https://github.com/boto/botocore/pull/673>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "``IAM``", 
+    "description": "Fix model issue with attached groups, roles, and policies. (`issue 304 <https://github.com/boto/boto3/pull/304>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``EC2.ServiceResource.create_key_pair``", 
+    "description": "Fix model issue where creating key pair does not have a ``key_material`` on ``KeyPair`` resource. (`issue 290 <https://github.com/boto/boto3/pull/290>`__)", 
+    "type": "bugfix"
+  }
+]
