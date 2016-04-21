@@ -1,0 +1,5 @@
+{
+  "category": "DynamoDB", 
+  "type": "bugfix", 
+  "description": "Ensure batch writer never sends more than flush_amount (`#483 <https://github.com/boto/boto3/issues/483>`__)"
+}
