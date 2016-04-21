@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Resources", 
+    "description": "Supports S3, EC2, SQS, SNS, and IAM resources", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Clients", 
+    "description": "Supports low-level clients for most services", 
+    "type": "feature"
+  }
+]

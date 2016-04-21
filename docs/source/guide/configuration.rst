@@ -54,7 +54,7 @@ Method Parameters
 ~~~~~~~~~~~~~~~~~
 
 The first option for providing credentials to boto3 is passing them
-as paramters when creating clients or when creating a ``Session``.
+as parameters when creating clients or when creating a ``Session``.
 For example::
 
     import boto3

@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Collections", 
+    "description": "Remove the ``page_count`` and ``limit`` arguments from ``all()``. Undocument support for the two arguments in the ``filter()`` method. (`issue 119 <https://github.com/boto/boto3/pull/119>`__)", 
+    "type": "breakingchange"
+  }, 
+  {
+    "category": "DynamoDB", 
+    "description": "Add batch writer. (`issue 118 <https://github.com/boto/boto3/pull/118>`__)", 
+    "type": "feature"
+  }
+]

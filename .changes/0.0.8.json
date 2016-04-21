@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Resources", 
+    "description": "Fix Amazon S3 resource identifier order. (`issue 62 <https://github.com/boto/boto3/pull/62>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Fix collection resource hydration path. (`issue 61 <https://github.com/boto/boto3/pull/61>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Re-enable service-level access to all resources, allowing e.g. ``obj = s3.Object('bucket', 'key')``. (`issue 60 <https://github.com/boto/boto3/pull/60>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.87.0", 
+    "type": "feature"
+  }
+]

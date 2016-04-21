@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Packaging", 
+    "description": "Fix an issue with the Amazon S3 ``upload_file`` and ``download_file`` customization. (`issue 85 <https://github.com/boto/boto3/pull/85>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Resource", 
+    "description": "Fix an issue with the Amazon S3 ``BucketNofitication`` resource.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.103.0.", 
+    "type": "feature"
+  }
+]
