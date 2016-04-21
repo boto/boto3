@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``EC2``", 
+    "description": "Update resource model to include ``Route`` resources. (`issue 532 <https://github.com/boto/boto3/pull/532>`__)", 
+    "type": "feature"
+  }
+]

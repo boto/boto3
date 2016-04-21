@@ -1,0 +1,7 @@
+[
+  {
+    "category": "ec2", 
+    "description": "Update resource model. (`issue 129 <https://github.com/boto/boto3/pull/129>`__)", 
+    "type": "feature"
+  }
+]

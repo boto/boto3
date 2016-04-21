@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Identifier", 
+    "description": "Make resource identifiers immutable. (`issue 246 <https://github.com/boto/boto3/pull/246>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "S3", 
+    "description": "Both S3 Bucket and Object obtain upload_file() and download_file() (`issue 243 <https://github.com/boto/boto3/pull/243>`__)", 
+    "type": "feature"
+  }
+]

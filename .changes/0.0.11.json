@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Resources", 
+    "description": "Add Amazon EC2 support for ClassicLink actions and add a delete action to EC2 ``Volume`` resources.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Add a ``load`` operation and ``user`` reference to AWS IAM's ``CurrentUser`` resource. (`issue 72 <https://github.com/boto/boto3/pull/72>`__,", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resources", 
+    "description": "Add resources for AWS IAM managed policies. (`issue 71 <https://github.com/boto/boto3/pull/71>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.97.0", 
+    "type": "feature"
+  }
+]

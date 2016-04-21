@@ -1,0 +1,7 @@
+[
+  {
+    "category": "setup.cfg", 
+    "description": "Fix issue in formatting that broke PyPI distributable", 
+    "type": "bugfix"
+  }
+]

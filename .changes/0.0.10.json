@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Documentation", 
+    "description": "Name collisions are now handled at the resource model layer instead of the factory, meaning that the documentation now uses the correct names. (`issue 67 <https://github.com/boto/boto3/pull/67>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Session", 
+    "description": "Add a ``region_name`` option when creating a session. (`issue 69 <https://github.com/boto/boto3/pull/69>`__, `issue 21 <https://github.com/boto/boto3/issues/21>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Botocore", 
+    "description": "Update to Botocore 0.94.0", 
+    "type": "feature"
+  }
+]

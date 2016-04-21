@@ -1,0 +1,17 @@
+[
+  {
+    "category": "DynamoDB", 
+    "description": "Add document level interface for Table resource (`issue 103 <https://github.com/boto/boto3/pull/103>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "DynamoDB", 
+    "description": "Add ConditionExpression interface for querying and filtering Table resource. (`issue 103 <https://github.com/boto/boto3/pull/103>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Clients", 
+    "description": "Add support for passing of ``botocore.client.Config`` object to instantiation of clients.", 
+    "type": "feature"
+  }
+]
