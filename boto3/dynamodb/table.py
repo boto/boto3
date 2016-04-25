@@ -29,7 +29,7 @@ class TableResource(object):
     def __init__(self, *args, **kwargs):
         super(TableResource, self).__init__(*args, **kwargs)
 
-    def batch_writer(self):
+    def batch_writer(self, auto_dedup=False):
         """Create a batch writer object.
 
         This method creates a context manager for writing
@@ -39,7 +39,9 @@ class TableResource(object):
         in batches.  In addition, the batch writer will also automatically
         handle any unprocessed items and resend them as needed.  All you need
         to do is call ``put_item`` for any items you want to add, and
-        ``delete_item`` for any items you want to delete.
+        ``delete_item`` for any items you want to delete.  In addition, you can
+        specify ``auto_dedup`` if the batch might contain duplicated requests
+        and you want this writer to handle de-dup for you.
 
         Example usage::
 
@@ -50,13 +52,18 @@ class TableResource(object):
                 # You can also delete_items in a batch.
                 batch.delete_item(Key={'HashKey': 'SomeHashKey'})
 
+        :type auto_dedup: bool
+        :param auto_dedup: Automatically de-duplicate requests in
+            a single batch request if set to ``True``.
+            ``False`` by default.
+
         """
-        return BatchWriter(self.name, self.meta.client)
+        return BatchWriter(self.name, self.meta.client, auto_dedup=auto_dedup)
 
 
 class BatchWriter(object):
     """Automatically handle batch writes to DynamoDB for a single table."""
-    def __init__(self, table_name, client, flush_amount=25):
+    def __init__(self, table_name, client, flush_amount=25, auto_dedup=False):
         """
 
         :type table_name: str
@@ -78,19 +85,29 @@ class BatchWriter(object):
             a local buffer before sending a batch_write_item
             request to DynamoDB.
 
+        :type auto_dedup: bool
+        :param auto_dedup: Automatically de-duplicate requests in
+            a single batch request if set to ``True``.
+            ``False`` by default.
 
         """
         self._table_name = table_name
         self._client = client
         self._items_buffer = []
         self._flush_amount = flush_amount
+        self._auto_dedup = auto_dedup
 
     def put_item(self, Item):
-        self._items_buffer.append({'PutRequest': {'Item': Item}})
-        self._flush_if_needed()
+        self._add_request_and_process({'PutRequest': {'Item': Item}})
 
     def delete_item(self, Key):
-        self._items_buffer.append({'DeleteRequest': {'Key': Key}})
+        self._add_request_and_process({'DeleteRequest': {'Key': Key}})
+
+    def _add_request_and_process(self, request):
+        if self._auto_dedup and request in self._items_buffer:
+            logger.debug("With auto_dedup enabled, skipping request:%s", request)
+            return
+        self._items_buffer.append(request)
         self._flush_if_needed()
 
     def _flush_if_needed(self):

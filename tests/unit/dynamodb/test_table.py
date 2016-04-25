@@ -285,3 +285,32 @@ class BaseTransformationTest(unittest.TestCase):
         }
         self.assert_batch_write_calls_are([first_batch, second_batch,
                                            third_batch])
+
+    def test_auto_dedup_for_dup_requests(self):
+        with BatchWriter(self.table_name, self.client,
+                         flush_amount=3, auto_dedup=True) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo1'})
+            b.delete_item(Key={'Hash': 'foo2'})
+            b.delete_item(Key={'Hash': 'foo2'})
+            b.delete_item(Key={'Hash': 'foo3'})
+            b.put_item(Item={'Hash': 'foo4'})
+            b.delete_item(Key={'Hash': 'foo5'})
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo2'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo3'}}},
+                ]
+            }
+        }
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo5'}}},
+                ]
+            }
+        }
+        self.assert_batch_write_calls_are([first_batch, second_batch])

@@ -274,6 +274,24 @@ table.
                 }
             )
 
+The batch writer can help to de-duplicate request by specifying ``auto_dedup=True``
+if you want to bypass no duplication limitation of single batch write request. The error looks like
+``botocore.exceptions.ClientError: An error occurred (ValidationException) when calling the BatchWriteItem operation: Provided list of item keys contains duplicates``.
+It will just write out a single request since all requests are the same in below example.
+
+::
+
+    with table.batch_writer(auto_dedup=True) as batch:
+        for _ in range(50):
+            batch.put_item(
+                Item={
+                    'account_type': 'anonymous',
+                    'username': 'user',
+                    'first_name': 'unknown',
+                    'last_name': 'unknown'
+                }
+            )
+
 
 Querying and Scanning
 ---------------------
