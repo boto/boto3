@@ -29,7 +29,7 @@ class TableResource(object):
     def __init__(self, *args, **kwargs):
         super(TableResource, self).__init__(*args, **kwargs)
 
-    def batch_writer(self, auto_dedup=False):
+    def batch_writer(self, overwrite_by_pkeys=None):
         """Create a batch writer object.
 
         This method creates a context manager for writing
@@ -52,18 +52,18 @@ class TableResource(object):
                 # You can also delete_items in a batch.
                 batch.delete_item(Key={'HashKey': 'SomeHashKey'})
 
-        :type auto_dedup: bool
-        :param auto_dedup: Automatically de-duplicate requests in
-            a single batch request if set to ``True``.
-            ``False`` by default.
+        :type overwrite_by_pkeys: list(string)
+        :param overwrite_by_pkeys: De-duplicate request items in buffer
+            if match new request item on specified primary keys. i.e
+            ``["partition_key1", "sort_key2", "sort_key3"]``
 
         """
-        return BatchWriter(self.name, self.meta.client, auto_dedup=auto_dedup)
+        return BatchWriter(self.name, self.meta.client, overwrite_by_pkeys=overwrite_by_pkeys)
 
 
 class BatchWriter(object):
     """Automatically handle batch writes to DynamoDB for a single table."""
-    def __init__(self, table_name, client, flush_amount=25, auto_dedup=False):
+    def __init__(self, table_name, client, flush_amount=25, overwrite_by_pkeys=None):
         """
 
         :type table_name: str
@@ -85,17 +85,17 @@ class BatchWriter(object):
             a local buffer before sending a batch_write_item
             request to DynamoDB.
 
-        :type auto_dedup: bool
-        :param auto_dedup: Automatically de-duplicate requests in
-            a single batch request if set to ``True``.
-            ``False`` by default.
+        :type overwrite_by_pkeys: list(string)
+        :param overwrite_by_pkeys: De-duplicate request items in buffer
+            if match new request item on specified primary keys. i.e
+            ``["partition_key1", "sort_key2", "sort_key3"]``
 
         """
         self._table_name = table_name
         self._client = client
         self._items_buffer = []
         self._flush_amount = flush_amount
-        self._auto_dedup = auto_dedup
+        self._overwrite_by_pkeys = overwrite_by_pkeys
 
     def put_item(self, Item):
         self._add_request_and_process({'PutRequest': {'Item': Item}})
@@ -104,11 +104,24 @@ class BatchWriter(object):
         self._add_request_and_process({'DeleteRequest': {'Key': Key}})
 
     def _add_request_and_process(self, request):
-        if self._auto_dedup and request in self._items_buffer:
-            logger.debug("With auto_dedup enabled, skipping request:%s", request)
-            return
+        if self._overwrite_by_pkeys:
+            self._remove_dup_pkeys_request_if_any(request)
+            logger.debug("With overwrite_by_pkeys enabled, skipping request:%s", request)
         self._items_buffer.append(request)
         self._flush_if_needed()
+
+    def _remove_dup_pkeys_request_if_any(self, request):
+        pkey_values_new = self._extract_pkey_values(request)
+        for item in self._items_buffer:
+            if self._extract_pkey_values(item) == pkey_values_new:
+                self._items_buffer.remove(item)
+
+    def _extract_pkey_values(self, request):
+        if request.get('PutRequest'):
+            return [ request['PutRequest']['Item'][key] for key in self._overwrite_by_pkeys ]
+        elif request.get('DeleteRequest'):
+            return [ request['DeleteRequest']['Key'][key] for key in self._overwrite_by_pkeys ]
+        return None
 
     def _flush_if_needed(self):
         if len(self._items_buffer) >= self._flush_amount:

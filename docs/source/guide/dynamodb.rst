@@ -274,23 +274,63 @@ table.
                 }
             )
 
-The batch writer can help to de-duplicate request by specifying ``auto_dedup=True``
-if you want to bypass no duplication limitation of single batch write request. The error looks like
+The batch writer can help to de-duplicate request by specifying ``overwrite_by_pkeys=['partition_key', 'sort_key']``
+if you want to bypass no duplication limitation of single batch write request as
 ``botocore.exceptions.ClientError: An error occurred (ValidationException) when calling the BatchWriteItem operation: Provided list of item keys contains duplicates``.
-It will just write out a single request since all requests are the same in below example.
+
+It will drop request items in the buffer if their primary keys(composite) values are
+the same as newly added one, as eventually consistent with streams of individual
+put/delete operations on the same item.
 
 ::
 
-    with table.batch_writer(auto_dedup=True) as batch:
-        for _ in range(50):
-            batch.put_item(
-                Item={
-                    'account_type': 'anonymous',
-                    'username': 'user',
-                    'first_name': 'unknown',
-                    'last_name': 'unknown'
-                }
-            )
+    with table.batch_writer(overwrite_by_pkeys=['partition_key', 'sort_key']) as batch:
+        batch.put_item(
+            Item={
+                'partition_key': 'p1',
+                'sort_key': 's1',
+                'other': '111',
+            }
+        )
+        batch.put_item(
+            Item={
+                'partition_key': 'p1',
+                'sort_key': 's1',
+                'other': '222',
+            }
+        )
+        batch.delete_item(
+            Key={
+                'partition_key': 'p1',
+                'sort_key': 's2'
+            }
+        )
+        batch.put_item(
+            Item={
+                'partition_key': 'p1',
+                'sort_key': 's2',
+                'other': '444',
+            }
+        )
+
+after de-duplicate:
+
+::
+
+    batch.put_item(
+        Item={
+            'partition_key': 'p1',
+            'sort_key': 's1',
+            'other': '222',
+        }
+    )
+    batch.put_item(
+        Item={
+            'partition_key': 'p1',
+            'sort_key': 's2',
+            'other': '444',
+        }
+    )
 
 
 Querying and Scanning

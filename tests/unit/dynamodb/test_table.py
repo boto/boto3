@@ -288,28 +288,100 @@ class BaseTransformationTest(unittest.TestCase):
 
     def test_auto_dedup_for_dup_requests(self):
         with BatchWriter(self.table_name, self.client,
-                         flush_amount=3, auto_dedup=True) as b:
-            b.put_item(Item={'Hash': 'foo1'})
-            b.put_item(Item={'Hash': 'foo1'})
-            b.delete_item(Key={'Hash': 'foo2'})
-            b.delete_item(Key={'Hash': 'foo2'})
-            b.delete_item(Key={'Hash': 'foo3'})
-            b.put_item(Item={'Hash': 'foo4'})
-            b.delete_item(Key={'Hash': 'foo5'})
+                         flush_amount=5, overwrite_by_pkeys=["pkey", "skey"]) as b:
+            # dup 1
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other1'
+            })
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other2'
+            })
+            # dup 2
+            b.delete_item(Key={
+                'pkey': 'foo1',
+                'skey': 'bar2',
+            })
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar2',
+                'other': 'other3'
+            })
+            # dup 3
+            b.put_item(Item={
+                'pkey': 'foo2',
+                'skey': 'bar2',
+                'other': 'other3'
+            })
+            b.delete_item(Key={
+                'pkey': 'foo2',
+                'skey': 'bar2',
+            })
+            # dup 4
+            b.delete_item(Key={
+                'pkey': 'foo2',
+                'skey': 'bar3',
+            })
+            b.delete_item(Key={
+                'pkey': 'foo2',
+                'skey': 'bar3',
+            })
+            # 5
+            b.delete_item(Key={
+                'pkey': 'foo3',
+                'skey': 'bar3',
+            })
+            # 2nd batch
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other1'
+            })
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other2'
+            })
+
         first_batch = {
             'RequestItems': {
                 self.table_name: [
-                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
-                    {'DeleteRequest': {'Key': {'Hash': 'foo2'}}},
-                    {'DeleteRequest': {'Key': {'Hash': 'foo3'}}},
+                    {'PutRequest': { 'Item': {
+                        'pkey': 'foo1',
+                        'skey': 'bar1',
+                        'other': 'other2'
+                    }}},
+                    {'PutRequest': { 'Item': {
+                        'pkey': 'foo1',
+                        'skey': 'bar2',
+                        'other': 'other3'
+                    }}},
+                    {'DeleteRequest': {'Key': {
+                        'pkey': 'foo2',
+                        'skey': 'bar2',
+                    }}},
+                    {'DeleteRequest': {'Key': {
+                        'pkey': 'foo2',
+                        'skey': 'bar3',
+                    }}},
+                    {'DeleteRequest': {'Key': {
+                        'pkey': 'foo3',
+                        'skey': 'bar3',
+                    }}},
                 ]
             }
         }
         second_batch = {
             'RequestItems': {
                 self.table_name: [
-                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
-                    {'DeleteRequest': {'Key': {'Hash': 'foo5'}}},
+                    {'PutRequest': { 'Item': {
+                        'pkey': 'foo1',
+                        'skey': 'bar1',
+                        'other': 'other2'
+                    }}},
                 ]
             }
         }
