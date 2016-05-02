@@ -18,7 +18,6 @@ uploads/downloads.  It handles several things for the user:
 * Automatically switching to multipart transfers when
   a file is over a specific size threshold
 * Uploading/downloading a file in parallel
-* Throttling based on max bandwidth
 * Progress callbacks to monitor transfers
 * Retries.  While botocore handles retries for streaming uploads,
   it is not possible for it to handle retries for streaming
@@ -30,7 +29,6 @@ to configure many aspects of the transfer process including:
 
 * Multipart threshold size
 * Max parallel downloads
-* Max bandwidth
 * Socket timeouts
 * Retry amounts
 
