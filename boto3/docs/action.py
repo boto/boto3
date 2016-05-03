@@ -128,7 +128,8 @@ def document_load_reload_action(section, action_name, resource_name,
     """
     description = (
         'Calls  :py:meth:`%s.Client.%s` to update the attributes of the'
-        ' %s resource' % (
+        ' %s resource. Note that the load and reload methods are '
+        'the same method and can be used interchangeably.' % (
             get_service_module_name(service_model),
             xform_name(load_model.request.operation),
             resource_name)
