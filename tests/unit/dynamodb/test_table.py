@@ -285,3 +285,104 @@ class BaseTransformationTest(unittest.TestCase):
         }
         self.assert_batch_write_calls_are([first_batch, second_batch,
                                            third_batch])
+
+    def test_auto_dedup_for_dup_requests(self):
+        with BatchWriter(self.table_name, self.client,
+                         flush_amount=5, overwrite_by_pkeys=["pkey", "skey"]) as b:
+            # dup 1
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other1'
+            })
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other2'
+            })
+            # dup 2
+            b.delete_item(Key={
+                'pkey': 'foo1',
+                'skey': 'bar2',
+            })
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar2',
+                'other': 'other3'
+            })
+            # dup 3
+            b.put_item(Item={
+                'pkey': 'foo2',
+                'skey': 'bar2',
+                'other': 'other3'
+            })
+            b.delete_item(Key={
+                'pkey': 'foo2',
+                'skey': 'bar2',
+            })
+            # dup 4
+            b.delete_item(Key={
+                'pkey': 'foo2',
+                'skey': 'bar3',
+            })
+            b.delete_item(Key={
+                'pkey': 'foo2',
+                'skey': 'bar3',
+            })
+            # 5
+            b.delete_item(Key={
+                'pkey': 'foo3',
+                'skey': 'bar3',
+            })
+            # 2nd batch
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other1'
+            })
+            b.put_item(Item={
+                'pkey': 'foo1',
+                'skey': 'bar1',
+                'other': 'other2'
+            })
+
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': { 'Item': {
+                        'pkey': 'foo1',
+                        'skey': 'bar1',
+                        'other': 'other2'
+                    }}},
+                    {'PutRequest': { 'Item': {
+                        'pkey': 'foo1',
+                        'skey': 'bar2',
+                        'other': 'other3'
+                    }}},
+                    {'DeleteRequest': {'Key': {
+                        'pkey': 'foo2',
+                        'skey': 'bar2',
+                    }}},
+                    {'DeleteRequest': {'Key': {
+                        'pkey': 'foo2',
+                        'skey': 'bar3',
+                    }}},
+                    {'DeleteRequest': {'Key': {
+                        'pkey': 'foo3',
+                        'skey': 'bar3',
+                    }}},
+                ]
+            }
+        }
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': { 'Item': {
+                        'pkey': 'foo1',
+                        'skey': 'bar1',
+                        'other': 'other2'
+                    }}},
+                ]
+            }
+        }
+        self.assert_batch_write_calls_are([first_batch, second_batch])

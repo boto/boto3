@@ -27,7 +27,7 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
         self.assert_contains_lines_in_order([
             '.. py:class:: DynamoDB.Table(name)',
             '  *   :py:meth:`batch_writer()`',
-            '  .. py:method:: batch_writer()'],
+            '  .. py:method:: batch_writer(overwrite_by_pkeys=None)'],
             self.generated_contents
         )
 
