@@ -69,8 +69,8 @@ class Session(object):
             self._session.set_config_variable('profile', profile_name)
 
         if aws_access_key_id or aws_secret_access_key or aws_session_token:
-            self._session.set_credentials(aws_access_key_id,
-                aws_secret_access_key, aws_session_token)
+            self._session.set_credentials(
+                aws_access_key_id, aws_secret_access_key, aws_session_token)
 
         if region_name is not None:
             self._session.set_config_variable('region', region_name)
@@ -197,26 +197,28 @@ class Session(object):
             of the client.
 
         :type use_ssl: boolean
-        :param use_ssl: Whether or not to use SSL.  By default, SSL is used.  Note that
-            not all services support non-ssl connections.
+        :param use_ssl: Whether or not to use SSL.  By default, SSL is used.
+            Note that not all services support non-ssl connections.
 
         :type verify: boolean/string
-        :param verify: Whether or not to verify SSL certificates.  By default SSL certificates
-            are verified.  You can provide the following values:
+        :param verify: Whether or not to verify SSL certificates.  By default
+            SSL certificates are verified.  You can provide the following
+            values:
 
             * False - do not validate SSL certificates.  SSL will still be
               used (unless use_ssl is False), but SSL certificates
               will not be verified.
             * path/to/cert/bundle.pem - A filename of the CA cert bundle to
-              uses.  You can specify this argument if you want to use a different
-              CA cert bundle than the one used by botocore.
+              uses.  You can specify this argument if you want to use a
+              different CA cert bundle than the one used by botocore.
 
         :type endpoint_url: string
-        :param endpoint_url: The complete URL to use for the constructed client.
-            Normally, botocore will automatically construct the appropriate URL
-            to use when communicating with a service.  You can specify a
-            complete URL (including the "http/https" scheme) to override this
-            behavior.  If this value is provided, then ``use_ssl`` is ignored.
+        :param endpoint_url: The complete URL to use for the constructed
+            client. Normally, botocore will automatically construct the
+            appropriate URL to use when communicating with a service.  You
+            can specify a complete URL (including the "http/https" scheme)
+            to override this behavior.  If this value is provided,
+            then ``use_ssl`` is ignored.
 
         :type aws_access_key_id: string
         :param aws_access_key_id: The access key to use when creating
@@ -275,26 +277,28 @@ class Session(object):
             of the client.
 
         :type use_ssl: boolean
-        :param use_ssl: Whether or not to use SSL.  By default, SSL is used.  Note that
-            not all services support non-ssl connections.
+        :param use_ssl: Whether or not to use SSL.  By default, SSL is used.
+            Note that not all services support non-ssl connections.
 
         :type verify: boolean/string
-        :param verify: Whether or not to verify SSL certificates.  By default SSL certificates
-            are verified.  You can provide the following values:
+        :param verify: Whether or not to verify SSL certificates.  By default
+            SSL certificates are verified.  You can provide the following
+            values:
 
             * False - do not validate SSL certificates.  SSL will still be
               used (unless use_ssl is False), but SSL certificates
               will not be verified.
             * path/to/cert/bundle.pem - A filename of the CA cert bundle to
-              uses.  You can specify this argument if you want to use a different
-              CA cert bundle than the one used by botocore.
+              uses.  You can specify this argument if you want to use a
+              different CA cert bundle than the one used by botocore.
 
         :type endpoint_url: string
-        :param endpoint_url: The complete URL to use for the constructed client.
-            Normally, botocore will automatically construct the appropriate URL
-            to use when communicating with a service.  You can specify a
-            complete URL (including the "http/https" scheme) to override this
-            behavior.  If this value is provided, then ``use_ssl`` is ignored.
+        :param endpoint_url: The complete URL to use for the constructed
+            client. Normally, botocore will automatically construct the
+            appropriate URL to use when communicating with a service.  You
+            can specify a complete URL (including the "http/https" scheme)
+            to override this behavior.  If this value is provided,
+            then ``use_ssl`` is ignored.
 
         :type aws_access_key_id: string
         :param aws_access_key_id: The access key to use when creating
@@ -327,13 +331,13 @@ class Session(object):
         try:
             resource_model = self._loader.load_service_model(
                 service_name, 'resources-1', api_version)
-        except UnknownServiceError as e:
+        except UnknownServiceError:
             available = self.get_available_resources()
             has_low_level_client = (
                 service_name in self.get_available_services())
             raise ResourceNotExistsError(service_name, available,
                                          has_low_level_client)
-        except DataNotFoundError as e:
+        except DataNotFoundError:
             # This is because we've provided an invalid API version.
             available_api_versions = self._loader.list_api_versions(
                 service_name, 'resources-1')
@@ -383,7 +387,7 @@ class Session(object):
                 service_name=service_name, service_model=service_model,
                 resource_json_definitions=resource_model['resources'],
                 service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
-                    self._session, service_name, api_version) 
+                    self._session, service_name, api_version)
         )
 
         # Create the service resource class.

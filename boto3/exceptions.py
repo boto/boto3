@@ -94,6 +94,7 @@ class DynamoDBOperationNotSupportedError(Boto3Error):
 # FIXME: Backward compatibility
 DynanmoDBOperationNotSupportedError = DynamoDBOperationNotSupportedError
 
+
 class DynamoDBNeedsConditionError(Boto3Error):
     """Raised when input is not a condition"""
     def __init__(self, value):
