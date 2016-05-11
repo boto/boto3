@@ -40,7 +40,7 @@ class ResourceFactory(object):
         self._emitter = emitter
 
     def load_from_definition(self, resource_name,
-            single_resource_json_definition, service_context):
+                             single_resource_json_definition, service_context):
         """
         Loads a resource from a model, creating a new
         :py:class:`~boto3.resources.base.ServiceResource` subclass
@@ -62,8 +62,6 @@ class ResourceFactory(object):
         :rtype: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         :return: The service or resource class.
         """
-
-
         logger.debug('Loading %s:%s', service_context.service_name,
                      resource_name)
 
@@ -114,7 +112,7 @@ class ResourceFactory(object):
             attrs=attrs, resource_model=resource_model,
             service_context=service_context)
 
-        #References and Subresources 
+        # References and Subresources
         self._load_has_relations(
             attrs=attrs, resource_name=resource_name,
             resource_model=resource_model, service_context=service_context
@@ -183,8 +181,9 @@ class ResourceFactory(object):
         shape = service_context.service_model.shape_for(
             resource_model.shape)
 
-        identifiers = dict((i.member_name, i)
-                           for i in resource_model.identifiers if i.member_name)
+        identifiers = dict(
+            (i.member_name, i)
+            for i in resource_model.identifiers if i.member_name)
         attributes = resource_model.get_attributes(shape)
         for name, (orig_name, member) in attributes.items():
             if name in identifiers:
@@ -243,7 +242,7 @@ class ResourceFactory(object):
             # This is a sub-resource class you can create
             # by passing in an identifier, e.g. s3.Bucket(name).
             attrs[subresource.name] = self._create_class_partial(
-                subresource_model=subresource, 
+                subresource_model=subresource,
                 resource_name=resource_name,
                 service_context=service_context
             )
@@ -280,7 +279,7 @@ class ResourceFactory(object):
                 resource_waiter_model=waiter,
                 resource_name=resource_name,
                 service_context=service_context
-        )
+            )
 
     def _create_identifier(factory_self, identifier, resource_name):
         """
@@ -340,7 +339,8 @@ class ResourceFactory(object):
                     self.load()
                 else:
                     raise ResourceLoadException(
-                        '{0} has no load method'.format(self.__class__.__name__))
+                        '{0} has no load method'.format(
+                            self.__class__.__name__))
 
             return self.meta.data.get(name)
 
@@ -364,6 +364,7 @@ class ResourceFactory(object):
         """
         waiter = WaiterAction(resource_waiter_model,
                               waiter_resource_name=resource_waiter_model.name)
+
         def do_waiter(self, *args, **kwargs):
             waiter(self, *args, **kwargs)
 
@@ -445,9 +446,10 @@ class ResourceFactory(object):
         class' constructor.
         """
         name = subresource_model.resource.type
-        # We need a new method here because we want access to the
-        # instance's client.
+
         def create_resource(self, *args, **kwargs):
+            # We need a new method here because we want access to the
+            # instance's client.
             positional_args = []
 
             # We lazy-load the class to handle circular references.
@@ -469,7 +471,7 @@ class ResourceFactory(object):
                     positional_args.append(value)
 
             return partial(resource_cls, *positional_args,
-                client=self.meta.client)(*args, **kwargs)
+                           client=self.meta.client)(*args, **kwargs)
 
         create_resource.__name__ = str(name)
         create_resource.__doc__ = docstring.SubResourceDocstring(

@@ -58,12 +58,14 @@ class TableResource(object):
             ``["partition_key1", "sort_key2", "sort_key3"]``
 
         """
-        return BatchWriter(self.name, self.meta.client, overwrite_by_pkeys=overwrite_by_pkeys)
+        return BatchWriter(self.name, self.meta.client,
+                           overwrite_by_pkeys=overwrite_by_pkeys)
 
 
 class BatchWriter(object):
     """Automatically handle batch writes to DynamoDB for a single table."""
-    def __init__(self, table_name, client, flush_amount=25, overwrite_by_pkeys=None):
+    def __init__(self, table_name, client, flush_amount=25,
+                 overwrite_by_pkeys=None):
         """
 
         :type table_name: str
@@ -106,7 +108,8 @@ class BatchWriter(object):
     def _add_request_and_process(self, request):
         if self._overwrite_by_pkeys:
             self._remove_dup_pkeys_request_if_any(request)
-            logger.debug("With overwrite_by_pkeys enabled, skipping request:%s", request)
+            logger.debug("With overwrite_by_pkeys enabled, skipping "
+                         "request:%s", request)
         self._items_buffer.append(request)
         self._flush_if_needed()
 
@@ -118,9 +121,11 @@ class BatchWriter(object):
 
     def _extract_pkey_values(self, request):
         if request.get('PutRequest'):
-            return [ request['PutRequest']['Item'][key] for key in self._overwrite_by_pkeys ]
+            return [request['PutRequest']['Item'][key]
+                    for key in self._overwrite_by_pkeys]
         elif request.get('DeleteRequest'):
-            return [ request['DeleteRequest']['Key'][key] for key in self._overwrite_by_pkeys ]
+            return [request['DeleteRequest']['Key'][key]
+                    for key in self._overwrite_by_pkeys]
         return None
 
     def _flush_if_needed(self):

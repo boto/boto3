@@ -73,7 +73,6 @@ class Action(object):
         self.path = definition.get('path')
 
 
-
 class DefinitionWithParams(object):
     """
     An item which has parameters exposed via the ``params`` property.

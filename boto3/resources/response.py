@@ -14,7 +14,6 @@
 import jmespath
 from botocore import xform_name
 
-from ..exceptions import ResourceLoadException
 from .params import get_data_member
 
 
@@ -242,13 +241,14 @@ class ResourceHandler(object):
                 response_item = None
                 if search_response:
                     response_item = search_response[i]
-                response.append(self.handle_response_item(resource_cls,
-                    parent, identifiers, response_item))
+                response.append(
+                    self.handle_response_item(resource_cls, parent,
+                                              identifiers, response_item))
         elif all_not_none(identifiers.values()):
             # All identifiers must always exist, otherwise the resource
             # cannot be instantiated.
-            response = self.handle_response_item(resource_cls,
-                parent, identifiers, search_response)
+            response = self.handle_response_item(
+                resource_cls, parent, identifiers, search_response)
         else:
             # The response should be empty, but that may mean an
             # empty dict, list, or None based on whether we make
@@ -258,8 +258,9 @@ class ResourceHandler(object):
             if self.operation_name is not None:
                 # A remote service call was made, so try and determine
                 # its shape.
-                response = build_empty_response(self.search_path,
-                    self.operation_name, self.service_context.service_model)
+                response = build_empty_response(
+                    self.search_path, self.operation_name,
+                    self.service_context.service_model)
 
         return response
 
