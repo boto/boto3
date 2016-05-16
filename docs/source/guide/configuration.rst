@@ -62,14 +62,14 @@ For example::
         's3',
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
-        aws_session_token=SESSION_TOKN,
+        aws_session_token=SESSION_TOKEN,
     )
 
     # Or via the Session
     session = boto3.Session(
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
-        aws_session_token=SESSION_TOKN,
+        aws_session_token=SESSION_TOKEN,
     )
 
 where ``ACCESS_KEY``, ``SECRET_KEY`` and ``SESSION_TOKEN`` are variables
