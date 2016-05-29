@@ -50,7 +50,7 @@ Once configured, you may begin using Boto 3::
     for bucket in boto3.resource('s3').buckets.all():
         print(bucket.name)
 
-See the :ref:`tutorial_list` and `Boto 3 Documentation <http://boto3.readthedocs.org/>`__ for more information.
+See the :ref:`tutorial_list` and `Boto 3 Documentation <https://boto3.readthedocs.io/>`__ for more information.
 
 The rest of this document will describe specific common usage scenarios of Boto 2 code and how to accomplish the same tasks with Boto 3.
 

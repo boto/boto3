@@ -1,5 +1,5 @@
 For more information, please see the official docs at
-http://boto3.readthedocs.org/
+https://boto3.readthedocs.io/
 
 Contributing Code
 -----------------

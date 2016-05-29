@@ -241,7 +241,7 @@ class Session(object):
             over environment variables and configuration values, but not over
             a region_name value passed explicitly to the method. See
             `botocore config documentation
-            <http://botocore.readthedocs.org/en/latest/reference/config.html>`_
+            <https://botocore.readthedocs.io/en/latest/reference/config.html>`_
             for more details.
 
         :return: Service client instance
@@ -323,7 +323,7 @@ class Session(object):
             user_agent_extra is specified in the client config, it overrides
             the default user_agent_extra provided by the resource API. See
             `botocore config documentation
-            <http://botocore.readthedocs.org/en/latest/reference/config.html>`_
+            <https://botocore.readthedocs.io/en/latest/reference/config.html>`_
             for more details.
 
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
