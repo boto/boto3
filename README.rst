@@ -12,12 +12,12 @@ services that are supported.
 
 
 .. _boto: https://docs.pythonboto.org/
-.. _`Read the Docs`: https://boto3.readthedocs.org/en/latest/
+.. _`Read the Docs`: https://boto3.readthedocs.io/en/latest/
 .. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
     :target: https://travis-ci.org/boto/boto3
     :alt: Build Status
-.. |Docs| image:: https://readthedocs.org/projects/boto3/badge/?version=latest&style=flat
-    :target: https://boto3.readthedocs.org/en/latest/
+.. |Docs| image:: https://readthedocs.io/projects/boto3/badge/?version=latest&style=flat
+    :target: https://boto3.readthedocs.io/en/latest/
     :alt: Read the docs
 .. |Downloads| image:: http://img.shields.io/pypi/dm/boto3.svg?style=flat
     :target: https://pypi.python.org/pypi/boto3/
