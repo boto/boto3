@@ -176,7 +176,9 @@ conditions when you generate the POST data.::
     # Generate the POST attributes
     post = s3.generate_presigned_post(
         Bucket='bucket-name',
-        Key='key-name'
+        Key='key-name',
+        Fields=fields,
+        Conditions=conditions
     )
 
 Note: if your bucket is new and you require CORS, it is advised that
