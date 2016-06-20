@@ -59,3 +59,48 @@ restoration is finished.
             # Print out objects whose restoration is complete
             elif 'ongoing-request="false"' in obj.restore:
                 print('Restoration complete: %s' % obj.key)
+
+
+Uploading/downloading files using SSE Customer Keys
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This example shows how to use SSE-C to upload objects using
+server side encryption with a customer provided key.
+
+First, we'll need a 32 byte key.  For this example, we'll
+randomly generate a key but you can use any 32 byte key
+you want.  Remember, you must the same key to download
+the object.  If you lose the encryption key, you lose
+the object.
+
+Also note how we don't have to provide the SSECustomerKeyMD5.
+Boto3 will automatically compute this value for us.
+
+
+.. code-block:: python
+
+    import boto3
+    import os
+
+    BUCKET = 'your-bucket-name'
+    KEY = os.urandom(32)
+    s3 = boto3.client('s3')
+
+    print("Uploading S3 object with SSE-C")
+    s3.put_object(Bucket=BUCKET,
+                  Key='encrypt-key',
+                  Body=b'foobar',
+                  SSECustomerKey=KEY,
+                  SSECustomerAlgorithm='AES256')
+    print("Done")
+
+    # Getting the object:
+    print("Getting S3 object...")
+    # Note how we're using the same ``KEY`` we
+    # created earlier.
+    response = s3.get_object(Bucket=BUCKET,
+                             Key='encrypt-key',
+                             SSECustomerKey=KEY,
+                             SSECustomerAlgorithm='AES256')
+    print("Done, response body:")
+    print(response['Body'].read())
