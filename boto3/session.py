@@ -81,7 +81,8 @@ class Session(object):
         self._register_default_handlers()
 
     def __repr__(self):
-        return 'Session(region={0})'.format(
+        return '{0}(region_name={1})'.format(
+            self.__class__.__name__,
             repr(self._session.get_config_variable('region')))
 
     @property

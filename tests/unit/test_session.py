@@ -29,7 +29,19 @@ class TestSession(BaseTestCase):
 
         session = Session('abc123', region_name='us-west-2')
 
-        self.assertEqual(repr(session), 'Session(region=\'us-west-2\')')
+        self.assertEqual(repr(session), 'Session(region_name=\'us-west-2\')')
+
+    def test_repr_on_subclasses(self):
+        bc_session = self.bc_session_cls.return_value
+        bc_session.get_credentials.return_value.access_key = 'abc123'
+        bc_session.get_config_variable.return_value = 'us-west-2'
+
+        class MySession(Session):
+            pass
+
+        session = MySession('abc123', region_name='us-west-2')
+
+        self.assertEqual(repr(session), 'MySession(region_name=\'us-west-2\')')
 
     def test_can_access_region_name(self):
         bc_session = self.bc_session_cls.return_value
