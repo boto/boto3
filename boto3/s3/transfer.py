@@ -128,26 +128,12 @@ from s3transfer.exceptions import RetriesExceededError as \
 from s3transfer.manager import TransferConfig as S3TransferConfig
 from s3transfer.manager import TransferManager
 from s3transfer.subscribers import BaseSubscriber
-from s3transfer.utils import OSUtils as S3TransferOSUtils
+from s3transfer.utils import OSUtils
 
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 
 MB = 1024 * 1024
-
-
-class OSUtils(S3TransferOSUtils):
-    def open_file_chunk_reader(self, filename, start_byte, size, callback):
-        callbacks = None
-        if callback:
-            # We need to wrap the callback in the ProgressCallbackInvoker
-            # because the read callbacks will always be invoked with
-            # the keyword argument ``bytes_transferred`` which would break
-            # if the callback relied on a positional argument of a different
-            # name, which most likely did.
-            callbacks = [ProgressCallbackInvoker(callback).on_progress]
-        return super(OSUtils, self).open_file_chunk_reader(
-            filename, start_byte, size, callbacks)
 
 
 class TransferConfig(S3TransferConfig):

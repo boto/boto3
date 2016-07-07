@@ -10,9 +10,6 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import os
-import tempfile
-import shutil
 from tests import unittest
 
 import mock
@@ -23,32 +20,6 @@ from boto3.exceptions import S3UploadFailedError
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig, ProgressCallbackInvoker
 from boto3.s3.transfer import ClientError, S3TransferRetriesExceededError
-
-
-class TestOSUtils(unittest.TestCase):
-    def setUp(self):
-        self.tempdir = tempfile.mkdtemp()
-        self.filename = os.path.join(self.tempdir, 'myfile')
-        self.contents = b'my contents'
-        with open(self.filename, 'wb') as f:
-            f.write(self.contents)
-        self.osutil = OSUtils()
-
-    def tearDown(self):
-        shutil.rmtree(self.tempdir)
-
-    def test_open_file_chunk_reader(self):
-        read_chunk = self.osutil.open_file_chunk_reader(
-            self.filename, 0, len(self.contents), None)
-        self.assertEqual(read_chunk.read(), self.contents)
-
-    def test_open_file_chunk_reader_with_callback(self):
-        callback = mock.Mock()
-        read_chunk = self.osutil.open_file_chunk_reader(
-            self.filename, 0, len(self.contents), callback)
-        read_chunk.enable_callback()
-        self.assertEqual(read_chunk.read(), self.contents)
-        callback.assert_called_with(len(self.contents))
 
 
 class TestTransferConfig(unittest.TestCase):
