@@ -72,7 +72,7 @@ class TestS3Transfer(unittest.TestCase):
     def setUp(self):
         self.client = mock.Mock()
         self.manager = mock.Mock(TransferManager(self.client))
-        self.transfer = S3Transfer.from_transfer_manager(self.manager)
+        self.transfer = S3Transfer(manager=self.manager)
         self.callback = mock.Mock()
 
     def assert_callback_wrapped_in_subscriber(self, call_args):
@@ -138,3 +138,19 @@ class TestS3Transfer(unittest.TestCase):
         transfer = S3Transfer(
             client=mock.Mock(), config=TransferConfig(), osutil=OSUtils())
         self.assertIsInstance(transfer, S3Transfer)
+
+    def test_client_or_manager_is_required(self):
+        with self.assertRaises(ValueError):
+            S3Transfer()
+
+    def test_client_and_manager_are_mutually_exclusive(self):
+        with self.assertRaises(ValueError):
+            S3Transfer(self.client, manager=self.manager)
+
+    def test_config_and_manager_are_mutually_exclusive(self):
+        with self.assertRaises(ValueError):
+            S3Transfer(config=mock.Mock(), manager=self.manager)
+
+    def test_osutil_and_manager_are_mutually_exclusive(self):
+        with self.assertRaises(ValueError):
+            S3Transfer(osutil=mock.Mock(), manager=self.manager)

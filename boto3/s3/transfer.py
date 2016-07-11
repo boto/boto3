@@ -174,19 +174,25 @@ class S3Transfer(object):
     ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
     ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
 
-    def __init__(self, client, config=None, osutil=None):
+    def __init__(self, client=None, config=None, osutil=None, manager=None):
+        if not client and not manager:
+            raise ValueError(
+                'Either a boto3.Client or s3transfer.manager.TransferManager '
+                'must be provided'
+            )
+        if manager and any([client, config, osutil]):
+            raise ValueError(
+                'Manager cannot be provided with client, config, '
+                'nor osutil. These parameters are mutually exclusive.'
+            )
         if config is None:
             config = TransferConfig()
         if osutil is None:
             osutil = OSUtils()
-        self._manager = TransferManager(client, config, osutil)
-
-    @classmethod
-    def from_transfer_manager(cls, transfer_manager):
-        """Instantiate S3Transfer from s3transfer.TransferManager instance"""
-        cls_instance = super(S3Transfer, cls).__new__(cls)
-        cls_instance._manager = transfer_manager
-        return cls_instance
+        if manager:
+            self._manager = manager
+        else:
+            self._manager = TransferManager(client, config, osutil)
 
     def upload_file(self, filename, bucket, key,
                     callback=None, extra_args=None):
