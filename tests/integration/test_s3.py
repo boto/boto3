@@ -237,7 +237,6 @@ class TestS3Resource(unittest.TestCase):
         self.assertEqual(len(versions), 0)
 
 
-
 class TestS3Transfers(unittest.TestCase):
     """Tests for the high level boto3.s3.transfer module."""
 
@@ -280,6 +279,19 @@ class TestS3Transfers(unittest.TestCase):
         public_read = [g['Grantee'].get('URI', '') for g in grants
                        if g['Permission'] == 'READ']
         self.assertIn('groups/global/AllUsers', public_read[0])
+
+    def test_copy(self):
+        self.client.put_object(
+            Bucket=self.bucket_name, Key='foo', Body='beach')
+        self.addCleanup(self.delete_object, 'foo')
+
+        self.client.copy(
+            CopySource={'Bucket': self.bucket_name, 'Key': 'foo'},
+            Bucket=self.bucket_name, Key='bar'
+        )
+        self.addCleanup(self.delete_object, 'bar')
+
+        self.object_exists('bar')
 
     def test_upload_below_threshold(self):
         config = boto3.s3.transfer.TransferConfig(

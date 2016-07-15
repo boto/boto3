@@ -81,6 +81,7 @@ class TestBucketTransferMethods(unittest.TestCase):
 
     def setUp(self):
         self.bucket = mock.Mock(name='my_bucket')
+        self.copy_source = {'Bucket': 'foo', 'Key': 'bar'}
 
     def test_upload_file_proxies_to_meta_client(self):
         inject.bucket_upload_file(self.bucket, Filename='foo', Key='key')
@@ -94,11 +95,18 @@ class TestBucketTransferMethods(unittest.TestCase):
             Bucket=self.bucket.name, Key='key', Filename='foo',
             ExtraArgs=None, Callback=None, Config=None)
 
+    def test_copy(self):
+        inject.bucket_copy(self.bucket, self.copy_source, Key='key')
+        self.bucket.meta.client.copy.assert_called_with(
+            CopySource=self.copy_source, Bucket=self.bucket.name, Key='key',
+            ExtraArgs=None, Callback=None, SourceClient=None, Config=None)
+
 
 class TestObjectTransferMethods(unittest.TestCase):
 
     def setUp(self):
         self.obj = mock.Mock(bucket_name='my_bucket', key='my_key')
+        self.copy_source = {'Bucket': 'foo', 'Key': 'bar'}
 
     def test_upload_file_proxies_to_meta_client(self):
         inject.object_upload_file(self.obj, Filename='foo')
@@ -111,6 +119,13 @@ class TestObjectTransferMethods(unittest.TestCase):
         self.obj.meta.client.download_file.assert_called_with(
             Bucket=self.obj.bucket_name, Key=self.obj.key, Filename='foo',
             ExtraArgs=None, Callback=None, Config=None)
+
+    def test_copy(self):
+        inject.object_copy(self.obj, self.copy_source)
+        self.obj.meta.client.copy.assert_called_with(
+            CopySource=self.copy_source, Bucket=self.obj.bucket_name,
+            Key=self.obj.key, ExtraArgs=None, Callback=None,
+            SourceClient=None, Config=None)
 
 
 class TestObejctSummaryLoad(unittest.TestCase):
