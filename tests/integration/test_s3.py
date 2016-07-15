@@ -252,6 +252,7 @@ class TestS3Transfers(unittest.TestCase):
 
     def setUp(self):
         self.files = FileCreator()
+        self.progress = 0
 
     def tearDown(self):
         self.files.remove_all()
@@ -323,6 +324,17 @@ class TestS3Transfers(unittest.TestCase):
 
         self.object_exists('foo')
         self.assertEqual(self.progress, chunksize * 3)
+
+    def test_download_fileobj(self):
+        fileobj = six.BytesIO()
+        self.client.put_object(
+            Bucket=self.bucket_name, Key='foo', Body=b'beach')
+        self.addCleanup(self.delete_object, 'foo')
+
+        self.client.download_fileobj(
+            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj)
+
+        self.assertEqual(fileobj.getvalue(), b'beach')
 
     def test_upload_below_threshold(self):
         config = boto3.s3.transfer.TransferConfig(

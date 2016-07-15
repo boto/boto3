@@ -109,6 +109,13 @@ class TestBucketTransferMethods(unittest.TestCase):
             Bucket=self.bucket.name, Fileobj=fileobj, Key='key',
             ExtraArgs=None, Callback=None, Config=None)
 
+    def test_download_fileobj(self):
+        obj = six.BytesIO()
+        inject.bucket_download_fileobj(self.bucket, Key='key', Fileobj=obj)
+        self.bucket.meta.client.download_fileobj.assert_called_with(
+            Bucket=self.bucket.name, Key='key', Fileobj=obj, ExtraArgs=None,
+            Callback=None, Config=None)
+
 
 class TestObjectTransferMethods(unittest.TestCase):
 
@@ -140,6 +147,13 @@ class TestObjectTransferMethods(unittest.TestCase):
         inject.object_upload_fileobj(self.obj, Fileobj=fileobj)
         self.obj.meta.client.upload_fileobj.assert_called_with(
             Bucket=self.obj.bucket_name, Fileobj=fileobj, Key=self.obj.key,
+            ExtraArgs=None, Callback=None, Config=None)
+
+    def test_download_fileobj(self):
+        fileobj = six.BytesIO()
+        inject.object_download_fileobj(self.obj, Fileobj=fileobj)
+        self.obj.meta.client.download_fileobj.assert_called_with(
+            Bucket=self.obj.bucket_name, Key=self.obj.key, Fileobj=fileobj,
             ExtraArgs=None, Callback=None, Config=None)
 
 

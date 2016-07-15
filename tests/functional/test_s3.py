@@ -345,6 +345,151 @@ class TestUploadFileobj(BaseTransferTest):
         self.stubber.assert_no_pending_responses()
 
 
+class TestDownloadFileobj(BaseTransferTest):
+    def setUp(self):
+        super(TestDownloadFileobj, self).setUp()
+        self.contents = b'foo'
+        self.fileobj = six.BytesIO()
+
+    def stub_single_part_download(self):
+        self.stub_head(content_length=len(self.contents))
+        self.stub_get_object(self.contents)
+
+    def stub_get_object(self, full_contents, start_byte=0, end_byte=None):
+        """
+        Stubs out the get_object operation.
+
+        :param full_contents: The FULL contents of the object
+        :param start_byte: The first byte to grab.
+        :param end_byte: The last byte to grab.
+        """
+        get_object_response = {}
+        expected_params = {}
+        contents = full_contents
+        end_byte_range = end_byte
+
+        # If the start byte is set and the end byte is not, the end byte is
+        # the last byte.
+        if start_byte != 0 and end_byte is None:
+            end_byte = len(full_contents) - 1
+
+        # The range on get object where the the end byte is the last byte
+        # should set the input range as e.g. Range='bytes=3-'
+        if end_byte == len(full_contents) - 1:
+            end_byte_range = ''
+
+        # If this is a ranged get, ContentRange needs to be returned,
+        # contents needs to be pruned, and Range needs to be an expected param.
+        if end_byte is not None:
+            contents = full_contents[start_byte:end_byte+1]
+            part_range = 'bytes=%s-%s' % (start_byte, end_byte_range)
+            content_range = 'bytes=%s-%s/%s' % (
+                start_byte, end_byte, len(full_contents))
+            get_object_response['ContentRange'] = content_range
+            expected_params['Range'] = part_range
+
+        get_object_response.update({
+            "AcceptRanges": "bytes",
+            "ETag": self.etag,
+            "ContentLength": len(contents),
+            "ContentType": "binary/octet-stream",
+            "Body": six.BytesIO(contents),
+            "ResponseMetadata": {
+                "HTTPStatusCode": 200
+            }
+        })
+        expected_params.update({
+            "Bucket": self.bucket,
+            "Key": self.key
+        })
+
+        self.stubber.add_response(
+            method='get_object', service_response=get_object_response,
+            expected_params=expected_params)
+
+    def stub_multipart_download(self, contents, part_size, num_parts):
+        self.stub_head(content_length=len(contents))
+
+        for i in range(num_parts):
+            start_byte = i * part_size
+            end_byte = (i + 1) * part_size - 1
+            self.stub_get_object(
+                full_contents=contents, start_byte=start_byte,
+                end_byte=end_byte)
+
+    def test_client_download(self):
+        self.stub_single_part_download()
+        with self.stubber:
+            self.s3.meta.client.download_fileobj(
+                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj)
+
+        self.assertEqual(self.fileobj.getvalue(), self.contents)
+        self.stubber.assert_no_pending_responses()
+
+    def test_raises_value_error_on_invalid_fileobj(self):
+        with self.stubber:
+            with self.assertRaises(ValueError):
+                self.s3.meta.client.download_fileobj(
+                    Bucket=self.bucket, Key=self.key, Fileobj='foo')
+
+    def test_bucket_download(self):
+        self.stub_single_part_download()
+        bucket = self.s3.Bucket(self.bucket)
+        with self.stubber:
+            bucket.download_fileobj(Key=self.key, Fileobj=self.fileobj)
+
+        self.assertEqual(self.fileobj.getvalue(), self.contents)
+        self.stubber.assert_no_pending_responses()
+
+    def test_object_download(self):
+        self.stub_single_part_download()
+        obj = self.s3.Object(self.bucket, self.key)
+        with self.stubber:
+            obj.download_fileobj(Fileobj=self.fileobj)
+
+        self.assertEqual(self.fileobj.getvalue(), self.contents)
+        self.stubber.assert_no_pending_responses()
+
+    def test_multipart_download(self):
+        self.contents = b'A' * 55
+        self.stub_multipart_download(
+            contents=self.contents, part_size=5, num_parts=11)
+        transfer_config = TransferConfig(
+            multipart_chunksize=5, multipart_threshold=1,
+            max_concurrency=1)
+
+        with self.stubber:
+            self.s3.meta.client.download_fileobj(
+                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj,
+                Config=transfer_config)
+
+        self.assertEqual(self.fileobj.getvalue(), self.contents)
+        self.stubber.assert_no_pending_responses()
+
+    def test_download_progress(self):
+        self.contents = b'A' * 55
+        self.stub_multipart_download(
+            contents=self.contents, part_size=5, num_parts=11)
+        transfer_config = TransferConfig(
+            multipart_chunksize=5, multipart_threshold=1,
+            max_concurrency=1)
+
+        def progress_callback(amount):
+            self.progress += amount
+            self.progress_times_called += 1
+
+        with self.stubber:
+            self.s3.meta.client.download_fileobj(
+                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj,
+                Config=transfer_config, Callback=progress_callback)
+
+        # Assert that the progress callback was called the correct number of
+        # times with the correct amounts.
+        self.assertEqual(self.progress_times_called, 11)
+        self.assertEqual(self.progress, 55)
+        self.stubber.assert_no_pending_responses()
+
+
 class TestS3ObjectSummary(unittest.TestCase):
     def setUp(self):
         self.session = boto3.session.Session(
