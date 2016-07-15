@@ -21,6 +21,7 @@ def inject_s3_transfer_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', upload_file)
     utils.inject_attribute(class_attributes, 'download_file', download_file)
     utils.inject_attribute(class_attributes, 'copy', copy)
+    utils.inject_attribute(class_attributes, 'upload_fileobj', upload_fileobj)
 
 
 def inject_bucket_methods(class_attributes, **kwargs):
@@ -29,6 +30,8 @@ def inject_bucket_methods(class_attributes, **kwargs):
     utils.inject_attribute(
         class_attributes, 'download_file', bucket_download_file)
     utils.inject_attribute(class_attributes, 'copy', bucket_copy)
+    utils.inject_attribute(
+        class_attributes, 'upload_fileobj', bucket_upload_fileobj)
 
 
 def inject_object_methods(class_attributes, **kwargs):
@@ -36,6 +39,8 @@ def inject_object_methods(class_attributes, **kwargs):
     utils.inject_attribute(
         class_attributes, 'download_file', object_download_file)
     utils.inject_attribute(class_attributes, 'copy', object_copy)
+    utils.inject_attribute(
+        class_attributes, 'upload_fileobj', object_upload_fileobj)
 
 
 def inject_object_summary_methods(class_attributes, **kwargs):
@@ -356,3 +361,142 @@ def object_copy(self, CopySource, ExtraArgs=None, Callback=None,
         CopySource=CopySource, Bucket=self.bucket_name, Key=self.key,
         ExtraArgs=ExtraArgs, Callback=Callback, SourceClient=SourceClient,
         Config=Config)
+
+
+def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
+                   Callback=None, Config=None):
+    """Upload a file-like object to S3.
+
+    The file-like object must be in binary mode.
+
+    This is a managed transfer which will perform a multipart upload in
+    multiple threads if necessary.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.client('s3')
+
+        with open('filename', 'rb') as data:
+            s3.upload_fileobj(data, 'mybucket', 'mykey')
+
+    :type Fileobj: a file-like object
+    :param Fileobj: A file-like object to upload. At a minimum, it must
+        implement the `read` method, and must return bytes.
+
+    :type Bucket: str
+    :param Bucket: The name of the bucket to upload to.
+
+    :type Key: str
+    :param Key: The name of the key to upload to.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the upload.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        upload.
+    """
+    if not hasattr(Fileobj, 'read'):
+        raise ValueError('Fileobj must implement read')
+
+    subscribers = None
+    if Callback is not None:
+        subscribers = [ProgressCallbackInvoker(Callback)]
+
+    config = Config
+    if config is None:
+        config = TransferConfig()
+
+    with TransferManager(self, config) as manager:
+        future = manager.upload(
+            fileobj=Fileobj, bucket=Bucket, key=Key,
+            extra_args=ExtraArgs, subscribers=subscribers)
+        return future.result()
+
+
+def bucket_upload_fileobj(self, Fileobj, Key, ExtraArgs=None,
+                          Callback=None, Config=None):
+    """Upload a file-like object to this bucket.
+
+    The file-like object must be in binary mode.
+
+    This is a managed transfer which will perform a multipart upload in
+    multiple threads if necessary.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        bucket = s3.Bucket('mybucket')
+
+        with open('filename', 'rb') as data:
+            bucket.upload_fileobj(data, 'mykey')
+
+    :type Fileobj: a file-like object
+    :param Fileobj: A file-like object to upload. At a minimum, it must
+        implement the `read` method, and must return bytes.
+
+    :type Key: str
+    :param Key: The name of the key to upload to.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the upload.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        upload.
+    """
+    return self.meta.client.upload_fileobj(
+        Fileobj=Fileobj, Bucket=self.name, Key=Key, ExtraArgs=ExtraArgs,
+        Callback=Callback, Config=Config)
+
+
+def object_upload_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
+                          Config=None):
+    """Upload a file-like object to this object.
+
+    The file-like object must be in binary mode.
+
+    This is a managed transfer which will perform a multipart upload in
+    multiple threads if necessary.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        bucket = s3.Bucket('mybucket')
+        obj = bucket.Object('mykey')
+
+        with open('filename', 'rb') as data:
+            obj.upload_fileobj(data)
+
+    :type Fileobj: a file-like object
+    :param Fileobj: A file-like object to upload. At a minimum, it must
+        implement the `read` method, and must return bytes.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the upload.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        upload.
+    """
+    return self.meta.client.upload_fileobj(
+        Fileobj=Fileobj, Bucket=self.bucket_name, Key=self.key,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
