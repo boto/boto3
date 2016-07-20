@@ -10,15 +10,17 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from boto3.s3.transfer import S3Transfer
-from boto3 import utils
-
+from s3transfer.manager import TransferManager, TransferConfig
 from botocore.exceptions import ClientError
+
+from boto3.s3.transfer import S3Transfer, ProgressCallbackInvoker
+from boto3 import utils
 
 
 def inject_s3_transfer_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', upload_file)
     utils.inject_attribute(class_attributes, 'download_file', download_file)
+    utils.inject_attribute(class_attributes, 'copy', copy)
 
 
 def inject_bucket_methods(class_attributes, **kwargs):
@@ -26,12 +28,14 @@ def inject_bucket_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', bucket_upload_file)
     utils.inject_attribute(
         class_attributes, 'download_file', bucket_download_file)
+    utils.inject_attribute(class_attributes, 'copy', bucket_copy)
 
 
 def inject_object_methods(class_attributes, **kwargs):
     utils.inject_attribute(class_attributes, 'upload_file', object_upload_file)
     utils.inject_attribute(
         class_attributes, 'download_file', object_download_file)
+    utils.inject_attribute(class_attributes, 'copy', object_copy)
 
 
 def inject_object_summary_methods(class_attributes, **kwargs):
@@ -184,3 +188,171 @@ def object_download_file(self, Filename,
     return self.meta.client.download_file(
         Bucket=self.bucket_name, Key=self.key, Filename=Filename,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+
+
+def copy(self, CopySource, Bucket, Key, ExtraArgs=None, Callback=None,
+         SourceClient=None, Config=None):
+    """Copy an object from one S3 location to another.
+
+    This is a managed transfer which will perform a multipart copy in
+    multiple threads if necessary.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        copy_source = {
+            'Bucket': 'mybucket',
+            'Key': 'mykey'
+        }
+        s3.meta.client.copy(copy_source, 'otherbucket', 'otherkey')
+
+    :type CopySource: dict
+    :param CopySource: The name of the source bucket, key name of the
+        source object, and optional version ID of the source object. The
+        dictionary format is:
+        ``{'Bucket': 'bucket', 'Key': 'key', 'VersionId': 'id'}``. Note
+        that the ``VersionId`` key is optional and may be omitted.
+
+    :type Bucket: str
+    :param Bucket: The name of the bucket to copy to
+
+    :type Key: str
+    :param Key: The name of the key to copy to
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the copy.
+
+    :type SourceClient: botocore or boto3 Client
+    :param SourceClient: The client to be used for operation that
+        may happen at the source object. For example, this client is
+        used for the head_object that determines the size of the copy.
+        If no client is provided, the current client is used as the client
+        for the source object.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        copy.
+    """
+    subscribers = None
+    if Callback is not None:
+        subscribers = [ProgressCallbackInvoker(Callback)]
+
+    config = Config
+    if config is None:
+        config = TransferConfig()
+
+    with TransferManager(self, config) as manager:
+        future = manager.copy(
+            copy_source=CopySource, bucket=Bucket, key=Key,
+            extra_args=ExtraArgs, subscribers=subscribers,
+            source_client=SourceClient)
+        return future.result()
+
+
+def bucket_copy(self, CopySource, Key, ExtraArgs=None, Callback=None,
+                SourceClient=None, Config=None):
+    """Copy an object from one S3 location to an object in this bucket.
+
+    This is a managed transfer which will perform a multipart copy in
+    multiple threads if necessary.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        copy_source = {
+            'Bucket': 'mybucket',
+            'Key': 'mykey'
+        }
+        bucket = s3.Bucket('otherbucket')
+        bucket.copy(copy_source, 'otherkey')
+
+    :type CopySource: dict
+    :param CopySource: The name of the source bucket, key name of the
+        source object, and optional version ID of the source object. The
+        dictionary format is:
+        ``{'Bucket': 'bucket', 'Key': 'key', 'VersionId': 'id'}``. Note
+        that the ``VersionId`` key is optional and may be omitted.
+
+    :type Key: str
+    :param Key: The name of the key to copy to
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the copy.
+
+    :type SourceClient: botocore or boto3 Client
+    :param SourceClient: The client to be used for operation that
+        may happen at the source object. For example, this client is
+        used for the head_object that determines the size of the copy.
+        If no client is provided, the current client is used as the client
+        for the source object.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        copy.
+    """
+    return self.meta.client.copy(
+        CopySource=CopySource, Bucket=self.name, Key=Key, ExtraArgs=ExtraArgs,
+        Callback=Callback, SourceClient=SourceClient, Config=Config)
+
+
+def object_copy(self, CopySource, ExtraArgs=None, Callback=None,
+                SourceClient=None, Config=None):
+    """Copy an object from one S3 location to this object.
+
+    This is a managed transfer which will perform a multipart copy in
+    multiple threads if necessary.
+
+    Usage::
+
+        import boto3
+        s3 = boto3.resource('s3')
+        copy_source = {
+            'Bucket': 'mybucket',
+            'Key': 'mykey'
+        }
+        bucket = s3.Bucket('otherbucket')
+        obj = bucket.Object('otherkey')
+        obj.copy(copy_source)
+
+    :type CopySource: dict
+    :param CopySource: The name of the source bucket, key name of the
+        source object, and optional version ID of the source object. The
+        dictionary format is:
+        ``{'Bucket': 'bucket', 'Key': 'key', 'VersionId': 'id'}``. Note
+        that the ``VersionId`` key is optional and may be omitted.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the copy.
+
+    :type SourceClient: botocore or boto3 Client
+    :param SourceClient: The client to be used for operation that
+        may happen at the source object. For example, this client is
+        used for the head_object that determines the size of the copy.
+        If no client is provided, the current client is used as the client
+        for the source object.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        copy.
+    """
+    return self.meta.client.copy(
+        CopySource=CopySource, Bucket=self.bucket_name, Key=self.key,
+        ExtraArgs=ExtraArgs, Callback=Callback, SourceClient=SourceClient,
+        Config=Config)

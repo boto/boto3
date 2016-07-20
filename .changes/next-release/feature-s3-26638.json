@@ -1,0 +1,5 @@
+{
+  "description": "Add managed copies to S3 client, Bucket, and Object.",
+  "category": "s3",
+  "type": "feature"
+}
