@@ -133,7 +133,8 @@ from s3transfer.utils import OSUtils
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 
-MB = 1024 * 1024
+KB = 1024
+MB = KB * KB
 
 
 class TransferConfig(S3TransferConfig):
@@ -147,13 +148,15 @@ class TransferConfig(S3TransferConfig):
                  max_concurrency=10,
                  multipart_chunksize=8 * MB,
                  num_download_attempts=5,
-                 max_io_queue=100):
+                 max_io_queue=100,
+                 io_chunksize=64 * KB):
         super(TransferConfig, self).__init__(
             multipart_threshold=multipart_threshold,
             max_request_concurrency=max_concurrency,
             multipart_chunksize=multipart_chunksize,
             num_download_attempts=num_download_attempts,
-            max_io_queue_size=max_io_queue
+            max_io_queue_size=max_io_queue,
+            io_chunksize=io_chunksize,
         )
         # Some of the argument names are not the same as the inherited
         # S3TransferConfig so we add aliases so you can still access the
