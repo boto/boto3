@@ -123,6 +123,7 @@ transfer.  For example:
 
 """
 from botocore.exceptions import ClientError
+from botocore.compat import six
 from s3transfer.exceptions import RetriesExceededError as \
     S3TransferRetriesExceededError
 from s3transfer.manager import TransferConfig as S3TransferConfig
@@ -201,6 +202,9 @@ class S3Transfer(object):
         Variants have also been injected into S3 client, Bucket and Object.
         You don't have to use S3Transfer.upload_file() directly.
         """
+        if not isinstance(filename, six.string_types):
+            raise ValueError('Filename must be a string')
+
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
             filename, bucket, key, extra_args, subscribers)
@@ -222,6 +226,9 @@ class S3Transfer(object):
         Variants have also been injected into S3 client, Bucket and Object.
         You don't have to use S3Transfer.download_file() directly.
         """
+        if not isinstance(filename, six.string_types):
+            raise ValueError('Filename must be a string')
+
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
             bucket, key, filename, extra_args, subscribers)

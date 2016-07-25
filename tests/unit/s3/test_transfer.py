@@ -154,3 +154,13 @@ class TestS3Transfer(unittest.TestCase):
     def test_osutil_and_manager_are_mutually_exclusive(self):
         with self.assertRaises(ValueError):
             S3Transfer(osutil=mock.Mock(), manager=self.manager)
+
+    def test_upload_requires_string_filename(self):
+        transfer = S3Transfer(client=mock.Mock())
+        with self.assertRaises(ValueError):
+            transfer.upload_file(filename=object(), bucket='foo', key='bar')
+
+    def test_download_requires_string_filename(self):
+        transfer = S3Transfer(client=mock.Mock())
+        with self.assertRaises(ValueError):
+            transfer.download_file(bucket='foo', key='bar', filename=object())
