@@ -165,7 +165,99 @@ that the callback gets invoked each time progress is made on the transfer::
 
 Downloads
 ~~~~~~~~~
-TODO
+The managed download methods are exposed in both the client and resource
+interfaces of ``boto3``:
+
+* :py:class:`S3.Client` method to download an object to a file by name: :py:meth:`S3.Client.download_file`
+* :py:class:`S3.Client` method to download an object to a writeable file-like object: :py:meth:`S3.Client.download_fileobj`
+* :py:class:`S3.Bucket` method to download an object to a file by name: :py:meth:`S3.Bucket.download_file`
+* :py:class:`S3.Bucket` method to download an object to a writeable file-like object: :py:meth:`S3.Bucket.download_fileobj`
+* :py:class:`S3.Object` method to download an object to a file by name: :py:meth:`S3.Object.download_file`
+* :py:class:`S3.Object` method to download an object to a writeable file-like object: :py:meth:`S3.Object.download_fileobj`
+
+.. note::
+
+   Even though there is a ``download_file`` and ``download_fileobj`` method for
+   a variety of classes, they all share the exact same functionality.
+   Other than for convenience, there are no benefits from using one method from
+   one class over using the same method for a different class.
+
+
+To download to a file by name, use one of the ``download_file``
+methods::
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Download object at bucket-name with key-name to tmp.txt
+    s3.download_file("bucket-name", "key-name", "tmp.txt")
+
+
+To download to a writeable file-like object, use one of the
+``download_fileobj`` methods. Note that this file-like object **must**
+allow binary to be written to it, **not** just text::
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Download object at bucket-name with key-name to file-like object
+    with open("tmp.txt", "wb") as f:
+        s3.download_fileobj("bucket-name", "key-name", f)
+
+
+To download using any extra parameters such as version ids, use the
+``ExtraArgs`` parameter::
+
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Download object at bucket-name with key-name to tmp.txt
+    s3.download_file(
+        "bucket-name", "key-name", "tmp.txt",
+        ExtraArgs={"VersionId": "my-version-id"}
+    )
+
+
+All valid ``ExtraArgs`` are listed at :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`
+
+To track the progess of a transfer, a progress callback can be provided such
+that the callback gets invoked each time progress is made on the transfer::
+
+    import boto3
+
+    class ProgressPercentage(object):
+        def __init__(self, filename):
+            self._filename = filename
+            self._size = float(os.path.getsize(filename))
+            self._seen_so_far = 0
+            self._lock = threading.Lock()
+        def __call__(self, bytes_amount):
+            # To simplify we'll assume this is hooked up
+            # to a single filename.
+            with self._lock:
+                self._seen_so_far += bytes_amount
+                percentage = (self._seen_so_far / self._size) * 100
+                sys.stdout.write(
+                    "\r%s  %s / %s  (%.2f%%)" % (
+                        self._filename, self._seen_so_far, self._size,
+                        percentage))
+                sys.stdout.flush()
+
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Download object at bucket-name with key-name to tmp.txt
+    s3.download_file(
+        "bucket-name", "key-name", "tmp.txt",
+        Callback=ProgressPercentage("tmp.txt"))
 
 
 Copies
