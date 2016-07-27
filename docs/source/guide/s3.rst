@@ -230,12 +230,14 @@ All valid ``ExtraArgs`` are listed at :py:attr:`boto3.s3.transfer.S3Transfer.ALL
 To track the progess of a transfer, a progress callback can be provided such
 that the callback gets invoked each time progress is made on the transfer::
 
+    import sys
+    import threading
+
     import boto3
 
     class ProgressPercentage(object):
         def __init__(self, filename):
             self._filename = filename
-            self._size = float(os.path.getsize(filename))
             self._seen_so_far = 0
             self._lock = threading.Lock()
         def __call__(self, bytes_amount):
@@ -243,13 +245,10 @@ that the callback gets invoked each time progress is made on the transfer::
             # to a single filename.
             with self._lock:
                 self._seen_so_far += bytes_amount
-                percentage = (self._seen_so_far / self._size) * 100
                 sys.stdout.write(
-                    "\r%s  %s / %s  (%.2f%%)" % (
-                        self._filename, self._seen_so_far, self._size,
-                        percentage))
+                    "\r%s --> %s bytes transferred" % (
+                        self._filename, self._seen_so_far))
                 sys.stdout.flush()
-
 
     # Get the service client
     s3 = boto3.client('s3')
@@ -331,7 +330,7 @@ existing object, use the ``ExtraArgs`` parameter::
         'Key': 'mykey'
     }
     s3.copy(
-        copy_source, 'otherbucket', 'otherkey',
+        copy_source, 'bucket', 'mykey',
         ExtraArgs={
             "Metadata": {
                 "my-new-key": "my-new-value"
@@ -344,12 +343,14 @@ existing object, use the ``ExtraArgs`` parameter::
 To track the progess of a transfer, a progress callback can be provided such
 that the callback gets invoked each time progress is made on the transfer::
 
+    import sys
+    import threading
+
     import boto3
 
     class ProgressPercentage(object):
         def __init__(self, filename):
             self._filename = filename
-            self._size = float(os.path.getsize(filename))
             self._seen_so_far = 0
             self._lock = threading.Lock()
         def __call__(self, bytes_amount):
@@ -357,17 +358,13 @@ that the callback gets invoked each time progress is made on the transfer::
             # to a single filename.
             with self._lock:
                 self._seen_so_far += bytes_amount
-                percentage = (self._seen_so_far / self._size) * 100
                 sys.stdout.write(
-                    "\r%s  %s / %s  (%.2f%%)" % (
-                        self._filename, self._seen_so_far, self._size,
-                        percentage))
+                    "\r%s --> %s bytes transferred" % (
+                        self._filename, self._seen_so_far))
                 sys.stdout.flush()
-
 
     # Get the service client
     s3 = boto3.client('s3')
-
 
     # Copies object located in mybucket at mykey
     # to the location otherbucket at otherkey
