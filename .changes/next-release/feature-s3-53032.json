@@ -1,0 +1,5 @@
+{
+  "description": "Add managed file-like object uploads to S3 client, Bucket, and Object.",
+  "type": "feature",
+  "category": "s3"
+}
