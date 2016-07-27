@@ -151,6 +151,36 @@ class TransferConfig(S3TransferConfig):
                  num_download_attempts=5,
                  max_io_queue=100,
                  io_chunksize=64 * KB):
+        """Configuration object for managed S3 transfers
+
+        :param multipart_threshold: The transfer size threshold for which
+            multipart uploads, downloads, and copies will automatically be
+            triggered.
+
+        :param max_concurrency: The maximum number of threads that will be
+            making requests to perform a transfer.
+
+        :param multipart_chunksize: The partition size of each part for a
+            multipart transfer.
+
+        :param num_download_attempts: The number of download attempts that
+            will be retried upon errors with downloading an object in S3.
+            Note that these retries account for errors that occur when
+            streaming  down the data from s3 (i.e. socket errors and read
+            timeouts that occur after recieving an OK response from s3).
+            Other retryable exceptions such as throttling errors and 5xx
+            errors are already retried by botocore (this default is 5). This
+            does not take into account the number of exceptions retried by
+            botocore.
+
+        :param max_io_queue: The maximum amount of read parts that can be
+            queued in memory to be written for a download. The size of each
+            of these read parts is at most the size of ``io_chunksize``.
+
+        :param io_chunksize: The max size of each chunk in the io queue.
+            Currently, this is size used when ``read`` is called on the
+            downloaded stream as well.
+        """
         super(TransferConfig, self).__init__(
             multipart_threshold=multipart_threshold,
             max_request_concurrency=max_concurrency,
