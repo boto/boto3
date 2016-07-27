@@ -262,7 +262,126 @@ that the callback gets invoked each time progress is made on the transfer::
 
 Copies
 ~~~~~~
-TODO
+The managed copy methods are exposed in both the client and resource
+interfaces of ``boto3``:
+
+* :py:class:`S3.Client` method to copy an s3 object: :py:meth:`S3.Client.copy`
+* :py:class:`S3.Bucket` method to copy an s3 object: :py:meth:`S3.Client.copy`
+* :py:class:`S3.Object` method to copy an s3 object: :py:meth:`S3.Object.copy`
+
+
+.. note::
+
+   Even though there is a ``copy`` method for a variety of classes,
+   they all share the exact same functionality.
+   Other than for convenience, there are no benefits from using one method from
+   one class over using the same method for a different class.
+
+
+To do a managed copy, use one of the ``copy`` methods::
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Copies object located in mybucket at mykey
+    # to the location otherbucket at otherkey
+    copy_source = {
+        'Bucket': 'mybucket',
+        'Key': 'mykey'
+    }
+    s3.copy(copy_source, 'otherbucket', 'otherkey')
+
+
+To do a managed copy where the region of the source bucket is different than
+the region of the final bucket, provide a ``SourceClient`` that shares the
+same region as the source bucket::
+
+    import boto3
+
+    # Get a service client for us-west-2 region
+    s3 = boto3.client('s3', 'us-west-2')
+    # Get a service client for the eu-central-1 region
+    source_client = boto3.client('s3', 'eu-central-1')
+
+    # Copies object located in mybucket at mykey in eu-central-1 region
+    # to the location otherbucket at otherkey in the us-west-2 region
+    copy_source = {
+        'Bucket': 'mybucket',
+        'Key': 'mykey'
+    }
+    s3.copy(copy_source, 'otherbucket', 'otherkey', SourceClient=source_client)
+
+
+
+To copy using any extra parameters such as replacing user metadata on an
+existing object, use the ``ExtraArgs`` parameter::
+
+
+    import boto3
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Copies object located in mybucket at mykey
+    # to the location otherbucket at otherkey
+    copy_source = {
+        'Bucket': 'mybucket',
+        'Key': 'mykey'
+    }
+    s3.copy(
+        copy_source, 'otherbucket', 'otherkey',
+        ExtraArgs={
+            "Metadata": {
+                "my-new-key": "my-new-value"
+            },
+            "MetadataDirective": "REPLACE"
+        }
+    )
+
+
+To track the progess of a transfer, a progress callback can be provided such
+that the callback gets invoked each time progress is made on the transfer::
+
+    import boto3
+
+    class ProgressPercentage(object):
+        def __init__(self, filename):
+            self._filename = filename
+            self._size = float(os.path.getsize(filename))
+            self._seen_so_far = 0
+            self._lock = threading.Lock()
+        def __call__(self, bytes_amount):
+            # To simplify we'll assume this is hooked up
+            # to a single filename.
+            with self._lock:
+                self._seen_so_far += bytes_amount
+                percentage = (self._seen_so_far / self._size) * 100
+                sys.stdout.write(
+                    "\r%s  %s / %s  (%.2f%%)" % (
+                        self._filename, self._seen_so_far, self._size,
+                        percentage))
+                sys.stdout.flush()
+
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+
+    # Copies object located in mybucket at mykey
+    # to the location otherbucket at otherkey
+    copy_source = {
+        'Bucket': 'mybucket',
+        'Key': 'mykey'
+    }
+    s3.copy(copy_source, 'otherbucket', 'otherkey',
+            Callback=ProgressPercentage("otherbucket/otherkey"))
+
+
+Note that the grainularity of these callbacks will be much larger than the
+upload and download methods because copies are all done server side and so
+there is no local file to track the streaming of data.
 
 
 Configuration Settings
