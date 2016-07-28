@@ -2,14 +2,18 @@
 Upgrading Notes
 ===============
 
+Notes to refer to when upgrading ``boto3`` versions.
+
 1.4.0
 =====
 
-* Logic from the ``s3transfer`` package was ported into ``boto3.s3.transfer``
-  module. In upgrading to this new version of ``boto3``, code that relies on
-  the public classes and interfaces of ``boto3.s3.transfer``, such as
-   ``S3Transfer`` and ``TransferConfig``, should not be affected. However,
-  code that relies on the internal classes and functionality of the
+* Logic from the `s3transfer <https://github.com/boto/s3transfer>`_ package
+  was ported into the ``boto3.s3.transfer`` module. In upgrading to this
+  new version of ``boto3``, code that relies on the public classes and
+  interfaces of ``boto3.s3.transfer``, such as
+  :py:class:`boto3.s3.transfer.S3Transfer` and
+  :py:class:`boto3.s3.transfer.TransferConfig`, should not be affected.
+  However, code that relies on the internal classes and functionality of the
   ``boto3.s3.transfer`` module may be affected in upgrading:
 
   * Removed internal classes such as ``MultipartUploader``,
