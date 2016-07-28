@@ -1,0 +1,5 @@
+{
+  "category": "s3", 
+  "type": "bugfix", 
+  "description": "Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://boto3.readthedocs.io/en/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed."
+}
