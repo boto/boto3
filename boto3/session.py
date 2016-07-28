@@ -106,6 +106,13 @@ class Session(object):
         """
         return self._session.get_component('event_emitter')
 
+    @property
+    def available_profiles(self):
+        """
+        The profiles available to the session credentials
+        """
+        return self._session.available_profiles
+
     def _setup_loader(self):
         """
         Setup loader paths so that we can load resources.
