@@ -150,7 +150,7 @@ class TransferConfig(S3TransferConfig):
                  multipart_chunksize=8 * MB,
                  num_download_attempts=5,
                  max_io_queue=100,
-                 io_chunksize=64 * KB):
+                 io_chunksize=256 * KB):
         """Configuration object for managed S3 transfers
 
         :param multipart_threshold: The transfer size threshold for which
