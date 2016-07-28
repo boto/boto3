@@ -25,6 +25,7 @@ User Guide
 
 .. toctree::
 
+   guide/upgrading
    guide/index
 
 
