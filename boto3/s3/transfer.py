@@ -122,499 +122,111 @@ transfer.  For example:
 
 
 """
-import os
-import math
-import functools
-import logging
-import socket
-import threading
-import random
-import string
-import boto3
-from concurrent import futures
-
+from botocore.exceptions import ClientError
 from botocore.compat import six
-from botocore.vendored.requests.packages.urllib3.exceptions import \
-    ReadTimeoutError
-from botocore.exceptions import IncompleteReadError
+from s3transfer.exceptions import RetriesExceededError as \
+    S3TransferRetriesExceededError
+from s3transfer.manager import TransferConfig as S3TransferConfig
+from s3transfer.manager import TransferManager
+from s3transfer.subscribers import BaseSubscriber
+from s3transfer.utils import OSUtils
 
-import boto3.compat
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 
-logger = logging.getLogger(__name__)
-queue = six.moves.queue
+KB = 1024
+MB = KB * KB
 
-MB = 1024 * 1024
-SHUTDOWN_SENTINEL = object()
-S3_RETRYABLE_ERRORS = (
-    socket.timeout, boto3.compat.SOCKET_ERROR,
-    ReadTimeoutError, IncompleteReadError
-)
 
+class TransferConfig(S3TransferConfig):
+    ALIAS = {
+        'max_concurrency': 'max_request_concurrency',
+        'max_io_queue': 'max_io_queue_size'
+    }
 
-def random_file_extension(num_digits=8):
-    return ''.join(random.choice(string.hexdigits) for _ in range(num_digits))
-
-
-def disable_upload_callbacks(request, operation_name, **kwargs):
-    if operation_name in ['PutObject', 'UploadPart'] and \
-            hasattr(request.body, 'disable_callback'):
-        request.body.disable_callback()
-
-
-def enable_upload_callbacks(request, operation_name, **kwargs):
-    if operation_name in ['PutObject', 'UploadPart'] and \
-            hasattr(request.body, 'enable_callback'):
-        request.body.enable_callback()
-
-
-class QueueShutdownError(Exception):
-    pass
-
-
-class ReadFileChunk(object):
-    def __init__(self, fileobj, start_byte, chunk_size, full_file_size,
-                 callback=None, enable_callback=True):
-        """
-
-        Given a file object shown below::
-
-            |___________________________________________________|
-            0          |                 |                 full_file_size
-                       |----chunk_size---|
-                 start_byte
-
-        :type fileobj: file
-        :param fileobj: File like object
-
-        :type start_byte: int
-        :param start_byte: The first byte from which to start reading.
-
-        :type chunk_size: int
-        :param chunk_size: The max chunk size to read.  Trying to read
-            pass the end of the chunk size will behave like you've
-            reached the end of the file.
-
-        :type full_file_size: int
-        :param full_file_size: The entire content length associated
-            with ``fileobj``.
-
-        :type callback: function(amount_read)
-        :param callback: Called whenever data is read from this object.
-
-        """
-        self._fileobj = fileobj
-        self._start_byte = start_byte
-        self._size = self._calculate_file_size(
-            self._fileobj, requested_size=chunk_size,
-            start_byte=start_byte, actual_file_size=full_file_size)
-        self._fileobj.seek(self._start_byte)
-        self._amount_read = 0
-        self._callback = callback
-        self._callback_enabled = enable_callback
-
-    @classmethod
-    def from_filename(cls, filename, start_byte, chunk_size, callback=None,
-                      enable_callback=True):
-        """Convenience factory function to create from a filename.
-
-        :type start_byte: int
-        :param start_byte: The first byte from which to start reading.
-
-        :type chunk_size: int
-        :param chunk_size: The max chunk size to read.  Trying to read
-            pass the end of the chunk size will behave like you've
-            reached the end of the file.
-
-        :type full_file_size: int
-        :param full_file_size: The entire content length associated
-            with ``fileobj``.
-
-        :type callback: function(amount_read)
-        :param callback: Called whenever data is read from this object.
-
-        :type enable_callback: bool
-        :param enable_callback: Indicate whether to invoke callback
-            during read() calls.
-
-        :rtype: ``ReadFileChunk``
-        :return: A new instance of ``ReadFileChunk``
-
-        """
-        f = open(filename, 'rb')
-        file_size = os.fstat(f.fileno()).st_size
-        return cls(f, start_byte, chunk_size, file_size, callback,
-                   enable_callback)
-
-    def _calculate_file_size(self, fileobj, requested_size, start_byte,
-                             actual_file_size):
-        max_chunk_size = actual_file_size - start_byte
-        return min(max_chunk_size, requested_size)
-
-    def read(self, amount=None):
-        if amount is None:
-            amount_to_read = self._size - self._amount_read
-        else:
-            amount_to_read = min(self._size - self._amount_read, amount)
-        data = self._fileobj.read(amount_to_read)
-        self._amount_read += len(data)
-        if self._callback is not None and self._callback_enabled:
-            self._callback(len(data))
-        return data
-
-    def enable_callback(self):
-        self._callback_enabled = True
-
-    def disable_callback(self):
-        self._callback_enabled = False
-
-    def seek(self, where):
-        self._fileobj.seek(self._start_byte + where)
-        if self._callback is not None and self._callback_enabled:
-            # To also rewind the callback() for an accurate progress report
-            self._callback(where - self._amount_read)
-        self._amount_read = where
-
-    def close(self):
-        self._fileobj.close()
-
-    def tell(self):
-        return self._amount_read
-
-    def __len__(self):
-        # __len__ is defined because requests will try to determine the length
-        # of the stream to set a content length.  In the normal case
-        # of the file it will just stat the file, but we need to change that
-        # behavior.  By providing a __len__, requests will use that instead
-        # of stat'ing the file.
-        return self._size
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *args, **kwargs):
-        self.close()
-
-    def __iter__(self):
-        # This is a workaround for http://bugs.python.org/issue17575
-        # Basically httplib will try to iterate over the contents, even
-        # if its a file like object.  This wasn't noticed because we've
-        # already exhausted the stream so iterating over the file immediately
-        # stops, which is what we're simulating here.
-        return iter([])
-
-
-class StreamReaderProgress(object):
-    """Wrapper for a read only stream that adds progress callbacks."""
-    def __init__(self, stream, callback=None):
-        self._stream = stream
-        self._callback = callback
-
-    def read(self, *args, **kwargs):
-        value = self._stream.read(*args, **kwargs)
-        if self._callback is not None:
-            self._callback(len(value))
-        return value
-
-
-class OSUtils(object):
-    def get_file_size(self, filename):
-        return os.path.getsize(filename)
-
-    def open_file_chunk_reader(self, filename, start_byte, size, callback):
-        return ReadFileChunk.from_filename(filename, start_byte,
-                                           size, callback,
-                                           enable_callback=False)
-
-    def open(self, filename, mode):
-        return open(filename, mode)
-
-    def remove_file(self, filename):
-        """Remove a file, noop if file does not exist."""
-        # Unlike os.remove, if the file does not exist,
-        # then this method does nothing.
-        try:
-            os.remove(filename)
-        except OSError:
-            pass
-
-    def rename_file(self, current_filename, new_filename):
-        boto3.compat.rename_file(current_filename, new_filename)
-
-
-class MultipartUploader(object):
-    # These are the extra_args that need to be forwarded onto
-    # subsequent upload_parts.
-    UPLOAD_PART_ARGS = [
-        'SSECustomerKey',
-        'SSECustomerAlgorithm',
-        'SSECustomerKeyMD5',
-        'RequestPayer',
-    ]
-
-    def __init__(self, client, config, osutil,
-                 executor_cls=futures.ThreadPoolExecutor):
-        self._client = client
-        self._config = config
-        self._os = osutil
-        self._executor_cls = executor_cls
-
-    def _extra_upload_part_args(self, extra_args):
-        # Only the args in UPLOAD_PART_ARGS actually need to be passed
-        # onto the upload_part calls.
-        upload_parts_args = {}
-        for key, value in extra_args.items():
-            if key in self.UPLOAD_PART_ARGS:
-                upload_parts_args[key] = value
-        return upload_parts_args
-
-    def upload_file(self, filename, bucket, key, callback, extra_args):
-        response = self._client.create_multipart_upload(Bucket=bucket,
-                                                        Key=key, **extra_args)
-        upload_id = response['UploadId']
-        try:
-            parts = self._upload_parts(upload_id, filename, bucket, key,
-                                       callback, extra_args)
-        except Exception as e:
-            logger.debug("Exception raised while uploading parts, "
-                         "aborting multipart upload.", exc_info=True)
-            self._client.abort_multipart_upload(
-                Bucket=bucket, Key=key, UploadId=upload_id)
-            raise S3UploadFailedError(
-                "Failed to upload %s to %s: %s" % (
-                    filename, '/'.join([bucket, key]), e))
-        self._client.complete_multipart_upload(
-            Bucket=bucket, Key=key, UploadId=upload_id,
-            MultipartUpload={'Parts': parts})
-
-    def _upload_parts(self, upload_id, filename, bucket, key, callback,
-                      extra_args):
-        upload_parts_extra_args = self._extra_upload_part_args(extra_args)
-        parts = []
-        part_size = self._config.multipart_chunksize
-        num_parts = int(
-            math.ceil(self._os.get_file_size(filename) / float(part_size)))
-        max_workers = self._config.max_concurrency
-        with self._executor_cls(max_workers=max_workers) as executor:
-            upload_partial = functools.partial(
-                self._upload_one_part, filename, bucket, key, upload_id,
-                part_size, upload_parts_extra_args, callback)
-            for part in executor.map(upload_partial, range(1, num_parts + 1)):
-                parts.append(part)
-        return parts
-
-    def _upload_one_part(self, filename, bucket, key,
-                         upload_id, part_size, extra_args,
-                         callback, part_number):
-        open_chunk_reader = self._os.open_file_chunk_reader
-        with open_chunk_reader(filename, part_size * (part_number - 1),
-                               part_size, callback) as body:
-            response = self._client.upload_part(
-                Bucket=bucket, Key=key,
-                UploadId=upload_id, PartNumber=part_number, Body=body,
-                **extra_args)
-            etag = response['ETag']
-            return {'ETag': etag, 'PartNumber': part_number}
-
-
-class ShutdownQueue(queue.Queue):
-    """A queue implementation that can be shutdown.
-
-    Shutting down a queue means that this class adds a
-    trigger_shutdown method that will trigger all subsequent
-    calls to put() to fail with a ``QueueShutdownError``.
-
-    It purposefully deviates from queue.Queue, and is *not* meant
-    to be a drop in replacement for ``queue.Queue``.
-
-    """
-    def _init(self, maxsize):
-        self._shutdown = False
-        self._shutdown_lock = threading.Lock()
-        # queue.Queue is an old style class so we don't use super().
-        return queue.Queue._init(self, maxsize)
-
-    def trigger_shutdown(self):
-        with self._shutdown_lock:
-            self._shutdown = True
-            logger.debug("The IO queue is now shutdown.")
-
-    def put(self, item):
-        # Note: this is not sufficient, it's still possible to deadlock!
-        # Need to hook into the condition vars used by this class.
-        with self._shutdown_lock:
-            if self._shutdown:
-                raise QueueShutdownError("Cannot put item to queue when "
-                                         "queue has been shutdown.")
-        return queue.Queue.put(self, item)
-
-
-class MultipartDownloader(object):
-    def __init__(self, client, config, osutil,
-                 executor_cls=futures.ThreadPoolExecutor):
-        self._client = client
-        self._config = config
-        self._os = osutil
-        self._executor_cls = executor_cls
-        self._ioqueue = ShutdownQueue(self._config.max_io_queue)
-
-    def download_file(self, bucket, key, filename, object_size,
-                      extra_args, callback=None):
-        with self._executor_cls(max_workers=2) as controller:
-            # 1 thread for the future that manages the uploading of files
-            # 1 thread for the future that manages IO writes.
-            download_parts_handler = functools.partial(
-                self._download_file_as_future,
-                bucket, key, filename, object_size, extra_args, callback)
-            parts_future = controller.submit(download_parts_handler)
-
-            io_writes_handler = functools.partial(
-                self._perform_io_writes, filename)
-            io_future = controller.submit(io_writes_handler)
-            results = futures.wait([parts_future, io_future],
-                                   return_when=futures.FIRST_EXCEPTION)
-            self._process_future_results(results)
-
-    def _process_future_results(self, futures):
-        finished, unfinished = futures
-        for future in finished:
-            future.result()
-
-    def _download_file_as_future(self, bucket, key, filename, object_size,
-                                 extra_args, callback):
-        part_size = self._config.multipart_chunksize
-        num_parts = int(math.ceil(object_size / float(part_size)))
-        max_workers = self._config.max_concurrency
-        download_partial = functools.partial(
-            self._download_range, bucket, key, filename,
-            part_size, num_parts, extra_args, callback)
-        try:
-            with self._executor_cls(max_workers=max_workers) as executor:
-                list(executor.map(download_partial, range(num_parts)))
-        finally:
-            self._ioqueue.put(SHUTDOWN_SENTINEL)
-
-    def _calculate_range_param(self, part_size, part_index, num_parts):
-        start_range = part_index * part_size
-        if part_index == num_parts - 1:
-            end_range = ''
-        else:
-            end_range = start_range + part_size - 1
-        range_param = 'bytes=%s-%s' % (start_range, end_range)
-        return range_param
-
-    def _download_range(self, bucket, key, filename,
-                        part_size, num_parts,
-                        extra_args, callback, part_index):
-        try:
-            range_param = self._calculate_range_param(
-                part_size, part_index, num_parts)
-
-            max_attempts = self._config.num_download_attempts
-            last_exception = None
-            for i in range(max_attempts):
-                try:
-                    logger.debug("Making get_object call.")
-                    response = self._client.get_object(
-                        Bucket=bucket, Key=key, Range=range_param,
-                        **extra_args)
-                    streaming_body = StreamReaderProgress(
-                        response['Body'], callback)
-                    buffer_size = 1024 * 16
-                    current_index = part_size * part_index
-                    for chunk in iter(lambda: streaming_body.read(buffer_size),
-                                      b''):
-                        self._ioqueue.put((current_index, chunk))
-                        current_index += len(chunk)
-                    return
-                except S3_RETRYABLE_ERRORS as e:
-                    logger.debug("Retrying exception caught (%s), "
-                                 "retrying request, (attempt %s / %s)", e, i,
-                                 max_attempts, exc_info=True)
-                    last_exception = e
-                    continue
-            raise RetriesExceededError(last_exception)
-        finally:
-            logger.debug("EXITING _download_range for part: %s", part_index)
-
-    def _perform_io_writes(self, filename):
-        try:
-            self._loop_on_io_writes(filename)
-        except Exception as e:
-            logger.debug("Caught exception in IO thread: %s",
-                         e, exc_info=True)
-            self._ioqueue.trigger_shutdown()
-            raise
-
-    def _loop_on_io_writes(self, filename):
-        with self._os.open(filename, 'wb') as f:
-            while True:
-                task = self._ioqueue.get()
-                if task is SHUTDOWN_SENTINEL:
-                    logger.debug("Shutdown sentinel received in IO handler, "
-                                 "shutting down IO handler.")
-                    return
-                else:
-                    offset, data = task
-                    f.seek(offset)
-                    f.write(data)
-
-
-class TransferConfig(object):
     def __init__(self,
                  multipart_threshold=8 * MB,
                  max_concurrency=10,
                  multipart_chunksize=8 * MB,
                  num_download_attempts=5,
-                 max_io_queue=100):
-        self.multipart_threshold = multipart_threshold
-        self.max_concurrency = max_concurrency
-        self.multipart_chunksize = multipart_chunksize
-        self.num_download_attempts = num_download_attempts
-        self.max_io_queue = max_io_queue
+                 max_io_queue=100,
+                 io_chunksize=256 * KB):
+        """Configuration object for managed S3 transfers
+
+        :param multipart_threshold: The transfer size threshold for which
+            multipart uploads, downloads, and copies will automatically be
+            triggered.
+
+        :param max_concurrency: The maximum number of threads that will be
+            making requests to perform a transfer.
+
+        :param multipart_chunksize: The partition size of each part for a
+            multipart transfer.
+
+        :param num_download_attempts: The number of download attempts that
+            will be retried upon errors with downloading an object in S3.
+            Note that these retries account for errors that occur when
+            streaming  down the data from s3 (i.e. socket errors and read
+            timeouts that occur after recieving an OK response from s3).
+            Other retryable exceptions such as throttling errors and 5xx
+            errors are already retried by botocore (this default is 5). This
+            does not take into account the number of exceptions retried by
+            botocore.
+
+        :param max_io_queue: The maximum amount of read parts that can be
+            queued in memory to be written for a download. The size of each
+            of these read parts is at most the size of ``io_chunksize``.
+
+        :param io_chunksize: The max size of each chunk in the io queue.
+            Currently, this is size used when ``read`` is called on the
+            downloaded stream as well.
+        """
+        super(TransferConfig, self).__init__(
+            multipart_threshold=multipart_threshold,
+            max_request_concurrency=max_concurrency,
+            multipart_chunksize=multipart_chunksize,
+            num_download_attempts=num_download_attempts,
+            max_io_queue_size=max_io_queue,
+            io_chunksize=io_chunksize,
+        )
+        # Some of the argument names are not the same as the inherited
+        # S3TransferConfig so we add aliases so you can still access the
+        # old version of the names.
+        for alias in self.ALIAS:
+            setattr(self, alias, getattr(self, self.ALIAS[alias]))
+
+    def __setattr__(self, name, value):
+        # If the alias name is used, make sure we set the name that it points
+        # to as that is what actually is used in governing the TransferManager.
+        if name in self.ALIAS:
+            super(TransferConfig, self).__setattr__(self.ALIAS[name], value)
+        # Always set the value of the actual name provided.
+        super(TransferConfig, self).__setattr__(name, value)
 
 
 class S3Transfer(object):
+    ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
+    ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
 
-    ALLOWED_DOWNLOAD_ARGS = [
-        'VersionId',
-        'SSECustomerAlgorithm',
-        'SSECustomerKey',
-        'SSECustomerKeyMD5',
-        'RequestPayer',
-    ]
-
-    ALLOWED_UPLOAD_ARGS = [
-        'ACL',
-        'CacheControl',
-        'ContentDisposition',
-        'ContentEncoding',
-        'ContentLanguage',
-        'ContentType',
-        'Expires',
-        'GrantFullControl',
-        'GrantRead',
-        'GrantReadACP',
-        'GrantWriteACL',
-        'Metadata',
-        'RequestPayer',
-        'ServerSideEncryption',
-        'StorageClass',
-        'SSECustomerAlgorithm',
-        'SSECustomerKey',
-        'SSECustomerKeyMD5',
-        'SSEKMSKeyId',
-    ]
-
-    def __init__(self, client, config=None, osutil=None):
-        self._client = client
+    def __init__(self, client=None, config=None, osutil=None, manager=None):
+        if not client and not manager:
+            raise ValueError(
+                'Either a boto3.Client or s3transfer.manager.TransferManager '
+                'must be provided'
+            )
+        if manager and any([client, config, osutil]):
+            raise ValueError(
+                'Manager cannot be provided with client, config, '
+                'nor osutil. These parameters are mutually exclusive.'
+            )
         if config is None:
             config = TransferConfig()
-        self._config = config
         if osutil is None:
             osutil = OSUtils()
-        self._osutil = osutil
+        if manager:
+            self._manager = manager
+        else:
+            self._manager = TransferManager(client, config, osutil)
 
     def upload_file(self, filename, bucket, key,
                     callback=None, extra_args=None):
@@ -623,31 +235,22 @@ class S3Transfer(object):
         Variants have also been injected into S3 client, Bucket and Object.
         You don't have to use S3Transfer.upload_file() directly.
         """
-        if extra_args is None:
-            extra_args = {}
-        self._validate_all_known_args(extra_args, self.ALLOWED_UPLOAD_ARGS)
-        events = self._client.meta.events
-        events.register_first('request-created.s3',
-                              disable_upload_callbacks,
-                              unique_id='s3upload-callback-disable')
-        events.register_last('request-created.s3',
-                             enable_upload_callbacks,
-                             unique_id='s3upload-callback-enable')
-        if self._osutil.get_file_size(filename) >= \
-                self._config.multipart_threshold:
-            self._multipart_upload(filename, bucket, key, callback, extra_args)
-        else:
-            self._put_object(filename, bucket, key, callback, extra_args)
+        if not isinstance(filename, six.string_types):
+            raise ValueError('Filename must be a string')
 
-    def _put_object(self, filename, bucket, key, callback, extra_args):
-        # We're using open_file_chunk_reader so we can take advantage of the
-        # progress callback functionality.
-        open_chunk_reader = self._osutil.open_file_chunk_reader
-        with open_chunk_reader(filename, 0,
-                               self._osutil.get_file_size(filename),
-                               callback=callback) as body:
-            self._client.put_object(Bucket=bucket, Key=key, Body=body,
-                                    **extra_args)
+        subscribers = self._get_subscribers(callback)
+        future = self._manager.upload(
+            filename, bucket, key, extra_args, subscribers)
+        try:
+            future.result()
+        # If a client error was raised, add the backwards compatibility layer
+        # that raises a S3UploadFailedError. These specific errors were only
+        # ever thrown for upload_parts but now can be thrown for any related
+        # client error.
+        except ClientError as e:
+            raise S3UploadFailedError(
+                "Failed to upload %s to %s: %s" % (
+                    filename, '/'.join([bucket, key]), e))
 
     def download_file(self, bucket, key, filename, extra_args=None,
                       callback=None):
@@ -656,77 +259,36 @@ class S3Transfer(object):
         Variants have also been injected into S3 client, Bucket and Object.
         You don't have to use S3Transfer.download_file() directly.
         """
-        # This method will issue a ``head_object`` request to determine
-        # the size of the S3 object.  This is used to determine if the
-        # object is downloaded in parallel.
-        if extra_args is None:
-            extra_args = {}
-        self._validate_all_known_args(extra_args, self.ALLOWED_DOWNLOAD_ARGS)
-        object_size = self._object_size(bucket, key, extra_args)
-        temp_filename = filename + os.extsep + random_file_extension()
+        if not isinstance(filename, six.string_types):
+            raise ValueError('Filename must be a string')
+
+        subscribers = self._get_subscribers(callback)
+        future = self._manager.download(
+            bucket, key, filename, extra_args, subscribers)
         try:
-            self._download_file(bucket, key, temp_filename, object_size,
-                                extra_args, callback)
-        except Exception:
-            logger.debug("Exception caught in download_file, removing partial "
-                         "file: %s", temp_filename, exc_info=True)
-            self._osutil.remove_file(temp_filename)
-            raise
-        else:
-            self._osutil.rename_file(temp_filename, filename)
+            future.result()
+        # This is for backwards compatibility where when retries are
+        # exceeded we need to throw the same error from boto3 instead of
+        # s3transfer's built in RetriesExceededError as current users are
+        # catching the boto3 one instead of the s3transfer exception to do
+        # their own retries.
+        except S3TransferRetriesExceededError as e:
+            raise RetriesExceededError(e.last_exception)
 
-    def _download_file(self, bucket, key, filename, object_size,
-                       extra_args, callback):
-        if object_size >= self._config.multipart_threshold:
-            self._ranged_download(bucket, key, filename, object_size,
-                                  extra_args, callback)
-        else:
-            self._get_object(bucket, key, filename, extra_args, callback)
+    def _get_subscribers(self, callback):
+        if not callback:
+            return None
+        return [ProgressCallbackInvoker(callback)]
 
-    def _validate_all_known_args(self, actual, allowed):
-        for kwarg in actual:
-            if kwarg not in allowed:
-                raise ValueError(
-                    "Invalid extra_args key '%s', "
-                    "must be one of: %s" % (
-                        kwarg, ', '.join(allowed)))
 
-    def _ranged_download(self, bucket, key, filename, object_size,
-                         extra_args, callback):
-        downloader = MultipartDownloader(self._client, self._config,
-                                         self._osutil)
-        downloader.download_file(bucket, key, filename, object_size,
-                                 extra_args, callback)
+class ProgressCallbackInvoker(BaseSubscriber):
+    """A back-compat wrapper to invoke a provided callback via a subscriber
 
-    def _get_object(self, bucket, key, filename, extra_args, callback):
-        # precondition: num_download_attempts > 0
-        max_attempts = self._config.num_download_attempts
-        last_exception = None
-        for i in range(max_attempts):
-            try:
-                return self._do_get_object(bucket, key, filename,
-                                           extra_args, callback)
-            except S3_RETRYABLE_ERRORS as e:
-                logger.debug("Retrying exception caught (%s), "
-                             "retrying request, (attempt %s / %s)", e, i,
-                             max_attempts, exc_info=True)
-                last_exception = e
-                continue
-        raise RetriesExceededError(last_exception)
+    :param callback: A callable that takes a single positional argument for
+        how many bytes were transferred.
+    """
+    def __init__(self, callback):
+        self._callback = callback
 
-    def _do_get_object(self, bucket, key, filename, extra_args, callback):
-        response = self._client.get_object(Bucket=bucket, Key=key,
-                                           **extra_args)
-        streaming_body = StreamReaderProgress(
-            response['Body'], callback)
-        with self._osutil.open(filename, 'wb') as f:
-            for chunk in iter(lambda: streaming_body.read(8192), b''):
-                f.write(chunk)
-
-    def _object_size(self, bucket, key, extra_args):
-        return self._client.head_object(
-            Bucket=bucket, Key=key, **extra_args)['ContentLength']
-
-    def _multipart_upload(self, filename, bucket, key, callback, extra_args):
-        uploader = MultipartUploader(self._client, self._config, self._osutil)
-        uploader.upload_file(filename, bucket, key, callback, extra_args)
+    def on_progress(self, bytes_transferred, **kwargs):
+        self._callback(bytes_transferred)

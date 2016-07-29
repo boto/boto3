@@ -237,7 +237,6 @@ class TestS3Resource(unittest.TestCase):
         self.assertEqual(len(versions), 0)
 
 
-
 class TestS3Transfers(unittest.TestCase):
     """Tests for the high level boto3.s3.transfer module."""
 
@@ -253,6 +252,7 @@ class TestS3Transfers(unittest.TestCase):
 
     def setUp(self):
         self.files = FileCreator()
+        self.progress = 0
 
     def tearDown(self):
         self.files.remove_all()
@@ -280,6 +280,61 @@ class TestS3Transfers(unittest.TestCase):
         public_read = [g['Grantee'].get('URI', '') for g in grants
                        if g['Permission'] == 'READ']
         self.assertIn('groups/global/AllUsers', public_read[0])
+
+    def test_copy(self):
+        self.client.put_object(
+            Bucket=self.bucket_name, Key='foo', Body='beach')
+        self.addCleanup(self.delete_object, 'foo')
+
+        self.client.copy(
+            CopySource={'Bucket': self.bucket_name, 'Key': 'foo'},
+            Bucket=self.bucket_name, Key='bar'
+        )
+        self.addCleanup(self.delete_object, 'bar')
+
+        self.object_exists('bar')
+
+    def test_upload_fileobj(self):
+        fileobj = six.BytesIO(b'foo')
+        self.client.upload_fileobj(
+            Fileobj=fileobj, Bucket=self.bucket_name, Key='foo')
+        self.addCleanup(self.delete_object, 'foo')
+
+        self.object_exists('foo')
+
+    def test_upload_fileobj_progress(self):
+        # This has to be an integration test because the fileobj will never
+        # actually be read from when using the stubber and therefore the
+        # progress callbacks will not be invoked.
+        chunksize = 5 * (1024 ** 2)
+        config = boto3.s3.transfer.TransferConfig(
+            multipart_chunksize=chunksize,
+            multipart_threshold=chunksize,
+            max_concurrency=1
+        )
+        fileobj = six.BytesIO(b'0' * (chunksize * 3))
+
+        def progress_callback(amount):
+            self.progress += amount
+
+        self.client.upload_fileobj(
+            Fileobj=fileobj, Bucket=self.bucket_name, Key='foo',
+            Config=config, Callback=progress_callback)
+        self.addCleanup(self.delete_object, 'foo')
+
+        self.object_exists('foo')
+        self.assertEqual(self.progress, chunksize * 3)
+
+    def test_download_fileobj(self):
+        fileobj = six.BytesIO()
+        self.client.put_object(
+            Bucket=self.bucket_name, Key='foo', Body=b'beach')
+        self.addCleanup(self.delete_object, 'foo')
+
+        self.client.download_fileobj(
+            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj)
+
+        self.assertEqual(fileobj.getvalue(), b'beach')
 
     def test_upload_below_threshold(self):
         config = boto3.s3.transfer.TransferConfig(
