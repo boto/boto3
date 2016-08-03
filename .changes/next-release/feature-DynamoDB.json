@@ -1,5 +1,0 @@
-{
-  "category": "DynamoDB", 
-  "type": "feature", 
-  "description": "Add request auto de-duplication based on specified primary keys for batch_writer. (``#605 <https://github.com/boto/boto3/issues/605>`__ <https"
-}

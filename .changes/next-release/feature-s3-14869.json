@@ -1,5 +1,0 @@
-{
-  "category": "s3", 
-  "type": "feature", 
-  "description": "Add ``io_chunksize`` parameter to ``TransferConfig``"
-}
