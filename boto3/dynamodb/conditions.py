@@ -11,7 +11,6 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 from collections import namedtuple
-import functools
 import re
 
 from boto3.exceptions import DynamoDBOperationNotSupportedError
@@ -73,21 +72,21 @@ class AttributeBase(object):
         raise DynamoDBOperationNotSupportedError('NOT', self)
 
     def eq(self, value):
-        """Creates a condtion where the attribute is equal to the value.
+        """Creates a condition where the attribute is equal to the value.
 
         :param value: The value that the attribute is equal to.
         """
         return Equals(self, value)
 
     def lt(self, value):
-        """Creates a condtion where the attribute is less than the value.
+        """Creates a condition where the attribute is less than the value.
 
         :param value: The value that the attribute is less than.
         """
         return LessThan(self, value)
 
     def lte(self, value):
-        """Creates a condtion where the attribute is less than or equal to the
+        """Creates a condition where the attribute is less than or equal to the
            value.
 
         :param value: The value that the attribute is less than or equal to.
@@ -95,14 +94,14 @@ class AttributeBase(object):
         return LessThanEquals(self, value)
 
     def gt(self, value):
-        """Creates a condtion where the attribute is greater than the value.
+        """Creates a condition where the attribute is greater than the value.
 
         :param value: The value that the attribute is greater than.
         """
         return GreaterThan(self, value)
 
     def gte(self, value):
-        """Creates a condtion where the attribute is greater than or equal to
+        """Creates a condition where the attribute is greater than or equal to
            the value.
 
         :param value: The value that the attribute is greater than or equal to.
@@ -110,15 +109,15 @@ class AttributeBase(object):
         return GreaterThanEquals(self, value)
 
     def begins_with(self, value):
-        """Creates a condtion where the attribute begins with the value.
+        """Creates a condition where the attribute begins with the value.
 
         :param value: The value that the attribute begins with.
         """
         return BeginsWith(self, value)
 
     def between(self, low_value, high_value):
-        """Creates a condtion where the attribute is between the low value and
-           the high value.
+        """Creates a condition where the attribute is greater than or equal
+        to the low value and less than or equal to the high value.
 
         :param low_value: The value that the attribute is greater than.
         :param high_value: The value that the attribute is less than.
@@ -229,14 +228,14 @@ class Key(AttributeBase):
 class Attr(AttributeBase):
     """Represents an DynamoDB item's attribute."""
     def ne(self, value):
-        """Creates a condtion where the attribute is not equal to the value
+        """Creates a condition where the attribute is not equal to the value
 
         :param value: The value that the attribute is not equal to.
         """
         return NotEquals(self, value)
 
     def is_in(self, value):
-        """Creates a condtion where the attribute is in the value,
+        """Creates a condition where the attribute is in the value,
 
         :type value: list
         :param value: The value that the attribute is in.
@@ -244,11 +243,11 @@ class Attr(AttributeBase):
         return In(self, value)
 
     def exists(self):
-        """Creates a condtion where the attribute exists."""
+        """Creates a condition where the attribute exists."""
         return AttributeExists(self)
 
     def not_exists(self):
-        """Creates a condtion where the attribute does not exist."""
+        """Creates a condition where the attribute does not exist."""
         return AttributeNotExists(self)
 
     def contains(self, value):

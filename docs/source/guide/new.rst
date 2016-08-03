@@ -5,7 +5,7 @@ What's New
 Boto 3 is a ground-up rewrite of Boto. It uses a data-driven approach to
 generate classes at runtime from JSON description files that are shared
 between SDKs in various languages. This includes descriptions for a
-high level, object oriented interface similar to those availabe in
+high level, object oriented interface similar to those available in
 previous versions of Boto.
 
 Because Boto 3 is generated from these shared JSON files, we get

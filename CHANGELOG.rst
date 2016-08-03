@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.4.0
+=====
+
+* feature:DynamoDB: Add request auto de-duplication based on specified primary keys for batch_writer. (``#605 <https://github.com/boto/boto3/issues/605>`__ <https
+* feature:s3: Add managed file-like object uploads to S3 client, Bucket, and Object.
+* bugfix:Session: Fixed Session.__repr__ region argument name.
+* feature:s3: Add managed copies to S3 client, Bucket, and Object.
+* feature:s3: Add managed downloads to file-like objects in the S3 client, Bucket, and Object.
+* bugfix:s3: Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://boto3.readthedocs.io/en/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed.
+* feature:s3: Add ``io_chunksize`` parameter to ``TransferConfig``
+
+
 1.3.1
 =====
 

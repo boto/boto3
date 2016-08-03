@@ -71,9 +71,9 @@ class DynamoDBHighLevelResource(object):
                 'listed in the '
                 ':ref:`DynamoDB Reference Guide<ref_valid_dynamodb_types>`.'
             ),
-            new_example_value = (
-                '\'string\'|123|Binary(b\'bytes\')|True|None|set([\'string\'])|'
-                'set([123])|set([Binary(b\'bytes\')])|[]|{}')
+            new_example_value=(
+                '\'string\'|123|Binary(b\'bytes\')|True|None|set([\'string\'])'
+                '|set([123])|set([Binary(b\'bytes\')])|[]|{}')
         )
 
         key_expression_shape_docs = DocumentModifiedShape(
@@ -90,7 +90,7 @@ class DynamoDBHighLevelResource(object):
             new_example_value='Key(\'mykey\').eq(\'myvalue\')'
         )
 
-        cond_expression_shape_docs = DocumentModifiedShape(
+        con_expression_shape_docs = DocumentModifiedShape(
             'ConditionExpression',
             new_type=(
                 'condition from :py:class:`boto3.dynamodb.conditions.Attr` '
@@ -116,7 +116,7 @@ class DynamoDBHighLevelResource(object):
 
         self.meta.client.meta.events.register(
             'docs.*.dynamodb.*.complete-section',
-            cond_expression_shape_docs.replace_documentation_for_matching_shape,
+            con_expression_shape_docs.replace_documentation_for_matching_shape,
             unique_id='dynamodb-cond-expression-docs')
 
 

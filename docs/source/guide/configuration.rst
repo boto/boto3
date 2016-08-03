@@ -62,14 +62,14 @@ For example::
         's3',
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
-        aws_session_token=SESSION_TOKN,
+        aws_session_token=SESSION_TOKEN,
     )
 
     # Or via the Session
     session = boto3.Session(
         aws_access_key_id=ACCESS_KEY,
         aws_secret_access_key=SECRET_KEY,
-        aws_session_token=SESSION_TOKN,
+        aws_session_token=SESSION_TOKEN,
     )
 
 where ``ACCESS_KEY``, ``SECRET_KEY`` and ``SESSION_TOKEN`` are variables
@@ -417,6 +417,15 @@ in the ``~/.aws/config`` file:
     The number of attempts to make before giving up when retrieving data from
     the instance metadata service.  See the docs above on
     ``AWS_METADATA_SERVICE_NUM_ATTEMPTS`` for more information.
+``parameter_validation``
+    Disable parameter validation (default is true; parameters are
+    validated by default).  This is a boolean value that can have
+    a value of either ``true`` or ``false``.  Whenever you make an
+    API call using a client, the parameters you provide are run through
+    a set of validation checks including (but not limited to): required
+    parameters provided, type checking, no unknown parameters,
+    minimum length checks, etc.  You generally should leave parameter
+    validation enabled.
 ``role_arn``
     The ARN of the role you want to assume.
 ``source_profile``

@@ -10,6 +10,7 @@ Migration Guides
 
    new
    migration
+   upgrading
 
 
 General Feature Guides

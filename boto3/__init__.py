@@ -17,11 +17,12 @@ from boto3.session import Session
 
 
 __author__ = 'Amazon Web Services'
-__version__ = '1.3.1'
+__version__ = '1.4.0'
 
 
 # The default Boto3 session; autoloaded when needed.
 DEFAULT_SESSION = None
+
 
 def setup_default_session(**kwargs):
     """
@@ -31,6 +32,7 @@ def setup_default_session(**kwargs):
     """
     global DEFAULT_SESSION
     DEFAULT_SESSION = Session(**kwargs)
+
 
 def set_stream_logger(name='boto3', level=logging.DEBUG, format_string=None):
     """
@@ -58,6 +60,7 @@ def set_stream_logger(name='boto3', level=logging.DEBUG, format_string=None):
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
+
 def _get_default_session():
     """
     Get the default session, creating one if needed.
@@ -70,6 +73,7 @@ def _get_default_session():
 
     return DEFAULT_SESSION
 
+
 def client(*args, **kwargs):
     """
     Create a low-level service client by name using the default session.
@@ -78,6 +82,7 @@ def client(*args, **kwargs):
     """
     return _get_default_session().client(*args, **kwargs)
 
+
 def resource(*args, **kwargs):
     """
     Create a resource service client by name using the default session.
@@ -85,6 +90,7 @@ def resource(*args, **kwargs):
     See :py:meth:`boto3.session.Session.resource`.
     """
     return _get_default_session().resource(*args, **kwargs)
+
 
 # Set up logging to ``/dev/null`` like a library is supposed to.
 # http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library

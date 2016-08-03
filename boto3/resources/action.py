@@ -78,7 +78,7 @@ class ServiceAction(object):
         params.update(kwargs)
 
         logger.info('Calling %s:%s with %r', parent.meta.service_name,
-            operation_name, params)
+                    operation_name, params)
 
         response = getattr(parent.meta.client, operation_name)(**params)
 
@@ -110,7 +110,8 @@ class BatchAction(ServiceAction):
         Perform the batch action's operation on every page of results
         from the collection.
 
-        :type parent: :py:class:`~boto3.resources.collection.ResourceCollection`
+        :type parent:
+            :py:class:`~boto3.resources.collection.ResourceCollection`
         :param parent: The collection iterator to which this action
                        is attached.
         :rtype: list(dict)
@@ -209,7 +210,8 @@ class CustomModeledAction(object):
                  function, event_emitter):
         """
         :type action_name: str
-        :param action_name: The name of the action to inject, e.g. 'delete_tags'
+        :param action_name: The name of the action to inject, e.g.
+            'delete_tags'
 
         :type action_model: dict
         :param action_model: A JSON definition of the action, as if it were
