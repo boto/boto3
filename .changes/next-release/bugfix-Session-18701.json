@@ -1,5 +1,0 @@
-{
-  "category": "Session",
-  "type": "bugfix",
-  "description": "Fixed Session.__repr__ region argument name."
-}

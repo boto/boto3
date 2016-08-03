@@ -1,5 +1,0 @@
-{
-  "description": "Add managed downloads to file-like objects in the S3 client, Bucket, and Object.",
-  "category": "s3",
-  "type": "feature"
-}

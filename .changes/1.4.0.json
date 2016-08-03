@@ -1,0 +1,37 @@
+[
+  {
+    "category": "DynamoDB", 
+    "description": "Add request auto de-duplication based on specified primary keys for batch_writer. (``#605 <https://github.com/boto/boto3/issues/605>`__ <https", 
+    "type": "feature"
+  }, 
+  {
+    "category": "s3", 
+    "description": "Add managed file-like object uploads to S3 client, Bucket, and Object.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Session", 
+    "description": "Fixed Session.__repr__ region argument name.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "s3", 
+    "description": "Add managed copies to S3 client, Bucket, and Object.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "s3", 
+    "description": "Add managed downloads to file-like objects in the S3 client, Bucket, and Object.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "s3", 
+    "description": "Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://boto3.readthedocs.io/en/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "s3", 
+    "description": "Add ``io_chunksize`` parameter to ``TransferConfig``", 
+    "type": "feature"
+  }
+]
