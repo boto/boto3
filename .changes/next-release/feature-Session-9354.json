@@ -1,0 +1,5 @@
+{
+  "category": "Session", 
+  "type": "feature", 
+  "description": "Expose available_profiles property for Session (``#704 <https://github.com/boto/boto3/issues/704>`__)"
+}

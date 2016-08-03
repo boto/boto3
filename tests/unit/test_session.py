@@ -22,6 +22,7 @@ from tests import mock, BaseTestCase
 
 
 class TestSession(BaseTestCase):
+
     def test_repr(self):
         bc_session = self.bc_session_cls.return_value
         bc_session.get_credentials.return_value.access_key = 'abc123'
@@ -56,7 +57,7 @@ class TestSession(BaseTestCase):
         Session()
 
         self.assertTrue(self.bc_session_cls.called,
-            'Botocore session was not created')
+                        'Botocore session was not created')
 
     def test_credentials_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
@@ -67,9 +68,9 @@ class TestSession(BaseTestCase):
                 aws_session_token='token')
 
         self.assertTrue(self.bc_session_cls.called,
-            'Botocore session was not created')
+                        'Botocore session was not created')
         self.assertTrue(bc_session.set_credentials.called,
-            'Botocore session set_credentials not called from constructor')
+                        'Botocore session set_credentials not called from constructor')
         bc_session.set_credentials.assert_called_with(
             'key', 'secret', 'token')
 
@@ -114,6 +115,13 @@ class TestSession(BaseTestCase):
         session = Session()
 
         self.assertEqual(session.profile_name, 'default')
+
+    def test_available_profiles(self):
+        bc_session = mock.Mock()
+        bc_session.available_profiles.return_value = ['foo','bar']
+        session = Session(botocore_session=bc_session)
+        profiles = session.available_profiles
+        self.assertEqual(len(profiles.return_value), 2)
 
     def test_custom_session(self):
         bc_session = self.bc_session_cls()
@@ -170,7 +178,7 @@ class TestSession(BaseTestCase):
         session.get_available_services()
 
         self.assertTrue(bc_session.get_available_services.called,
-            'Botocore session get_available_services not called')
+                        'Botocore session get_available_services not called')
 
     def test_get_available_resources(self):
         mock_bc_session = mock.Mock()
@@ -207,7 +215,7 @@ class TestSession(BaseTestCase):
         client = session.client('sqs', region_name='us-west-2')
 
         self.assertTrue(client,
-            'No low-level client was returned')
+                        'No low-level client was returned')
 
     def test_create_client_with_args(self):
         bc_session = self.bc_session_cls.return_value
@@ -225,7 +233,8 @@ class TestSession(BaseTestCase):
         mock_bc_session = mock.Mock()
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
-        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        loader.load_service_model.return_value = {
+            'resources': [], 'service': []}
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -246,7 +255,8 @@ class TestSession(BaseTestCase):
         mock_bc_session = mock.Mock()
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
-        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        loader.load_service_model.return_value = {
+            'resources': [], 'service': []}
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -268,7 +278,8 @@ class TestSession(BaseTestCase):
         mock_bc_session = mock.Mock()
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
-        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        loader.load_service_model.return_value = {
+            'resources': [], 'service': []}
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -290,7 +301,8 @@ class TestSession(BaseTestCase):
         mock_bc_session = mock.Mock()
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
-        loader.load_service_model.return_value = {'resources': [], 'service': []}
+        loader.load_service_model.return_value = {
+            'resources': [], 'service': []}
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
