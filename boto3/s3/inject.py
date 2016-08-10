@@ -577,7 +577,7 @@ def bucket_download_fileobj(self, Key, Fileobj, ExtraArgs=None,
     Usage::
 
         import boto3
-        s3 = boto3.client('s3')
+        s3 = boto3.resource('s3')
         bucket = s3.Bucket('mybucket')
 
         with open('filename', 'wb') as data:
@@ -619,7 +619,7 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     Usage::
 
         import boto3
-        s3 = boto3.client('s3')
+        s3 = boto3.resource('s3')
         bucket = s3.Bucket('mybucket')
         obj = bucket.Object('mykey')
 
