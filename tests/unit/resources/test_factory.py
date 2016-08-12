@@ -37,9 +37,10 @@ class BaseTestResourceFactory(BaseTestCase):
             service_name='test',
             resource_json_definitions=resource_json_definitions,
             service_model=service_model,
-            service_waiter_model=None
+            service_waiter_model=None,
+            session=None
         )
-                
+
         return self.factory.load_from_definition(
             resource_name=resource_name,
             single_resource_json_definition=resource_json_definition,
@@ -685,6 +686,13 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
 
         self.assertEqual(resource.meta.client, q.meta.client,
             'Client was not shared to dangling resource instance')
+
+    def test_dangling_resource_shares_session(self):
+        resource = self.load('test', self.model, self.defs)()
+        q = resource.Queue('test')
+
+        self.assertEqual(resource.meta.session, q.meta.session,
+            'Session was not shared to dangling resource instance')
 
     def test_dangling_resource_requires_identifier(self):
         resource = self.load('test', self.model, self.defs)()

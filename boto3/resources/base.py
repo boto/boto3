@@ -24,9 +24,12 @@ class ResourceMeta(object):
     An object containing metadata about a resource.
     """
     def __init__(self, service_name, identifiers=None, client=None,
-                 data=None, resource_model=None):
+                 data=None, resource_model=None, session=None):
         #: (``string``) The service name, e.g. 's3'
         self.service_name = service_name
+
+        #: (:py:class:`~boto3.Session`) Session used to create this resource
+        self.session = session
 
         if identifiers is None:
             identifiers = []

@@ -350,7 +350,8 @@ class TestResourceHandler(BaseTestCase):
                 service_name='myservice',
                 resource_json_definitions=self.resource_defs,
                 service_model=self.service_model,
-                service_waiter_model=None
+                service_waiter_model=None,
+                session=None
             ),
             operation_name='GetFrobs'
         )

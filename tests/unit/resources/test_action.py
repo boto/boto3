@@ -104,7 +104,8 @@ class TestServiceActionCall(BaseTestCase):
             service_name='test',
             service_model=service_model,
             resource_json_definitions=resource_defs,
-            service_waiter_model=None
+            service_waiter_model=None,
+            session=None
         )
 
         action = ServiceAction(

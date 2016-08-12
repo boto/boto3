@@ -395,7 +395,7 @@ class Session(object):
                 service_name=service_name, service_model=service_model,
                 resource_json_definitions=resource_model['resources'],
                 service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
-                    self._session, service_name, api_version)
+                    self._session, service_name, api_version), session=self
         )
 
         # Create the service resource class.

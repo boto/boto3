@@ -100,7 +100,8 @@ class ServiceDocumenter(BaseServiceDocumenter):
                         resource_json_definitions=json_resource_model[
                             'resources'],
                         service_model=service_model,
-                        service_waiter_model=None
+                        service_waiter_model=None,
+                        session=self._boto3_session
                     )
                 )
             identifiers = resource_cls.meta.resource_model.identifiers

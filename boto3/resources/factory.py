@@ -81,7 +81,9 @@ class ResourceFactory(object):
 
         # Set some basic info
         meta = ResourceMeta(
-            service_context.service_name, resource_model=resource_model)
+            service_context.service_name, resource_model=resource_model,
+            session=service_context.session
+        )
         attrs = {
             'meta': meta,
         }

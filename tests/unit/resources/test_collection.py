@@ -61,7 +61,8 @@ class TestCollectionFactory(BaseTestCase):
             service_name='test',
             resource_json_definitions=resource_defs,
             service_model=self.service_model,
-            service_waiter_model=None
+            service_waiter_model=None,
+            session=None
         )
         collection_cls = self.load(
             resource_name='Chain',
@@ -122,7 +123,8 @@ class TestCollectionFactory(BaseTestCase):
             service_name='test',
             resource_json_definitions=resource_defs,
             service_model=self.service_model,
-            service_waiter_model=None
+            service_waiter_model=None,
+            session=None
         )
         collection_cls = self.load(
             resource_name='Chain',
@@ -193,7 +195,8 @@ class TestResourceCollection(BaseTestCase):
                 service_name='test',
                 service_model=self.service_model,
                 resource_json_definitions=resource_defs,
-                service_waiter_model=None
+                service_waiter_model=None,
+                session=None
             )
         )
         return collection
