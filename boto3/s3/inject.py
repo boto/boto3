@@ -526,7 +526,7 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
             s3.download_fileobj('mybucket', 'mykey', data)
 
     :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to upload. At a minimum, it must
+    :param Fileobj: A file-like object to download into. At a minimum, it must
         implement the `write` method and must accept bytes.
 
     :type Bucket: str
@@ -584,7 +584,7 @@ def bucket_download_fileobj(self, Key, Fileobj, ExtraArgs=None,
             bucket.download_fileobj('mykey', data)
 
     :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to upload. At a minimum, it must
+    :param Fileobj: A file-like object to download into. At a minimum, it must
         implement the `write` method and must accept bytes.
 
     :type Key: str
@@ -627,7 +627,7 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
             obj.download_fileobj(data)
 
     :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to upload. At a minimum, it must
+    :param Fileobj: A file-like object to download into. At a minimum, it must
         implement the `write` method and must accept bytes.
 
     :type ExtraArgs: dict
