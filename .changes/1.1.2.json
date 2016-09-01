@@ -1,7 +1,7 @@
 [
   {
     "category": "``session.Session``", 
-    "description": "Add ``events`` property to access session's event emitter. (`issue 204 <https://github.com/boto/boto3/pull/204`__)", 
+    "description": "Add ``events`` property to access session's event emitter. (`issue 204 <https://github.com/boto/boto3/pull/204>`__)", 
     "type": "feature"
   }, 
   {
