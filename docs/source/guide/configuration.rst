@@ -403,7 +403,7 @@ If your profile name has spaces, you'll need to surround this value in quotes:
 in the ``~/.aws/config`` file:
 
 ``region``
-    The default region to use, e.g. ``us-west-2``, ``us-west-2``, etc.
+    The default region to use, e.g. ``us-west-2``, ``us-west-2``, etc. When specifying a region inline during client initialization, this property is named ``region_name``
 ``aws_access_key_id``
     The access key to use.
 ``aws_secret_access_key``
