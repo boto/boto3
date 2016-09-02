@@ -450,3 +450,9 @@ class Session(object):
             boto3.utils.lazy_call(
                 'boto3.ec2.deletetags.inject_delete_tags',
                 event_emitter=self.events))
+
+        self._session.register(
+            'creating-resource-class.ec2.Volume',
+            boto3.utils.lazy_call(
+                'boto3.ec2.deletetags.inject_delete_tags',
+                event_emitter=self.events))

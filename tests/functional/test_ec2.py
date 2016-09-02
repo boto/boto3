@@ -34,3 +34,23 @@ class TestInstanceDeleteTags(unittest.TestCase):
         stubber.assert_no_pending_responses()
         self.assertEqual(response, {})
         stubber.deactivate()
+
+
+class TestVolumeDeleteTags(unittest.TestCase):
+    def setUp(self):
+        self.session = boto3.session.Session(region_name='us-west-2')
+        self.service_resource = self.session.resource('ec2')
+        self.volume_resource = self.service_resource.Volume('vol-abc123')
+
+    def test_delete_tags_injected(self):
+        self.assertTrue(hasattr(self.volume_resource, 'delete_tags'),
+                        'delete_tags was not injected onto Volume resource.')
+
+    def test_delete_tags(self):
+        stubber = Stubber(self.volume_resource.meta.client)
+        stubber.add_response('delete_tags', {})
+        stubber.activate()
+        response = self.volume_resource.delete_tags(Tags=[{'Key': 'foo'}])
+        stubber.assert_no_pending_responses()
+        self.assertEqual(response, {})
+        stubber.deactivate()
