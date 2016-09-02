@@ -16,41 +16,36 @@ import boto3.session
 from botocore.stub import Stubber
 
 
-class TestInstanceDeleteTags(unittest.TestCase):
-    def setUp(self):
-        self.session = boto3.session.Session(region_name='us-west-2')
-        self.service_resource = self.session.resource('ec2')
-        self.instance_resource = self.service_resource.Instance('i-abc123')
+class EC2BaseTests:
 
-    def test_delete_tags_injected(self):
-        self.assertTrue(hasattr(self.instance_resource, 'delete_tags'),
-                        'delete_tags was not injected onto Instance resource.')
+    class ResourceHasDeleteTags(unittest.TestCase):
+        def setUp(self):
+            self.session = boto3.session.Session(region_name='us-west-2')
+            self.service_resource = self.session.resource('ec2')
+            self.target_resource = self.get_resource()
 
-    def test_delete_tags(self):
-        stubber = Stubber(self.instance_resource.meta.client)
-        stubber.add_response('delete_tags', {})
-        stubber.activate()
-        response = self.instance_resource.delete_tags(Tags=[{'Key': 'foo'}])
-        stubber.assert_no_pending_responses()
-        self.assertEqual(response, {})
-        stubber.deactivate()
+        def get_resource(self):
+            self.fail('Should not run base delete tags test class directly')
+
+        def test_delete_tags_injected(self):
+            self.assertTrue(hasattr(self.target_resource, 'delete_tags'),
+                            'delete_tags was not injected onto resource.')
+
+        def test_delete_tags(self):
+            stubber = Stubber(self.target_resource.meta.client)
+            stubber.add_response('delete_tags', {})
+            stubber.activate()
+            response = self.target_resource.delete_tags(Tags=[{'Key': 'foo'}])
+            stubber.assert_no_pending_responses()
+            self.assertEqual(response, {})
+            stubber.deactivate()
 
 
-class TestVolumeDeleteTags(unittest.TestCase):
-    def setUp(self):
-        self.session = boto3.session.Session(region_name='us-west-2')
-        self.service_resource = self.session.resource('ec2')
-        self.volume_resource = self.service_resource.Volume('vol-abc123')
+class TestInstanceDeleteTags(EC2BaseTests.ResourceHasDeleteTags):
+    def get_resource(self):
+        return self.service_resource.Instance('i-abc123')
 
-    def test_delete_tags_injected(self):
-        self.assertTrue(hasattr(self.volume_resource, 'delete_tags'),
-                        'delete_tags was not injected onto Volume resource.')
 
-    def test_delete_tags(self):
-        stubber = Stubber(self.volume_resource.meta.client)
-        stubber.add_response('delete_tags', {})
-        stubber.activate()
-        response = self.volume_resource.delete_tags(Tags=[{'Key': 'foo'}])
-        stubber.assert_no_pending_responses()
-        self.assertEqual(response, {})
-        stubber.deactivate()
+class TestVolumeDeleteTags(EC2BaseTests.ResourceHasDeleteTags):
+    def get_resource(self):
+        return self.service_resource.Volume('vol-abc123')
