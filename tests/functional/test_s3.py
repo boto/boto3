@@ -224,9 +224,10 @@ class TestCopy(BaseTransferTest):
         self.assertIsNone(response)
 
     def test_copy_progress(self):
-        self.stub_multipart_copy(5, 11)
+        chunksize = 8 * (1024 ** 2)
+        self.stub_multipart_copy(chunksize, 3)
         transfer_config = TransferConfig(
-            multipart_chunksize=5, multipart_threshold=1,
+            multipart_chunksize=chunksize, multipart_threshold=1,
             max_concurrency=1)
 
         def progress_callback(amount):
@@ -240,8 +241,8 @@ class TestCopy(BaseTransferTest):
 
         # Assert that the progress callback was called the correct number of
         # times with the correct amounts.
-        self.assertEqual(self.progress_times_called, 11)
-        self.assertEqual(self.progress, 55)
+        self.assertEqual(self.progress_times_called, 3)
+        self.assertEqual(self.progress, chunksize * 3)
 
 
 class TestUploadFileobj(BaseTransferTest):
@@ -330,10 +331,11 @@ class TestUploadFileobj(BaseTransferTest):
         self.stubber.assert_no_pending_responses()
 
     def test_multipart_upload(self):
-        contents = six.BytesIO(b'0' * 55)
-        self.stub_multipart_upload(num_parts=11)
+        chunksize = 8 * (1024 ** 2)
+        contents = six.BytesIO(b'0' * (chunksize * 3))
+        self.stub_multipart_upload(num_parts=3)
         transfer_config = TransferConfig(
-            multipart_chunksize=5, multipart_threshold=1,
+            multipart_chunksize=chunksize, multipart_threshold=1,
             max_concurrency=1)
 
         with self.stubber:
