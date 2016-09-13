@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 
 import logging
+import threading
 
 from boto3.session import Session
 
@@ -21,7 +22,8 @@ __version__ = '1.4.0'
 
 
 # The default Boto3 session; autoloaded when needed.
-DEFAULT_SESSION = None
+_active = threading.local()
+_active.DEFAULT_SESSION = None
 
 
 def setup_default_session(**kwargs):
@@ -30,8 +32,8 @@ def setup_default_session(**kwargs):
     constructor. There is no need to call this unless you wish to pass custom
     parameters, because a default session will be created for you.
     """
-    global DEFAULT_SESSION
-    DEFAULT_SESSION = Session(**kwargs)
+    global _active
+    _active.DEFAULT_SESSION = Session(**kwargs)
 
 
 def set_stream_logger(name='boto3', level=logging.DEBUG, format_string=None):
@@ -68,10 +70,10 @@ def _get_default_session():
     :rtype: :py:class:`~boto3.session.Sesssion`
     :return: The default session
     """
-    if DEFAULT_SESSION is None:
+    if _active.DEFAULT_SESSION is None:
         setup_default_session()
 
-    return DEFAULT_SESSION
+    return _active.DEFAULT_SESSION
 
 
 def client(*args, **kwargs):

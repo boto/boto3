@@ -22,7 +22,7 @@ class TestBoto3(unittest.TestCase):
         self.Session = self.session_patch.start()
 
     def tearDown(self):
-        boto3.DEFAULT_SESSION = None
+        boto3._active.DEFAULT_SESSION = None
         self.session_patch.stop()
 
     def test_create_default_session(self):
@@ -30,7 +30,7 @@ class TestBoto3(unittest.TestCase):
 
         boto3.setup_default_session()
 
-        self.assertEqual(boto3.DEFAULT_SESSION, session,
+        self.assertEqual(boto3._active.DEFAULT_SESSION, session,
             'Default session not created properly')
 
     def test_create_default_session_with_args(self):
@@ -45,63 +45,63 @@ class TestBoto3(unittest.TestCase):
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
     def test_client_creates_default_session(self, setup_session):
-        boto3.DEFAULT_SESSION = None
+        boto3._active.DEFAULT_SESSION = None
 
         boto3.client('sqs')
 
         self.assertTrue(setup_session.called,
             'setup_default_session not called')
-        self.assertTrue(boto3.DEFAULT_SESSION.client.called,
+        self.assertTrue(boto3._active.DEFAULT_SESSION.client.called,
             'Default session client method not called')
 
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
     def test_client_uses_existing_session(self, setup_session):
-        boto3.DEFAULT_SESSION = self.Session()
+        boto3._active.DEFAULT_SESSION = self.Session()
 
         boto3.client('sqs')
 
         self.assertFalse(setup_session.called,
             'setup_default_session should not have been called')
-        self.assertTrue(boto3.DEFAULT_SESSION.client.called,
+        self.assertTrue(boto3._active.DEFAULT_SESSION.client.called,
             'Default session client method not called')
 
     def test_client_passes_through_arguments(self):
-        boto3.DEFAULT_SESSION = self.Session()
+        boto3._active.DEFAULT_SESSION = self.Session()
 
         boto3.client('sqs', region_name='us-west-2', verify=False)
 
-        boto3.DEFAULT_SESSION.client.assert_called_with(
+        boto3._active.DEFAULT_SESSION.client.assert_called_with(
             'sqs', region_name='us-west-2', verify=False)
 
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
     def test_resource_creates_default_session(self, setup_session):
-        boto3.DEFAULT_SESSION = None
+        boto3._active.DEFAULT_SESSION = None
 
         boto3.resource('sqs')
 
         self.assertTrue(setup_session.called,
             'setup_default_session not called')
-        self.assertTrue(boto3.DEFAULT_SESSION.resource.called,
+        self.assertTrue(boto3._active.DEFAULT_SESSION.resource.called,
             'Default session resource method not called')
 
     @mock.patch('boto3.setup_default_session',
                 wraps=boto3.setup_default_session)
     def test_resource_uses_existing_session(self, setup_session):
-        boto3.DEFAULT_SESSION = self.Session()
+        boto3._active.DEFAULT_SESSION = self.Session()
 
         boto3.resource('sqs')
 
         self.assertFalse(setup_session.called,
             'setup_default_session should not have been called')
-        self.assertTrue(boto3.DEFAULT_SESSION.resource.called,
+        self.assertTrue(boto3._active.DEFAULT_SESSION.resource.called,
             'Default session resource method not called')
 
     def test_resource_passes_through_arguments(self):
-        boto3.DEFAULT_SESSION = self.Session()
+        boto3._active.DEFAULT_SESSION = self.Session()
 
         boto3.resource('sqs', region_name='us-west-2', verify=False)
 
-        boto3.DEFAULT_SESSION.resource.assert_called_with(
+        boto3._active.DEFAULT_SESSION.resource.assert_called_with(
             'sqs', region_name='us-west-2', verify=False)

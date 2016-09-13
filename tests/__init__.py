@@ -69,7 +69,7 @@ class BaseTestCase(unittest.TestCase):
         # We also need to patch the global default session.
         # Otherwise it could be a cached real session came from previous
         # "functional" or "integration" tests.
-        patch_global_session = mock.patch('boto3.DEFAULT_SESSION')
+        patch_global_session = mock.patch('boto3._active.DEFAULT_SESSION')
         patch_global_session.start()
         self.addCleanup(patch_global_session.stop)
 
