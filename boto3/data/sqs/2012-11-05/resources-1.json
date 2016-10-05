@@ -222,7 +222,7 @@
           "resource": {
             "type": "Queue",
             "identifiers": [
-              { "target": "Url", "source": "response", "path": "QueueUrls[]" }
+              { "target": "Url", "source": "response", "path": "queueUrls[]" }
             ]
           }
         }
