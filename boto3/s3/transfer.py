@@ -280,6 +280,12 @@ class S3Transfer(object):
             return None
         return [ProgressCallbackInvoker(callback)]
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self._manager.__exit__(*args)
+
 
 class ProgressCallbackInvoker(BaseSubscriber):
     """A back-compat wrapper to invoke a provided callback via a subscriber
