@@ -108,8 +108,6 @@ class BatchWriter(object):
     def _add_request_and_process(self, request):
         if self._overwrite_by_pkeys:
             self._remove_dup_pkeys_request_if_any(request)
-            logger.debug("With overwrite_by_pkeys enabled, skipping "
-                         "request:%s", request)
         self._items_buffer.append(request)
         self._flush_if_needed()
 
@@ -118,6 +116,8 @@ class BatchWriter(object):
         for item in self._items_buffer:
             if self._extract_pkey_values(item) == pkey_values_new:
                 self._items_buffer.remove(item)
+                logger.debug("With overwrite_by_pkeys enabled, skipping "
+                             "request:%s", item)
 
     def _extract_pkey_values(self, request):
         if request.get('PutRequest'):

@@ -164,3 +164,26 @@ class TestS3Transfer(unittest.TestCase):
         transfer = S3Transfer(client=mock.Mock())
         with self.assertRaises(ValueError):
             transfer.download_file(bucket='foo', key='bar', filename=object())
+
+    def test_context_manager(self):
+        manager = mock.Mock()
+        manager.__exit__ = mock.Mock()
+        with S3Transfer(manager=manager):
+            pass
+        # The underlying transfer manager should have had its __exit__
+        # called as well.
+        self.assertEqual(
+            manager.__exit__.call_args, mock.call(None, None, None))
+
+    def test_context_manager_with_errors(self):
+        manager = mock.Mock()
+        manager.__exit__ = mock.Mock()
+        raised_exception = ValueError()
+        with self.assertRaises(type(raised_exception)):
+            with S3Transfer(manager=manager):
+                raise raised_exception
+        # The underlying transfer manager should have had its __exit__
+        # called as well and pass on the error as well.
+        self.assertEqual(
+            manager.__exit__.call_args,
+            mock.call(type(raised_exception), raised_exception, mock.ANY))

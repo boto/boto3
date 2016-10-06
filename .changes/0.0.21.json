@@ -1,7 +1,7 @@
 [
   {
     "category": "Installation", 
-    "description": "Fix regression when installing via older versions of pip on python 2.6. (`issue 132 <https://github.com/boto/boto3/pull/132`__)", 
+    "description": "Fix regression when installing via older versions of pip on python 2.6. (`issue 132 <https://github.com/boto/boto3/pull/132>`__)", 
     "type": "bugfix"
   }
 ]

@@ -2,10 +2,18 @@
 CHANGELOG
 =========
 
+1.4.1
+=====
+
+* feature:Session: Expose available_profiles property for Session (``#704 <https://github.com/boto/boto3/issues/704>`__)
+* bugfix:s3: Fix issue when transfers would not exit quickly from signals
+* bugfix:``sqs.Queue``: Fix issue in DeadLetterSourceQueues collection
+
+
 1.4.0
 =====
 
-* feature:DynamoDB: Add request auto de-duplication based on specified primary keys for batch_writer. (``#605 <https://github.com/boto/boto3/issues/605>`__ <https
+* feature:DynamoDB: Add request auto de-duplication based on specified primary keys for batch_writer. (`#605 <https://github.com/boto/boto3/issues/605>`__)
 * feature:s3: Add managed file-like object uploads to S3 client, Bucket, and Object.
 * bugfix:Session: Fixed Session.__repr__ region argument name.
 * feature:s3: Add managed copies to S3 client, Bucket, and Object.
@@ -92,7 +100,7 @@ CHANGELOG
 1.1.2
 =====
 
-* feature:``session.Session``: Add ``events`` property to access session's event emitter. (`issue 204 <https://github.com/boto/boto3/pull/204`__)
+* feature:``session.Session``: Add ``events`` property to access session's event emitter. (`issue 204 <https://github.com/boto/boto3/pull/204>`__)
 * bugfix:``Glacier.Account``: Fix issue with resource model. (`issue 196 <https://github.com/boto/boto3/pull/196>`__)
 * bugfix:``DynamoDB``: Fix misspelling of error class to ``DynamoDBOperationNotSupportedError``. (`issue 218 <https://github.com/boto/boto3/pull/218>`__)
 
@@ -106,7 +114,7 @@ CHANGELOG
 1.1.0
 =====
 
-* bugfix:``EC2.Vpc.filter``: Fix issue with clobbering of ``Filtering`` paramter. (`issue 154 `https://github.com/boto/boto3/pull/154`__)
+* bugfix:``EC2.Vpc.filter``: Fix issue with clobbering of ``Filtering`` paramter. (`issue 154 <https://github.com/boto/boto3/pull/154>`__)
 
 
 0.0.22
@@ -119,7 +127,7 @@ CHANGELOG
 0.0.21
 ======
 
-* bugfix:Installation: Fix regression when installing via older versions of pip on python 2.6. (`issue 132 <https://github.com/boto/boto3/pull/132`__)
+* bugfix:Installation: Fix regression when installing via older versions of pip on python 2.6. (`issue 132 <https://github.com/boto/boto3/pull/132>`__)
 
 
 0.0.20

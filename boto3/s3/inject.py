@@ -99,10 +99,10 @@ def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
     """
-    transfer = S3Transfer(self, Config)
-    return transfer.upload_file(
-        filename=Filename, bucket=Bucket, key=Key,
-        extra_args=ExtraArgs, callback=Callback)
+    with S3Transfer(self, Config) as transfer:
+        return transfer.upload_file(
+            filename=Filename, bucket=Bucket, key=Key,
+            extra_args=ExtraArgs, callback=Callback)
 
 
 def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
@@ -119,10 +119,10 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
     """
-    transfer = S3Transfer(self, Config)
-    return transfer.download_file(
-        bucket=Bucket, key=Key, filename=Filename,
-        extra_args=ExtraArgs, callback=Callback)
+    with S3Transfer(self, Config) as transfer:
+        return transfer.download_file(
+            bucket=Bucket, key=Key, filename=Filename,
+            extra_args=ExtraArgs, callback=Callback)
 
 
 def bucket_upload_file(self, Filename, Key,
@@ -526,7 +526,7 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
             s3.download_fileobj('mybucket', 'mykey', data)
 
     :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to upload. At a minimum, it must
+    :param Fileobj: A file-like object to download into. At a minimum, it must
         implement the `write` method and must accept bytes.
 
     :type Bucket: str
@@ -577,14 +577,14 @@ def bucket_download_fileobj(self, Key, Fileobj, ExtraArgs=None,
     Usage::
 
         import boto3
-        s3 = boto3.client('s3')
+        s3 = boto3.resource('s3')
         bucket = s3.Bucket('mybucket')
 
         with open('filename', 'wb') as data:
             bucket.download_fileobj('mykey', data)
 
     :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to upload. At a minimum, it must
+    :param Fileobj: A file-like object to download into. At a minimum, it must
         implement the `write` method and must accept bytes.
 
     :type Key: str
@@ -619,7 +619,7 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     Usage::
 
         import boto3
-        s3 = boto3.client('s3')
+        s3 = boto3.resource('s3')
         bucket = s3.Bucket('mybucket')
         obj = bucket.Object('mykey')
 
@@ -627,7 +627,7 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
             obj.download_fileobj(data)
 
     :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to upload. At a minimum, it must
+    :param Fileobj: A file-like object to download into. At a minimum, it must
         implement the `write` method and must accept bytes.
 
     :type ExtraArgs: dict

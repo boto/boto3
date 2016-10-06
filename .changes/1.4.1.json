@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Session", 
+    "description": "Expose available_profiles property for Session (``#704 <https://github.com/boto/boto3/issues/704>`__)", 
+    "type": "feature"
+  }, 
+  {
+    "category": "s3", 
+    "description": "Fix issue when transfers would not exit quickly from signals", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``sqs.Queue``", 
+    "description": "Fix issue in DeadLetterSourceQueues collection", 
+    "type": "bugfix"
+  }
+]
