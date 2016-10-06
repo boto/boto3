@@ -1,5 +1,0 @@
-{
-  "category": "``sqs.Queue``", 
-  "type": "bugfix", 
-  "description": "Fix issue in DeadLetterSourceQueues collection"
-}
