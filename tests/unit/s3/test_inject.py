@@ -31,7 +31,9 @@ class TestInjectTransferMethods(unittest.TestCase):
             inject.upload_file(mock.sentinel.CLIENT,
                                Filename='filename',
                                Bucket='bucket', Key='key')
-            transfer.return_value.upload_file.assert_called_with(
+            transfer_in_context_manager = \
+                transfer.return_value.__enter__.return_value
+            transfer_in_context_manager.upload_file.assert_called_with(
                 filename='filename', bucket='bucket', key='key',
                 extra_args=None, callback=None)
 
@@ -41,7 +43,9 @@ class TestInjectTransferMethods(unittest.TestCase):
                 mock.sentinel.CLIENT,
                 Bucket='bucket', Key='key',
                 Filename='filename')
-            transfer.return_value.download_file.assert_called_with(
+            transfer_in_context_manager = \
+                transfer.return_value.__enter__.return_value
+            transfer_in_context_manager.download_file.assert_called_with(
                 bucket='bucket', key='key', filename='filename',
                 extra_args=None, callback=None)
 
