@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.4.1
+=====
+
+* feature:Session: Expose available_profiles property for Session (``#704 <https://github.com/boto/boto3/issues/704>`__)
+* bugfix:s3: Fix issue when transfers would not exit quickly from signals
+* bugfix:``sqs.Queue``: Fix issue in DeadLetterSourceQueues collection
+
+
 1.4.0
 =====
 
