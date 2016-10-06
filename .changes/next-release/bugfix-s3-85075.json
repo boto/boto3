@@ -1,0 +1,5 @@
+{
+  "category": "s3", 
+  "type": "bugfix", 
+  "description": "Fix issue when transfers would not exit quickly from signals"
+}
