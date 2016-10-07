@@ -52,6 +52,8 @@ class ResourceMeta(object):
 
         return self.__dict__ == other.__dict__
 
+    __hash__ = None
+
     def copy(self):
         """
         Create a copy of this metadata object.
@@ -140,3 +142,5 @@ class ServiceResource(object):
                 return False
 
         return True
+
+    __hash__ = None
