@@ -62,6 +62,10 @@ class Binary(object):
         return 'Binary(%r)' % self.value
 
     def __str__(self):
+        return self.value if isinstance(self.value, six.string_types) \
+            else self.value.decode('utf-8')
+
+    def __bytes__(self):
         return self.value
 
     def __hash__(self):
