@@ -14,12 +14,39 @@ from tests import unittest
 
 import mock
 from s3transfer.manager import TransferManager
+from s3transfer.futures import NonThreadedExecutor
 
 from boto3.exceptions import RetriesExceededError
 from boto3.exceptions import S3UploadFailedError
+from boto3.s3.transfer import create_transfer_manager
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig, ProgressCallbackInvoker
 from boto3.s3.transfer import ClientError, S3TransferRetriesExceededError
+
+
+class TestCreateTransferManager(unittest.TestCase):
+    def test_create_transfer_manager(self):
+        client = object()
+        config = TransferConfig()
+        osutil = OSUtils()
+        with mock.patch('boto3.s3.transfer.TransferManager') as manager:
+            create_transfer_manager(client, config, osutil)
+            self.assertEqual(
+                manager.call_args,
+                mock.call(client, config, osutil, None)
+            )
+
+    def test_create_transfer_manager_with_no_threads(self):
+        client = object()
+        config = TransferConfig()
+        config.use_threads = False
+        with mock.patch(
+                'boto3.s3.transfer.TransferManager') as manager:
+            create_transfer_manager(client, config)
+            self.assertEqual(
+                manager.call_args,
+                mock.call(client, config, None, NonThreadedExecutor)
+            )
 
 
 class TestTransferConfig(unittest.TestCase):
