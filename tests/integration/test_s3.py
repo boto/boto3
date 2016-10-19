@@ -582,6 +582,32 @@ class TestS3Transfers(unittest.TestCase):
                                   Filename=download_path)
         assert_files_equal(filename, download_path)
 
+    def test_transfer_methods_do_not_use_threads(self):
+        # This is just a smoke test to make sure that
+        # setting use_threads to False has no issues transferring files as
+        # the non-threaded implementation is ran under the same integration
+        # and functional tests in s3transfer as the normal threaded
+        # implementation
+        #
+        # The methods used are arbitrary other than one of the methods
+        # use ``boto3.s3.transfer.S3Transfer`` and the other should be
+        # using ``s3transfer.manager.TransferManager`` directly
+        content = b'my content'
+        filename = self.files.create_file('myfile', content)
+        key = 'foo'
+        config = boto3.s3.transfer.TransferConfig(use_threads=False)
+
+        self.client.upload_file(
+            Bucket=self.bucket_name, Key=key, Filename=filename,
+            Config=config)
+        self.addCleanup(self.delete_object, key)
+        self.assertTrue(self.object_exists(key))
+
+        fileobj = six.BytesIO()
+        self.client.download_fileobj(
+            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj, Config=config)
+        self.assertEqual(fileobj.getvalue(), content)
+
     def test_transfer_methods_through_bucket(self):
         # This is just a sanity check to ensure that the bucket interface work.
         key = 'bucket.txt'
