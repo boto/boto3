@@ -4,7 +4,7 @@ Upgrading Notes
 
 Notes to refer to when upgrading ``boto3`` versions.
 
-1.4.0
+1.4.x
 =====
 
 * Logic from the `s3transfer <https://github.com/boto/s3transfer>`_ package
@@ -27,3 +27,9 @@ Notes to refer to when upgrading ``boto3`` versions.
     objects for transfers, use the newly added ``upload_fileobj``
     and ``download_fileobj`` methods that support both nonmultipart and
     multipart transfers.
+
+  * By default, all managed transfer methods are now threaded. In prior
+    versions, threads were only created if a non multipart upload or download
+    was initiated. To run the managed transfer methods with no threads
+    (i.e. all of the transfer logic happens in the main thread), set
+    ``use_threads`` to ``False`` when providing a ``TransferConfig`` object.
