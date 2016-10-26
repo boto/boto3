@@ -103,20 +103,20 @@ class TestSerializer(unittest.TestCase):
         self.assertEqual(self.serializer.serialize(b'\x01'), {'B': b'\x01'})
 
     def test_serialize_number_set(self):
-        serialized_value = self.serializer.serialize(set([1, 2, 3]))
+        serialized_value = self.serializer.serialize({1, 2, 3})
         self.assertEqual(len(serialized_value), 1)
         self.assertIn('NS', serialized_value)
         self.assertCountEqual(serialized_value['NS'], ['1', '2', '3'])
 
     def test_serialize_string_set(self):
-        serialized_value = self.serializer.serialize(set(['foo', 'bar']))
+        serialized_value = self.serializer.serialize({'foo', 'bar'})
         self.assertEqual(len(serialized_value), 1)
         self.assertIn('SS', serialized_value)
         self.assertCountEqual(serialized_value['SS'], ['foo', 'bar'])
 
     def test_serialize_binary_set(self):
         serialized_value = self.serializer.serialize(
-            set([Binary(b'\x01'), Binary(b'\x02')]))
+            {Binary(b'\x01'), Binary(b'\x02')})
         self.assertEqual(len(serialized_value), 1)
         self.assertIn('BS', serialized_value)
         self.assertCountEqual(serialized_value['BS'], [b'\x01', b'\x02'])
@@ -175,18 +175,18 @@ class TestDeserializer(unittest.TestCase):
     def test_deserialize_number_set(self):
         self.assertEqual(
             self.deserializer.deserialize(
-                {'NS': ['1', '1.25']}), set([Decimal('1'), Decimal('1.25')]))
+                {'NS': ['1', '1.25']}), {Decimal('1'), Decimal('1.25')})
 
     def test_deserialize_string_set(self):
         self.assertEqual(
             self.deserializer.deserialize(
-                {'SS': ['foo', 'bar']}), set(['foo', 'bar']))
+                {'SS': ['foo', 'bar']}), {'foo', 'bar'})
 
     def test_deserialize_binary_set(self):
         self.assertEqual(
             self.deserializer.deserialize(
                 {'BS': [b'\x00', b'\x01']}),
-            set([Binary(b'\x00'), Binary(b'\x01')]))
+            {Binary(b'\x00'), Binary(b'\x01')})
 
     def test_deserialize_list(self):
         self.assertEqual(

@@ -14,10 +14,10 @@ import os
 import json
 import tempfile
 import shutil
+from collections import OrderedDict
 from tests import unittest
 
 import botocore.session
-from botocore.compat import OrderedDict
 from botocore.loaders import Loader
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 

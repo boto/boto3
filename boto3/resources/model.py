@@ -296,7 +296,7 @@ class ResourceModel(object):
         :param shape: The underlying shape for this resource.
         """
         # Meta is a reserved name for resources
-        names = set(['meta'])
+        names = {'meta'}
         self._renamed = {}
 
         if self._definition.get('load'):
