@@ -87,7 +87,7 @@ an existing table::
     # values will be set based on the response.
     print(table.creation_date_time)
 
-Expected Output (Pleas note that probably the actual times will not match up)::
+Expected Output (Please note that the actual times will probably not match up)::
 
     2015-06-26 12:42:45.149000-07:00
 
