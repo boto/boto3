@@ -13,13 +13,12 @@
 import os
 import threading
 import math
-import time
-import random
 import tempfile
 import shutil
 import hashlib
 import string
 import datetime
+import logging
 
 from tests import unittest, unique_id
 from botocore.compat import six
@@ -30,6 +29,7 @@ import boto3.s3.transfer
 
 
 urlopen = six.moves.urllib.request.urlopen
+LOG = logging.getLogger('boto3.tests.integration')
 
 
 def assert_files_equal(first, second):
@@ -55,6 +55,55 @@ def random_bucket_name(prefix='boto3-transfer', num_chars=10):
     base = string.ascii_lowercase + string.digits
     random_bytes = bytearray(os.urandom(num_chars))
     return prefix + ''.join([base[b % len(base)] for b in random_bytes])
+
+
+_SHARED_BUCKET = random_bucket_name()
+_DEFAULT_REGION = 'us-west-2'
+
+
+def setup_module():
+    s3 = boto3.client('s3')
+    waiter = s3.get_waiter('bucket_exists')
+    params = {
+        'Bucket': _SHARED_BUCKET,
+        'CreateBucketConfiguration': {
+            'LocationConstraint': _DEFAULT_REGION,
+        }
+    }
+    try:
+        s3.create_bucket(**params)
+    except Exception as e:
+        # A create_bucket can fail for a number of reasons.
+        # We're going to defer to the waiter below to make the
+        # final call as to whether or not the bucket exists.
+        LOG.debug("create_bucket() raised an exception: %s", e, exc_info=True)
+    waiter.wait(Bucket=_SHARED_BUCKET)
+
+
+def clear_out_bucket(bucket, region, delete_bucket=False):
+    s3 = boto3.client('s3', region_name=region)
+    page = s3.get_paginator('list_objects')
+    # Use pages paired with batch delete_objects().
+    for page in page.paginate(Bucket=bucket):
+        keys = [{'Key': obj['Key']} for obj in page.get('Contents', [])]
+        if keys:
+            s3.delete_objects(Bucket=bucket, Delete={'Objects': keys})
+    if delete_bucket:
+        try:
+            s3.delete_bucket(Bucket=bucket)
+        except Exception as e:
+            # We can sometimes get exceptions when trying to
+            # delete a bucket.  We'll let the waiter make
+            # the final call as to whether the bucket was able
+            # to be deleted.
+            LOG.debug("delete_bucket() raised an exception: %s",
+                      e, exc_info=True)
+            waiter = s3.get_waiter('bucket_not_exists')
+            waiter.wait(Bucket=bucket)
+
+
+def teardown_module():
+    clear_out_bucket(_SHARED_BUCKET, _DEFAULT_REGION, delete_bucket=True)
 
 
 class FileCreator(object):
@@ -116,15 +165,22 @@ class FileCreator(object):
 
 class TestS3Resource(unittest.TestCase):
     def setUp(self):
-        self.region = 'us-west-2'
+        self.region = _DEFAULT_REGION
+        self.bucket_name = _SHARED_BUCKET
+        clear_out_bucket(self.bucket_name, self.region)
         self.session = boto3.session.Session(region_name=self.region)
         self.s3 = self.session.resource('s3')
-        self.bucket_name = unique_id('boto3-test')
+        self.bucket = self.s3.Bucket(self.bucket_name)
 
-    def create_bucket_resource(self, bucket_name, region=None):
+    def create_bucket_resource(self, bucket_name=None, region=None):
+        if bucket_name is None:
+            bucket_name = random_bucket_name()
+
         if region is None:
             region = self.region
+
         kwargs = {'Bucket': bucket_name}
+
         if region != 'us-east-1':
             kwargs['CreateBucketConfiguration'] = {
                 'LocationConstraint': region
@@ -136,13 +192,8 @@ class TestS3Resource(unittest.TestCase):
     def test_s3(self):
         client = self.s3.meta.client
 
-        # Create a bucket (resource action with a resource response)
-        bucket = self.create_bucket_resource(self.bucket_name)
-        waiter = client.get_waiter('bucket_exists')
-        waiter.wait(Bucket=self.bucket_name)
-
         # Create an object
-        obj = bucket.Object('test.txt')
+        obj = self.bucket.Object('test.txt')
         obj.put(
             Body='hello, world')
         waiter = client.get_waiter('object_exists')
@@ -150,13 +201,13 @@ class TestS3Resource(unittest.TestCase):
         self.addCleanup(obj.delete)
 
         # List objects and make sure ours is present
-        self.assertIn('test.txt', [o.key for o in bucket.objects.all()])
+        self.assertIn('test.txt', [o.key for o in self.bucket.objects.all()])
 
         # Lazy-loaded attribute
         self.assertEqual(12, obj.content_length)
 
         # Load a similar attribute from the collection response
-        self.assertEqual(12, list(bucket.objects.all())[0].size)
+        self.assertEqual(12, list(self.bucket.objects.all())[0].size)
 
         # Perform a resource action with a low-level response
         self.assertEqual(b'hello, world',
@@ -164,12 +215,13 @@ class TestS3Resource(unittest.TestCase):
 
     def test_s3_resource_waiter(self):
         # Create a bucket
-        bucket = self.create_bucket_resource(self.bucket_name)
+        bucket_name = random_bucket_name()
+        bucket = self.create_bucket_resource(bucket_name)
         # Wait till the bucket exists
         bucket.wait_until_exists()
         # Confirm the bucket exists by finding it in a list of all of our
         # buckets
-        self.assertIn(self.bucket_name,
+        self.assertIn(bucket_name,
                       [b.name for b in self.s3.buckets.all()])
 
         # Create an object
@@ -191,12 +243,8 @@ class TestS3Resource(unittest.TestCase):
         self.assertEqual(obj.key, 'test.txt')
 
     def test_s3_multipart(self):
-        # Create the bucket
-        bucket = self.create_bucket_resource(self.bucket_name)
-        bucket.wait_until_exists()
-
         # Create the multipart upload
-        mpu = bucket.Object('mp-test.txt').initiate_multipart_upload()
+        mpu = self.bucket.Object('mp-test.txt').initiate_multipart_upload()
         self.addCleanup(mpu.abort)
 
         # Create and upload a part
@@ -214,24 +262,22 @@ class TestS3Resource(unittest.TestCase):
         }
 
         mpu.complete(MultipartUpload=part_info)
-        self.addCleanup(bucket.Object('mp-test.txt').delete)
+        self.addCleanup(self.bucket.Object('mp-test.txt').delete)
 
-        contents = bucket.Object('mp-test.txt').get()['Body'].read()
+        contents = self.bucket.Object('mp-test.txt').get()['Body'].read()
         self.assertEqual(contents, b'hello, world!')
 
     def test_s3_batch_delete(self):
-        # Create the bucket
-        bucket = self.create_bucket_resource(self.bucket_name)
-        bucket.wait_until_exists()
+        bucket = self.create_bucket_resource()
         bucket.Versioning().enable()
 
         # Create several versions of an object
-        obj = bucket.Object('test.txt')
+        obj = self.bucket.Object('test.txt')
         for i in range(10):
             obj.put(Body="Version %s" % i)
 
         # Delete all the versions of the object
-        bucket.object_versions.all().delete()
+            bucket.object_versions.all().delete()
 
         versions = list(bucket.object_versions.all())
         self.assertEqual(len(versions), 0)
@@ -239,27 +285,17 @@ class TestS3Resource(unittest.TestCase):
 
 class TestS3Transfers(unittest.TestCase):
     """Tests for the high level boto3.s3.transfer module."""
-
-    @classmethod
-    def setUpClass(cls):
-        cls.region = 'us-west-2'
-        cls.session = boto3.session.Session(region_name=cls.region)
-        cls.client = cls.session.client('s3', cls.region)
-        cls.bucket_name = random_bucket_name()
-        cls.client.create_bucket(
-            Bucket=cls.bucket_name,
-            CreateBucketConfiguration={'LocationConstraint': cls.region})
-
     def setUp(self):
+        self.region = _DEFAULT_REGION
+        self.bucket_name = _SHARED_BUCKET
+        clear_out_bucket(self.bucket_name, self.region)
+        self.session = boto3.session.Session(region_name=self.region)
+        self.client = self.session.client('s3', self.region)
         self.files = FileCreator()
         self.progress = 0
 
     def tearDown(self):
         self.files.remove_all()
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.client.delete_bucket(Bucket=cls.bucket_name)
 
     def delete_object(self, key):
         self.client.delete_object(
@@ -607,23 +643,12 @@ class TestS3Transfers(unittest.TestCase):
 
 class TestCustomS3BucketLoad(unittest.TestCase):
     def setUp(self):
-        self.region = 'us-west-2'
+        self.region = _DEFAULT_REGION
+        self.bucket_name = _SHARED_BUCKET
+        clear_out_bucket(self.bucket_name, self.region)
         self.session = boto3.session.Session(region_name=self.region)
         self.s3 = self.session.resource('s3')
-        self.bucket_name = unique_id('boto3-test')
-
-    def create_bucket_resource(self, bucket_name, region=None):
-        if region is None:
-            region = self.region
-        kwargs = {'Bucket': bucket_name}
-        if region != 'us-east-1':
-            kwargs['CreateBucketConfiguration'] = {
-                'LocationConstraint': region
-            }
-        bucket = self.s3.create_bucket(**kwargs)
-        self.addCleanup(bucket.delete)
-        return bucket
 
     def test_can_access_buckets_creation_date(self):
-        bucket = self.create_bucket_resource(random_bucket_name())
+        bucket = self.s3.Bucket(self.bucket_name)
         self.assertIsInstance(bucket.creation_date, datetime.datetime)
