@@ -672,6 +672,22 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
         self.assertIsInstance(q, ServiceResource,
             'Dangling resource instance not a ServiceResource')
 
+    def test_hash_resource_equal(self):
+        resource = self.load('test', self.model, self.defs)()
+        p = resource.Queue('test')
+        q = resource.Queue('test')
+
+        self.assertEqual(p, q, "Should be equal resource")
+        self.assertEqual(hash(p), hash(q), "Hash values should be equal")
+
+    def test_hash_resource_not_equal(self):
+        resource = self.load('test', self.model, self.defs)()
+        p = resource.Queue('test1')
+        q = resource.Queue('test2')
+
+        self.assertNotEquals(p, q, "Should not be equal resource")
+        self.assertNotEquals(hash(p), hash(q), "Hash values should be different")
+
     def test_dangling_resource_create_with_kwarg(self):
         resource = self.load('test', self.model, self.defs)()
         q = resource.Queue(url='test')
