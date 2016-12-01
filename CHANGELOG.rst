@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.4.2
+=====
+
+* feature:ec2: Update client to latest version
+
+
 1.4.1
 =====
 

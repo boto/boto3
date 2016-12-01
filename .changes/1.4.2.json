@@ -1,0 +1,7 @@
+[
+  {
+    "category": "ec2", 
+    "description": "Update client to latest version", 
+    "type": "feature"
+  }
+]
