@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "Resource",
+  "description": "Fix resource hashing."
+}
