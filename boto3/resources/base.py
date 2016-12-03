@@ -140,3 +140,9 @@ class ServiceResource(object):
                 return False
 
         return True
+
+    def __hash__(self):
+        identifiers = []
+        for identifier in self.meta.identifiers:
+            identifiers.append(getattr(self, identifier))
+        return hash((self.__class__.__name__, tuple(identifiers)))
