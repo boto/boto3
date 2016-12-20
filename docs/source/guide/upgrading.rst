@@ -4,6 +4,17 @@ Upgrading Notes
 
 Notes to refer to when upgrading ``boto3`` versions.
 
+
+1.4.2
+=====
+
+* The ``use_threads`` option was added to
+  :py:class:`boto3.s3.transfer.TransferConfig`.
+  Starting in version ``1.4.0``, all managed S3 transfer methods became
+  threaded instead of possibly being threaded. If it is not desired to use
+  threads for managed S3 transfers, set ``use_threads`` to ``False``.
+
+
 1.4.0
 =====
 
