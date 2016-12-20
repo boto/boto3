@@ -4,7 +4,7 @@ Upgrading Notes
 
 Notes to refer to when upgrading ``boto3`` versions.
 
-1.4.x
+1.4.0
 =====
 
 * Logic from the `s3transfer <https://github.com/boto/s3transfer>`_ package
@@ -33,3 +33,5 @@ Notes to refer to when upgrading ``boto3`` versions.
     was initiated. To run the managed transfer methods with no threads
     (i.e. all of the transfer logic happens in the main thread), set
     ``use_threads`` to ``False`` when providing a ``TransferConfig`` object.
+    The ``use_threads`` option is only available in ``boto3`` versions higher
+    than ``1.4.1``.
