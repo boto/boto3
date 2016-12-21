@@ -61,6 +61,7 @@ S3. Functionality includes:
   * Multipart transfer thresholds
   * Multipart transfer part sizes
   * Number of download retry attempts
+  * Enabling/disabling the use of threads
 
 
 Uploads
@@ -108,19 +109,31 @@ from, **not** text::
         s3.upload_fileobj(f, "bucket-name", "key-name")
 
 
-To upload a file using any extra parameters such as user metadata, use the
-``ExtraArgs`` parameter::
+When uploading, ``ExtraArgs`` can be used to specify a variety of
+additional parameters.  For example, to supply user metadata::
 
-
-    import boto3
-
-    # Get the service client
-    s3 = boto3.client('s3')
-
-    # Upload tmp.txt to bucket-name at key-name
     s3.upload_file(
         "tmp.txt", "bucket-name", "key-name",
         ExtraArgs={"Metadata": {"mykey": "myvalue"}}
+    )
+
+
+To set a canned ACL::
+
+    s3.upload_file(
+        'tmp.txt', 'bucket-name', 'key-name',
+        ExtraArgs={'ACL': 'public-read'}
+    )
+
+
+To set custom or multiple ACLs::
+
+    s3.upload_file(
+        'tmp.txt', 'bucket-name', 'key-name',
+        ExtraArgs={
+            'GrantRead': 'uri="http://acs.amazonaws.com/groups/global/AllUsers"',
+            'GrantFullControl': 'id="79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be"',
+        }
     )
 
 
@@ -431,6 +444,26 @@ amount of concurrent S3 transfer-related API requests::
     # Increase the max concurrency to 20 to potentially consume more
     # downstream bandwidth.
     config = TransferConfig(max_concurrency=20)
+
+    # Download object at bucket-name with key-name to tmp.txt with the
+    # set configuration
+    s3.download_file("bucket-name", "key-name", "tmp.txt", Config=config)
+
+
+Threads are used by default in the managed transfer methods. To ensure no
+threads are used in the transfer process, set ``use_threads`` to
+``False``. Note that in setting ``use_threads`` to ``False``, the value for
+``max_concurrency`` is ignored as the main thread will only ever be used::
+
+
+    import boto3
+    from boto3.s3.transfer import TransferConfig
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Ensure that no threads are used.
+    config = TransferConfig(use_threads=False)
 
     # Download object at bucket-name with key-name to tmp.txt with the
     # set configuration

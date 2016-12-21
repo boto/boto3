@@ -10,10 +10,11 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from s3transfer.manager import TransferManager, TransferConfig
 from botocore.exceptions import ClientError
 
-from boto3.s3.transfer import S3Transfer, ProgressCallbackInvoker
+from boto3.s3.transfer import create_transfer_manager
+from boto3.s3.transfer import TransferConfig, S3Transfer
+from boto3.s3.transfer import ProgressCallbackInvoker
 from boto3 import utils
 
 
@@ -258,7 +259,7 @@ def copy(self, CopySource, Bucket, Key, ExtraArgs=None, Callback=None,
     if config is None:
         config = TransferConfig()
 
-    with TransferManager(self, config) as manager:
+    with create_transfer_manager(self, config) as manager:
         future = manager.copy(
             copy_source=CopySource, bucket=Bucket, key=Key,
             extra_args=ExtraArgs, subscribers=subscribers,
@@ -419,7 +420,7 @@ def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
     if config is None:
         config = TransferConfig()
 
-    with TransferManager(self, config) as manager:
+    with create_transfer_manager(self, config) as manager:
         future = manager.upload(
             fileobj=Fileobj, bucket=Bucket, key=Key,
             extra_args=ExtraArgs, subscribers=subscribers)
@@ -558,7 +559,7 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
     if config is None:
         config = TransferConfig()
 
-    with TransferManager(self, config) as manager:
+    with create_transfer_manager(self, config) as manager:
         future = manager.download(
             bucket=Bucket, key=Key, fileobj=Fileobj,
             extra_args=ExtraArgs, subscribers=subscribers)

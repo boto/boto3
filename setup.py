@@ -5,7 +5,6 @@ distutils/setuptools install script.
 """
 import os
 import re
-import sys
 
 from setuptools import setup, find_packages
 
@@ -17,7 +16,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 requires = [
     'botocore>=1.4.1,<1.5.0',
     'jmespath>=0.7.1,<1.0.0',
-    's3transfer>=0.1.0,<0.2.0'
+    's3transfer>=0.1.10,<0.2.0'
 ]
 
 

@@ -4,6 +4,17 @@ Upgrading Notes
 
 Notes to refer to when upgrading ``boto3`` versions.
 
+
+1.4.2
+=====
+
+* The ``use_threads`` option was added to
+  :py:class:`boto3.s3.transfer.TransferConfig`.
+  Starting in version ``1.4.0``, all managed S3 transfer methods became
+  threaded instead of possibly being threaded. If it is not desired to use
+  threads for managed S3 transfers, set ``use_threads`` to ``False``.
+
+
 1.4.0
 =====
 
@@ -27,3 +38,11 @@ Notes to refer to when upgrading ``boto3`` versions.
     objects for transfers, use the newly added ``upload_fileobj``
     and ``download_fileobj`` methods that support both nonmultipart and
     multipart transfers.
+
+  * By default, all managed transfer methods are now threaded. In prior
+    versions, threads were only created if a non multipart upload or download
+    was initiated. To run the managed transfer methods with no threads
+    (i.e. all of the transfer logic happens in the main thread), set
+    ``use_threads`` to ``False`` when providing a ``TransferConfig`` object.
+    The ``use_threads`` option is only available in ``boto3`` versions higher
+    than ``1.4.1``.
