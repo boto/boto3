@@ -61,6 +61,7 @@ S3. Functionality includes:
   * Multipart transfer thresholds
   * Multipart transfer part sizes
   * Number of download retry attempts
+  * Enabling/disabling the use of threads
 
 
 Uploads
@@ -443,6 +444,26 @@ amount of concurrent S3 transfer-related API requests::
     # Increase the max concurrency to 20 to potentially consume more
     # downstream bandwidth.
     config = TransferConfig(max_concurrency=20)
+
+    # Download object at bucket-name with key-name to tmp.txt with the
+    # set configuration
+    s3.download_file("bucket-name", "key-name", "tmp.txt", Config=config)
+
+
+Threads are used by default in the managed transfer methods. To ensure no
+threads are used in the transfer process, set ``use_threads`` to
+``False``. Note that in setting ``use_threads`` to ``False``, the value for
+``max_concurrency`` is ignored as the main thread will only ever be used::
+
+
+    import boto3
+    from boto3.s3.transfer import TransferConfig
+
+    # Get the service client
+    s3 = boto3.client('s3')
+
+    # Ensure that no threads are used.
+    config = TransferConfig(use_threads=False)
 
     # Download object at bucket-name with key-name to tmp.txt with the
     # set configuration

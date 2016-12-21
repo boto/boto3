@@ -128,6 +128,7 @@ from s3transfer.exceptions import RetriesExceededError as \
     S3TransferRetriesExceededError
 from s3transfer.manager import TransferConfig as S3TransferConfig
 from s3transfer.manager import TransferManager
+from s3transfer.futures import NonThreadedExecutor
 from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import OSUtils
 
@@ -136,6 +137,27 @@ from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 KB = 1024
 MB = KB * KB
+
+
+def create_transfer_manager(client, config, osutil=None):
+    """Creates a transfer manager based on configuration
+
+    :type client: boto3.client
+    :param client: The S3 client to use
+
+    :type config: boto3.s3.transfer.TransferConfig
+    :param config: The transfer config to use
+
+    :type osutil: s3transfer.utils.OSUtils
+    :param osutil: The os utility to use
+
+    :rtype: s3transfer.manager.TransferManager
+    :returns: A transfer manager based on parameters provided
+    """
+    executor_cls = None
+    if not config.use_threads:
+        executor_cls = NonThreadedExecutor
+    return TransferManager(client, config, osutil, executor_cls)
 
 
 class TransferConfig(S3TransferConfig):
@@ -150,7 +172,8 @@ class TransferConfig(S3TransferConfig):
                  multipart_chunksize=8 * MB,
                  num_download_attempts=5,
                  max_io_queue=100,
-                 io_chunksize=256 * KB):
+                 io_chunksize=256 * KB,
+                 use_threads=True):
         """Configuration object for managed S3 transfers
 
         :param multipart_threshold: The transfer size threshold for which
@@ -158,7 +181,9 @@ class TransferConfig(S3TransferConfig):
             triggered.
 
         :param max_concurrency: The maximum number of threads that will be
-            making requests to perform a transfer.
+            making requests to perform a transfer. If ``use_threads`` is
+            set to ``False``, the value provided is ignored as the transfer
+            will only ever use the main thread.
 
         :param multipart_chunksize: The partition size of each part for a
             multipart transfer.
@@ -180,6 +205,10 @@ class TransferConfig(S3TransferConfig):
         :param io_chunksize: The max size of each chunk in the io queue.
             Currently, this is size used when ``read`` is called on the
             downloaded stream as well.
+
+        :param use_threads: If True, threads will be used when performing
+            S3 transfers. If False, no threads will be used in
+            performing transfers: all logic will be ran in the main thread.
         """
         super(TransferConfig, self).__init__(
             multipart_threshold=multipart_threshold,
@@ -194,6 +223,7 @@ class TransferConfig(S3TransferConfig):
         # old version of the names.
         for alias in self.ALIAS:
             setattr(self, alias, getattr(self, self.ALIAS[alias]))
+        self.use_threads = use_threads
 
     def __setattr__(self, name, value):
         # If the alias name is used, make sure we set the name that it points
@@ -226,7 +256,7 @@ class S3Transfer(object):
         if manager:
             self._manager = manager
         else:
-            self._manager = TransferManager(client, config, osutil)
+            self._manager = create_transfer_manager(client, config, osutil)
 
     def upload_file(self, filename, bucket, key,
                     callback=None, extra_args=None):
