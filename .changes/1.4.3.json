@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``s3``", 
+    "description": "Add ability to disable thread use with ``use_threads`` option", 
+    "type": "feature"
+  }, 
+  {
+    "category": "Resource", 
+    "description": "Fix resource hashing.", 
+    "type": "bugfix"
+  }
+]

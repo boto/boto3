@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.4.3
+=====
+
+* feature:``s3``: Add ability to disable thread use with ``use_threads`` option
+* bugfix:Resource: Fix resource hashing.
+
+
 1.4.2
 =====
 
