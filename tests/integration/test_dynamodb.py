@@ -32,9 +32,9 @@ class BaseDynamoDBTest(unittest.TestCase):
             'MyString': 'mystring',
             'MyNumber': Decimal('1.25'),
             'MyBinary': Binary(b'\x01'),
-            'MyStringSet': set(['foo']),
-            'MyNumberSet': set([Decimal('1.25')]),
-            'MyBinarySet': set([Binary(b'\x01')]),
+            'MyStringSet': {'foo'},
+            'MyNumberSet': {Decimal('1.25')},
+            'MyBinarySet': {Binary(b'\x01')},
             'MyList': ['foo'],
             'MyMap': {'foo': 'bar'}
         }

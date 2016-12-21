@@ -94,7 +94,7 @@ versions of Python installed, otherwise you must pass ``-e`` or run the
 
     $ tox
     $ tox tests/unit/test_session.py
-    $ tox -e py26,py33 tests/integration
+    $ tox -e py27,py33 tests/integration
 
 You can also run individual tests with your default Python version:
 

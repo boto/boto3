@@ -92,11 +92,4 @@ def resource(*args, **kwargs):
     return _get_default_session().resource(*args, **kwargs)
 
 
-# Set up logging to ``/dev/null`` like a library is supposed to.
-# http://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
-class NullHandler(logging.Handler):
-    def emit(self, record):
-        pass
-
-
-logging.getLogger('boto3').addHandler(NullHandler())
+logging.getLogger('boto3').addHandler(logging.NullHandler())
