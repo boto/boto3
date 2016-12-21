@@ -629,7 +629,7 @@ class TestS3Transfers(unittest.TestCase):
         # use ``boto3.s3.transfer.S3Transfer`` and the other should be
         # using ``s3transfer.manager.TransferManager`` directly
         content = b'my content'
-        filename = self.files.create_file('myfile', content)
+        filename = self.files.create_file('myfile', content.decode('utf-8'))
         key = 'foo'
         config = boto3.s3.transfer.TransferConfig(use_threads=False)
 
