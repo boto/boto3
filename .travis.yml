@@ -5,6 +5,7 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
+  - "3.6"
 sudo: false
 before_install:
   - if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
