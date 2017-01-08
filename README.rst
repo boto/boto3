@@ -30,6 +30,9 @@ released, check out the `stable docs`_.
 .. |License| image:: http://img.shields.io/pypi/l/boto3.svg?style=flat
     :target: https://github.com/boto/boto3/blob/develop/LICENSE
     :alt: License
+.. |Codecov| image:: https://codecov.io/github/boto/boto3/coverage.svg?branch=master
+    :target: https://codecov.io/github/boto/boto3
+    :alt: codecov.io
 
 Quick Start
 -----------

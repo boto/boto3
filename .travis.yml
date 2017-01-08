@@ -15,3 +15,5 @@ before_install:
 install:
   - python scripts/ci/install
 script: python scripts/ci/run-tests
+after_success:
+  - if [[ $TEST_TYPE == 'coverage' ]]; then pip install codecov==2.0.5 && codecov; fi
