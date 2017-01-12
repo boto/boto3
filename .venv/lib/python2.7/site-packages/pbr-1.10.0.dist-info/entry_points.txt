@@ -1,0 +1,12 @@
+[console_scripts]
+pbr = pbr.cmd.main:main
+
+[distutils.commands]
+testr = pbr.testr_command:Testr
+
+[distutils.setup_keywords]
+pbr = pbr.core:pbr
+
+[egg_info.writers]
+pbr.json = pbr.pbr_json:write_pbr_json
+

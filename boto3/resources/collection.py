@@ -61,6 +61,30 @@ class ResourceCollection(object):
             )
         )
 
+    def __len__(self):
+        """
+        Return the length of the collection without the need to
+        turn it into a list first.
+
+        Page size, item limit, and filter parameters are applied
+        if they have previously been set.
+
+            >>> bucket = s3.Bucket('boto3')
+            >>> print(len(bucket.objects.all())):
+            2
+        """
+        limit = self._params.get('limit', None)
+
+        count = 0
+        for page in self.pages():
+            for item in page:
+                # If the limit is set and has been reached, then
+                # we stop processing items here.
+                count += 1
+                if limit is not None and count >= limit:
+                    return count
+        return count
+
     def __iter__(self):
         """
         A generator which yields resource instances after doing the

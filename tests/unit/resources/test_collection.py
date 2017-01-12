@@ -234,12 +234,14 @@ class TestResourceCollection(BaseTestCase):
             ]
         }
         collection = self.get_collection()
-        items = list(collection.all())
-        self.assertEqual(len(items), 4)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
-        self.assertEqual(items[2].id, 'three')
-        self.assertEqual(items[3].id, 'four')
+        collection_items = collection.all()
+        self.assertEqual(len(collection_items), 4)
+
+        list_items = list(collection_items)
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
+        self.assertEqual(list_items[2].id, 'three')
+        self.assertEqual(list_items[3].id, 'four')
 
     def test_limit_param_non_paginated(self):
         self.collection_def = {
@@ -266,12 +268,14 @@ class TestResourceCollection(BaseTestCase):
             ]
         }
         collection = self.get_collection()
-        items = list(collection.all().limit(2))
-        self.assertEqual(len(items), 2)
+        collection_items = collection.all().limit(2)
+        self.assertEqual(len(collection_items), 2)
+
+        list_items = list(collection_items)
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
 
     def test_limit_method_non_paginated(self):
         self.collection_def = {
@@ -298,12 +302,13 @@ class TestResourceCollection(BaseTestCase):
             ]
         }
         collection = self.get_collection()
-        items = list(collection.limit(2))
-        self.assertEqual(len(items), 2)
+        collection_items = collection.all().limit(2)
+        self.assertEqual(len(collection_items), 2)
+        list_items = list(collection_items)
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_filters_non_paginated(self, handler):
@@ -418,12 +423,14 @@ class TestResourceCollection(BaseTestCase):
             }
         ]
         collection = self.get_collection()
-        items = list(collection.all())
-        self.assertEqual(len(items), 4)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
-        self.assertEqual(items[2].id, 'three')
-        self.assertEqual(items[3].id, 'four')
+        collection_items = collection.all()
+        self.assertEqual(len(collection_items), 4)
+        list_items = list(collection_items)
+
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
+        self.assertEqual(list_items[2].id, 'three')
+        self.assertEqual(list_items[3].id, 'four')
 
         # Low-level pagination should have been called
         self.client.get_paginator.assert_called_with('get_frobs')
@@ -462,12 +469,13 @@ class TestResourceCollection(BaseTestCase):
             }
         ]
         collection = self.get_collection()
-        items = list(collection.all().limit(2))
-        self.assertEqual(len(items), 2)
+        collection_items = collection.all().limit(2)
+        self.assertEqual(len(collection_items), 2)
+        list_items = list(collection_items)
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
 
     def test_limit_method_paginated(self):
         self.collection_def = {
@@ -500,12 +508,13 @@ class TestResourceCollection(BaseTestCase):
             }
         ]
         collection = self.get_collection()
-        items = list(collection.all().limit(2))
-        self.assertEqual(len(items), 2)
+        collection_items = collection.all().limit(2)
+        self.assertEqual(len(collection_items), 2)
+        list_items = list(collection_items)
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_filters_paginated(self, handler):
@@ -610,13 +619,15 @@ class TestResourceCollection(BaseTestCase):
         }
         collection = self.get_collection()
 
-        items = list(collection.filter().all().all())
+        collection_items = collection.filter().all().all()
+        self.assertEqual(len(collection_items), 4)
 
-        self.assertEqual(len(items), 4)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
-        self.assertEqual(items[2].id, 'three')
-        self.assertEqual(items[3].id, 'four')
+        list_items = list(collection_items)
+
+        self.assertEqual(list_items[0].id, 'one')
+        self.assertEqual(list_items[1].id, 'two')
+        self.assertEqual(list_items[2].id, 'three')
+        self.assertEqual(list_items[3].id, 'four')
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_chaining_copies_parameters(self, handler):
