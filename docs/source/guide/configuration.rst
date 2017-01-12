@@ -334,7 +334,7 @@ Environment Variable Configuration
     supported by multiple AWS SDKs besides python.
 
 ``AWS_DEFAULT_REGION``
-    The default region to use, e.g. ``us-west-2``, ``us-west-2``, etc.
+    The default region to use, e.g. ``us-west-1``, ``us-west-2``, etc.
 
 ``AWS_PROFILE``
     The default profile to use, if any.  If no value is specified, boto3
@@ -403,7 +403,7 @@ If your profile name has spaces, you'll need to surround this value in quotes:
 in the ``~/.aws/config`` file:
 
 ``region``
-    The default region to use, e.g. ``us-west-2``, ``us-west-2``, etc. When specifying a region inline during client initialization, this property is named ``region_name``
+    The default region to use, e.g. ``us-west-1``, ``us-west-2``, etc. When specifying a region inline during client initialization, this property is named ``region_name``
 ``aws_access_key_id``
     The access key to use.
 ``aws_secret_access_key``
