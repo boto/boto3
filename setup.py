@@ -14,7 +14,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.4.1,<1.5.0',
+    'botocore>=1.5.0,<1.6.0',
     'jmespath>=0.7.1,<1.0.0',
     's3transfer>=0.1.10,<0.2.0'
 ]
@@ -55,5 +55,6 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
 )

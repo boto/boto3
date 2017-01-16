@@ -371,7 +371,7 @@ Expected Output::
                    u'road': u'1 Jefferson Street'}}]
 
 
-Similiarly you can scan the table based on attributes of the items. For
+Similarly you can scan the table based on attributes of the items. For
 example, this scans for all the users whose ``age`` is less than ``27``::
 
     response = table.scan(
