@@ -2,7 +2,7 @@
 Boto 3 - The AWS SDK for Python
 ===============================
 
-|Build Status| |Docs| |Version|
+|Build Status| |Docs| |Version| |Gitter|
 
 Boto3 is the Amazon Web Services (AWS) Software Development Kit (SDK) for
 Python, which allows Python developers to write software that makes use
@@ -18,6 +18,9 @@ released, check out the `stable docs`_.
 .. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
     :target: https://travis-ci.org/boto/boto3
     :alt: Build Status
+.. |Gitter| image:: https://badges.gitter.im/boto/boto3.svg
+   :target: https://gitter.im/boto/boto3
+   :alt: Gitter
 .. |Docs| image:: https://readthedocs.org/projects/boto3/badge/?version=latest&style=flat
     :target: https://boto3.readthedocs.io/en/latest/
     :alt: Read the docs
@@ -112,3 +115,16 @@ following:
     $ pip install -r requirements-docs.txt
     $ cd docs
     $ make html
+
+
+Getting Help
+------------
+
+We use GitHub issues for tracking bugs and feature requests and have limited
+bandwidth to address them. Please use these community resources for getting
+help:
+
+* Ask a question on `Stack Overflow <https://stackoverflow.com/>`__ and tag it with `boto3 <https://stackoverflow.com/questions/tagged/boto3>`__
+* Come join the AWS Python community chat on `gitter <https://gitter.im/boto/boto3>`__
+* Open a support ticket with `AWS Support <https://console.aws.amazon.com/support/home#/>`__
+* If it turns out that you may have found a bug, please `open an issue <https://github.com/boto/boto3/issues/new>`__
