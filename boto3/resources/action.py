@@ -77,7 +77,7 @@ class ServiceAction(object):
         params = create_request_parameters(parent, self._action_model.request)
         params.update(kwargs)
 
-        logger.info('Calling %s:%s with %r', parent.meta.service_name,
+        logger.debug('Calling %s:%s with %r', parent.meta.service_name,
                     operation_name, params)
 
         response = getattr(parent.meta.client, operation_name)(**params)
