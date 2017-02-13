@@ -112,6 +112,21 @@
       "CreateTags": {
         "request": { "operation": "CreateTags" }
       },
+      "CreateVpnGateway": {
+        "request": {
+          "operation": "CreateVpnGateway",
+          "params": [
+            { "target": "Type", "source": "string", "value": "ipsec.1" }
+          ]
+        },
+        "resource": {
+          "type": "VpnGateway",
+          "identifiers": [
+            { "target": "VpnGatewayId", "source": "response", "path": "VpnGateway.VpnGatewayId" }
+          ],
+          "path": "VpnGateway"
+        }
+      },
       "CreateVolume": {
         "request": { "operation": "CreateVolume" },
         "resource": {
@@ -165,6 +180,14 @@
       }
     },
     "has": {
+      "Address": {
+        "resource": {
+          "type": "DhcpOptions",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
       "DhcpOptions": {
         "resource": {
           "type": "DhcpOptions",
@@ -290,6 +313,14 @@
           "type": "VpcPeeringConnection",
           "identifiers": [
             { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "VpnGateway": {
+        "resource": {
+          "type": "VpnGateway",
+          "identifiers": [
+            { "target": "VpnGatewayId", "source": "input" }
           ]
         }
       }
@@ -475,6 +506,16 @@
             { "target": "Id", "source": "response", "path": "Vpcs[].VpcId" }
           ],
           "path": "Vpcs[]"
+        }
+      },
+      "VpnGateways": {
+        "request": { "operation": "DescribeVpnGateways" },
+        "resource": {
+          "type": "VpnGateway",
+          "identifiers": [
+            { "target": "VpnGatewayId", "source": "response", "path": "VpnGateways[].VpnGatewayId" }
+          ],
+          "path": "VpnGateways[]"
         }
       }
     }
@@ -2573,6 +2614,50 @@
             "type": "NetworkInterfaceAssociation",
             "identifiers": [
               { "target": "Id", "source": "data", "path": "AssociationId" }
+            ]
+          }
+        }
+      }
+    },
+    "VpnGateway": {
+      "identifiers": [
+        {
+          "name": "VpnGatewayId"
+        }
+      ],
+      "shape": "VpnGateway",
+      "load": {
+        "request": {
+          "operation": "DescribeVpnGateways",
+          "params": [
+            { "target": "VpnGatewayIds[0]", "source": "identifier", "name": "VpnGatewayId" }
+          ]
+        },
+        "path": "VpnGateways[0]"
+      },
+      "actions": {
+        "Attach": {
+          "request": {
+            "operation": "AttachVpnGateway",
+            "params": [
+              { "target": "VpnGatewayId", "source": "identifier", "name": "VpnGatewayId" }
+            ]
+          }
+        },
+        "Detach": {
+          "request": {
+            "operation": "DetachVpnGateway",
+            "params": [
+              { "target": "VpnGatewayId", "source": "data", "path": "VpnGatewayId" },
+              { "target": "VpcId", "source": "data", "path": "VpcAttachments[0].VpcId"}
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteVpnGateway",
+            "params": [
+              { "target": "VpnGatewayId", "source": "data", "path": "VpnGatewayId" }
             ]
           }
         }
