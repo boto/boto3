@@ -33,7 +33,7 @@ class TestServiceDocumenter(BaseDocsTest):
             '======',
             '.. py:class:: MyService.Client',
             '  These are the available methods:',
-            '  *   :py:meth:`sample_operation`',
+            '  *   :py:meth:`~MyService.Client.sample_operation`',
             '    **Examples** ',
             '    Sample Description.',
             '    ::',

@@ -78,17 +78,18 @@ def _assert_has_title(generated_docs, client):
 
 
 def _assert_has_client_documentation(generated_docs, service_name, client):
+    class_name = client.__class__.__name__
     ref_lines = [
         '======',
         'Client',
         '======',
-        '.. py:class:: %s.Client' % client.__class__.__name__,
+        '.. py:class:: %s.Client' % class_name,
         '  A low-level client representing',
         '    import boto3',
         '    client = boto3.client(\'%s\')' % service_name,
         '  These are the available methods:',
-        '  *   :py:meth:`get_paginator`',
-        '  *   :py:meth:`get_waiter`',
+        '  *   :py:meth:`~%s.Client.get_paginator`' % class_name,
+        '  *   :py:meth:`~%s.Client.get_waiter`' % class_name,
         '  .. py:method:: get_paginator(operation_name)',
         '  .. py:method:: get_waiter(waiter_name)',
     ]
