@@ -35,24 +35,9 @@ Examples
 .. toctree::
    :maxdepth: 1
 
-   iam-example-attach-role-policy
-   iam-example-create-access-key
-   iam-example-create-account-alias
-   iam-example-create-policy
-   iam-example-create-user
-   iam-example-delete-access-key
-   iam-example-delete-account-alias
-   iam-example-delete-server-cert
-   iam-example-delete-user
-   iam-example-detach-role-policy
-   iam-example-get-access-key-last-used
-   iam-example-get-policy
-   iam-example-get-server-cert
-   iam-example-list-access-keys
-   iam-example-list-account-aliases
-   iam-example-list-server-certs
-   iam-example-list-users
-   iam-example-update-last-access-key
-   iam-example-update-server-cert
-   iam-example-update-user
+   iam-example-managing-users
+   iam-example-policies
+   iam-example-managing-access-keys
+   iam-example-server-certificates
+   iam-example-managing-account-aliases
 

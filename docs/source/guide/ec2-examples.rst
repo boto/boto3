@@ -27,18 +27,8 @@ For more information about Amazon EC2,  see the `Amazon EC2 Documentation <http:
 .. toctree::
    :maxdepth: 1
 
-   ec2-example-allocate-address
-   ec2-example-create-keypair
-   ec2-example-create-security-group
-   ec2-example-delete-keypair
-   ec2-example-delete-security-group
-   ec2-example-describe-addresses
-   ec2-example-describe-instances
-   ec2-example-describe-keypair
-   ec2-example-describe-regions-azs
-   ec2-example-describe-security-groups
-   ec2-example-instance-monitoring
-   ec2-example-rebooting
-   ec2-example-release-elastic-ip
-   ec2-example-starting-and-stopping-instances
-
+   ec2-example-managing-instances
+   ec2-example-key-pairs
+   ec2-example-regions-avail-zones
+   ec2-example-security-group
+   
