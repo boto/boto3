@@ -16,7 +16,7 @@ Working with Amazon EC2 Key Pairs
 
 This Python example shows you how to:
 
-* Retrieve information about your key pairs
+* Get information about your key pairs
 
 * Create a key pair to access an Amazon EC2 instance
 

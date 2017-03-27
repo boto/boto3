@@ -16,7 +16,7 @@ Creating Alarms in Amazon CloudWatch
 
 This Python example shows you how to:
 
-* Retrieve basic information about your CloudWatch alarms
+* Get basic information about your CloudWatch alarms
 
 * Create and delete a CloudWatch alarm
 

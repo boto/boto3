@@ -16,7 +16,7 @@ Working with Security Groups in Amazon EC2
 
 This Python example shows you how to:
 
-* Retrieve information about your security groups
+* Get information about your security groups
 
 * Create a security group to access an Amazon EC2 instance
 

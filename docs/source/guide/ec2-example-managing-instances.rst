@@ -16,7 +16,7 @@ Managing Amazon EC2 Instances
 
 This Python example shows you how to:
 
-* Retrieve basic information about your Amazon EC2 instances
+* Get basic information about your Amazon EC2 instances
 
 * Start and stop detailed monitoring of an Amazon EC2 instance
 

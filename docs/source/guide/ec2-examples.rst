@@ -24,6 +24,8 @@ capacity in servers in Amazon's data centers—that you use to build and host yo
 You can use the following examples to access Amazon EC2 using the Amazon Web Services (AWS) SDK for Python.
 For more information about Amazon EC2,  see the `Amazon EC2 Documentation <http://aws.amazon.com/documentation/ec2/>`_.
 
+**Examples**
+
 .. toctree::
    :maxdepth: 1
 

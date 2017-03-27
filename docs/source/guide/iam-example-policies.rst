@@ -107,12 +107,12 @@ Getting an IAM Policy
 =====================
 
 Retrieves information about the specified managed policy, including the policy's default version and 
-the total number of IAM users, groups, and roles to which the policy is attached. To retrieve the 
+the total number of IAM users, groups, and roles to which the policy is attached. To get the 
 list of the specific users, groups, and roles that the policy is attached to, use the 
-:code:`list_entities_for_policy` API. This API returns metadata about the policy. To retrieve the actual policy 
+:code:`list_entities_for_policy` API. This API returns metadata about the policy. To get the actual policy 
 document for a specific version of the policy, use :code:`get_policy_version` API.
 
-This API retrieves information about managed policies. To retrieve information about an inline policy 
+This API retrieves information about managed policies. To get information about an inline policy 
 that is embedded with an IAM user, group, or role, use the :code:`get_user_policy`, :code:`get_group_policy`, 
 or :code:`get_role_policy` API.
 

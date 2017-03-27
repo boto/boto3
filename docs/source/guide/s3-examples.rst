@@ -17,28 +17,25 @@ Amazon S3 Examples
 .. meta::
    :description:
    :keywords: AWS S3 code examples for Boto3
+   
+Amazon Simple Storage Service (Amazon S3) is a web service that provides highly scalable cloud storage. 
+Amazon S3 provides easy to use object storage, with a simple web service interface to store and get 
+any amount of data from anywhere on the web.
+
+The Python API for Amazon S3 is exposed through the AWS.S3 client class. For more information about 
+Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
 
 You can use the following examples to access Amazon Simple Storage Service (Amazon S3) using  
-AWS Boto. For more information about Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
+AWS Pyton SDK. For more information about Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
 
 **Examples**
 
 .. toctree::
    :maxdepth: 1
 
-   s3-example-get-buckets
-   s3-example-get-buckets-in-region
-   s3-example-create-buckets
-   s3-example-does-bucket-exist
-   s3-example-get-bucket-items
-   s3-example-upload-bucket-item
-   s3-example-upload-bucket-item-with-metadata
-   s3-example-get-bucket-item
-   s3-example-set-item-props
-   s3-example-add-notification
-   s3-example-create-policy-template  
-   s3-example-set-bucket-policy 
-   s3-example-bucket-cors
-   s3-example-set-bucket-permission
-   s3-example-bucket-website
+   s3-example-creating-buckets
+   s3-example-configuring-buckets
+   s3-example-access-permissions
+   s3-example-bucket-policies
+   s3-example-static-web-host
 

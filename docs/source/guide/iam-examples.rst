@@ -29,8 +29,7 @@ You can use the following examples to access AWS Identity and Access Management 
 Amazon Web Services (AWS) SDK for Python.
 For more information about IAM,  see the `IAM documentation <http://aws.amazon.com/documentation/iam/>`_.
 
-Examples
-========
+**Examples**
 
 .. toctree::
    :maxdepth: 1

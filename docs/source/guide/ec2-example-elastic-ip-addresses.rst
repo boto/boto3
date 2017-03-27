@@ -16,7 +16,7 @@ Using Elastic IP Addresses in Amazon EC2
 
 This Pyton example shows you how to:
 
-* Retrieve descriptions of your Elastic IP addresses
+* Get descriptions of your Elastic IP addresses
 
 * Allocate an Elastic IP address
 

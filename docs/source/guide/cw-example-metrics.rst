@@ -16,7 +16,7 @@ Getting Metrics from Amazon CloudWatch
 
 This Python example shows you how to:
 
-* Retrieve a list of published CloudWatch metrics
+* Get a list of published CloudWatch metrics
 
 * Publish data points to CloudWatch metrics
 
