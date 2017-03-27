@@ -520,7 +520,7 @@
             "path": "JobList[]"
           }
         },
-        "MultipartUplaods": {
+        "MultipartUploads": {
           "request": {
             "operation": "ListMultipartUploads",
             "params": [
