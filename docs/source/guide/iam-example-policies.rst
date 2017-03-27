@@ -26,7 +26,7 @@ of users, roles assumed by users, and resources.
 
 In this example, Python code used to manage policies in IAM. The code uses the 
 Amazon Web Services (AWS) SDK for Python to create and delete policies as well as attaching and 
-detaching role policies using these methods of the :code:`boto3.client('iam')` client class:
+detaching role policies using these methods of the IAM client class:
 
 * `create_policy <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_policy>`_.
 

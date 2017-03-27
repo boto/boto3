@@ -24,7 +24,7 @@ instead of your AWS account ID, you can create an alias for your AWS account ID.
 AWS account alias, your sign-in page URL changes to incorporate the alias.
 
 In this example, Python code is used to create and manage IAM account aliases. The code uses the 
-AWS SDK for Python to manage IAM access keys using these methods of :code:`boto3.client('iam')` client class:
+AWS SDK for Python to manage IAM access keys using these methods of the IAM client class:
 
 * `create_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_account_alias>`_.
 

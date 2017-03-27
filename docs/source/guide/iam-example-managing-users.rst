@@ -21,7 +21,7 @@ The Scenario
 
 In this example Python code is used to create and manage users in IAM. The code uses the 
 Amazon Web Services (AWS) SDK for Python to manage users using these methods of the 
-:code:`boto3.client('iam')` client class:
+IAM client class:
 
 * `create_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_user>`_
 

@@ -20,10 +20,10 @@ information about ClodWatch, see the `CloudWatch Developer Guide <http://docs.aw
 **Examples**
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   cw-example-show_alarms
-   cw-example-create_alarm
-   cw-example-alarm-actions
-   cw-example-get-metrics-info
-   cw-example-send-events
+   cw-example-creating-alarms
+   cw-example-using-alarms
+   cw-example-metrics
+   cw-example-events
+   cw-example-subscription-filters

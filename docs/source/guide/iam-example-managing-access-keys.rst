@@ -25,7 +25,7 @@ SDK for Python. To fill this need, you can create, modify, view, or rotate acces
 status is Active, which means the user can use the access key for API calls.
 
 In this example, Python code is used to manage access keys in IAM. The code uses the AWS SDK for Python 
-to manage IAM access keys using these methods of :code:`boto3.client('iam')` client class:
+to manage IAM access keys using these methods of the IAM client class:
 
 * `create_access_key <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_access_key>`_.
 

@@ -23,7 +23,7 @@ The Scenario
 ============
 
 In this example, Python code is used to retrieve details about regions and Availability Zones. The code uses the 
-AWS SDK for Python to get the daa by using these methods of :code:`boto3.client('ec2')` client class:
+AWS SDK for Python to get the daa by using these methods of the EC2 client class:
  
 * Describe regions 
 

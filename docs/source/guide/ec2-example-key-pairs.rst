@@ -30,7 +30,7 @@ uses a public key to encrypt data, then the recipient uses the private key to de
 public and private keys are known as a key pair.
 
 In this example, Python code is used to perform several Amazon EC2 key pair management 
-operations. The code uses the AWS SDK for Python to manage IAM access keys using these methods of :code:`boto3.client('ec2')` client class:
+operations. The code uses the AWS SDK for Python to manage IAM access keys using these methods of the EC2 client class:
 
 * `describe_key_pairs <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_key_pairs>`_.
 

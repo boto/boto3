@@ -31,7 +31,7 @@ Internet. If your instance does not have a public IP address, you can associate 
 with your instance to enable communication with the Internet.
 
 In this example, Python code performs several Amazon EC2 operations involving Elastic IP addresses. 
-The code uses the AWS SDK for Python to manage IAM access keys using these methods of :code:`boto3.client('ec2')`
+The code uses the AWS SDK for Python to manage IAM access keys using these methods of the EC2
 client class:
 
 * `describe_addresses <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_addresses>`_.

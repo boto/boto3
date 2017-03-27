@@ -28,7 +28,7 @@ The Scenario
 ============
 
 In this example, Python code is used perform several basic instance management operations. The code uses the 
-AWS SDK for Python to manage the instances by using these methods of :code:`boto3.client('ec2')` client class:
+AWS SDK for Python to manage the instances by using these methods of the EC2 client class:
 
 * `describe_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_instances>`_.
 

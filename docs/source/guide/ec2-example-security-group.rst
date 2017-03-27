@@ -31,7 +31,7 @@ modify the rules for a security group at any time; the new rules are automatical
 instances that are associated with the security group.
 
 In this example, Python code is used to perform several Amazon EC2 operations involving security groups. 
-The code uses the AWS SDK for Python to manage IAM access keys using these methods of :code:`boto3.client('ec2')` 
+The code uses the AWS SDK for Python to manage IAM access keys using these methods of the EC2 
 client class:
 
 * `describe_security_groups <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_security_groups>`_.

@@ -26,7 +26,7 @@ you must upload the certificate to IAM or import it into AWS Certificate Manager
 
 In this example, python code is used to handle server certificates in IAM. The code uses the 
 Amazon Web Services (AWS) SDK for Python to manage server certificates using these methods of the 
-:code:`boto3.client('iam')` client class:
+IAM client class:
 
 * `get_paginator('list_server_certificates') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_access_key>`_.
 

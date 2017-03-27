@@ -27,17 +27,10 @@ AWS Boto. For more information about Amazon SQS, see the `Amazon SQS documentati
 .. toctree::
    :maxdepth: 1
 
-   sqs-example-show-queues
-   sqs-example-create-queue
-   sqs-example-use-queue
-   sqs-example-send-messages
-   sqs-example-send-and-receive-messages
-   sqs-example-get-messages
-   sqs-example-get-messages-with-long-polling
-   sqs-example-enable-long-polling
-   sqs-example-poll-messages
-   sqs-example-redirect-deadletters
-   sqs-example-delete_queue
-   sqs-example-enable-resource
+   sqs-example-using-queues
+   sqs-example-sending-receiving-msgs
+   sqs-example-visibility-timeout
+   sqs-example-long-polling
    sqs-example-dead-letter-queue
-   sqs-example-message-visibility-timeout
+   
+   
