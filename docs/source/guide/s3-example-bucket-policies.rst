@@ -128,6 +128,3 @@ Execute the Following Code to Delete the Policy for a Bucket
 
     # Call S3 to delete the policy for the given bucket
     s3.delete_bucket_policy(Bucket='my-bucket')
-
-
- 

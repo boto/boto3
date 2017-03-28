@@ -120,4 +120,3 @@ Execute the Following Code to Create a New Bucket
     # files automatically and upload parts in parallel.
     s3.upload_file(Bucket=bucket_name, Filename=filename)
     
-    
