@@ -33,4 +33,5 @@ For more information about Amazon EC2,  see the `Amazon EC2 Documentation <http:
    ec2-example-key-pairs
    ec2-example-regions-avail-zones
    ec2-example-security-group
+   ec2-example-elastic-ip-addresses
    
