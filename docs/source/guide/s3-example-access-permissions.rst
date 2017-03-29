@@ -43,7 +43,7 @@ Getting a Specified Bucket Access Control (ACL) List
 
 Access control lists (ACLs) are one of the resource-based access policy option you can use to manage 
 access to your buckets and objects. You can use ACLs to grant basic read/write permissions to other 
-AWS accounts. 
+AWS accounts.
 
 The example below shows how to:
  
