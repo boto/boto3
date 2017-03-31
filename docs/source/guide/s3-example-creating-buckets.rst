@@ -44,10 +44,10 @@ To set up and run this example, you must first complete this task:
 
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
-Displaying a List of Amazon S3 Buckets
-======================================
+Display a List of Amazon S3 Buckets
+===================================
 
-Returns a list of all buckets owned by the authenticated sender of the request.
+List all the buckets owned by the authenticated sender of the request.
 
 The example below shows how to:
  
@@ -55,8 +55,8 @@ The example below shows how to:
   `list_buckets <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.list_buckets>`_.
  
 
-Execute the Following Code to List Your Amazon S3 Buckets
----------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -74,8 +74,8 @@ Execute the Following Code to List Your Amazon S3 Buckets
     # Print out the bucket list
     print("Bucket List: %s" % buckets)
 
-Creating an Amazon S3 Bucket
-============================
+Create an Amazon S3 Bucket
+==========================
 
 The example below shows how to:
  
@@ -83,8 +83,8 @@ The example below shows how to:
   `create_bucket <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket>`_.
  
 
-Execute the Following Code to Create a New Bucket
--------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -94,8 +94,8 @@ Execute the Following Code to Create a New Bucket
     s3.create_bucket(Bucket='my-bucket')
     Uploading a File to an Amazon S3 Bucket
 
-Uploading a File to an Amazon S3 Bucket
-=======================================
+Upload a File to an Amazon S3 Bucket
+====================================
 
 The example below shows how to:
  
@@ -103,8 +103,8 @@ The example below shows how to:
   `upload_file <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.upload_file>`_.
  
 
-Execute the Following Code to Create a New Bucket
--------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

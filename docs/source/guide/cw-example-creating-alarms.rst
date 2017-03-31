@@ -35,8 +35,8 @@ uses the uses AWS SDK for Python to create alarms using these methods of the AWS
 
 * `delete_alarms <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.delete_alarms>`_.
 
-For more information about CloudWatch alarms, see Creating Amazon CloudWatch Alarms 
-in the Amazon CloudWatch User Guide.
+For more information about CloudWatch alarms, see `Creating Amazon CloudWatch Alarms <http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html>`_ 
+in the *Amazon CloudWatch User Guide*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
@@ -45,18 +45,18 @@ Prerequisite Task
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Describing Alarms
-=================
+Describe Alarms
+===============
 
 The example below shows how to:
  
-* List metric alarms of insufficient data using 
+* List metric alarms for insufficient data using 
   `paginate(StateValue='INSUFFICIENT_DATA') <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
  
 For more information about paginators see, :doc:`paginators`
  
-Execute the Following Code to Describe Alarms
----------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
@@ -70,10 +70,10 @@ Execute the Following Code to Describe Alarms
     for response in paginator.paginate(StateValue='INSUFFICIENT_DATA'):
         print(response['MetricAlarms'])
  
-Creating an Alarm for a CloudWatch MetricAlarm
-==============================================
+Create an Alarm for a CloudWatch Metric Alarm
+=============================================
 
-Creates or updates an alarm and associates it with the specified metric. Optionally, this operation 
+Create or update an alarm and associate it with the specified metric alarm. Optionally, this operation 
 can associate one or more Amazon SNS resources with the alarm.
 
 When this operation creates an alarm, the alarm state is immediately set to :code:`INSUFFICIENT_DATA`. 
@@ -88,8 +88,8 @@ The example below shows how to:
 * Create or update a metric alarm using 
   `put_metric_alarm <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
   
-Execute the Following Code to Create or Update a Metric Alarm
--------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -120,18 +120,18 @@ Execute the Following Code to Create or Update a Metric Alarm
     )
 
  
-Deleting an Alarm
-=================
+Delete an Alarm
+===============
 
-Deletes the specified alarms. In the event of an error, no alarms are deleted.
+Delete the specified alarms. In the event of an error, no alarms are deleted.
 
 The example below shows how to:
  
 * Delete a metric alarm using 
   `delete_alarms <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.delete_alarms>`_.
   
-Execute the Following Code to Delete a Metric Alarm
----------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

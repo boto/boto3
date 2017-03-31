@@ -43,9 +43,9 @@ Prerequisite Task
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
 Create an Account Alias
-=========================
+=======================
 
-Creates an alias for your AWS account. For information about using an AWS account alias, see 
+Create an alias for your AWS account. For information about using an AWS account alias, see 
 `Using an Alias for Your AWS Account ID <http://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html>`_ 
 in the *IAM User Guide*.
 
@@ -54,8 +54,8 @@ The example below shows how to:
 * Create an account alias using 
   `create_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_account_alias>`_.
  
-Execute the Following Code to Create an Account Alias
------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -72,7 +72,7 @@ Execute the Following Code to Create an Account Alias
 List an Account Alias
 =====================
 
-Lists the account alias associated with the AWS account (Note: you can have only one). For information 
+List the account alias associated with the AWS account (Note: you can have only one). For information 
 about using an AWS account alias, see `Using an Alias for Your AWS Account ID <http://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html>`_ 
 in the *IAM User Guide*. 
 
@@ -83,8 +83,8 @@ The example below shows how to:
  
 For more information about paginators see, :doc:`paginators`
  
-Execute the Following Code to List Account Aliases
---------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -101,7 +101,7 @@ Execute the Following Code to List Account Aliases
 Delete an Account Alias
 =========================
 
-Deletes the specified AWS account alias. For information about using an AWS account alias, see 
+Delete the specified AWS account alias. For information about using an AWS account alias, see 
 `Using an Alias for Your AWS Account ID <http://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html>`_ 
 in the *IAM User Guide*.
 
@@ -110,8 +110,8 @@ The example below shows how to:
 * Delete an account alias using 
   `delete_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_account_alias>`_.
  
-Execute the Following Code to Delete an Account Alias
------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

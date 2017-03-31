@@ -41,9 +41,9 @@ client class:
 * `release_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.release_address>`_.
 
 For more information about Elastic IP addresses in Amazon EC2, see 
-`Elastic IP Addresses <>`_ 
+`Elastic IP Addresses <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html>`_ 
 in the *Amazon EC2 User Guide for Linux Instances* or 
-`Elastic IP Addresses <>`_ in the *Amazon EC2 User Guide for Windows Instances*.
+`Elastic IP Addresses <http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-ip-addresses-eip.html>`_ in the *Amazon EC2 User Guide for Windows Instances*.
 Prerequisite Tasks
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
@@ -65,8 +65,8 @@ The example below shows how to:
 * Describe Elastic IP addresses using 
   `describe_addresses <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_addresses>`_.
  
-Execute the Following Code to Describe Addresses
-------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -80,8 +80,8 @@ Execute the Following Code to Describe Addresses
     response = ec2.describe_addresses(Filters=filters)
     print(response)
 
-Allocating and Associating an Elastic IP Address with an Amazon EC2 Instance
-============================================================================
+Allocate and Associate an Elastic IP Address with an Amazon EC2 Instance
+========================================================================
 
 An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing. An Elastic IP 
 address is associated with your AWS account. With an Elastic IP address, you can mask the failure of 
@@ -92,8 +92,8 @@ The example below shows how to:
 * Acquire an Elastic IP address using 
   `allocate_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.allocate_address>`_.
  
-Execute the Following Code to Acquire an Elastic IP address for either the EC2-Classic platform or a VPC
---------------------------------------------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -125,8 +125,8 @@ The example below shows how to:
 * Release the specified Elastic IP address using 
   `release_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.release_address>`_.
  
-Execute the Following Code to Release an IP Address
----------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

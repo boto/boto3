@@ -42,8 +42,10 @@ AWS SDK for Python to manage the instances by using these methods of the EC2 cli
 
 * `reboot_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
 
-For more information about the lifecycle of Amazon EC2 instances, see `Instance Lifecycle <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html>`_ 
-in the *Amazon EC2 User Guide for Linux Instances*.
+For more information about the lifecycle of Amazon EC2 instances, see 
+`Instance Lifecycle <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html>`_ 
+in the *Amazon EC2 User Guide for Linux Instances* or `Instance Lifecycle <http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-lifecycle.html>`_ 
+in the *Amazon EC2 User Guide for Windows Instances*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
@@ -65,8 +67,8 @@ The example below shows how to:
  
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
  
-Execute the Following Code to Describe Instances
-------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -81,7 +83,7 @@ Execute the Following Code to Describe Instances
 Monitor and Unmonitor Instances
 ===============================
 
-Enables and disables detailed monitoring for a running instance. If detailed monitoring is not enabled, 
+Enable or disable detailed monitoring for a running instance. If detailed monitoring is not enabled, 
 basic monitoring is enabled. For more information, see 
 `Monitoring Your Instances and Volumes <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch.html>`_ 
 in the *Amazon Elastic Compute Cloud User Guide*.
@@ -94,8 +96,8 @@ The example below shows how to:
 * Disable detailed monitoring for a running instance using 
   `unmonitor_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.unmonitor_instances>`_.
   
-Execute the Following Code to Enable and Disable Monitoring for an EC2 Instance
--------------------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -110,8 +112,8 @@ Execute the Following Code to Enable and Disable Monitoring for an EC2 Instance
         response = ec2.unmonitor_instances(InstanceIds=['INSTANCE_ID'])
     print(response)
 
-Starting and Stopping Instances
-===============================
+Start and Stop Instances
+========================
 
 Instances that use Amazon EBS volumes as their root devices can be quickly stopped and started. When 
 an instance is stopped, the compute resources are released and you are not billed for hourly instance 
@@ -128,8 +130,8 @@ The example below shows how to:
 * Stop an Amazon EBS-backed instance using 
   `stop_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.stop_instances>`_.
  
-Execute the Following Code to Start and Stop an EC2 Instance
-------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -172,9 +174,9 @@ Execute the Following Code to Start and Stop an EC2 Instance
         except ClientError as e:
             print(e)
 
-Rebooting Instances
-===================
-Requests a reboot of one or more instances. This operation is asynchronous; it only queues a request 
+Reboot Instances
+================
+Request a reboot of one or more instances. This operation is asynchronous; it only queues a request 
 to reboot the specified instances. The operation succeeds if the instances are valid and belong to 
 you. Requests to reboot terminated instances are ignored.
 
@@ -183,8 +185,8 @@ The example below shows how to:
 * Request a reboot of one or more instances using 
   `reboot_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
  
-Execute the Following Code to Reboot an EC2 Instance
-----------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

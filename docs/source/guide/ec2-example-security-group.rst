@@ -55,9 +55,9 @@ Prerequisite Tasks
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-DescribeSecurity Groups
+Describe Security Groups
 =======================
-Describes one or more of your security groups.
+Describe one or more of your security groups.
 
 A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. 
 For more information, see `Amazon EC2 Security Groups <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html>`_ 
@@ -67,11 +67,11 @@ in the *Amazon Virtual Private Cloud User Guide*.
 
 The example below shows how to:
  
-* Create a Security Group using 
+* Describe a Security Group using 
   `describe_security_groups <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_security_groups>`_.
 
-Execute the Following Code to Describe Security Groups
-------------------------------------------------------
+Example
+-------
 
 .. code:: python
 
@@ -89,10 +89,12 @@ Execute the Following Code to Describe Security Groups
 Create a Security Group and Rules
 =================================
 
-A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. 
-For more information, see `Amazon EC2 Security Groups <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html>`_ 
-in the *Amazon Elastic Compute Cloud User Guide* and `Security Groups for Your VPC <http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html>`_ 
-in the *Amazon Virtual Private Cloud User Guide*.
+* Create a security group.
+
+* Add one or more ingress rules to a security group.
+
+  Rule changes are propagated to instances within the security group as quickly as possible. However, 
+  a small delay might occur.
 
 The example below shows how to:
  
@@ -102,8 +104,8 @@ The example below shows how to:
 * Add an ingress rule to a security group using 
   `authorize_security_group_ingress <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.authorize_security_group_ingress>`_.
  
-Execute the Following Code to Create a Security Group and Add an Ingress Rule
------------------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -140,8 +142,6 @@ Execute the Following Code to Create a Security Group and Add an Ingress Rule
 
 Delete a Security Group
 =======================
-A security group acts as a virtual firewall that controls the traffic for one or more instances. 
-When you launch an instance, you associate one or more security groups with the instance.
 
 If you attempt to delete a security group that is associated with an instance, or is referenced by 
 another security group, the operation fails with :code:`InvalidGroup.InUse` in EC2-Classic or :code:`DependencyViolation` 
@@ -152,8 +152,8 @@ The example below shows how to:
 * Delete a security group using 
   `delete_security_group <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.delete_security_group>`_.
  
-Execute the Following Code to Delete a Security Group
------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

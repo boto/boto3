@@ -26,9 +26,8 @@ The Scenario
 Metrics are data about the performance of your systems. You can enable detailed monitoring of some 
 resources, such as your Amazon CloudWatch instances, or your own application metrics.
 
-In this example, Python code is used to get metrics from CloudWatch. In this example, 
-Python code is used to send events to Amazon CloudWatch Events. 
-The code uses the uses AWS SDK for Python to get metrics from CloudWatch 
+In this example, Python code is used to get and send CloudWatch metrics data. 
+The code uses the uses the AWS SDK for Python to get metrics from CloudWatch 
 using these methods of the CloudWatch client class:
 
 * `paginate('list_metrics') <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
@@ -46,10 +45,10 @@ Prerequisite Task
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
 
-Listing Metrics
+List Metrics
 ===============
 
-Lists the metric alarm events uploaded to CloudWatch Logs. 
+List the metric alarm events uploaded to CloudWatch Logs. 
 
 The example below shows how to:
  
@@ -58,8 +57,8 @@ The example below shows how to:
  
 For more information about paginators see, :doc:`paginators`
 
-Execute the Following Code to List Alarm Events
------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
@@ -76,22 +75,22 @@ Execute the Following Code to List Alarm Events
         print(response['Metrics'])
 
  
-Submitting Custom Metrics
-=========================
+Publish Custom Metrics
+======================
 
-Publishes metric data points to Amazon CloudWatch. Amazon CloudWatch associates the data points with 
+Publish metric data points to Amazon CloudWatch. Amazon CloudWatch associates the data points with 
 the specified metric. If the specified metric does not exist, Amazon CloudWatch creates the metric. 
 When Amazon CloudWatch creates a metric, it can take up to fifteen minutes for the metric to appear 
 in calls to ListMetrics.
 
 The example below shows how to:
  
-* Submit custom metrics using 
+* Publish custom metrics using 
   `put_metric_data <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_data>`_.
  
 
-Execute the Following Code to Describe Alarms
----------------------------------------------
+Example
+-------
   
 .. code-block:: python
 

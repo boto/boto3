@@ -23,11 +23,11 @@ The Scenario
 ============
 
 In this example, Python code is used to get details about regions and Availability Zones. The code uses the 
-AWS SDK for Python to get the daa by using these methods of the EC2 client class:
+AWS SDK for Python to get the data by using these methods of the EC2 client class:
  
-* Describe regions 
+* `describe_regions <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_regions>`_. 
 
-* Describe AvailabilityZones 
+* `describe_availability_zones <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_availability_zones>`_. 
  
 For more information about regions and Availability Zones, see 
 `Regions and Availability Zones <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html>`_ 
@@ -42,13 +42,14 @@ Prerequisite Task
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Describing Regions and Availability Zones
-=========================================
+Describe Regions and Availability Zones
+=======================================
 
-Amazon EC2 is hosted in multiple locations world-wide. These locations are composed of regions and 
-Availability Zones. Each region is a separate geographic area. Each region has multiple, isolated 
-locations known as Availability Zones. Amazon EC2 provides you the ability to place resources, such 
-as instances, and data in multiple locations.
+* Describe one or more regions that are currently available to you. 
+
+* Describe one or more of the Availability Zones that are available to you. The results include zones 
+  only for the region you're currently using. If there is an event impacting an Availability Zone, 
+  you can use this request to view the state and any provided message for that Availability Zone.
 
 The example below shows how to:
  
@@ -58,8 +59,8 @@ The example below shows how to:
 * Describe AvailabilityZones using 
   `describe_availability_zones <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_availability_zones>`_.
  
-Execute the Following Code to Describe EC2 Regions and AvailabilityZones
-------------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

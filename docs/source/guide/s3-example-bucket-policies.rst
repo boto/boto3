@@ -48,16 +48,16 @@ To set up and run this example, you must first complete this task:
 
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
-Getting the Current Bucket Policy
-=================================
+Get the Current Bucket Policy
+=============================
 
 The example below shows how to:
  
 * Get the bucket ACL for a specified bucket using 
   `get_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_policy>`_.
  
-Execute the Following Code to Get the Policy for a Bucket
----------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -69,16 +69,16 @@ Execute the Following Code to Get the Policy for a Bucket
     # Call to S3 to get the policy for the given bucket
     result = s3.get_bucket_policy(Bucket='my-bucket')
 
-Setting a Simple Bucket Policy
-==============================
+Set a Simple Bucket Policy
+==========================
 
 The example below shows how to:
  
 * Set the bucket policy for a specified bucket using 
   `put_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_policy>`_.
  
-Execute the Following Code to Set the Policy for a Bucket
----------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -108,16 +108,16 @@ Execute the Following Code to Set the Policy for a Bucket
     # Set the new policy on the given bucket
     s3.put_bucket_policy(Bucket=bucket_name, Policy=bucket_policy)
  
-Deleting a Bucket Policy
-========================
+Delete a Bucket Policy
+======================
 
 The example below shows how to:
  
 * Delete a bucket policy for a specified bucket using 
   `delete_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.delete_bucket_policy>`_.
  
-Execute the Following Code to Delete the Policy for a Bucket
----------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

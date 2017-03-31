@@ -44,13 +44,16 @@ To set up and run this example, you must first complete these tasks:
 * Send a message to the queue. For an example of sending a message to a queue, see 
   `Sending and Receiving Messages in Amazon SQS <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-send-receive-messages.html>`_.
 
-Changing the Visibility Timeout
--------------------------------
+Change the Visibility Timeout
+=============================
 
 The example below shows how to:
  
 * Change the visibility timeout using 
   `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+  
+  Example
+-------
 
 .. code-block:: python
 

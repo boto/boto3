@@ -49,13 +49,16 @@ To set up and run this example, you must first complete this task:
 
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
-Listing Your Queues
-===================
+List Your Queues
+================
 
 The example below shows how to:
  
 * List queues using 
   `list_queues <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.list_queues>`_.
+  
+Example
+-------
 
 .. code-block:: python
 
@@ -69,13 +72,16 @@ The example below shows how to:
 
     print(response['QueueUrls'])
  
-Creating a Queue
-================
+Create a Queue
+==============
 
 The example below shows how to:
  
 * Create a queue using 
   `create_queue <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.create_queue>`_.
+  
+Example
+-------
 
 .. code-block:: python
 
@@ -95,13 +101,16 @@ The example below shows how to:
 
     print(response['QueueUrl'])
 
-Getting the URL for a Queue
-===========================
+Get the URL for a Queue
+=======================
 
 The example below shows how to:
  
 * Get the URL for a queue using 
   `get_queue_url <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.get_queue_url>`_.
+  
+Example
+-------
 
 .. code-block:: python
 
@@ -115,13 +124,16 @@ The example below shows how to:
 
     print(response['QueueUrl'])
 
-Deleting a Queue
-================
+Delete a Queue
+==============
 
 The example below shows how to:
  
 * Delete a queue using 
   `delete_queue <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.delete_queue>`_.
+  
+Example
+-------
 
   .. code-block:: python
   

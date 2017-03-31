@@ -38,7 +38,9 @@ AWS SDK for Python to manage instances using these methods of the CloudWatchEven
 
 * `put_events <https://boto3.readthedocs.io/en/latest/reference/services/events.html#CloudWatchEvents.Client.put_events>`_.
 
-For more information about CloudWatch Events, see Adding Events with PutEvents in the Amazon CloudWatch Events User Guide.
+For more information about CloudWatch Events, see 
+`Adding Events with PutEvents <http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/AddEventsPutEvents.html>`_ 
+in the *Amazon CloudWatch Events User Guide*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
@@ -96,11 +98,11 @@ Use the following trust relationship when creating the IAM role.
         }
 
 
-Creating a Scheduled Rule
-=========================
+Create a Scheduled Rule
+=======================
 
-Creates or updates the specified rule. Rules are enabled by default, or based on value of the state. 
-You can disable a rule using DisableRule .
+Create or update the specified rule. Rules are enabled by default, or based on value of the state. 
+You can disable a rule using `DisableRule <https://boto3.readthedocs.io/en/latest/reference/services/events.html#CloudWatchEvents.Client.disable_rule>`_.
 
 The example below shows how to:
  
@@ -108,8 +110,8 @@ The example below shows how to:
   `put_rule <https://boto3.readthedocs.io/en/latest/reference/services/events.html#CloudWatchEvents.Client.put_rule>`_.
  
 
-Execute the Following Code to Create a Scheduled Rule
------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
@@ -129,10 +131,10 @@ Execute the Following Code to Create a Scheduled Rule
     print(response['RuleArn'])
 
  
-Adding a Lambda Function Target
-===============================
+Add a Lambda Function Target
+============================
 
-Adds the specified targets to the specified rule, or updates the targets if they are already 
+Add the specified targets to the specified rule, or update the targets if they are already 
 associated with the rule.
 
 The example below shows how to:
@@ -141,14 +143,12 @@ The example below shows how to:
   `put_targets <https://boto3.readthedocs.io/en/latest/reference/services/events.html#CloudWatchEvents.Client.put_targets>`_.
  
 
-Execute the Following Code to Add a Lambda Function Target
-----------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
-
     import boto3
-
 
     # Create CloudWatchEvents client
     cloudwatch_events = boto3.client('events')
@@ -166,19 +166,18 @@ Execute the Following Code to Add a Lambda Function Target
     print(response)
 
  
-Sending Events
-==============
+Send Events
+===========
 
-Sends custom events to Amazon CloudWatch Events so that they can be matched to rules.
+Send custom events to Amazon CloudWatch Events so that they can be matched to rules.
 
 The example below shows how to:
  
 * Send a custom event to CloudWatch Events using 
   `put_events <https://boto3.readthedocs.io/en/latest/reference/services/events.html#CloudWatchEvents.Client.put_events>`_.
  
-
-Execute the Following Code to Describe Alarms
----------------------------------------------
+Example
+-------
   
 .. code-block:: python
 

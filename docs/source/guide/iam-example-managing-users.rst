@@ -41,10 +41,10 @@ Prerequisite Task
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
     
-Creating a User
-===============
+Create a User
+=============
 
-Creates a new IAM user for your AWS account.
+Create a new IAM user for your AWS account.
 
 For information about limitations on the number of IAM users you can create, see 
 `Limitations on IAM Entities <http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html>`_ 
@@ -55,8 +55,8 @@ The example below shows how to:
 * Create a new IAM user using 
   `create_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_user>`_.
   
-Execute the Following Code to Create an IAM User
-------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -72,10 +72,10 @@ Execute the Following Code to Create an IAM User
 
     print(response)
 
-Listing Users in Your Account
-=============================
+List Users in Your Account
+==========================
 
-Lists the IAM users.
+List the IAM users.
 
 The example below shows how to:
  
@@ -84,8 +84,8 @@ The example below shows how to:
   
 For more information about paginators see, :doc:`paginators`
  
-Execute the Following Code to List Users
-----------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -99,10 +99,10 @@ Execute the Following Code to List Users
     for response in paginator.paginate():
         print(response)
 
-Updating a User's Name
-======================
+Update a User's Name
+====================
 
-Updates the name and/or the path of the specified IAM user.
+Update the name and/or the path of the specified IAM user.
 
 To change a user's name or path, you must use the AWS CLI, Tools for Windows PowerShell, or AWS API. 
 There is no option in the console to rename a user. For information about the permissions that you 
@@ -115,8 +115,8 @@ The example below shows how to:
 * Update an IAM user name using 
   `update_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_user>`_.
  
-Execute the Following Code to Update a User's Name
---------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -132,10 +132,10 @@ Execute the Following Code to Update a User's Name
     )
 
  
-Deleting a User
-===============
+Delete a User
+=============
 
-Deletes the specified IAM user. The user must not belong to any groups or have any access keys, signing 
+Delete the specified IAM user. The user must not belong to any groups or have any access keys, signing 
 certificates, or attached policies.
 
 The example below shows how to:
@@ -143,8 +143,8 @@ The example below shows how to:
 * Delete an IAM user name using 
   `delete_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_user>`_.
 
-Execute the Following Code to Delete a User
--------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

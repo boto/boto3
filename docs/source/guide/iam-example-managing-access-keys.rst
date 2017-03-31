@@ -51,7 +51,7 @@ To set up and run this example, you must first configure your AWS credentials, a
 Create Access Keys for a User
 =============================
 
-Creates a new AWS secret access key and corresponding AWS access key ID for the specified user. The 
+Create a new AWS secret access key and corresponding AWS access key ID for the specified user. The 
 default status for new keys is :code:`Active`.
 
 The example below shows how to:
@@ -59,8 +59,8 @@ The example below shows how to:
 * Create a new AWS access key using 
   `create_access_key <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_access_key>`_.
  
-Execute the Following Code to Create a New Access Key
------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -79,7 +79,7 @@ Execute the Following Code to Create a New Access Key
 List a User's Access Keys
 =========================
 
-Returns information about the access key IDs associated with the specified IAM user. If there are none, 
+List information about the access key IDs associated with the specified IAM user. If there are none, 
 the action returns an empty list.
 
 If the UserName field is not specified, the UserName is determined implicitly based on the AWS access 
@@ -93,8 +93,8 @@ The example below shows how to:
   
 For more information about paginators see, :doc:`paginators`
 
-Execute the Following Code to List a User's Access Keys
--------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -112,17 +112,17 @@ Execute the Following Code to List a User's Access Keys
 Get the Access Key Last Used
 ============================
 
-Retrieves information about when the specified access key was last used. The information includes the 
+Get information about when the specified access key was last used. The information includes the 
 date and time of last use, along with the AWS service and region that were specified in the last request 
 made with that key.
 
 The example below shows how to:
  
-* List a user's access keys using 
+* Get the access key last used using 
   `get_access_key_last_used <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_access_key_last_used>`_.
 
-Execute the Following Code to Get the Access Key Last Used
-----------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -141,21 +141,19 @@ Execute the Following Code to Get the Access Key Last Used
 
 
  
-Updating Access Key Status
-==========================
+Update Access Key Status
+========================
 
-Changes the status of the specified access key from Active to Inactive, or vice versa. This action 
+Change the status of the specified access key from Active to Inactive, or vice versa. This action 
 can be used to disable a user's key as part of a key rotation work flow.
 
 The example below shows how to:
  
-* Change the status of an access key to Active using 
+* Change the status of an access key to :code:`Active` using 
   `update_access_key <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_access_key>`_.
  
-All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
- 
-Execute the Following Code to Update an IAM Access Key
-------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -174,7 +172,7 @@ Execute the Following Code to Update an IAM Access Key
 Delete an Access Key
 ====================
 
-Deletes the access key pair associated with the specified IAM user.
+Delete the access key pair associated with the specified IAM user.
 
 If you do not specify a user name, IAM determines the user name implicitly based on the AWS access 
 key ID signing the request. Because this action works for access keys under the AWS account, you can 
@@ -185,8 +183,8 @@ The example below shows how to:
 * Delete an access key using 
   `delete_access_key <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_access_key>`_.
   
-Execute the Following Code to Delete an Access Key
---------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

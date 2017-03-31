@@ -40,16 +40,16 @@ To set up and run this example, you must first complete this task:
 
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
-Getting the Current Bucket Website Configuration
-================================================
+Get the Current Bucket Website Configuration
+=============================================
 
 The example below shows how to:
  
 * Get the bucket website configuration using 
   `get_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_website>`_.
  
-Execute the Following Code to Get a Bucket Website Configuration
-----------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -61,16 +61,16 @@ Execute the Following Code to Get a Bucket Website Configuration
     # Call to S3 to retrieve the policy for the given bucket
     result = s3.get_bucket_website(Bucket='my-bucket')
  
-Setting a Bucket Website Configuration
-======================================
+Set a Bucket Website Configuration
+==================================
 
 The example below shows how to:
  
 * Set a bucket website configuration using 
   `put_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_website>`_.
  
-Execute the Following Code to Set the Bucket Website Configuration
-------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -92,16 +92,16 @@ Execute the Following Code to Set the Bucket Website Configuration
     )
 
  
-Deleting a Bucket Website Configuration
-=======================================
+Delete a Bucket Website Configuration
+=====================================
 
 The example below shows how to:
  
 * Delete a bucket website configuration using 
   `delete_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.delete_bucket_website>`_.
  
-Execute the Following Code to Delete a Bucket Website Configuration
--------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

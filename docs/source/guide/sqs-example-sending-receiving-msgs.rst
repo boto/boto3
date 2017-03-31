@@ -45,13 +45,16 @@ To set up and run this example, you must first complete these tasks:
 * Create an Amazon SQS queue. For an example of creating a queue, see 
   `Using Queues in Amazon SQS <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-using-queues.html>`_.
 
-Sending a Message to a Queue
-----------------------------
+Send a Message to a Queue
+=========================
 
 The example below shows how to:
  
 * Send a message to a queue using 
   `send_message <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.send_message>`_.
+  
+Example
+-------
 
 .. code-block:: python
 
@@ -89,8 +92,8 @@ The example below shows how to:
     print(response['MessageId'])
 
 
-Receiving and Deleting Messages from a Queue
---------------------------------------------
+Receive and Delete Messages from a Queue
+========================================
 
 The example below shows how to:
  
@@ -99,6 +102,9 @@ The example below shows how to:
   
 * Delete a message from a queue using 
   `delete_message <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.delete_message>`_.
+
+Example
+-------
 
 .. code-block:: python
 

@@ -46,10 +46,10 @@ Prerequisite Task
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Creating an IAM Policy
-======================
+Create an IAM Policy
+====================
 
-Creates a new managed policy for your AWS account.
+Create a new managed policy for your AWS account.
 
 This operation creates a policy version with a version identifier of :code:`v1` and sets :code:`v1` 
 as the policy's default version. For more information about policy versions, see 
@@ -63,8 +63,8 @@ The example below shows how to:
  
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
  
-Execute the Following Code to Create a Policy
----------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -103,26 +103,26 @@ Execute the Following Code to Create a Policy
     )
     print(response)
 
-Getting an IAM Policy
-=====================
+Get an IAM Policy
+=================
 
-Retrieves information about the specified managed policy, including the policy's default version and 
+Get information about the specified managed policy, including the policy's default version and 
 the total number of IAM users, groups, and roles to which the policy is attached. To get the 
 list of the specific users, groups, and roles that the policy is attached to, use the 
 :code:`list_entities_for_policy` API. This API returns metadata about the policy. To get the actual policy 
 document for a specific version of the policy, use :code:`get_policy_version` API.
 
-This API retrieves information about managed policies. To get information about an inline policy 
+This API gets information about managed policies. To get information about an inline policy 
 that is embedded with an IAM user, group, or role, use the :code:`get_user_policy`, :code:`get_group_policy`, 
 or :code:`get_role_policy` API.
 
 The example below shows how to:
  
-* Describe one or more of your security groups using 
+* Get information about a managed policy using 
   `get_policy <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_policy>`_.
  
-Execute the Following Code to Get an IAM Policy
------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -140,8 +140,8 @@ Execute the Following Code to Get an IAM Policy
 
 
 
-Attaching a Managed Role Policy
-===============================
+Attach a Managed Role Policy
+============================
 
 When you attach a managed policy to a role, the managed policy becomes part of the role's permission 
 (access) policy. You cannot use a managed policy as the role's trust policy. The role's trust policy 
@@ -155,8 +155,8 @@ The example below shows how to:
 * Attach a managed policy to an IAM role. using 
   `attach_role_policy <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.attach_role_policy>`_.
   
-Execute the Following Code to Describe EC2 Security Groups
-----------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -173,10 +173,10 @@ Execute the Following Code to Describe EC2 Security Groups
 
 
 
-Detaching a Managed Role Policy
-===============================
+Detach a Managed Role Policy
+============================
 
-Removes the specified managed policy from the specified role.
+Dertach the specified managed policy from the specified role.
 
 A role can also have inline policies embedded with it. To delete an inline policy, use the 
 :code:`delete_role_policy` API. For information about policies, see 
@@ -185,11 +185,11 @@ in the *IAM User Guide*.
 
 The example below shows how to:
  
-* Describe one or more of your security groups using 
+* Detach a managed role policy using 
   `detach_role_policy <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.detach_role_policy>`_.
  
-Execute the Following Code to Detach a Role Policy
---------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

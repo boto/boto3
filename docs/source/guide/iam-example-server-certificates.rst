@@ -46,10 +46,10 @@ Prerequisite Task
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Listing Your Server Certificates
-================================
+List Your Server Certificates
+=============================
 
-Lists the server certificates stored in IAM. If none exist, the action returns an empty list.
+List the server certificates stored in IAM. If none exist, the action returns an empty list.
 
 The example below shows how to:
  
@@ -58,8 +58,8 @@ The example below shows how to:
   
 For more information about paginators see, :doc:`paginators`
  
-Execute the Following Code to List Server Certificates
-------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -73,18 +73,18 @@ Execute the Following Code to List Server Certificates
     for response in paginator.paginate():
         print(response['ServerCertificateMetadataList'])
 
-Getting a Server Certificate
-============================
+Get a Server Certificate
+========================
 
-Retrieves information about the specified server certificate stored in IAM.
+Get information about the specified server certificate stored in IAM.
 
 The example below shows how to:
  
-* Describe one or more of your security groups using 
+* Get a server certificate using 
   `get_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_server_certificate>`_.
  
-Execute the Following Code to Get a Server Certificate
-------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -98,18 +98,18 @@ Execute the Following Code to Get a Server Certificate
     response = iam.get_server_certificate(ServerCertificateName='CERTIFICATE_NAME')
     print(response['ServerCertificate'])
 
-Updating a Server Certificate
-=============================
+Update a Server Certificate
+===========================
 
-Updates the name and/or the path of the specified server certificate stored in IAM.
+Update the name and/or the path of the specified server certificate stored in IAM.
 
 The example below shows how to:
  
 * Update a server certificate using 
   `update_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_server_certificate>`_.
  
-Execute the Following Code to Update the Name of a Server Certificate
----------------------------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -124,18 +124,18 @@ Execute the Following Code to Update the Name of a Server Certificate
         NewServerCertificateName='NEW_CERTIFICATE_NAME'
     )
 
-Deleting a Server Certificate
-=============================
+Delete a Server Certificate
+===========================
 
-Deletes the specified server certificate.
+Delete the specified server certificate.
 
 The example below shows how to:
  
 * Delete a server certificate using 
   `delete_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_server_certificate>`_.
  
-Execute the Following Code to Delete a Server Cerificate
---------------------------------------------------------
+Example
+-------
 
 .. code-block:: python/example_code
 

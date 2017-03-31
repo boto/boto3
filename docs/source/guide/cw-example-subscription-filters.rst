@@ -36,7 +36,7 @@ CloudWatchLogs client class:
 * `delete_subscription_filter <https://boto3.readthedocs.io/en/latest/reference/services/logs.html#CloudWatchLogs.Client.delete_subscription_filter>`_.
 
 For more information about CloudWatch Logs subscriptions, see 
-Real-time `Processing of Log Data with Subscriptions <>`_ 
+Real-time `Processing of Log Data with Subscriptions <http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html>`_ 
 in the Amazon CloudWatch Logs User Guide.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
@@ -85,10 +85,10 @@ Prerequisite Tasks
            ]
         }
  
-Describing Existing Subscription Filters
-========================================
+List Existing Subscription Filters
+==================================
 
-Lists the subscription filters for the specified log group.
+List the subscription filters for the specified log group.
 
 The example below shows how to:
  
@@ -97,8 +97,8 @@ The example below shows how to:
   
 For more information about paginators see, :doc:`paginators`
 
-Execute the Following Code to List the Subscription Filters for a Log Group
----------------------------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
@@ -115,18 +115,18 @@ Execute the Following Code to List the Subscription Filters for a Log Group
 
 
  
-Creating a Subscription Filter
-==============================
+Create a Subscription Filter
+============================
 
-Creates or updates a subscription filter and associates it with the specified log group.
+Create or update a subscription filter and associates it with the specified log group.
 
 The example below shows how to:
  
 * Create a subscription filter using 
   `put_subscription_filter <https://boto3.readthedocs.io/en/latest/reference/services/logs.html#CloudWatchLogs.Client.put_subscription_filter>`_.
  
-Execute the Following Code to Create a Subscription Filter
-----------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
@@ -144,16 +144,16 @@ Execute the Following Code to Create a Subscription Filter
     )
 
  
-Deleting a Subscription Filter
-==============================
+Delete a Subscription Filter
+============================
 
 The example below shows how to:
  
 * Delete a subscription filter. using 
   `delete_subscription_filter <https://boto3.readthedocs.io/en/latest/reference/services/logs.html#CloudWatchLogs.Client.delete_subscription_filter>`_.
   
-Execute the Following Code to Delete a Subscription Filter
-----------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 

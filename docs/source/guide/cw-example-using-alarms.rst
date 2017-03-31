@@ -24,20 +24,21 @@ The Scenario
 ============
 
 Using alarm actions, you can create alarms that automatically stop, terminate, reboot, or recover 
-your Amazon CloudWatch instances. You can use the stop or terminate actions when you no longer need an 
+your Amazon EC2 instances. You can use the stop or terminate actions when you no longer need an EC2 
 instance to be running. You can use the reboot and recover actions to automatically reboot those instances.
 
 In this example, Python code is used to define an alarm action in CloudWatch that 
-triggers the reboot of an Amazon CloudWatch instance. The code uses the uses AWS SDK for Python to manage 
-Amazon CloudWatch instances using these methods of the CloudWatch client class:
+triggers the reboot of an Amazon EC2 instance. The code uses the uses AWS SDK for Python to manage 
+Amazon EC2 instances using these methods of the CloudWatch client class:
 
 * `put_metric_alarm <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
 
 * `disable_alarm_actions <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.disable_alarm_actions>`_.
 
 
-For more information about CloudWatch alarm actions, see Create Alarms to Stop, Terminate, Reboot, 
-or Recover an Instance in the Amazon CloudWatch User Guide.
+For more information about CloudWatch alarm actions, see 
+`Create Alarms to Stop, Terminate, Reboot, or Recover an Instance <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UsingAlarmActions.html>`_ 
+in the *Amazon CloudWatch User Guide*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
@@ -74,10 +75,10 @@ Prerequisite Task
            ]
         }
  
-Creating and Enabling Actions on an Alarm
-=========================================
+Create and Enable Actions on an Alarm
+=====================================
 
-Creates or updates an alarm and associates it with the specified metric. Optionally, this operation 
+Create or update an alarm and associate it with the specified metric. Optionally, this operation 
 can associate one or more Amazon SNS resources with the alarm.
 
 When this operation creates an alarm, the alarm state is immediately set to :code:`INSUFFICIENT_DATA`. 
@@ -92,8 +93,8 @@ The example below shows how to:
 * Create an alarm and enable actions using 
   `put_metric_alarm <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
  
-Execute the Following Code to Create and Enable Alarms
-------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
 
@@ -126,10 +127,10 @@ Execute the Following Code to Create and Enable Alarms
         Unit='Seconds'
     )
 
-Disabling Actions on an Alarm
-=============================
+Disable Actions on an Alarm
+===========================
 
-Disables the actions for the specified alarms. When an alarm's actions are disabled, the alarm actions 
+Disable the actions for the specified alarms. When an alarm's actions are disabled, the alarm actions 
 do not execute when the alarm state changes.
 
 The example below shows how to:
@@ -137,8 +138,8 @@ The example below shows how to:
 * Disable metric alarm actions using 
   `disable_alarm_actions <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.disable_alarm_actions>`_.
  
-Execute the Following Code to Describe Alarms
----------------------------------------------
+Example
+-------
   
 .. code-block:: python
 

@@ -53,17 +53,15 @@ To set up and run this example, you must first configure your AWS credentials, a
 Describe Key Pairs
 ==================
 
-Amazon EC2 uses public–key cryptography to encrypt and decrypt login information. Public–key 
-cryptography uses a public key to encrypt a piece of data, such as a password, then the recipient 
-uses the private key to decrypt the data. The public and private keys are known as a key pair. 
+Describe one or more of your key pairs.
 
 The example below shows how to:
  
 * Describe keypairs using 
   `describe_key_pairs <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_key_pairs>`_.
  
-Execute the Following Code to Describe Keypairs
------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -79,7 +77,7 @@ Execute the Following Code to Describe Keypairs
 Create a Key Pair
 =================
 
-Creates a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays 
+Create a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays 
 the private key for you to save to a file. The private key is returned as an unencrypted PEM encoded 
 PKCS#8 private key. If a key with the specified name already exists, Amazon EC2 returns an error.
 
@@ -88,8 +86,8 @@ The example below shows how to:
 * Create a 2048-bit RSA key pair with a specified name using 
   `create_key_pair <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.create_key_pair>`_.
   
-Execute the Following Code to Create an RSA Keypair
----------------------------------------------------
+Example
+-------
 
 .. code-block:: python
 
@@ -104,15 +102,15 @@ Execute the Following Code to Create an RSA Keypair
 Delete a Key Pair
 =================
 
-Deletes the specified key pair, by removing the public key from Amazon EC2.
+Delete the specified key pair, by removing the public key from Amazon EC2.
 
 The example below shows how to:
  
 * Delete a key pair by removing the public key from Amazon EC2 using 
   `delete_key_pair <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.delete_key_pair>`_.
  
-Execute the Following Code to Delete a Keypair
-----------------------------------------------
+Example
+-------
 
 .. code-block:: python
 

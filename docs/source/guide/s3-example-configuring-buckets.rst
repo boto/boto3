@@ -40,8 +40,8 @@ To set up and run this example, you must first complete this task:
 
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
-Retrieving a Bucket CORS Configuration
-======================================
+Get a Bucket CORS Configuration
+===============================
 
 The example below shows how to:
  
@@ -58,8 +58,8 @@ The example below shows how to:
     # Call S3 to get CORS configuration for selected bucket
     result = s3.get_bucket_cors(Bucket='my-bucket')
 
-Setting a Bucket CORS Configuration
-===================================
+Set a Bucket CORS Configuration
+===============================
 
 The example below shows how to:
  

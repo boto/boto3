@@ -46,8 +46,8 @@ To set up and run this example, you must first complete these tasks:
 * Create an Amazon SQS queue to serve as a dead letter queue. For an example of creating a queue, see 
   `Using Queues <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-using-queues.html>`_ in *Amazon SQS*.
 
-Configuring Source Queues
-=========================
+Configure Source Queues
+=======================
 
 After you create a queue to act as a dead letter queue, you must configure the other queues that route 
 unprocessed messages to the dead letter queue. To do this, specify a redrive policy that identifies 
@@ -60,8 +60,8 @@ The example below shows how to:
   `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
  
 
-Execute the Following Code to Create a Scheduled Rule
------------------------------------------------------
+Example
+-------
   
 .. code-block:: python
  
