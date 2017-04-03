@@ -94,7 +94,7 @@ The example below shows how to:
 Example
 -------
 
-.. code:: python/example_code
+.. code:: python
 
     import boto3
 

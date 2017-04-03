@@ -137,7 +137,7 @@ The example below shows how to:
 Example
 -------
 
-.. code-block:: python/example_code
+.. code-block:: python
 
     import boto3
 
