@@ -19,6 +19,7 @@ Quickstart
 
    guide/quickstart
    guide/sqs
+   guide/examples
 
 User Guide
 ----------
