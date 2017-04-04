@@ -73,12 +73,11 @@ Example
 .. code-block:: python
 
     import boto3
-    from botocore.exceptions import ClientError
-
-
+    
     ec2 = boto3.client('ec2')
     response = ec2.describe_instances()
     print(response)
+
 
 Monitor and Unmonitor Instances
 ===============================
@@ -106,11 +105,12 @@ Example
 
 
     ec2 = boto3.client('ec2')
-    if sys.argv[2] == 'ON':
+    if sys.argv[1] == 'ON':
         response = ec2.monitor_instances(InstanceIds=['INSTANCE_ID'])
     else:
         response = ec2.unmonitor_instances(InstanceIds=['INSTANCE_ID'])
     print(response)
+
 
 Start and Stop Instances
 ========================
@@ -139,8 +139,8 @@ Example
     import boto3
     from botocore.exceptions import ClientError
 
-    instance_id = sys.argv[3]
-    action = sys.argv[2].upper()
+    instance_id = sys.argv[2]
+    action = sys.argv[1].upper()
 
     ec2 = boto3.client('ec2')
 
@@ -173,6 +173,7 @@ Example
             print(response)
         except ClientError as e:
             print(e)
+
 
 Reboot Instances
 ================

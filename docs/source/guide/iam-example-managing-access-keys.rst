@@ -166,9 +166,10 @@ Example
     iam.update_access_key(
         AccessKeyId='ACCESS_KEY_ID',
         Status='Active',
-        UserName='USER_NAME'
+        UserName='IAM_USER_NAME'
     )
 
+    
 Delete an Access Key
 ====================
 
@@ -196,7 +197,7 @@ Example
     # Delete access key
     iam.delete_access_key(
         AccessKeyId='ACCESS_KEY_ID',
-        UserName='USER_NAME'
+        UserName='IAM_USER_NAME'
     )
 
 

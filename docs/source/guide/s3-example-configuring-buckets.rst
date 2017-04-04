@@ -77,7 +77,7 @@ The example below shows how to:
     cors_configuration = {
         'CORSRules': [{
             'AllowedHeaders': ['Authorization'],
-            'AllowedMethods': [],
+            'AllowedMethods': ['GET', 'PUT'],
             'AllowedOrigins': ['*'],
             'ExposeHeaders': ['GET', 'PUT'],
             'MaxAgeSeconds': 3000
@@ -86,3 +86,4 @@ The example below shows how to:
 
     # Set the new CORS configuration on the selected bucket
     s3.put_bucket_cors(Bucket='my-bucket', CORSConfiguration=cors_configuration)
+

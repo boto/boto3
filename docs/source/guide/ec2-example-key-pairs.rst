@@ -66,9 +66,7 @@ Example
 .. code-block:: python
 
     import boto3
-    from botocore.exceptions import ClientError
-
-
+    
     ec2 = boto3.client('ec2')
     response = ec2.describe_key_pairs()
     print(response)
@@ -92,12 +90,11 @@ Example
 .. code-block:: python
 
     import boto3
-    from botocore.exceptions import ClientError
-
-
+    
     ec2 = boto3.client('ec2')
     response = ec2.create_key_pair(KeyName='KEY_PAIR_NAME')
     print(response)
+
 
 Delete a Key Pair
 =================
@@ -115,9 +112,9 @@ Example
 .. code-block:: python
 
     import boto3
-    from botocore.exceptions import ClientError
-
 
     ec2 = boto3.client('ec2')
     response = ec2.delete_key_pair(KeyName='KEY_PAIR_NAME')
     print(response)
+
+    
