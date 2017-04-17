@@ -74,8 +74,9 @@ def bucket_load(self, *args, **kwargs):
             if bucket_data['Name'] == self.name:
                 self.meta.data = bucket_data
                 break
-    except ClientError:
-        pass
+    except ClientError as e:
+        if not e.response.get('Error', {}).get('Code') == 'AccessDenied':
+            raise
 
 def object_summary_load(self, *args, **kwargs):
     """
