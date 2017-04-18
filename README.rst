@@ -88,7 +88,7 @@ the ``pip install boto3`` defined above:
 Running Tests
 ~~~~~~~~~~~~~
 You can run tests in all supported Python versions using ``tox``. By default,
-it will run all of the unit tests, but you can also specify your own
+it will run all of the unit and functional tests, but you can also specify your own
 ``nosetests`` options. Note that this requires that you have all supported
 versions of Python installed, otherwise you must pass ``-e`` or run the
 ``nosetests`` command directly:
@@ -96,8 +96,8 @@ versions of Python installed, otherwise you must pass ``-e`` or run the
 .. code-block:: sh
 
     $ tox
-    $ tox tests/unit/test_session.py
-    $ tox -e py26,py33 tests/integration
+    $ tox -- unit/test_session.py
+    $ tox -e py26,py33 -- integration/
 
 You can also run individual tests with your default Python version:
 

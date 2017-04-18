@@ -4,6 +4,7 @@
 # binary package not from the CWD.
 
 import os
+from optparse import OptionParser
 from subprocess import check_call
 
 _dname = os.path.dirname
@@ -16,5 +17,10 @@ def run(command):
     return check_call(command, shell=True)
 
 
+_, args = OptionParser(usage="%prog TEST_DIR ...").parse_args()
+if not args:
+    args = ['unit/', 'functional/']
+test_dirs = ' '.join('"%s"' % arg for arg in args)
+
 run('nosetests --with-coverage --cover-erase --cover-package boto3 '
-    '--with-xunit --cover-xml -v unit/ functional/')
+    '--with-xunit --cover-xml -v ' + test_dirs)
