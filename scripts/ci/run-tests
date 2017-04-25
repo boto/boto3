@@ -4,7 +4,7 @@
 # binary package not from the CWD.
 
 import os
-from optparse import OptionParser
+import sys
 from subprocess import check_call
 
 _dname = os.path.dirname
@@ -12,15 +12,10 @@ _dname = os.path.dirname
 REPO_ROOT = _dname(_dname(_dname(os.path.abspath(__file__))))
 os.chdir(os.path.join(REPO_ROOT, 'tests'))
 
-
-def run(command):
-    return check_call(command, shell=True)
-
-
-_, args = OptionParser(usage="%prog TEST_DIR ...").parse_args()
+args = sys.argv[1:]
 if not args:
     args = ['unit/', 'functional/']
-test_dirs = ' '.join('"%s"' % arg for arg in args)
 
-run('nosetests --with-coverage --cover-erase --cover-package boto3 '
-    '--with-xunit --cover-xml -v ' + test_dirs)
+check_call(['nosetests', '--with-coverage', '--cover-erase',
+            '--cover-package', 'boto3', '--with-xunit', '--cover-xml',
+            '-v'] + args)
