@@ -64,15 +64,19 @@ def bucket_load(self, *args, **kwargs):
 
     # We can't actually get the bucket's attributes from a HeadBucket,
     # so we need to use a ListBuckets and search for our bucket.
-    response = self.meta.client.list_buckets()
-    for bucket_data in response['Buckets']:
-        if bucket_data['Name'] == self.name:
-            self.meta.data = bucket_data
-            break
-    else:
-        raise ClientError({'Error': {'Code': '404', 'Message': 'NotFound'}},
-                          'ListBuckets')
-
+    # However, we may fail if we lack permissions to ListBuckets
+    # or the bucket is in another account. In which case, creation_date
+    # will be None.
+    self.meta.data = {}
+    try:
+        response = self.meta.client.list_buckets()
+        for bucket_data in response['Buckets']:
+            if bucket_data['Name'] == self.name:
+                self.meta.data = bucket_data
+                break
+    except ClientError as e:
+        if not e.response.get('Error', {}).get('Code') == 'AccessDenied':
+            raise
 
 def object_summary_load(self, *args, **kwargs):
     """
