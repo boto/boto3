@@ -136,6 +136,15 @@ To set custom or multiple ACLs::
         }
     )
 
+To set custom ContentType::
+
+    s3.upload_file(
+        'tmp.txt', 'bucket-name', 'key-name',
+        ExtraArgs={'ContentType': 'text/plain'}
+    )
+
+Otherwise, the ``mimetypes`` library will be used to guess the ContentType based
+on the given key.
 
 All valid ``ExtraArgs`` are listed at :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`
 

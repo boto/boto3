@@ -122,6 +122,8 @@ transfer.  For example:
 
 
 """
+import mimetypes
+
 from botocore.exceptions import ClientError
 from botocore.compat import six
 from s3transfer.exceptions import RetriesExceededError as \
@@ -267,6 +269,12 @@ class S3Transfer(object):
         """
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
+
+        if (extra_args is None or not extra_args.has_key('ContentType')):
+            guessed_mimetype = mimetypes.guess_type(key)[0]
+            if guessed_mimetype:
+                extra_args = extra_args or {}
+                extra_args['ContentType'] = guessed_mimetype
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(

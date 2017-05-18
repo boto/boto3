@@ -143,6 +143,31 @@ class TestS3Transfer(unittest.TestCase):
         self.assert_callback_wrapped_in_subscriber(
             self.manager.download.call_args)
 
+    def test_upload_guesses_mimetype(self):
+        self.transfer.upload_file('smallfile', 'bucket', 'key.png')
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key.png', {'ContentType': 'image/png'}, None)
+
+        extra_args = {'ACL': 'public-read'}
+        self.transfer.upload_file('smallfile', 'bucket', 'key.pdf',
+                                  extra_args=extra_args)
+        extra_args['ContentType'] = 'application/pdf'
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key.pdf', extra_args, None)
+
+    def test_upload_guesses_mimetype_none(self):
+        self.transfer.upload_file('smallfile', 'bucket', 'key')
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key', None, None)
+
+    def test_upload_guesses_mimetype_override(self):
+        extra_args = {'ACL': 'public-read',
+            'ContentType': 'application/octet-stream'}
+        self.transfer.upload_file('smallfile', 'bucket', 'key.png',
+                                  extra_args=extra_args)
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key.png', extra_args, None)
+
     def test_propogation_of_retry_error(self):
         future = mock.Mock()
         future.result.side_effect = S3TransferRetriesExceededError(Exception())
