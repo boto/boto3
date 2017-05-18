@@ -148,7 +148,7 @@ on the given key.
 
 All valid ``ExtraArgs`` are listed at :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`
 
-To track the progess of a transfer, a progress callback can be provided such
+To track the progress of a transfer, a progress callback can be provided such
 that the callback gets invoked each time progress is made on the transfer::
 
     import os
