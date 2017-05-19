@@ -270,7 +270,7 @@ class S3Transfer(object):
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
 
-        if (extra_args is None or not extra_args.has_key('ContentType')):
+        if (extra_args is None or 'ContentType' not in extra_args:
             guessed_mimetype = mimetypes.guess_type(key)[0]
             if guessed_mimetype:
                 extra_args = extra_args or {}
