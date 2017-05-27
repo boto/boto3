@@ -307,6 +307,12 @@ class TestS3Transfers(unittest.TestCase):
                                 Key=key)
         return True
 
+    def object_mime_type(self, key):
+        head = self.client.head_object(Bucket=self.bucket_name,
+                                       Key=key)
+
+        return head['ContentType']
+
     def wait_until_object_exists(self, key_name, extra_params=None,
                                  min_successes=3):
         waiter = self.client.get_waiter('object_exists')
@@ -347,6 +353,21 @@ class TestS3Transfers(unittest.TestCase):
 
         self.object_exists('foo')
 
+    def test_upload_fileobj_guess_mimetype(self):
+        fileobj = six.BytesIO(b'foo')
+        self.client.upload_fileobj(Fileobj=fileobj, Bucket=self.bucket_name,
+            GuessMimeType=True, Key='foo.txt')
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        self.assertEqual(self.object_mime_type('foo.txt'), 'text/plain')
+
+    def test_upload_fileobj_do_not_guess_mimetype(self):
+        fileobj = six.BytesIO(b'foo')
+        self.client.upload_fileobj(Fileobj=fileobj, Bucket=self.bucket_name,
+            Key='foo.txt')
+        self.addCleanup(self.delete_object, 'foo.txt')
+
+        self.assertEqual(self.object_mime_type('foo.txt'), 'binary/octet-stream')
     def test_upload_fileobj_progress(self):
         # This has to be an integration test because the fileobj will never
         # actually be read from when using the stubber and therefore the

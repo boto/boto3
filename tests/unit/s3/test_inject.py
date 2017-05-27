@@ -35,7 +35,7 @@ class TestInjectTransferMethods(unittest.TestCase):
                 transfer.return_value.__enter__.return_value
             transfer_in_context_manager.upload_file.assert_called_with(
                 filename='filename', bucket='bucket', key='key',
-                extra_args=None, callback=None)
+                guess_mime_type=False, extra_args=None, callback=None)
 
     def test_download_file_proxies_to_transfer_object(self):
         with mock.patch('boto3.s3.inject.S3Transfer') as transfer:
@@ -109,7 +109,7 @@ class TestBucketTransferMethods(unittest.TestCase):
         inject.bucket_upload_file(self.bucket, Filename='foo', Key='key')
         self.bucket.meta.client.upload_file.assert_called_with(
             Filename='foo', Bucket=self.bucket.name, Key='key',
-            ExtraArgs=None, Callback=None, Config=None)
+            GuessMimeType=False, ExtraArgs=None, Callback=None, Config=None)
 
     def test_download_file_proxies_to_meta_client(self):
         inject.bucket_download_file(self.bucket, Key='key', Filename='foo')
@@ -128,7 +128,15 @@ class TestBucketTransferMethods(unittest.TestCase):
         inject.bucket_upload_fileobj(self.bucket, Key='key', Fileobj=fileobj)
         self.bucket.meta.client.upload_fileobj.assert_called_with(
             Bucket=self.bucket.name, Fileobj=fileobj, Key='key',
-            ExtraArgs=None, Callback=None, Config=None)
+            GuessMimeType=False, ExtraArgs=None, Callback=None, Config=None)
+
+    def test_upload_fileobj_guess_mimetype(self):
+        fileobj = six.BytesIO(b'foo')
+        inject.bucket_upload_fileobj(self.bucket, Key='key.png',
+                                     Fileobj=fileobj, GuessMimeType=True)
+        self.bucket.meta.client.upload_fileobj.assert_called_with(
+            Bucket=self.bucket.name, Fileobj=fileobj, Key='key.png',
+            GuessMimeType=True, ExtraArgs=None, Callback=None, Config=None)
 
     def test_download_fileobj(self):
         obj = six.BytesIO()
@@ -148,7 +156,7 @@ class TestObjectTransferMethods(unittest.TestCase):
         inject.object_upload_file(self.obj, Filename='foo')
         self.obj.meta.client.upload_file.assert_called_with(
             Filename='foo', Bucket=self.obj.bucket_name, Key=self.obj.key,
-            ExtraArgs=None, Callback=None, Config=None)
+            GuessMimeType=False, ExtraArgs=None, Callback=None, Config=None)
 
     def test_download_file_proxies_to_meta_client(self):
         inject.object_download_file(self.obj, Filename='foo')
@@ -168,7 +176,7 @@ class TestObjectTransferMethods(unittest.TestCase):
         inject.object_upload_fileobj(self.obj, Fileobj=fileobj)
         self.obj.meta.client.upload_fileobj.assert_called_with(
             Bucket=self.obj.bucket_name, Fileobj=fileobj, Key=self.obj.key,
-            ExtraArgs=None, Callback=None, Config=None)
+            GuessMimeType=False, ExtraArgs=None, Callback=None, Config=None)
 
     def test_download_fileobj(self):
         fileobj = six.BytesIO()

@@ -261,7 +261,7 @@ class S3Transfer(object):
             self._manager = create_transfer_manager(client, config, osutil)
 
     def upload_file(self, filename, bucket, key,
-                    callback=None, extra_args=None):
+                    guess_mime_type=False, callback=None, extra_args=None):
         """Upload a file to an S3 object.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -270,11 +270,12 @@ class S3Transfer(object):
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
 
-        if extra_args is None or 'ContentType' not in extra_args:
-            guessed_mimetype = mimetypes.guess_type(key)[0]
-            if guessed_mimetype:
+        if guess_mime_type and (extra_args is None
+                                or 'ContentType' not in extra_args):
+            guessed_mime_type = mimetypes.guess_type(key)[0]
+            if guessed_mime_type:
                 extra_args = extra_args or {}
-                extra_args['ContentType'] = guessed_mimetype
+                extra_args['ContentType'] = guessed_mime_type
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(

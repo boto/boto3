@@ -10,6 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import mimetypes
+
 from botocore.exceptions import ClientError
 
 from boto3.s3.transfer import create_transfer_manager
@@ -91,7 +93,7 @@ def object_summary_load(self, *args, **kwargs):
 
 
 def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
-                Callback=None, Config=None):
+                GuessMimeType=False, Callback=None, Config=None):
     """Upload a file to an S3 object.
 
     Usage::
@@ -107,7 +109,8 @@ def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
     with S3Transfer(self, Config) as transfer:
         return transfer.upload_file(
             filename=Filename, bucket=Bucket, key=Key,
-            extra_args=ExtraArgs, callback=Callback)
+            guess_mime_type=GuessMimeType, extra_args=ExtraArgs,
+            callback=Callback)
 
 
 def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
@@ -130,7 +133,7 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
             extra_args=ExtraArgs, callback=Callback)
 
 
-def bucket_upload_file(self, Filename, Key,
+def bucket_upload_file(self, Filename, Key, GuessMimeType=False,
                        ExtraArgs=None, Callback=None, Config=None):
     """Upload a file to an S3 object.
 
@@ -146,7 +149,8 @@ def bucket_upload_file(self, Filename, Key,
     """
     return self.meta.client.upload_file(
         Filename=Filename, Bucket=self.name, Key=Key,
-        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+        GuessMimeType=GuessMimeType, ExtraArgs=ExtraArgs,
+        Callback=Callback, Config=Config)
 
 
 def bucket_download_file(self, Key, Filename,
@@ -168,7 +172,7 @@ def bucket_download_file(self, Key, Filename,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
 
 
-def object_upload_file(self, Filename,
+def object_upload_file(self, Filename, GuessMimeType=False,
                        ExtraArgs=None, Callback=None, Config=None):
     """Upload a file to an S3 object.
 
@@ -184,7 +188,8 @@ def object_upload_file(self, Filename,
     """
     return self.meta.client.upload_file(
         Filename=Filename, Bucket=self.bucket_name, Key=self.key,
-        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+        GuessMimeType=GuessMimeType, ExtraArgs=ExtraArgs, Callback=Callback,
+        Config=Config)
 
 
 def object_download_file(self, Filename,
@@ -375,7 +380,7 @@ def object_copy(self, CopySource, ExtraArgs=None, Callback=None,
 
 
 def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
-                   Callback=None, Config=None):
+                   GuessMimeType=False, Callback=None, Config=None):
     """Upload a file-like object to S3.
 
     The file-like object must be in binary mode.
@@ -401,6 +406,9 @@ def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
     :type Key: str
     :param Key: The name of the key to upload to.
 
+    :type GuessMimeType: a boolean
+    :param GuessMimeType: Guess the correct MIME type based on object key
+
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
@@ -424,6 +432,13 @@ def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
     if config is None:
         config = TransferConfig()
 
+    if GuessMimeType and (ExtraArgs is None
+                            or 'ContentType' not in ExtraArgs):
+        guessed_mime_type = mimetypes.guess_type(Key)[0]
+        if guessed_mime_type:
+            ExtraArgs = ExtraArgs or {}
+            ExtraArgs['ContentType'] = guessed_mime_type
+
     with create_transfer_manager(self, config) as manager:
         future = manager.upload(
             fileobj=Fileobj, bucket=Bucket, key=Key,
@@ -431,8 +446,8 @@ def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
         return future.result()
 
 
-def bucket_upload_fileobj(self, Fileobj, Key, ExtraArgs=None,
-                          Callback=None, Config=None):
+def bucket_upload_fileobj(self, Fileobj, Key, GuessMimeType=False,
+                          ExtraArgs=None, Callback=None, Config=None):
     """Upload a file-like object to this bucket.
 
     The file-like object must be in binary mode.
@@ -456,6 +471,9 @@ def bucket_upload_fileobj(self, Fileobj, Key, ExtraArgs=None,
     :type Key: str
     :param Key: The name of the key to upload to.
 
+    :type GuessMimeType: a boolean
+    :param GuessMimeType: Guess the correct MIME type based on object key
+
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
@@ -469,12 +487,12 @@ def bucket_upload_fileobj(self, Fileobj, Key, ExtraArgs=None,
         upload.
     """
     return self.meta.client.upload_fileobj(
-        Fileobj=Fileobj, Bucket=self.name, Key=Key, ExtraArgs=ExtraArgs,
-        Callback=Callback, Config=Config)
+        Fileobj=Fileobj, Bucket=self.name, Key=Key, GuessMimeType=GuessMimeType,
+        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
 
 
-def object_upload_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
-                          Config=None):
+def object_upload_fileobj(self, Fileobj, GuessMimeType=False, ExtraArgs=None,
+                          Callback=None, Config=None):
     """Upload a file-like object to this object.
 
     The file-like object must be in binary mode.
@@ -496,6 +514,9 @@ def object_upload_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     :param Fileobj: A file-like object to upload. At a minimum, it must
         implement the `read` method, and must return bytes.
 
+    :type GuessMimeType: a boolean
+    :param GuessMimeType: Guess the correct MIME type based on object key
+
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
@@ -510,7 +531,8 @@ def object_upload_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     """
     return self.meta.client.upload_fileobj(
         Fileobj=Fileobj, Bucket=self.bucket_name, Key=self.key,
-        ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
+        GuessMimeType=GuessMimeType, ExtraArgs=ExtraArgs, Callback=Callback,
+        Config=Config)
 
 
 def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
@@ -650,4 +672,3 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     return self.meta.client.download_fileobj(
         Bucket=self.bucket_name, Key=self.key, Fileobj=Fileobj,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
-

@@ -144,19 +144,22 @@ class TestS3Transfer(unittest.TestCase):
             self.manager.download.call_args)
 
     def test_upload_guesses_mimetype(self):
-        self.transfer.upload_file('smallfile', 'bucket', 'key.png')
+        self.transfer.upload_file('smallfile', 'bucket', 'key.png',
+            guess_mime_type=True)
         self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key.png', {'ContentType': 'image/png'}, None)
+            'smallfile', 'bucket', 'key.png', {'ContentType': 'image/png'},
+            None)
 
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file('smallfile', 'bucket', 'key.pdf',
-                                  extra_args=extra_args)
+                                  guess_mime_type=True, extra_args=extra_args)
         extra_args['ContentType'] = 'application/pdf'
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key.pdf', extra_args, None)
 
     def test_upload_guesses_mimetype_none(self):
-        self.transfer.upload_file('smallfile', 'bucket', 'key')
+        self.transfer.upload_file('smallfile', 'bucket', 'key',
+            guess_mime_type=True)
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', None, None)
 
@@ -164,7 +167,7 @@ class TestS3Transfer(unittest.TestCase):
         extra_args = {'ACL': 'public-read',
             'ContentType': 'application/octet-stream'}
         self.transfer.upload_file('smallfile', 'bucket', 'key.png',
-                                  extra_args=extra_args)
+            guess_mime_type=True, extra_args=extra_args)
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key.png', extra_args, None)
 
@@ -181,6 +184,17 @@ class TestS3Transfer(unittest.TestCase):
         self.manager.upload.return_value = future
         with self.assertRaises(S3UploadFailedError):
             self.transfer.upload_file('smallfile', 'bucket', 'key')
+
+    def test_upload_does_not_guess_mimetype(self):
+        self.transfer.upload_file('smallfile', 'bucket', 'key.png')
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key.png', None, None)
+
+        extra_args = {'ACL': 'public-read'}
+        self.transfer.upload_file('smallfile', 'bucket', 'key.pdf',
+            extra_args=extra_args)
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key.pdf', extra_args, None)
 
     def test_can_create_with_just_client(self):
         transfer = S3Transfer(client=mock.Mock())
