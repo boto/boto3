@@ -77,7 +77,7 @@ class ResourceCollection(object):
             'key2'
 
         """
-        limit = self._params.get('limit', None)
+        limit = self._params.get('MaxKeys', None)
 
         count = 0
         for page in self.pages():
