@@ -40,9 +40,9 @@ The order in which Boto3 searches for credentials is:
 #. Passing credentials as parameters in the ``boto.client()`` method
 #. Passing credentials as parameters when creating a ``Session`` object
 #. Environment variables
+#. Assume Role provider
 #. Shared credential file (``~/.aws/credentials``)
 #. AWS config file (``~/.aws/config``)
-#. Assume Role provider
 #. Boto2 config file (``/etc/boto.cfg`` and ``~/.boto``)
 #. Instance metadata service on an Amazon EC2 instance that has an
    IAM role configured.
