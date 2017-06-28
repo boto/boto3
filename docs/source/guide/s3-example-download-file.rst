@@ -50,7 +50,7 @@ The example below tries to download an S3 object to a file. If the service retur
         if e.response['Error']['Code'] == "404":
             print("The object does not exist.")
         else:
-    raise
+            raise
 
 More Info
 =========
