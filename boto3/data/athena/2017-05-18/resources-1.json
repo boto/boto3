@@ -1,0 +1,128 @@
+{
+  "service": {
+    "actions": {
+      "StartQueryExecution": {
+        "request": { "operation": "StartQueryExecution" },
+        "resource": {
+          "type": "QueryExecution",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "QueryExecutionId" }
+          ]
+        }
+      },
+      "CreateNamedQuery": {
+        "request": { "operation": "CreateNamedQuery" },
+        "resource": {
+          "type": "NamedQuery",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "NamedQueryId" }
+          ]
+        }
+      },
+      "BatchGetNamedQuery": {
+        "request": { "operation": "BatchGetNamedQuery" },
+        "resource": {
+          "type": "NamedQuery",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "NamedQueries" }
+          ]
+        }
+      },
+      "BatchGetQueryExecution": {
+        "request": { "operation": "BatchGetQueryExecution" },
+        "resource": {
+          "type": "QueryExecution",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "QueryExecutions" }
+          ]
+        }
+      }
+    },
+    "hasMany": {
+      "QueryExecutions": {
+        "request": { "operation": "ListQueryExecutions" },
+        "resource": {
+          "type": "QueryExecution",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "QueryExecutionIds[]" }
+          ]
+        }
+      },
+      "NamedQueries": {
+        "request": { "operation": "ListNamedQueries" },
+        "resource": {
+          "type": "NamedQuery",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "NamedQueryIds[]" }
+          ]
+        }
+      }
+    }
+  },
+  "resources": {
+    "NamedQuery": {
+      "identifiers": [
+        {
+          "name": "Id",
+          "memberName": "NamedQueryId"
+        }
+      ],
+      "shape": "NamedQuery",
+      "load": {
+        "request": {
+          "operation": "GetNamedQuery",
+          "params": [
+            { "target": "NamedQueryId", "source": "identifier", "name": "Id" }
+          ]
+        },
+        "path": "NamedQuery"
+      },
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteNamedQuery",
+            "params": [
+              { "target": "NamedQueryId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      }
+    },
+    "QueryExecution": {
+      "identifiers": [
+        {
+          "name": "Id",
+          "memberName": "QueryExecutionId"
+        }
+      ],
+      "shape": "QueryExecution",
+      "load": {
+        "request": {
+          "operation": "GetQueryExecution",
+          "params": [
+            { "target": "QueryExecutionId", "source": "identifier", "name": "Id" }
+          ]
+        },
+        "path": "QueryExecution"
+      },
+      "actions": {
+        "GetQueryResults": {
+          "request": {
+            "operation": "GetQueryResults",
+            "params": [
+              { "target": "QueryExecutionId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "StopQueryExecution": {
+          "request": {
+            "operation": "StopQueryExecution",
+            "params": [
+              { "target": "QueryExecutionId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
