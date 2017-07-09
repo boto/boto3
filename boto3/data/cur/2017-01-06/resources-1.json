@@ -1,0 +1,42 @@
+{
+  "service": {
+    "actions": {
+      "CreateReportDefinition": {
+        "request": { "operation": "PutReportDefinition" }
+      }
+    },
+    "hasMany": {
+      "ReportDefinitions": {
+        "request": {
+          "operation": "DescribeReportDefinitions"
+        },
+        "resource": {
+          "type": "ReportDefinition",
+          "identifiers": [
+            { "target": "Name", "source": "response", "path": "ReportDefinitions[].ReportName" }
+          ],
+          "path": "ReportDefinitions[]"
+        }
+      }
+    }
+  },
+  "resources": {
+    "ReportDefinition": {
+      "identifiers": [
+        { "name": "Name",
+          "memberName": "ReportName" }
+      ],
+      "shape": "ReportDefinition",
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteReportDefinition",
+            "params": [
+              { "target": "ReportName", "source": "identifier", "name": "Name" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
