@@ -38,6 +38,24 @@
         }
       }
     },
+    "has": {
+      "NamedQuery": {
+        "resource": {
+          "type": "NamedQuery",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "QueryExecution": {
+        "resource": {
+          "type": "QueryExecution",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      }
+    },
     "hasMany": {
       "QueryExecutions": {
         "request": { "operation": "ListQueryExecutions" },
@@ -106,7 +124,7 @@
         "path": "QueryExecution"
       },
       "actions": {
-        "GetQueryResults": {
+        "GetResults": {
           "request": {
             "operation": "GetQueryResults",
             "params": [
@@ -114,7 +132,7 @@
             ]
           }
         },
-        "StopQueryExecution": {
+        "StopExecution": {
           "request": {
             "operation": "StopQueryExecution",
             "params": [
