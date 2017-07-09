@@ -1,0 +1,211 @@
+{
+  "service": {
+    "actions": {
+      "DescribeAffectedEntities": {
+        "request": { "operation": "DescribeAffectedEntities" },
+        "resource": {
+          "type": "AffectedEntity",
+          "identifiers": [
+            { "target": "eventArn", "source": "response", "path": "entities[].eventArn" },
+            { "target": "arn", "source": "response", "path": "entities[].entityArn" }
+          ],
+          "path": "entities"
+        }
+      },
+      "DescribeEventAggregates": {
+        "request": {
+          "operation": "DescribeEventAggregates",
+          "params": [
+            { "target": "aggregateField", "source": "input" }
+          ]
+        },
+        "resource": {
+          "type": "EventAggregate",
+          "identifiers": [
+            { "target": "value", "source": "response", "path": "eventAggregates[].aggregateValue" }
+          ],
+          "path": "eventAggregates[]"
+        }
+      }
+    },
+    "has": {
+      "Event": {
+        "resource": {
+          "type": "Event",
+          "identifiers": [
+            {
+              "target": "arn",
+              "source": "input"
+            }
+          ]
+        }
+      },
+      "EventType": {
+        "resource": {
+          "type": "EventType",
+          "identifiers": [
+            {
+              "target": "code",
+              "source": "input"
+            }
+          ]
+        }
+      },
+      "AffectedEntity": {
+        "resource": {
+          "type": "AffectedEntity",
+          "identifiers": [
+            {
+              "target": "eventArn",
+              "source": "input"
+            },
+            {
+              "target": "arn",
+              "source": "input"
+            }
+          ]
+        }
+      }
+    },
+    "hasMany": {
+      "Events": {
+        "request": {
+          "operation": "DescribeEvents"
+        },
+        "resource": {
+          "type": "Event",
+          "identifiers": [
+            { "target": "arn", "source": "response", "path": "events[].arn" }
+          ],
+          "path": "events[]"
+        }
+      },
+      "EventTypes": {
+        "request": {
+          "operation": "DescribeEventTypes"
+        },
+        "resource": {
+          "type": "EventType",
+          "identifiers": [
+            { "target": "code", "source": "response", "path": "eventTypes[].code" }
+          ],
+          "path": "eventTypes[]"
+        }
+      }
+    }
+  },
+  "resources": {
+    "AffectedEntity": {
+      "identifiers": [
+        { "name": "eventArn",
+          "memberName": "eventArn"},
+        { "name": "arn",
+          "memberName": "entityArn" }
+      ],
+      "shape": "AffectedEntity",
+      "load": {
+        "request": {
+          "operation": "DescribeAffectedEntities",
+          "params": [
+            {
+              "target": "filter.eventArns[0]",
+              "source": "identifier",
+              "name": "event"
+            },
+            {
+              "target": "filter.entityArns[0]",
+              "source": "identifier",
+              "name": "eventArn"
+            }
+          ]
+        },
+        "path": "entities[0]"
+      }
+    },
+    "Event": {
+      "identifiers": [
+        { "name": "arn",
+          "memberName": "arn" }
+      ],
+      "shape": "Event",
+      "load": {
+        "request": {
+          "operation": "DescribeEvents",
+          "params": [
+            {
+              "target": "filter.eventArns[0]",
+              "source": "identifier",
+              "name": "arn"
+            }
+          ]
+        },
+        "path": "events[0]"
+      },
+      "hasMany": {
+        "affectedEntities": {
+          "request": {
+            "params": [{
+              "target": "filter.eventArns[0]",
+              "source": "identifier",
+              "name": "arn"
+            }],
+            "operation": "DescribeAffectedEntities"
+          },
+          "resource": {
+            "type": "AffectedEntity",
+            "identifiers": [
+              { "target": "eventArn", "source": "identifier", "name": "arn"},
+              { "target": "arn", "source": "response", "path": "entities[].entityArn" }
+            ],
+            "path": "entities[]"
+          }
+        }
+      },
+      "actions": {
+        "DescribeDetails": {
+          "request": {
+            "operation": "DescribeEventDetails",
+            "params": [
+              { "target": "eventArns[0]", "source": "identifier", "name": "arn" }
+            ]
+          }
+        },
+        "DescribeAggregates": {
+          "request": {
+            "operation": "DescribeEntityAggregates",
+            "params": [
+              { "target": "eventArns[0]", "source": "identifier", "name": "arn" }
+            ]
+          }
+        }
+      }
+    },
+    "EventAggregate": {
+      "identifiers": [
+        { "name": "value",
+          "memberName": "aggregateValue" }
+      ],
+      "shape": "EventAggregate"
+    },
+    "EventType": {
+      "identifiers": [
+        { "name": "code",
+          "memberName": "code" }
+      ],
+      "shape": "EventType",
+      "load": {
+        "request": {
+          "operation": "DescribeEventTypes",
+          "params": [
+            {
+              "target": "filter.eventTypeCodes[0]",
+              "source": "identifier",
+              "name": "code"
+            }
+          ]
+        },
+        "path": "eventTypes[0]"
+      }
+    }
+  }
+}
