@@ -198,9 +198,9 @@ keyword arguments. Examples of waiters include::
     instance.wait_until_running()
 
 
-Multithreading
---------------
-It is recommended to create a resource instance for each thread in a multithreaded application rather than sharing a single instance among the threads. For example::
+Multithreading / Multiprocessing
+--------------------------------
+It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example::
 
     import boto3
     import boto3.session

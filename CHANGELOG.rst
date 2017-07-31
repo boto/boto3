@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.4.5
+=====
+
+* enhancement:s3: Add a LifecycleConfiguration resource to resolve issues with the existing Lifecycle resource.
+
+
 1.4.3
 =====
 

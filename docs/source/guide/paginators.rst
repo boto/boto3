@@ -108,7 +108,7 @@ JMESPath expressions that are applied to each page of results through the
 When filtering with JMESPath expressions, each page of results that is yielded
 by the paginator is mapped through the JMESPath expression. If a JMESPath
 expression returns a single value that is not an array, that value is yielded
-directly. If the the result of applying the JMESPath expression to a page of
+directly. If the result of applying the JMESPath expression to a page of
 results is a list, then each value of the list is yielded individually
 (essentially implementing a flat map). For example, in the above expression,
 each key that has a ``Size`` greater than `100` is yielded by the

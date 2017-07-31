@@ -77,7 +77,7 @@ class ServiceAction(object):
         params = create_request_parameters(parent, self._action_model.request)
         params.update(kwargs)
 
-        logger.info('Calling %s:%s with %r', parent.meta.service_name,
+        logger.debug('Calling %s:%s with %r', parent.meta.service_name,
                     operation_name, params)
 
         response = getattr(parent.meta.client, operation_name)(**params)
@@ -146,7 +146,7 @@ class BatchAction(ServiceAction):
 
             params.update(kwargs)
 
-            logger.info('Calling %s:%s with %r',
+            logger.debug('Calling %s:%s with %r',
                         service_name, operation_name, params)
 
             response = getattr(client, operation_name)(**params)
@@ -193,7 +193,7 @@ class WaiterAction(object):
         params = create_request_parameters(parent, self._waiter_model)
         params.update(kwargs)
 
-        logger.info('Calling %s:%s with %r',
+        logger.debug('Calling %s:%s with %r',
                     parent.meta.service_name,
                     self._waiter_resource_name, params)
 

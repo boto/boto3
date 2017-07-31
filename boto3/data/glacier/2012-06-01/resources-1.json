@@ -538,6 +538,24 @@
             "path": "UploadsList[]"
           }
         },
+        "MultipartUploads": {
+          "request": {
+            "operation": "ListMultipartUploads",
+            "params": [
+              { "target": "vaultName", "source": "identifier", "name": "Name" },
+              { "target": "accountId", "source": "identifier", "name": "AccountId" }
+            ]
+          },
+          "resource": {
+            "type": "MultipartUpload",
+            "identifiers": [
+              { "target": "AccountId", "source": "identifier", "name": "AccountId" },
+              { "target": "VaultName", "source": "identifier", "name": "Name" },
+              { "target": "Id", "source": "response", "path": "UploadsList[].MultipartUploadId" }
+            ],
+            "path": "UploadsList[]"
+          }
+        },
         "SucceededJobs": {
           "request": {
             "operation": "ListJobs",

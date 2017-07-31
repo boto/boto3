@@ -126,7 +126,7 @@ pagination::
 
     # S3 delete everything in `my-bucket`
     s3 = boto3.resource('s3')
-    s3.buckets('my-bucket').objects.delete()
+    s3.Bucket('my-bucket').objects.delete()
 
 .. danger::
 

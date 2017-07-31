@@ -70,7 +70,7 @@ class TestBucketLoad(unittest.TestCase):
             self.resource.meta.data,
             {'Name': self.resource.name, 'CreationDate': 2})
 
-    def test_bucket_load_raise_error(self):
+    def test_bucket_load_doesnt_find_bucket(self):
         self.resource.name = 'MyBucket'
         self.client.list_buckets.return_value = {
             'Buckets': [
@@ -78,9 +78,26 @@ class TestBucketLoad(unittest.TestCase):
                 {'Name': 'NotMine2', 'CreationDate': 2},
             ],
         }
+        inject.bucket_load(self.resource)
+        self.assertEqual(self.resource.meta.data, {})
+
+    def test_bucket_load_encounters_access_exception(self):
+        self.client.list_buckets.side_effect = ClientError(
+            {'Error':
+             {'Code': 'AccessDenied',
+              'Message': 'Access Denied'}},
+            'ListBuckets')
+        inject.bucket_load(self.resource)
+        self.assertEqual(self.resource.meta.data, {})
+
+    def test_bucket_load_encounters_other_exception(self):
+        self.client.list_buckets.side_effect = ClientError(
+            {'Error':
+             {'Code': 'ExpiredToken',
+              'Message': 'The provided token has expired.'}},
+            'ListBuckets')
         with self.assertRaises(ClientError):
             inject.bucket_load(self.resource)
-
 
 class TestBucketTransferMethods(unittest.TestCase):
 

@@ -120,6 +120,18 @@
             ]
           }
         },
+        "LifecycleConfiguration": {
+          "resource": {
+            "type": "BucketLifecycleConfiguration",
+            "identifiers": [
+              {
+                "target": "BucketName",
+                "source": "identifier",
+                "name": "Name"
+              }
+            ]
+          }
+        },
         "Logging": {
           "resource": {
             "type": "BucketLogging",
@@ -355,6 +367,67 @@
             "type": "Bucket",
             "identifiers": [
               { "target": "Name", "source": "identifier", "name": "BucketName" }
+            ]
+          }
+        }
+      }
+    },
+    "BucketLifecycleConfiguration": {
+      "identifiers": [
+        {
+          "name": "BucketName"
+        }
+      ],
+      "shape": "GetBucketLifecycleConfigurationOutput",
+      "load": {
+        "request": {
+          "operation": "GetBucketLifecycleConfiguration",
+          "params": [
+            {
+              "target": "Bucket",
+              "source": "identifier",
+              "name": "BucketName"
+            }
+          ]
+        },
+        "path": "@"
+      },
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteBucketLifecycle",
+            "params": [
+              {
+                "target": "Bucket",
+                "source": "identifier",
+                "name": "BucketName"
+              }
+            ]
+          }
+        },
+        "Put": {
+          "request": {
+            "operation": "PutBucketLifecycleConfiguration",
+            "params": [
+              {
+                "target": "Bucket",
+                "source": "identifier",
+                "name": "BucketName"
+              }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Bucket": {
+          "resource": {
+            "type": "Bucket",
+            "identifiers": [
+              {
+                "target": "Name",
+                "source": "identifier",
+                "name": "BucketName"
+              }
             ]
           }
         }

@@ -313,7 +313,7 @@ In addition to credentials, you can also configure non-credential values.  In
 general, boto3 follows the same approach used in credential lookup: try various
 locations until a value is found.  Boto3 uses these sources for configuration:
 
-* Explicitly passed as the ``config`` paramter when creating a client.
+* Explicitly passed as the ``config`` parameter when creating a client.
 * Environment variables
 * The ``~/.aws/config`` file.
 

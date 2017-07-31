@@ -307,6 +307,15 @@ class TestS3Transfers(unittest.TestCase):
                                 Key=key)
         return True
 
+    def wait_until_object_exists(self, key_name, extra_params=None,
+                                 min_successes=3):
+        waiter = self.client.get_waiter('object_exists')
+        params = {'Bucket': self.bucket_name, 'Key': key_name}
+        if extra_params is not None:
+            params.update(extra_params)
+        for _ in range(min_successes):
+            waiter.wait(**params)
+
     def create_s3_transfer(self, config=None):
         return boto3.s3.transfer.S3Transfer(self.client,
                                             config=config)
@@ -367,6 +376,7 @@ class TestS3Transfers(unittest.TestCase):
             Bucket=self.bucket_name, Key='foo', Body=b'beach')
         self.addCleanup(self.delete_object, 'foo')
 
+        self.wait_until_object_exists('foo')
         self.client.download_fileobj(
             Bucket=self.bucket_name, Key='foo', Fileobj=fileobj)
 
@@ -516,6 +526,7 @@ class TestS3Transfers(unittest.TestCase):
         transfer = self.create_s3_transfer()
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        self.wait_until_object_exists('foo.txt', extra_params=extra_args)
         transfer.download_file(self.bucket_name, 'foo.txt',
                                download_path, extra_args=extra_args)
         with open(download_path, 'rb') as f:
@@ -555,6 +566,7 @@ class TestS3Transfers(unittest.TestCase):
             self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        self.wait_until_object_exists('foo.txt')
         transfer.download_file(self.bucket_name, 'foo.txt',
                                download_path)
         assert_files_equal(filename, download_path)
@@ -571,6 +583,7 @@ class TestS3Transfers(unittest.TestCase):
             self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        self.wait_until_object_exists('foo.txt')
         transfer.download_file(self.bucket_name, 'foo.txt',
                                download_path)
         assert_files_equal(filename, download_path)
@@ -583,6 +596,7 @@ class TestS3Transfers(unittest.TestCase):
         self.addCleanup(self.delete_object, 'foo.txt')
         download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
                                      'downloaded.txt')
+        self.wait_until_object_exists('foo.txt')
         with self.assertRaises(IOError):
             transfer.download_file(self.bucket_name, 'foo.txt', download_path)
 
@@ -598,6 +612,7 @@ class TestS3Transfers(unittest.TestCase):
             self.addCleanup(self.delete_object, 'foo.txt')
         download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
                                      'downloaded.txt')
+        self.wait_until_object_exists('foo.txt')
         with self.assertRaises(IOError):
             transfer.download_file(self.bucket_name, 'foo.txt', download_path)
 
@@ -613,6 +628,7 @@ class TestS3Transfers(unittest.TestCase):
         self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
+        self.wait_until_object_exists('foo.txt')
         self.client.download_file(Bucket=self.bucket_name,
                                   Key='foo.txt',
                                   Filename=download_path)
