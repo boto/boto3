@@ -1,5 +1,0 @@
-{
-  "category": "s3",
-  "description": "Add a LifecycleConfiguration resource to resolve issues with the existing Lifecycle resource.",
-  "type": "enhancement"
-}
