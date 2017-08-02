@@ -43,6 +43,11 @@ class ConditionBase(object):
     def __invert__(self):
         return Not(self)
 
+    def __repr__(self):
+        return self.expression_format.format(
+            *self._values,
+            **{'operator': self.expression_operator})
+
     def get_expression(self):
         return {'format': self.expression_format,
                 'operator': self.expression_operator,

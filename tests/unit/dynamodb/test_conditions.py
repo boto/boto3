@@ -123,6 +123,24 @@ class TestKRepr(unittest.TestCase):
         self.assertEqual(
             repr(Attr(self.var_name)), 'Attr(%s)' % self.var_name)
 
+    def test_key_eq_value(self):
+        self.assertEqual(
+            repr(Equals(Key(self.var_name), self.value)),
+            repr(Key(self.var_name).eq(self.value)))
+
+        self.assertEqual(
+            repr(Equals(Key(self.var_name), self.value)),
+            'Key(%s) = %s' % (self.var_name, self.value))
+
+    def test_attr_eq_value(self):
+        self.assertEqual(
+            repr(Equals(Attr(self.var_name), self.value)),
+            repr(Attr(self.var_name).eq(self.value)))
+
+        self.assertEqual(
+            repr(Equals(Attr(self.var_name), self.value)),
+            'Attr(%s) = %s' % (self.var_name, self.value))
+
 
 class TestConditions(unittest.TestCase):
     def setUp(self):
