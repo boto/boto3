@@ -110,7 +110,7 @@ class TestA(TestK):
                          AttributeType(self.attr, self.value))
 
 
-class TestKRepr(unittest.TestCase):
+class TestRepr(unittest.TestCase):
     def setUp(self):
         self.var_name = 'mykey'
         self.value = 'foo'
