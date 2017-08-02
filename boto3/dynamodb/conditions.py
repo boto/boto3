@@ -71,6 +71,9 @@ class AttributeBase(object):
     def __invert__(self):
         raise DynamoDBOperationNotSupportedError('NOT', self)
 
+    def __repr__(self):
+        return '%s(%s)' % (self.__class__.__name__, self.name)
+
     def eq(self, value):
         """Creates a condition where the attribute is equal to the value.
 

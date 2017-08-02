@@ -110,6 +110,20 @@ class TestA(TestK):
                          AttributeType(self.attr, self.value))
 
 
+class TestKRepr(unittest.TestCase):
+    def setUp(self):
+        self.var_name = 'mykey'
+        self.value = 'foo'
+
+    def test_key_repr(self):
+        self.assertEqual(
+            repr(Key(self.var_name)), 'Key(%s)' % self.var_name)
+
+    def test_attr_repr(self):
+        self.assertEqual(
+            repr(Attr(self.var_name)), 'Attr(%s)' % self.var_name)
+
+
 class TestConditions(unittest.TestCase):
     def setUp(self):
         self.value = Attr('mykey')
