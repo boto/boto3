@@ -78,6 +78,7 @@ def bucket_load(self, *args, **kwargs):
         if not e.response.get('Error', {}).get('Code') == 'AccessDenied':
             raise
 
+
 def object_summary_load(self, *args, **kwargs):
     """
     Calls s3.Client.head_object to update the attributes of the ObjectSummary
@@ -650,4 +651,3 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     return self.meta.client.download_fileobj(
         Bucket=self.bucket_name, Key=self.key, Fileobj=Fileobj,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
-
