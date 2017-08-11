@@ -147,17 +147,17 @@ class ResourceCollection(object):
         # page in a list. For non-paginated results, we just ignore
         # the page size parameter.
         if client.can_paginate(self._py_operation_name):
-            logger.info('Calling paginated %s:%s with %r',
-                        self._parent.meta.service_name,
-                        self._py_operation_name, params)
+            logger.debug('Calling paginated %s:%s with %r',
+                         self._parent.meta.service_name,
+                         self._py_operation_name, params)
             paginator = client.get_paginator(self._py_operation_name)
             pages = paginator.paginate(
                 PaginationConfig={
                     'MaxItems': limit, 'PageSize': page_size}, **params)
         else:
-            logger.info('Calling %s:%s with %r',
-                        self._parent.meta.service_name,
-                        self._py_operation_name, params)
+            logger.debug('Calling %s:%s with %r',
+                         self._parent.meta.service_name,
+                         self._py_operation_name, params)
             pages = [getattr(client, self._py_operation_name)(**params)]
 
         # Now that we have a page iterator or single page of results
