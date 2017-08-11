@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.4.6
+=====
+
+* enhancement:Logging: Switch log levels from INFO to DEBUG (`#1208 <https://github.com/boto/boto3/issues/1208>`__)
+
+
 1.4.5
 =====
 
