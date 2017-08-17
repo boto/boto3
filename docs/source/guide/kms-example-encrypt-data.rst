@@ -21,10 +21,26 @@ which implements the
 to encrypt the string "1234567890".
 The example displays a readable version of the resulting encrypted blob.
 
-.. literalinclude:: ./example_code/kms/kms-python-example-encrypt-data.py
-   :lines: 13-34
-   :dedent: 0
-   :language: python
+.. code-block:: python
+
+   import boto3
+   import base64
+
+   keyId = 'arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab'
+
+   text = '1234567890'
+   text_64 = base64.b64encode(text)
+   bytes_64 = bytearray()
+   bytes_64.extend(text)
+
+   client = boto3.client('kms')
+
+   response = client.encrypt(
+       KeyId=keyId,
+       Plaintext=bytes_64,
+   )
+
+   print(response)
 
 Choose :code:`Copy` to save the code locally.
 See the `complete example

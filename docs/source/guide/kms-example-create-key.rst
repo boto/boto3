@@ -25,10 +25,18 @@ a CMK is fine for our purposes.
 For larger amounts of data,
 use the CMK to encrypt a data encryption key (DEK).
 
-.. literalinclude:: ./example_code/kms/kms-python-example-create-key.py
-   :lines: 13-25
-   :dedent: 0
-   :language: python
+Example
+-------
+
+.. code-block:: python
+
+   import boto3
+
+   client = boto3.client('kms')
+
+   response = client.create_key()
+
+   print(response['KeyMetadata']['Arn'])
 
 Choose :code:`Copy` to save the code locally.
 See the `complete example

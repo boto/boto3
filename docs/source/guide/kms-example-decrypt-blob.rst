@@ -20,10 +20,19 @@ which implements the
 `Decrypt <http://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html>`_ operation,
 to decrypt the provided string and emits the result.
 
-.. literalinclude:: ./example_code/kms/kms-python-example-decrypt-blob.py
-   :lines: 13-25
-   :dedent: 0
-   :language: python
+.. code-block:: python
+
+   import boto3
+
+   blob = '\x01\x02\x02...'
+
+   client = boto3.client('kms')
+
+   response = client.decrypt(
+       CiphertextBlob = blob
+   )
+
+   print(response['Plaintext'])
 
 Choose :code:`Copy` to save the code locally.
 See the `complete example

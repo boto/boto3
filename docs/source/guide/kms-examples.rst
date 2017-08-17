@@ -10,9 +10,9 @@
 
 .. _aws-boto-kms-examples:
 
-####################################
-AAWS Key Management Service Examples
-####################################
+###################################
+AWS Key Management Service Examples
+###################################
 
 .. meta::
    :description:
