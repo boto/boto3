@@ -471,3 +471,22 @@ class TestConditionExpressionBuilder(unittest.TestCase):
             {'#n0': 'myattr', '#n1': 'myattr2', '#n2': 'myattr',
              '#n3': 'myattr2'},
             {':v0': 'foo', ':v1': 'foo2', ':v2': 'bar', ':v3': 'bar2'})
+
+
+class TestConditionBaseRepr(unittest.TestCase):
+    def setUp(self):
+        self.key = 'test_key'
+        self.value = 'test_value'
+
+    def test_eq_repr_contains_format_operator_values(self):
+        self.assertIn('format', repr(Equals(Key(self.key), self.value)))
+        self.assertIn('operator', repr(Equals(Key(self.key), self.value)))
+        self.assertIn('values', repr(Equals(Key(self.key), self.value)))
+
+    def test_eq_repr_contains_format_and_none_in_none_key(self):
+        self.assertIn('format', repr(Equals(Key(None), None)))
+        self.assertIn('None', repr(Equals(Key(None), None)))
+
+    def test_eq_repr_contains_format_and_none_in_none_key(self):
+        self.assertIn('format', repr(Equals(Key(None), None)))
+        self.assertIn('None', repr(Equals(Key(None), None)))
