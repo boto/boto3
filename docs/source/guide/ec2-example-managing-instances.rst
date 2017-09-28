@@ -167,7 +167,7 @@ Example
             if 'DryRunOperation' not in str(e):
                 raise
 
-        # Dry run succeeded, call stop_instances witout dryrun
+        # Dry run succeeded, call stop_instances without dryrun
         try:
             response = ec2.stop_instances(InstanceIds=[instance_id], DryRun=False)
             print(response)
