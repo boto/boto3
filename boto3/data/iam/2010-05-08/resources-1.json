@@ -71,6 +71,16 @@
           ]
         }
       },
+      "CreateServiceSpecificCredential": {
+        "request": { "operation": "CreateServiceSpecificCredential" },
+        "resource": {
+          "type": "ServiceSpecificCredential",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "ServiceSpecificCredential.ServiceSpecificCredentialId" },
+            { "target": "UserName", "source": "response", "path": "ServiceSpecificCredential.UserName" }
+          ]
+        }
+      },
       "CreateSigningCertificate": {
         "request": { "operation": "UploadSigningCertificate" },
         "resource": {
@@ -79,6 +89,17 @@
             { "target": "Id", "source": "response", "path": "Certificate.CertificateId" }
           ],
           "path": "Certificate"
+        }
+      },
+      "CreateSSHPublicKey": {
+        "request": { "operation": "UploadSSHPublicKey" },
+        "resource": {
+          "type": "SSHPublicKey",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "SSHPublicKey.SSHPublicKeyId" },
+            { "target": "UserName", "source": "response", "path": "SSHPublicKey.UserName" }
+          ],
+          "path": "SSHPublicKey"
         }
       },
       "CreateUser": {
@@ -319,7 +340,34 @@
               { "target": "Name", "source": "identifier", "name": "UserName" }
             ]
           }
+        },
+        "AccessKeyLastUsed": {
+          "resource": {
+            "type": "AccessKeyLastUsed",
+            "identifiers": [
+              { "target": "id", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "path": "AccessKeyLastUsed"
         }
+      }
+    },
+    "AccessKeyLastUsed": {
+      "identifiers": [
+        {
+          "name": "Id",
+          "memberName": "AccessKeyId"
+        }
+      ],
+      "shape": "AccessKeyLastUsed",
+      "load": {
+        "request": {
+            "operation": "GetAccessKeyLastUsed",
+            "params": [
+              { "target": "AccessKeyId", "source": "identifier", "name": "Id" }
+            ]
+        },
+        "path": "AccessKeyLastUsed"
       }
     },
     "AccessKeyPair": {
@@ -1290,6 +1338,116 @@
         }
       }
     },
+    "ServiceSpecificCredential": {
+      "identifiers": [
+        { "name": "UserName" },
+        { "name": "Id", "memberName": "ServiceSpecificCredentialId" }
+      ],
+      "shape": "ServiceSpecificCredential",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Reset": {
+          "request": {
+            "operation": "ResetServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "ServiceSpecificCredential",
+            "identifiers": [
+              { "target": "Id", "source": "response", "path": "ServiceSpecificCredential.ServiceSpecificCredentialId" },
+              { "target": "UserName", "source": "response", "path": "ServiceSpecificCredential.UserName" }
+            ],
+            "path": "ServiceSpecificCredential"
+          }
+        }
+      }
+    },
+    "ServiceSpecificCredentialMetadata": {
+      "identifiers": [
+        { "name": "UserName" },
+        { "name": "Id", "memberName": "ServiceSpecificCredentialId" }
+      ],
+      "shape": "ServiceSpecificCredentialMetadata",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Reset": {
+          "request": {
+            "operation": "ResetServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "ServiceSpecificCredential",
+            "identifiers": [
+              { "target": "Id", "source": "response", "path": "ServiceSpecificCredential.ServiceSpecificCredentialId" },
+              { "target": "UserName", "source": "response", "path": "ServiceSpecificCredential.UserName" }
+            ],
+            "path": "ServiceSpecificCredential"
+          }
+        }
+      }
+    },
     "SigningCertificate": {
       "identifiers": [
         {
@@ -1339,6 +1497,127 @@
             "type": "User",
             "identifiers": [
               { "target": "Name", "source": "identifier", "name": "UserName" }
+            ]
+          }
+        }
+      }
+    },
+    "SSHPublicKey": {
+      "identifiers": [
+        {
+          "name": "UserName",
+          "memberName": "UserName"
+        },
+        {
+          "name": "Id",
+          "memberName": "SSHPublicKeyId"
+        }
+      ],
+      "shape": "SSHPublicKey",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "load": {
+        "request": {
+          "operation": "GetSSHPublicKey",
+          "params": [
+            { "target": "UserName", "source": "identifier", "name": "UserName" },
+            { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+            { "target": "Encoding", "source": "identifier", "name": "Encoding", "value": "SSH" }
+          ]
+        },
+        "path": "SSHPublicKey"
+      },
+      "has": {
+        "Metadata": {
+          "resource": {
+            "type": "SSHPublicKeyMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      }
+    },
+    "SSHPublicKeyMetadata": {
+      "identifiers": [
+        {
+          "name": "UserName",
+          "memberName": "UserName"
+        },
+        {
+          "name": "Id",
+          "memberName": "SSHPublicKeyId"
+        }
+      ],
+      "shape": "SSHPublicKeyMetadata",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Key": {
+          "resource": {
+            "type": "SSHPublicKey",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
             ]
           }
         }
@@ -1538,6 +1817,25 @@
               { "target": "Id", "source": "input" }
             ]
           }
+        },
+        "SSHPublicKey": {
+          "resource": {
+            "type": "SSHPublicKey",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "SSHPublicKeyId", "source": "input", "name": "Id" },
+              { "target": "Encoding", "source": "input", "name": "Encoding" }
+            ]
+          }
+        },
+        "SSHPublicKeyMetadata": {
+          "resource": {
+            "type": "SSHPublicKeyMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "SSHPublicKeyId", "source": "input", "name": "Id" }
+            ]
+          }
         }
       },
       "hasMany": {
@@ -1617,6 +1915,22 @@
             ]
           }
         },
+        "ServiceSpecificCredentials": {
+          "request": {
+            "operation": "ListServiceSpecificCredentials",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "ServiceSpecificCredentialMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "Id", "source": "response", "path": "ServiceSpecificCredentials[].ServiceSpecificCredentialId" }
+            ],
+            "path": "ServiceSpecificCredentials[]"
+          }
+        },
         "SigningCertificates": {
           "request": {
             "operation": "ListSigningCertificates",
@@ -1631,6 +1945,22 @@
               { "target": "Id", "source": "response", "path": "Certificates[].CertificateId" }
             ],
             "path": "Certificates[]"
+          }
+        },
+        "SSHPublicKeys": {
+          "request": {
+            "operation": "ListSSHPublicKeys",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "SSHPublicKeyMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "Id", "source": "response", "path": "SSHPublicKeys[].SSHPublicKeyId" }
+            ],
+            "path": "SSHPublicKeys[]"
           }
         }
       }
