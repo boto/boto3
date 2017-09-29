@@ -71,6 +71,16 @@
           ]
         }
       },
+      "CreateServiceSpecificCredential": {
+        "request": { "operation": "CreateServiceSpecificCredential" },
+        "resource": {
+          "type": "ServiceSpecificCredential",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "ServiceSpecificCredential.ServiceSpecificCredentialId" },
+            { "target": "UserName", "source": "response", "path": "ServiceSpecificCredential.UserName" }
+          ]
+        }
+      },
       "CreateSigningCertificate": {
         "request": { "operation": "UploadSigningCertificate" },
         "resource": {
@@ -1328,6 +1338,116 @@
         }
       }
     },
+    "ServiceSpecificCredential": {
+      "identifiers": [
+        { "name": "UserName" },
+        { "name": "Id", "memberName": "ServiceSpecificCredentialId" }
+      ],
+      "shape": "ServiceSpecificCredential",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Reset": {
+          "request": {
+            "operation": "ResetServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "ServiceSpecificCredential",
+            "identifiers": [
+              { "target": "Id", "source": "response", "path": "ServiceSpecificCredential.ServiceSpecificCredentialId" },
+              { "target": "UserName", "source": "response", "path": "ServiceSpecificCredential.UserName" }
+            ],
+            "path": "ServiceSpecificCredential"
+          }
+        }
+      }
+    },
+    "ServiceSpecificCredentialMetadata": {
+      "identifiers": [
+        { "name": "UserName" },
+        { "name": "Id", "memberName": "ServiceSpecificCredentialId" }
+      ],
+      "shape": "ServiceSpecificCredentialMetadata",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Reset": {
+          "request": {
+            "operation": "ResetServiceSpecificCredential",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "ServiceSpecificCredentialId", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "ServiceSpecificCredential",
+            "identifiers": [
+              { "target": "Id", "source": "response", "path": "ServiceSpecificCredential.ServiceSpecificCredentialId" },
+              { "target": "UserName", "source": "response", "path": "ServiceSpecificCredential.UserName" }
+            ],
+            "path": "ServiceSpecificCredential"
+          }
+        }
+      }
+    },
     "SigningCertificate": {
       "identifiers": [
         {
@@ -1793,6 +1913,22 @@
               { "target": "UserName", "source": "identifier", "name": "Name" },
               { "target": "Name", "source": "response", "path": "PolicyNames[]" }
             ]
+          }
+        },
+        "ServiceSpecificCredentials": {
+          "request": {
+            "operation": "ListServiceSpecificCredentials",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "ServiceSpecificCredentialMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "Id", "source": "response", "path": "ServiceSpecificCredentials[].ServiceSpecificCredentialId" }
+            ],
+            "path": "ServiceSpecificCredentials[]"
           }
         },
         "SigningCertificates": {
