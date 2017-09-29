@@ -81,6 +81,17 @@
           "path": "Certificate"
         }
       },
+      "CreateSSHPublicKey": {
+        "request": { "operation": "UploadSSHPublicKey" },
+        "resource": {
+          "type": "SSHPublicKey",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "SSHPublicKey.SSHPublicKeyId" },
+            { "target": "UserName", "source": "response", "path": "SSHPublicKey.UserName" }
+          ],
+          "path": "SSHPublicKey"
+        }
+      },
       "CreateUser": {
         "request": { "operation": "CreateUser" },
         "resource": {
@@ -1371,6 +1382,127 @@
         }
       }
     },
+    "SSHPublicKey": {
+      "identifiers": [
+        {
+          "name": "UserName",
+          "memberName": "UserName"
+        },
+        {
+          "name": "Id",
+          "memberName": "SSHPublicKeyId"
+        }
+      ],
+      "shape": "SSHPublicKey",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "load": {
+        "request": {
+          "operation": "GetSSHPublicKey",
+          "params": [
+            { "target": "UserName", "source": "identifier", "name": "UserName" },
+            { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+            { "target": "Encoding", "source": "identifier", "name": "Encoding", "value": "SSH" }
+          ]
+        },
+        "path": "SSHPublicKey"
+      },
+      "has": {
+        "Metadata": {
+          "resource": {
+            "type": "SSHPublicKeyMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      }
+    },
+    "SSHPublicKeyMetadata": {
+      "identifiers": [
+        {
+          "name": "UserName",
+          "memberName": "UserName"
+        },
+        {
+          "name": "Id",
+          "memberName": "SSHPublicKeyId"
+        }
+      ],
+      "shape": "SSHPublicKeyMetadata",
+      "actions": {
+        "Activate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Active" }
+            ]
+          }
+        },
+        "Deactivate": {
+          "request": {
+            "operation": "UpdateSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" },
+              { "target": "Status", "source": "string", "value": "Inactive" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteSSHPublicKey",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      },
+      "has": {
+        "Key": {
+          "resource": {
+            "type": "SSHPublicKey",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "UserName" },
+              { "target": "SSHPublicKeyId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      }
+    },
     "User": {
       "identifiers": [
         {
@@ -1565,6 +1697,25 @@
               { "target": "Id", "source": "input" }
             ]
           }
+        },
+        "SSHPublicKey": {
+          "resource": {
+            "type": "SSHPublicKey",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "SSHPublicKeyId", "source": "input", "name": "Id" },
+              { "target": "Encoding", "source": "input", "name": "Encoding" }
+            ]
+          }
+        },
+        "SSHPublicKeyMetadata": {
+          "resource": {
+            "type": "SSHPublicKeyMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "SSHPublicKeyId", "source": "input", "name": "Id" }
+            ]
+          }
         }
       },
       "hasMany": {
@@ -1658,6 +1809,22 @@
               { "target": "Id", "source": "response", "path": "Certificates[].CertificateId" }
             ],
             "path": "Certificates[]"
+          }
+        },
+        "SSHPublicKeys": {
+          "request": {
+            "operation": "ListSSHPublicKeys",
+            "params": [
+              { "target": "UserName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "resource": {
+            "type": "SSHPublicKeyMetadata",
+            "identifiers": [
+              { "target": "UserName", "source": "identifier", "name": "Name" },
+              { "target": "Id", "source": "response", "path": "SSHPublicKeys[].SSHPublicKeyId" }
+            ],
+            "path": "SSHPublicKeys[]"
           }
         }
       }
