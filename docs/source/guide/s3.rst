@@ -19,7 +19,7 @@ decision of what style to use for you, but there are some cases where you may
 want to set it yourself. For instance, if you have a CORS configured bucket
 that is only a few hours old, you may need to use path style addressing for
 generating pre-signed POSTs and URLs until the necessary DNS changes have time
-to propagagte.
+to propagate.
 
 Note: if you set the addressing style to path style, you HAVE to set the correct
 region.
@@ -139,7 +139,7 @@ To set custom or multiple ACLs::
 
 All valid ``ExtraArgs`` are listed at :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`
 
-To track the progess of a transfer, a progress callback can be provided such
+To track the progress of a transfer, a progress callback can be provided such
 that the callback gets invoked each time progress is made on the transfer::
 
     import os
@@ -240,7 +240,7 @@ To download using any extra parameters such as version ids, use the
 
 All valid ``ExtraArgs`` are listed at :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`
 
-To track the progess of a transfer, a progress callback can be provided such
+To track the progress of a transfer, a progress callback can be provided such
 that the callback gets invoked each time progress is made on the transfer::
 
     import sys
@@ -353,7 +353,7 @@ existing object, use the ``ExtraArgs`` parameter::
     )
 
 
-To track the progess of a transfer, a progress callback can be provided such
+To track the progress of a transfer, a progress callback can be provided such
 that the callback gets invoked each time progress is made on the transfer::
 
     import sys
@@ -389,7 +389,7 @@ that the callback gets invoked each time progress is made on the transfer::
             Callback=ProgressPercentage("otherbucket/otherkey"))
 
 
-Note that the grainularity of these callbacks will be much larger than the
+Note that the granularity of these callbacks will be much larger than the
 upload and download methods because copies are all done server side and so
 there is no local file to track the streaming of data.
 
