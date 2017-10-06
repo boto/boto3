@@ -278,9 +278,16 @@ class S3Transfer(object):
         # ever thrown for upload_parts but now can be thrown for any related
         # client error.
         except ClientError as e:
-            raise S3UploadFailedError(
-                "Failed to upload %s to %s: %s" % (
-                    filename, '/'.join([bucket, key]), e))
+            metadata = extra_args.get('Metadata', {})
+            if len(set(f.lower() for f in metadata)) != len(metadata):
+                raise S3UploadFailedError(
+                    "Failed to upload %s to %s: Metadata may have "
+                    "duplicate keys differing only in case: %s" % (
+                        filename, '/'.join([bucket, key]), e))
+            else:
+                raise S3UploadFailedError(
+                    "Failed to upload %s to %s: %s" % (
+                        filename, '/'.join([bucket, key]), e))
 
     def download_file(self, bucket, key, filename, extra_args=None,
                       callback=None):
