@@ -157,6 +157,17 @@ class TestS3Transfer(unittest.TestCase):
         with self.assertRaises(S3UploadFailedError):
             self.transfer.upload_file('smallfile', 'bucket', 'key')
 
+    def test_propogation_s3_upload_failed_error_with_metadata(self):
+        future = mock.Mock()
+        future.result.side_effect = ClientError({'Error': {}}, 'op_name')
+        self.manager.upload.return_value = future
+        with self.assertRaisesRegexp(S3UploadFailedError,
+                                     "Metadata may have duplicate "
+                                     "keys differing only in case"):
+            self.transfer.upload_file(
+                'smallfile', 'bucket', 'key',
+                extra_args={'Metadata': {'a': 1, 'A': 1}})
+
     def test_can_create_with_just_client(self):
         transfer = S3Transfer(client=mock.Mock())
         self.assertIsInstance(transfer, S3Transfer)
