@@ -278,7 +278,10 @@ class S3Transfer(object):
         # ever thrown for upload_parts but now can be thrown for any related
         # client error.
         except ClientError as e:
-            metadata = extra_args.get('Metadata', {})
+            if extra_args is not None:
+                metadata = extra_args.get('Metadata', {})
+            else:
+                metadata = {}
             if len(set(f.lower() for f in metadata)) != len(metadata):
                 raise S3UploadFailedError(
                     "Failed to upload %s to %s: Metadata may have "
