@@ -61,6 +61,46 @@ restoration is finished.
                 print('Restoration complete: %s' % obj.key)
 
 
+Uploading/downloading files using SSE KMS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This example shows how to use SSE-KMS to upload objects using
+server side encryption with a key managed by KMS.
+
+We can either use the default KMS master key, or create a
+custom key in AWS and use it to encrypt the object by passing in its
+key id.
+
+With KMS, nothing else needs to be provided for getting the
+object; S3 already knows how to decrypt the object.
+
+
+.. code-block:: python
+
+    import boto3
+    import os
+
+    BUCKET = 'your-bucket-name'
+    s3 = boto3.client('s3')
+    keyid = '<the key id>'
+
+    print("Uploading S3 object with SSE-KMS")
+    s3.put_object(Bucket=BUCKET,
+                  Key='encrypt-key',
+                  Body=b'foobar',
+                  ServerSideEncryption='aws:kms',
+                  # Optional: SSEKMSKeyId
+                  SSEKMSKeyId=keyid)
+    print("Done")
+
+    # Getting the object:
+    print("Getting S3 object...")
+    response = s3.get_object(Bucket=BUCKET,
+                             Key='encrypt-key')
+    print("Done, response body:")
+    print(response['Body'].read())
+
+
 Uploading/downloading files using SSE Customer Keys
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
