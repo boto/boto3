@@ -264,6 +264,10 @@ class S3Transfer(object):
 
         Variants have also been injected into S3 client, Bucket and Object.
         You don't have to use S3Transfer.upload_file() directly.
+
+        .. seealso::
+            :py:meth:`S3.Client.upload_file`
+            :py:meth:`S3.Client.upload_fileobj`
         """
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
@@ -288,6 +292,10 @@ class S3Transfer(object):
 
         Variants have also been injected into S3 client, Bucket and Object.
         You don't have to use S3Transfer.download_file() directly.
+
+        .. seealso::
+            :py:meth:`S3.Client.download_file`
+            :py:meth:`S3.Client.download_fileobj`
         """
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
