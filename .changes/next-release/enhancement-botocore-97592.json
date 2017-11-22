@@ -1,5 +1,0 @@
-{
-  "category": "``botocore``", 
-  "type": "enhancement", 
-  "description": "Raised minor version dependency for botocore"
-}

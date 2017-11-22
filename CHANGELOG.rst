@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.4.8
+=====
+
+* enhancement:``botocore``: Raised minor version dependency for botocore
+
+
 1.4.7
 =====
 
