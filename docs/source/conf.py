@@ -19,8 +19,8 @@ import boto3.session
 from boto3.docs import generate_docs
 
 
-session = boto3.session.Session(region_name='us-east-1')
-generate_docs(os.path.dirname(os.path.abspath(__file__)), session)
+#session = boto3.session.Session(region_name='us-east-1')
+#generate_docs(os.path.dirname(os.path.abspath(__file__)), session)
 
 
 # If extensions (or modules to document with autodoc) are in another directory,

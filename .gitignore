@@ -4,7 +4,6 @@ __pycache__
 dist
 build
 docs/build
-docs/source/reference/services
 tests/cover
 tests/.coverage
 *.egg-info
