@@ -13,7 +13,16 @@ S3 Transfers
    exposed to breaking changes. If a class from the ``boto3.s3.transfer``
    module is not documented below, it is considered internal and users
    should be very cautious in directly using them because breaking changes may
-   be introduced from version to version of the library.
+   be introduced from version to version of the library. It is recommended to
+   use the variants of the transfer functions injected into the S3 client
+   instead.
+
+   .. seealso::
+      :py:meth:`S3.Client.upload_file`
+      :py:meth:`S3.Client.upload_fileobj`
+      :py:meth:`S3.Client.download_file`
+      :py:meth:`S3.Client.download_fileobj`
+
 
 
 .. autoclass:: boto3.s3.transfer.TransferConfig
