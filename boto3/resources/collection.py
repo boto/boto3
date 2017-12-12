@@ -49,7 +49,7 @@ class ResourceCollection(object):
         self._py_operation_name = xform_name(
             model.request.operation)
         self._handler = handler
-        self._params = kwargs
+        self._params = copy.deepcopy(kwargs)
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(

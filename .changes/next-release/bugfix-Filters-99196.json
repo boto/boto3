@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "description": "Fixes a bug where parameters passed to resource collections could be mutated after the collections were created.",
+  "category": "Filters"
+}
