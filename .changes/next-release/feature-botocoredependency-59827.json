@@ -1,0 +1,5 @@
+{
+  "category": "``botocore`` dependency", 
+  "type": "feature", 
+  "description": "Update dependency strategy to always take a floor on the most recent version of ``botocore``. This means whenever there is a release of ``botocore``, ``boto3`` will release as well to account for the new version of ``botocore``."
+}
