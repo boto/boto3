@@ -34,3 +34,35 @@ class TestInstanceDeleteTags(unittest.TestCase):
         stubber.assert_no_pending_responses()
         self.assertEqual(response, {})
         stubber.deactivate()
+
+    def test_mutating_filters(self):
+        stubber = Stubber(self.service_resource.meta.client)
+        instance_filters = [
+            {'Name': 'instance-state-name', 'Values': ['running']}
+        ]
+        running_instances = self.service_resource.instances.filter(
+            Filters=instance_filters
+        )
+
+        # This should not impact the already-created filter.
+        instance_filters.append(
+            {'Name': 'instance-type', 'Values': ['c4.large']}
+        )
+
+        stubber.add_response(
+            method='describe_instances',
+            service_response={
+                'Reservations': []
+            },
+            expected_params={
+                'Filters': [{
+                    'Name': 'instance-state-name',
+                    'Values': ['running']
+                }]
+            }
+        )
+
+        with stubber:
+            list(running_instances)
+
+        stubber.assert_no_pending_responses()

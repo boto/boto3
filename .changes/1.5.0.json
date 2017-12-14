@@ -1,0 +1,27 @@
+[
+  {
+    "category": "Filters", 
+    "description": "Fixes a bug where parameters passed to resource collections could be mutated after the collections were created.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``ses``", 
+    "description": "[``botocore``] Update ses client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "credentials", 
+    "description": "[``botocore``] Moved the JSONFileCache from the CLI into botocore so that it can be used without importing from the cli.", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``botocore`` dependency", 
+    "description": "Update dependency strategy to always take a floor on the most recent version of ``botocore``. This means whenever there is a release of ``botocore``, ``boto3`` will release as well to account for the new version of ``botocore``.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }
+]

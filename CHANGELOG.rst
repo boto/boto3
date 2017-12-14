@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.5.0
+=====
+
+* bugfix:Filters: Fixes a bug where parameters passed to resource collections could be mutated after the collections were created.
+* api-change:``ses``: [``botocore``] Update ses client to latest version
+* enhancement:credentials: [``botocore``] Moved the JSONFileCache from the CLI into botocore so that it can be used without importing from the cli.
+* feature:``botocore`` dependency: Update dependency strategy to always take a floor on the most recent version of ``botocore``. This means whenever there is a release of ``botocore``, ``boto3`` will release as well to account for the new version of ``botocore``.
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+
+
 1.4.8
 =====
 
