@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.2
+=====
+
+* bugfix:presigned-url: [``botocore``] Fixes a bug where content-type would be set on presigned requests for query services.
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+
+
 1.5.1
 =====
 
