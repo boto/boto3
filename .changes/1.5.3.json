@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Update route53 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediastore-data``", 
+    "description": "[``botocore``] Update mediastore-data client to latest version", 
+    "type": "api-change"
+  }
+]
