@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.3
+=====
+
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``mediastore-data``: [``botocore``] Update mediastore-data client to latest version
+
+
 1.5.2
 =====
 
