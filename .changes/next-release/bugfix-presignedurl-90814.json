@@ -1,0 +1,5 @@
+{
+  "category": "presigned-url", 
+  "type": "bugfix", 
+  "description": "[``botocore``] Fixes a bug where content-type would be set on presigned requests for query services."
+}
