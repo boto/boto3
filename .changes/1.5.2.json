@@ -1,0 +1,12 @@
+[
+  {
+    "category": "presigned-url", 
+    "description": "[``botocore``] Fixes a bug where content-type would be set on presigned requests for query services.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``cloudwatch``", 
+    "description": "[``botocore``] Update cloudwatch client to latest version", 
+    "type": "api-change"
+  }
+]
