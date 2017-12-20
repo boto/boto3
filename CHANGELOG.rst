@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.4
+=====
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+
+
 1.5.3
 =====
 
