@@ -1,5 +1,0 @@
-{
-  "category": "Paginator", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Added paginator support for lambda list aliases operation."
-}
