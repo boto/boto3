@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.5.5
+=====
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* enhancement:Paginator: [``botocore``] Added paginator support for lambda list aliases operation.
+* api-change:``kinesisanalytics``: [``botocore``] Update kinesisanalytics client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.5.4
 =====
 

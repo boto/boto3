@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Paginator", 
+    "description": "[``botocore``] Added paginator support for lambda list aliases operation.", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``kinesisanalytics``", 
+    "description": "[``botocore``] Update kinesisanalytics client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }
+]
