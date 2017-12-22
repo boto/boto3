@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.5.6
+=====
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``inspector``: [``botocore``] Update inspector client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.5.5
 =====
 
