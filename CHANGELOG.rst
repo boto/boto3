@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.5.8
+=====
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.5.7
 =====
 
