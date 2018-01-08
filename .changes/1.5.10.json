@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Update route53 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``discovery``", 
+    "description": "[``botocore``] Update discovery client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codedeploy``", 
+    "description": "[``botocore``] Update codedeploy client to latest version", 
+    "type": "api-change"
+  }
+]
