@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.10
+======
+
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+
+
 1.5.9
 =====
 
