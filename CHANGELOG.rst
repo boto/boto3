@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.5.11
+======
+
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+
+
 1.5.10
 ======
 
