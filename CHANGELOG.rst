@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.5.12
+======
+
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+
+
 1.5.11
 ======
 
