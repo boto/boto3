@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.5.13
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``elb``: [``botocore``] Update elb client to latest version
+
+
 1.5.12
 ======
 
