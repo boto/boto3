@@ -1,5 +1,0 @@
-{
-  "category": "``elb``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update elb client to latest version"
-}
