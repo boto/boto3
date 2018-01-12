@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.5.14
+======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
 1.5.13
 ======
 
