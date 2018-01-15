@@ -187,7 +187,7 @@ You can also delete the item using :py:meth:`DynamoDB.Table.delete_item`::
 Batch Writing
 -------------
 If you are loading a lot of data at a time, you can make use of
-:py:meth:`DyanmoDB.Table.batch_writer` so you can both speed up the process and
+:py:meth:`DynamoDB.Table.batch_writer` so you can both speed up the process and
 reduce the number of write requests made to the service.
 
 This method returns a handle to a batch writer object that will automatically
