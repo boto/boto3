@@ -79,9 +79,9 @@ A Hierarchical Structure
 
 The event system also provides a hierarchy for registering events such that
 you can register a function to a set of events depending on the event name
-heirarchy.
+hierarchy.
 
-An event name can have its own heirachy by specifying ``.`` in its name. For
+An event name can have its own hierarchy by specifying ``.`` in its name. For
 example, take the event name ``'general.specific.more_specific'``. When
 this event is emitted, the registered functions will be called in the order
 from most specific to least specific registration. So in this example, the
@@ -92,7 +92,7 @@ functions will be called in the following order:
 3) Functions registered to ``'general'``
 
 Here is a deeper example of how the event system works with respect to
-its hierarchial structure::
+its hierarchical structure::
 
     import boto3
 
@@ -421,3 +421,4 @@ provide-client-params
     event_system.register('provide-client-params.s3.ListObjects', add_my_bucket)
 
     response = s3.list_objects()
+
