@@ -578,7 +578,7 @@ class ResourceModel(object):
         """
         Get a list of sub-resources.
 
-        :type: list(:py:class`ResponseResource`)
+        :type: list(:py:class:`ResponseResource`)
         """
         return self._get_related_resources(True)
 
