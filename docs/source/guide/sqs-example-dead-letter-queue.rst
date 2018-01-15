@@ -25,7 +25,7 @@ successfully. You can set aside and isolate these messages in the dead letter qu
 their processing did not succeed. You must individually configure each source queue that sends messages 
 to a dead letter queue. Multiple queues can target a single dead letter queue.
 
-In this example, Pyuthon code is used to route messages to a dead letter queue. The code uses the 
+In this example, Python code is used to route messages to a dead letter queue. The code uses the 
 SDK for Python to use dead letter queues using this method of the AWS.SQS client class:
 
 * `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
