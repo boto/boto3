@@ -26,7 +26,7 @@ The Python API for Amazon S3 is exposed through the AWS.S3 client class. For mor
 Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
 
 You can use the following examples to access Amazon Simple Storage Service (Amazon S3) using
-AWS Pyton SDK. For more information about Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
+AWS Python SDK. For more information about Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
 
 **Examples**
 

@@ -85,4 +85,4 @@ The example below shows how to:
         ReceiptHandle=receipt_handle,
         VisibilityTimeout=36000
     )
-    print('Received and changed visibilty timeout of message: %s' % message)
+    print('Received and changed visibility timeout of message: %s' % message)

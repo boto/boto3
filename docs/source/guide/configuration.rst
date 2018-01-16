@@ -338,7 +338,7 @@ Environment Variable Configuration
 
 ``AWS_PROFILE``
     The default profile to use, if any.  If no value is specified, boto3
-    will attempt to seach the shared credentials file and the config file
+    will attempt to search the shared credentials file and the config file
     for the ``default`` profile.
 
 ``AWS_CONFIG_FILE``

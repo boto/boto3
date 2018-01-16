@@ -8,7 +8,7 @@
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
    
-.. _aws-boto3-iam-examples-policiies:   
+.. _aws-boto3-iam-examples-policies:
 
 #########################
 Working with IAM Policies
@@ -176,7 +176,7 @@ Example
 Detach a Managed Role Policy
 ============================
 
-Dertach the specified managed policy from the specified role.
+Detach the specified managed policy from the specified role.
 
 A role can also have inline policies embedded with it. To delete an inline policy, use the 
 :code:`delete_role_policy` API. For information about policies, see 
