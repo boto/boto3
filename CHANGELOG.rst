@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.15
+======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* enhancement:cloudformation get_template template body ordering: [``botocore``] fixes boto/boto3`#1378 <https://github.com/boto/boto3/issues/1378>`__
+
+
 1.5.14
 ======
 
