@@ -5,7 +5,6 @@ dist
 build
 docs/build
 docs/source/reference/services
-src/
 tests/cover
 tests/.coverage
 *.egg-info
