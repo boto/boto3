@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.17
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``autoscaling-plans``: [``botocore``] Update autoscaling-plans client to latest version
+
+
 1.5.16
 ======
 
