@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.16
+======
+
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``autoscaling-plans``: [``botocore``] Update autoscaling-plans client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.5.15
 ======
 
