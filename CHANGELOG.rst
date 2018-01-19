@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.19
+======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+
+
 1.5.18
 ======
 
