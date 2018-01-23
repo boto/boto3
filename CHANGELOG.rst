@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.5.20
+======
+
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+
+
 1.5.19
 ======
 
