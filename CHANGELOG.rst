@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.5.21
+======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* bugfix:Presign: [``botocore``] Fix issue where some events were not fired during the presigning of a request thus not including a variety of customizations (`#1340 <https://github.com/boto/botocore/issues/1340>`__)
+* enhancement:Credentials: [``botocore``] Improved error message when the source profile for an assume role is misconfigured. Fixes aws/aws-cli`#2763 <https://github.com/aws/aws-cli/issues/2763>`__
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* enhancment:Paginator: [``botocore``] Added paginators for a number of services where the result key is unambiguous.
+
+
 1.5.20
 ======
 

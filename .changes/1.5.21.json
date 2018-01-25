@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Presign", 
+    "description": "[``botocore``] Fix issue where some events were not fired during the presigning of a request thus not including a variety of customizations (`#1340 <https://github.com/boto/botocore/issues/1340>`__)", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "Credentials", 
+    "description": "[``botocore``] Improved error message when the source profile for an assume role is misconfigured. Fixes aws/aws-cli`#2763 <https://github.com/aws/aws-cli/issues/2763>`__", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``guardduty``", 
+    "description": "[``botocore``] Update guardduty client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Paginator", 
+    "description": "[``botocore``] Added paginators for a number of services where the result key is unambiguous.", 
+    "type": "enhancment"
+  }
+]
