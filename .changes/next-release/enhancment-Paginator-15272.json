@@ -1,5 +1,0 @@
-{
-  "category": "Paginator", 
-  "type": "enhancment", 
-  "description": "[``botocore``] Added paginators for a number of services where the result key is unambiguous."
-}
