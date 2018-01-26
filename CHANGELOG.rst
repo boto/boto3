@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.22
+======
+
+* api-change:``mturk``: [``botocore``] Update mturk client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+
+
 1.5.21
 ======
 
