@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``mturk``", 
+    "description": "[``botocore``] Update mturk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``devicefarm``", 
+    "description": "[``botocore``] Update devicefarm client to latest version", 
+    "type": "api-change"
+  }
+]
