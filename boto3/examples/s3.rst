@@ -52,7 +52,7 @@ restoration is finished.
             # request.
             if obj.restore is None:
                 print('Submitting restoration request: %s' % obj.key)
-                obj.restore_object()
+                obj.restore_object(RestoreRequest={'Days': 1})
             # Print out objects whose restoration is on-going
             elif 'ongoing-request="true"' in obj.restore:
                 print('Restoration in-progress: %s' % obj.key)
