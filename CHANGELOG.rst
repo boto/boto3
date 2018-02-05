@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.5.23
+======
+
+* api-change:``cloud9``: [``botocore``] Update cloud9 client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``kinesis``: [``botocore``] Update kinesis client to latest version
+* api-change:``opsworks``: [``botocore``] Update opsworks client to latest version
+
+
 1.5.22
 ======
 

@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cloud9``", 
+    "description": "[``botocore``] Update cloud9 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm``", 
+    "description": "[``botocore``] Update acm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis``", 
+    "description": "[``botocore``] Update kinesis client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``opsworks``", 
+    "description": "[``botocore``] Update opsworks client to latest version", 
+    "type": "api-change"
+  }
+]
