@@ -14,6 +14,18 @@ the objects in the bucket.
         print(obj.key)
 
 
+To disable signing of requests (therefore allowing "anonymous" access) you can
+do:
+
+.. code-block:: python
+
+    import boto3
+
+    from botocore.handlers import disable_signing
+    s3 = boto3.resource('s3')
+    s3.meta.client.meta.events.register('choose-signer.s3.*', disable_signing)
+
+
 List top-level common prefixes in Amazon S3 bucket
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
