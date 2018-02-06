@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.5.24
+======
+
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
 1.5.23
 ======
 
