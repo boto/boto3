@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.5.25
+======
+
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``mediastore``: [``botocore``] Update mediastore client to latest version
+
+
 1.5.24
 ======
 
