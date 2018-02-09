@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.26
+======
+
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+
+
 1.5.25
 ======
 
