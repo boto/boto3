@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.5.27
+======
+
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+
+
 1.5.26
 ======
 
