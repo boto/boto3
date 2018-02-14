@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``appsync``", 
+    "description": "[``botocore``] Update appsync client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lex-models``", 
+    "description": "[``botocore``] Update lex-models client to latest version", 
+    "type": "api-change"
+  }
+]
