@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.29
+======
+
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+
+
 1.5.28
 ======
 
