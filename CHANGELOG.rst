@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.30
+======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+
+
 1.5.29
 ======
 
