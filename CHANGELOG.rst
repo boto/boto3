@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.33
+======
+
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+
+
 1.5.32
 ======
 
