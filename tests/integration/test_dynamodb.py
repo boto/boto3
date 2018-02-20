@@ -73,119 +73,132 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
         cls.table.delete_item(Key={'MyHashKey': 'mykey'})
         super(TestDynamoDBConditions, cls).tearDownClass()
 
+    def scan(self, filter_expression):
+        return self.table.scan(FilterExpression=filter_expression,
+                               ConsistentRead=True)
+
+    def query(self, key_condition_expression, filter_expression=None):
+        kwargs = {
+            'KeyConditionExpression': key_condition_expression,
+            'ConsistentRead': True
+        }
+        if filter_expression is not None:
+            kwargs['FilterExpression'] = filter_expression
+        return self.table.query(**kwargs)
+
     def test_filter_expression(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyHashKey').eq('mykey'))
+        r = self.scan(
+            filter_expression=Attr('MyHashKey').eq('mykey'))
         self.assertEqual(r['Items'][0]['MyHashKey'], 'mykey')
 
     def test_key_condition_expression(self):
-        r = self.table.query(
-            KeyConditionExpression=Key('MyHashKey').eq('mykey'))
+        r = self.query(
+            key_condition_expression=Key('MyHashKey').eq('mykey'))
         self.assertEqual(r['Items'][0]['MyHashKey'], 'mykey')
 
     def test_key_condition_with_filter_condition_expression(self):
-        r = self.table.query(
-            KeyConditionExpression=Key('MyHashKey').eq('mykey'),
-            FilterExpression=Attr('MyString').eq('mystring'))
+        r = self.query(
+            key_condition_expression=Key('MyHashKey').eq('mykey'),
+            filter_expression=Attr('MyString').eq('mystring'))
         self.assertEqual(r['Items'][0]['MyString'], 'mystring')
 
     def test_condition_less_than(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyNumber').lt(Decimal('1.26')))
+        r = self.scan(
+            filter_expression=Attr('MyNumber').lt(Decimal('1.26')))
         self.assertTrue(r['Items'][0]['MyNumber'] < Decimal('1.26'))
 
     def test_condition_less_than_equal(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyNumber').lte(Decimal('1.26')))
+        r = self.scan(
+            filter_expression=Attr('MyNumber').lte(Decimal('1.26')))
         self.assertTrue(r['Items'][0]['MyNumber'] <= Decimal('1.26'))
 
     def test_condition_greater_than(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyNumber').gt(Decimal('1.24')))
+        r = self.scan(
+            filter_expression=Attr('MyNumber').gt(Decimal('1.24')))
         self.assertTrue(r['Items'][0]['MyNumber'] > Decimal('1.24'))
 
     def test_condition_greater_than_equal(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyNumber').gte(Decimal('1.24')))
+        r = self.scan(
+            filter_expression=Attr('MyNumber').gte(Decimal('1.24')))
         self.assertTrue(r['Items'][0]['MyNumber'] >= Decimal('1.24'))
 
     def test_condition_begins_with(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyString').begins_with('my'))
+        r = self.scan(
+            filter_expression=Attr('MyString').begins_with('my'))
         self.assertTrue(r['Items'][0]['MyString'].startswith('my'))
 
     def test_condition_between(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyNumber').between(
+        r = self.scan(
+            filter_expression=Attr('MyNumber').between(
                 Decimal('1.24'), Decimal('1.26')))
         self.assertTrue(r['Items'][0]['MyNumber'] > Decimal('1.24'))
         self.assertTrue(r['Items'][0]['MyNumber'] < Decimal('1.26'))
 
     def test_condition_not_equal(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyHashKey').ne('notmykey'))
+        r = self.scan(
+            filter_expression=Attr('MyHashKey').ne('notmykey'))
         self.assertNotEqual(r['Items'][0]['MyHashKey'], 'notmykey')
 
     def test_condition_in(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyHashKey').is_in(['notmykey', 'mykey']))
+        r = self.scan(
+            filter_expression=Attr('MyHashKey').is_in(['notmykey', 'mykey']))
         self.assertIn(r['Items'][0]['MyHashKey'], ['notmykey', 'mykey'])
 
     def test_condition_exists(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyString').exists())
+        r = self.scan(
+            filter_expression=Attr('MyString').exists())
         self.assertIn('MyString', r['Items'][0])
 
     def test_condition_not_exists(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyFakeKey').not_exists())
+        r = self.scan(
+            filter_expression=Attr('MyFakeKey').not_exists())
         self.assertNotIn('MyFakeKey', r['Items'][0])
 
     def test_condition_contains(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyString').contains('my'))
+        r = self.scan(
+            filter_expression=Attr('MyString').contains('my'))
         self.assertIn('my', r['Items'][0]['MyString'])
 
     def test_condition_size(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyString').size().eq(len('mystring')))
+        r = self.scan(
+            filter_expression=Attr('MyString').size().eq(len('mystring')))
         self.assertEqual(len(r['Items'][0]['MyString']), len('mystring'))
 
     def test_condition_attribute_type(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyMap').attribute_type('M'))
+        r = self.scan(
+            filter_expression=Attr('MyMap').attribute_type('M'))
         self.assertIsInstance(r['Items'][0]['MyMap'], collections.Mapping)
 
     def test_condition_and(self):
-        r = self.table.scan(
-            FilterExpression=(Attr('MyHashKey').eq('mykey') &
-                              Attr('MyString').eq('mystring')))
+        r = self.scan(
+            filter_expression=(Attr('MyHashKey').eq('mykey') &
+                               Attr('MyString').eq('mystring')))
         item = r['Items'][0]
         self.assertTrue(
             item['MyHashKey'] == 'mykey' and item['MyString'] == 'mystring')
 
     def test_condition_or(self):
-        r = self.table.scan(
-            FilterExpression=(Attr('MyHashKey').eq('mykey2') |
-                              Attr('MyString').eq('mystring')))
+        r = self.scan(
+            filter_expression=(Attr('MyHashKey').eq('mykey2') |
+                               Attr('MyString').eq('mystring')))
         item = r['Items'][0]
         self.assertTrue(
             item['MyHashKey'] == 'mykey2' or item['MyString'] == 'mystring')
 
     def test_condition_not(self):
-        r = self.table.scan(
-            FilterExpression=(~Attr('MyHashKey').eq('mykey2')))
+        r = self.scan(
+            filter_expression=(~Attr('MyHashKey').eq('mykey2')))
         item = r['Items'][0]
         self.assertTrue(item['MyHashKey'] != 'mykey2')
 
     def test_condition_in_map(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyMap.foo').eq('bar'))
+        r = self.scan(
+            filter_expression=Attr('MyMap.foo').eq('bar'))
         self.assertEqual(r['Items'][0]['MyMap']['foo'], 'bar')
 
     def test_condition_in_list(self):
-        r = self.table.scan(
-            FilterExpression=Attr('MyList[0]').eq('foo'))
+        r = self.scan(
+            filter_expression=Attr('MyList[0]').eq('foo'))
         self.assertEqual(r['Items'][0]['MyList'][0], 'foo')
 
 
@@ -201,5 +214,5 @@ class TestDynamodbBatchWrite(BaseDynamoDBTest):
                 batch.put_item(Item=item)
 
         # Verify all the items were added to dynamodb.
-        for obj in self.table.scan()['Items']:
+        for obj in self.table.scan(ConsistentRead=True)['Items']:
             self.assertIn(obj, items)
