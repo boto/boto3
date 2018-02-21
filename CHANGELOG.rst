@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.34
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+
+
 1.5.33
 ======
 
