@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.5.35
+======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+
+
 1.5.34
 ======
 
