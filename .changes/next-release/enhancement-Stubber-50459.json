@@ -1,5 +1,0 @@
-{
-  "category": "Stubber", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Added the ability to add items to response metadata with the stubber."
-}

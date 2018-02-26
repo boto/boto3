@@ -1,5 +1,0 @@
-{
-  "category": "``s3``", 
-  "type": "feature", 
-  "description": "[``botocore``] Default to virtual hosted addressing regardless of signature version (boto/botocore`#1387 <https://github.com/boto/botocore/issues/1387>`__)"
-}
