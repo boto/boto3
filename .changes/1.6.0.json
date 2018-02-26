@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Stubber", 
+    "description": "[``botocore``] Added the ability to add items to response metadata with the stubber.", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``sts``", 
+    "description": "[``botocore``] Update sts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Update route53 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Default to virtual hosted addressing regardless of signature version (boto/botocore`#1387 <https://github.com/boto/botocore/issues/1387>`__)", 
+    "type": "feature"
+  }
+]

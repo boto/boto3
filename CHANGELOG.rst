@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.6.0
+=====
+
+* enhancement:Stubber: [``botocore``] Added the ability to add items to response metadata with the stubber.
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* feature:``s3``: [``botocore``] Default to virtual hosted addressing regardless of signature version (boto/botocore`#1387 <https://github.com/boto/botocore/issues/1387>`__)
+
+
 1.5.36
 ======
 
