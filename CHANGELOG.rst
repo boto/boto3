@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.1
+=====
+
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+
+
 1.6.0
 =====
 
