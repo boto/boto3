@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``ecr``", 
+    "description": "[``botocore``] Update ecr client to latest version", 
+    "type": "api-change"
+  }
+]
