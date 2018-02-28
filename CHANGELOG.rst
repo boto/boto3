@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.2
+=====
+
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+
+
 1.6.1
 =====
 
