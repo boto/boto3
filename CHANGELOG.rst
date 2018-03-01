@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.6.3
+=====
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.6.2
 =====
 
