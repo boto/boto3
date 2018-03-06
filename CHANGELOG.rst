@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.4
+=====
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.6.3
 =====
 
