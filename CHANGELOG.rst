@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.6.6
+=====
+
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``mgh``: [``botocore``] Update mgh client to latest version
+
+
 1.6.5
 =====
 
