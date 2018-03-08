@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.5
+=====
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.6.4
 =====
 
