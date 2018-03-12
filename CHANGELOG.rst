@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.6.7
+=====
+
+* api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.6.6
 =====
 
