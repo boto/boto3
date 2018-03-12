@@ -1,0 +1,5 @@
+{
+  "category": "``cloudhsmv2``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update cloudhsmv2 client to latest version"
+}
