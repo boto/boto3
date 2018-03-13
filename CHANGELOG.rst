@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.8
+=====
+
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+
+
 1.6.7
 =====
 
