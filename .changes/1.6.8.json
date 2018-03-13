@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``servicediscovery``", 
+    "description": "[``botocore``] Update servicediscovery client to latest version", 
+    "type": "api-change"
+  }
+]
