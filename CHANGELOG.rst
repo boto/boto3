@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.9
+=====
+
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+
+
 1.6.8
 =====
 
