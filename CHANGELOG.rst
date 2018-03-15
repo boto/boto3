@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.6.10
+======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+
+
 1.6.9
 =====
 
