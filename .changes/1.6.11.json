@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``elasticbeanstalk``", 
+    "description": "[``botocore``] Update elasticbeanstalk client to latest version", 
+    "type": "api-change"
+  }
+]

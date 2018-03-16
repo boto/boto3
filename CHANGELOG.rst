@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.11
+======
+
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+
+
 1.6.10
 ======
 
