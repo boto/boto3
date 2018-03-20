@@ -65,6 +65,9 @@ class Binary(object):
     def __str__(self):
         return self.value
 
+    def __bytes__(self):
+        return self.value
+
     def __hash__(self):
         return hash(self.value)
 
