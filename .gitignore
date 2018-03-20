@@ -32,4 +32,5 @@ docs/source/.vs
 
 # Project-specific
 .doctrees
+
 source/_build
