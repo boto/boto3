@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.6.12
+======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* enhancement:Credentials: [``botocore``] Add the ability to disable fetching credentials from EC2 metadata by setting the environment variable AWS_EC2_METADATA_DISABLED to 'true'.
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* bugfix:Credentials: [``botocore``] Fix a race condition related to assuming a role for the first time (`#1405 <https://github.com/boto/botocore/pull/1405>`__)
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.6.11
 ======
 
