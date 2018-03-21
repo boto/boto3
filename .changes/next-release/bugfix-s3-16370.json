@@ -1,5 +1,0 @@
-{
-  "category": "s3", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Fixed a bug where head object and bucket calls would attempt redirects incorrectly."
-}
