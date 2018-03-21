@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.6.13
+======
+
+* bugfix:s3: [``botocore``] Fixed a bug where head object and bucket calls would attempt redirects incorrectly.
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+
+
 1.6.12
 ======
 
