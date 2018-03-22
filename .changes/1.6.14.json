@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Fix regression in redirects in using wrong region", 
+    "type": "bugfix"
+  }
+]
