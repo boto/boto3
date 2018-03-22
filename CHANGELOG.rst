@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.14
+======
+
+* bugfix:``s3``: [``botocore``] Fix regression in redirects in using wrong region
+
+
 1.6.13
 ======
 
