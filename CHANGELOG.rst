@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.6.15
+======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.6.14
 ======
 
