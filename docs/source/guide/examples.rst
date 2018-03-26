@@ -14,7 +14,7 @@
 Code Examples
 #############
 
-This section provides code examples that demonstrate common Amazon Web Services scenarios using the 
+This section provides code examples that demonstrate common Amazon Web Services scenarios using the
 Amazon Web Services (AWS) SDK for Python.
 
 .. toctree::
@@ -23,5 +23,6 @@ Amazon Web Services (AWS) SDK for Python.
    cw-examples
    ec2-examples
    iam-examples
+   kms-examples
    s3-examples
    sqs-examples
