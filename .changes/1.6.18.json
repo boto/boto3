@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``acm``", 
+    "description": "[``botocore``] Update acm client to latest version", 
+    "type": "api-change"
+  }
+]
