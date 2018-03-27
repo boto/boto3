@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.6.18
+======
+
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+
+
 1.6.17
 ======
 
