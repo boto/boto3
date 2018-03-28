@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``mturk``", 
+    "description": "[``botocore``] Update mturk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sts``", 
+    "description": "[``botocore``] Update sts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Update iam client to latest version", 
+    "type": "api-change"
+  }
+]
