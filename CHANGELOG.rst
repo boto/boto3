@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.6.19
+======
+
+* api-change:``mturk``: [``botocore``] Update mturk client to latest version
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+
+
 1.6.18
 ======
 
