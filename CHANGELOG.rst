@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.6.20
+======
+
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.6.19
 ======
 
