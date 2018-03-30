@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.6.21
+======
+
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+
+
 1.6.20
 ======
 
