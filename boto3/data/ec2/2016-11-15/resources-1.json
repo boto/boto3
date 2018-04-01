@@ -142,6 +142,16 @@
           "path": "VpcPeeringConnection"
         }
       },
+      "CreateVpcEndpoint": {
+        "request": { "operation": "CreateVpcEndpoint" },
+        "resource": {
+          "type": "VpcEndpoint",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "VpcEndpoint.VpcEndpointId" }
+          ],
+          "path": "VpcEndpoint"
+        }
+      },
       "DisassociateRouteTable": {
         "request": { "operation": "DisassociateRouteTable" }
       },
@@ -288,6 +298,14 @@
       "VpcPeeringConnection": {
         "resource": {
           "type": "VpcPeeringConnection",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      },
+      "VpcEndpoint": {
+        "resource": {
+          "type": "VpcEndpoint",
           "identifiers": [
             { "target": "Id", "source": "input" }
           ]
@@ -475,6 +493,16 @@
             { "target": "Id", "source": "response", "path": "Vpcs[].VpcId" }
           ],
           "path": "Vpcs[]"
+        }
+      },
+      "VpcEndpoints": {
+        "request": {"operation": "DescribeVpcEndpoints"},
+        "resource": {
+          "type": "VpcEndpoint",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "VpcEndpoints[].VpcEndpointId" }
+          ],
+          "path": "VpcEndpoints[]"
         }
       }
     }
@@ -2144,6 +2172,21 @@
             ]
           }
         },
+        "CreateVpcEndpoint": {
+          "request": {
+            "operation": "CreateVpcEndpoint",
+            "params": [
+              { "target": "VpcId", "source": "identifier", "name": "Id" }
+            ]
+          },
+          "resource": {
+            "type": "VpcEndpoint",
+            "identifiers": [
+              { "target": "Id", "source": "response", "path": "VpcEndpoint.VpcEndpointId" }
+            ],
+            "path": "VpcEndpoint"
+          }
+        },
         "CreateNetworkAcl": {
           "request": {
             "operation": "CreateNetworkAcl",
@@ -2460,6 +2503,22 @@
             "path": "Subnets[]"
           }
         }
+      },
+      "VpcEndpoints": {
+        "request": {
+          "operation": "DescribeVpcEndpoints",
+         "params": [
+            { "target": "Filters[0].Name", "source": "string", "value": "vpc-id" },
+            { "target": "Filters[0].Values[0]", "source": "identifier", "name": "Id" }
+          ]
+        },
+        "resource": {
+          "type": "VpcEndpoint",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "VpcEndpoints[].VpcEndpointId" }
+          ],
+          "path": "VpcEndpoints[]"
+        }
       }
     },
     "VpcPeeringConnection": {
@@ -2528,6 +2587,50 @@
             "type": "Vpc",
             "identifiers": [
               { "target": "Id", "source": "data", "path": "RequesterVpcInfo.VpcId" }
+            ]
+          }
+        }
+      }
+    },
+    "VpcEndpoint": {
+      "identifiers": [
+        {
+          "name": "Id",
+          "memberName": "VpcEndpointId"
+        }
+      ],
+      "shape": "VpcEndpoint",
+      "load": {
+        "request": {
+          "operation": "DescribeVpcEndpoints",
+          "params": [
+            { "target": "VpcEndpointIds[0]", "source": "identifier", "name": "Id" }
+          ]
+        },
+        "path": "VpcEndpoints[0]"
+      },
+      "actions": {
+        "Create": {
+          "request": {
+            "operation": "CreateVpcEndpoint",
+            "params": [
+              { "target": "VpcEndpointId", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Delete": {
+          "request": {
+            "operation": "DeleteVpcEndpoints",
+            "params": [
+              { "target": "VpcEndpointIds", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Modify": {
+          "request": {
+            "operation": "ModifyVpcEndpoint",
+            "params": [
+              { "target": "VpcEndpointId", "source": "identifier", "name": "Id" }
             ]
           }
         }
