@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.6.22
+======
+
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
 1.6.21
 ======
 
