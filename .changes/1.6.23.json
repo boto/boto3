@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``devicefarm``", 
+    "description": "[``botocore``] Update devicefarm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``translate``", 
+    "description": "[``botocore``] Update translate client to latest version", 
+    "type": "api-change"
+  }
+]

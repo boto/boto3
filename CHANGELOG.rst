@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.6.23
+======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``translate``: [``botocore``] Update translate client to latest version
+
+
 1.6.22
 ======
 
