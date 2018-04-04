@@ -392,10 +392,11 @@ class Session(object):
         # Create a ServiceContext object to serve as a reference to
         # important read-only information about the general service.
         service_context = boto3.utils.ServiceContext(
-                service_name=service_name, service_model=service_model,
-                resource_json_definitions=resource_model['resources'],
-                service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
-                    self._session, service_name, api_version)
+            service_name=service_name, service_model=service_model,
+            resource_json_definitions=resource_model['resources'],
+            service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
+                self._session, service_name, api_version
+            )
         )
 
         # Create the service resource class.
