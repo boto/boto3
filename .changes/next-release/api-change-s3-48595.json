@@ -1,5 +1,0 @@
-{
-  "category": "``s3``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update s3 client to latest version"
-}

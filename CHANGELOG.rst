@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.7.0
+=====
+
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* feature:s3: Add support for S3 Select. Amazon S3 Select is an Amazon S3 feature that makes it easy to retrieve specific data from the contents of an object using simple SQL expressions without having to retrieve the entire object. With this release of the Amazon S3 SDK, S3 Select API (SelectObjectContent) is now generally available in all public regions. This release supports retrieval of a subset of data using SQL clauses, like SELECT and WHERE, from delimited text files and JSON objects in Amazon S3 through the SelectObjectContent API available in AWS S3 SDK.
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+
+
 1.6.23
 ======
 
