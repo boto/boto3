@@ -13,6 +13,7 @@
 from tests import unittest, mock
 
 import boto3
+from botocore.stub import Stubber
 
 
 class TestTableResourceCustomizations(unittest.TestCase):
@@ -25,3 +26,17 @@ class TestTableResourceCustomizations(unittest.TestCase):
     def test_resource_has_batch_writer_added(self):
         table = self.resource.Table('mytable')
         self.assertTrue(hasattr(table, 'batch_writer'))
+
+    def test_operation_without_output(self):
+        table = self.resource.Table('mytable')
+        stubber = Stubber(table.meta.client)
+        stubber.add_response('tag_resource', {})
+        arn = 'arn:aws:dynamodb:us-west-2:123456789:table/mytable'
+
+        with stubber:
+            table.meta.client.tag_resource(
+                ResourceArn=arn,
+                Tags=[{'Key': 'project', 'Value': 'val'}]
+            )
+
+        stubber.assert_no_pending_responses()

@@ -198,9 +198,11 @@ class TransformationInjector(object):
 
     def inject_attribute_value_output(self, parsed, model, **kwargs):
         """Injects DynamoDB deserialization into responses"""
-        self._transformer.transform(
-            parsed, model.output_shape, self._deserializer.deserialize,
-            'AttributeValue')
+        if model.output_shape is not None:
+            self._transformer.transform(
+                parsed, model.output_shape, self._deserializer.deserialize,
+                'AttributeValue'
+            )
 
 
 class ConditionExpressionTransformation(object):

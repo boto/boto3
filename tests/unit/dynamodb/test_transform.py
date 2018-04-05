@@ -464,6 +464,33 @@ class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
         )
 
 
+    def test_no_output(self):
+        service_model = ServiceModel({
+            'operations': {
+                'SampleOperation': {
+                    'name': 'SampleOperation',
+                    'input': {'shape': 'SampleOperationInputOutput'},
+                }
+            },
+            'shapes': {
+                'SampleOperationInput': {
+                    'type': 'structure',
+                    'members': {}
+                },
+                'String': {
+                    'type': 'string'
+                }
+            }
+        })
+        operation_model = service_model.operation_model('SampleOperation')
+
+        parsed = {}
+        self.injector.inject_attribute_value_output(
+            parsed=parsed, model=operation_model)
+        self.assertEqual(parsed, {})
+
+
+
 class TestTransformConditionExpression(BaseTransformationTest):
     def setUp(self):
         super(TestTransformConditionExpression, self).setUp()
