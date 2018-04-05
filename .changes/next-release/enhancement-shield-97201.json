@@ -1,5 +1,0 @@
-{
-  "category": "shield", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Added paginator for list_protections operation."
-}

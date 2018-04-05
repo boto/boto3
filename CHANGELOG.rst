@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.1
+=====
+
+* enhancement:shield: [``botocore``] Added paginator for list_protections operation.
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.7.0
 =====
 
