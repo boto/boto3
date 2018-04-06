@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.2
+=====
+
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+
+
 1.7.1
 =====
 
