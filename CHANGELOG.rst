@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.3
+=====
+
+* api-change:``clouddirectory``: [``botocore``] Update clouddirectory client to latest version
+
+
 1.7.2
 =====
 
