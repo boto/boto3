@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.4
+=====
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
 1.7.3
 =====
 
