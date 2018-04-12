@@ -11,7 +11,10 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import logging
+import random
+import time
 
+from boto3.exceptions import RetriesExceededError
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +32,7 @@ class TableResource(object):
     def __init__(self, *args, **kwargs):
         super(TableResource, self).__init__(*args, **kwargs)
 
-    def batch_writer(self, overwrite_by_pkeys=None):
+    def batch_writer(self, overwrite_by_pkeys=None, max_retries=-1, max_backoff=0):
         """Create a batch writer object.
 
         This method creates a context manager for writing
@@ -55,15 +58,25 @@ class TableResource(object):
             if match new request item on specified primary keys. i.e
             ``["partition_key1", "sort_key2", "sort_key3"]``
 
+        :type max_retries: int
+        :param max_retries: Maximum number of retry attempts which produce unprocessed items. A value of 0 disables the
+            retry mechanism and a value less than 0 will result in an unlimited number of retries. The default is -1
+            (i.e. unlimited retries). A ``boto3.exceptions.RetriesExceededError`` exception will be raised if the
+            maximum number of retries is reached and unprocessed items are still returned.
+
+        :type max_backoff: float
+        :param max_backoff: Maximum number of seconds to pause between retry attempts. A value of 0 disables the
+            exponential backoff (i.e. retries happen immediately). A value less than 0 will result in unlimited,
+            exponential growth of the backoff pause time. The default is 0.
+
         """
-        return BatchWriter(self.name, self.meta.client,
-                           overwrite_by_pkeys=overwrite_by_pkeys)
+        return BatchWriter(self.name, self.meta.client, overwrite_by_pkeys=overwrite_by_pkeys,
+                           max_retries=max_retries, max_backoff=max_backoff)
 
 
 class BatchWriter(object):
     """Automatically handle batch writes to DynamoDB for a single table."""
-    def __init__(self, table_name, client, flush_amount=25,
-                 overwrite_by_pkeys=None):
+    def __init__(self, table_name, client, flush_amount=25, overwrite_by_pkeys=None, max_retries=-1, max_backoff=0):
         """
 
         :type table_name: str
@@ -90,12 +103,26 @@ class BatchWriter(object):
             if match new request item on specified primary keys. i.e
             ``["partition_key1", "sort_key2", "sort_key3"]``
 
+        :type max_retries: int
+        :param max_retries: Maximum number of retry attempts which produce unprocessed items. A value of 0 disables the
+            retry mechanism and a value less than 0 will result in an unlimited number of retries. The default is -1
+            (i.e. unlimited retries). A ``boto3.exceptions.RetriesExceededError`` exception will be raised if the
+            maximum number of retries is reached and unprocessed items are still returned.
+
+        :type max_backoff: float
+        :param max_backoff: Maximum number of seconds to pause between retry attempts. A value of 0 disables the
+            exponential backoff (i.e. retries happen immediately). A value less than 0 will result in unlimited,
+            exponential growth of the backoff pause time. The default is 0.
+
         """
         self._table_name = table_name
         self._client = client
         self._items_buffer = []
         self._flush_amount = flush_amount
         self._overwrite_by_pkeys = overwrite_by_pkeys
+        self._max_retries = max_retries
+        self._max_backoff = max_backoff if max_backoff >= 0 else float("inf")
+        self._retry_attempt = 0
 
     def put_item(self, Item):
         self._add_request_and_process({'PutRequest': {'Item': Item}})
@@ -130,7 +157,15 @@ class BatchWriter(object):
         if len(self._items_buffer) >= self._flush_amount:
             self._flush()
 
+    def _pause(self, seconds):
+        time.sleep(seconds+random.random())
+
+    def _backoff_if_needed(self):
+        if self._retry_attempt > 0 and self._max_backoff != 0:
+            self._pause(min(2**(self._retry_attempt-1), self._max_backoff))
+
     def _flush(self):
+        self._backoff_if_needed()
         items_to_send = self._items_buffer[:self._flush_amount]
         self._items_buffer = self._items_buffer[self._flush_amount:]
         response = self._client.batch_write_item(
@@ -138,11 +173,15 @@ class BatchWriter(object):
         unprocessed_items = response['UnprocessedItems']
 
         if unprocessed_items and unprocessed_items[self._table_name]:
+            self._retry_attempt = self._retry_attempt + 1
+            if 0 <= self._max_retries < self._retry_attempt:
+                raise RetriesExceededError(None)
             # Any unprocessed_items are immediately added to the
             # next batch we send.
             self._items_buffer.extend(unprocessed_items[self._table_name])
         else:
             self._items_buffer = []
+            self._retry_attempt = 0
         logger.debug("Batch write sent %s, unprocessed: %s",
                      len(items_to_send), len(self._items_buffer))
 

@@ -10,9 +10,9 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest, mock
-
 from boto3.dynamodb.table import BatchWriter
+from boto3.exceptions import RetriesExceededError
+from tests import unittest, mock
 
 
 class BaseTransformationTest(unittest.TestCase):
@@ -226,7 +226,6 @@ class BaseTransformationTest(unittest.TestCase):
         self.assert_batch_write_calls_are([first_batch, second_batch,
                                            third_batch])
 
-
     def test_repeated_flushing_on_exit(self):
         # We're going to simulate unprocessed_items
         # returning multiple unprocessed items across calls.
@@ -386,3 +385,161 @@ class BaseTransformationTest(unittest.TestCase):
             }
         }
         self.assert_batch_write_calls_are([first_batch, second_batch])
+
+    def test_backoff_not_used_on_success(self):
+        self.client.batch_write_item.side_effect = [
+            {'UnprocessedItems': {}},
+            {'UnprocessedItems': {}},
+            {'UnprocessedItems': {}},
+        ]
+        with mock.patch.object(BatchWriter, '_pause', return_value=None) as backoff_pause:
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_backoff=-1) as b:
+                b.put_item(Item={'Hash': 'foo1'})
+                b.put_item(Item={'Hash': 'foo2'})
+                b.put_item(Item={'Hash': 'foo3'})
+
+        backoff_pause.assert_not_called()
+
+    def test_backoff_on_retry_disabled(self):
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {}
+            },
+        ]
+        with mock.patch.object(BatchWriter, '_pause', return_value=None) as backoff_pause:
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_backoff=0) as b:
+                b.put_item(Item={'Hash': 'foo1'})
+
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ]
+            }
+        }
+
+        self.assert_batch_write_calls_are([batch, batch])
+        backoff_pause.assert_not_called()
+
+    def test_backoff_on_retry_called(self):
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {}
+            },
+        ]
+        with mock.patch.object(BatchWriter, '_pause', return_value=None) as backoff_pause:
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_backoff=-1) as b:
+                b.put_item(Item={'Hash': 'foo1'})
+
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ]
+            }
+        }
+
+        self.assert_batch_write_calls_are([batch, batch])
+        backoff_pause.assert_called_once_with(1)
+
+    def test_backoff_on_retry_grows_exponentially(self):
+        unprocessed_item = {
+            'UnprocessedItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ],
+            },
+        }
+        responses = [unprocessed_item for _ in range(6)]
+        responses.append({'UnprocessedItems': {}})
+        self.client.batch_write_item.side_effect = responses
+
+        with mock.patch.object(BatchWriter, '_pause', return_value=None) as backoff_pause:
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_backoff=-1) as b:
+                b.put_item(Item={'Hash': 'foo1'})
+
+        backoff_pause.assert_has_calls([mock.call(x) for x in (1, 2, 4, 8, 16, 32)])
+
+    def test_backoff_on_retry_max_backoff(self):
+        unprocessed_item = {
+            'UnprocessedItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ],
+            },
+        }
+        responses = [unprocessed_item for _ in range(4)]
+        responses.append({'UnprocessedItems': {}})
+        self.client.batch_write_item.side_effect = responses
+
+        with mock.patch.object(BatchWriter, '_pause', return_value=None) as backoff_pause:
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_backoff=2) as b:
+                b.put_item(Item={'Hash': 'foo1'})
+
+        backoff_pause.assert_has_calls([mock.call(x) for x in (1, 2, 2, 2)])
+
+    def test_retry_error_disabled(self):
+        unprocessed_item = {
+            'UnprocessedItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ],
+            },
+        }
+        responses = [unprocessed_item, unprocessed_item, {'UnprocessedItems': {}}]
+        self.client.batch_write_item.side_effect = responses
+
+        with BatchWriter(self.table_name, self.client, flush_amount=1, max_retries=-1) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ]
+            }
+        }
+
+        self.assert_batch_write_calls_are([batch for _ in range(3)])
+
+    def test_retry_error_immediate(self):
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    ],
+                },
+            },
+        ]
+        with self.assertRaises(RetriesExceededError):
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_retries=0) as b:
+                b.put_item(Item={'Hash': 'foo1'})
+
+    def test_retry_error_after_max_retries(self):
+        unprocessed_item = {
+            'UnprocessedItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                ],
+            },
+        }
+        # We need 4 failed responses - first attempt + 3 retries
+        self.client.batch_write_item.side_effect = [unprocessed_item for _ in range(4)]
+        with self.assertRaises(RetriesExceededError):
+            with BatchWriter(self.table_name, self.client, flush_amount=1, max_retries=3) as b:
+                b.put_item(Item={'Hash': 'foo1'})
