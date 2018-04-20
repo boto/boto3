@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.6
+=====
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+
+
 1.7.5
 =====
 
