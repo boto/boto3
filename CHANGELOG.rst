@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.7.5
+=====
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* bugfix:dynamodb: Fixes a bug causing dynamodb operations with no output to throw errors.
+
+
 1.7.4
 =====
 

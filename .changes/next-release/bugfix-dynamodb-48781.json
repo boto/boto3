@@ -1,5 +1,0 @@
-{
-  "description": "Fixes a bug causing dynamodb operations with no output to throw errors.",
-  "type": "bugfix",
-  "category": "dynamodb"
-}
