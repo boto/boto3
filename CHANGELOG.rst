@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.7
+=====
+
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``autoscaling-plans``: [``botocore``] Update autoscaling-plans client to latest version
+
+
 1.7.6
 =====
 
