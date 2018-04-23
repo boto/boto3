@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``iotanalytics``", 
+    "description": "[``botocore``] Update iotanalytics client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling-plans``", 
+    "description": "[``botocore``] Update autoscaling-plans client to latest version", 
+    "type": "api-change"
+  }
+]
