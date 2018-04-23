@@ -1,0 +1,5 @@
+{
+  "category": "``autoscaling-plans``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update autoscaling-plans client to latest version"
+}
