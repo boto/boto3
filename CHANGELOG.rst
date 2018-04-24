@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.8
+=====
+
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+
+
 1.7.7
 =====
 
