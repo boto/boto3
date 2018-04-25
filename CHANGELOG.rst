@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.9
+=====
+
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+
+
 1.7.8
 =====
 
