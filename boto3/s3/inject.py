@@ -103,6 +103,27 @@ def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
     Similar behavior as S3Transfer's upload_file() method,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+
+    :type Filename: str
+    :param Filename: The path to the file to upload.
+
+    :type Bucket: str
+    :param Bucket: The name of the bucket to upload to.
+
+    :type Key: str
+    :param Key: The name of the key to upload to.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the upload.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        transfer.
     """
     with S3Transfer(self, Config) as transfer:
         return transfer.upload_file(
@@ -123,6 +144,27 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+
+    :type Filename: str
+    :param Filename: The path to the file to download to.
+
+    :type Bucket: str
+    :param Bucket: The name of the bucket to download from.
+
+    :type Key: str
+    :param Key: The name of the key to download from.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the download.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        transfer.
     """
     with S3Transfer(self, Config) as transfer:
         return transfer.download_file(
@@ -143,6 +185,24 @@ def bucket_upload_file(self, Filename, Key,
     Similar behavior as S3Transfer's upload_file() method,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+
+    :type Filename: str
+    :param Filename: The path to the file to upload.
+
+    :type Key: str
+    :param Key: The name of the key to upload to.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the upload.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        transfer.
     """
     return self.meta.client.upload_file(
         Filename=Filename, Bucket=self.name, Key=Key,
@@ -162,6 +222,24 @@ def bucket_download_file(self, Key, Filename,
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+
+    :type Filename: str
+    :param Filename: The path to the file to download to.
+
+    :type Key: str
+    :param Key: The name of the key to download from.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the download.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        transfer.
     """
     return self.meta.client.download_file(
         Bucket=self.name, Key=Key, Filename=Filename,
@@ -181,6 +259,21 @@ def object_upload_file(self, Filename,
     Similar behavior as S3Transfer's upload_file() method,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+
+    :type Filename: str
+    :param Filename: The path to the file to upload.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the upload.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        transfer.
     """
     return self.meta.client.upload_file(
         Filename=Filename, Bucket=self.bucket_name, Key=self.key,
@@ -200,6 +293,21 @@ def object_download_file(self, Filename,
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
+
+    :type Filename: str
+    :param Filename: The path to the file to download to.
+
+    :type ExtraArgs: dict
+    :param ExtraArgs: Extra arguments that may be passed to the
+        client operation.
+
+    :type Callback: method
+    :param Callback: A method which takes a number of bytes transferred to
+        be periodically called during the download.
+
+    :type Config: boto3.s3.transfer.TransferConfig
+    :param Config: The transfer configuration to be used when performing the
+        transfer.
     """
     return self.meta.client.download_file(
         Bucket=self.bucket_name, Key=self.key, Filename=Filename,
