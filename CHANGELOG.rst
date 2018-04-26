@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.10
+======
+
+* api-change:``glacier``: [``botocore``] Update glacier client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+
+
 1.7.9
 =====
 
