@@ -136,7 +136,7 @@ from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 
 KB = 1024
-MB = KB * KB
+MB = KB * 1024
 
 
 def create_transfer_manager(client, config, osutil=None):
