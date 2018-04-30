@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.7.11
+======
+
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``route53domains``: [``botocore``] Update route53domains client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+
+
 1.7.10
 ======
 
