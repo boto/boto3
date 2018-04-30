@@ -1,0 +1,5 @@
+{
+  "category": "``route53domains``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update route53domains client to latest version"
+}
