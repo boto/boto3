@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.12
+======
+
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.7.11
 ======
 
