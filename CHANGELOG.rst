@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.13
+======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+
+
 1.7.12
 ======
 
