@@ -117,7 +117,7 @@ def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the upload.
 
@@ -158,7 +158,7 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the download.
 
@@ -196,7 +196,7 @@ def bucket_upload_file(self, Filename, Key,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the upload.
 
@@ -233,7 +233,7 @@ def bucket_download_file(self, Key, Filename,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the download.
 
@@ -267,7 +267,7 @@ def object_upload_file(self, Filename,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the upload.
 
@@ -301,7 +301,7 @@ def object_download_file(self, Filename,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the download.
 
@@ -348,7 +348,7 @@ def copy(self, CopySource, Bucket, Key, ExtraArgs=None, Callback=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the copy.
 
@@ -411,7 +411,7 @@ def bucket_copy(self, CopySource, Key, ExtraArgs=None, Callback=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the copy.
 
@@ -461,7 +461,7 @@ def object_copy(self, CopySource, ExtraArgs=None, Callback=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the copy.
 
@@ -513,7 +513,7 @@ def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the upload.
 
@@ -568,7 +568,7 @@ def bucket_upload_fileobj(self, Fileobj, Key, ExtraArgs=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the upload.
 
@@ -608,7 +608,7 @@ def object_upload_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the upload.
 
@@ -652,7 +652,7 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the download.
 
@@ -707,7 +707,7 @@ def bucket_download_fileobj(self, Key, Fileobj, ExtraArgs=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the download.
 
@@ -747,7 +747,7 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
 
-    :type Callback: method
+    :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
         be periodically called during the download.
 
