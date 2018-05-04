@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.14
+======
+
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+
+
 1.7.13
 ======
 
