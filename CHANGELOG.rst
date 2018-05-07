@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.15
+======
+
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
 1.7.14
 ======
 
