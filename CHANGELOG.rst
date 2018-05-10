@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.17
+======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+
+
 1.7.16
 ======
 
