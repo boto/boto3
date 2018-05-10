@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.18
+======
+
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+
+
 1.7.17
 ======
 
