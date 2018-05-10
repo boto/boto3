@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.19
+======
+
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+
+
 1.7.18
 ======
 
