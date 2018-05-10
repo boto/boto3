@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``gamelift``", 
+    "description": "[``botocore``] Update gamelift client to latest version", 
+    "type": "api-change"
+  }
+]
