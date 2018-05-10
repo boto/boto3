@@ -1,5 +1,0 @@
-{
-  "category": "``firehose``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update firehose client to latest version"
-}
