@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``organizations``", 
+    "description": "[``botocore``] Update organizations client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot1click-devices``", 
+    "description": "[``botocore``] Update iot1click-devices client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot1click-projects``", 
+    "description": "[``botocore``] Update iot1click-projects client to latest version", 
+    "type": "api-change"
+  }
+]

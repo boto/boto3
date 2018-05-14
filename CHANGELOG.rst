@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.20
+======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``iot1click-devices``: [``botocore``] Update iot1click-devices client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``iot1click-projects``: [``botocore``] Update iot1click-projects client to latest version
+
+
 1.7.19
 ======
 
