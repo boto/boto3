@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.22
+======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+
+
 1.7.21
 ======
 
