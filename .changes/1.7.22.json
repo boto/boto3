@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``secretsmanager``", 
+    "description": "[``botocore``] Update secretsmanager client to latest version", 
+    "type": "api-change"
+  }
+]
