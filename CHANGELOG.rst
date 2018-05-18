@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.24
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``ses``: [``botocore``] Update ses client to latest version
+
+
 1.7.23
 ======
 
