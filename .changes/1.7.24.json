@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ses``", 
+    "description": "[``botocore``] Update ses client to latest version", 
+    "type": "api-change"
+  }
+]
