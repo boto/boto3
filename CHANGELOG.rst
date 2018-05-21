@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.25
+======
+
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+
+
 1.7.24
 ======
 
