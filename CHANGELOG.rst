@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.26
+======
+
+* api-change:``inspector``: [``botocore``] Update inspector client to latest version
+* enhancement:Credentials: [``botocore``] Disable proxy configuration when fetching container credentials
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.7.25
 ======
 
