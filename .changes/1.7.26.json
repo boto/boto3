@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``inspector``", 
+    "description": "[``botocore``] Update inspector client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Credentials", 
+    "description": "[``botocore``] Disable proxy configuration when fetching container credentials", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }
+]
