@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.28
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
 1.7.27
 ======
 
