@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.29
+======
+
+* api-change:``pi``: [``botocore``] Update pi client to latest version
+
+
 1.7.28
 ======
 
