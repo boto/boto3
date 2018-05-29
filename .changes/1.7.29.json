@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``pi``", 
+    "description": "[``botocore``] Update pi client to latest version", 
+    "type": "api-change"
+  }
+]
