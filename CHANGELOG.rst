@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.30
+======
+
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+
+
 1.7.29
 ======
 
