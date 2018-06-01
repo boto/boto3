@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.31
+======
+
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+
+
 1.7.30
 ======
 
