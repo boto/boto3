@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.33
+======
+
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.7.32
 ======
 

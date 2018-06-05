@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``secretsmanager``", 
+    "description": "[``botocore``] Update secretsmanager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``shield``", 
+    "description": "[``botocore``] Update shield client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }
+]
