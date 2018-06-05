@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.7.32
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``mgh``: [``botocore``] Update mgh client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.7.31
 ======
 
