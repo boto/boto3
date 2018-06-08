@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.35
+======
+
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+
+
 1.7.34
 ======
 
