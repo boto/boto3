@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.36
+======
+
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``clouddirectory``: [``botocore``] Update clouddirectory client to latest version
+
+
 1.7.35
 ======
 
