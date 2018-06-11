@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``clouddirectory``", 
+    "description": "[``botocore``] Update clouddirectory client to latest version", 
+    "type": "api-change"
+  }
+]
