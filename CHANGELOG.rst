@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.37
+======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+
+
 1.7.36
 ======
 
