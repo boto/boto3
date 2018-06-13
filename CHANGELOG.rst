@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.38
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.7.37
 ======
 
