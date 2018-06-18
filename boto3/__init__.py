@@ -42,6 +42,14 @@ def set_stream_logger(name='boto3', level=logging.DEBUG, format_string=None):
         >>> import boto3
         >>> boto3.set_stream_logger('boto3.resources', logging.INFO)
 
+    For debugging purposes a good choice is to set the stream logger to ``''``
+    which is equivalent to saying "log everything".
+
+    .. WARNING::
+       Be aware that when logging anything from ``'botocore'`` the full wire
+       trace will appear in your logs. If your payloads contain sensitive data
+       this should not be used in production.
+
     :type name: string
     :param name: Log name
     :type level: int
