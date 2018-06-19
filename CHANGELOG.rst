@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.41
+======
+
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.7.40
 ======
 
