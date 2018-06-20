@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``acm-pca``", 
+    "description": "[``botocore``] Update acm-pca client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }
+]

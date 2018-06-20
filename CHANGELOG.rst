@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.42
+======
+
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.7.41
 ======
 
