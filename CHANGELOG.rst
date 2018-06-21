@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.43
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``macie``: [``botocore``] Update macie client to latest version
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+
+
 1.7.42
 ======
 
