@@ -1,5 +1,0 @@
-{
-  "category": "``macie``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update macie client to latest version"
-}

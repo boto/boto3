@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``macie``", 
+    "description": "[``botocore``] Update macie client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``neptune``", 
+    "description": "[``botocore``] Update neptune client to latest version", 
+    "type": "api-change"
+  }
+]
