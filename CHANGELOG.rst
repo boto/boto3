@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.45
+======
+
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.7.44
 ======
 
