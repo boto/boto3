@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.46
+======
+
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``inspector``: [``botocore``] Update inspector client to latest version
+
+
 1.7.45
 ======
 
