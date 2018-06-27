@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.47
+======
+
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* enhancement:StreamingResponses: [``botocore``] Add ``iter_lines()`` and ``iter_chunks()`` to streaming responses (`#1195 <https://github.com/boto/botocore/issues/1195>`__)
+
+
 1.7.46
 ======
 
