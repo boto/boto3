@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.48
+======
+
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+
+
 1.7.47
 ======
 
