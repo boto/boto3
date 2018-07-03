@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.50
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+
+
 1.7.49
 ======
 
