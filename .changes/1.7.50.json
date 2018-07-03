@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``redshift``", 
+    "description": "[``botocore``] Update redshift client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm``", 
+    "description": "[``botocore``] Update acm client to latest version", 
+    "type": "api-change"
+  }
+]
