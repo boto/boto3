@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.52
+======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+
+
 1.7.51
 ======
 
