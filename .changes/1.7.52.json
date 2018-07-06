@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``serverlessrepo``", 
+    "description": "[``botocore``] Update serverlessrepo client to latest version", 
+    "type": "api-change"
+  }
+]
