@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.53
+======
+
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+
+
 1.7.52
 ======
 
