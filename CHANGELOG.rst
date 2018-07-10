@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.55
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``opsworks``: [``botocore``] Update opsworks client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+
+
 1.7.54
 ======
 
