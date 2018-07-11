@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.56
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+
+
 1.7.55
 ======
 
