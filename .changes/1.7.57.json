@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Update iam client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dlm``", 
+    "description": "[``botocore``] Update dlm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appsync``", 
+    "description": "[``botocore``] Update appsync client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``efs``", 
+    "description": "[``botocore``] Update efs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``emr``", 
+    "description": "[``botocore``] Update emr client to latest version", 
+    "type": "api-change"
+  }
+]
