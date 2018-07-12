@@ -1,5 +1,0 @@
-{
-  "category": "``codebuild``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update codebuild client to latest version"
-}

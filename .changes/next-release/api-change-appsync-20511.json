@@ -1,5 +1,0 @@
-{
-  "category": "``appsync``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update appsync client to latest version"
-}
