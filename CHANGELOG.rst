@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.7.57
+======
+
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.7.56
 ======
 
