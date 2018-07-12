@@ -1,0 +1,5 @@
+{
+  "category": "``efs``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update efs client to latest version"
+}
