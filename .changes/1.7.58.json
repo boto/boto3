@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``kinesisvideo``", 
+    "description": "[``botocore``] Update kinesisvideo client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appstream``", 
+    "description": "[``botocore``] Update appstream client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis-video-archived-media``", 
+    "description": "[``botocore``] Update kinesis-video-archived-media client to latest version", 
+    "type": "api-change"
+  }
+]

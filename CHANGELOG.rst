@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.58
+======
+
+* api-change:``kinesisvideo``: [``botocore``] Update kinesisvideo client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+
+
 1.7.57
 ======
 
