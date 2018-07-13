@@ -43,7 +43,8 @@ To set up and run this example, you must first complete these tasks:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
 * Create an Amazon SQS queue. For an example of creating a queue, see 
-  `Using Queues in Amazon SQS <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-using-queues.html>`_.
+  :doc:`Using Queues in Amazon SQS <sqs-examples-using-queues>`.
+
 
 Send a Message to a Queue
 =========================

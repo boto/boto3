@@ -44,7 +44,7 @@ To set up and run this example, you must first complete these tasks:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
 * Create an Amazon SQS queue to serve as a dead letter queue. For an example of creating a queue, see 
-  `Using Queues <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-using-queues.html>`_ in *Amazon SQS*.
+  :doc:`Using Queues <sqs-examples-using-queues>` in *Amazon SQS*.
 
 Configure Source Queues
 =======================
