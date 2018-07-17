@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.59
+======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+
+
 1.7.58
 ======
 
