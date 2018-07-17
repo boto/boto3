@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``snowball``", 
+    "description": "[``botocore``] Update snowball client to latest version", 
+    "type": "api-change"
+  }
+]
