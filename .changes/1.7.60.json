@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``iotanalytics``", 
+    "description": "[``botocore``] Update iotanalytics client to latest version", 
+    "type": "api-change"
+  }
+]

@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.60
+======
+
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+
+
 1.7.59
 ======
 
