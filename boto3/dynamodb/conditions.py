@@ -146,6 +146,9 @@ class ConditionAttributeBase(ConditionBase, AttributeBase):
     def __eq__(self, other):
         return ConditionBase.__eq__(self, other) and AttributeBase.__eq__(self, other)
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 
 class ComparisonCondition(ConditionBase):
     expression_format = '{0} {operator} {1}'
