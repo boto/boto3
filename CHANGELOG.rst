@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.61
+======
+
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+
+
 1.7.60
 ======
 
