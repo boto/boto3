@@ -1,0 +1,5 @@
+{
+  "category": "``config``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update config client to latest version"
+}
