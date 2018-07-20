@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.62
+======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+
+
 1.7.61
 ======
 
