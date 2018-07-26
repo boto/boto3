@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``greengrass``", 
+    "description": "[``botocore``] Update greengrass client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``inspector``", 
+    "description": "[``botocore``] Update inspector client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``redshift``", 
+    "description": "[``botocore``] Update redshift client to latest version", 
+    "type": "api-change"
+  }
+]
