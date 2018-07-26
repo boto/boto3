@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.7.65
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``inspector``: [``botocore``] Update inspector client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.7.64
 ======
 
