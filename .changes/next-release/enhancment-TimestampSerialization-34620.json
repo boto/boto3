@@ -1,5 +1,0 @@
-{
-  "category": "Timestamp Serialization", 
-  "type": "enhancment", 
-  "description": "[``botocore``] Support explicit timestamp serialization per timestamp shape."
-}
