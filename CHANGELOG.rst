@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.7.66
+======
+
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* enhancment:Timestamp Serialization: [``botocore``] Support explicit timestamp serialization per timestamp shape.
+* api-change:``glacier``: [``botocore``] Update glacier client to latest version
+
+
 1.7.65
 ======
 
