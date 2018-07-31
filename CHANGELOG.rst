@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.67
+======
+
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.7.66
 ======
 
