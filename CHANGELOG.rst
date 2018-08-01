@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.68
+======
+
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+
+
 1.7.67
 ======
 
