@@ -133,7 +133,8 @@ It's possible to set arbitrary metadata on keys::
 
     # Boto 3
     key.put(Metadata={'meta1': 'This is my metadata value'})
-    print(key.metadata['meta1'])
+    target_object = key.Object()
+    print(target_object.metadata['meta1'])
 
 Managing CORS Configuration
 ---------------------------
