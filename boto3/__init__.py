@@ -17,7 +17,7 @@ from boto3.session import Session
 
 
 __author__ = 'Amazon Web Services'
-__version__ = '1.7.67'
+__version__ = '1.7.68'
 
 
 # The default Boto3 session; autoloaded when needed.
