@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.69
+======
+
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``kinesis``: [``botocore``] Update kinesis client to latest version
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+
+
 1.7.68
 ======
 

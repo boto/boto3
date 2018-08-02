@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis``", 
+    "description": "[``botocore``] Update kinesis client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``resource-groups``", 
+    "description": "[``botocore``] Update resource-groups client to latest version", 
+    "type": "api-change"
+  }
+]
