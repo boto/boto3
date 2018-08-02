@@ -39,10 +39,10 @@ To set up and run this example, you must first complete these tasks:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
 * Create an Amazon SQS queue. For an example of creating a queue, see 
-  `Using Queues in Amazon SQS <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-using-queues.html>`_.
+  :doc:`Using Queues in Amazon SQS <sqs-examples-using-queues>`.
 
 * Send a message to the queue. For an example of sending a message to a queue, see 
-  `Sending and Receiving Messages in Amazon SQS <http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/sqs-examples-send-receive-messages.html>`_.
+  :doc:`Sending and Receiving Messages in Amazon SQS <sqs-example-sending-receiving-msgs>`.
 
 Change the Visibility Timeout
 =============================
