@@ -1,5 +1,0 @@
-{
-  "category": "``kinesis``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update kinesis client to latest version"
-}
