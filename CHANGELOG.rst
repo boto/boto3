@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.70
+======
+
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.7.69
 ======
 
