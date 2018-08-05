@@ -272,19 +272,12 @@ class S3Transfer(object):
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
 
-        subscribers = self._get_subscribers(callback)
-        future = self._manager.upload(
-            filename, bucket, key, extra_args, subscribers)
-        try:
-            future.result()
-        # If a client error was raised, add the backwards compatibility layer
-        # that raises a S3UploadFailedError. These specific errors were only
-        # ever thrown for upload_parts but now can be thrown for any related
-        # client error.
-        except ClientError as e:
-            raise S3UploadFailedError(
-                "Failed to upload %s to %s: %s" % (
-                    filename, '/'.join([bucket, key]), e))
+        self.__upload(filename, bucket, key, callback, extra_args)
+
+    def upload_fileobj(self, file_obj, bucket, key, callback=None, extra_args=None):
+        """Upload file like object to S3 object."""
+        self.__upload(file_obj, bucket, key, callback, extra_args)
+
 
     def download_file(self, bucket, key, filename, extra_args=None,
                       callback=None):
@@ -312,6 +305,22 @@ class S3Transfer(object):
         # their own retries.
         except S3TransferRetriesExceededError as e:
             raise RetriesExceededError(e.last_exception)
+
+    def __upload(self, obj, bucket, key, callback=None, extra_args=None):
+        subscribers = self._get_subscribers(callback)
+        future = self._manager.upload(
+            obj, bucket, key, extra_args, subscribers)
+        try:
+            future.result()
+        # If a client error was raised, add the backwards compatibility layer
+        # that raises a S3UploadFailedError. These specific errors were only
+        # ever thrown for upload_parts but now can be thrown for any related
+        # client error.
+        except ClientError as e:
+            raise S3UploadFailedError(
+                "Failed to upload to %s: %s" % (
+                    '/'.join([bucket, key]), e))
+
 
     def _get_subscribers(self, callback):
         if not callback:

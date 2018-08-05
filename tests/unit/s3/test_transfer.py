@@ -10,6 +10,8 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import io
+
 from tests import unittest
 
 import mock
@@ -120,6 +122,13 @@ class TestS3Transfer(unittest.TestCase):
                                   extra_args=extra_args)
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None)
+
+    def test_upload_fileobj(self):
+        bytes_object = io.BytesIO()
+        extra_args = {'ACL': 'public-read'}
+        self.transfer.upload_fileobj(bytes_object, 'bucket', 'key', extra_args=extra_args)
+        self.manager.upload.assert_called_with(
+            bytes_object, 'bucket', 'key', extra_args, None)
 
     def test_download_file(self):
         extra_args = {
