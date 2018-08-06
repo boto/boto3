@@ -13,7 +13,7 @@
 import json
 from tests import unittest, mock
 
-from botocore.vendored import requests
+from botocore.awsrequest import AWSResponse
 
 from boto3.session import Session
 from boto3.dynamodb.conditions import Attr
@@ -21,8 +21,7 @@ from boto3.dynamodb.conditions import Attr
 
 class TestDynamoDB(unittest.TestCase):
     def setUp(self):
-        self.http_response = requests.models.Response()
-        self.http_response.status_code = 200
+        self.http_response = AWSResponse(None, 200, {}, None)
         self.parsed_response = {}
         self.make_request_patch = mock.patch(
             'botocore.endpoint.Endpoint.make_request')
