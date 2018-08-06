@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.71
+======
+
+* api-change:``health``: [``botocore``] Update health client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+
+
 1.7.70
 ======
 
