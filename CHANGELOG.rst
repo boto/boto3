@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.72
+======
+
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+
+
 1.7.71
 ======
 
