@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.74
+======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``dax``: [``botocore``] Update dax client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.7.73
 ======
 
