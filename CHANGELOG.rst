@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.75
+======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.7.74
 ======
 
