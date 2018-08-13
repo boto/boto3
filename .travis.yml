@@ -3,26 +3,14 @@ language: python
 matrix:
   include:
     - python: 2.6
-      dist: trusty
-      sudo: false
     - python: 2.7
-      dist: trusty
-      sudo: false
     - python: 3.3
-      dist: trusty
-      sudo: false
     - python: 3.4
-      dist: trusty
-      sudo: false
     - python: 3.5
-      dist: trusty
-      sudo: false
     - python: 3.6
-      dist: trusty
-      sudo: false
     - python: 3.7
-      dist: xenial
-      sudo: true
+      dist: xenial  # required for Python 3.7 (travis-ci/travis-ci#9069)
+      sudo: true    # required for Python 3.7 (travis-ci/travis-ci#9069)
 
 before_install:
   - if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
