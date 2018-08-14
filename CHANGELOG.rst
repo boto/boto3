@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.77
+======
+
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+
+
 1.7.76
 ======
 
