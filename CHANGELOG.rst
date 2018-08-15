@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.78
+======
+
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+
+
 1.7.77
 ======
 
