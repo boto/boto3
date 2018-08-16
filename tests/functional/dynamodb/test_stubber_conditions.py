@@ -25,32 +25,39 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
 
     def test_table_query_can_be_stubbed_with_expressions(self):
         table = self.resource.Table('mytable')
+        key_expr = Key('mykey').eq('testkey')
+        filter_expr = Attr('myattr').eq('foo') & (
+            Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')
+        )
 
         stubber = Stubber(table.meta.client)
         stubber.add_response('query', dict(Items=list()), expected_params=dict(
                 TableName='mytable',
-                KeyConditionExpression=Key('mykey').eq('testkey'),
-                FilterExpression=Attr('myattr').eq('foo') & (Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz'))
+                KeyConditionExpression=key_expr,
+                FilterExpression=filter_expr
         ))
 
         with stubber:
-            response = table.query(KeyConditionExpression=Key('mykey').eq('testkey'),
-                                   FilterExpression=Attr('myattr').eq('foo') & (Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')))
+            response = table.query(KeyConditionExpression=key_expr,
+                                   FilterExpression=filter_expr)
 
         self.assertEqual(list(), response['Items'])
         stubber.assert_no_pending_responses()
 
     def test_table_scan_can_be_stubbed_with_expressions(self):
         table = self.resource.Table('mytable')
+        filter_expr = Attr('myattr').eq('foo') & (
+                Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')
+        )
 
         stubber = Stubber(table.meta.client)
         stubber.add_response('scan', dict(Items=list()), expected_params=dict(
                 TableName='mytable',
-                FilterExpression=Attr('myattr').eq('foo') & (Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz'))
+                FilterExpression=filter_expr
         ))
 
         with stubber:
-            response = table.scan(FilterExpression=Attr('myattr').eq('foo') & (Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')))
+            response = table.scan(FilterExpression=filter_expr)
 
         self.assertEqual(list(), response['Items'])
         stubber.assert_no_pending_responses()

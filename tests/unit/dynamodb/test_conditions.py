@@ -82,12 +82,17 @@ class TestK(unittest.TestCase):
         attr_copy = copy.deepcopy(self.attr)
         self.assertIsNot(self.attr, attr_copy)
         self.assertEqual(self.attr, attr_copy)
-        
+
     def test_eq_equality(self):
         attr_copy = copy.deepcopy(self.attr)
         comp = self.attr.eq(self.value)
         comp2 = attr_copy.eq(self.value)
         self.assertEqual(comp, comp2)
+
+    def test_eq_inequality(self):
+        attr_copy = copy.deepcopy(self.attr)
+        self.assertNotEqual(self.attr.eq(self.value),
+                            attr_copy.eq(self.value2))
 
     def test_lt_equality(self):
         attr_copy = copy.deepcopy(self.attr)
