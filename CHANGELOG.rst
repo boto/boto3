@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.79
+======
+
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.7.78
 ======
 
