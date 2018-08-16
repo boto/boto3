@@ -29,11 +29,11 @@ In this example, Python code is used to obtain a list of existing Amazon S3 buck
 and upload a file to a specified bucket. The code uses the AWS SDK for Python to get information from 
 and upload files to an Amazon S3 bucket using these methods of the Amazon S3 client class:
 
-* `list_buckets <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.list_buckets>`_
+* `list_buckets <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_buckets>`_
 
-* `create_bucket <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket>`_
+* `create_bucket <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.create_bucket>`_
 
-* `upload_file <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.upload_file>`_
+* `upload_file <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file>`_
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
@@ -52,7 +52,7 @@ List all the buckets owned by the authenticated sender of the request.
 The example below shows how to:
  
 * List buckets using 
-  `list_buckets <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.list_buckets>`_.
+  `list_buckets <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_buckets>`_.
  
 
 Example
@@ -81,7 +81,7 @@ Create an Amazon S3 Bucket
 The example below shows how to:
  
 * Create a new bucket using 
-  `create_bucket <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.create_bucket>`_.
+  `create_bucket <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.create_bucket>`_.
  
 
 Example
@@ -101,7 +101,7 @@ Upload a File to an Amazon S3 Bucket
 The example below shows how to:
  
 * Upload a file to a bucket using 
-  `upload_file <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.upload_file>`_.
+  `upload_file <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.upload_file>`_.
  
 
 Example

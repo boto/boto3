@@ -21,11 +21,11 @@ In this example, Python code is used to configure any of your buckets to act as 
 The code uses the AWS SDK for Python to configure a selected Amazon S3 bucket using these methods 
 of the Amazon S3 client class:
 
-* `get_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_website>`_
+* `get_bucket_website <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_website>`_
 
-* `put_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_website>`_
+* `put_bucket_website <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_bucket_website>`_
 
-* `delete_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.delete_bucket_website>`_
+* `delete_bucket_website <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.delete_bucket_website>`_
 
 For more information about using an Amazon S3 bucket as a static web host, see 
 `Hosting a Static Website on Amazon S3 <http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html>`_ 
@@ -46,7 +46,7 @@ Get the Current Bucket Website Configuration
 The example below shows how to:
  
 * Get the bucket website configuration using 
-  `get_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_website>`_.
+  `get_bucket_website <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_website>`_.
  
 Example
 -------
@@ -67,7 +67,7 @@ Set a Bucket Website Configuration
 The example below shows how to:
  
 * Set a bucket website configuration using 
-  `put_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_website>`_.
+  `put_bucket_website <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_bucket_website>`_.
  
 Example
 -------
@@ -98,7 +98,7 @@ Delete a Bucket Website Configuration
 The example below shows how to:
  
 * Delete a bucket website configuration using 
-  `delete_bucket_website <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.delete_bucket_website>`_.
+  `delete_bucket_website <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.delete_bucket_website>`_.
  
 Example
 -------

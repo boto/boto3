@@ -29,11 +29,11 @@ In this example, Python code is used to get, set, or delete a bucket policy on a
 The code uses the AWS SDK for Python to configure policy for a selected Amazon S3 bucket using these 
 methods of the Amazon S3 client class:
 
-* `get_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_policy>`_.
+* `get_bucket_policy <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_policy>`_.
 
-* `put_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_policy>`_.
+* `put_bucket_policy <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_bucket_policy>`_.
 
-* `delete_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.delete_bucket_policy>`_
+* `delete_bucket_policy <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.delete_bucket_policy>`_
 
 For more information about bucket policies for Amazon S3 buckets, see 
 `Using Bucket Policies and User Policies <http://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html>`_ 
@@ -54,7 +54,7 @@ Get the Current Bucket Policy
 The example below shows how to:
  
 * Get the bucket ACL for a specified bucket using 
-  `get_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_policy>`_.
+  `get_bucket_policy <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_policy>`_.
  
 Example
 -------
@@ -79,7 +79,7 @@ Set a Simple Bucket Policy
 The example below shows how to:
  
 * Set the bucket policy for a specified bucket using 
-  `put_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_policy>`_.
+  `put_bucket_policy <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_bucket_policy>`_.
  
 Example
 -------
@@ -119,7 +119,7 @@ Delete a Bucket Policy
 The example below shows how to:
  
 * Delete a bucket policy for a specified bucket using 
-  `delete_bucket_policy <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.delete_bucket_policy>`_.
+  `delete_bucket_policy <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.delete_bucket_policy>`_.
  
 Example
 -------

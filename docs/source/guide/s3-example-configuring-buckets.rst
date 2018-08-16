@@ -23,9 +23,9 @@ In this example, Python code is used to list your Amazon S3 buckets and to confi
 The Python code uses the AWS SDK for Python to configure a selected Amazon S3 bucket using these 
 methods of the Amazon S3 client class:
 
-* `get_bucket_cors <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_cors>`_
+* `get_bucket_cors <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_cors>`_
 
-* `put_bucket_cors <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_cors>`_.
+* `put_bucket_cors <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_bucket_cors>`_.
 
 For more information about using CORS configuration with an Amazon S3 bucket, see 
 `Cross-Origin Resource Sharing (CORS) <http://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html>`_ 
@@ -46,7 +46,7 @@ Get a Bucket CORS Configuration
 The example below shows how to:
  
 * Get a CORS configuration for a specified bucket using 
-  `get_bucket_cors <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_cors>`_.
+  `get_bucket_cors <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_cors>`_.
  
 .. code-block:: python
 
@@ -64,7 +64,7 @@ Set a Bucket CORS Configuration
 The example below shows how to:
  
 * Set a CORS configuration for a specified bucket using 
-  `put_bucket_cors <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.put_bucket_cors>`_.
+  `put_bucket_cors <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.put_bucket_cors>`_.
  
 .. code-block:: python
 

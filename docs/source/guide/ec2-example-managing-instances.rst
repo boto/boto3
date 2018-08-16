@@ -30,17 +30,17 @@ The Scenario
 In this example, Python code is used perform several basic instance management operations. The code uses the 
 AWS SDK for Python to manage the instances by using these methods of the EC2 client class:
 
-* `describe_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_instances>`_.
+* `describe_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instances>`_.
 
-* `monitor_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.monitor_instances>`_.
+* `monitor_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.monitor_instances>`_.
 
-* `unmonitor_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.unmonitor_instances>`_.
+* `unmonitor_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.unmonitor_instances>`_.
 
-* `start_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.start_instances>`_.
+* `start_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.start_instances>`_.
 
-* `stop_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.stop_instances>`_.
+* `stop_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.stop_instances>`_.
 
-* `reboot_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
+* `reboot_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
 
 For more information about the lifecycle of Amazon EC2 instances, see 
 `Instance Lifecycle <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html>`_ 
@@ -63,7 +63,7 @@ on the Amazon Web Services (AWS) infrastructure.
 The example below shows how to:
  
 * Describe one or more EC2 instances using 
-  `describe_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_instances>`_.
+  `describe_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_instances>`_.
  
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
  
@@ -90,10 +90,10 @@ in the *Amazon Elastic Compute Cloud User Guide*.
 The example below shows how to:
  
 * Enable detailed monitoring for a running instance using 
-  `monitor_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.monitor_instances>`_.
+  `monitor_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.monitor_instances>`_.
 
 * Disable detailed monitoring for a running instance using 
-  `unmonitor_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.unmonitor_instances>`_.
+  `unmonitor_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.unmonitor_instances>`_.
   
 Example
 -------
@@ -125,10 +125,10 @@ if transitions happen multiple times within a single hour.
 The example below shows how to:
  
 * Start an Amazon EBS-backed AMI that you've previously stopped using 
-  `start_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.start_instances>`_.
+  `start_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.start_instances>`_.
 
 * Stop an Amazon EBS-backed instance using 
-  `stop_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.stop_instances>`_.
+  `stop_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.stop_instances>`_.
  
 Example
 -------
@@ -184,7 +184,7 @@ you. Requests to reboot terminated instances are ignored.
 The example below shows how to:
  
 * Request a reboot of one or more instances using 
-  `reboot_instances <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
+  `reboot_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
  
 Example
 -------

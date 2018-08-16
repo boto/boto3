@@ -32,11 +32,11 @@ public and private keys are known as a key pair.
 In this example, Python code is used to perform several Amazon EC2 key pair management 
 operations. The code uses the AWS SDK for Python to manage IAM access keys using these methods of the EC2 client class:
 
-* `describe_key_pairs <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_key_pairs>`_.
+* `describe_key_pairs <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_key_pairs>`_.
 
-* `create_key_pair <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.create_key_pair>`_.
+* `create_key_pair <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.create_key_pair>`_.
 
-* `delete_key_pair <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.delete_key_pair>`_.
+* `delete_key_pair <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.delete_key_pair>`_.
 
 For more information about the Amazon EC2 key pairs, see `Amazon EC2 Key Pairs <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html>`_ 
 in the *Amazon EC2 User Guide for Linux Instances* 
@@ -58,7 +58,7 @@ Describe one or more of your key pairs.
 The example below shows how to:
  
 * Describe keypairs using 
-  `describe_key_pairs <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_key_pairs>`_.
+  `describe_key_pairs <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_key_pairs>`_.
  
 Example
 -------
@@ -82,7 +82,7 @@ PKCS#8 private key. If a key with the specified name already exists, Amazon EC2 
 The example below shows how to:
  
 * Create a 2048-bit RSA key pair with a specified name using 
-  `create_key_pair <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.create_key_pair>`_.
+  `create_key_pair <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.create_key_pair>`_.
   
 Example
 -------
@@ -104,7 +104,7 @@ Delete the specified key pair, by removing the public key from Amazon EC2.
 The example below shows how to:
  
 * Delete a key pair by removing the public key from Amazon EC2 using 
-  `delete_key_pair <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.delete_key_pair>`_.
+  `delete_key_pair <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.delete_key_pair>`_.
  
 Example
 -------
