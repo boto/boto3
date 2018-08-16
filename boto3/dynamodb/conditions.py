@@ -124,6 +124,12 @@ class AttributeBase(object):
         """
         return Between(self, low_value, high_value)
 
+    def __eq__(self, other):
+        return isinstance(other, type(self)) and self.name == other.name
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 
 class ConditionAttributeBase(ConditionBase, AttributeBase):
     """This base class is for conditions that can have attribute methods.
@@ -136,6 +142,13 @@ class ConditionAttributeBase(ConditionBase, AttributeBase):
         # This is assuming the first value to the condition is the attribute
         # in which can be used to generate its attribute base.
         AttributeBase.__init__(self, values[0].name)
+
+    def __eq__(self, other):
+        return ConditionBase.__eq__(self, other) and \
+               AttributeBase.__eq__(self, other)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 class ComparisonCondition(ConditionBase):
