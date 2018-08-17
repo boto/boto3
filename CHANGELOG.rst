@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.7.80
+======
+
+* api-change:``dax``: [``botocore``] Update dax client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.7.79
 ======
 
