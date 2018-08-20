@@ -30,9 +30,9 @@ In this example, Python code is used to get and send CloudWatch metrics data.
 The code uses the uses the AWS SDK for Python to get metrics from CloudWatch 
 using these methods of the CloudWatch client class:
 
-* `paginate('list_metrics') <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
+* `paginate('list_metrics') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
 
-* `put_metric_data <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_data>`_.
+* `put_metric_data <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_data>`_.
 
 For more information about CloudWatch metrics, see `Using Amazon CloudWatch Metrics <http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/working_with_metrics.html>`_ in the 
 *Amazon CloudWatch User Guide*.
@@ -53,7 +53,7 @@ List the metric alarm events uploaded to CloudWatch Logs.
 The example below shows how to:
  
 * List metric alarms of incoming log events using 
-  `paginate('list_metrics') <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
+  `paginate('list_metrics') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
  
 For more information about paginators see, :doc:`paginators`
 
@@ -86,7 +86,7 @@ in calls to ListMetrics.
 The example below shows how to:
  
 * Publish custom metrics using 
-  `put_metric_data <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_data>`_.
+  `put_metric_data <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_data>`_.
  
 
 Example

@@ -26,11 +26,11 @@ AWS account alias, your sign-in page URL changes to incorporate the alias.
 In this example, Python code is used to create and manage IAM account aliases. The code uses the 
 AWS SDK for Python to manage IAM access keys using these methods of the IAM client class:
 
-* `create_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_account_alias>`_.
+* `create_account_alias <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.create_account_alias>`_.
 
-* `get_paginator('list_account_aliases') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
+* `get_paginator('list_account_aliases') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
 
-* `delete_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_account_alias>`_.
+* `delete_account_alias <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.delete_account_alias>`_.
 
 For more information about IAM account aliases, see `Your AWS Account ID and Its Alias <http://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html>`_ 
 in the *IAM User Guide*.
@@ -52,7 +52,7 @@ in the *IAM User Guide*.
 The example below shows how to:
  
 * Create an account alias using 
-  `create_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_account_alias>`_.
+  `create_account_alias <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.create_account_alias>`_.
  
 Example
 -------
@@ -79,7 +79,7 @@ in the *IAM User Guide*.
 The example below shows how to:
  
 * List account aliases using 
-  `get_paginator('list_account_aliases') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
+  `get_paginator('list_account_aliases') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
  
 For more information about paginators see, :doc:`paginators`
  
@@ -108,7 +108,7 @@ in the *IAM User Guide*.
 The example below shows how to:
  
 * Delete an account alias using 
-  `delete_account_alias <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_account_alias>`_.
+  `delete_account_alias <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.delete_account_alias>`_.
  
 Example
 -------

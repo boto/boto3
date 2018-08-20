@@ -23,7 +23,7 @@ In this example, a Python code is used to display the bucket access control list
 bucket. The code uses the AWS SDK for Python to manage Amazon S3 bucket access permissions using this 
 method of the Amazon S3 client class:
 
-* `get_bucket_acl <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_acl>`_.
+* `get_bucket_acl <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_acl>`_.
 
 For more information about access control lists for Amazon S3 buckets, see 
 `Managing Access with ACLs <http://docs.aws.amazon.com/AmazonS3/latest/dev/S3_ACLs_UsingACLs.html>`_ 
@@ -48,7 +48,7 @@ AWS accounts.
 The example below shows how to:
  
 * Get the bucket ACL for a specified bucket using 
-  `get_bucket_acl <https://boto3.readthedocs.io/en/latest/reference/services/s3.html#S3.Client.get_bucket_acl>`_.
+  `get_bucket_acl <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_bucket_acl>`_.
  
 Example
 -------

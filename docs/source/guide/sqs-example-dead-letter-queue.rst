@@ -28,7 +28,7 @@ to a dead letter queue. Multiple queues can target a single dead letter queue.
 In this example, Python code is used to route messages to a dead letter queue. The code uses the 
 SDK for Python to use dead letter queues using this method of the AWS.SQS client class:
 
-* `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+* `set_queue_attributes <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
 
 For more information about Amazon SQS dead letter queues, see 
 `Using Amazon SQS Dead Letter Queues <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html>`_ 
@@ -57,7 +57,7 @@ before they are routed to the dead letter queue.
 The example below shows how to:
  
 * Configure a source queue using 
-  `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+  `set_queue_attributes <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
  
 
 Example

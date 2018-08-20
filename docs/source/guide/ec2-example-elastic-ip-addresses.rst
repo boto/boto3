@@ -34,11 +34,11 @@ In this example, Python code performs several Amazon EC2 operations involving El
 The code uses the AWS SDK for Python to manage IAM access keys using these methods of the EC2
 client class:
 
-* `describe_addresses <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_addresses>`_.
+* `describe_addresses <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_addresses>`_.
 
-* `allocate_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.allocate_address>`_.
+* `allocate_address <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.allocate_address>`_.
 
-* `release_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.release_address>`_.
+* `release_address <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.release_address>`_.
 
 For more information about Elastic IP addresses in Amazon EC2, see 
 `Elastic IP Addresses <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html>`_ 
@@ -63,7 +63,7 @@ an instance or software by rapidly remapping the address to another instance in 
 The example below shows how to:
  
 * Describe Elastic IP addresses using 
-  `describe_addresses <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.describe_addresses>`_.
+  `describe_addresses <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_addresses>`_.
  
 Example
 -------
@@ -90,7 +90,7 @@ an instance or software by rapidly remapping the address to another instance in 
 The example below shows how to:
  
 * Acquire an Elastic IP address using 
-  `allocate_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.allocate_address>`_.
+  `allocate_address <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.allocate_address>`_.
  
 Example
 -------
@@ -123,7 +123,7 @@ error if the address is already allocated to another AWS account.
 The example below shows how to:
  
 * Release the specified Elastic IP address using 
-  `release_address <https://boto3.readthedocs.io/en/latest/reference/services/ec2.html#EC2.Client.release_address>`_.
+  `release_address <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.release_address>`_.
  
 Example
 -------

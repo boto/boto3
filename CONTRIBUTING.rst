@@ -1,5 +1,5 @@
 For more information, please see the official docs at
-https://boto3.readthedocs.io/
+https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
 
 Contributing Code
 -----------------
