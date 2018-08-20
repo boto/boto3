@@ -32,7 +32,7 @@ To set up and run this example, you must first set up the following:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 * Create a Secret with the AWS Secrets Manager, as described in the `AWS Secrets Manager Developer Guide <https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html>`_
 
-Retrive the Secret Value
+Retrieve the Secret Value
 =============================================
 
 The example below shows how to:
