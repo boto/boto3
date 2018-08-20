@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.7.81
+======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+
+
 1.7.80
 ======
 
@@ -1162,7 +1169,7 @@ CHANGELOG
 * bugfix:Session: Fixed Session.__repr__ region argument name.
 * feature:s3: Add managed copies to S3 client, Bucket, and Object.
 * feature:s3: Add managed downloads to file-like objects in the S3 client, Bucket, and Object.
-* bugfix:s3: Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://boto3.readthedocs.io/en/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed.
+* bugfix:s3: Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed.
 * feature:s3: Add ``io_chunksize`` parameter to ``TransferConfig``
 
 
