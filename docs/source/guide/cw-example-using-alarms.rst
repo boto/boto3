@@ -31,9 +31,9 @@ In this example, Python code is used to define an alarm action in CloudWatch tha
 triggers the reboot of an Amazon EC2 instance. The code uses the uses AWS SDK for Python to manage 
 Amazon EC2 instances using these methods of the CloudWatch client class:
 
-* `put_metric_alarm <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
+* `put_metric_alarm <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
 
-* `disable_alarm_actions <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.disable_alarm_actions>`_.
+* `disable_alarm_actions <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.disable_alarm_actions>`_.
 
 
 For more information about CloudWatch alarm actions, see 
@@ -91,7 +91,7 @@ the previous configuration of the alarm.
 The example below shows how to:
  
 * Create an alarm and enable actions using 
-  `put_metric_alarm <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
+  `put_metric_alarm <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
  
 Example
 -------
@@ -136,7 +136,7 @@ do not execute when the alarm state changes.
 The example below shows how to:
  
 * Disable metric alarm actions using 
-  `disable_alarm_actions <https://boto3.readthedocs.io/en/latest/reference/services/cloudwatch.html#CloudWatch.Client.disable_alarm_actions>`_.
+  `disable_alarm_actions <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.disable_alarm_actions>`_.
  
 Example
 -------

@@ -35,11 +35,11 @@ parameter on a message when it is received.
 In this example, Python code is used to enable long polling. The code uses the AWS SDK for Python to 
 enable long polling using these methods of the AWS.SQS client class:
 
-* `create_queue <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.create_queue>`_
+* `create_queue <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.create_queue>`_
 
-* `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+* `set_queue_attributes <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
 
-* `receive_message <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.receive_message>`_.
+* `receive_message <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.receive_message>`_.
 
 For more information about Amazon SQS long polling, see 
 `Long Polling <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html>`_ 
@@ -60,7 +60,7 @@ Enable Long Polling When Creating a Queue
 The example below shows how to:
  
 * Create a queue and enable long polling using 
-  `create_queue <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.create_queue>`_.
+  `create_queue <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.create_queue>`_.
  
 
 Example
@@ -88,7 +88,7 @@ Enable Long Polling on an Existing Queue
 The example below shows how to:
  
 * Enable long polling on an existing queue using 
-  `set_queue_attributes <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+  `set_queue_attributes <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
  
 
 Example
@@ -120,7 +120,7 @@ in the *Amazon SQS Developer Guide*.
 The example below shows how to:
  
 * Enable a long poll for message on provided SQS queue using 
-  `receive_message <https://boto3.readthedocs.io/en/latest/reference/services/sqs.html#SQS.Client.receive_message>`_.
+  `receive_message <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.receive_message>`_.
  
 
 Example

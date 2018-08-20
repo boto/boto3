@@ -28,13 +28,13 @@ In this example, python code is used to handle server certificates in IAM. The c
 Amazon Web Services (AWS) SDK for Python to manage server certificates using these methods of the 
 IAM client class:
 
-* `get_paginator('list_server_certificates') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_access_key>`_.
+* `get_paginator('list_server_certificates') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.update_access_key>`_.
 
-* `get_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_server_certificate>`_.
+* `get_server_certificate <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_server_certificate>`_.
 
-* `update_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_server_certificate>`_.
+* `update_server_certificate <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.update_server_certificate>`_.
 
-* `delete_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_server_certificate>`_.
+* `delete_server_certificate <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.delete_server_certificate>`_.
     
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
@@ -54,7 +54,7 @@ List the server certificates stored in IAM. If none exist, the action returns an
 The example below shows how to:
  
 * List server certificates using 
-  `get_paginator('list_server_certificates') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
+  `get_paginator('list_server_certificates') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
   
 For more information about paginators see, :doc:`paginators`
  
@@ -81,7 +81,7 @@ Get information about the specified server certificate stored in IAM.
 The example below shows how to:
  
 * Get a server certificate using 
-  `get_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_server_certificate>`_.
+  `get_server_certificate <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_server_certificate>`_.
  
 Example
 -------
@@ -106,7 +106,7 @@ Update the name and/or the path of the specified server certificate stored in IA
 The example below shows how to:
  
 * Update a server certificate using 
-  `update_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_server_certificate>`_.
+  `update_server_certificate <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.update_server_certificate>`_.
  
 Example
 -------
@@ -132,7 +132,7 @@ Delete the specified server certificate.
 The example below shows how to:
  
 * Delete a server certificate using 
-  `delete_server_certificate <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_server_certificate>`_.
+  `delete_server_certificate <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.delete_server_certificate>`_.
  
 Example
 -------

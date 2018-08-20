@@ -23,13 +23,13 @@ In this example Python code is used to create and manage users in IAM. The code 
 Amazon Web Services (AWS) SDK for Python to manage users using these methods of the 
 IAM client class:
 
-* `create_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_user>`_
+* `create_user <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.create_user>`_
 
-* `get_paginator('list_users') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
+* `get_paginator('list_users') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
 
-* `update_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_user>`_.
+* `update_user <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.update_user>`_.
 
-* `delete_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_user>`_.
+* `delete_user <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.delete_user>`_.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
     
@@ -53,7 +53,7 @@ in the *IAM User Guide*.
 The example below shows how to:
  
 * Create a new IAM user using 
-  `create_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.create_user>`_.
+  `create_user <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.create_user>`_.
   
 Example
 -------
@@ -80,7 +80,7 @@ List the IAM users.
 The example below shows how to:
  
 * List the IAM users using 
-  `get_paginator('list_users') <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
+  `get_paginator('list_users') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.get_paginator>`_.
   
 For more information about paginators see, :doc:`paginators`
  
@@ -113,7 +113,7 @@ in the *IAM User Guide*.
 The example below shows how to:
  
 * Update an IAM user name using 
-  `update_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.update_user>`_.
+  `update_user <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.update_user>`_.
  
 Example
 -------
@@ -141,7 +141,7 @@ certificates, or attached policies.
 The example below shows how to:
  
 * Delete an IAM user name using 
-  `delete_user <https://boto3.readthedocs.io/en/latest/reference/services/iam.html#IAM.Client.delete_user>`_.
+  `delete_user <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/iam.html#IAM.Client.delete_user>`_.
 
 Example
 -------
