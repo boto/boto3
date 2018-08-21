@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.7.82
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+
+
 1.7.81
 ======
 
