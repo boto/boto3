@@ -72,7 +72,8 @@ class BaseDocsTest(unittest.TestCase):
                 'endpointPrefix': 'myservice',
                 'signatureVersion': 'v4',
                 'serviceFullName': 'AWS MyService',
-                'protocol': 'query'
+                'protocol': 'query',
+                'serviceId': 'MyService',
             },
             'operations': {
                 'SampleOperation': {
