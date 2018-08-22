@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.7.83
+======
+
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+
+
 1.7.82
 ======
 
