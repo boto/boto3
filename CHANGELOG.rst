@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.7.84
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.7.83
 ======
 
