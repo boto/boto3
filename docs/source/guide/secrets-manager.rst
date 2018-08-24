@@ -38,7 +38,7 @@ Retrieve the Secret Value
 The following example shows how to:
  
 * Retrieve a secret value using 
-  `get_secret_value <https://boto3.readthedocs.io/en/latest/reference/services/secretsmanager.html#SecretsManager.Client.get_secret_value>`_.
+  `get_secret_value <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/secretsmanager.html#SecretsManager.Client.get_secret_value>`_.
  
 Example
 -------
