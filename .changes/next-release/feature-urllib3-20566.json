@@ -1,5 +1,0 @@
-{
-  "category": "urllib3", 
-  "type": "feature", 
-  "description": "[``botocore``] The vendored version of requests and urllib3 are no longer being used and botocore now has a direct dependency on newer versions of upstream urllib3."
-}
