@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.8.0
+=====
+
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* feature:urllib3: [``botocore``] The vendored version of requests and urllib3 are no longer being used and botocore now has a direct dependency on newer versions of upstream urllib3.
+
+
 1.7.84
 ======
 
