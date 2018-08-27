@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.8.2
+=====
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``signer``: [``botocore``] Update signer client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+
+
 1.8.1
 =====
 
