@@ -12,7 +12,7 @@ services that are supported.
 
 
 .. _boto: https://docs.pythonboto.org/
-.. _`doc site`: https://boto3.amazonaws.com/v1/documentation/api/latest
+.. _`doc site`: https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
 .. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
     :target: https://travis-ci.org/boto/boto3
     :alt: Build Status
