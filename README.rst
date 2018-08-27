@@ -12,10 +12,13 @@ services that are supported.
 
 
 .. _boto: https://docs.pythonboto.org/
-.. _`doc site`: https://boto3.amazonaws.com/v1/documentation/api/latest
+.. _`doc site`: https://boto3.readthedocs.io/en/latest/
 .. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
     :target: https://travis-ci.org/boto/boto3
     :alt: Build Status
+.. |Docs| image:: https://img.shields.io/badge/Docs-Online-green.svg&style=flat
+    :target: https://boto3.readthedocs.io/en/latest/
+    :alt: Project documentation 
 .. |Gitter| image:: https://badges.gitter.im/boto/boto3.svg
    :target: https://gitter.im/boto/boto3
    :alt: Gitter
