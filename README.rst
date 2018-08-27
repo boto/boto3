@@ -16,7 +16,7 @@ services that are supported.
 .. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
     :target: https://travis-ci.org/boto/boto3
     :alt: Build Status
-.. |Docs| image:: https://img.shields.io/badge/Docs-Online-green.svg&style=flat
+.. |Docs| image:: https://img.shields.io/badge/Docs-Online-green.svg?style=flat
     :target: https://boto3.readthedocs.io/en/latest/
     :alt: Project documentation 
 .. |Gitter| image:: https://badges.gitter.im/boto/boto3.svg
