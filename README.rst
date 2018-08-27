@@ -2,7 +2,7 @@
 Boto 3 - The AWS SDK for Python
 ===============================
 
-|Build Status| |Docs| |Version| |Gitter|
+|Build Status| |Version| |Gitter|
 
 Boto3 is the Amazon Web Services (AWS) Software Development Kit (SDK) for
 Python, which allows Python developers to write software that makes use
