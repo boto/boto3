@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.8.3
+=====
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+
+
 1.8.2
 =====
 

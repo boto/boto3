@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``xray``", 
+    "description": "[``botocore``] Update xray client to latest version", 
+    "type": "api-change"
+  }
+]
