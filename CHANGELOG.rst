@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.8.4
+=====
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+
+
 1.8.3
 =====
 
