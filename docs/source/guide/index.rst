@@ -34,3 +34,4 @@ Service Feature Guides
 
    dynamodb
    s3
+   secrets-manager

@@ -10,9 +10,9 @@
    
 .. _aws-boto3-secrets-manager:   
 
-###############################################
-Retrieving a Secret from AWS Secrets Manager
-###############################################
+###################
+AWS Secrets Manager
+###################
 
 This Python example shows you how to retrieve the decrypted secret value from an AWS Secrets Manager secret. The secret could be created using either the Secrets Manager console or the CLI/SDK. 
 
@@ -51,14 +51,12 @@ Example
 
     def get_secret():
         secret_name = "MySecretName"
-        endpoint_url = "https://secretsmanager.us-west-2.amazonaws.com"
         region_name = "us-west-2"
 
         session = boto3.session.Session()
         client = session.client(
             service_name='secretsmanager',
             region_name=region_name,
-            endpoint_url=endpoint_url
         )
 
         try:
