@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "signing", 
+    "description": "[``botocore``] Fix an issue where mixed endpoint casing could cause a SigV4 signature mismatch.", 
+    "type": "bugfix"
+  }
+]

@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.8.5
+=====
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* bugfix:signing: [``botocore``] Fix an issue where mixed endpoint casing could cause a SigV4 signature mismatch.
+
+
 1.8.4
 =====
 
