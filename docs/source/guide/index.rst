@@ -32,5 +32,6 @@ Service Feature Guides
 
 .. toctree::
 
+   cloud9
    dynamodb
    s3

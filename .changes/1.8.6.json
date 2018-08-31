@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``waf-regional``", 
+    "description": "[``botocore``] Update waf-regional client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``waf``", 
+    "description": "[``botocore``] Update waf client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Update eks client to latest version", 
+    "type": "api-change"
+  }
+]
