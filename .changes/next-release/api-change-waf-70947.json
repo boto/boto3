@@ -1,5 +1,0 @@
-{
-  "category": "``waf``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update waf client to latest version"
-}

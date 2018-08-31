@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.8.6
+=====
+
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.8.5
 =====
 
