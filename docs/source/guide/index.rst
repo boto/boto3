@@ -35,3 +35,4 @@ Service Feature Guides
    cloud9
    dynamodb
    s3
+   secrets-manager
