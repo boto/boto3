@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.8.7
+=====
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.8.6
 =====
 
