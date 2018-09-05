@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.8.8
+=====
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``elb``: [``botocore``] Update elb client to latest version
+
+
 1.8.7
 =====
 

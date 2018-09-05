@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appstream``", 
+    "description": "[``botocore``] Update appstream client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dynamodb``", 
+    "description": "[``botocore``] Update dynamodb client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elb``", 
+    "description": "[``botocore``] Update elb client to latest version", 
+    "type": "api-change"
+  }
+]
