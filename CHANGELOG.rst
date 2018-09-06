@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.8.9
+=====
+
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.8.8
 =====
 
