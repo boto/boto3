@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.1
+=====
+
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
+
+
 1.9.0
 =====
 

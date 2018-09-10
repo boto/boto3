@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``redshift``", 
+    "description": "[``botocore``] Update redshift client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudhsmv2``", 
+    "description": "[``botocore``] Update cloudhsmv2 client to latest version", 
+    "type": "api-change"
+  }
+]
