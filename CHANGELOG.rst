@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.2
+=====
+
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.1
 =====
 
