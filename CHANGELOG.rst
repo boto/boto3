@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.3
+=====
+
+* api-change:``ses``: [``botocore``] Update ses client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.9.2
 =====
 
