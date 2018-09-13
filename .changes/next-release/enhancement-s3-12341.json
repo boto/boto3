@@ -1,0 +1,5 @@
+{
+  "category": "s3", 
+  "type": "enhancement", 
+  "description": "[``botocore``] Adds encoding and decoding handlers for ListObjectsV2 `#1552 <https://github.com/boto/botocore/issues/1552>`__"
+}
