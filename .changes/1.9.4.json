@@ -1,0 +1,12 @@
+[
+  {
+    "category": "s3", 
+    "description": "[``botocore``] Adds encoding and decoding handlers for ListObjectsV2 `#1552 <https://github.com/boto/botocore/issues/1552>`__", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }
+]
