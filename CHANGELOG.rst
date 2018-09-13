@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.4
+=====
+
+* enhancement:s3: [``botocore``] Adds encoding and decoding handlers for ListObjectsV2 `#1552 <https://github.com/boto/botocore/issues/1552>`__
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+
+
 1.9.3
 =====
 
