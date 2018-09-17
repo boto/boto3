@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.5
+=====
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``elastictranscoder``: [``botocore``] Update elastictranscoder client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.9.4
 =====
 
