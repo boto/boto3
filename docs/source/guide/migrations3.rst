@@ -59,8 +59,8 @@ Getting a bucket is easy with Boto 3's resources, however these do not automatic
     except botocore.exceptions.ClientError as e:
         # If a client error is thrown, then check that it was a 404 error.
         # If it was a 404 error, then the bucket does not exist.
-        error_code = int(e.response['Error']['Code'])
-        if error_code == 404:
+        error_code = e.response['Error']['Code']
+        if error_code == '404':
             exists = False
 
 Deleting a Bucket
