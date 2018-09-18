@@ -1,0 +1,5 @@
+{
+  "category": "Serialization", 
+  "type": "bugfix", 
+  "description": "[``botocore``] Fixes `#1557 <https://github.com/boto/botocore/issues/1557>`__. Fixed a regression in serialization where request bodies would be improperly encoded."
+}
