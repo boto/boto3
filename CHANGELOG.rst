@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.6
+=====
+
+* bugfix:Serialization: [``botocore``] Fixes `#1557 <https://github.com/boto/botocore/issues/1557>`__. Fixed a regression in serialization where request bodies would be improperly encoded.
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.9.5
 =====
 
