@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.7
+=====
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.9.6
 =====
 

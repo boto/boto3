@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``cloudwatch``", 
+    "description": "[``botocore``] Update cloudwatch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``organizations``", 
+    "description": "[``botocore``] Update organizations client to latest version", 
+    "type": "api-change"
+  }
+]
