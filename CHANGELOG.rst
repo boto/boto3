@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.10
+======
+
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.9
 =====
 
