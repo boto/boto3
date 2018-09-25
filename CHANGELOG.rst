@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.11
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+
+
 1.9.10
 ======
 
