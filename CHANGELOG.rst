@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.12
+======
+
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.11
 ======
 
