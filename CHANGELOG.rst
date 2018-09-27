@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.13
+======
+
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* enhancement:Event: [``botocore``] Add the `before-send` event which allows finalized requests to be inspected before being sent across the wire and allows for custom responses to be returned.
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+
+
 1.9.12
 ======
 
