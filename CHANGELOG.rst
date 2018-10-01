@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.15
+======
+
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+
+
 1.9.14
 ======
 
