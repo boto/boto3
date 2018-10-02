@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``secretsmanager``", 
+    "description": "[``botocore``] Update secretsmanager client to latest version", 
+    "type": "api-change"
+  }
+]
