@@ -1,0 +1,5 @@
+{
+  "category": "HTTP Session", 
+  "type": "enhancement", 
+  "description": "[``botocore``] Added the ability to enable TCP Keepalive via the shared config file's ``tcp_keepalive`` option."
+}
