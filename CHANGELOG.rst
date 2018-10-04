@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.17
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* enhancement:HTTP Session: [``botocore``] Added the ability to enable TCP Keepalive via the shared config file's ``tcp_keepalive`` option.
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+
+
 1.9.16
 ======
 
