@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``ds``", 
+    "description": "[``botocore``] Update ds client to latest version", 
+    "type": "api-change"
+  }
+]
