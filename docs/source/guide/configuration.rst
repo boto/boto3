@@ -458,6 +458,11 @@ in the ``~/.aws/config`` file:
       and ``auto``.
     * ``signature_version``: Which AWS signature version to use when
       signing requests.  Value values are: ``s3`` and ``s3v4``.
+``tcp_keepalive``
+    Toggles the TCP Keep-Alive socket option used when creating connections.
+    By default this value is ``false``; TCP Keep-Alive will not be used
+    when creating connections. To enable TCP Keep-Alive set this value to
+    ``true``, enabling TCP Keep-Alive with the system default configurations.
 
 
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
