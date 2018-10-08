@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.19
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``iot-jobs-data``: [``botocore``] Update iot-jobs-data client to latest version
+
+
 1.9.18
 ======
 
