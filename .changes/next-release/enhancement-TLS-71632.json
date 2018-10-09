@@ -1,5 +1,0 @@
-{
-  "category": "TLS", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Added support for configuring a client certificate and key when establishing TLS connections."
-}
