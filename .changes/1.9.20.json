@@ -1,0 +1,17 @@
+[
+  {
+    "category": "TLS", 
+    "description": "[``botocore``] Added support for configuring a client certificate and key when establishing TLS connections.", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "InstanceMetadataFetcher", 
+    "description": "[``botocore``] Fix failure to retry on empty credentials and invalid JSON returned from IMDS `1049 <https://github.com/boto/botocore/issues/1049>`__ `1403 <https://github.com/boto/botocore/issues/1403>`__", 
+    "type": "bugfix"
+  }
+]
