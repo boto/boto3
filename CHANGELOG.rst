@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.20
+======
+
+* enhancement:TLS: [``botocore``] Added support for configuring a client certificate and key when establishing TLS connections.
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* bugfix:InstanceMetadataFetcher: [``botocore``] Fix failure to retry on empty credentials and invalid JSON returned from IMDS `1049 <https://github.com/boto/botocore/issues/1049>`__ `1403 <https://github.com/boto/botocore/issues/1403>`__
+
+
 1.9.19
 ======
 
