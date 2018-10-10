@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.21
+======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
 1.9.20
 ======
 
