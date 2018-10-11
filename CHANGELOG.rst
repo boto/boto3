@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.22
+======
+
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+
+
 1.9.21
 ======
 
