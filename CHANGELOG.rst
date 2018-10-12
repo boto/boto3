@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.23
+======
+
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+
+
 1.9.22
 ======
 
