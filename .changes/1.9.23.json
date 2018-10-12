@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``cloudtrail``", 
+    "description": "[``botocore``] Update cloudtrail client to latest version", 
+    "type": "api-change"
+  }
+]
