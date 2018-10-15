@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.24
+======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.9.23
 ======
 
