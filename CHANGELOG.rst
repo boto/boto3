@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.25
+======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+
+
 1.9.24
 ======
 
