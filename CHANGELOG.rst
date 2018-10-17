@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.26
+======
+
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+
+
 1.9.25
 ======
 
