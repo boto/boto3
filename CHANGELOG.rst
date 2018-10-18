@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.27
+======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+
+
 1.9.26
 ======
 
