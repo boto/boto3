@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.28
+======
+
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.27
 ======
 
