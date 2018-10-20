@@ -19,6 +19,7 @@ Amazon SES Examples
    :keywords: Amazon Simple Email Service code examples for Python Botocore 3, AWS Email, Amazon bulk email
 
 Amazon Simple Email Service (SES) is an email platform that provides an easy, cost-effective way for you to send and receive email using your own
+
 email addresses and domains. For more information about Amazon SES, see the `Amazon SES documentation <http://aws.amazon.com/documentation/ses/>`_.
 
 **Examples**
@@ -30,6 +31,5 @@ email addresses and domains. For more information about Amazon SES, see the `Ama
    Working with Email Templates <ses-template>
    Managing Email Filters <ses-filters>
    Using Email Rules <ses-rules>
-   Monitor Your Sending Activity <ses-send-email>
-   
+
    
