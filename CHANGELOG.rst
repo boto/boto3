@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.29
+======
+
+* api-change:``inspector``: [``botocore``] Update inspector client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+
+
 1.9.28
 ======
 
