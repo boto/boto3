@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.31
+======
+
+* api-change:``codestar``: [``botocore``] Update codestar client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.9.30
 ======
 
