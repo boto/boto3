@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``codestar``", 
+    "description": "[``botocore``] Update codestar client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }
+]
