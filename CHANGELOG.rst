@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.33
+======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.32
 ======
 
