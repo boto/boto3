@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }
+]
