@@ -28,7 +28,7 @@ your Amazon EC2 instances. You can use the stop or terminate actions when you no
 instance to be running. You can use the reboot and recover actions to automatically reboot those instances.
 
 In this example, Python code is used to define an alarm action in CloudWatch that 
-triggers the reboot of an Amazon EC2 instance. The code uses the uses AWS SDK for Python to manage 
+triggers the reboot of an Amazon EC2 instance. The code uses the AWS SDK for Python to manage
 Amazon EC2 instances using these methods of the CloudWatch client class:
 
 * `put_metric_alarm <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
