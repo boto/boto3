@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.34
+======
+
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+
+
 1.9.33
 ======
 
