@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``mediastore-data``", 
+    "description": "[``botocore``] Update mediastore-data client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``secretsmanager``", 
+    "description": "[``botocore``] Update secretsmanager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``greengrass``", 
+    "description": "[``botocore``] Update greengrass client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``config``", 
+    "description": "[``botocore``] Update config client to latest version", 
+    "type": "api-change"
+  }
+]
