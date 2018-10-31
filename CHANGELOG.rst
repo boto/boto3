@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.35
+======
+
+* api-change:``mediastore-data``: [``botocore``] Update mediastore-data client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+
+
 1.9.34
 ======
 
