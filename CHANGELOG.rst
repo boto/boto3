@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.36
+======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* enhancement:Exceptions: [``botocore``] Add the ability to pickle botocore exceptions (`834 <https://github.com/boto/botocore/issues/834>`__)
+
+
 1.9.35
 ======
 
