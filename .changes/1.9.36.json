@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Exceptions", 
+    "description": "[``botocore``] Add the ability to pickle botocore exceptions (`834 <https://github.com/boto/botocore/issues/834>`__)", 
+    "type": "enhancement"
+  }
+]
