@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.37
+======
+
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``clouddirectory``: [``botocore``] Update clouddirectory client to latest version
+
+
 1.9.36
 ======
 
