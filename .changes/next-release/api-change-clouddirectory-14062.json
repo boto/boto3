@@ -1,0 +1,5 @@
+{
+  "category": "``clouddirectory``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update clouddirectory client to latest version"
+}
