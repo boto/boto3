@@ -53,7 +53,7 @@ Example
     ses = boto3.client('ses')
 
     response = ses.create_receipt_rule_set(
-      RuleSetName = 'NAME',
+      RuleSetName = 'RULE_SET_NAME',
     )
 
     print(response)
@@ -80,13 +80,13 @@ Example
         'Enabled'   : True,
         'TlsPolicy' : 'Optional',
         'Recipients': [
-          'DOMAIN | EMAIL_ADDRESS',
+          'EMAIL_ADDRESS',
         ],
         'Actions'   : [
           {
             'S3Action'         : {
               'BucketName'     : 'S3_BUCKET_NAME',
-              'ObjectKeyPrefix': 'email'
+              'ObjectKeyPrefix': 'SES_email'
             }
           }
         ],
