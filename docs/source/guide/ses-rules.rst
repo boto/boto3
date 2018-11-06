@@ -77,8 +77,8 @@ Example
       RuleSetName   = 'RULE_SET_NAME',
       Rule          = {
         'Name'      : 'RULE_NAME',
-        'Enabled'   : True | False,
-        'TlsPolicy' : 'Require' | 'Optional',
+        'Enabled'   : True,
+        'TlsPolicy' : 'Optional',
         'Recipients': [
           'DOMAIN | EMAIL_ADDRESS',
         ],
