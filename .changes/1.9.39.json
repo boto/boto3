@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint-email``", 
+    "description": "[``botocore``] Update pinpoint-email client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``waf-regional``", 
+    "description": "[``botocore``] Update waf-regional client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "session config", 
+    "description": "[``botocore``] Added the default session configuration tuples back to session.session_vars_map.", 
+    "type": "bugfix"
+  }
+]
