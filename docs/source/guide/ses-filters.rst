@@ -54,7 +54,7 @@ Example
         'NAME'     : 'NAME',
         'IpFilter' : {
           'Cidr'   : 'IP_ADDRESS_OR_RANGE',
-          'Policy' : 'Allow' | 'Block'
+          'Policy' : 'Allow' 
         }
       }
     )
