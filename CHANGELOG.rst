@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.39
+======
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``pinpoint-email``: [``botocore``] Update pinpoint-email client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+* bugfix:session config: [``botocore``] Added the default session configuration tuples back to session.session_vars_map.
+
+
 1.9.38
 ======
 
