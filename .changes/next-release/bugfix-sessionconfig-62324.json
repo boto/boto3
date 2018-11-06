@@ -1,0 +1,5 @@
+{
+  "category": "session config", 
+  "type": "bugfix", 
+  "description": "[``botocore``] Added the default session configuration tuples back to session.session_vars_map."
+}
