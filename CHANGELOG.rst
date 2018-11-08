@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.41
+======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+
+
 1.9.40
 ======
 
