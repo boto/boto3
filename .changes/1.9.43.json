@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``batch``", 
+    "description": "[``botocore``] Update batch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``firehose``", 
+    "description": "[``botocore``] Update firehose client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudformation``", 
+    "description": "[``botocore``] Update cloudformation client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``budgets``", 
+    "description": "[``botocore``] Update budgets client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }
+]
