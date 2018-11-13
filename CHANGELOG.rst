@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.44
+======
+
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.9.43
 ======
 
