@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.43
+======
+
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.42
 ======
 
