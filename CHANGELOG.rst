@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.45
+======
+
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.44
 ======
 
