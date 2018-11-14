@@ -24,6 +24,8 @@ This Python example shows you how to:
 
 * Reboot an Amazon EC2 instance
 
+* Update the Security Groups on Amazon EC2 instances
+
 The Scenario
 ============
 
@@ -41,6 +43,11 @@ AWS SDK for Python to manage the instances by using these methods of the EC2 cli
 * `stop_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.stop_instances>`_.
 
 * `reboot_instances <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.reboot_instances>`_.
+
+
+The example for updating security groups, uses the EC2 Instance class
+* `modify_attribute <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Instance.modify_attribute>`_.
+
 
 For more information about the lifecycle of Amazon EC2 instances, see 
 `Instance Lifecycle <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html>`_ 
@@ -210,3 +217,33 @@ Example
         print('Success', response)
     except ClientError as e:
         print('Error', e)
+
+
+Update Security Groups
+================
+Queries instances based on their Name tag.
+then iterates through them and updates their security groups.
+
+
+The example below shows how to:
+ 
+Update security groups using modify_attribute
+* `modify_attribute <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Instance.modify_attribute>`_.
+ 
+Example
+-------
+
+.. code-block:: python
+
+
+    import boto3
+
+    custom_filter = [{
+        'Name':'tag:Name', 
+        'Values': 'INSTANCENAME'}]
+
+    ec2 = boto3.resource('ec2')
+    instances = ec2.instances.filter(Filters=custom_filter)
+
+    for instance in instances:
+        instance.modify_attribute(Groups=['sg-XXXXXXX','sg-XXXXXXX'],DryRun=False)
