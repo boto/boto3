@@ -2,6 +2,26 @@
 CHANGELOG
 =========
 
+1.9.46
+======
+
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``sms-voice``: [``botocore``] Update sms-voice client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``ram``: [``botocore``] Update ram client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``route53resolver``: [``botocore``] Update route53resolver client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+
+
 1.9.45
 ======
 
