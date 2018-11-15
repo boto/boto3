@@ -1,5 +1,0 @@
-{
-  "category": "``sms-voice``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update sms-voice client to latest version"
-}
