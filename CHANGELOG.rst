@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.47
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.46
 ======
 
