@@ -1,0 +1,5 @@
+{
+  "category": "``workdocs``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update workdocs client to latest version"
+}
