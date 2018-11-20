@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.9.48
+======
+
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``workdocs``: [``botocore``] Update workdocs client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+
+
 1.9.47
 ======
 
