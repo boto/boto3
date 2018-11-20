@@ -10,9 +10,10 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from collections import Mapping, Set
 from decimal import Decimal, Context, Clamped
 from decimal import Overflow, Inexact, Underflow, Rounded
+
+from boto3.compat import collections_abc
 
 from botocore.compat import six
 
@@ -174,7 +175,7 @@ class TypeSerializer(object):
         return False
 
     def _is_set(self, value):
-        if isinstance(value, Set):
+        if isinstance(value, collections_abc.Set):
             return True
         return False
 
@@ -185,7 +186,7 @@ class TypeSerializer(object):
         return False
 
     def _is_map(self, value):
-        if isinstance(value, Mapping):
+        if isinstance(value, collections_abc.Mapping):
             return True
         return False
 

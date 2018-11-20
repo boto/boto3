@@ -10,10 +10,10 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import collections
 from decimal import Decimal
 
 import boto3.session
+from boto3.compat import collections_abc
 from boto3.dynamodb.types import Binary
 from boto3.dynamodb.conditions import Attr, Key
 from tests import unittest, unique_id
@@ -167,7 +167,7 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
     def test_condition_attribute_type(self):
         r = self.scan(
             filter_expression=Attr('MyMap').attribute_type('M'))
-        self.assertIsInstance(r['Items'][0]['MyMap'], collections.Mapping)
+        self.assertIsInstance(r['Items'][0]['MyMap'], collections_abc.Mapping)
 
     def test_condition_and(self):
         r = self.scan(
