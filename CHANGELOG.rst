@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.9.49
+======
+
+* api-change:``autoscaling-plans``: [``botocore``] Update autoscaling-plans client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+
+
 1.9.48
 ======
 
