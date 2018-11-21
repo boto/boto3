@@ -1,5 +1,0 @@
-{
-  "category": "``devicefarm``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update devicefarm client to latest version"
-}
