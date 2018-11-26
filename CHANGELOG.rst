@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.51
+======
+
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+
+
 1.9.50
 ======
 
