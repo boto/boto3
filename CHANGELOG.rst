@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.9.52
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``sms``: [``botocore``] Update sms client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+
+
 1.9.51
 ======
 
