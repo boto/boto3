@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] Update fsx client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dynamodb``", 
+    "description": "[``botocore``] Update dynamodb client to latest version", 
+    "type": "api-change"
+  }
+]
