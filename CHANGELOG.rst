@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.9.53
+======
+
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+* api-change:``translate``: [``botocore``] Update translate client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``kinesisanalytics``: [``botocore``] Update kinesisanalytics client to latest version
+* api-change:``comprehendmedical``: [``botocore``] Update comprehendmedical client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``kinesisanalyticsv2``: [``botocore``] Update kinesisanalyticsv2 client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.52
 ======
 
