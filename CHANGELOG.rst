@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.54
+======
+
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+
+
 1.9.53
 ======
 
