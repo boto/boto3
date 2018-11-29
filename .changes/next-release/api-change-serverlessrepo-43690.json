@@ -1,0 +1,5 @@
+{
+  "category": "``serverlessrepo``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update serverlessrepo client to latest version"
+}
