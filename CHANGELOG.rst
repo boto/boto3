@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.9.56
+======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.9.55
 ======
 
