@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.55
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+
+
 1.9.54
 ======
 
