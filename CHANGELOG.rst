@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.57
+======
+
+* bugfix:s3: [``botocore``] Add md5 header injection to new operations that require it
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.9.56
 ======
 

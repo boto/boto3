@@ -1,5 +1,0 @@
-{
-  "category": "s3", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Add md5 header injection to new operations that require it"
-}
