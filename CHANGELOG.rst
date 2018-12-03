@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.58
+======
+
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.9.57
 ======
 
