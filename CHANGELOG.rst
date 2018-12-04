@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.59
+======
+
+* api-change:``health``: [``botocore``] Update health client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.9.58
 ======
 
