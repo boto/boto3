@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``mq``", 
+    "description": "[``botocore``] Update mq client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediatailor``", 
+    "description": "[``botocore``] Update mediatailor client to latest version", 
+    "type": "api-change"
+  }
+]
