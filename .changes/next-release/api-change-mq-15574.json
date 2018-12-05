@@ -1,0 +1,5 @@
+{
+  "category": "``mq``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update mq client to latest version"
+}
