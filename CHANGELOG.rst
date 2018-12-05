@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.60
+======
+
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+
+
 1.9.59
 ======
 
