@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.61
+======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.60
 ======
 
