@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.62
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* enhancement:AssumeRole: [``botocore``] Add support for duration_seconds when assuming a role in the config file (`#1600 <https://github.com/boto/botocore/issues/1600>`__).
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.9.61
 ======
 
