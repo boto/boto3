@@ -24,4 +24,5 @@ Amazon Web Services (AWS) SDK for Python.
    ec2-examples
    iam-examples
    s3-examples
+   ses-examples
    sqs-examples
