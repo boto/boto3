@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.63
+======
+
+* api-change:``mediastore``: [``botocore``] Update mediastore client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.9.62
 ======
 
