@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``mediastore``", 
+    "description": "[``botocore``] Update mediastore client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }
+]
