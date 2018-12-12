@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.64
+======
+
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.9.63
 ======
 
