@@ -1,5 +1,0 @@
-{
-  "category": "``pinpoint-email``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update pinpoint-email client to latest version"
-}
