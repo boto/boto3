@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.65
+======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``pinpoint-email``: [``botocore``] Update pinpoint-email client to latest version
+
+
 1.9.64
 ======
 
