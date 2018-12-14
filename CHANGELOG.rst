@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.66
+======
+
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+
+
 1.9.65
 ======
 
