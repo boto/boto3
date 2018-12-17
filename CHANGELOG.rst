@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.67
+======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+
+
 1.9.66
 ======
 
