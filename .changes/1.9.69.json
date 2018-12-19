@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``waf-regional``", 
+    "description": "[``botocore``] Update waf-regional client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``waf``", 
+    "description": "[``botocore``] Update waf client to latest version", 
+    "type": "api-change"
+  }
+]
