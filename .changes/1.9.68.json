@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``apigatewayv2``", 
+    "description": "[``botocore``] Update apigatewayv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Credentials", 
+    "description": "[``botocore``] Fixes an issue where credentials would be checked when creating an anonymous client. Fixes `#1472 <https://github.com/boto/botocore/issues/1472>`__", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticbeanstalk``", 
+    "description": "[``botocore``] Update elasticbeanstalk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``globalaccelerator``", 
+    "description": "[``botocore``] Update globalaccelerator client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "StreamingBody", 
+    "description": "[``botocore``] Support iterating lines from a streaming response body with CRLF line endings", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``apigatewaymanagementapi``", 
+    "description": "[``botocore``] Update apigatewaymanagementapi client to latest version", 
+    "type": "api-change"
+  }
+]

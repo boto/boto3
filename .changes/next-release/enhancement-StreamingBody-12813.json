@@ -1,5 +1,0 @@
-{
-  "category": "StreamingBody", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Support iterating lines from a streaming response body with CRLF line endings"
-}
