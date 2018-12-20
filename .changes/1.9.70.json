@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "EndpointDiscovery", 
+    "description": "[``botocore``] Add a config option, ``endpoint_discovery_enabled``, for automatically discovering endpoints", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``firehose``", 
+    "description": "[``botocore``] Update firehose client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cognito-idp``", 
+    "description": "[``botocore``] Update cognito-idp client to latest version", 
+    "type": "api-change"
+  }
+]

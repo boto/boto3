@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.70
+======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* enhancement:EndpointDiscovery: [``botocore``] Add a config option, ``endpoint_discovery_enabled``, for automatically discovering endpoints
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+
+
 1.9.69
 ======
 
