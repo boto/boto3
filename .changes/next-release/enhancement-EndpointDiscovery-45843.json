@@ -1,5 +1,0 @@
-{
-  "category": "EndpointDiscovery", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Add a config option, ``endpoint_discovery_enabled``, for automatically discovering endpoints"
-}
