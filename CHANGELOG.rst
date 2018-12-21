@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.71
+======
+
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``sms-voice``: [``botocore``] Update sms-voice client to latest version
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+
+
 1.9.70
 ======
 
