@@ -1,5 +1,0 @@
-{
-  "category": "``acm-pca``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update acm-pca client to latest version"
-}
