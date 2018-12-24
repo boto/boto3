@@ -26,7 +26,7 @@ which log events are delivered to your AWS resource.
 
 In this example, Python code is used to list, create, and delete a subscription 
 filter in CloudWatch Logs. The destination for the log events is a Lambda function. 
-The code uses the uses AWS SDK for Python to manage subscription filters using these methods of the 
+The code uses the AWS SDK for Python to manage subscription filters using these methods of the
 CloudWatchLogs client class:
 
 * `get_paginator('describe_subscription_filters') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/logs.html#CloudWatchLogs.Client.get_paginator>`_.

@@ -29,7 +29,7 @@ CloudWatch Events delivers a near real-time stream of system events that describ
 Amazon Web Services (AWS) resources to any of various targets. Using simple rules, you can match 
 events and route them to one or more target functions or streams.
 
-In this example, Python code is used to send events to CloudWatch Events. The code uses the uses the 
+In this example, Python code is used to send events to CloudWatch Events. The code uses the
 AWS SDK for Python to manage instances using these methods of the CloudWatchEvents client class:
 
 * `put_rule <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/events.html#CloudWatchEvents.Client.put_rule>`_.
