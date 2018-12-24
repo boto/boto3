@@ -145,14 +145,14 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
 
-    :type Filename: str
-    :param Filename: The path to the file to download to.
-
     :type Bucket: str
     :param Bucket: The name of the bucket to download from.
 
     :type Key: str
     :param Key: The name of the key to download from.
+
+    :type Filename: str
+    :param Filename: The path to the file to download to.
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
@@ -223,11 +223,11 @@ def bucket_download_file(self, Key, Filename,
     except that parameters are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
 
-    :type Filename: str
-    :param Filename: The path to the file to download to.
-
     :type Key: str
     :param Key: The name of the key to download from.
+
+    :type Filename: str
+    :param Filename: The path to the file to download to.
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
