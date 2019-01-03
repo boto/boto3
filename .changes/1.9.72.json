@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Paginator", 
+    "description": "[``botocore``] Added over 400 new paginators.", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``opsworkscm``", 
+    "description": "[``botocore``] Update opsworkscm client to latest version", 
+    "type": "api-change"
+  }
+]

@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.72
+======
+
+* enhancement:Paginator: [``botocore``] Added over 400 new paginators.
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+
+
 1.9.71
 ======
 
