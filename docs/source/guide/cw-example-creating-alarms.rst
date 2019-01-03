@@ -27,7 +27,7 @@ An alarm watches a single metric over a time period you specify, and performs on
 based on the value of the metric relative to a given threshold over a number of time periods.
 
 In this example, Python code is used to create alarms in CloudWatch. The code 
-uses the uses AWS SDK for Python to create alarms using these methods of the AWS.CloudWatch client class:
+uses the AWS SDK for Python to create alarms using these methods of the AWS.CloudWatch client class:
 
 * `paginate(StateValue='INSUFFICIENT_DATA') <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
 

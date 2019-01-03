@@ -20,9 +20,7 @@ Note that you will need the ``cryptography`` `library <https://cryptography.io/e
                 password=None,
                 backend=default_backend()
             )
-        signer = private_key.signer(padding.PKCS1v15(), hashes.SHA1())
-        signer.update(message)
-        return signer.finalize()
+        return private_key.sign(message, padding.PKCS1v15(), hashes.SHA1())
 
     key_id = 'AKIAIOSFODNN7EXAMPLE'
     url = 'http://d2949o5mkkp72v.cloudfront.net/hello.txt'

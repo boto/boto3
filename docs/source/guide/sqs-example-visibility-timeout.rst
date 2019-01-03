@@ -83,6 +83,6 @@ The example below shows how to:
     sqs.change_message_visibility(
         QueueUrl=queue_url,
         ReceiptHandle=receipt_handle,
-        VisibilityTimeout=36000
+        VisibilityTimeout=20
     )
     print('Received and changed visibility timeout of message: %s' % message)
