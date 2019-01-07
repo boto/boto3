@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.75
+======
+
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+
+
 1.9.74
 ======
 

@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``appmesh``", 
+    "description": "[``botocore``] Update appmesh client to latest version", 
+    "type": "api-change"
+  }
+]
