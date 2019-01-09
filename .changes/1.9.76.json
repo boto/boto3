@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``docdb``", 
+    "description": "[``botocore``] Update docdb client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``redshift``", 
+    "description": "[``botocore``] Update redshift client to latest version", 
+    "type": "api-change"
+  }
+]
