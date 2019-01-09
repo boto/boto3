@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.76
+======
+
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.9.75
 ======
 
