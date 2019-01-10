@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.77
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.9.76
 ======
 
