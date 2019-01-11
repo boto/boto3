@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``rds-data``", 
+    "description": "[``botocore``] Update rds-data client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``emr``", 
+    "description": "[``botocore``] Update emr client to latest version", 
+    "type": "api-change"
+  }
+]
