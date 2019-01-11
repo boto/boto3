@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.78
+======
+
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.9.77
 ======
 
