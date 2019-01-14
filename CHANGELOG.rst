@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.79
+======
+
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.78
 ======
 
