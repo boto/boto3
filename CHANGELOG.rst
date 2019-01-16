@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.80
+======
+
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+
+
 1.9.79
 ======
 

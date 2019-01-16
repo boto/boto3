@@ -1,5 +1,0 @@
-{
-  "category": "``backup``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update backup client to latest version"
-}
