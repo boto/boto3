@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``dynamodb``", 
+    "description": "[``botocore``] Update dynamodb client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``backup``", 
+    "description": "[``botocore``] Update backup client to latest version", 
+    "type": "api-change"
+  }
+]
