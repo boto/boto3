@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``lightsail``", 
+    "description": "[``botocore``] Update lightsail client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rekognition``", 
+    "description": "[``botocore``] Update rekognition client to latest version", 
+    "type": "api-change"
+  }
+]
