@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.83
+======
+
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.82
 ======
 
