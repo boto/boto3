@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``worklink``", 
+    "description": "[``botocore``] Update worklink client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigatewaymanagementapi``", 
+    "description": "[``botocore``] Update apigatewaymanagementapi client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm-pca``", 
+    "description": "[``botocore``] Update acm-pca client to latest version", 
+    "type": "api-change"
+  }
+]

@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.84
+======
+
+* api-change:``worklink``: [``botocore``] Update worklink client to latest version
+* api-change:``apigatewaymanagementapi``: [``botocore``] Update apigatewaymanagementapi client to latest version
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+
+
 1.9.83
 ======
 
