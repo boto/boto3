@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.86
+======
+
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+
+
 1.9.85
 ======
 
