@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.85
+======
+
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``sms-voice``: [``botocore``] Update sms-voice client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+
+
 1.9.84
 ======
 
