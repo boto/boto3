@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.87
+======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+
+
 1.9.86
 ======
 
