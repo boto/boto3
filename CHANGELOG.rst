@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.88
+======
+
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.87
 ======
 
