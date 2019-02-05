@@ -1,5 +1,0 @@
-{
-  "category": "``servicecatalog``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update servicecatalog client to latest version"
-}
