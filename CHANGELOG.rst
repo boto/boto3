@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.89
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+
+
 1.9.88
 ======
 
