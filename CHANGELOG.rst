@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.91
+======
+
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+
+
 1.9.90
 ======
 
