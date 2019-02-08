@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``gamelift``", 
+    "description": "[``botocore``] Update gamelift client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``robomaker``", 
+    "description": "[``botocore``] Update robomaker client to latest version", 
+    "type": "api-change"
+  }
+]

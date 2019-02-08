@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.90
+======
+
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+
+
 1.9.89
 ======
 
