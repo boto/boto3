@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.92
+======
+
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+
+
 1.9.91
 ======
 
