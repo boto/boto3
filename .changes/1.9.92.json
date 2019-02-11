@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``appstream``", 
+    "description": "[``botocore``] Update appstream client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediapackage``", 
+    "description": "[``botocore``] Update mediapackage client to latest version", 
+    "type": "api-change"
+  }
+]
