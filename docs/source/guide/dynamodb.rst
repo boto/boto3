@@ -41,7 +41,6 @@ In order to create a new table, use the
                 'AttributeName': 'last_name',
                 'AttributeType': 'S'
             },
-
         ],
         ProvisionedThroughput={
             'ReadCapacityUnits': 5,
