@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.93
+======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+
+
 1.9.92
 ======
 
