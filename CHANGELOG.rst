@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.94
+======
+
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+
+
 1.9.93
 ======
 
