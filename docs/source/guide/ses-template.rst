@@ -52,7 +52,7 @@ Example
 
 .. code-block:: python
 
-   import boto3
+    import boto3
 
     # Create SES client
     ses = boto3.client('ses')
@@ -65,7 +65,6 @@ Example
         'HtmlPart'     : 'HTML_CONTENT'
       }
     )
-
 
     print(response)
 
