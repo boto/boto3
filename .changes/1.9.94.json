@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``rekognition``", 
+    "description": "[``botocore``] Update rekognition client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediatailor``", 
+    "description": "[``botocore``] Update mediatailor client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``efs``", 
+    "description": "[``botocore``] Update efs client to latest version", 
+    "type": "api-change"
+  }
+]
