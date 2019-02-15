@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.96
+======
+
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+
+
 1.9.95
 ======
 
