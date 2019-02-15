@@ -98,8 +98,8 @@ Example
 
 
 
-Delete a Receipt Rule
-=====================
+Delete a Receipt Rule Set
+==========================
 
 Remove a specified receipt rule set that isn't currently disabled. This also deletes all of the receipt rules it contains. To delete a receipt rule set, provide the RuleSetName to the `DeleteReceiptRuleSet <https://docs.aws.amazon.com/ses/latest/APIReference/API_DeleteReceiptRuleSet.html>`_ operation.
 
@@ -121,8 +121,8 @@ Example
     print(response)
 
 
-Delete a Receipt Rule Set
-==========================
+Delete a Receipt Rule
+=====================
 
 To delete a specified receipt rule, provide the RuleName and RuleSetName to the `DeleteReceiptRule <https://docs.aws.amazon.com/ses/latest/APIReference/API_DeleteReceiptRule.html>`_ operation.
 
