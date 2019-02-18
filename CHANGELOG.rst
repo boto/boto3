@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.97
+======
+
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+
+
 1.9.96
 ======
 
