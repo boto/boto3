@@ -15,7 +15,7 @@ Amazon CloudWatch Examples
 ##########################
 
 You can use the following examples to access Amazon Cloudwatch (CloudWatch) by using Amazon Boto. For more
-information about ClodWatch, see the `CloudWatch Developer Guide <http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide>`_.
+information about CloudWatch, see the `CloudWatch Developer Guide <http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide>`_.
 
 **Examples**
 
