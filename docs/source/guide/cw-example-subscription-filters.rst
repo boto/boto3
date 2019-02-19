@@ -68,7 +68,7 @@ Prerequisite Tasks
                  "Effect": "Allow",
                  "Action": [
                     "logs:CreateLogGroup",
-                    "logs:CrateLogStream",
+                    "logs:CreateLogStream",
                     "logs:PutLogEvents"
                  ],
                  "Resource": "arn:aws:logs:*:*:*"
