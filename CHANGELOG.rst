@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.98
+======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* enhancement:Paginator: [``botocore``] Add additional paginators for CloudFormation
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+
+
 1.9.97
 ======
 
