@@ -1,5 +1,0 @@
-{
-  "category": "Paginator", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Add additional paginators for CloudFormation"
-}
