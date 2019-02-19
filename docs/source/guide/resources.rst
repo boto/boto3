@@ -186,7 +186,7 @@ Waiters
 -------
 A waiter is similiar to an action. A waiter will poll the status of a
 resource and suspend execution until the resource reaches the state that is
-being polling for or a failure occurs while polling.
+being polled for or a failure occurs while polling.
 Waiters automatically set the resource
 identifiers as parameters, but allow you to pass additional parameters via
 keyword arguments. Examples of waiters include::
