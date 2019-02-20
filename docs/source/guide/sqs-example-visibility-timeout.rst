@@ -29,20 +29,16 @@ For more information about Amazon SQS visibility timeout, see
 `Visibility Timeout <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
-
 Prerequisite Tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
 
-* Configure your AWS credentials, as described in :doc:`quickstart`.
+* Create an Amazon SQS queue. For an example of creating an Amazon SQS 
+  queue, see :ref:`aws-boto3-sqs-create-queue`.
 
-* Create an Amazon SQS queue. For an example of creating a queue, see 
-  :doc:`Using Queues in Amazon SQS <sqs-examples-using-queues>`.
-
-* Send a message to the queue. For an example of sending a message to a queue, see 
-  :doc:`Sending and Receiving Messages in Amazon SQS <sqs-example-sending-receiving-msgs>`.
+* Send a message to the queue. For an example of sending a message to a 
+  queue, see :ref:`aws-boto3-sqs-send-message`.
 
 Change the Visibility Timeout
 =============================

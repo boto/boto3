@@ -16,11 +16,20 @@ Amazon SQS Examples
 
 .. meta::
    :description:
-   :keywords: AWS IAM SQS code examples for Boto3
+   :keywords: AWS SQS
 
-You can use the following examples to access Amazon Simple Queue Service (Amazon SQS) using  
-AWS Boto. For more information about Amazon SQS, see the `Amazon SQS documentation
+The code examples in this section demonstrate using the Amazon Web Services 
+(AWS) SDK for Python to call the Amazon Simple Queue Service (Amazon SQS). 
+For more information about Amazon SQS, see the `Amazon SQS documentation
 <http://aws.amazon.com/documentation/sqs/>`_.
+
+Each code example requires that your AWS credentials have been configured as 
+described in :ref:`guide_quickstart`. Some examples require additional
+prerequisites which are described in the example's section.
+
+The source files for these and other code examples are available in the 
+`AWS Code Catalog <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_
+on GitHub.
 
 **Examples**
 
@@ -32,5 +41,4 @@ AWS Boto. For more information about Amazon SQS, see the `Amazon SQS documentati
    sqs-example-visibility-timeout
    sqs-example-long-polling
    sqs-example-dead-letter-queue
-   
    

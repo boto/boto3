@@ -1,4 +1,4 @@
-.. Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -34,17 +34,13 @@ For more information about Amazon SQS dead letter queues, see
 `Using Amazon SQS Dead Letter Queues <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
-
 Prerequisite Tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
 
-* Configure your AWS credentials, as described in :doc:`quickstart`.
-
-* Create an Amazon SQS queue to serve as a dead letter queue. For an example of creating a queue, see 
-  :doc:`Using Queues <sqs-examples-using-queues>` in *Amazon SQS*.
+* Create an Amazon SQS queue to serve as a dead letter queue. For an example 
+  of creating an Amazon SQS queue, see :ref:`aws-boto3-sqs-create-queue`.
 
 Configure Source Queues
 =======================
@@ -88,3 +84,4 @@ Example
             'RedrivePolicy': json.dumps(redrive_policy)
         }
     )
+    

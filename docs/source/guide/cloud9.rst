@@ -95,7 +95,7 @@ directory, where :code:`your-environment-name` is the name of your
 development environment.
 
 To learn how to work with these and other code examples, see 
-:ref:`Code Examples <examples>`. 
+:ref:`Code Examples <aws-boto3-examples>`.
 
 Step 6: Run and Debug Code
 --------------------------
