@@ -33,18 +33,15 @@ For more information about Amazon SQS messages, see
 and `Receiving and Deleting a Message from an Amazon SQS Queue <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-receive-delete-message.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
-
 Prerequisite Tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
 
-* Configure your AWS credentials, as described in :doc:`quickstart`.
+* Create an Amazon SQS queue. For an example of creating an Amazon SQS 
+  queue, see :ref:`aws-boto3-sqs-create-queue`.
 
-* Create an Amazon SQS queue. For an example of creating a queue, see 
-  :doc:`Using Queues in Amazon SQS <sqs-examples-using-queues>`.
-
+.. _aws-boto3-sqs-send-message:
 
 Send a Message to a Queue
 =========================
@@ -139,4 +136,3 @@ Example
         ReceiptHandle=receipt_handle
     )
     print('Received and deleted message: %s' % message)
-
