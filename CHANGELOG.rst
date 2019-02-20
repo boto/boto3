@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.99
+======
+
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.9.98
 ======
 
