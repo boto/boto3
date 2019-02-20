@@ -82,7 +82,7 @@ The example below shows how to:
 Example
 -------
 
-.. code:: python
+.. code-block:: python
 
     import boto3
 
@@ -108,7 +108,7 @@ The example below shows how to:
 Example
 -------
 
-.. code-block:: python/example_code
+.. code-block:: python
 
     import boto3
 
