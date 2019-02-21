@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.9.100
+=======
+
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``workdocs``: [``botocore``] Update workdocs client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``kinesisvideo``: [``botocore``] Update kinesisvideo client to latest version
+* api-change:``kinesis-video-media``: [``botocore``] Update kinesis-video-media client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+
+
 1.9.99
 ======
 
