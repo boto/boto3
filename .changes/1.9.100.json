@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``kinesis-video-archived-media``", 
+    "description": "[``botocore``] Update kinesis-video-archived-media client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``workdocs``", 
+    "description": "[``botocore``] Update workdocs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudwatch``", 
+    "description": "[``botocore``] Update cloudwatch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``organizations``", 
+    "description": "[``botocore``] Update organizations client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesisvideo``", 
+    "description": "[``botocore``] Update kinesisvideo client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis-video-media``", 
+    "description": "[``botocore``] Update kinesis-video-media client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transfer``", 
+    "description": "[``botocore``] Update transfer client to latest version", 
+    "type": "api-change"
+  }
+]
