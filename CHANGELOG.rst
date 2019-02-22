@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.101
+=======
+
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``cloud9``: [``botocore``] Update cloud9 client to latest version
+
+
 1.9.100
 =======
 

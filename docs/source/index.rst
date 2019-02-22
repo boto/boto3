@@ -5,11 +5,10 @@
 
 Boto 3 Documentation
 ====================
-Boto is the Amazon Web Services (AWS) SDK for Python, which allows Python
-developers to write software that makes use of Amazon services like S3 and
-EC2. Boto provides an easy to use, object-oriented API as well as low-level
-direct service access.
-
+Boto is the Amazon Web Services (AWS) SDK for Python. It enables Python
+developers to create, configure, and manage AWS services, such as EC2 
+and S3. Boto provides an easy to use, object-oriented API, as well as 
+low-level access to AWS services.
 
 Quickstart
 ----------
@@ -21,14 +20,13 @@ Quickstart
    guide/sqs
    guide/examples
 
-User Guide
-----------
+User Guides
+-----------
 
 .. toctree::
+   :maxdepth: 3
 
    guide/index
-
-
 
 API Reference
 -------------
