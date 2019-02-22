@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``athena``", 
+    "description": "[``botocore``] Update athena client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``stepfunctions``", 
+    "description": "[``botocore``] Update stepfunctions client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloud9``", 
+    "description": "[``botocore``] Update cloud9 client to latest version", 
+    "type": "api-change"
+  }
+]

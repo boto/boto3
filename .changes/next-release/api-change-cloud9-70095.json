@@ -1,5 +1,0 @@
-{
-  "category": "``cloud9``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update cloud9 client to latest version"
-}
