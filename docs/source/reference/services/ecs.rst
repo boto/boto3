@@ -19,7 +19,7 @@ Client
 
 .. py:class:: ECS.Client
 
-  A low-level client representing Amazon EC2 Container Service (ECS)::
+  A low-level client representing Amazon Elastic Container Service (ECS)::
 
     
     import boto3
