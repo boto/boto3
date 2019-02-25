@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.102
+=======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``mediastore``: [``botocore``] Update mediastore client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
 1.9.101
 =======
 
