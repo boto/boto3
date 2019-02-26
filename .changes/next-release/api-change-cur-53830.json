@@ -1,0 +1,5 @@
+{
+  "category": "``cur``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update cur client to latest version"
+}
