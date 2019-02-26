@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.103
+=======
+
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``cur``: [``botocore``] Update cur client to latest version
+
+
 1.9.102
 =======
 
