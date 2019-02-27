@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.104
+=======
+
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+
+
 1.9.103
 =======
 
