@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.105
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+
+
 1.9.104
 =======
 
