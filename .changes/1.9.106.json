@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling-plans``", 
+    "description": "[``botocore``] Update autoscaling-plans client to latest version", 
+    "type": "api-change"
+  }
+]
