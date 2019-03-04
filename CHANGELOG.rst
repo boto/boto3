@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.107
+=======
+
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.106
 =======
 
