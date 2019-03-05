@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.108
+=======
+
+* api-change:``textract``: [``botocore``] Update textract client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+
+
 1.9.107
 =======
 
