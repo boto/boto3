@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.110
+=======
+
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.109
 =======
 
