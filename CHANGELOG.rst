@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.111
+=======
+
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.9.110
 =======
 
