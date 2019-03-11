@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticbeanstalk``", 
+    "description": "[``botocore``] Update elasticbeanstalk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rekognition``", 
+    "description": "[``botocore``] Update rekognition client to latest version", 
+    "type": "api-change"
+  }
+]
