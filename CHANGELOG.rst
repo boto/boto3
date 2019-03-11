@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.112
+=======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.9.111
 =======
 
