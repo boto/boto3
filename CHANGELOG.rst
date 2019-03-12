@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.113
+=======
+
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+
+
 1.9.112
 =======
 
