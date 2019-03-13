@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.114
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+
+
 1.9.113
 =======
 
