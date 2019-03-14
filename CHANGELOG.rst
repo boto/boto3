@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.115
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.9.114
 =======
 
