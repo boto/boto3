@@ -1,4 +1,4 @@
-.. Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -14,8 +14,7 @@
 Code Examples
 #############
 
-This section provides code examples that demonstrate common Amazon Web Services scenarios using the 
-Amazon Web Services (AWS) SDK for Python.
+This section describes code examples that use the AWS SDK for Python to call AWS services.
 
 .. toctree::
    :maxdepth: 1
@@ -23,6 +22,7 @@ Amazon Web Services (AWS) SDK for Python.
    cw-examples
    ec2-examples
    iam-examples
+   kms-examples
    s3-examples
    ses-examples
    sqs-examples
