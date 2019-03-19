@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.117
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.9.116
 =======
 
