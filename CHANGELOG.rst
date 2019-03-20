@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.118
+=======
+
+* api-change:``cognito-identity``: [``botocore``] Update cognito-identity client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+
+
 1.9.117
 =======
 
