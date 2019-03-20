@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``cognito-identity``", 
+    "description": "[``botocore``] Update cognito-identity client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``meteringmarketplace``", 
+    "description": "[``botocore``] Update meteringmarketplace client to latest version", 
+    "type": "api-change"
+  }
+]
