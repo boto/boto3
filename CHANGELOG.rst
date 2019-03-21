@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.119
+=======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+
+
 1.9.118
 =======
 
