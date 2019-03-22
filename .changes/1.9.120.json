@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``iot1click-projects``", 
+    "description": "[``botocore``] Update iot1click-projects client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }
+]
