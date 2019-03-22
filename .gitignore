@@ -22,3 +22,6 @@ env3
 
 # IntelliJ / PyCharm IDE
 .idea/
+
+# Visual Studio used to edit docs
+docs/source/.vs
