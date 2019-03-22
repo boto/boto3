@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.120
+=======
+
+* api-change:``iot1click-projects``: [``botocore``] Update iot1click-projects client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+
+
 1.9.119
 =======
 
