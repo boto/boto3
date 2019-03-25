@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``kinesisvideo``", 
+    "description": "[``botocore``] Update kinesisvideo client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }
+]

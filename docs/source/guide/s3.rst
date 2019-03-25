@@ -497,10 +497,9 @@ To generate a pre-signed URL, use the
     # to send the GET, but we will use requests here to keep things simple.
     response = requests.get(url)
 
-If your bucket requires the use of signature version 4, you can elect to use it
-to sign your URL. This does not fundamentally change how you use generator,
-you only need to make sure that the client used has signature version 4
-configured.::
+The boto3 client will generate a sigv4 (s3v4) signature by default for new regions that 
+only support signature version 4. To connect with sigv4 in older regions, specify 
+``signature_version='s3v4`` when configuring your client.::
 
     import boto3
     from botocore.client import Config

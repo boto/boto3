@@ -6,7 +6,9 @@ User Guides
 
 Migration Guides
 ================
+
 .. toctree::
+   :maxdepth: 3
 
    new
    migration
@@ -17,6 +19,7 @@ General Feature Guides
 ======================
 
 .. toctree::
+   :maxdepth: 3
 
    resources
    collections
@@ -31,6 +34,7 @@ Service Feature Guides
 ======================
 
 .. toctree::
+   :maxdepth: 3
 
    cloud9
    dynamodb

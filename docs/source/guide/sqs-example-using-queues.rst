@@ -40,15 +40,6 @@ For more information about Amazon SQS messages, see
 `How Queues Work <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-how-it-works.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
-
-Prerequisite Tasks
-==================
-
-To set up and run this example, you must first complete this task:
-
-* Configure your AWS credentials, as described in :doc:`quickstart`.
-
 List Your Queues
 ================
 
@@ -71,7 +62,9 @@ Example
     response = sqs.list_queues()
 
     print(response['QueueUrls'])
- 
+
+.. _aws-boto3-sqs-create-queue:
+
 Create a Queue
 ==============
 
@@ -144,6 +137,3 @@ Example
 
     # Delete SQS queue
     sqs.delete_queue(QueueUrl='SQS_QUEUE_URL')
-
-
- 
