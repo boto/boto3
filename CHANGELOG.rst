@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.121
+=======
+
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``iot1click-devices``: [``botocore``] Update iot1click-devices client to latest version
+
+
 1.9.120
 =======
 
