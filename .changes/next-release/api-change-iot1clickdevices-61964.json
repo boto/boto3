@@ -1,0 +1,5 @@
+{
+  "category": "``iot1click-devices``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update iot1click-devices client to latest version"
+}
