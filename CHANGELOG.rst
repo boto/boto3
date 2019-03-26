@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.122
+=======
+
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
 1.9.121
 =======
 
