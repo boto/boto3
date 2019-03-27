@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.123
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.9.122
 =======
 
