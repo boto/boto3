@@ -42,6 +42,11 @@ class TestSession(unittest.TestCase):
         self.assertIsInstance(partitions, list)
         self.assertTrue(partitions)
 
+    def test_get_partition_name(self):
+        partition = self.session.get_partition_name('us-west-2')
+        self.assertIsInstance(partition, str)
+        self.assertTrue(partition)
+
     def test_get_available_regions(self):
         regions = self.session.get_available_regions('s3')
         self.assertIsInstance(regions, list)

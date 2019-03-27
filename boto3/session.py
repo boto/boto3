@@ -13,6 +13,7 @@
 
 import copy
 import os
+from re import match
 
 import botocore.session
 from botocore.client import Config
@@ -148,6 +149,22 @@ class Session(object):
         :return: Returns a list of partition names (e.g., ["aws", "aws-cn"])
         """
         return self._session.get_available_partitions()
+
+    def get_partition_name(self, region_name):
+        """Lists the partition name of a particular region.
+
+        :type region_name: string
+        :param region_name: Name of the region to list partition for (e.g., us-east-1).
+
+        :rtype: string
+        :return: Returns the respective partition name (e.g., aws).
+        """
+        loader = self._session.get_component('data_loader')
+        endpoints = loader.load_data('endpoints')
+        for partition in endpoints['partitions']:
+            if match(partition['regionRegex'], region_name):
+                return partition['partition']
+        raise ValueError('Invalid region name: {0}'.format(region_name))
 
     def get_available_regions(self, service_name, partition_name='aws',
                               allow_non_regional=False):
