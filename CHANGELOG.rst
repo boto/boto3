@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.125
+=======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+
+
 1.9.124
 =======
 
