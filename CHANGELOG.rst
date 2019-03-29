@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.124
+=======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``pinpoint-email``: [``botocore``] Update pinpoint-email client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+
+
 1.9.123
 =======
 
