@@ -1,12 +1,14 @@
-.. Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
-   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
-   International License (the "License"). You may not use this file except in compliance with the
-   License. A copy of the License is located at http://creativecommons.org/licenses/by-nc-sa/4.0/.
+   This file is licensed under the Apache License, Version 2.0 (the "License").
+   You may not use this file except in compliance with the License. A copy of the
+   License is located at
 
-   This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-   either express or implied. See the License for the specific language governing permissions and
-   limitations under the License.
+   http://aws.amazon.com/apache2.0/
+
+   This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+   OF ANY KIND, either express or implied. See the License for the specific
+   language governing permissions and limitations under the License.
 
 .. _aws-boto3-s3-examples:
 
@@ -16,26 +18,24 @@ Amazon S3 Examples
 
 .. meta::
    :description:
-   :keywords: AWS S3 code examples for Boto3
+   :keywords: s3 python
 
-Amazon Simple Storage Service (Amazon S3) is a web service that provides highly scalable cloud storage.
-Amazon S3 provides easy to use object storage, with a simple web service interface to store and get
-any amount of data from anywhere on the web.
+Amazon Simple Storage Service (Amazon S3) is an object storage service that 
+offers scalability, data availability, security, and performance.
 
-The Python API for Amazon S3 is exposed through the AWS.S3 client class. For more information about
-Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
-
-You can use the following examples to access Amazon Simple Storage Service (Amazon S3) using
-AWS Python SDK. For more information about Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
+This section demonstrate how to use the AWS SDK for Python to access Amazon S3 
+services.
 
 **Examples**
 
 .. toctree::
    :maxdepth: 1
 
-   s3-example-creating-buckets
-   s3-example-download-file
-   s3-example-configuring-buckets
-   s3-example-access-permissions
-   s3-example-bucket-policies
-   s3-example-static-web-host
+   s3-buckets
+   s3-uploading-files
+   s3-downloading-files
+   s3-file-transfer-config
+   s3-presigned-urls
+   s3-bucket-policies
+   s3-static-web-host
+   s3-bucket-cors-config
