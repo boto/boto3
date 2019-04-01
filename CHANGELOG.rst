@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.126
+=======
+
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.125
 =======
 
