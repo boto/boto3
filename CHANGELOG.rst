@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.127
+=======
+
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+
+
 1.9.126
 =======
 
