@@ -30,8 +30,8 @@ General Feature Guide
    events
 
 
-Service Feature Guide
-=====================
+Tools Guide
+===========
 
 .. toctree::
    :maxdepth: 1
