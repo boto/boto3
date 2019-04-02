@@ -1,4 +1,4 @@
-.. Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -16,12 +16,16 @@ Creating Custom Email Templates with Amazon SES
 
 .. meta::
    :description: Use the Amazon SES API to create and use email templates.
-   :keywords: Amazon SES code examples for Python, create email templates with Python
+   :keywords: SES Python
 
-Amazon Simple Email Service (SES) enables you to send emails that are personalized for each recipient by using templates. Templates include a subject line and the text and HTML parts of the email body. The subject and body sections can also contain unique values that are personalized for each recipient.
+Amazon Simple Email Service (SES) enables you to send emails that are 
+personalized for each recipient by using templates. Templates include 
+a subject line and the text and HTML parts of the email body. The subject 
+and body sections can also contain unique values that are personalized for 
+each recipient.
 
-For more information, see `Sending Personalized Email Using the Amazon SES <http://aws.amazon.com/documentation/ses/send-personalized-email-api.html.html>`__.
-
+For more information, see `Sending Personalized Email Using the Amazon SES 
+API <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html>`__.
 
 The following examples show how to:
 
@@ -42,10 +46,14 @@ To set up and run this example, you must first complete these tasks:
 Create an Email Template
 ========================
 
-To create a template to send personalized email messages, use the `CreateTemplate <https://docs.aws.amazon.com/ses/latest/APIReference/API_CreateTemplate.html>`_ operation. The template can be used by any account authorized to send messages in the AWS Region to which the template is added.
+To create a template to send personalized email messages, use the 
+`CreateTemplate <https://docs.aws.amazon.com/ses/latest/APIReference/API_CreateTemplate.html>`_ 
+operation. The template can be used by any account authorized to send 
+messages in the AWS Region to which the template is added.
 
 .. note::
-    SES doesn't validate your HTML, so be sure that `HtmlPart` is valid before sending an email.
+    SES doesn't validate your HTML, so be sure that ``HtmlPart`` is 
+    valid before sending an email.
     
 Example
 -------
@@ -115,7 +123,7 @@ Example
 Update an Email Template
 ========================
 
-To change the content for a specific email template including the subject line, HTML body, and plain text, use the `UpdateTemplate <https://docs.aws.amazon.com/ses/latest/APIReference/API_UpdadteTemplate.html>`_ operation.
+To change the content for a specific email template including the subject line, HTML body, and plain text, use the `UpdateTemplate <https://docs.aws.amazon.com/ses/latest/APIReference/API_UpdateTemplate.html>`_ operation.
 
 Example
 -------
@@ -141,7 +149,7 @@ Example
 Send an Email with a Template
 =============================
 
-To use a template to send an email to recipients, use the `SendTemplatedEmail <https://docs.aws.amazon.com/ses/latest/APIReference/API_SendTemplatedEmail.html.html>`__ operation.
+To use a template to send an email to recipients, use the `SendTemplatedEmail <https://docs.aws.amazon.com/ses/latest/APIReference/API_SendTemplatedEmail.html>`__ operation.
 
 
 Example
