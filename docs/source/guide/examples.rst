@@ -14,15 +14,23 @@
 Code Examples
 #############
 
-This section describes code examples that use the AWS SDK for Python to call AWS services.
+This section describes code examples that demonstrate how to use the AWS SDK
+for Python to call various AWS services. The source files for the examples, 
+plus additional example programs, are available in the `AWS Code 
+Catalog <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
+
+Before running an example, your AWS credentials must be configured as 
+described in :doc:`quickstart`.
 
 .. toctree::
    :maxdepth: 1
 
    cw-examples
+   dynamodb
    ec2-examples
    iam-examples
    kms-examples
    s3-examples
+   secrets-manager
    ses-examples
    sqs-examples

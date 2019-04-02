@@ -18,14 +18,12 @@ AWS Key Management Service (AWS KMS) Examples
    :description: Python examples that use the AWS Key Management Service (AWS KMS)
    :keywords: KMS
 
-Encrypting valuable data is a common security practice. The process of encrypting data often 
-uses one or more keys, sometimes referred to as data keys and master keys. A data key is used to encrypt 
-the data. A master key manages one or more data keys. To prevent the data from being decrypted 
-by unauthorized users, both keys must be protected, often by being encrypted themselves. The AWS Key
-Management Service (AWS KMS) can assist in this key management.
-
-The section's code examples assume you have configured your AWS credentials as described 
-in :doc:`quickstart`.
+Encrypting valuable data is a common security practice. The encryption process 
+typically uses one or more keys, sometimes referred to as data keys and master 
+keys. A data key is used to encrypt the data. A master key manages one or 
+more data keys. To prevent the data from being decrypted by unauthorized 
+users, both keys must be protected, often by being encrypted themselves. 
+The AWS Key Management Service (AWS KMS) can assist in this key management.
 
 **Examples**
 
