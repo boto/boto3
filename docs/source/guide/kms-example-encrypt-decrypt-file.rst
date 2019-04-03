@@ -7,7 +7,7 @@
    This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
-
+   
 .. _aws-boto3-kms-examples-encrypt-decrypt-file:
 
 **************************
@@ -180,7 +180,7 @@ Encrypt a File
 The ``encrypt_file`` function creates a data key and uses it to encrypt the contents of a disk file.
 
 The encryption operation is performed by a ``Fernet`` object created by the Python ``cryptography`` 
-package.
+package which must be installed manually, for example, with the ``pip`` command.
 
 The encrypted form of the data key is saved within the encrypted file and will be used in the future 
 to decrypt the file. The encrypted file can be decrypted by any program with the credentials to 
@@ -278,7 +278,7 @@ The example ``decrypt_file`` function first extracts the encrypted data key from
 then decrypts the key to get its plaintext form and uses that to decrypt the file contents.
 
 The decryption operation is performed by a ``Fernet`` object created by the Python ``cryptography`` 
-package.
+package which must be installed manually, for example, with the ``pip`` command.
 
 .. code-block:: python
 
