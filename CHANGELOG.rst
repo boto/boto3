@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.128
+=======
+
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+
+
 1.9.127
 =======
 
