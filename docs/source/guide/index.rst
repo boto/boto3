@@ -1,25 +1,25 @@
-.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-
-   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
-   International License (the "License"). You may not use this file except in compliance with the
-   License. A copy of the License is located at http://creativecommons.org/licenses/by-nc-sa/4.0/.
-
-   This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-   either express or implied. See the License for the specific language governing permissions and
-   limitations under the License.
-
 .. _user_guides:
 
 +++++++++++
 User Guides
 +++++++++++
 
-
-General Feature Guide
-=====================
+Migration Guides
+================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
+
+   new
+   migration
+   upgrading
+
+
+General Feature Guides
+======================
+
+.. toctree::
+   :maxdepth: 3
 
    resources
    collections
@@ -30,22 +30,14 @@ General Feature Guide
    events
 
 
-Tools Guide
-===========
+Service Feature Guides
+======================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 3
 
    cloud9
+   dynamodb
+   s3
+   secrets-manager
    sdk-metrics
-
-
-Migration Guide
-===============
-
-.. toctree::
-   :maxdepth: 1
-
-   new
-   migration
-   upgrading

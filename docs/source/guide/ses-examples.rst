@@ -1,4 +1,4 @@
-.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -10,19 +10,17 @@
    
 .. _aws-boto3-ses-examples:   
 
-
 ###################
 Amazon SES Examples
 ###################
 
 .. meta::
-   :description: Amazon SES code examples for the AWS SDK for Python.
-   :keywords: SES Python
+   :description: Amazon SES code examples for the AWS SDK for Python Botocore 3.
+   :keywords: Amazon Simple Email Service code examples for Python Botocore 3, AWS Email, Amazon bulk email
 
-Amazon Simple Email Service (SES) is an email platform that provides an easy, 
-cost-effective way for you to send and receive email using your own email 
-addresses and domains. For more information about Amazon SES, see the 
-`Amazon SES documentation <https://docs.aws.amazon.com/ses/>`_.
+Amazon Simple Email Service (SES) is an email platform that provides an easy, cost-effective way for you to send and receive email using your own
+
+email addresses and domains. For more information about Amazon SES, see the `Amazon SES documentation <http://aws.amazon.com/documentation/ses/>`_.
 
 **Examples**
 
