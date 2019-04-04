@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.129
+=======
+
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+
+
 1.9.128
 =======
 
