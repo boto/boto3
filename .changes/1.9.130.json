@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot1click-devices``", 
+    "description": "[``botocore``] Update iot1click-devices client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }
+]

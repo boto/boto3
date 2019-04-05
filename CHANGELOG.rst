@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.130
+=======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``iot1click-devices``: [``botocore``] Update iot1click-devices client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.9.129
 =======
 
