@@ -1,4 +1,4 @@
-.. Copyright 2010-2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -16,17 +16,13 @@ Amazon S3 Examples
 
 .. meta::
    :description:
-   :keywords: AWS S3 code examples for Boto3
+   :keywords: s3 python
 
-Amazon Simple Storage Service (Amazon S3) is a web service that provides highly scalable cloud storage.
-Amazon S3 provides easy to use object storage, with a simple web service interface to store and get
-any amount of data from anywhere on the web.
+Amazon Simple Storage Service (Amazon S3) is an object storage service that 
+offers scalability, data availability, security, and performance.
 
-The Python API for Amazon S3 is exposed through the AWS.S3 client class. For more information about
-Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
-
-You can use the following examples to access Amazon Simple Storage Service (Amazon S3) using
-AWS Python SDK. For more information about Amazon S3,  see the `Amazon S3 documentation <http://aws.amazon.com/documentation/s3/>`_.
+This section demonstrates how to use the AWS SDK for Python to access Amazon S3 
+services.
 
 **Examples**
 
@@ -34,8 +30,11 @@ AWS Python SDK. For more information about Amazon S3,  see the `Amazon S3 docume
    :maxdepth: 1
 
    s3-example-creating-buckets
+   s3-uploading-files
    s3-example-download-file
-   s3-example-configuring-buckets
-   s3-example-access-permissions
+   s3
+   s3-presigned-urls
    s3-example-bucket-policies
+   s3-example-access-permissions
    s3-example-static-web-host
+   s3-example-configuring-buckets
