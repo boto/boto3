@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.131
+=======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+
+
 1.9.130
 =======
 
