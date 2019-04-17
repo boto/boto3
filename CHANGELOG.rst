@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.132
+=======
+
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.131
 =======
 
