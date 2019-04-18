@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.133
+=======
+
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``worklink``: [``botocore``] Update worklink client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.9.132
 =======
 
