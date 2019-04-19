@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.134
+=======
+
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+
+
 1.9.133
 =======
 
