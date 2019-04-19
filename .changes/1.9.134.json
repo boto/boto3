@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``resource-groups``", 
+    "description": "[``botocore``] Update resource-groups client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``workspaces``", 
+    "description": "[``botocore``] Update workspaces client to latest version", 
+    "type": "api-change"
+  }
+]
