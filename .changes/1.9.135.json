@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``mediatailor``", 
+    "description": "[``botocore``] Update mediatailor client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudformation``", 
+    "description": "[``botocore``] Update cloudformation client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Update route53 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediaconnect``", 
+    "description": "[``botocore``] Update mediaconnect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``textract``", 
+    "description": "[``botocore``] Update textract client to latest version", 
+    "type": "api-change"
+  }
+]
