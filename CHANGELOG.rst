@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.9.135
+=======
+
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``textract``: [``botocore``] Update textract client to latest version
+
+
 1.9.134
 =======
 
