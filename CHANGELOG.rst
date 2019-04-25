@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.136
+=======
+
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``inspector``: [``botocore``] Update inspector client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+
+
 1.9.135
 =======
 
