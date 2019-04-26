@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.137
+=======
+
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+
+
 1.9.136
 =======
 
