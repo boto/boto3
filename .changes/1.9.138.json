@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``transfer``", 
+    "description": "[``botocore``] Update transfer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }
+]
