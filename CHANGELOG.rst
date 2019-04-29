@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.138
+=======
+
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.137
 =======
 
