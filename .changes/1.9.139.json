@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``neptune``", 
+    "description": "[``botocore``] Update neptune client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``managedblockchain``", 
+    "description": "[``botocore``] Update managedblockchain client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3control``", 
+    "description": "[``botocore``] Update s3control client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``directconnect``", 
+    "description": "[``botocore``] Update directconnect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }
+]
