@@ -1,0 +1,5 @@
+{
+  "category": "``codepipeline``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update codepipeline client to latest version"
+}
