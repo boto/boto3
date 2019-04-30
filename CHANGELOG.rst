@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.139
+=======
+
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+
+
 1.9.138
 =======
 
