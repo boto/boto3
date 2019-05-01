@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.140
+=======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.139
 =======
 
