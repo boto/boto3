@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kms``", 
+    "description": "[``botocore``] Update kms client to latest version", 
+    "type": "api-change"
+  }
+]
