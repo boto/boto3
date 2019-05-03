@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.142
+=======
+
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.141
 =======
 
