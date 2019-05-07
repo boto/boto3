@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.144
+=======
+
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.9.143
 =======
 
