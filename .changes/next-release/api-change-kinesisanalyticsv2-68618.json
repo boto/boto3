@@ -1,0 +1,5 @@
+{
+  "category": "``kinesisanalyticsv2``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update kinesisanalyticsv2 client to latest version"
+}
