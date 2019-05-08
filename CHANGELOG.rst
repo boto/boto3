@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.145
+=======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``kinesisanalytics``: [``botocore``] Update kinesisanalytics client to latest version
+* api-change:``kinesisanalyticsv2``: [``botocore``] Update kinesisanalyticsv2 client to latest version
+
+
 1.9.144
 =======
 
