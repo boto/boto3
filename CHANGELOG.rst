@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.146
+=======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+
+
 1.9.145
 =======
 
