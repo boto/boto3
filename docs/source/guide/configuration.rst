@@ -445,25 +445,53 @@ in the ``~/.aws/config`` file:
     The role name to use when assuming a role.  If this value is not
     provided, a session name will be automatically generated.
 ``s3``
-    Set S3 specific configuration data.  You typically will not need to
-    set these values.  Boto3 will automatically switching signature versions
-    and addressing styles if necessary.
-    This is a nested configuration value.  See the Nested Configuration section
-    for more information on the format.  The sub config keys supported for
-    ``s3`` are:
+    Set S3-specific configuration data. Typically, these values do not need 
+    to be set. When necessary, Boto automatically switches signature 
+    versions and addressing styles.
+    
+    * ``addressing_style``: The S3 addressing style. The following values 
+      are supported.
 
-    * ``addressing_style``: Specifies which addressing style to use.
-      This controls if the bucket name is in the hostname or part of
-      the URL.  Value values are: ``path``, ``virtual``,
-      and ``auto``.
-    * ``signature_version``: Which AWS signature version to use when
-      signing requests.  Value values are: ``s3`` and ``s3v4``.
+        ``auto``
+            (Default) Attempts to use ``virtual``, but falls back to ``path`` 
+            if necessary.
+      
+        ``path``
+            Bucket name is included in the URI path.
+
+        ``virtual``
+            Bucket name is included in the hostname.
+
+    * ``signature_version``: The AWS signature version to use when signing 
+      requests. The following values are recognized.
+    
+        ``s3v4``
+            (Default) Signature Version 4
+
+        ``s3``
+            (Deprecated) Signature Version 2
+
+    These settings are nested configuration values that require special 
+    formatting in the AWS configuration file. If the values are set by the 
+    AWS CLI or programmatically by an SDK, the formatting is handled 
+    automatically. If they are set by editing the AWS configuration file 
+    manually, the required format is shown below. Notice the indentation 
+    of each value.
+    ::
+
+        [default]
+        region = us-east-1
+        output = json
+        s3 = 
+            addressing_style = path
+            signature_version = s3v4
+
 ``tcp_keepalive``
     Toggles the TCP Keep-Alive socket option used when creating connections.
     By default this value is ``false``; TCP Keep-Alive will not be used
     when creating connections. To enable TCP Keep-Alive set this value to
     ``true``, enabling TCP Keep-Alive with the system default configurations.
 
-
+ 
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
