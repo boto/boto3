@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.148
+=======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.147
 =======
 
