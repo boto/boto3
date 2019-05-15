@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediapackage``", 
+    "description": "[``botocore``] Update mediapackage client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Environment Variables", 
+    "description": "[``botocore``] Ignore env var credentials is values are empty (`#1680 <https://github.com/boto/botocore/issues/1680>`__)", 
+    "type": "enhancement"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }
+]

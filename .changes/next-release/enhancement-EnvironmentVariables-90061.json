@@ -1,5 +1,0 @@
-{
-  "category": "Environment Variables", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Ignore env var credentials is values are empty (`#1680 <https://github.com/boto/botocore/issues/1680>`__)"
-}
