@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.149
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* enhancement:Environment Variables: [``botocore``] Ignore env var credentials is values are empty (`#1680 <https://github.com/boto/botocore/issues/1680>`__)
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.148
 =======
 
