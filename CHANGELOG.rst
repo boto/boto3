@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.150
+=======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.9.149
 =======
 
