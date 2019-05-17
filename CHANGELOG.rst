@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.151
+=======
+
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+
+
 1.9.150
 =======
 
