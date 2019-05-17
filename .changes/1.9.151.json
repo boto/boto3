@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``appstream``", 
+    "description": "[``botocore``] Update appstream client to latest version", 
+    "type": "api-change"
+  }
+]
