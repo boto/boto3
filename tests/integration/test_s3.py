@@ -187,6 +187,9 @@ class TestS3Resource(unittest.TestCase):
             }
         bucket = self.s3.create_bucket(**kwargs)
         self.addCleanup(bucket.delete)
+
+        for _ in range(3):
+            bucket.wait_until_exists()
         return bucket
 
     def test_s3(self):
