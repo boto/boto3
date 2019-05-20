@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.152
+=======
+
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+
+
 1.9.151
 =======
 
