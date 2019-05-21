@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.153
+=======
+
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.9.152
 =======
 
