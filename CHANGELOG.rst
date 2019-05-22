@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.9.154
+=======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``worklink``: [``botocore``] Update worklink client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+
+
 1.9.153
 =======
 
