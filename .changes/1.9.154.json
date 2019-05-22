@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``efs``", 
+    "description": "[``botocore``] Update efs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``worklink``", 
+    "description": "[``botocore``] Update worklink client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``devicefarm``", 
+    "description": "[``botocore``] Update devicefarm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``budgets``", 
+    "description": "[``botocore``] Update budgets client to latest version", 
+    "type": "api-change"
+  }
+]
