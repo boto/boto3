@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.156
+=======
+
+* api-change:``mediastore-data``: [``botocore``] Update mediastore-data client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+
+
 1.9.155
 =======
 
