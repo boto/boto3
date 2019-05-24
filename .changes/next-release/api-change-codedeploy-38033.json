@@ -1,5 +1,0 @@
-{
-  "category": "``codedeploy``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update codedeploy client to latest version"
-}
