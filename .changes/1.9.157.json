@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``groundstation``", 
+    "description": "[``botocore``] Update groundstation client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``chime``", 
+    "description": "[``botocore``] Update chime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``waf``", 
+    "description": "[``botocore``] Update waf client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint-email``", 
+    "description": "[``botocore``] Update pinpoint-email client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``robomaker``", 
+    "description": "[``botocore``] Update robomaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sts``", 
+    "description": "[``botocore``] Update sts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }
+]
