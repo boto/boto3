@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.9.157
+=======
+
+* api-change:``groundstation``: [``botocore``] Update groundstation client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+* api-change:``pinpoint-email``: [``botocore``] Update pinpoint-email client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+
+
 1.9.156
 =======
 
