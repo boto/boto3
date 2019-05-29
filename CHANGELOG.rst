@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.158
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``iotthingsgraph``: [``botocore``] Update iotthingsgraph client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.157
 =======
 
