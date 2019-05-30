@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.9.159
+=======
+
+* api-change:``iotevents-data``: [``botocore``] Update iotevents-data client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+* api-change:``pinpoint-email``: [``botocore``] Update pinpoint-email client to latest version
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+
+
 1.9.158
 =======
 
