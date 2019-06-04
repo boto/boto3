@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] Update elasticache client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Update iam client to latest version", 
+    "type": "api-change"
+  }
+]

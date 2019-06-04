@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.161
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+
+
 1.9.160
 =======
 
