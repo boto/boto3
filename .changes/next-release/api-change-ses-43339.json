@@ -1,5 +1,0 @@
-{
-  "category": "``ses``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update ses client to latest version"
-}

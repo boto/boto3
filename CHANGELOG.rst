@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.9.163
+=======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ses``: [``botocore``] Update ses client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+
+
 1.9.162
 =======
 
