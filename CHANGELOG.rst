@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.165
+=======
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``personalize-events``: [``botocore``] Update personalize-events client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+
+
 1.9.164
 =======
 

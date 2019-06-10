@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize-runtime``", 
+    "description": "[``botocore``] Update personalize-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codecommit``", 
+    "description": "[``botocore``] Update codecommit client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize-events``", 
+    "description": "[``botocore``] Update personalize-events client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update personalize client to latest version", 
+    "type": "api-change"
+  }
+]
