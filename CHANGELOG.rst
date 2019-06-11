@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.166
+=======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.9.165
 =======
 
