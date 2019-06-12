@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.167
+=======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.9.166
 =======
 
