@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.168
+=======
+
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+
+
 1.9.167
 =======
 
