@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``appmesh``", 
+    "description": "[``botocore``] Update appmesh client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] Update elasticache client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``guardduty``", 
+    "description": "[``botocore``] Update guardduty client to latest version", 
+    "type": "api-change"
+  }
+]
