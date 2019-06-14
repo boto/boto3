@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update personalize client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appstream``", 
+    "description": "[``botocore``] Update appstream client to latest version", 
+    "type": "api-change"
+  }
+]

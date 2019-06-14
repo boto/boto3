@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.169
+=======
+
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+
+
 1.9.168
 =======
 
