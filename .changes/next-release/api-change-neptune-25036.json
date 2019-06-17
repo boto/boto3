@@ -1,5 +1,0 @@
-{
-  "category": "``neptune``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update neptune client to latest version"
-}
