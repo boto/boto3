@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.170
+=======
+
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* bugfix:Paginator: [``botocore``] Fixes a bug where pagination tokens with three consecutive underscores would result in a parsing failure. Resolves boto/boto3`#1984 <https://github.com/boto/boto3/issues/1984>`__.
+
+
 1.9.169
 =======
 
