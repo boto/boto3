@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.171
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+
+
 1.9.170
 =======
 
