@@ -207,7 +207,14 @@ IAM role in boto3:
 
 * ``role_arn`` - The ARN of the role you want to assume.
 * ``source_profile`` - The boto3 profile that contains credentials we should
-  use for the initial ``AssumeRole`` call.
+  use for the initial ``AssumeRole`` call. This parameter cannot be provided
+  alongside ``credential_source``.
+* ``credential_source`` - The credential provider to use to get credentials
+  for the initial ``AssumeRole`` call. This parameter cannot be provided
+  alongside ``source_profile``. Valid values are:
+   * ``Environment`` to pull source credentials from environment variables.
+   * ``Ec2InstanceMetadata`` to use the EC2 instance role as source credentials.
+   * ``EcsContainer`` to use the ECS container credentials as the source credentials.
 * ``external_id`` - A unique identifier that is used by third parties to assume
   a role in their customers' accounts.  This maps to the ``ExternalId``
   parameter in the ``AssumeRole`` operation.  This is an optional parameter.
@@ -436,7 +443,14 @@ in the ``~/.aws/config`` file:
     The ARN of the role you want to assume.
 ``source_profile``
     The profile name that contains credentials we should use for the
-    initial ``AssumeRole`` call.
+    initial ``AssumeRole`` call. This parameter cannot be provided
+  alongside ``credential_source``.
+* ``credential_source`` - The credential provider to use to get credentials
+  for the initial ``AssumeRole`` call. This parameter cannot be provided
+  alongside ``source_profile``. Valid values are:
+   * ``Environment`` to pull source credentials from environment variables.
+   * ``Ec2InstanceMetadata`` to use the EC2 instance role as source credentials.
+   * ``EcsContainer`` to use the ECS container credentials as the source credentials.
 ``external_id``
     Unique identifier to pass when making ``AssumeRole`` calls.
 ``mfa_serial``
@@ -445,44 +459,44 @@ in the ``~/.aws/config`` file:
     The role name to use when assuming a role.  If this value is not
     provided, a session name will be automatically generated.
 ``s3``
-    Set S3-specific configuration data. Typically, these values do not need 
-    to be set. When necessary, Boto automatically switches signature 
+    Set S3-specific configuration data. Typically, these values do not need
+    to be set. When necessary, Boto automatically switches signature
     versions and addressing styles.
-    
-    * ``addressing_style``: The S3 addressing style. The following values 
+
+    * ``addressing_style``: The S3 addressing style. The following values
       are supported.
 
         ``auto``
-            (Default) Attempts to use ``virtual``, but falls back to ``path`` 
+            (Default) Attempts to use ``virtual``, but falls back to ``path``
             if necessary.
-      
+
         ``path``
             Bucket name is included in the URI path.
 
         ``virtual``
             Bucket name is included in the hostname.
 
-    * ``signature_version``: The AWS signature version to use when signing 
+    * ``signature_version``: The AWS signature version to use when signing
       requests. The following values are recognized.
-    
+
         ``s3v4``
             (Default) Signature Version 4
 
         ``s3``
             (Deprecated) Signature Version 2
 
-    These settings are nested configuration values that require special 
-    formatting in the AWS configuration file. If the values are set by the 
-    AWS CLI or programmatically by an SDK, the formatting is handled 
-    automatically. If they are set by editing the AWS configuration file 
-    manually, the required format is shown below. Notice the indentation 
+    These settings are nested configuration values that require special
+    formatting in the AWS configuration file. If the values are set by the
+    AWS CLI or programmatically by an SDK, the formatting is handled
+    automatically. If they are set by editing the AWS configuration file
+    manually, the required format is shown below. Notice the indentation
     of each value.
     ::
 
         [default]
         region = us-east-1
         output = json
-        s3 = 
+        s3 =
             addressing_style = path
             signature_version = s3v4
 
@@ -492,6 +506,6 @@ in the ``~/.aws/config`` file:
     when creating connections. To enable TCP Keep-Alive set this value to
     ``true``, enabling TCP Keep-Alive with the system default configurations.
 
- 
+
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
