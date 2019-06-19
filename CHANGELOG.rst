@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.172
+=======
+
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.9.171
 =======
 

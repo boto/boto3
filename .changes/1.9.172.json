@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Update eks client to latest version", 
+    "type": "api-change"
+  }
+]
