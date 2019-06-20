@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``health``", 
+    "description": "[``botocore``] Update health client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotevents-data``", 
+    "description": "[``botocore``] Update iotevents-data client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``opsworks``", 
+    "description": "[``botocore``] Update opsworks client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm-pca``", 
+    "description": "[``botocore``] Update acm-pca client to latest version", 
+    "type": "api-change"
+  }
+]
