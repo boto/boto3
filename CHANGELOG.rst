@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.173
+=======
+
+* api-change:``health``: [``botocore``] Update health client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``iotevents-data``: [``botocore``] Update iotevents-data client to latest version
+* api-change:``opsworks``: [``botocore``] Update opsworks client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+
+
 1.9.172
 =======
 
