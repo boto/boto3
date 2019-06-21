@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``devicefarm``", 
+    "description": "[``botocore``] Update devicefarm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Update iam client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediapackage``", 
+    "description": "[``botocore``] Update mediapackage client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis-video-media``", 
+    "description": "[``botocore``] Update kinesis-video-media client to latest version", 
+    "type": "api-change"
+  }
+]
