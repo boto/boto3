@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.174
+=======
+
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``kinesis-video-media``: [``botocore``] Update kinesis-video-media client to latest version
+
+
 1.9.173
 =======
 
