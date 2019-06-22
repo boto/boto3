@@ -202,11 +202,14 @@ to AWS STS on your behalf.  It will handle in memory caching as well as
 refreshing credentials as needed.
 
 You can specify the following configuration values for configuring an
-IAM role in boto3:
-
+IAM role in boto3. For more information about a particular setting, see
+the section `Configuration File`_.
 
 * ``role_arn`` - The ARN of the role you want to assume.
 * ``source_profile`` - The boto3 profile that contains credentials we should
+  use for the initial ``AssumeRole`` call.
+* ``credential_source`` - The resource (Amazon EC2 instance profile, Amazon
+  ECS container role, or environment variable) that contains the credentials to
   use for the initial ``AssumeRole`` call.
 * ``external_id`` - A unique identifier that is used by third parties to assume
   a role in their customers' accounts.  This maps to the ``ExternalId``
@@ -223,8 +226,9 @@ IAM role in boto3:
   maps to the ``RoleSessionName`` parameter in the ``AssumeRole`` operation.
   This is an optional parameter.  If you do not provide this value, a
   session name will be automatically generated.
+* ``duration_seconds`` - The length of time in seconds of the role session.
 
-If you do not have MFA authentication required, then you only need to specify a
+If MFA authentication is not enabled then you only need to specify a
 ``role_arn`` and a ``source_profile``.
 
 When you specify a profile that has IAM role configuration, boto3 will make an
@@ -236,11 +240,11 @@ temporary credentials to disk.  This means that temporary credentials from the
 All clients created from that session will share the same temporary
 credentials.
 
-If you specify an ``mfa_serial``, then the first time an ``AssumeRole`` call is
-made, you will be prompted to enter the MFA code.  **Your code will block until
-you enter your MFA code.**  You'll need to keep this in mind if you have an
-``mfa_serial`` configured but would like to use boto3 in some automated script.
-
+If you specify ``mfa_serial``, then the first time an ``AssumeRole`` call is
+made, you will be prompted to enter the MFA code. **Program execution will
+block until you enter the MFA code.** You'll need to keep this in mind if
+you have an ``mfa_serial`` device configured, but would like to use boto3
+in an automated script.
 
 Below is an example configuration for the minimal amount of configuration
 needed to configure an assume role profile::
@@ -387,7 +391,6 @@ Environment Variable Configuration
     separated with the ``os.pathsep`` character which is ``:`` on linux and
     ``;`` on windows.
 
-
 Configuration File
 ~~~~~~~~~~~~~~~~~~
 
@@ -402,19 +405,64 @@ If your profile name has spaces, you'll need to surround this value in quotes:
 ``[profile "my profile name"]``.  Below are all the config variables supported
 in the ``~/.aws/config`` file:
 
-``region``
-    The default region to use, e.g. ``us-west-1``, ``us-west-2``, etc. When specifying a region inline during client initialization, this property is named ``region_name``
+``api_versions``
+    Specifies the API version to use for a particular AWS service.
+
+    The ``api_versions`` settings are nested configuration values that require special
+    formatting in the AWS configuration file. If the values are set by the
+    AWS CLI or programmatically by an SDK, the formatting is handled
+    automatically. If they are set by manually editing the AWS configuration
+    file, the required format is shown below. Notice the indentation of each
+    value.
+    ::
+
+        [default]
+        region = us-east-1
+        api_versions = 
+            ec2 = 2015-03-01
+            cloudfront = 2015-09-17
+
 ``aws_access_key_id``
     The access key to use.
 ``aws_secret_access_key``
     The secret access key to use.
 ``aws_session_token``
-    The session token to use.  This is typically only needed when using
-    temporary credentials.  Note ``aws_security_token`` is supported for
-    backwards compatibility.
+    The session token to use. This is typically needed only when using
+    temporary credentials. Note ``aws_security_token`` is supported for
+    backward compatibility.
 ``ca_bundle``
-    The CA bundle to use.  See the docs above on ``AWS_CA_BUNDLE`` for
-    more information.
+    The CA bundle to use. For more information, see the above description
+    of the ``AWS_CA_BUNDLE`` environment variable.
+``credential_process``
+    Specifies an external command to run to generate or retrieve
+    authentication credentials. For more information,
+    see `Sourcing Credentials with an External Process`_.
+``credential_source``
+    To invoke an AWS service from an Amazon EC2 instance, you can use
+    an IAM role attached to either an EC2 instance profile or an Amazon ECS
+    container. In such a scenario, use the ``credential_source`` setting to
+    specify where to find the credentials.
+    
+    The ``credential_source`` and ``source_profile`` settings are mutually
+    exclusive.
+    
+    The following values are supported.
+
+        ``Ec2InstanceMetadata``
+            Use the IAM role attached to the Amazon EC2 instance profile.
+
+        ``EcsContainer``
+            Use the IAM role attached to the Amazon ESC container.
+
+        ``Environment``
+            Retrieve the credentials from environment variables.
+
+``duration_seconds``
+    The length of time in seconds of the role session. The value can range
+    from 900 seconds (15 minutes) to the maximum session duration setting
+    for the role. The default value is 3600 seconds (one hour).
+``external_id``
+    Unique identifier to pass when making ``AssumeRole`` calls.
 ``metadata_service_timeout``
     The number of seconds before timing out when retrieving data from the
     instance metadata service.  See the docs above on
@@ -423,6 +471,8 @@ in the ``~/.aws/config`` file:
     The number of attempts to make before giving up when retrieving data from
     the instance metadata service.  See the docs above on
     ``AWS_METADATA_SERVICE_NUM_ATTEMPTS`` for more information.
+``mfa_serial``
+    Serial number of ARN of an MFA device to use when assuming a role.
 ``parameter_validation``
     Disable parameter validation (default is true; parameters are
     validated by default).  This is a boolean value that can have
@@ -432,25 +482,36 @@ in the ``~/.aws/config`` file:
     parameters provided, type checking, no unknown parameters,
     minimum length checks, etc.  You generally should leave parameter
     validation enabled.
+``region``
+    The default region to use, e.g. ``us-west-1``, ``us-west-2``, etc. When
+    specifying a region inline during client initialization, this property
+    is named ``region_name``
 ``role_arn``
     The ARN of the role you want to assume.
-``source_profile``
-    The profile name that contains credentials we should use for the
-    initial ``AssumeRole`` call.
-``external_id``
-    Unique identifier to pass when making ``AssumeRole`` calls.
-``mfa_serial``
-    Serial number of ARN of an MFA device to use when assuming a role.
 ``role_session_name``
     The role name to use when assuming a role.  If this value is not
     provided, a session name will be automatically generated.
 ``s3``
-    Set S3-specific configuration data. Typically, these values do not need 
-    to be set. When necessary, Boto automatically switches signature 
-    versions and addressing styles.
+    Set S3-specific configuration data. Typically, these values do not need
+    to be set.
     
-    * ``addressing_style``: The S3 addressing style. The following values 
-      are supported.
+    The ``s3`` settings are nested configuration values that require special
+    formatting in the AWS configuration file. If the values are set by the
+    AWS CLI or programmatically by an SDK, the formatting is handled
+    automatically. If they are set by manually editing the AWS configuration
+    file, the required format is shown below. Notice the indentation of each
+    value.
+    ::
+
+        [default]
+        region = us-east-1
+        s3 = 
+            addressing_style = path
+            signature_version = s3v4
+
+    * ``addressing_style``: The S3 addressing style. When necessary, Boto
+      automatically switches the addressing style to an appropriate value.
+      The following values are supported.
 
         ``auto``
             (Default) Attempts to use ``virtual``, but falls back to ``path`` 
@@ -462,8 +523,15 @@ in the ``~/.aws/config`` file:
         ``virtual``
             Bucket name is included in the hostname.
 
+    * ``payload_signing_enabled``: Specifies whether to include an SHA-256 
+      checksum with Amazon Signature Version 4 payloads. Valid settings are
+      ``true`` or ``false``.
+
+      For streaming uploads (``UploadPart`` and ``PutObject``) that use HTTPS
+      and include a ``content-md5`` header, this setting is disabled by default.
     * ``signature_version``: The AWS signature version to use when signing 
-      requests. The following values are recognized.
+      requests. When necessary, Boto automatically switches the signature
+      version to an appropriate value. The following values are recognized.
     
         ``s3v4``
             (Default) Signature Version 4
@@ -471,21 +539,24 @@ in the ``~/.aws/config`` file:
         ``s3``
             (Deprecated) Signature Version 2
 
-    These settings are nested configuration values that require special 
-    formatting in the AWS configuration file. If the values are set by the 
-    AWS CLI or programmatically by an SDK, the formatting is handled 
-    automatically. If they are set by editing the AWS configuration file 
-    manually, the required format is shown below. Notice the indentation 
-    of each value.
-    ::
+    * ``use_accelerate_endpoint``: Specifies whether to use the S3 Accelerate
+      endpoint. The bucket must be enabled to use S3 Accelerate. Valid settings
+      are ``true`` or ``false``. Default: ``false``
 
-        [default]
-        region = us-east-1
-        output = json
-        s3 = 
-            addressing_style = path
-            signature_version = s3v4
+      Either ``use_accelerate_endpoint`` or ``use_dualstack_endpoint`` can be
+      enabled, but not both.
+    * ``use_dualstack_endpoint``: Specifies whether to direct all Amazon S3
+      requests to the dual IPv4/IPv6 endpoint for the configured region. Valid
+      settings are ``true`` or ``false``. Default: ``false``
 
+      Either ``use_accelerate_endpoint`` or ``use_dualstack_endpoint`` can be
+      enabled, but not both.
+``source_profile``
+    The profile name that contains credentials to use for the initial
+    ``AssumeRole`` call.
+
+    The ``credential_source`` and ``source_profile`` settings are mutually
+    exclusive.
 ``tcp_keepalive``
     Toggles the TCP Keep-Alive socket option used when creating connections.
     By default this value is ``false``; TCP Keep-Alive will not be used
@@ -495,3 +566,4 @@ in the ``~/.aws/config`` file:
  
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
+.. _Sourcing Credentials with an External Process: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html
