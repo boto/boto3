@@ -30,6 +30,7 @@ described in :doc:`quickstart`.
    ec2-examples
    iam-examples
    kms-examples
+   lambda-examples
    s3-examples
    secrets-manager
    ses-examples
