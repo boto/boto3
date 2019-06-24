@@ -1,0 +1,5 @@
+{
+  "category": "``service-quotas``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update service-quotas client to latest version"
+}
