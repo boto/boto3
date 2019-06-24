@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.9.175
+=======
+
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``service-quotas``: [``botocore``] Update service-quotas client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+
+
 1.9.174
 =======
 
