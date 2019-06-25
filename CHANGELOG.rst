@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.176
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.9.175
 =======
 
