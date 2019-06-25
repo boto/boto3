@@ -24,7 +24,8 @@ Create an Amazon S3 Bucket
 ==========================
 
 The name of an Amazon S3 bucket must be unique across all regions of the AWS 
-platform.
+platform. The bucket can be located in a specific region to minimize latency
+or to address regulatory requirements.
 
 .. code-block:: python
 
@@ -33,20 +34,30 @@ platform.
     from botocore.exceptions import ClientError
 
 
-    def create_bucket(bucket_name):
-    """ Create an Amazon S3 bucket
+    def create_bucket(bucket_name, region=None):
+        """Create an S3 bucket in a specified region
 
-    :param bucket_name: Unique string name
-    :return: True if bucket is created, else False
-    """
+        If a region is not specified, the bucket is created in the S3 default
+        region (us-east-1).
 
-    s3 = boto3.client('s3')
-    try
-        s3.create_bucket(Bucket=bucket_name)
-    except ClientError as e:
-        logging.error(e)
-        return False
-    return True
+        :param bucket_name: Bucket to create
+        :param region: String region to create bucket in, e.g., 'us-west-2'
+        :return: True if bucket created, else False
+        """
+
+        # Create bucket
+        s3_client = boto3.client('s3')
+        try:
+            if region is None:
+                s3_client.create_bucket(Bucket=bucket_name)
+            else:
+                location = {'LocationConstraint': region}
+                s3_client.create_bucket(Bucket=bucket_name,
+                                        CreateBucketConfiguration=location)
+        except ClientError as e:
+            logging.error(e)
+            return False
+        return True
 
 
 List Existing Buckets
