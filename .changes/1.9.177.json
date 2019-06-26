@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``codecommit``", 
+    "description": "[``botocore``] Update codecommit client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigatewayv2``", 
+    "description": "[``botocore``] Update apigatewayv2 client to latest version", 
+    "type": "api-change"
+  }
+]

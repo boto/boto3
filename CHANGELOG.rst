@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.177
+=======
+
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+
+
 1.9.176
 =======
 
