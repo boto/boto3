@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``directconnect``", 
+    "description": "[``botocore``] Update directconnect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``workspaces``", 
+    "description": "[``botocore``] Update workspaces client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2-instance-connect``", 
+    "description": "[``botocore``] Update ec2-instance-connect client to latest version", 
+    "type": "api-change"
+  }
+]
