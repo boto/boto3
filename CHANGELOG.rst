@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.178
+=======
+
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+
+
 1.9.177
 =======
 
