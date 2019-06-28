@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.180
+=======
+
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+
+
 1.9.179
 =======
 
