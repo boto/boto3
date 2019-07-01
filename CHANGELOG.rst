@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.181
+=======
+
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.180
 =======
 
