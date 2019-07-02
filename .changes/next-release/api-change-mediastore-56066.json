@@ -1,0 +1,5 @@
+{
+  "category": "``mediastore``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update mediastore client to latest version"
+}
