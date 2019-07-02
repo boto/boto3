@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.182
+=======
+
+* enhancement:CSM: [``botocore``] Support configuration of the host used in client side metrics via AWS_CSM_HOST
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``mediastore``: [``botocore``] Update mediastore client to latest version
+
+
 1.9.181
 =======
 
