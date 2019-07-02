@@ -1,5 +1,0 @@
-{
-  "category": "CSM", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Support configuration of the host used in client side metrics via AWS_CSM_HOST"
-}
