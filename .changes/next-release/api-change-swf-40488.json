@@ -1,0 +1,5 @@
+{
+  "category": "``swf``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update swf client to latest version"
+}
