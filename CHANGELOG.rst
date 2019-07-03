@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.183
+=======
+
+* api-change:``swf``: [``botocore``] Update swf client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.182
 =======
 
