@@ -93,6 +93,15 @@
               { "target": "StackName", "source": "identifier", "name": "Name" }
             ]
           }
+        },
+        "GetTemplate": {
+          "request": {
+            "operation": "GetTemplate",
+            "params": [
+              { "target": "StackName", "source": "identifier", "name": "Name" }
+            ]
+          },
+          "path": "TemplateBody"
         }
       },
       "has": {
