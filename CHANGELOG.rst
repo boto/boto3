@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.184
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+
+
 1.9.183
 =======
 
