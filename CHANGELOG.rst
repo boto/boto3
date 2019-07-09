@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.9.185
+=======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``kinesisvideo``: [``botocore``] Update kinesisvideo client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+
+
 1.9.184
 =======
 
