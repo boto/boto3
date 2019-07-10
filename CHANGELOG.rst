@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.186
+=======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``glacier``: [``botocore``] Update glacier client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.9.185
 =======
 
