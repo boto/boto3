@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.187
+=======
+
+* api-change:``events``: [``botocore``] Update events client to latest version
+
+
 1.9.186
 =======
 
