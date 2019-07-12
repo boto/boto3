@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.188
+=======
+
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
 1.9.187
 =======
 
