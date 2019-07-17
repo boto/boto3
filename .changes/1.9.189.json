@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``config``", 
+    "description": "[``botocore``] Update config client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dms``", 
+    "description": "[``botocore``] Update dms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling``", 
+    "description": "[``botocore``] Update autoscaling client to latest version", 
+    "type": "api-change"
+  }
+]

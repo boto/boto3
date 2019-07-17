@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.189
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
 1.9.188
 =======
 
