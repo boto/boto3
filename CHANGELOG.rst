@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.190
+=======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.189
 =======
 
