@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``sqs``", 
+    "description": "[``botocore``] Update sqs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotevents``", 
+    "description": "[``botocore``] Update iotevents client to latest version", 
+    "type": "api-change"
+  }
+]

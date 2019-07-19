@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.191
+=======
+
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+
+
 1.9.190
 =======
 
