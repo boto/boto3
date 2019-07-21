@@ -1,0 +1,5 @@
+{
+  "category": "Dependency", 
+  "type": "bugfix", 
+  "description": "[``botocore``] Fixed dependency issue with broken docutils aws/aws-cli`#4332 <https://github.com/boto/botocore/issues/4332>`__"
+}
