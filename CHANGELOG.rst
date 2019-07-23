@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.194
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+
+
 1.9.193
 =======
 
