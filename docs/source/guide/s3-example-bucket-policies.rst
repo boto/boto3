@@ -31,7 +31,7 @@ the bucket name.
 
     # Retrieve the policy of the specified bucket
     s3 = boto3.client('s3')
-    result = s3.get_bucket_policy('BUCKET_NAME')
+    result = s3.get_bucket_policy(Bucket='BUCKET_NAME')
     print(result['Policy'])
 
 
@@ -67,7 +67,7 @@ stored in the bucket identified by the ``bucket_name`` variable.
 
     # Set the new policy
     s3 = boto3.client('s3')
-    s3.put_bucket_policy(bucket_name, Policy=bucket_policy)
+    s3.put_bucket_policy(Bucket=bucket_name, Policy=bucket_policy)
 
 
 Delete a Bucket Policy
@@ -79,4 +79,4 @@ A bucket's policy can be deleted by calling the ``delete_bucket_policy`` method.
 
     # Delete a bucket's policy
     s3 = boto3.client('s3')
-    s3.delete_bucket_policy('BUCKET_NAME')
+    s3.delete_bucket_policy(Bucket='BUCKET_NAME')

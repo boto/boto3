@@ -306,8 +306,8 @@ class TestS3Transfers(unittest.TestCase):
             Key=key)
 
     def object_exists(self, key):
-        self.client.head_object(Bucket=self.bucket_name,
-                                Key=key)
+        waiter = self.client.get_waiter('object_exists')
+        waiter.wait(Bucket=self.bucket_name, Key=key)
         return True
 
     def wait_until_object_exists(self, key_name, extra_params=None,
