@@ -2,6 +2,102 @@
 CHANGELOG
 =========
 
+1.9.195
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
+1.9.194
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+
+
+1.9.193
+=======
+
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+
+
+1.9.192
+=======
+
+* bugfix:Dependency: [``botocore``] Fixed dependency issue with broken docutils aws/aws-cli`#4332 <https://github.com/boto/botocore/issues/4332>`__
+
+
+1.9.191
+=======
+
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+
+
+1.9.190
+=======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
+1.9.189
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
+1.9.188
+=======
+
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
+1.9.187
+=======
+
+* api-change:``events``: [``botocore``] Update events client to latest version
+
+
+1.9.186
+=======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``glacier``: [``botocore``] Update glacier client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
+1.9.185
+=======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``kinesisvideo``: [``botocore``] Update kinesisvideo client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+
+
+1.9.184
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+
+
 1.9.183
 =======
 
