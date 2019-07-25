@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.196
+=======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.195
 =======
 
