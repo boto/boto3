@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.197
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.196
 =======
 
