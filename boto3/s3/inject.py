@@ -759,4 +759,3 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     return self.meta.client.download_fileobj(
         Bucket=self.bucket_name, Key=self.key, Fileobj=Fileobj,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
-
