@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.198
+=======
+
+* bugfix:S3: [``botocore``] Fix an issue that would cause S3 list_object_versions to sometimes fail parsing responses with certain key values.
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+
+
 1.9.197
 =======
 

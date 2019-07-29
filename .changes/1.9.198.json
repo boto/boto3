@@ -1,0 +1,12 @@
+[
+  {
+    "category": "S3", 
+    "description": "[``botocore``] Fix an issue that would cause S3 list_object_versions to sometimes fail parsing responses with certain key values.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``codecommit``", 
+    "description": "[``botocore``] Update codecommit client to latest version", 
+    "type": "api-change"
+  }
+]
