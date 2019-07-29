@@ -1,5 +1,0 @@
-{
-  "category": "S3", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Fix an issue that would cause S3 list_object_versions to sometimes fail parsing responses with certain key values."
-}
