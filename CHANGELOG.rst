@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.200
+=======
+
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* enhancement:Credentials: [``botocore``] Add support for a credential provider that handles resolving credentials via STS AssumeRoleWithWebIdentity
+
+
 1.9.199
 =======
 
