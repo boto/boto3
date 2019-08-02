@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``sts``", 
+    "description": "[``botocore``] Update sts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Credentials", 
+    "description": "[``botocore``] Add support for a credential provider that handles resolving credentials via STS AssumeRoleWithWebIdentity", 
+    "type": "enhancement"
+  }
+]

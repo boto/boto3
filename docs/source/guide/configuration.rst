@@ -262,6 +262,58 @@ needed to configure an assume role profile::
 See `Using IAM Roles`_ for general information on IAM roles.
 
 
+Assume Role With Web Identity Provider
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Within the ``~/.aws/config`` file, you can also configure a profile to indicate
+that boto3 should assume a role.  When you do this, boto3 will automatically
+make the corresponding ``AssumeRoleWithWebIdentity`` calls to AWS STS on your
+behalf.  It will handle in memory caching as well as refreshing credentials as
+needed.
+
+You can specify the following configuration values for configuring an
+IAM role in boto3:
+
+
+* ``role_arn`` - The ARN of the role you want to assume.
+* ``web_identity_token_file`` - The path to a file which contains an OAuth 2.0
+  access token or OpenID Connect ID token that is provided by the identity
+  provider. The contents of this file will be loaded and passed as the
+  ``WebIdentityToken`` argument to the ``AssumeRoleWithWebIdentity`` operation.
+* ``role_session_name`` - The name applied to this assume-role session. This
+  value affects the assumed role user ARN  (such as
+  arn:aws:sts::123456789012:assumed-role/role_name/role_session_name). This
+  maps to the ``RoleSessionName`` parameter in the
+  ``AssumeRoleWithWebIdentity`` operation.  This is an optional parameter.  If
+  you do not provide this value, a session name will be automatically
+  generated.
+
+Below is an example configuration for the minimal amount of configuration
+needed to configure an assume role with web identity profile::
+
+  # In ~/.aws/config
+  [profile web-identity]
+  role_arn=arn:aws:iam:...
+  web_identity_token_file=/path/to/a/token
+
+This provider can also be configured via the environment:
+
+``AWS_ROLE_ARN``
+    The ARN of the role you want to assume.
+
+``AWS_WEB_IDENTITY_TOKEN_FILE``
+    The path to the web identity token file.
+
+``AWS_ROLE_SESSION_NAME``
+    The name applied to this assume-role session.
+
+.. note::
+
+    These environment variables currently only apply to the assume role with
+    web identity provider and do not apply to the general assume role provider
+    configuration.
+
+
 Boto2 Config
 ~~~~~~~~~~~~
 
@@ -491,6 +543,11 @@ in the ``~/.aws/config`` file:
 ``role_session_name``
     The role name to use when assuming a role.  If this value is not
     provided, a session name will be automatically generated.
+``web_identity_token_file``
+    The path to a file which contains an OAuth 2.0 access token or OpenID
+    Connect ID token that is provided by the identity provider. The contents of
+    this file will be loaded and passed as the ``WebIdentityToken`` argument to
+    the ``AssumeRoleWithWebIdentity`` operation.
 ``s3``
     Set S3-specific configuration data. Typically, these values do not need
     to be set.
