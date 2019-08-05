@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.201
+=======
+
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.9.200
 =======
 
