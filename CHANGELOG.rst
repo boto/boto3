@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.203
+=======
+
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+
+
 1.9.202
 =======
 
