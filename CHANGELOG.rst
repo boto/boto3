@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.204
+=======
+
+* api-change:``lakeformation``: [``botocore``] Update lakeformation client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.9.203
 =======
 
