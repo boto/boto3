@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.205
+=======
+
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.204
 =======
 
