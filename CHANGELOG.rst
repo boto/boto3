@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.206
+=======
+
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.9.205
 =======
 
