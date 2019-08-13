@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.207
+=======
+
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+
+
 1.9.206
 =======
 
