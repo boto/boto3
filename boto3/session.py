@@ -79,6 +79,7 @@ class Session(object):
             self._session.get_component('event_emitter'))
         self._setup_loader()
         self._register_default_handlers()
+        self.api_rate_mgr = None
 
     def __repr__(self):
         return '{0}(region_name={1})'.format(
@@ -185,7 +186,7 @@ class Session(object):
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
-               aws_session_token=None, config=None):
+               aws_session_token=None, config=None, api_rate=0):
         """
         Create a low-level service client by name.
 
@@ -252,15 +253,19 @@ class Session(object):
             <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_
             for more details.
 
+        :type api_rate: int
+        :param api_rate: Request interval if using the ApiRateManager
+
         :return: Service client instance
 
         """
+
         return self._session.create_client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token, config=config)
+            aws_session_token=aws_session_token, config=config, api_rate=api_rate)
 
     def resource(self, service_name, region_name=None, api_version=None,
                  use_ssl=True, verify=None, endpoint_url=None,
