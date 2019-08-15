@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.209
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+
+
 1.9.208
 =======
 
