@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.210
+=======
+
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.209
 =======
 
