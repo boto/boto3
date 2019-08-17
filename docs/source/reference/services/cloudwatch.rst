@@ -1727,7 +1727,7 @@ Client
 
             - **LastModified** *(datetime) --* 
 
-              The time stamp of when the dashboard was last modified, either by an API call or through the console. This number is expressed as the number of milliseconds since Jan 1, 1970 00:00:00 UTC.
+              The time stamp of when the dashboard was last modified, either by an API call or through the console.
 
               
             
@@ -2498,7 +2498,7 @@ Client
       
         - **Timestamp** *(datetime) --* 
 
-          The time the metric data was received, expressed as the number of milliseconds since Jan 1, 1970 00:00:00 UTC.
+          The time the metric data was received.
 
           
 
