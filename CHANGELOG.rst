@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.211
+=======
+
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``cur``: [``botocore``] Update cur client to latest version
+
+
 1.9.210
 =======
 
