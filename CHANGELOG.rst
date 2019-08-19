@@ -2,6 +2,71 @@
 CHANGELOG
 =========
 
+1.9.210
+=======
+
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
+1.9.209
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+
+
+1.9.208
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
+1.9.207
+=======
+
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+
+
+1.9.206
+=======
+
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
+1.9.205
+=======
+
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
+1.9.204
+=======
+
+* api-change:``lakeformation``: [``botocore``] Update lakeformation client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
+1.9.203
+=======
+
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+
+
 1.9.202
 =======
 
