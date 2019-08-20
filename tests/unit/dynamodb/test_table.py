@@ -386,3 +386,62 @@ class BaseTransformationTest(unittest.TestCase):
             }
         }
         self.assert_batch_write_calls_are([first_batch, second_batch])
+
+    def test_idempotent_exceptions(self):
+        # When put_item surfaces an excpetion, the state of a BatchWriter is
+        # the same before put_item as it is after put_item.
+        # The idempotency does not extend beyond BatchWriter, including to
+        # DynamoDB.
+        class DeliberateError(Exception):
+            pass
+        self.client.batch_write_item.side_effect = [
+            DeliberateError,
+            {
+                'UnprocessedItems': {}
+            },
+            {
+                'UnprocessedItems': {}
+            },
+        ]
+        with BatchWriter(self.table_name, self.client, flush_amount=3) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo2'})
+            self.assertRaises(
+                DeliberateError, b.put_item, Item={'Hash': 'foo3'}
+            )
+            b.put_item(Item={'Hash': 'foo4'})
+        # Expect 3 batches.
+        # The first batch is from the call to put_item with {'Hash': 'foo3'},
+        # this attempt surfaces an exception.
+        # The second batch is from the call to put_item with {'Hash': 'foo4'},
+        # this repeats the first batch because none of the were successful in
+        # the first atttempt.
+        # The third batch is from the flush via the __exit__.
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                ]
+            }
+        }
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                ]
+            }
+        }
+        third_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                ]
+            }
+        }
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch]
+        )
