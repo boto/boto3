@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.213
+=======
+
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``forecastquery``: [``botocore``] Update forecastquery client to latest version
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+
+
 1.9.212
 =======
 
