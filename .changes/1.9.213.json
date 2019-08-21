@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``forecast``", 
+    "description": "[``botocore``] Update forecast client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``forecastquery``", 
+    "description": "[``botocore``] Update forecastquery client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize-runtime``", 
+    "description": "[``botocore``] Update personalize-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] Update elasticache client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rekognition``", 
+    "description": "[``botocore``] Update rekognition client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sqs``", 
+    "description": "[``botocore``] Update sqs client to latest version", 
+    "type": "api-change"
+  }
+]
