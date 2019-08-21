@@ -217,6 +217,8 @@ class TestSession(BaseTestCase):
         self.assertTrue(client,
                         'No low-level client was returned')
 
+    # TODO This test for specific args means breaking compatibility
+    # with previous versions when new args are added.
     def test_create_client_with_args(self):
         bc_session = self.bc_session_cls.return_value
 
@@ -224,7 +226,7 @@ class TestSession(BaseTestCase):
         session.client('sqs', region_name='us-west-2')
 
         bc_session.create_client.assert_called_with(
-            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
+            'sqs', api_rate=0, aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
             verify=None, region_name='us-west-2', api_version=None,
             config=None)
