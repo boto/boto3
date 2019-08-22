@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.214
+=======
+
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.213
 =======
 
