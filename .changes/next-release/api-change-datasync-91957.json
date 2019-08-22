@@ -1,5 +1,0 @@
-{
-  "category": "``datasync``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update datasync client to latest version"
-}

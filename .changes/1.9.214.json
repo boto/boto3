@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``datasync``", 
+    "description": "[``botocore``] Update datasync client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }
+]
