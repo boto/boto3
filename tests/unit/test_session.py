@@ -16,7 +16,7 @@ from botocore.exceptions import DataNotFoundError, UnknownServiceError
 from botocore.client import Config
 
 from boto3 import __version__
-from boto3.exceptions import NoVersionFound, ResourceNotExistsError
+from boto3.exceptions import ResourceNotExistsError
 from boto3.session import Session
 from tests import mock, BaseTestCase
 
