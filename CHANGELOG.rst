@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.216
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+
+
 1.9.215
 =======
 
