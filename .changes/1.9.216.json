@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }
+]
