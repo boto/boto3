@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.217
+=======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.9.216
 =======
 
