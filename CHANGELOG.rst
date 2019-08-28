@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.218
+=======
+
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.217
 =======
 
