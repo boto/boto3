@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``sqs``", 
+    "description": "[``botocore``] Update sqs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``globalaccelerator``", 
+    "description": "[``botocore``] Update globalaccelerator client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }
+]
