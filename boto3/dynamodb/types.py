@@ -35,7 +35,7 @@ DYNAMODB_CONTEXT = Context(
     traps=[Clamped, Overflow, Inexact, Rounded, Underflow])
 
 
-BINARY_TYPES = (bytearray, six.binary_type)
+BINARY_TYPES = (bytearray, bytes)
 
 
 class Binary(object):
@@ -170,7 +170,7 @@ class TypeSerializer(object):
             return True
         elif isinstance(value, bytearray):
             return True
-        elif six.PY3 and isinstance(value, six.binary_type):
+        elif not six.PY2 and isinstance(value, bytes):
             return True
         return False
 
