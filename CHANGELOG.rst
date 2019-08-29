@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.9.219
+=======
+
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.218
 =======
 
