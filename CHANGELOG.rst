@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.220
+=======
+
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``apigatewaymanagementapi``: [``botocore``] Update apigatewaymanagementapi client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.219
 =======
 
