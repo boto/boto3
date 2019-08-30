@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``mq``", 
+    "description": "[``botocore``] Update mq client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigatewaymanagementapi``", 
+    "description": "[``botocore``] Update apigatewaymanagementapi client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }
+]
