@@ -71,7 +71,7 @@ class ResourceCollection(object):
         after performing its appropriate operation calls and handling
         pagination on our behalf.
 
-        Page size, item limit, and filter parameters are applied if 
+        Page size, item limit, and filter parameters are applied if
         they have been previously set.
 
             >>> bucket = s3.Bucket('boto3')
@@ -88,21 +88,21 @@ class ResourceCollection(object):
             self._limit = self._params.get('limit', None)
             self._limit_count = 0
             self._pages = self.pages()
+            self._page_list = next(self._pages)
             self._page_index = 0
-            self._page_list = []
 
         # If page list is exhausted, get new page and reset
         # the index counter.
         if self._page_index >= len(self._page_list):
             try:
-                self._page_list =  next(self._pages)
+                self._page_list = next(self._pages)
                 self._page_index = 0
             except StopIteration:
                 raise StopIteration
 
         # If the limit isn't None and we've reached the limit
         # specified, stop iteration.
-        if (self._limit is not None and 
+        if (self._limit is not None and
                 self._limit_count >= self.limit):
             raise StopIteration
 
