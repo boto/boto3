@@ -63,6 +63,9 @@ class ResourceCollection(object):
         )
 
     def __iter__(self):
+        """
+        Returns an iterator for the iterator protocol.
+        """
         return self
 
     def __next__(self):
