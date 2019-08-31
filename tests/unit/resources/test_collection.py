@@ -682,7 +682,7 @@ class TestResourceCollection(BaseTestCase):
         self.assertEqual(True, '__next__' in dir(collection.all()))
         self.assertEqual(True, 'next' in dir(collection.all()))
 
-    def test_iteration_equality(self):
+    def test_end_of_iteration(self):
         self.collection_def = {
             'request': {
                 'operation' : 'GetFrobs'
@@ -713,3 +713,47 @@ class TestResourceCollection(BaseTestCase):
         self.assertEqual(next(items).id, 'three')
         self.assertEqual(next(items).id, 'four')
         self.assertRaises(StopIteration, lambda: next(items))
+
+    def test_iteration_equality(self):
+        self.collection_def = {
+            'request': {
+                'operation' : 'GetFrobs'
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {
+                        'target': 'Id',
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
+                    }
+                ]
+            }
+        }
+        self.client.get_frobs.return_value = {
+            'Frobs': [
+                {'Id': 'one'},
+                {'Id': 'two'},
+                {'Id': 'three'},
+                {'Id': 'four'}
+            ]
+        }
+        collection = self.get_collection()
+        items = collection.all()
+
+        done = False 
+        l1 = []
+        while not done:
+            try:
+                l1.append(next(items))
+            except StopIteration:
+                done = True
+
+        collection = self.get_collection()
+        items = collection.all()
+
+        l2 = []
+        for item in items:
+            l2.append(item)
+
+        self.assertEqual(sorted(l1), sorted(l2))
