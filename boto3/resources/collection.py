@@ -50,6 +50,7 @@ class ResourceCollection(object):
             model.request.operation)
         self._handler = handler
         self._params = copy.deepcopy(kwargs)
+        self._has_run = False
 
     def __repr__(self):
         return '{0}({1}, {2})'.format(
@@ -62,13 +63,16 @@ class ResourceCollection(object):
         )
 
     def __iter__(self):
-        """
-        A generator which yields resource instances after doing the
-        appropriate service operation calls and handling any pagination
-        on your behalf.
+        return self
 
-        Page size, item limit, and filter parameters are applied
-        if they have previously been set.
+    def __next__(self):
+        """
+        A stateful iterator function which returns resource instances
+        after performing its appropriate operation calls and handling
+        pagination on our behalf.
+
+        Page size, item limit, and filter parameters are applied if
+        they have been previously set.
 
             >>> bucket = s3.Bucket('boto3')
             >>> for obj in bucket.objects.all():
@@ -76,19 +80,40 @@ class ResourceCollection(object):
             'key1'
             'key2'
 
+        :raises StopIteration: raised when end of pages or limit has
+        been reached.
         """
-        limit = self._params.get('limit', None)
+        if not self._has_run:
+            self._has_run = True
+            self._limit = self._params.get('limit', None)
+            self._limit_count = 0
+            self._pages = self.pages()
+            self._page_list = next(self._pages)
+            self._page_index = 0
 
-        count = 0
-        for page in self.pages():
-            for item in page:
-                yield item
+        # If page list is exhausted, get new page and reset
+        # the index counter.
+        if self._page_index >= len(self._page_list):
+            try:
+                self._page_list = next(self._pages)
+                self._page_index = 0
+            except StopIteration:
+                raise StopIteration
 
-                # If the limit is set and has been reached, then
-                # we stop processing items here.
-                count += 1
-                if limit is not None and count >= limit:
-                    return
+        # If the limit isn't None and we've reached the limit
+        # specified, stop iteration.
+        if (self._limit is not None and
+                self._limit_count >= self.limit):
+            raise StopIteration
+
+        # Increment index and counters, then return the element.
+        item = self._page_list[self._page_index]
+        self._page_index += 1
+        self._limit_count += 1
+        return item
+
+    # Cross-compatibility for python2.6/2.7/3+ Iterator spec.
+    next = __next__
 
     def _clone(self, **kwargs):
         """

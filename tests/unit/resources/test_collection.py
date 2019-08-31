@@ -675,3 +675,41 @@ class TestResourceCollection(BaseTestCase):
         collection = self.get_collection()
 
         self.assertIn('ResourceCollection', repr(collection.all()))
+
+    def test_follows_iterator_protocol(self):
+        collection = self.get_collection()
+        
+        self.assertEqual(True, '__next__' in dir(collection.all()))
+        self.assertEqual(True, 'next' in dir(collection.all()))
+
+    def test_iteration_equality(self):
+        self.collection_def = {
+            'request': {
+                'operation' : 'GetFrobs'
+            },
+            'resource': {
+                'type': 'Frob',
+                'identifiers': [
+                    {
+                        'target': 'Id',
+                        'source': 'response',
+                        'path': 'Frobs[].Id'
+                    }
+                ]
+            }
+        }
+        self.client.get_frobs.return_value = {
+            'Frobs': [
+                {'Id': 'one'},
+                {'Id': 'two'},
+                {'Id': 'three'},
+                {'Id': 'four'}
+            ]
+        }
+        collection = self.get_collection()
+        items = collection.all()
+        self.assertEqual(next(items).id, 'one')
+        self.assertEqual(next(items).id, 'two')
+        self.assertEqual(next(items).id, 'three')
+        self.assertEqual(next(items).id, 'four')
+        self.assertRaises(StopIteration, lambda: next(items))
