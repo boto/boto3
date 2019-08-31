@@ -61,7 +61,7 @@ class ResourceCollection(object):
             )
         )
 
-    def __iter__(self):
+    def _generator(self):
         """
         A generator which yields resource instances after doing the
         appropriate service operation calls and handling any pagination
@@ -337,20 +337,24 @@ class CollectionManager(object):
                                     self._handler, **kwargs)
 
     # Set up some methods to proxy ResourceCollection methods
+    # TODO: Modifying to return an Iterable
     def all(self):
-        return self.iterator()
+        return iter(self.iterator()._generator())
     all.__doc__ = ResourceCollection.all.__doc__
 
     def filter(self, **kwargs):
-        return self.iterator(**kwargs)
+        return iter(self.iterator(**kwargs)._generator())
+        # return self.iterator(**kwargs)
     filter.__doc__ = ResourceCollection.filter.__doc__
 
     def limit(self, count):
-        return self.iterator(limit=count)
+        return iter(self.iterator(limit=count)._generator())
+        # return self.iterator(limit=count)
     limit.__doc__ = ResourceCollection.limit.__doc__
 
     def page_size(self, count):
-        return self.iterator(page_size=count)
+        return iter(self.iterator(page_size=count)._generator())
+        # return self.iterator(page_size=count)
     page_size.__doc__ = ResourceCollection.page_size.__doc__
 
     def pages(self):
