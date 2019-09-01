@@ -739,6 +739,7 @@ class TestResourceCollection(BaseTestCase):
             ]
         }
         items = self.get_collection().all()
+
         done = False 
         l1 = []
         while not done:
