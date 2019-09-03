@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.221
+=======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+
+
 1.9.220
 =======
 
