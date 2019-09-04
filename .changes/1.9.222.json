@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``stepfunctions``", 
+    "description": "[``botocore``] Update stepfunctions client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Update eks client to latest version", 
+    "type": "api-change"
+  }
+]

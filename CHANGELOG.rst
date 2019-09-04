@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.222
+=======
+
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.9.221
 =======
 
