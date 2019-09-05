@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.223
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+
+
 1.9.222
 =======
 
