@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.224
+=======
+
+* api-change:``kinesisanalytics``: [``botocore``] Update kinesisanalytics client to latest version
+
+
 1.9.223
 =======
 

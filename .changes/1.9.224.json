@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``kinesisanalytics``", 
+    "description": "[``botocore``] Update kinesisanalytics client to latest version", 
+    "type": "api-change"
+  }
+]
