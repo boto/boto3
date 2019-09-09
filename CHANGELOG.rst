@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.9.225
+=======
+
+* api-change:``qldb``: [``botocore``] Update qldb client to latest version
+* api-change:``marketplacecommerceanalytics``: [``botocore``] Update marketplacecommerceanalytics client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``qldb-session``: [``botocore``] Update qldb-session client to latest version
+
+
 1.9.224
 =======
 
