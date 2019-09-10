@@ -183,7 +183,7 @@ class Session(object):
         return self._session.get_credentials()
 
     def client(self, service_name, region_name=None, api_version=None,
-               use_ssl=True, verify=None, endpoint_url=None,
+               use_ssl=True, enforce_pfs=False, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
                aws_session_token=None, config=None):
         """
@@ -207,6 +207,12 @@ class Session(object):
         :type use_ssl: boolean
         :param use_ssl: Whether or not to use SSL.  By default, SSL is used.
             Note that not all services support non-ssl connections.
+
+        :type enforce_pfs: boolean
+        :param enforce_pfs: Whether or not to enforce Perfect Forward Secrecy.
+            By default, PFS is not enforced.
+            Note that all services that support ssl now support PFS but
+            not all services support ssl connections (like snowball)
 
         :type verify: boolean/string
         :param verify: Whether or not to verify SSL certificates.  By default
@@ -257,15 +263,16 @@ class Session(object):
         """
         return self._session.create_client(
             service_name, region_name=region_name, api_version=api_version,
-            use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
-            aws_access_key_id=aws_access_key_id,
+            use_ssl=use_ssl, enforce_pfs=enforce_pfs, verify=verify,
+            endpoint_url=endpoint_url, aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
             aws_session_token=aws_session_token, config=config)
 
     def resource(self, service_name, region_name=None, api_version=None,
-                 use_ssl=True, verify=None, endpoint_url=None,
-                 aws_access_key_id=None, aws_secret_access_key=None,
-                 aws_session_token=None, config=None):
+                 use_ssl=True, enforce_pfs=False, verify=None,
+                 endpoint_url=None, aws_access_key_id=None,
+                 aws_secret_access_key=None, aws_session_token=None,
+                 config=None):
         """
         Create a resource service client by name.
 
@@ -287,6 +294,12 @@ class Session(object):
         :type use_ssl: boolean
         :param use_ssl: Whether or not to use SSL.  By default, SSL is used.
             Note that not all services support non-ssl connections.
+
+        :type enforce_pfs: boolean
+        :param enforce_pfs: Whether or not to enforce Perfect Forward Secrecy.
+            By default, PFS is not enforced.
+            Note that all services that support ssl now support PFS but
+            not all services support ssl connections (like snowball)
 
         :type verify: boolean/string
         :param verify: Whether or not to verify SSL certificates.  By default
