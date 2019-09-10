@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.226
+=======
+
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+
+
 1.9.225
 =======
 
