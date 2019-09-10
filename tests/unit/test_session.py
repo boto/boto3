@@ -227,7 +227,7 @@ class TestSession(BaseTestCase):
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
             verify=None, region_name='us-west-2', api_version=None,
-            config=None)
+            config=None, enforce_pfs=False)
 
     def test_create_resource_with_args(self):
         mock_bc_session = mock.Mock()
