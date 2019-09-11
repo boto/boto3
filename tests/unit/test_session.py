@@ -246,7 +246,7 @@ class TestSession(BaseTestCase):
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
             verify=False, region_name=None, api_version='2014-11-02',
-            config=mock.ANY)
+            config=mock.ANY, enforce_pfs=False)
         client_config = session.client.call_args[1]['config']
         self.assertEqual(client_config.user_agent_extra, 'Resource')
         self.assertEqual(client_config.signature_version, None)
@@ -269,7 +269,7 @@ class TestSession(BaseTestCase):
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
             verify=None, region_name=None, api_version='2014-11-02',
-            config=mock.ANY)
+            config=mock.ANY, enforce_pfs=False)
         client_config = session.client.call_args[1]['config']
         self.assertEqual(client_config.user_agent_extra, 'Resource')
         self.assertEqual(client_config.signature_version, 'v4')
@@ -292,7 +292,7 @@ class TestSession(BaseTestCase):
             'sqs', aws_secret_access_key=None, aws_access_key_id=None,
             endpoint_url=None, use_ssl=True, aws_session_token=None,
             verify=None, region_name=None, api_version='2014-11-02',
-            config=mock.ANY)
+            config=mock.ANY, enforce_pfs=False)
         client_config = session.client.call_args[1]['config']
         self.assertEqual(client_config.user_agent_extra, 'foo')
         self.assertEqual(client_config.signature_version, 'v4')
