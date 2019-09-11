@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.227
+=======
+
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``ses``: [``botocore``] Update ses client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+
+
 1.9.226
 =======
 
