@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.228
+=======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``workmailmessageflow``: [``botocore``] Update workmailmessageflow client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.9.227
 =======
 
