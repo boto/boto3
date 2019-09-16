@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.229
+=======
+
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.228
 =======
 
