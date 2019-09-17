@@ -1,5 +1,0 @@
-{
-  "category": "``personalize``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update personalize client to latest version"
-}

@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.230
+=======
+
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+
+
 1.9.229
 =======
 
