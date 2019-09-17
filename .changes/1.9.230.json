@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Update iam client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``athena``", 
+    "description": "[``botocore``] Update athena client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update personalize client to latest version", 
+    "type": "api-change"
+  }
+]
