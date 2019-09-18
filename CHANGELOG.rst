@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.231
+=======
+
+* api-change:``ram``: [``botocore``] Update ram client to latest version
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+
+
 1.9.230
 =======
 
