@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.232
+=======
+
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.231
 =======
 
