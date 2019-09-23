@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.234
+=======
+
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.9.233
 =======
 
