@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehendmedical``", 
+    "description": "[``botocore``] Update comprehendmedical client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``datasync``", 
+    "description": "[``botocore``] Update datasync client to latest version", 
+    "type": "api-change"
+  }
+]

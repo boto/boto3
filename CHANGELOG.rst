@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.235
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``comprehendmedical``: [``botocore``] Update comprehendmedical client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+
+
 1.9.234
 =======
 
