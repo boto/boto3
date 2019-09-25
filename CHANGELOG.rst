@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.236
+=======
+
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.9.235
 =======
 
