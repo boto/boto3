@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.237
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+
+
 1.9.236
 =======
 
