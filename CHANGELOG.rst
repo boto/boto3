@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.238
+=======
+
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.9.237
 =======
 
