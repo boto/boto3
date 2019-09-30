@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.239
+=======
+
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+
+
 1.9.238
 =======
 
