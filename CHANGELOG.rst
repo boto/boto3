@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.240
+=======
+
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+
+
 1.9.239
 =======
 
