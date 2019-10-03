@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``application-autoscaling``", 
+    "description": "[``botocore``] Update application-autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``devicefarm``", 
+    "description": "[``botocore``] Update devicefarm client to latest version", 
+    "type": "api-change"
+  }
+]
