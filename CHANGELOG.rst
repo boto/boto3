@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.242
+=======
+
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+
+
 1.9.241
 =======
 
