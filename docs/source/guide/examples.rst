@@ -19,6 +19,12 @@ for Python to call various AWS services. The source files for the examples,
 plus additional example programs, are available in the `AWS Code 
 Catalog <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
+To propose a new code example for the AWS documentation team to consider producing, create a new request. 
+The team is looking to produce code examples that cover broader scenarios and use cases, 
+versus simple code snippets that cover only individual API calls. For instructions, see 
+the "Proposing new code examples" section in the 
+`Readme on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/README.rst>`_. 
+
 Before running an example, your AWS credentials must be configured as 
 described in :doc:`quickstart`.
 
