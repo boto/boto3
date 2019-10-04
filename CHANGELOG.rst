@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.243
+=======
+
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.9.242
 =======
 
