@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.9.244
+=======
+
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``pinpoint-email``: [``botocore``] Update pinpoint-email client to latest version
+
+
 1.9.243
 =======
 
