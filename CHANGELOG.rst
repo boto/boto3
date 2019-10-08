@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.245
+=======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+
+
 1.9.244
 =======
 
