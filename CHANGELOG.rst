@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.246
+=======
+
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.9.245
 =======
 
