@@ -29,6 +29,14 @@ services that are supported.
     :target: https://github.com/boto/boto3/blob/develop/LICENSE
     :alt: License
 
+
+On 10/09/2019 support for Python 2.6 and Python 3.3 was deprecated and support
+will be dropped on 01/10/2020. To avoid disruption, customers using Boto3
+on Python 2.6 or 3.3 will need to upgrade their version of Python or pin the
+version of Boto3 in use prior to 01/10/2020. For more information, see
+this `blog post <https://aws.amazon.com/blogs/developer/deprecation-of-python-2-6-and-python-3-3-in-botocore-boto3-and-the-aws-cli/>`__.
+
+
 Quick Start
 -----------
 First, install the library and set a default region:
