@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.9.247
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+
+
 1.9.246
 =======
 
