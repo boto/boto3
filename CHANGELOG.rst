@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.248
+=======
+
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+
+
 1.9.247
 =======
 
