@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.249
+=======
+
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+
+
 1.9.248
 =======
 
