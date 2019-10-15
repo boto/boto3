@@ -4,6 +4,14 @@ Quickstart
 ==========
 Getting started with Boto 3 is easy, but requires a few steps.
 
+.. important:: On January 10th, 2020, Boto 3 will no longer support 
+   Python 2.6 or Python 3.3. After this date, Boto 3 will require 
+   Python 2.7, Python 3.4, or a later version to successfully use 
+   Boto 3. For more information, see 
+   *Using Boto 3 with Python 2.6 or Python 3.3* 
+   later in this topic, and the 
+   `deprecation announcement in this blog post <https://aws.amazon.com/blogs/developer/deprecation-of-python-2-6-and-python-3-3-in-botocore-boto3-and-the-aws-cli/>`_.
+
 Installation
 ------------
 Install the latest Boto 3 release via :command:`pip`::
@@ -82,3 +90,39 @@ already exists::
 :ref:`guide_resources` and :ref:`guide_collections` will be covered in more
 detail in the following sections, so don't worry if you do not completely
 understand the examples.
+
+Using Boto 3 with Python 2.6 or Python 3.3
+------------------------------------------
+
+On January 10th, 2020, Boto 3 will no longer support Python 2.6 or 
+Python 3.3. After this date, Boto 3 will require Python 2.7, Python 3.4, 
+or a later version to successfully use Boto 3. For more information, 
+see the 
+`deprecation announcement in this blog post <https://aws.amazon.com/blogs/developer/deprecation-of-python-2-6-and-python-3-3-in-botocore-boto3-and-the-aws-cli/>`_.
+
+Boto 3 requires an installation of Python to run. This Python 
+installation can be any supported version of Python. 
+Because Python 2.6 and Python 3.3 will no longer be supported and will 
+no longer receive security updates, we encourage you to upgrade to 
+Python 2.7, Python 3.4, or a later version.
+
+To continue using Python 2.6 or Python 3.3 with Boto 3, you must 
+"pin" to a Boto 3 version as described later in this section. 
+
+.. important:: Using an older version of Boto 3 prevents you from 
+   accessing new AWS services and features that were added to Boto 3 
+   after the date your older version was initially released. 
+   We recommend that whenever possible, you instead upgrade your 
+   Boto 3 installation to a newer version.
+
+You can force pip to download a Boto 3 version that is compatible 
+with Python 2.6 or Python 3.3 by running a command that specifies 
+``boto3==x.y.z``, where ``x.y.z`` is the specific version of Boto 3 
+that is compatible with Python 2.6 or Python 3.3. For example, to 
+pin to Boto 3 version 1.9.239::
+
+    pip install --upgrade boto3==1.9.239
+
+For a list of available Boto 3 version numbers, see 
+`boto3 Releases <https://github.com/boto/boto3/releases>`_ on GitHub.
+
