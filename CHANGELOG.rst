@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.250
+=======
+
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+
+
 1.9.249
 =======
 
