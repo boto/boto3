@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.9.251
+=======
+
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``marketplacecommerceanalytics``: [``botocore``] Update marketplacecommerceanalytics client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+
+
 1.9.250
 =======
 
