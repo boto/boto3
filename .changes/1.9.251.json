@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``kafka``", 
+    "description": "[``botocore``] Update kafka client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``marketplacecommerceanalytics``", 
+    "description": "[``botocore``] Update marketplacecommerceanalytics client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``robomaker``", 
+    "description": "[``botocore``] Update robomaker client to latest version", 
+    "type": "api-change"
+  }
+]
