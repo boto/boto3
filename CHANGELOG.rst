@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.9.252
+=======
+
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.9.251
 =======
 
