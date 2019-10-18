@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.9.253
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+
+
 1.9.252
 =======
 
