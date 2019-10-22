@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``opsworkscm``", 
+    "description": "[``botocore``] Update opsworkscm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotevents``", 
+    "description": "[``botocore``] Update iotevents client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``botocore.vendored.requests``", 
+    "description": "[``botocore``] Removed vendored version of ``requests`` (`#1829 <https://github.com/boto/botocore/issues/1829>`__)", 
+    "type": "feature"
+  }
+]
