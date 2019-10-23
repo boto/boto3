@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }
+]
