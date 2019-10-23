@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.10.1
+======
+
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.10.0
 ======
 
