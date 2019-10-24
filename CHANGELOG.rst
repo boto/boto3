@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.10.2
+======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* enhancement:``sts``: [``botocore``] Add support for configuring the use of regional STS endpoints.
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.10.1
 ======
 
