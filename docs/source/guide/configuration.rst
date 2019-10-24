@@ -443,6 +443,11 @@ Environment Variable Configuration
     separated with the ``os.pathsep`` character which is ``:`` on linux and
     ``;`` on windows.
 
+``AWS_STS_REGIONAL_ENDPOINTS``
+    Sets STS endpoint resolution logic. See the ``sts_regional_endpoints``
+    configuration file section for more information on how to use this.
+
+
 Configuration File
 ~~~~~~~~~~~~~~~~~~
 
@@ -614,6 +619,41 @@ in the ``~/.aws/config`` file:
 
     The ``credential_source`` and ``source_profile`` settings are mutually
     exclusive.
+
+``sts_regional_endpoints``
+    Sets STS endpoint resolution logic. This configuration can also be set
+    using the environment variable ``AWS_STS_REGIONAL_ENDPOINTS``. By default,
+    this configuration option is set to ``legacy``. Valid values are:
+
+    * ``regional``
+        Uses the STS endpoint that corresponds to the configured region. For
+        example if the client is configured to use ``us-west-2``, all calls
+        to STS will be make to the ``sts.us-west-2.amazonaws.com`` regional
+        endpoint instead of the global ``sts.amazonaws.com`` endpoint.
+
+    * ``legacy``
+        Uses the global STS endpoint, ``sts.amazonaws.com``, for the following
+        configured regions:
+
+        * ``ap-northeast-1``
+        * ``ap-south-1``
+        * ``ap-southeast-1``
+        * ``ap-southeast-2``
+        * ``aws-global``
+        * ``ca-central-1``
+        * ``eu-central-1``
+        * ``eu-north-1``
+        * ``eu-west-1``
+        * ``eu-west-2``
+        * ``eu-west-3``
+        * ``sa-east-1``
+        * ``us-east-1``
+        * ``us-east-2``
+        * ``us-west-1``
+        * ``us-west-2``
+
+        All other regions will use their respective regional endpoint.
+
 ``tcp_keepalive``
     Toggles the TCP Keep-Alive socket option used when creating connections.
     By default this value is ``false``; TCP Keep-Alive will not be used
