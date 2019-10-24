@@ -1,0 +1,5 @@
+{
+  "category": "``sts``", 
+  "type": "enhancement", 
+  "description": "[``botocore``] Add support for configuring the use of regional STS endpoints."
+}
