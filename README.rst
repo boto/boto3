@@ -123,3 +123,5 @@ help:
 * Come join the AWS Python community chat on `gitter <https://gitter.im/boto/boto3>`__
 * Open a support ticket with `AWS Support <https://console.aws.amazon.com/support/home#/>`__
 * If it turns out that you may have found a bug, please `open an issue <https://github.com/boto/boto3/issues/new>`__
+
+//this is my change
