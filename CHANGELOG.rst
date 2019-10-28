@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.4
+======
+
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.10.3
 ======
 
