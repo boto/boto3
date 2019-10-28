@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.3
+======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+
+
 1.10.2
 ======
 
