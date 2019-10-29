@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.10.5
+======
+
+* api-change:``cloud9``: [``botocore``] Update cloud9 client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+
+
 1.10.4
 ======
 

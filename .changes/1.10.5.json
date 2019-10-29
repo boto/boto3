@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``cloud9``", 
+    "description": "[``botocore``] Update cloud9 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appstream``", 
+    "description": "[``botocore``] Update appstream client to latest version", 
+    "type": "api-change"
+  }
+]
