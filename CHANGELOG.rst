@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.6
+======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.10.5
 ======
 
