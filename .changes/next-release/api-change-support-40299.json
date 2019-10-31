@@ -1,0 +1,5 @@
+{
+  "category": "``support``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update support client to latest version"
+}
