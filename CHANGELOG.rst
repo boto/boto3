@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.7
+======
+
+* api-change:``support``: [``botocore``] Update support client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.10.6
 ======
 
