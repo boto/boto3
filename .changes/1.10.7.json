@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``support``", 
+    "description": "[``botocore``] Update support client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``amplify``", 
+    "description": "[``botocore``] Update amplify client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }
+]
