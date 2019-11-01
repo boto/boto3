@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.8
+======
+
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+
+
 1.10.7
 ======
 
