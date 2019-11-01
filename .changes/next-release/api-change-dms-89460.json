@@ -1,0 +1,5 @@
+{
+  "category": "``dms``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update dms client to latest version"
+}
