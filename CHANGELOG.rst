@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.9
+======
+
+* api-change:``dax``: [``botocore``] Update dax client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+
+
 1.10.8
 ======
 
