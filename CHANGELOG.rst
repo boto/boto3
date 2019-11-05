@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.10.10
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``codestar-notifications``: [``botocore``] Update codestar-notifications client to latest version
+
+
 1.10.9
 ======
 
