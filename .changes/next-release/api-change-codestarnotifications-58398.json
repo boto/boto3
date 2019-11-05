@@ -1,5 +1,0 @@
-{
-  "category": "``codestar-notifications``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update codestar-notifications client to latest version"
-}
