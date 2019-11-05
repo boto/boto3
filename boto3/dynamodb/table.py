@@ -29,7 +29,7 @@ class TableResource(object):
     def __init__(self, *args, **kwargs):
         super(TableResource, self).__init__(*args, **kwargs)
 
-    def batch_writer(self, overwrite_by_pkeys=None):
+    def batch_writer(self, overwrite_by_pkeys=None, flush_amount=25):
         """Create a batch writer object.
 
         This method creates a context manager for writing
@@ -57,7 +57,8 @@ class TableResource(object):
 
         """
         return BatchWriter(self.name, self.meta.client,
-                           overwrite_by_pkeys=overwrite_by_pkeys)
+                           overwrite_by_pkeys=overwrite_by_pkeys,
+                           flush_amount=flush_amount)
 
 
 class BatchWriter(object):
