@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.10.11
+=======
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``savingsplans``: [``botocore``] Update savingsplans client to latest version
+* api-change:``signer``: [``botocore``] Update signer client to latest version
+
+
 1.10.10
 =======
 
