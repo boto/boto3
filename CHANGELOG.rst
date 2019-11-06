@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.12
+=======
+
+* api-change:``savingsplans``: [``botocore``] Update savingsplans client to latest version
+
+
 1.10.11
 =======
 
