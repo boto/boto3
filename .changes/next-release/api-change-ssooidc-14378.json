@@ -1,0 +1,5 @@
+{
+  "category": "``sso-oidc``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update sso-oidc client to latest version"
+}
