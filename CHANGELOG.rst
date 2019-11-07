@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.10.13
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``sso``: [``botocore``] Update sso client to latest version
+* api-change:``sso-oidc``: [``botocore``] Update sso-oidc client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+
+
 1.10.12
 =======
 
