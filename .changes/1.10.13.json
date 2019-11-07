@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sso``", 
+    "description": "[``botocore``] Update sso client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sso-oidc``", 
+    "description": "[``botocore``] Update sso-oidc client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }
+]
