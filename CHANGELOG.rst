@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.10.14
+=======
+
+* api-change:``cognito-identity``: [``botocore``] Update cognito-identity client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+
+
 1.10.13
 =======
 
