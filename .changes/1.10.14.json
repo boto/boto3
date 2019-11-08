@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``cognito-identity``", 
+    "description": "[``botocore``] Update cognito-identity client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecr``", 
+    "description": "[``botocore``] Update ecr client to latest version", 
+    "type": "api-change"
+  }
+]
