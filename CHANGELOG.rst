@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.10.15
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+
+
 1.10.14
 =======
 
