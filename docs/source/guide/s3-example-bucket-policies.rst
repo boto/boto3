@@ -58,7 +58,7 @@ stored in the bucket identified by the ``bucket_name`` variable.
             'Effect': 'Allow',
             'Principal': '*',
             'Action': ['s3:GetObject'],
-            'Resource': f'arn:aws:s3:::{bucket_name}/*'
+            'Resource': 'arn:aws:s3:::{bucket_name}/*'
         }]
     }
 
