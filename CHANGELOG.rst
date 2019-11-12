@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.10.16
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``marketplace-catalog``: [``botocore``] Update marketplace-catalog client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+
+
 1.10.15
 =======
 
