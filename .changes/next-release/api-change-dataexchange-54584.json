@@ -1,0 +1,5 @@
+{
+  "category": "``dataexchange``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update dataexchange client to latest version"
+}
