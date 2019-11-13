@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.10.17
+=======
+
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+* api-change:``dataexchange``: [``botocore``] Update dataexchange client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``cloudsearch``: [``botocore``] Update cloudsearch client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+
+
 1.10.16
 =======
 
