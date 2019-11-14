@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``meteringmarketplace``", 
+    "description": "[``botocore``] Update meteringmarketplace client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cognito-idp``", 
+    "description": "[``botocore``] Update cognito-idp client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update personalize client to latest version", 
+    "type": "api-change"
+  }
+]
