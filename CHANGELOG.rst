@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.10.18
+=======
+
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+
+
 1.10.17
 =======
 
