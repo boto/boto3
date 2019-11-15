@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.10.19
+=======
+
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+
+
 1.10.18
 =======
 
