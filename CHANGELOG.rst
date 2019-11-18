@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.10.20
+=======
+
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.10.19
 =======
 
