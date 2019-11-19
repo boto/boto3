@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.10.21
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
 1.10.20
 =======
 
