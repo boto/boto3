@@ -1,0 +1,87 @@
+[
+  {
+    "category": "``datasync``", 
+    "description": "[``botocore``] Update datasync client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dlm``", 
+    "description": "[``botocore``] Update dlm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediastore``", 
+    "description": "[``botocore``] Update mediastore client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudtrail``", 
+    "description": "[``botocore``] Update cloudtrail client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mgh``", 
+    "description": "[``botocore``] Update mgh client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codecommit``", 
+    "description": "[``botocore``] Update codecommit client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] Update fsx client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``migrationhub-config``", 
+    "description": "[``botocore``] Update migrationhub-config client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``firehose``", 
+    "description": "[``botocore``] Update firehose client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``discovery``", 
+    "description": "[``botocore``] Update discovery client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``chime``", 
+    "description": "[``botocore``] Update chime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }
+]

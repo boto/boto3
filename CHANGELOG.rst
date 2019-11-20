@@ -2,6 +2,28 @@
 CHANGELOG
 =========
 
+1.10.23
+=======
+
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``mediastore``: [``botocore``] Update mediastore client to latest version
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+* api-change:``mgh``: [``botocore``] Update mgh client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``migrationhub-config``: [``botocore``] Update migrationhub-config client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``discovery``: [``botocore``] Update discovery client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+
+
 1.10.22
 =======
 
