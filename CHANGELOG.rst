@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.22
+=======
+
+* bugfix:IMDS: [``botocore``] Fix regression in IMDS credential resolution. Fixes `#1892 <https://github.com/boto/botocore/issues/1892>`__.
+
+
 1.10.21
 =======
 
