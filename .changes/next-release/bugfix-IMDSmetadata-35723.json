@@ -1,5 +1,0 @@
-{
-  "category": "IMDS metadata", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Add 405 case to metadata fetching logic."
-}
