@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.25
+=======
+
+* bugfix:IMDS metadata: [``botocore``] Add 405 case to metadata fetching logic.
+
+
 1.10.24
 =======
 
