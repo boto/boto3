@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.10.24
+=======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``connectparticipant``: [``botocore``] Update connectparticipant client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+
+
 1.10.23
 =======
 
