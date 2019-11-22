@@ -23,6 +23,80 @@ def inject_create_tags(event_name, class_attributes, **kwargs):
 
 
 def create_tags(self, **kwargs):
+    """
+    Adds or overwrites the specified tags for the specified Amazon EC2
+    resource or resources. Each resource can have a maximum of 50 tags.
+    Each tag consists of a key and optional value. Tag keys must be unique
+    per resource.
+
+    For more information about tags, see
+    `Tagging Your Resources <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html>`__
+    in the *Amazon Elastic Compute Cloud User Guide* . For more information about
+    creating IAM policies that control users' access to resources based on tags, see
+    `Supported Resource-Level Permissions for Amazon EC2 API Actions
+    <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-iam-actions-resources.html>`__
+    in the *Amazon Elastic Compute Cloud User Guide* .
+
+    See also: `AWS API Documentation <https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/CreateTags>`_
+
+    **Request Syntax**
+    ::
+
+      response = client.create_tags(
+          DryRun=True|False,
+          Resources=[
+              'string',
+          ],
+          Tags=[
+              {
+                  'Key': 'string',
+                  'Value': 'string'
+              },
+          ]
+      )
+
+    :type DryRun: boolean
+    :param DryRun:
+
+      Checks whether you have the required permissions for the action,
+      without actually making the request, and provides an error response.
+      If you have the required permissions, the error response
+      is ``DryRunOperation`` . Otherwise, it is ``UnauthorizedOperation`` .
+
+    :type Resources: list
+    :param Resources: **[REQUIRED]**
+
+      The IDs of the resources, separated by spaces.
+
+      Constraints: Up to 1000 resource IDs. We recommend breaking up this
+      request into smaller batches.
+
+      - *(string) --*
+
+    :type Tags: list
+    :param Tags: **[REQUIRED]**
+
+      The tags. The ``value`` parameter is required, but if you don't want the tag to
+      have a value, specify the parameter with no value, and we set the value to an
+      empty string.
+
+      - *(dict) --*-
+
+        Describes a tag.
+
+        - **Key** *(string) --*
+
+          The key of the tag.
+
+          Constraints: Tag keys are case-sensitive and accept a maximum of 127
+          Unicode characters. May not begin with ``aws:`` .
+
+        - **Value** *(string) --*
+
+          The value of the tag.
+
+          Constraints: Tag values are case-sensitive and accept a maximum of 255 Unicode characters.
+    """
     # Call the client method
     self.meta.client.create_tags(**kwargs)
     resources = kwargs.get('Resources', [])
