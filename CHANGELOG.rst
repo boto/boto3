@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.10.26
+=======
+
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``autoscaling-plans``: [``botocore``] Update autoscaling-plans client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.10.25
 =======
 
