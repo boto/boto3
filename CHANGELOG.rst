@@ -2,6 +2,40 @@
 CHANGELOG
 =========
 
+1.10.27
+=======
+
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``iotsecuretunneling``: [``botocore``] Update iotsecuretunneling client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``kinesisanalyticsv2``: [``botocore``] Update kinesisanalyticsv2 client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``ram``: [``botocore``] Update ram client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+
+
 1.10.26
 =======
 
