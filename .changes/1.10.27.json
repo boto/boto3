@@ -1,0 +1,147 @@
+[
+  {
+    "category": "``cognito-idp``", 
+    "description": "[``botocore``] Update cognito-idp client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``redshift``", 
+    "description": "[``botocore``] Update redshift client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``wafv2``", 
+    "description": "[``botocore``] Update wafv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dlm``", 
+    "description": "[``botocore``] Update dlm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lex-runtime``", 
+    "description": "[``botocore``] Update lex-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``athena``", 
+    "description": "[``botocore``] Update athena client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotsecuretunneling``", 
+    "description": "[``botocore``] Update iotsecuretunneling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``application-insights``", 
+    "description": "[``botocore``] Update application-insights client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediapackage-vod``", 
+    "description": "[``botocore``] Update mediapackage-vod client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appconfig``", 
+    "description": "[``botocore``] Update appconfig client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesisanalyticsv2``", 
+    "description": "[``botocore``] Update kinesisanalyticsv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudwatch``", 
+    "description": "[``botocore``] Update cloudwatch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sesv2``", 
+    "description": "[``botocore``] Update sesv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``application-autoscaling``", 
+    "description": "[``botocore``] Update application-autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``greengrass``", 
+    "description": "[``botocore``] Update greengrass client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ram``", 
+    "description": "[``botocore``] Update ram client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kms``", 
+    "description": "[``botocore``] Update kms client to latest version", 
+    "type": "api-change"
+  }
+]

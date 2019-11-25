@@ -1,5 +1,0 @@
-{
-  "category": "``kms``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update kms client to latest version"
-}
