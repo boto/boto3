@@ -1,5 +1,0 @@
-{
-  "category": "``rds-data``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update rds-data client to latest version"
-}
