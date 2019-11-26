@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.10.28
+=======
+
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``elastic-inference``: [``botocore``] Update elastic-inference client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+
+
 1.10.27
 =======
 
