@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.10.29
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``schemas``: [``botocore``] Update schemas client to latest version
+
+
 1.10.28
 =======
 
