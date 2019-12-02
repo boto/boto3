@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``license-manager``", 
+    "description": "[``botocore``] Update license-manager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``imagebuilder``", 
+    "description": "[``botocore``] Update imagebuilder client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``schemas``", 
+    "description": "[``botocore``] Update schemas client to latest version", 
+    "type": "api-change"
+  }
+]
