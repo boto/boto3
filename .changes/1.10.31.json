@@ -1,0 +1,77 @@
+[
+  {
+    "category": "``textract``", 
+    "description": "[``botocore``] Update textract client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3control``", 
+    "description": "[``botocore``] Update s3control client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``outposts``", 
+    "description": "[``botocore``] Update outposts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kendra``", 
+    "description": "[``botocore``] Update kendra client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Update eks client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``networkmanager``", 
+    "description": "[``botocore``] Update networkmanager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``compute-optimizer``", 
+    "description": "[``botocore``] Update compute-optimizer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``frauddetector``", 
+    "description": "[``botocore``] Update frauddetector client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker-a2i-runtime``", 
+    "description": "[``botocore``] Update sagemaker-a2i-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguru-reviewer``", 
+    "description": "[``botocore``] Update codeguru-reviewer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguruprofiler``", 
+    "description": "[``botocore``] Update codeguruprofiler client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }
+]

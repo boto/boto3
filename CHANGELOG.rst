@@ -2,6 +2,26 @@
 CHANGELOG
 =========
 
+1.10.31
+=======
+
+* api-change:``textract``: [``botocore``] Update textract client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``outposts``: [``botocore``] Update outposts client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``networkmanager``: [``botocore``] Update networkmanager client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Update sagemaker-a2i-runtime client to latest version
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
 1.10.30
 =======
 
