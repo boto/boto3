@@ -1,0 +1,5 @@
+{
+  "category": "``stepfunctions``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update stepfunctions client to latest version"
+}
