@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.10.32
+=======
+
+* api-change:``ebs``: [``botocore``] Update ebs client to latest version
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.10.31
 =======
 

@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``ebs``", 
+    "description": "[``botocore``] Update ebs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``stepfunctions``", 
+    "description": "[``botocore``] Update stepfunctions client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``application-autoscaling``", 
+    "description": "[``botocore``] Update application-autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rekognition``", 
+    "description": "[``botocore``] Update rekognition client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }
+]
