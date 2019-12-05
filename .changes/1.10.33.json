@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``kinesisvideo``", 
+    "description": "[``botocore``] Update kinesisvideo client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis-video-signaling``", 
+    "description": "[``botocore``] Update kinesis-video-signaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigatewayv2``", 
+    "description": "[``botocore``] Update apigatewayv2 client to latest version", 
+    "type": "api-change"
+  }
+]
