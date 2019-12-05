@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.33
+=======
+
+* api-change:``kinesisvideo``: [``botocore``] Update kinesisvideo client to latest version
+* api-change:``kinesis-video-signaling``: [``botocore``] Update kinesis-video-signaling client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+
+
 1.10.32
 =======
 
