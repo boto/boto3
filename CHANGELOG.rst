@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.34
+=======
+
+* bugfix:s3: [``botocore``] Fixed an issue where the request path was set incorrectly if access point name was present in key path.
+
+
 1.10.33
 =======
 
