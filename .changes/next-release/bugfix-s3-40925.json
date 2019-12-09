@@ -1,5 +1,0 @@
-{
-  "category": "s3", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Add stricter validation to s3 control account id parameter."
-}
