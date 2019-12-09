@@ -1,0 +1,27 @@
+[
+  {
+    "category": "s3", 
+    "description": "[``botocore``] Add stricter validation to s3 control account id parameter.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kms``", 
+    "description": "[``botocore``] Update kms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kafka``", 
+    "description": "[``botocore``] Update kafka client to latest version", 
+    "type": "api-change"
+  }
+]
