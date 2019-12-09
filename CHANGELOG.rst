@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.10.35
+=======
+
+* bugfix:s3: [``botocore``] Add stricter validation to s3 control account id parameter.
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+
+
 1.10.34
 =======
 
