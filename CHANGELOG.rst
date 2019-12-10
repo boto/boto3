@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.36
+=======
+
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+
+
 1.10.35
 =======
 
