@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.38
+=======
+
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+
+
 1.10.37
 =======
 
