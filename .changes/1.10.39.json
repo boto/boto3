@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``detective``", 
+    "description": "[``botocore``] Update detective client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sesv2``", 
+    "description": "[``botocore``] Update sesv2 client to latest version", 
+    "type": "api-change"
+  }
+]

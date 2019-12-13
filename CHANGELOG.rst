@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.39
+=======
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``detective``: [``botocore``] Update detective client to latest version
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+
+
 1.10.38
 =======
 
