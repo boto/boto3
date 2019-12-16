@@ -192,7 +192,7 @@ class TransferConfig(S3TransferConfig):
             will be retried upon errors with downloading an object in S3.
             Note that these retries account for errors that occur when
             streaming  down the data from s3 (i.e. socket errors and read
-            timeouts that occur after recieving an OK response from s3).
+            timeouts that occur after receiving an OK response from s3).
             Other retryable exceptions such as throttling errors and 5xx
             errors are already retried by botocore (this default is 5). This
             does not take into account the number of exceptions retried by
