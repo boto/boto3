@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.40
+=======
+
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``comprehendmedical``: [``botocore``] Update comprehendmedical client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.10.39
 =======
 
