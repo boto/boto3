@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.10.41
+=======
+
+* api-change:``kinesisanalyticsv2``: [``botocore``] Update kinesisanalyticsv2 client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.10.40
 =======
 
