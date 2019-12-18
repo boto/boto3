@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.10.42
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+
+
 1.10.41
 =======
 
