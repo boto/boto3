@@ -1,0 +1,5 @@
+{
+  "category": "``opsworkscm``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update opsworkscm client to latest version"
+}
