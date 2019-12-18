@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``resourcegroupstaggingapi``", 
+    "description": "[``botocore``] Update resourcegroupstaggingapi client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``opsworkscm``", 
+    "description": "[``botocore``] Update opsworkscm client to latest version", 
+    "type": "api-change"
+  }
+]
