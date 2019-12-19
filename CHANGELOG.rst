@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.10.43
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``codestar-connections``: [``botocore``] Update codestar-connections client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.10.42
 =======
 
