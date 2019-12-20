@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.10.44
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``devicefarm``: [``botocore``] Update devicefarm client to latest version
+
+
 1.10.43
 =======
 
