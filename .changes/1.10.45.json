@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] Update fsx client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``health``", 
+    "description": "[``botocore``] Update health client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``detective``", 
+    "description": "[``botocore``] Update detective client to latest version", 
+    "type": "api-change"
+  }
+]
