@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.45
+=======
+
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``health``: [``botocore``] Update health client to latest version
+* api-change:``detective``: [``botocore``] Update detective client to latest version
+
+
 1.10.44
 =======
 
