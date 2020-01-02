@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.10.46
+=======
+
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+
+
 1.10.45
 =======
 
