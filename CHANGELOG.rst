@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.47
+=======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.10.46
 =======
 
