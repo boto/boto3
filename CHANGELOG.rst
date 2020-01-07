@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.48
+=======
+
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``mgh``: [``botocore``] Update mgh client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+
+
 1.10.47
 =======
 
