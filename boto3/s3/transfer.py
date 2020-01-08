@@ -134,6 +134,9 @@ from s3transfer.utils import OSUtils
 
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
+if six.PY3:
+    from os import fspath
+    from pathlib import Path
 
 KB = 1024
 MB = KB * KB
@@ -269,6 +272,9 @@ class S3Transfer(object):
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
+        if six.PY3:
+          if isinstance(filename, Path):
+              filename = fspath(filename)
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
 
@@ -297,6 +303,9 @@ class S3Transfer(object):
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
+        if six.PY3:
+          if isinstance(filename, Path):
+              filename = fspath(filename)
         if not isinstance(filename, six.string_types):
             raise ValueError('Filename must be a string')
 
