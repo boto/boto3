@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.10.49
+=======
+
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``translate``: [``botocore``] Update translate client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+
+
 1.10.48
 =======
 
