@@ -1,5 +1,0 @@
-{
-  "category": "``translate``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update translate client to latest version"
-}
