@@ -17,19 +17,19 @@ import socket
 
 from botocore.vendored import six
 
-if six.PY3:
+if six.PY2:
+    SOCKET_ERROR = socket.error
+else:
     # In python3, socket.error is OSError, which is too general
     # for what we want (i.e FileNotFoundError is a subclass of OSError).
     # In py3 all the socket related errors are in a newly created
     # ConnectionError
     SOCKET_ERROR = ConnectionError
-else:
-    SOCKET_ERROR = socket.error
 
-if six.PY3:
-    import collections.abc as collections_abc
-else:
+if six.PY2:
     import collections as collections_abc
+else:
+    import collections.abc as collections_abc
 
 
 if sys.platform.startswith('win'):

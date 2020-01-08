@@ -39,10 +39,10 @@ def get_resource_ignore_params(params):
 
 
 def is_resource_action(action_handle):
-    if six.PY3:
-        return inspect.isfunction(action_handle)
-    else:
+    if six.PY2:
         return inspect.ismethod(action_handle)
+    else:
+        return inspect.isfunction(action_handle)
 
 
 def get_resource_public_actions(resource_class):

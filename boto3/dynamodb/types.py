@@ -170,7 +170,7 @@ class TypeSerializer(object):
             return True
         elif isinstance(value, bytearray):
             return True
-        elif six.PY3 and isinstance(value, six.binary_type):
+        elif not six.PY2 and isinstance(value, six.binary_type):
             return True
         return False
 
