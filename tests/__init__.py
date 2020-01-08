@@ -18,13 +18,7 @@ import time
 from botocore.compat import six
 
 
-# The unittest module got a significant overhaul
-# in 2.7, so if we're in 2.6 we can use the backported
-# version unittest2.
-if sys.version_info[:2] == (2, 6):
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest
 
 
 # Python 3 includes mocking, while 2 requires an extra module.
