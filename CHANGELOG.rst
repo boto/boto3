@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.10.50
+=======
+
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+
+
 1.10.49
 =======
 
