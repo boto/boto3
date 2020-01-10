@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.11.0
+======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* feature:Python: Dropped support for Python 2.6 and 3.3.
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* feature:Python: [``botocore``] Dropped support for Python 2.6 and 3.3.
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.10.50
 =======
 
