@@ -43,8 +43,8 @@ def unique_id(name):
     integration tests in parallel that must create remote
     resources.
     """
-    return '{0}-{1}-{2}'.format(name, int(time.time()),
-                                random.randint(0, 10000))
+    return '{}-{}-{}'.format(name, int(time.time()),
+                             random.randint(0, 10000))
 
 
 class BaseTestCase(unittest.TestCase):

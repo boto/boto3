@@ -228,7 +228,7 @@ class TypeSerializer(object):
         return [self.serialize(v) for v in value]
 
     def _serialize_m(self, value):
-        return dict([(k, self.serialize(v)) for k, v in value.items()])
+        return {k: self.serialize(v) for k, v in value.items()}
 
 
 class TypeDeserializer(object):
@@ -295,4 +295,4 @@ class TypeDeserializer(object):
         return [self.deserialize(v) for v in value]
 
     def _deserialize_m(self, value):
-        return dict([(k, self.deserialize(v)) for k, v in value.items()])
+        return {k: self.deserialize(v) for k, v in value.items()}

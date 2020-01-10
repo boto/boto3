@@ -69,7 +69,7 @@ def build_identifiers(identifiers, parent, params=None, raw_response=None):
             continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source))
+                'Unsupported source type: {}'.format(source))
 
         results.append((xform_name(target), value))
 
@@ -111,7 +111,7 @@ def build_empty_response(search_path, operation_name, service_model):
                 shape = shape.member
             else:
                 raise NotImplementedError(
-                    'Search path hits shape type {0} from {1}'.format(
+                    'Search path hits shape type {} from {}'.format(
                         shape.type_name, item))
 
     # Anything not handled here is set to None

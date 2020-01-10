@@ -19,7 +19,7 @@ from botocore import xform_name
 from ..exceptions import ResourceLoadException
 
 
-INDEX_RE = re.compile('\[(.*)\]$')
+INDEX_RE = re.compile(r'\[(.*)\]$')
 
 
 def get_data_member(parent, path):
@@ -43,7 +43,7 @@ def get_data_member(parent, path):
             parent.load()
         else:
             raise ResourceLoadException(
-                '{0} has no load method!'.format(parent.__class__.__name__))
+                '{} has no load method!'.format(parent.__class__.__name__))
 
     return jmespath.search(path, parent.meta.data)
 
@@ -91,7 +91,7 @@ def create_request_parameters(parent, request_model, params=None, index=None):
             continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source))
+                'Unsupported source type: {}'.format(source))
 
         build_param_structure(params, target, value, index)
 

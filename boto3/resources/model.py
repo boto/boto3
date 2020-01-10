@@ -296,7 +296,7 @@ class ResourceModel(object):
         :param shape: The underlying shape for this resource.
         """
         # Meta is a reserved name for resources
-        names = set(['meta'])
+        names = {'meta'}
         self._renamed = {}
 
         if self._definition.get('load'):
@@ -362,7 +362,7 @@ class ResourceModel(object):
             if name in names:
                 # This isn't good, let's raise instead of trying to keep
                 # renaming this value.
-                raise ValueError('Problem renaming {0} {1} to {2}!'.format(
+                raise ValueError('Problem renaming {} {} to {}!'.format(
                     self.name, category, name))
 
         names.add(name)

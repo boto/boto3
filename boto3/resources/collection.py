@@ -52,10 +52,10 @@ class ResourceCollection(object):
         self._params = copy.deepcopy(kwargs)
 
     def __repr__(self):
-        return '{0}({1}, {2})'.format(
+        return '{}({}, {})'.format(
             self.__class__.__name__,
             self._parent,
-            '{0}.{1}'.format(
+            '{}.{}'.format(
                 self._parent.meta.service_name,
                 self._model.resource.type
             )
@@ -317,10 +317,10 @@ class CollectionManager(object):
         )
 
     def __repr__(self):
-        return '{0}({1}, {2})'.format(
+        return '{}({}, {})'.format(
             self.__class__.__name__,
             self._parent,
-            '{0}.{1}'.format(
+            '{}.{}'.format(
                 self._parent.meta.service_name,
                 self._model.resource.type
             )
@@ -404,10 +404,10 @@ class CollectionFactory(object):
             base_class=ResourceCollection)
 
         if service_context.service_name == resource_name:
-            cls_name = '{0}.{1}Collection'.format(
+            cls_name = '{}.{}Collection'.format(
                 service_context.service_name, collection_name)
         else:
-            cls_name = '{0}.{1}.{2}Collection'.format(
+            cls_name = '{}.{}.{}Collection'.format(
                 service_context.service_name, resource_name, collection_name)
 
         collection_cls = type(str(cls_name), (ResourceCollection,),

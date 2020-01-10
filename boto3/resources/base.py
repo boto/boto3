@@ -42,7 +42,7 @@ class ResourceMeta(object):
         self.resource_model = resource_model
 
     def __repr__(self):
-        return 'ResourceMeta(\'{0}\', identifiers={1})'.format(
+        return 'ResourceMeta(\'{}\', identifiers={})'.format(
             self.service_name, self.identifiers)
 
     def __eq__(self, other):
@@ -108,7 +108,7 @@ class ServiceResource(object):
                 continue
 
             if name not in self.meta.identifiers:
-                raise ValueError('Unknown keyword argument: {0}'.format(name))
+                raise ValueError('Unknown keyword argument: {}'.format(name))
 
             setattr(self, '_' + name, value)
 
@@ -116,14 +116,14 @@ class ServiceResource(object):
         for identifier in self.meta.identifiers:
             if getattr(self, identifier) is None:
                 raise ValueError(
-                    'Required parameter {0} not set'.format(identifier))
+                    'Required parameter {} not set'.format(identifier))
 
     def __repr__(self):
         identifiers = []
         for identifier in self.meta.identifiers:
-            identifiers.append('{0}={1}'.format(
+            identifiers.append('{}={}'.format(
                 identifier, repr(getattr(self, identifier))))
-        return "{0}({1})".format(
+        return "{}({})".format(
             self.__class__.__name__,
             ', '.join(identifiers),
         )
