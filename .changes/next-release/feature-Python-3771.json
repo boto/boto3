@@ -1,5 +1,0 @@
-{
-  "category": "Python", 
-  "type": "feature", 
-  "description": "[``botocore``] Dropped support for Python 2.6 and 3.3."
-}
