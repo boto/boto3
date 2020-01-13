@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.11.1
+======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+
+
 1.11.0
 ======
 
