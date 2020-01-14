@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.11.2
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.11.1
 ======
 
