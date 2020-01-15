@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.11.3
+======
+
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.11.2
 ======
 
