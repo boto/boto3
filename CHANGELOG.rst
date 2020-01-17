@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.11.5
+======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+* api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.11.4
 ======
 
