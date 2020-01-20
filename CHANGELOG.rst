@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.11.6
+======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+
+
 1.11.5
 ======
 
