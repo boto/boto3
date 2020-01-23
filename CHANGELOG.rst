@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.11.8
+======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+
+
 1.11.7
 ======
 
