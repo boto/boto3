@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.11.9
+======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.11.8
 ======
 
