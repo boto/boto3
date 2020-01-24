@@ -1,0 +1,15 @@
+.. |SERVICENAME| replace:: Boto 3
+.. |SERVICENAMESENTENCECASE| replace:: Boto 3
+.. |SERVICENAMETITLE| replace:: Boto 3
+.. |AWSLONG| replace:: Amazon Web Services
+.. |AWS| replace:: AWS
+.. |IAMLONG|  replace:: AWS Identity and Access Management
+.. |IAM|  replace:: IAM
+.. _IAM: https://aws.amazon.com/iam/
+.. |CTlong| replace:: AWS CloudTrail
+.. |MCElong| replace:: Amazon Macie
+.. |S3| replace:: Amazon S3
+.. |CLI| replace:: AWS CLI
+.. |AWS-gr| replace:: Amazon Web Services General Reference
+.. _AWS-gr: https://docs.aws.amazon.com/general/latest/gr/
+.. |ARTlong| replace:: AWS Artifact
