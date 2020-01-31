@@ -28,6 +28,14 @@ User Guides
 
    guide/index
 
+Security
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+   guide/security
+
 API Reference
 -------------
 
