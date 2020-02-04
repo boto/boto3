@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.11.10
+=======
+
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.11.9
 ======
 
