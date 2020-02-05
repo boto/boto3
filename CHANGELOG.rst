@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.11.11
+=======
+
+* api-change:``groundstation``: [``botocore``] Update groundstation client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``forecastquery``: [``botocore``] Update forecastquery client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+
+
 1.11.10
 =======
 
