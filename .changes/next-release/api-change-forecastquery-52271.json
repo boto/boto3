@@ -1,0 +1,5 @@
+{
+  "category": "``forecastquery``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update forecastquery client to latest version"
+}
