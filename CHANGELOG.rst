@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.11.12
+=======
+
+* api-change:``ebs``: [``botocore``] Update ebs client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.11.11
 =======
 
