@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.11.14
+=======
+
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+
+
 1.11.13
 =======
 
