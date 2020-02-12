@@ -509,7 +509,7 @@ in the ``~/.aws/config`` file:
             Use the IAM role attached to the Amazon EC2 instance profile.
 
         ``EcsContainer``
-            Use the IAM role attached to the Amazon ESC container.
+            Use the IAM role attached to the Amazon ECS container.
 
         ``Environment``
             Retrieve the credentials from environment variables.
