@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.11.16
+=======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+
+
 1.11.15
 =======
 
