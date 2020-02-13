@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.11.17
+=======
+
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+
+
 1.11.16
 =======
 
