@@ -1,0 +1,5 @@
+{
+  "category": "retries", 
+  "type": "feature", 
+  "description": "[``botocore``] Add support for retry modes, including ``standard`` and ``adaptive`` modes (`#1972 <https://github.com/boto/botocore/issues/1972>`__)"
+}
