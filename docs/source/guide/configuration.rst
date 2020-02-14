@@ -447,6 +447,13 @@ Environment Variable Configuration
     Sets STS endpoint resolution logic. See the ``sts_regional_endpoints``
     configuration file section for more information on how to use this.
 
+``AWS_MAX_ATTEMPTS``
+    The total number of attempts made for a single request.  For more information,
+    see the ``max_attempts`` configuration file section.
+
+``AWS_RETRY_MODE``
+    Specifies the types of retries the SDK will use.  For more information,
+    see the ``retry_mode`` configuration file section.
 
 Configuration File
 ~~~~~~~~~~~~~~~~~~
@@ -660,7 +667,30 @@ in the ``~/.aws/config`` file:
     when creating connections. To enable TCP Keep-Alive set this value to
     ``true``, enabling TCP Keep-Alive with the system default configurations.
 
- 
+``max_attempts``
+    An integer representing the maximum number attempts that will be made for
+    a single request, including the initial attempt.  For example,
+    setting this value to 5 will result in a request being retried up to
+    4 times.  If not provided, the number of retries will default to whatever
+    is modeled, which is typically 5 total attempts in the ``legacy`` retry mode,
+    and 3 in the ``standard`` and ``adaptive`` retry modes.
+
+``retry_mode``
+    A string representing the type of retries boto3 will perform.  Value values are:
+
+        * ``legacy`` - The pre-existing retry behavior.  This is default value if
+          no retry mode is provided.
+        * ``standard`` - A standardized set of retry rules across the AWS SDKs.
+          This includes a standard set of errors that are retried as well as
+          support for retry quotas, which limit the number of unsuccessful retries
+          an SDK can make.  This mode will default the maximum number of attempts
+          to 3 unless a ``max_attempts`` is explicitly provided.
+        * ``adaptive`` - An experimental retry mode that includes all the
+          functionality of ``standard`` mode along with automatic client side
+          throttling.  This is a provisional mode that may change behavior
+          in the future.
+
+
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
 .. _Sourcing Credentials with an External Process: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html
