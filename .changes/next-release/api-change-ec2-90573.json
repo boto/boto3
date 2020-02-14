@@ -1,5 +1,0 @@
-{
-  "category": "``ec2``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update ec2 client to latest version"
-}
