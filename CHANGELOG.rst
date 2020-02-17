@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.1
+======
+
+* api-change:``cloud9``: [``botocore``] Update cloud9 client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+
+
 1.12.0
 ======
 
