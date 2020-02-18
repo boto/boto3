@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.2
+======
+
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.12.1
 ======
 
