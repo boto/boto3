@@ -31,6 +31,13 @@ if six.PY3:
 else:
     import collections as collections_abc
 
+if six.PY2:
+    # weakref.finalize is not available in Python 2; replace with no-op.
+    def weakref_finalize(*args, **kwargs):
+        return None
+else:
+    from weakref import finalize as weakref_finalize
+
 
 if sys.platform.startswith('win'):
     def rename_file(current_filename, new_filename):

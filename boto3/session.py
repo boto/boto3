@@ -20,6 +20,7 @@ from botocore.exceptions import DataNotFoundError, UnknownServiceError
 
 import boto3
 import boto3.utils
+from boto3.compat import weakref_finalize
 from boto3.exceptions import ResourceNotExistsError, UnknownAPIVersionError
 
 from .resources.factory import ResourceFactory
@@ -410,43 +411,58 @@ class Session(object):
     def _register_default_handlers(self):
 
         # S3 customizations
-        self._session.register(
+        self._register_handler(
             'creating-client-class.s3',
             boto3.utils.lazy_call(
                 'boto3.s3.inject.inject_s3_transfer_methods'))
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.s3.Bucket',
             boto3.utils.lazy_call(
                 'boto3.s3.inject.inject_bucket_methods'))
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.s3.Object',
             boto3.utils.lazy_call(
                 'boto3.s3.inject.inject_object_methods'))
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.s3.ObjectSummary',
             boto3.utils.lazy_call(
                 'boto3.s3.inject.inject_object_summary_methods'))
 
         # DynamoDb customizations
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.dynamodb',
             boto3.utils.lazy_call(
                 'boto3.dynamodb.transform.register_high_level_interface'),
             unique_id='high-level-dynamodb')
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.dynamodb.Table',
             boto3.utils.lazy_call(
                 'boto3.dynamodb.table.register_table_methods'),
             unique_id='high-level-dynamodb-table')
 
         # EC2 Customizations
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.ec2.ServiceResource',
             boto3.utils.lazy_call(
                 'boto3.ec2.createtags.inject_create_tags'))
 
-        self._session.register(
+        self._register_handler(
             'creating-resource-class.ec2.Instance',
             boto3.utils.lazy_call(
                 'boto3.ec2.deletetags.inject_delete_tags',
                 event_emitter=self.events))
+
+    def _register_handler(self, event_name, handler, unique_id=None):
+        """
+        Register a handler and add a finalizer to unregister it when this
+        session is garbage collected.
+        """
+        self._session.register(
+            event_name, handler, unique_id)
+        weakref_finalize(
+            self, self._unregister_handler, self._session, event_name,
+            handler, unique_id)
+
+    @staticmethod
+    def _unregister_handler(session, event_name, handler, unique_id):
+        session.unregister(event_name, handler, unique_id)

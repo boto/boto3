@@ -14,11 +14,12 @@
 from botocore import loaders
 from botocore.exceptions import DataNotFoundError, UnknownServiceError
 from botocore.client import Config
+from botocore.compat import six
 
 from boto3 import __version__
 from boto3.exceptions import NoVersionFound, ResourceNotExistsError
 from boto3.session import Session
-from tests import mock, BaseTestCase
+from tests import unittest, mock, BaseTestCase
 
 
 class TestSession(BaseTestCase):
@@ -131,6 +132,26 @@ class TestSession(BaseTestCase):
 
         # No new session was created
         self.assertFalse(self.bc_session_cls.called)
+
+    @unittest.skipIf(six.PY2,
+                     'weakref.finalize is not available in Python 2')
+    def test_handlers_unregistered(self):
+        bc_session = self.bc_session_cls()
+
+        session = Session(botocore_session=bc_session)
+
+        # Check that handlers were registered
+        self.assertTrue(bc_session.register.called,
+                        'Botocore session register not called')
+        self.assertFalse(bc_session.unregister.called)
+
+        del session
+
+        # Check that handlers were unregistered
+        self.assertTrue(bc_session.unregister.called,
+                        'Botocore session unregister not called')
+        self.assertCountEqual(bc_session.register.call_args_list,
+                              bc_session.unregister.call_args_list)
 
     def test_user_agent(self):
         # Here we get the underlying Botocore session, create a Boto 3
