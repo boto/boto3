@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.3
+======
+
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+
+
 1.12.2
 ======
 
