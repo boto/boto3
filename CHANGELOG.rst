@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.4
+======
+
+* api-change:``savingsplans``: [``botocore``] Update savingsplans client to latest version
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+
+
 1.12.3
 ======
 
