@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``savingsplans``", 
+    "description": "[``botocore``] Update savingsplans client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appconfig``", 
+    "description": "[``botocore``] Update appconfig client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }
+]
