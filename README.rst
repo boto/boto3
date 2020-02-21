@@ -35,7 +35,7 @@ First, install the library and set a default region:
 
 .. code-block:: sh
 
-    $ pip install boto3
+    $ python -m pip install boto3
 
 Next, set up credentials (in e.g. ``~/.aws/credentials``):
 
@@ -68,7 +68,7 @@ Getting Started
 ~~~~~~~~~~~~~~~
 Assuming that you have Python and ``virtualenv`` installed, set up your
 environment and install the required dependencies like this instead of
-the ``pip install boto3`` defined above:
+the ``python -m pip install boto3`` defined above:
 
 .. code-block:: sh
 
@@ -77,8 +77,8 @@ the ``pip install boto3`` defined above:
     $ virtualenv venv
     ...
     $ . venv/bin/activate
-    $ pip install -r requirements.txt
-    $ pip install -e .
+    $ python -m pip install -r requirements.txt
+    $ python -m pip install -e .
 
 Running Tests
 ~~~~~~~~~~~~~
@@ -107,7 +107,7 @@ following:
 
 .. code-block:: sh
 
-    $ pip install -r requirements-docs.txt
+    $ python -m pip install -r requirements-docs.txt
     $ cd docs
     $ make html
 
