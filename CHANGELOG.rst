@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.5
+======
+
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.12.4
 ======
 
