@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.6
+======
+
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+
+
 1.12.5
 ======
 
