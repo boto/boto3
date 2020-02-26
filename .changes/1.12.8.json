@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``transcribe``", 
+    "description": "[``botocore``] Update transcribe client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }
+]

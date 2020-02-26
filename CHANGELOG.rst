@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.8
+======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+
+
 1.12.7
 ======
 
