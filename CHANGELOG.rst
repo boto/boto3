@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.9
+======
+
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+
+
 1.12.8
 ======
 
