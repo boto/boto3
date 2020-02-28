@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``config``", 
+    "description": "[``botocore``] Update config client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker-a2i-runtime``", 
+    "description": "[``botocore``] Update sagemaker-a2i-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appmesh``", 
+    "description": "[``botocore``] Update appmesh client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``workdocs``", 
+    "description": "[``botocore``] Update workdocs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``accessanalyzer``", 
+    "description": "[``botocore``] Update accessanalyzer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguruprofiler``", 
+    "description": "[``botocore``] Update codeguruprofiler client to latest version", 
+    "type": "api-change"
+  }
+]
