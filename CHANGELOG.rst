@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.12.10
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Update sagemaker-a2i-runtime client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``workdocs``: [``botocore``] Update workdocs client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+
+
 1.12.9
 ======
 
