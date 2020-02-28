@@ -19,7 +19,7 @@ from botocore import xform_name
 from ..exceptions import ResourceLoadException
 
 
-INDEX_RE = re.compile('\[(.*)\]$')
+INDEX_RE = re.compile(r'\[(.*)\]$')
 
 
 def get_data_member(parent, path):
