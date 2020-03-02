@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.12
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``comprehendmedical``: [``botocore``] Update comprehendmedical client to latest version
+
+
 1.12.11
 =======
 
