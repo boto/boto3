@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.12.14
+=======
+
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+
+
 1.12.13
 =======
 
