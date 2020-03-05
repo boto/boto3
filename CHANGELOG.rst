@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.15
+=======
+
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+
+
 1.12.14
 =======
 
