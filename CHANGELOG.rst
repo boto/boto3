@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.17
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+
+
 1.12.16
 =======
 
