@@ -1,0 +1,5 @@
+{
+  "category": "timezones", 
+  "type": "enhancement", 
+  "description": "[``botocore``] Improved timezone parsing for Windows with new fallback method (#1939)"
+}
