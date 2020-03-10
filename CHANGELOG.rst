@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.18
+=======
+
+* api-change:``serverlessrepo``: [``botocore``] Update serverlessrepo client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* enhancement:timezones: [``botocore``] Improved timezone parsing for Windows with new fallback method (#1939)
+* api-change:``marketplacecommerceanalytics``: [``botocore``] Update marketplacecommerceanalytics client to latest version
+
+
 1.12.17
 =======
 
