@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.19
+=======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.12.18
 =======
 
