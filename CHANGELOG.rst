@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.20
+=======
+
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+
+
 1.12.19
 =======
 
