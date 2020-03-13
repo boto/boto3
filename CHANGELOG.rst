@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.12.21
+=======
+
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+
+
 1.12.20
 =======
 
