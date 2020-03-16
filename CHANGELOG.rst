@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.12.22
+=======
+
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* bugfix:Stubber: [``botocore``] fixes `#1884 <https://github.com/boto/botocore/issues/1884>`__
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.12.21
 =======
 
