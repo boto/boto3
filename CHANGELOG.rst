@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.12.23
+=======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.12.22
 =======
 
