@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.24
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+
+
 1.12.23
 =======
 
