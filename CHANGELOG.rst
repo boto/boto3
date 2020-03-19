@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.25
+=======
+
+* api-change:``outposts``: [``botocore``] Update outposts client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+
+
 1.12.24
 =======
 
