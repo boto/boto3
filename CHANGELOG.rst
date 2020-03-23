@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.27
+=======
+
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+
+
 1.12.26
 =======
 
