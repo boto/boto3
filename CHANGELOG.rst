@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.28
+=======
+
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.12.27
 =======
 
