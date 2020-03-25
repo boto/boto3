@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.12.29
+=======
+
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+* api-change:``detective``: [``botocore``] Update detective client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+
+
 1.12.28
 =======
 
