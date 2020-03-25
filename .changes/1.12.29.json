@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``managedblockchain``", 
+    "description": "[``botocore``] Update managedblockchain client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``application-insights``", 
+    "description": "[``botocore``] Update application-insights client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``detective``", 
+    "description": "[``botocore``] Update detective client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``xray``", 
+    "description": "[``botocore``] Update xray client to latest version", 
+    "type": "api-change"
+  }
+]
