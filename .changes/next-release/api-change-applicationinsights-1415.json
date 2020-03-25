@@ -1,5 +1,0 @@
-{
-  "category": "``application-insights``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update application-insights client to latest version"
-}
