@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] Update fsx client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }
+]
