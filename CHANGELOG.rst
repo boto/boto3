@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.30
+=======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+
+
 1.12.29
 =======
 
