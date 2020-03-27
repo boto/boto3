@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.31
+=======
+
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.12.30
 =======
 
