@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``accessanalyzer``", 
+    "description": "[``botocore``] Update accessanalyzer client to latest version", 
+    "type": "api-change"
+  }
+]
