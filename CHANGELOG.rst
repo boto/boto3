@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.12.33
+=======
+
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``elastic-inference``: [``botocore``] Update elastic-inference client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``mediastore``: [``botocore``] Update mediastore client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``detective``: [``botocore``] Update detective client to latest version
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+
+
 1.12.32
 =======
 
