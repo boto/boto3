@@ -1,5 +1,0 @@
-{
-  "category": "``elastic-inference``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update elastic-inference client to latest version"
-}
