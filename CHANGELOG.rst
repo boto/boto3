@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.34
+=======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+
+
 1.12.33
 =======
 
