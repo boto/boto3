@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.35
+=======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.12.34
 =======
 
