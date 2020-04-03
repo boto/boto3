@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.36
+=======
+
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+
+
 1.12.35
 =======
 
