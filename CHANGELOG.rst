@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.37
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+
+
 1.12.36
 =======
 
