@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.38
+=======
+
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+
+
 1.12.37
 =======
 
