@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.12.39
+=======
+
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``migrationhub-config``: [``botocore``] Update migrationhub-config client to latest version
+
+
 1.12.38
 =======
 
