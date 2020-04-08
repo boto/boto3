@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudformation``", 
+    "description": "[``botocore``] Update cloudformation client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``chime``", 
+    "description": "[``botocore``] Update chime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguruprofiler``", 
+    "description": "[``botocore``] Update codeguruprofiler client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``migrationhub-config``", 
+    "description": "[``botocore``] Update migrationhub-config client to latest version", 
+    "type": "api-change"
+  }
+]
