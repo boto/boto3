@@ -51,7 +51,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Boto 3 Docs'
-copyright = '2019, Amazon Web Services, Inc'
+copyright = '2020, Amazon Web Services, Inc'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
