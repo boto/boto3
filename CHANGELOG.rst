@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.12.40
+=======
+
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Update sagemaker-a2i-runtime client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``mgh``: [``botocore``] Update mgh client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+
+
 1.12.39
 =======
 

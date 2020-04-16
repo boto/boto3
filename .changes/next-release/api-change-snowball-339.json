@@ -1,5 +1,0 @@
-{
-  "category": "``snowball``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update snowball client to latest version"
-}
