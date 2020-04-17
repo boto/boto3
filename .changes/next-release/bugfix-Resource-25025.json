@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "Resource",
+  "description": "fixes `#2361 <https://github.com/boto/boto3/issues/2361>`__"
+}
