@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.12.41
+=======
+
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+
+
 1.12.40
 =======
 
