@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.42
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``synthetics``: [``botocore``] Update synthetics client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+
+
 1.12.41
 =======
 
