@@ -1,0 +1,5 @@
+{
+  "category": "``emr``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update emr client to latest version"
+}
