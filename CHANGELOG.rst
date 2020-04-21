@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.43
+=======
+
+* api-change:``route53domains``: [``botocore``] Update route53domains client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.12.42
 =======
 
