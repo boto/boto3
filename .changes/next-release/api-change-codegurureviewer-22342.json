@@ -1,0 +1,5 @@
+{
+  "category": "``codeguru-reviewer``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update codeguru-reviewer client to latest version"
+}
