@@ -80,7 +80,7 @@ class ServiceAction(object):
         logger.debug('Calling %s:%s with %r', parent.meta.service_name,
                     operation_name, params)
 
-        response = getattr(parent.meta.client, operation_name)(**params)
+        response = getattr(parent.meta.client, operation_name)(*args, **params)
 
         logger.debug('Response: %r', response)
 
@@ -145,7 +145,7 @@ class BatchAction(ServiceAction):
                 break
 
             params.update(kwargs)
-            
+
             logger.debug('Calling %s:%s with %r',
                         service_name, operation_name, params)
 
