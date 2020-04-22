@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.12.44
+=======
+
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+
+
 1.12.43
 =======
 
