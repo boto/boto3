@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.12.45
+=======
+
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ram``: [``botocore``] Update ram client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+
+
 1.12.44
 =======
 
