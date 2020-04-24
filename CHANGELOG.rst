@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.12.46
+=======
+
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``elastic-inference``: [``botocore``] Update elastic-inference client to latest version
+
+
 1.12.45
 =======
 

@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dlm``", 
+    "description": "[``botocore``] Update dlm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elastic-inference``", 
+    "description": "[``botocore``] Update elastic-inference client to latest version", 
+    "type": "api-change"
+  }
+]
