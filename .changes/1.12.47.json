@@ -1,0 +1,27 @@
+[
+  {
+    "category": "Resource", 
+    "description": "fixes `#2361 <https://github.com/boto/boto3/issues/2361>`__", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``dms``", 
+    "description": "[``botocore``] Update dms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dataexchange``", 
+    "description": "[``botocore``] Update dataexchange client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``accessanalyzer``", 
+    "description": "[``botocore``] Update accessanalyzer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }
+]
