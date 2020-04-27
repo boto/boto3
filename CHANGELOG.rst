@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.47
+=======
+
+* bugfix:Resource: fixes `#2361 <https://github.com/boto/boto3/issues/2361>`__
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``dataexchange``: [``botocore``] Update dataexchange client to latest version
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.12.46
 =======
 
