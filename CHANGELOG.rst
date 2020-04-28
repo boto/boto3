@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.12.48
+=======
+
+* api-change:``kinesisvideo``: [``botocore``] Update kinesisvideo client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.12.47
 =======
 
