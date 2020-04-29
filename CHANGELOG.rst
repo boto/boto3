@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.12.49
+=======
+
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``waf``: [``botocore``] Update waf client to latest version
+* api-change:``waf-regional``: [``botocore``] Update waf-regional client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+
+
 1.12.48
 =======
 
