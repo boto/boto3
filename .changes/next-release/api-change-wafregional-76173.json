@@ -1,0 +1,5 @@
+{
+  "category": "``waf-regional``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update waf-regional client to latest version"
+}
