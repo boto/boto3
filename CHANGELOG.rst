@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.13.0
+======
+
+* api-change:``schemas``: [``botocore``] Update schemas client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+* feature:Exceptions: [``botocore``] Added support for parsing modeled exception fields.
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.12.49
 =======
 
