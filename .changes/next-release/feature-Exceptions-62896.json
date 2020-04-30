@@ -1,0 +1,5 @@
+{
+  "category": "Exceptions", 
+  "type": "feature", 
+  "description": "[``botocore``] Added support for parsing modeled exception fields."
+}
