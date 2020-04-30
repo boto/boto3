@@ -1,5 +1,0 @@
-{
-  "category": "``lambda``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update lambda client to latest version"
-}
