@@ -81,8 +81,11 @@ def document_collection_object(section, collection_model,
     if include_signature:
         section.style.start_sphinx_py_attr(collection_model.name)
     section.include_doc_string(
-        'A collection of %s resources' % collection_model.resource.type)
-    section.include_doc_string('Collection by default scopes out to all resources.')
+        'A collection of %s resources.' % collection_model.resource.type)
+    section.include_doc_string(
+        'A %s Collection will include all resources by default, '
+        'and extreme caution should be taken when performing '
+        'actions on all resources.' % collection_model.resource.type)
 
 
 def document_batch_action(section, resource_name, event_emitter,
@@ -183,8 +186,10 @@ def document_collection_method(section, resource_name, action_name,
                 'Creates an iterable of all %s resources '
                 'in the collection filtered by kwargs passed to '
                 'method.' % collection_model.resource.type +
-                'Collection will scope out to all resources '
-                'if filtered by empty kwargs value'),
+                'A %s collection will include all resources by '
+                'default if no filters are provided, and extreme '
+                'caution should be taken when performing actions '
+                'on all resources.'% collection_model.resource.type),
             'example_prefix': '%s_iterator = %s.%s.filter' % (
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),
