@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``schemas``", 
+    "description": "[``botocore``] Update schemas client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotevents``", 
+    "description": "[``botocore``] Update iotevents client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Exceptions", 
+    "description": "[``botocore``] Added support for parsing modeled exception fields.", 
+    "type": "feature"
+  }, 
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }
+]
