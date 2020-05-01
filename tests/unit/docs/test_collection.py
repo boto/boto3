@@ -21,7 +21,10 @@ class TestCollectionDocumenter(BaseDocsTest):
         collection_documenter.document_collections(self.doc_structure)
         self.assert_contains_lines_in_order([
             '.. py:attribute:: samples',
-            '  A collection of Sample resources',
+            '  A collection of Sample resources.'
+             'A Sample Collection will include all resources by default, '
+             'and extreme caution should be taken when performing actions '
+             'on all resources.',
             '  .. py:method:: all()',
             ('    Creates an iterable of all Sample resources in the '
              'collection.'),
@@ -32,7 +35,10 @@ class TestCollectionDocumenter(BaseDocsTest):
             '    :returns: A list of Sample resources',
             '  .. py:method:: filter(**kwargs)',
             ('    Creates an iterable of all Sample resources in '
-             'the collection filtered by kwargs passed to method.'),
+             'the collection filtered by kwargs passed to method.'
+             'A Sample collection will include all resources by default '
+             'if no filters are provided, and extreme caution should be '
+             'taken when performing actions on all resources'),
             '    **Request Syntax** ',
             '    ::',
             '      sample_iterator = myservice.samples.filter(',
