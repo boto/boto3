@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.13.1
+======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.13.0
 ======
 
