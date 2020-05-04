@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.13.2
+======
+
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+
+
 1.13.1
 ======
 
