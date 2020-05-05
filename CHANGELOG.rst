@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.13.3
+======
+
+* api-change:``support``: [``botocore``] Update support client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.13.2
 ======
 
