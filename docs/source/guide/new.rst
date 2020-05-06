@@ -1,6 +1,6 @@
 .. _guide_new:
 
-What's New
+What's new
 ==========
 Boto 3 is a ground-up rewrite of Boto. It uses a data-driven approach to
 generate classes at runtime from JSON description files that are shared
@@ -14,7 +14,7 @@ API across services. Community contributions to JSON description
 files in other SDKs also benefit Boto 3, just as contributions to
 Boto 3 benefit the other SDKs.
 
-Major Features
+Major features
 --------------
 Boto 3 consists of the following major features:
 

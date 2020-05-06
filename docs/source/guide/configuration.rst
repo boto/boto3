@@ -8,7 +8,7 @@ that you choose, you **must** have AWS credentials and a region set in
 order to make requests.
 
 
-Interactive Configuration
+Interactive configuration
 -------------------------
 
 If you have the `AWS CLI <http://aws.amazon.com/cli/>`_, then you can use
@@ -20,7 +20,7 @@ default region::
 Follow the prompts and it will generate configuration files in the
 correct locations for you.
 
-Configuring Credentials
+Configuring credentials
 -----------------------
 
 There are two types of configuration data in boto3: credentials and
@@ -50,7 +50,7 @@ The order in which Boto3 searches for credentials is:
 Each of those locations is discussed in more detail below.
 
 
-Method Parameters
+Method parameters
 ~~~~~~~~~~~~~~~~~
 
 The first option for providing credentials to boto3 is passing them
@@ -93,7 +93,7 @@ and ``Session`` objects include:
 * Loading credentials from some external location, e.g the OS keychain.
 
 
-Environment Variables
+Environment variables
 ~~~~~~~~~~~~~~~~~~~~~
 
 Boto3 will check these environment variables for credentials:
@@ -112,7 +112,7 @@ Boto3 will check these environment variables for credentials:
     supported by multiple AWS SDKs besides python.
 
 
-Shared Credentials File
+Shared credentials file
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 The shared credentials file has a default location of
@@ -158,7 +158,7 @@ variable or the ``profile_name`` argument when creating a Session::
     dev_s3_client = session.client('s3')
 
 
-AWS Config File
+AWS config file
 ~~~~~~~~~~~~~~~
 
 Boto3 can also load credentials from ``~/.aws/config``.  You can change
@@ -186,7 +186,7 @@ The reason that section names must start with ``profile`` in the
 that are permitted that aren't profile configurations.
 
 
-Assume Role Provider
+Assume role provider
 ~~~~~~~~~~~~~~~~~~~~
 
 .. note::
@@ -203,7 +203,7 @@ refreshing credentials as needed.
 
 You can specify the following configuration values for configuring an
 IAM role in boto3. For more information about a particular setting, see
-the section `Configuration File`_.
+the section `Configuration file`_.
 
 * ``role_arn`` - The ARN of the role you want to assume.
 * ``source_profile`` - The boto3 profile that contains credentials we should
@@ -314,7 +314,7 @@ This provider can also be configured via the environment:
     configuration.
 
 
-Boto2 Config
+Boto 2 config
 ~~~~~~~~~~~~
 
 Boto3 will attempt to load credentials from the Boto2 config file.
@@ -333,7 +333,7 @@ This credential provider is primarily for backwards compatibility purposes
 with boto2.
 
 
-IAM Role
+IAM roles
 ~~~~~~~~
 
 If you are running on Amazon EC2 and no credentials have been found
@@ -349,7 +349,7 @@ credentials.  Boto3 will automatically use IAM role credentials if it does
 not find credentials in any of the other places listed above.
 
 
-Best Practices for Configuring Credentials
+Best practices for configuring credentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you're running on an EC2 instance, use AWS IAM roles.  See the
@@ -373,7 +373,7 @@ locations until a value is found.  Boto3 uses these sources for configuration:
 * Environment variables
 * The ``~/.aws/config`` file.
 
-Environment Variable Configuration
+Environment variable configuration
 ----------------------------------
 
 ``AWS_ACCESS_KEY_ID``
@@ -455,7 +455,7 @@ Environment Variable Configuration
     Specifies the types of retries the SDK will use.  For more information,
     see the ``retry_mode`` configuration file section.
 
-Configuration File
+Configuration file
 ~~~~~~~~~~~~~~~~~~
 
 Boto3 will also search the ``~/.aws/config`` file when looking for
@@ -516,7 +516,7 @@ in the ``~/.aws/config`` file:
             Use the IAM role attached to the Amazon EC2 instance profile.
 
         ``EcsContainer``
-            Use the IAM role attached to the Amazon ESC container.
+            Use the IAM role attached to the Amazon ECS container.
 
         ``Environment``
             Retrieve the credentials from environment variables.

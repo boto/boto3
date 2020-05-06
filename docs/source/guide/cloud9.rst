@@ -20,7 +20,7 @@ to create it:
 #. Choose **Create a new AWS account**. 
 #. Follow the on-screen instructions to finish creating the account.
 
-Step 1: Set Up Your AWS Account
+Step 1: Set up your AWS account
 -------------------------------
 Start to use AWS Cloud9 by signing in to the AWS Cloud9 console as 
 an AWS Identity and Access Management (IAM) entity (for example, 
@@ -31,7 +31,7 @@ and to sign in to the AWS Cloud9 console, see
 `Team Setup <https://docs.aws.amazon.com/cloud9/latest/user-guide/setup.html>`_ 
 in the *AWS Cloud9 User Guide*.
 
-Step 2: Create an Environment
+Step 2: Create an environment
 -----------------------------
 After you sign in to the AWS Cloud9 console, use the console to 
 create an AWS Cloud9 development environment. (A *development environment* is 
@@ -43,7 +43,7 @@ To create an AWS Cloud9 development environment, see
 `Creating an Environment <https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html>`_ 
 in the *AWS Cloud9 User Guide*.
 
-Step 3: Set Up Credentials
+Step 3: Set up credentials
 --------------------------
 To call AWS services from Python code in your environment, you must provide a 
 set of AWS authentication credentials along with each call that your 
@@ -77,7 +77,7 @@ You can also install a specific version:
    The latest development version can always be found on
    `GitHub <https://github.com/boto/boto3>`_.
 
-Step 5: Download Example Code
+Step 5: Download example code
 -----------------------------
 Use the terminal that you opened in the previous step, download example code 
 for Boto 3 into your AWS Cloud9 development environment. To do this, 
@@ -97,7 +97,7 @@ development environment.
 To learn how to work with these and other code examples, see 
 :ref:`Code Examples <aws-boto3-examples>`.
 
-Step 6: Run and Debug Code
+Step 6: Run and debug code
 --------------------------
 To run your Python code in your AWS Cloud9 development environment, see 
 `Run Your Code <https://docs.aws.amazon.com/cloud9/latest/user-guide/build-run-debug.html#build-run-debug-run>`_ 
@@ -107,7 +107,7 @@ To debug your Python code, see
 `Debug Your Code <https://docs.aws.amazon.com/cloud9/latest/user-guide/build-run-debug.html#build-run-debug-debug>`_ 
 in the *AWS Cloud9 User Guide*. 
 
-Next Steps
+Next steps
 ----------
 Explore these resources to learn more about AWS Cloud9:
 

@@ -28,7 +28,7 @@ identifiers or attributes. The two share the same components otherwise.
 
 .. _identifiers_attributes_intro:
 
-Identifiers & Attributes
+Identifiers & attributes
 ------------------------
 An identifier is a unique value that is used to call actions on the resource.
 Resources **must** have at least one identifier, except for the top-level
@@ -198,7 +198,7 @@ keyword arguments. Examples of waiters include::
     instance.wait_until_running()
 
 
-Multithreading / Multiprocessing
+Multithreading & multiprocessing
 --------------------------------
 It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example::
 

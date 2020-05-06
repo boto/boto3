@@ -4,7 +4,7 @@ Amazon S3
 =========
 Boto 2.x contains a number of customizations to make working with Amazon S3 buckets and keys easy. Boto 3 exposes these same objects through its resources interface in a unified and consistent way.
 
-Creating the Connection
+Creating the connection
 -----------------------
 Boto 3 has both low-level clients and higher-level resources. For Amazon S3, the higher-level resources are the most similar to Boto 2.x's ``s3`` module::
 
@@ -16,7 +16,7 @@ Boto 3 has both low-level clients and higher-level resources. For Amazon S3, the
     import boto3
     s3 = boto3.resource('s3')
 
-Creating a Bucket
+Creating a bucket
 -----------------
 Creating a bucket in Boto 2 and Boto 3 is very similar, except that in Boto 3 all action parameters must be passed via keyword arguments and a bucket configuration must be specified manually::
 
@@ -29,7 +29,7 @@ Creating a bucket in Boto 2 and Boto 3 is very similar, except that in Boto 3 al
     s3.create_bucket(Bucket='mybucket', CreateBucketConfiguration={
         'LocationConstraint': 'us-west-1'})
 
-Storing Data
+Storing data
 ------------
 Storing data from a file, stream, or string is easy::
 
@@ -42,7 +42,7 @@ Storing data from a file, stream, or string is easy::
     s3.Object('mybucket', 'hello.txt').put(Body=open('/tmp/hello.txt', 'rb'))
 
 
-Accessing a Bucket
+Accessing a bucket
 ------------------
 Getting a bucket is easy with Boto 3's resources, however these do not automatically validate whether a bucket exists::
 
@@ -63,7 +63,7 @@ Getting a bucket is easy with Boto 3's resources, however these do not automatic
         if error_code == '404':
             exists = False
 
-Deleting a Bucket
+Deleting a bucket
 -----------------
 All of the keys in a bucket must be deleted before the bucket itself can be deleted::
 
@@ -77,7 +77,7 @@ All of the keys in a bucket must be deleted before the bucket itself can be dele
         key.delete()
     bucket.delete()
 
-Iteration of Buckets and Keys
+Iteration of buckets and keys
 -----------------------------
 Bucket and key objects are no longer iterable, but now provide collection attributes which can be iterated::
 
@@ -91,7 +91,7 @@ Bucket and key objects are no longer iterable, but now provide collection attrib
         for key in bucket.objects.all():
             print(key.key)
 
-Access Controls
+Access controls
 ---------------
 Getting and setting canned access control values in Boto 3 operates on an ``ACL`` resource object::
 
@@ -123,7 +123,7 @@ Boto 3 lacks the grant shortcut methods present in Boto 2.x, but it is still fai
     # Boto 3
     bucket.Acl.put(GrantRead='emailAddress=user@domain.tld')
 
-Key Metadata
+Key metadata
 ------------
 It's possible to set arbitrary metadata on keys::
 
@@ -135,7 +135,7 @@ It's possible to set arbitrary metadata on keys::
     key.put(Metadata={'meta1': 'This is my metadata value'})
     print(key.metadata['meta1'])
 
-Managing CORS Configuration
+Managing CORS configurations
 ---------------------------
 Allows you to manage the cross-origin resource sharing configuration for S3 buckets::
 
