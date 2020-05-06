@@ -27,6 +27,7 @@ General feature guide
    paginators
    session
    error-handling
+   retries
    configuration
    events
 

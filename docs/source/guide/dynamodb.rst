@@ -8,7 +8,7 @@ resources in order to create tables, write items to tables, modify existing
 items, retrieve items, and query/filter the items in the table.
 
 
-Creating a New Table
+Creating a new table
 --------------------
 
 In order to create a new table, use the
@@ -54,7 +54,7 @@ In order to create a new table, use the
     # Print out some data about the table.
     print(table.item_count)
 
-Expected Output::
+Expected output::
 
     0
 
@@ -64,7 +64,7 @@ This method will return a :py:class:`DynamoDB.Table` resource to call
 additional methods on the created table.
 
 
-Using an Existing Table
+Using an existing table
 -----------------------
 It is also possible to create a :py:class:`DynamoDB.Table` resource from
 an existing table::
@@ -86,12 +86,12 @@ an existing table::
     # values will be set based on the response.
     print(table.creation_date_time)
 
-Expected Output (Please note that the actual times will probably not match up)::
+Expected output (Please note that the actual times will probably not match up)::
 
     2015-06-26 12:42:45.149000-07:00
 
 
-Creating a New Item
+Creating a new item
 -------------------
 
 Once you have a :py:class:`DynamoDB.Table` resource you can add new items
@@ -111,7 +111,7 @@ For all of the valid types that can be used for an item, refer to
 :ref:`ref_valid_dynamodb_types`.
 
 
-Getting an Item
+Getting an item
 ---------------
 You can then retrieve the object using :py:meth:`DynamoDB.Table.get_item`::
 
@@ -125,7 +125,7 @@ You can then retrieve the object using :py:meth:`DynamoDB.Table.get_item`::
     print(item)
 
 
-Expected Output::
+Expected output::
 
     {u'username': u'janedoe',
      u'first_name': u'Jane',
@@ -134,8 +134,8 @@ Expected Output::
      u'age': Decimal('25')}
 
 
-Updating Item
--------------
+Updating an item
+----------------
 
 You can then update attributes of the item in the table::
 
@@ -162,7 +162,7 @@ Then if you retrieve the item again, it will be updated appropriately::
     print(item)
 
 
-Expected Output::
+Expected output::
 
     {u'username': u'janedoe',
      u'first_name': u'Jane',
@@ -171,8 +171,8 @@ Expected Output::
      u'age': Decimal('26')}
 
 
-Deleting Item
--------------
+Deleting an item
+----------------
 You can also delete the item using :py:meth:`DynamoDB.Table.delete_item`::
     
     table.delete_item(
@@ -183,7 +183,7 @@ You can also delete the item using :py:meth:`DynamoDB.Table.delete_item`::
     )
 
 
-Batch Writing
+Batch writing
 -------------
 If you are loading a lot of data at a time, you can make use of
 :py:meth:`DynamoDB.Table.batch_writer` so you can both speed up the process and
@@ -332,7 +332,7 @@ after de-duplicate:
     )
 
 
-Querying and Scanning
+Querying and scanning
 ---------------------
 
 With the table full of items, you can then query or scan the items in the table
@@ -357,7 +357,7 @@ This queries for all of the users whose ``username`` key equals ``johndoe``::
     print(items)
 
 
-Expected Output::
+Expected output::
 
     [{u'username': u'johndoe',
       u'first_name': u'John',
@@ -380,7 +380,7 @@ example, this scans for all the users whose ``age`` is less than ``27``::
     print(items)
 
 
-Expected Output::
+Expected output::
 
     [{u'username': u'johndoe',
       u'first_name': u'John',
@@ -414,7 +414,7 @@ users whose ``first_name`` starts with ``J`` and whose ``account_type`` is
     print(items)
 
 
-Expected Output::
+Expected output::
 
     [{u'username': u'janedoering',
       u'first_name': u'Jane',
@@ -437,7 +437,7 @@ scans for all users whose ``state`` in their ``address`` is ``CA``::
     print(items)
 
 
-Expected Output::
+Expected output::
 
     [{u'username': u'johndoe',
       u'first_name': u'John',
@@ -463,7 +463,7 @@ For more information on the various conditions you can use for queries and
 scans, refer to :ref:`ref_dynamodb_conditions`.
 
 
-Deleting a Table
+Deleting a table
 ----------------
 Finally, if you want to delete your table call
 :py:meth:`DynamoDB.Table.delete`::

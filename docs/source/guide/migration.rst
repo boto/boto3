@@ -7,7 +7,7 @@ live side-by-side in the same project, which means that a piecemeal
 approach can be used. New features can be written in Boto 3, or existing
 code can be migrated over as needed, piece by piece.
 
-High level concepts
+High-level concepts
 -------------------
 Boto 2.x modules are typically split into two categories, those which include a high-level object-oriented interface and those which include only a low-level interface which matches the underlying Amazon Web Services API. Some modules are completely high-level (like Amazon S3 or EC2), some include high-level code on top of a low-level connection (like Amazon DynamoDB), and others are 100% low-level (like Amazon Elastic Transcoder).
 
@@ -39,7 +39,7 @@ Second, while every service now uses the runtime-generated low-level client, som
     s3 = boto3.resource('s3')
     boto3_bucket = s3.Bucket('mybucket')
 
-Installation & configuration
+Installation and configuration
 ----------------------------
 The :ref:`guide_quickstart` guide provides instructions for installing Boto 3. You can also follow the instructions there to set up new credential files, or you can continue to use your existing Boto 2.x credentials. Please note that Boto 3, the AWS CLI, and several other SDKs all use the shared credentials file (usually at ``~/.aws/credentials``).
 

@@ -118,7 +118,7 @@ By default, S3 will return 1000 objects at a time, so the above code
 would let you process the items in smaller batches, which could be
 beneficial for slow or unreliable internet connections.
 
-Batch bctions
+Batch actions
 -------------
 Some collections support batch actions, which are actions that operate
 on an entire page of results at a time. They will automatically handle

@@ -26,7 +26,7 @@ and `AWS services that are in scope of AWS compliance efforts by compliance prog
 
 .. _data_protection_intro:
 
-Data Protection
+Data protection
 ---------------
 
 For data protection purposes, we recommend that you protect AWS account credentials and set up individual user accounts with
@@ -52,7 +52,7 @@ blog post on the *AWS Security Blog*.
 
 .. _identity_and_access_management_intro:
 
-Identity and Access Management
+Identity and access management
 ------------------------------
 
 AWS Identity and Access Management (IAM) is an AWS service that helps an administrator securely control access to AWS resources.
@@ -70,7 +70,7 @@ in the `Amazon Web Services General Reference <https://docs.aws.amazon.com/gener
 
 .. _compliance_validation_intro:
 
-Compliance Validation
+Compliance validation
 ---------------------
 
 The security and compliance of AWS services is assessed by third-party auditors as part
@@ -112,7 +112,7 @@ For more information about AWS Regions and Availability Zones, see `AWS Global I
 
 .. _infrastructure_security_intro:
 
-Infrastructure Security
+Infrastructure security
 -----------------------
 
 For information about AWS security processes, see the `AWS: Overview of Security Processes <https://d0.awsstatic.com/whitepapers/Security/AWS_Security_Whitepaper.pdf>`_ whitepaper.
@@ -124,7 +124,7 @@ Enforcing TLS 1.2
 
 To ensure the AWS SDK for Python uses no TLS version earlier than TLS 1.2, you might need to recompile OpenSSL to enforce this minimum and then recompile Python to use the recompiled OpenSSL.
 
-Determining Supported Protocols
+Determining supported protocols
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First, create a self-signed certificate to use for the test server and the SDK using OpenSSL::

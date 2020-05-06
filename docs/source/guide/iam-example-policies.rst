@@ -11,12 +11,12 @@
 .. _aws-boto3-iam-examples-policies:
 
 #########################
-Working with IAM Policies
+Working with IAM policies
 #########################
 
 This Python example shows you how to create and get IAM policies and attach and detach IAM policies from roles.
 
-The Scenario
+The scenario
 ============
 
 You grant permissions to a user by creating a policy, which is a document that lists the actions 
@@ -41,12 +41,12 @@ All the example code for the Amazon Web Services (AWS) SDK for Python is availab
 For more information about IAM policies, see `Overview of Access Management: Permissions and Policies <http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html>`_ 
 in the IAM User Guide.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Create an IAM Policy
+Create an IAM policy
 ====================
 
 Create a new managed policy for your AWS account.
@@ -103,7 +103,7 @@ Example
     )
     print(response)
 
-Get an IAM Policy
+Get an IAM policy
 =================
 
 Get information about the specified managed policy, including the policy's default version and 
@@ -140,7 +140,7 @@ Example
 
 
 
-Attach a Managed Role Policy
+Attach a managed role policy
 ============================
 
 When you attach a managed policy to a role, the managed policy becomes part of the role's permission 
@@ -173,7 +173,7 @@ Example
 
 
 
-Detach a Managed Role Policy
+Detach a managed role policy
 ============================
 
 Detach the specified managed policy from the specified role.

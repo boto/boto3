@@ -10,7 +10,7 @@
 
 
 ###############
-Uploading Files
+Uploading files
 ###############
 
 The AWS SDK for Python provides a pair of methods to upload a file to an S3
@@ -66,7 +66,7 @@ provided by each class is identical. No benefits are gained by calling one
 class's method over another's. Use whichever class is most convenient.
 
 
-The ExtraArgs Parameter
+The ExtraArgs parameter
 ===========================
 
 Both ``upload_file`` and ``upload_fileobj`` accept an optional ``ExtraArgs`` 
@@ -110,7 +110,7 @@ The ``ExtraArgs`` parameter can also be used to set custom or multiple ACLs.
     )
 
 
-The Callback Parameter
+The Callback parameter
 ==========================
 
 Both ``upload_file`` and ``upload_fileobj`` accept an optional ``Callback`` 

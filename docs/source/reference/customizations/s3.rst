@@ -1,10 +1,10 @@
 .. _ref_custom_s3:
 
 ==========================
-S3 Customization Reference
+S3 customization reference
 ==========================
 
-S3 Transfers
+S3 transfers
 ------------
 
 .. note::

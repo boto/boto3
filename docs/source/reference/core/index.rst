@@ -1,4 +1,4 @@
-Core References
+Core references
 ===============
 
 .. toctree::

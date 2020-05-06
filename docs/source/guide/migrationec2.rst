@@ -27,7 +27,7 @@ Launching new instances requires an image ID and the number of instances to laun
     # Boto 3
     ec2.create_instances(ImageId='<ami-image-id>', MinCount=1, MaxCount=5)
 
-Stopping & terminating instances
+Stopping and terminating instances
 --------------------------------
 Stopping and terminating multiple instances given a list of instance IDs uses Boto 3 collection filtering::
 
