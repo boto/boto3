@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.13.4
+======
+
+* api-change:``codestar-connections``: [``botocore``] Update codestar-connections client to latest version
+* api-change:``comprehendmedical``: [``botocore``] Update comprehendmedical client to latest version
+
+
 1.13.3
 ======
 
