@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.13.5
+======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+
+
 1.13.4
 ======
 
