@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.13.7
+======
+
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+
+
 1.13.6
 ======
 
