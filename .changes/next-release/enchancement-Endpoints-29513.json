@@ -1,5 +1,0 @@
-{
-  "category": "Endpoints", 
-  "type": "enchancement", 
-  "description": "[``botocore``] Improved endpoint resolution for clients with unknown regions"
-}
