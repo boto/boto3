@@ -1,5 +1,0 @@
-{
-  "category": "``imagebuilder``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update imagebuilder client to latest version"
-}
