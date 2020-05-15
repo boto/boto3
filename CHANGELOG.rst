@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.13.11
+=======
+
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+
+
 1.13.10
 =======
 
