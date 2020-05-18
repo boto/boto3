@@ -68,8 +68,8 @@ in common::
     base = ec2.instances.filter(InstanceIds=['id1', 'id2', 'id3'])
 
     filters = [{
-        'name': 'tenancy',
-        'value': 'dedicated'
+        'Name': 'tenancy',
+        'Values': ['dedicated']
     }]
     filtered1 = base.filter(Filters=filters)
 
