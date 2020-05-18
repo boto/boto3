@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.13.12
+=======
+
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``qldb``: [``botocore``] Update qldb client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+
+
 1.13.11
 =======
 
