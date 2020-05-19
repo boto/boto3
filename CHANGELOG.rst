@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.13.13
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``health``: [``botocore``] Update health client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+
+
 1.13.12
 =======
 
