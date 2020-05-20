@@ -6,12 +6,12 @@ Error handling
 Overview
 --------
 AWS services require clients to use a variety of parameters, behaviors, or limits when interacting with their APIs.
-Boto 3 provides many features to assist in navigating the errors and exceptions that you might encounter when interacting with AWS services.
+Boto3 provides many features to assist in navigating the errors and exceptions that you might encounter when interacting with AWS services.
 
 Specifically, this guide provides details on the following:
 
-* How to find what exceptions there are to catch when using Boto 3 and interacting with AWS services
-* How to catch/handle exceptions thrown by both Boto 3 and AWS services
+* How to find what exceptions there are to catch when using Boto3 and interacting with AWS services
+* How to catch/handle exceptions thrown by both Boto3 and AWS services
 * How to parse error responses from AWS services
 
 Why catch exceptions from AWS and Boto
@@ -22,11 +22,11 @@ Why catch exceptions from AWS and Boto
 
 Determining what exceptions to catch
 ------------------------------------
-Exceptions that you might encounter when using Boto 3 will come from one of two sources: botocore or the AWS services your client is interacting with.
+Exceptions that you might encounter when using Boto3 will come from one of two sources: botocore or the AWS services your client is interacting with.
 
 Botocore exceptions
 ~~~~~~~~~~~~~~~~~~~
-These exceptions are statically defined within the botocore package, a dependency of Boto 3. The exceptions are related to issues with client-side behaviors, configurations, or validations. You can generate a list of the statically defined botocore exceptions using the following code:
+These exceptions are statically defined within the botocore package, a dependency of Boto3. The exceptions are related to issues with client-side behaviors, configurations, or validations. You can generate a list of the statically defined botocore exceptions using the following code:
 
 .. code-block:: python
 
@@ -109,7 +109,7 @@ This produces a list of statically defined botocore exceptions::
 
 AWS service exceptions
 ~~~~~~~~~~~~~~~~~~~~~~
-AWS service exceptions are caught with the underlying botocore exception, ``ClientError``. After you catch this exception, you can parse through the response for specifics around that error, including the service-specific exception. Exceptions and errors from AWS services vary widely. You can quickly get a list of an AWS service’s exceptions using Boto 3.
+AWS service exceptions are caught with the underlying botocore exception, ``ClientError``. After you catch this exception, you can parse through the response for specifics around that error, including the service-specific exception. Exceptions and errors from AWS services vary widely. You can quickly get a list of an AWS service’s exceptions using Boto3.
 
 For a complete list of error responses from the services you’re using, consult the individual service’s `AWS documentation <https://docs.aws.amazon.com/>`_, specifically the error response section of the AWS service’s API reference. These references also provide context around the exceptions and errors.
 
@@ -118,7 +118,7 @@ Catching exceptions when using a low-level client
 
 Catching botocore exceptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Botocore exceptions are statically defined in the botocore package. Any Boto 3 clients you create will use these same statically defined exception classes. The most common botocore exception you’ll encounter is ``ClientError``. This is a general exception when an error response is provided by an AWS service to your Boto 3 client’s request.
+Botocore exceptions are statically defined in the botocore package. Any Boto3 clients you create will use these same statically defined exception classes. The most common botocore exception you’ll encounter is ``ClientError``. This is a general exception when an error response is provided by an AWS service to your Boto3 client’s request.
 
 Additional client-side issues with SSL negotiation, client misconfiguration, or AWS service validation errors will also throw botocore exceptions. Here’s a generic example of how you might catch botocore exceptions.
 
@@ -141,9 +141,9 @@ Additional client-side issues with SSL negotiation, client misconfiguration, or 
 
 Parsing error responses and catching exceptions from AWS services
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Unlike botocore exceptions, AWS service exceptions aren't statically defined in Boto 3. This is due to errors and exceptions from AWS services varying widely and being subject to change. To properly catch an exception from an AWS service, you must parse the error response from the service. The error response provided to your client from the AWS service follows a common structure and is minimally processed and not obfuscated by Boto 3.
+Unlike botocore exceptions, AWS service exceptions aren't statically defined in Boto3. This is due to errors and exceptions from AWS services varying widely and being subject to change. To properly catch an exception from an AWS service, you must parse the error response from the service. The error response provided to your client from the AWS service follows a common structure and is minimally processed and not obfuscated by Boto3.
 
-Using Boto 3, the error response from an AWS service will look similar to a success response, except that an ``Error`` nested dictionary will appear with the ``ResponseMetadata`` nested dictionary. Here is an example of what an error response might look like::
+Using Boto3, the error response from an AWS service will look similar to a success response, except that an ``Error`` nested dictionary will appear with the ``ResponseMetadata`` nested dictionary. Here is an example of what an error response might look like::
 
     {
         'Error': {
@@ -159,9 +159,9 @@ Using Boto 3, the error response from an AWS service will look similar to a succ
         }
     }
 
-Boto 3 classifies all AWS service errors and exceptions as ``ClientError`` exceptions. When attempting to catch AWS service exceptions, one way is to catch ``ClientError`` and then parse the error response for the AWS service-specific exception.
+Boto3 classifies all AWS service errors and exceptions as ``ClientError`` exceptions. When attempting to catch AWS service exceptions, one way is to catch ``ClientError`` and then parse the error response for the AWS service-specific exception.
 
-Using Amazon Kinesis as an example service, you can use Boto 3 to catch the exception ``LimitExceededException`` and insert your own logging message when your code experiences request throttling from the AWS service.
+Using Amazon Kinesis as an example service, you can use Boto3 to catch the exception ``LimitExceededException`` and insert your own logging message when your code experiences request throttling from the AWS service.
 
 .. code-block:: python
 
@@ -187,7 +187,7 @@ Using Amazon Kinesis as an example service, you can use Boto 3 to catch the exce
 
 .. note::
 
-    The Boto 3 ``standard`` retry mode will catch throttling errors and exceptions, and will back off and retry them for you.
+    The Boto3 ``standard`` retry mode will catch throttling errors and exceptions, and will back off and retry them for you.
 
 Additionally, you can also access some of the dynamic service-side exceptions from the client’s exception property. Using the previous example, you would need to modify only the ``except`` clause.
 

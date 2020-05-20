@@ -11,7 +11,7 @@
 .. _aws-boto3-kms-examples-encrypt-decrypt-file:
 
 **************************
-Encrypt and Decrypt a File
+Encrypt and decrypt a file
 **************************
 
 The example program uses AWS KMS keys to encrypt and decrypt a file.
@@ -33,7 +33,7 @@ Each section describes a single function from the example's `entire
 source file <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code/kms/encrypt_decrypt_file.py>`_.
 
 
-Retrieve an Existing Master Key
+Retrieve an existing master key
 ===============================
 
 Master keys are created, managed, and stored within AWS KMS. A KMS master key is also referred to 
@@ -102,7 +102,7 @@ to AWS KMS methods.
         return None, None
 
 
-Create a Customer Master Key
+Create a customer master key
 ============================
 
 If the example does not find an existing CMK, it creates a new one and returns its ID and ARN.
@@ -133,7 +133,7 @@ If the example does not find an existing CMK, it creates a new one and returns i
         return response['KeyMetadata']['KeyId'], response['KeyMetadata']['Arn']
 
 
-Create a Data Key
+Create a data key
 =================
 
 To encrypt a file, the example ``create_data_key`` function creates a data key. The data key is 
@@ -174,7 +174,7 @@ when necessary.
         return response['CiphertextBlob'], base64.b64encode(response['Plaintext'])
 
 
-Encrypt a File
+Encrypt a file
 ==============
 
 The ``encrypt_file`` function creates a data key and uses it to encrypt the contents of a disk file.
@@ -242,7 +242,7 @@ decrypt the encrypted data key.
         return True
 
 
-Decrypt a Data Key
+Decrypt a data key
 ==================
 
 To decrypt an encrypted file, the encrypted data key used to perform the encryption must first
@@ -271,7 +271,7 @@ the plaintext form of the key.
         return base64.b64encode((response['Plaintext']))
 
 
-Decrypt a File
+Decrypt a file
 ==============
 
 The example ``decrypt_file`` function first extracts the encrypted data key from the encrypted file. It 

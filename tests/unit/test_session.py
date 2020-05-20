@@ -133,7 +133,7 @@ class TestSession(BaseTestCase):
         self.assertFalse(self.bc_session_cls.called)
 
     def test_user_agent(self):
-        # Here we get the underlying Botocore session, create a Boto 3
+        # Here we get the underlying Botocore session, create a Boto3
         # session, and ensure that the user-agent is modified as expected
         bc_session = self.bc_session_cls.return_value
         bc_session.user_agent_name = 'Botocore'

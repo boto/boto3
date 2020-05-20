@@ -11,11 +11,11 @@
 .. _user_guides:
 
 +++++++++++
-User Guides
+User guides
 +++++++++++
 
 
-General Feature Guide
+General feature guide
 =====================
 
 .. toctree::
@@ -27,11 +27,12 @@ General Feature Guide
    paginators
    session
    error-handling
+   retries
    configuration
    events
 
 
-Tool Guide
+Tool guide
 ==========
 
 .. toctree::
@@ -41,7 +42,7 @@ Tool Guide
    sdk-metrics
 
 
-Migration Guide
+Migration guide
 ===============
 
 .. toctree::

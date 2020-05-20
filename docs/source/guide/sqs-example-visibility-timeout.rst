@@ -11,13 +11,13 @@
 .. _aws-boto3-sqs-visibility-timeout:   
 
 #########################################
-Managing Visibility Timeout in Amazon SQS
+Managing visibility timeout in Amazon SQS
 #########################################
 
 This Python example shows you how to specify the time interval during which messages received by a 
 queue are not visible.
 
-The Scenario
+The scenario
 ============
 
 In this example, Python code is used to manage visibility timeout. The code uses the SDK for Python 
@@ -29,7 +29,7 @@ For more information about Amazon SQS visibility timeout, see
 `Visibility Timeout <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
@@ -40,7 +40,7 @@ To set up and run this example, you must first complete these tasks:
 * Send a message to the queue. For an example of sending a message to a 
   queue, see :ref:`aws-boto3-sqs-send-message`.
 
-Change the Visibility Timeout
+Change the visibility timeout
 =============================
 
 The example below shows how to:

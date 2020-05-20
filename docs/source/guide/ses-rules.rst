@@ -12,7 +12,7 @@
 
 
 ####################################################
-Creating and Managing Email Rules with the SES API 
+Creating and managing email rules with the SES API 
 ####################################################
 
 .. meta::
@@ -38,7 +38,7 @@ The following examples show how to:
 * Remove a receipt rule set using `delete_receipt_rule_set() <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html#SES.Client.delete_receipt_rule_set>`_.
 
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
@@ -46,7 +46,7 @@ To set up and run this example, you must first complete these tasks:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
 
-Create a Receipt Rule Set
+Create a receipt rule set
 ==========================
 
 A receipt rule set contains a collection of receipt rules. You must have at 
@@ -73,7 +73,7 @@ Example
     print(response)
 
 
-Create a Receipt Rule
+Create a receipt rule
 =====================
 
 Control your incoming email by adding a receipt rule to an existing 
@@ -117,7 +117,7 @@ Example
     print(response)
 
 
-Delete a Receipt Rule Set
+Delete a receipt rule set
 ==========================
 
 Remove a specified receipt rule set that isn't currently disabled. This also 
@@ -144,7 +144,7 @@ Example
     print(response)
 
 
-Delete a Receipt Rule
+Delete a receipt rule
 =====================
 
 To delete a specified receipt rule, provide the RuleName and RuleSetName to the 

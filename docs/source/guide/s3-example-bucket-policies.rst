@@ -10,7 +10,7 @@
 
 
 ###############
-Bucket Policies
+Bucket policies
 ###############
 
 An S3 bucket can have an optional policy that grants access permissions to 
@@ -18,7 +18,7 @@ other AWS accounts or AWS Identity and Access Management (IAM) users. Bucket
 policies are defined using the same JSON format as a resource-based IAM policy.
 
 
-Retrieve a Bucket Policy
+Retrieve a bucket policy
 ========================
 
 Retrieve a bucket's policy by calling the AWS SDK for Python 
@@ -35,7 +35,7 @@ the bucket name.
     print(result['Policy'])
 
 
-Set a Bucket Policy
+Set a bucket policy
 ===================
 
 A bucket's policy can be set by calling the ``put_bucket_policy`` method.
@@ -70,7 +70,7 @@ stored in the bucket identified by the ``bucket_name`` variable.
     s3.put_bucket_policy(Bucket=bucket_name, Policy=bucket_policy)
 
 
-Delete a Bucket Policy
+Delete a bucket policy
 ======================
 
 A bucket's policy can be deleted by calling the ``delete_bucket_policy`` method.

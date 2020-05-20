@@ -12,12 +12,12 @@
 
 
 ####################################
-Working with IAM Server Certificates
+Working with IAM server certificates
 ####################################
 
 This Python example shows you how to carry out basic tasks in managing server certificates for HTTPS connections.
 
-The Scenario
+The scenario
 ============
 
 To enable HTTPS connections to your website or application on AWS, you need an SSL/TLS server certificate. 
@@ -41,12 +41,12 @@ All the example code for the Amazon Web Services (AWS) SDK for Python is availab
 For more information about server certificates, see `Working with Server Certificates <http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html>`_ 
 in the *IAM User Guide*.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-List Your Server Certificates
+List your server certificates
 =============================
 
 List the server certificates stored in IAM. If none exist, the action returns an empty list.
@@ -73,7 +73,7 @@ Example
     for response in paginator.paginate():
         print(response['ServerCertificateMetadataList'])
 
-Get a Server Certificate
+Get a server certificate
 ========================
 
 Get information about the specified server certificate stored in IAM.
@@ -98,7 +98,7 @@ Example
     response = iam.get_server_certificate(ServerCertificateName='CERTIFICATE_NAME')
     print(response['ServerCertificate'])
 
-Update a Server Certificate
+Update a server certificate
 ===========================
 
 Update the name and/or the path of the specified server certificate stored in IAM.
@@ -124,7 +124,7 @@ Example
         NewServerCertificateName='NEW_CERTIFICATE_NAME'
     )
 
-Delete a Server Certificate
+Delete a server certificate
 ===========================
 
 Delete the specified server certificate.
