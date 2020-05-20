@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.13.14
+=======
+
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+* api-change:``codedeploy``: [``botocore``] Update codedeploy client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+
+
 1.13.13
 =======
 
