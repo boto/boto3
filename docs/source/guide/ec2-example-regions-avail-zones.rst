@@ -53,10 +53,10 @@ Describe Regions and Availability Zones
 
 The example below shows how to:
  
-* Describe regions using 
+* Describe Regions using 
   `describe_regions <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_regions>`_.
 
-* Describe AvailabilityZones using 
+* Describe Availability Zones using 
   `describe_availability_zones <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_availability_zones>`_.
  
 Example

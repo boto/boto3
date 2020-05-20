@@ -2,7 +2,7 @@
 
 Cloud9
 ======
-You can use AWS Cloud9 with Boto 3 to write, run, and debug your Python code 
+You can use AWS Cloud9 with Boto3 to write, run, and debug your Python code 
 using just a browser. AWS Cloud9 provides an integrated development 
 environment (IDE) that includes tools such as a code editor, 
 debugger, and terminal. Because the AWS Cloud9 IDE is cloud based, 
@@ -57,10 +57,10 @@ To set up these credentials, see
 `Call AWS Services from an Environment <https://docs.aws.amazon.com/cloud9/latest/user-guide/credentials.html>`_ 
 in the *AWS Cloud9 User Guide*.
 
-Step 4: Install Boto 3
+Step 4: Install Boto3
 ----------------------
 After AWS Cloud9 opens the IDE for your development environment, use the IDE 
-to set up Boto 3. To do this, use the terminal in the IDE to 
+to set up Boto3. To do this, use the terminal in the IDE to 
 run this command:
 
     sudo pip install boto3
@@ -80,7 +80,7 @@ You can also install a specific version:
 Step 5: Download example code
 -----------------------------
 Use the terminal that you opened in the previous step, download example code 
-for Boto 3 into your AWS Cloud9 development environment. To do this, 
+for Boto3 into your AWS Cloud9 development environment. To do this, 
 use the terminal in the IDE to run this command: 
 
     git clone https://github.com/awsdocs/aws-doc-sdk-examples.git
@@ -89,7 +89,7 @@ This command downloads
 a copy of many of the code examples used across the official AWS SDK 
 documentation into your environment's root directory.
 
-To find the code examples for Boto 3, use the **Environment** window to open 
+To find the code examples for Boto3, use the **Environment** window to open 
 the :code:`your-environment-name/aws-doc-sdk-examples/python/example_code` 
 directory, where :code:`your-environment-name` is the name of your 
 development environment.

@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Boto 3 documentation
+Boto3 documentation
 ====================
 Boto is the Amazon Web Services (AWS) SDK for Python. It enables Python
 developers to create, configure, and manage AWS services, such as EC2 

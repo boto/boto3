@@ -1,24 +1,24 @@
 Extensibility guide
 ===================
 
-All of Boto 3's resource and client classes are generated at runtime.
+All of Boto3's resource and client classes are generated at runtime.
 This means that you cannot directly inherit and then extend the
 functionality of these classes because they do not exist until the
 program actually starts running.
 
 
 However it is still possible to extend the functionality of classes through
-Boto 3's event system.
+Boto3's event system.
 
 
 An introduction to the event system
 -----------------------------------
 
-Boto 3's event system allows users to register a function to
+Boto3's event system allows users to register a function to
 a specific event. Then once the running program reaches a line that
-emits that specific event, Boto 3 will call every function
+emits that specific event, Boto3 will call every function
 registered to the event in the order in which they were registered.
-When Boto 3 calls each of these registered functions,
+When Boto3 calls each of these registered functions,
 it will call each of them with a specific set of
 keyword arguments that are associated with that event.
 Then once the registered function
@@ -134,7 +134,7 @@ registered ``add_my_specific_bucket`` function is never called.
 Wildcard matching
 -----------------
 
-Another aspect of Boto 3's event system is that it has the capability
+Another aspect of Boto3's event system is that it has the capability
 to do wildcard matching using the ``'*'`` notation. Here is an example
 of using wildcards in the event system::
 
@@ -172,7 +172,7 @@ to ``'provide-client-params.s3.*'`` which is more specific than the event
 Isolation of event systems
 --------------------------
 
-The event system in Boto 3 has the notion of isolation:
+The event system in Boto3 has the notion of isolation:
 all clients maintain their own set of registered handlers. For example if a
 handler is registered to one client's event system, it will not be registered
 to another client's event system::
@@ -206,13 +206,13 @@ inject ``'myotherbucket'`` for its ``list_objects`` method call because
 was registered to ``client2``.
 
 
-Boto 3 specific events
+Boto3 specific events
 ---------------------
 
-Boto 3 emits a set of events that users can register to
+Boto3 emits a set of events that users can register to
 customize clients or resources and modify the behavior of method calls.
 
-Here is the list of events that users of Boto 3 can register handlers to:
+Here is the list of events that users of Boto3 can register handlers to:
 
 * ``'creating-client-class``
 * ``'creating-resource-class``

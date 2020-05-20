@@ -19,7 +19,7 @@ verified by third-party auditors as part of the `AWS Compliance Programs <https:
 determined by the AWS service you are using, and other factors including the sensitivity of
 your data, your organization’s requirements, and applicable laws and regulations.
 
-Boto 3 follows the `shared responsibility model <https://aws.amazon.com/compliance/shared-responsibility-model>`_
+Boto3 follows the `shared responsibility model <https://aws.amazon.com/compliance/shared-responsibility-model>`_
 through the specific AWS services it supports. For AWS service security information, see the
 `AWS service security documentation page <https://aws.amazon.com/security/?id=docs_gateway#aws-security>`_
 and `AWS services that are in scope of AWS compliance efforts by compliance program <https://aws.amazon.com/compliance/services-in-scope/>`_.
@@ -41,8 +41,8 @@ you secure your data in the following ways:
   is stored in Amazon S3.
 
 We strongly recommend that you never put sensitive identifying information, such as your customers' account numbers, into
-free-form fields such as a **Name** field. This includes when you work with Boto 3 or other AWS services
-using the console, API, AWS CLI, or AWS SDKs. Any data that you enter into Boto 3 or other services might get picked up
+free-form fields such as a **Name** field. This includes when you work with Boto3 or other AWS services
+using the console, API, AWS CLI, or AWS SDKs. Any data that you enter into Boto3 or other services might get picked up
 for inclusion in diagnostic logs. When you provide a URL to an external server, don't include credentials information in the URL
 to validate your request to that server.
 
@@ -58,7 +58,7 @@ Identity and access management
 AWS Identity and Access Management (IAM) is an AWS service that helps an administrator securely control access to AWS resources.
 IAM administrators control who can be *authenticated* (signed in) and *authorized* (have permissions) to use AWS resources. IAM is an AWS service that you can use with no additional charge.
 
-To use Boto 3 to access AWS, you need an AWS account and AWS credentials. To increase the security of your
+To use Boto3 to access AWS, you need an AWS account and AWS credentials. To increase the security of your
 AWS account, we recommend that you use an *IAM user* to provide access credentials instead of using your AWS
 account credentials.
 
@@ -83,7 +83,7 @@ Third-party audit reports are available for you to download using AWS Artifact. 
 
 For more information about AWS compliance programs, see `AWS Compliance Programs <https://aws.amazon.com/compliance/programs/>`_.
 
-Your compliance responsibility when using Boto 3 to access an AWS service is determined by the sensitivity of your data, your organization’s compliance objectives,
+Your compliance responsibility when using Boto3 to access an AWS service is determined by the sensitivity of your data, your organization’s compliance objectives,
 and applicable laws and regulations. If your use of an AWS service is subject to compliance with standards such as HIPAA, PCI, or FedRAMP, AWS provides resources to help:
 
 * `Security and Compliance Quick Start Guides <https://aws.amazon.com/quickstart/?quickstart-all.sort-by=item.additionalFields.updateDate&quickstart-all.sort-order=desc&awsf.quickstart-homepage-filter=categories%23security-identity-compliance>`_ –

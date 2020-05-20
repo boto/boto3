@@ -6,7 +6,7 @@ Retries
 Overview
 --------
 
-Your AWS client might see calls to AWS services fail due to unexpected issues on the client side. Or calls might fail due to rate limiting from the AWS service you're attempting to call. In either case, these kinds of failures often don’t require special handling and the call should be made again, often after a brief waiting period. Boto 3 provides many features to assist in retrying client calls to AWS services when these kinds of errors or exceptions are experienced.
+Your AWS client might see calls to AWS services fail due to unexpected issues on the client side. Or calls might fail due to rate limiting from the AWS service you're attempting to call. In either case, these kinds of failures often don’t require special handling and the call should be made again, often after a brief waiting period. Boto3 provides many features to assist in retrying client calls to AWS services when these kinds of errors or exceptions are experienced.
 
 This guide provides you with details on the following:
 
@@ -97,15 +97,15 @@ With each new retry attempt, adaptive mode modifies the rate-limit variables bas
 Configuring a retry mode
 -------------------------
 
-Boto 3 includes a variety of both retry configurations as well as configuration methods to consider when creating your client object.
+Boto3 includes a variety of both retry configurations as well as configuration methods to consider when creating your client object.
 
 Available configuration options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Boto 3, users can customize two retry configurations:
+In Boto3, users can customize two retry configurations:
 
-* ``retry_mode`` - This tells Boto 3 which retry mode to use. As described previously, there are three retry modes available: legacy (default), standard, and adaptive.
-* ``max_attempts`` - This provides Boto 3’s retry handler with a value of maximum retry attempts, where the initial call counts toward the ``max_attempts`` value that you provide.
+* ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy (default), standard, and adaptive.
+* ``max_attempts`` - This provides Boto3’s retry handler with a value of maximum retry attempts, where the initial call counts toward the ``max_attempts`` value that you provide.
 
 Defining a retry configuration in your AWS configuration file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,9 +117,9 @@ This first way to define your retry configuration is to update your global AWS c
    max_attempts = 10
    retry_mode = standard
 
-Any Boto 3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``legacy``, and the default ``max_attempts`` value is 5.
+Any Boto3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``legacy``, and the default ``max_attempts`` value is 5.
 
-Defining a retry configuration in a Config object for your Boto 3 client
+Defining a retry configuration in a Config object for your Boto3 client
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The second way to define your retry configuration is to use botocore to enable more flexibility for you to specify your retry configuration using a ``Config`` object that you can pass to your client at runtime. This method is useful if you don't want to configure retry behavior globally with your AWS config file 
@@ -168,7 +168,7 @@ To ensure that your retry configuration is correct and working properly, there a
 Checking retry attempts in your client logs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you enable Boto 3’s logging, you can validate and check your client’s retry attempts in your client’s logs. Notice, however, that you need to enable ``DEBUG`` mode in your logger to see any retry attempts. The client log entries for retry attempts will appear differently, depending on which retry mode you’ve configured.
+If you enable Boto3’s logging, you can validate and check your client’s retry attempts in your client’s logs. Notice, however, that you need to enable ``DEBUG`` mode in your logger to see any retry attempts. The client log entries for retry attempts will appear differently, depending on which retry mode you’ve configured.
 
 **If legacy mode is enabled:**
 
