@@ -1,12 +1,12 @@
 .. _guide_clients:
 
-Low-level Clients
+Low-level clients
 =================
 Clients provide a low-level interface to AWS whose methods map close to 1:1
 with service APIs. All service operations are supported by clients. Clients
 are generated from a JSON service definition file.
 
-Creating Clients
+Creating clients
 ----------------
 Clients are created in a similar fashion to resources::
 
@@ -24,7 +24,7 @@ resource::
     # Get the client from the resource
     sqs = sqs_resource.meta.client
 
-Service Operations
+Service operations
 ------------------
 Service operations map to client methods of the same name and provide
 access to the same operation parameters via keyword arguments::
@@ -42,7 +42,7 @@ As can be seen above, the method arguments map directly to the associated
    Parameters **must** be sent as keyword arguments. They will not work
    as positional arguments.
 
-Handling Responses
+Handling responses
 ------------------
 Responses are returned as python dictionaries. It is up to you to traverse
 or otherwise process the response for the data you need, keeping in mind

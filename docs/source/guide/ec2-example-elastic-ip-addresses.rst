@@ -11,7 +11,7 @@
 .. _aws-boto-ec2-example-elastic-ip-addresses:
 
 ########################################
-Using Elastic IP Addresses in Amazon EC2
+Using Elastic IP addresses in Amazon EC2
 ########################################
 
 This Python example shows you how to:
@@ -22,7 +22,7 @@ This Python example shows you how to:
 
 * Release an Elastic IP address
 
-The Scenario
+The scenario
 ============
 
 An Elastic IP address is a static IP address designed for dynamic cloud computing. An Elastic IP 
@@ -48,12 +48,12 @@ Prerequisite Tasks
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Describe Elastic IP Addresses
+Describe Elastic IP addresses
 =============================
 
 An Elastic IP address is a static IPv4 address designed for dynamic cloud computing. An Elastic IP 
@@ -80,7 +80,7 @@ Example
     response = ec2.describe_addresses(Filters=filters)
     print(response)
 
-Allocate and Associate an Elastic IP Address with an Amazon EC2 Instance
+Allocate and associate an Elastic IP address with an Amazon EC2 instance
 ========================================================================
 
 An *Elastic IP address* is a static IPv4 address designed for dynamic cloud computing. An Elastic IP 
@@ -112,7 +112,7 @@ Example
 
 
  
-Release an Elastic IP Address
+Release an Elastic IP address
 =============================
 
 After releasing an Elastic IP address, it is released to the IP address pool and might be unavailable 

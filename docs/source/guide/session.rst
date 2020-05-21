@@ -11,7 +11,7 @@ typically store:
 * Region
 * Other configurations
 
-Default Session
+Default session
 ---------------
 The ``boto3`` module acts as a proxy to the default session, which is
 created automatically when needed. Example default session use::
@@ -20,7 +20,7 @@ created automatically when needed. Example default session use::
     sqs = boto3.client('sqs')
     s3 = boto3.resource('s3')
 
-Custom Session
+Custom session
 --------------
 It is also possible to manage your own session and create clients or
 resources from it::

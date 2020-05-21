@@ -28,7 +28,7 @@ identifiers or attributes. The two share the same components otherwise.
 
 .. _identifiers_attributes_intro:
 
-Identifiers & Attributes
+Identifiers and attributes
 ------------------------
 An identifier is a unique value that is used to call actions on the resource.
 Resources **must** have at least one identifier, except for the top-level
@@ -198,7 +198,7 @@ keyword arguments. Examples of waiters include::
     instance.wait_until_running()
 
 
-Multithreading / Multiprocessing
+Multithreading and multiprocessing
 --------------------------------
 It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example::
 
@@ -212,4 +212,9 @@ It is recommended to create a resource instance for each thread / process in a m
             s3 = session.resource('s3')
             # ... do some work with S3 ...
 
-In the example above, each thread would have its own Boto 3 session and its own instance of the S3 resource. This is a good idea because resources contain shared data when loaded and calling actions, accessing properties, or manually loading or reloading the resource can modify this data.
+In the example above, each thread would have its own Boto3 session and its own instance of the S3 resource. This is a good idea because resources contain shared data when loaded and calling actions, accessing properties, or manually loading or reloading the resource can modify this data.
+
+.. note::
+    Resources are **not** thread safe. These special classes contain additional meta data that cannot be shared between threads. When using a Resource, it is recommended to instantiate a new Resource for each thread, as is shown in the example above. 
+    
+    Low-level clients **are** thread safe. When using a low-level client, it is recommended to instantiate your client then pass that client object to each of your threads. 

@@ -11,7 +11,7 @@
 .. _aws-boto3-cw-creating-alarms:   
 
 ####################################
-Creating Alarms in Amazon CloudWatch
+Creating alarms in Amazon CloudWatch
 ####################################
 
 This Python example shows you how to:
@@ -20,7 +20,7 @@ This Python example shows you how to:
 
 * Create and delete a CloudWatch alarm
 
-The Scenario
+The scenario
 ============
 
 An alarm watches a single metric over a time period you specify, and performs one or more actions 
@@ -40,12 +40,12 @@ in the *Amazon CloudWatch User Guide*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Describe Alarms
+Describe alarms
 ===============
 
 The example below shows how to:
@@ -70,7 +70,7 @@ Example
     for response in paginator.paginate(StateValue='INSUFFICIENT_DATA'):
         print(response['MetricAlarms'])
  
-Create an Alarm for a CloudWatch Metric Alarm
+Create an alarm for a CloudWatch Metric alarm
 =============================================
 
 Create or update an alarm and associate it with the specified metric alarm. Optionally, this operation 
@@ -120,7 +120,7 @@ Example
     )
 
  
-Delete an Alarm
+Delete an alarm
 ===============
 
 Delete the specified alarms. In the event of an error, no alarms are deleted.

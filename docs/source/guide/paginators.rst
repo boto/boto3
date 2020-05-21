@@ -13,7 +13,7 @@ results.
 process of iterating over an entire result set of a truncated API operation.
 
 
-Creating Paginators
+Creating paginators
 -------------------
 
 Paginators are created via the ``get_paginator()`` method of a boto3
@@ -38,7 +38,7 @@ underlying API operation. The ``paginate`` method then returns an iterable
         print(page['Contents'])
 
 
-Customizing Page Iterators
+Customizing page iterators
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You must call the ``paginate`` method of a Paginator in order to iterate over
@@ -89,7 +89,7 @@ to the client::
         print(page['Contents'])
 
 
-Filtering Results with JMESPath
+Filtering results with JMESPath
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `JMESPath <http://jmespath.org>`_ is a query language for JSON that can be used
@@ -99,6 +99,9 @@ JMESPath expressions that are applied to each page of results through the
 
 .. code-block:: python
 
+    import boto3
+    
+    client = boto3.client('s3', region_name='us-west-2')
     paginator = client.get_paginator('list_objects')
     page_iterator = paginator.paginate(Bucket='my-bucket')
     filtered_iterator = page_iterator.search("Contents[?Size > `100`][]")

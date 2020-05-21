@@ -1,6 +1,6 @@
 .. _guide_sdk-metrics:
 
-SDK Metrics 
+SDK metrics 
 ===========
 
 AWS SDK Metrics for Enterprise Support (SDK Metrics) enables Enterprise customers to collect metrics from AWS SDKs on their hosts and clients shared with 
@@ -34,7 +34,7 @@ For more information, see the following:
 
 .. _csm-enable-agent:
 
-Enable SDK Metrics
+Enable SDK metrics
 ------------------
 
 By default, SDK Metrics is turned off, and the port is set to 31000. The following are the default parameters.
@@ -43,7 +43,7 @@ Enabling SDK Metrics is independent of configuring your credentials to use an AW
 
 You can enable SDK Metrics by setting environment variables or by using the AWS Shared config file.
 
-Option 1: Set Environment Variables
+Option 1: Set environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If :code:`AWS_CSM_ENABLED` is not set, the SDK checks the :code:`AWS_DEFAULT_PROFILE` profile to determine if SDK Metrics is enabled. By default this is set to ``false``.
@@ -59,7 +59,7 @@ To turn on SDK Metrics, add the following to your environmental variables.
 Note: Enabling SDK Metrics does not configure your credentials to use an AWS service. 
 
 
-Option 2: AWS Shared Config File
+Option 2: AWS shared config file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If no CSM configuration is found in the environment variables, the SDK looks for your default AWS profile field. If :code:`AWS_DEFAULT_PROFILE` is set to something other than default, update that profile. To enable SDK Metrics, add :code:`csm_enabled` to the shared config file located at :file:`~/.aws/config`.
@@ -78,12 +78,12 @@ Note: Enabling SDK Metrics is independent from configuring your credentials to u
 
 .. _csm-update-agent:
 
-Update a CloudWatch Agent
+Update a CloudWatch agent
 -------------------------
 
 To make changes to the port, you need to set the values and then restart any AWS jobs that are currently active.
 
-Option 1: Set Environment Variables
+Option 1: Set environment variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Most services use the default port. But if your service requires a unique port ID, add ``AWS_CSM_PORT=[port_number]``, to the host's environment variables.
@@ -94,7 +94,7 @@ Most services use the default port. But if your service requires a unique port I
     export AWS_CSM_PORT=1234
 
 
-Option 2: AWS Shared Config File
+Option 2: AWS shared config file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Most services use the default port. But if your service requires a
@@ -110,7 +110,7 @@ unique port ID, add ``csm_port = [port_number]`` to ``~/.aws/config``.
     csm_enabled = false
     csm_port = 1234
 
-Restart SDK Metrics
+Restart SDK metrics
 ~~~~~~~~~~~~~~~~~~~
 
 To restart a job, run the following commands.
@@ -123,7 +123,7 @@ To restart a job, run the following commands.
 
 .. _csm-disable-agent:
 
-Disable SDK Metrics
+Disable SDK metrics
 --------------------
 
 To turn off SDK Metrics, remove ``csm_enabled`` from your environment variables, or in your AWS Shared config file located at :file:`~/.aws/config`.
@@ -168,7 +168,7 @@ If you are using other CloudWatch features, restart CloudWatch Agent with the fo
     amazon-cloudwatch-agent-ctl –a start;
     
 
-Restart SDK Metrics
+Restart SDK metrics
 ~~~~~~~~~~~~~~~~~~~
 
 To restart a SDK Metrics job, run the following commands.
@@ -178,7 +178,7 @@ To restart a SDK Metrics job, run the following commands.
     amazon-cloudwatch-agent-ctl –a stop;
     amazon-cloudwatch-agent-ctl –a start;
 
-Definitions for SDK Metrics
+Definitions for SDK metrics
 ---------------------------
 
 You can use the following descriptions of SDK Metrics to interpret your results. In general, these metrics are available for review

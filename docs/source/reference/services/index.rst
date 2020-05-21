@@ -1,4 +1,4 @@
-Available Services
+Available services
 ==================
 
 .. toctree::

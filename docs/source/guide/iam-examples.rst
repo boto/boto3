@@ -11,7 +11,7 @@
 .. _aws-boto-iam-examples:
 
 ###########################################
-AWS Identity and Access Management Examples
+AWS Identity and Access Management examples
 ###########################################
 
 .. meta::

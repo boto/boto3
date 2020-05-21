@@ -11,12 +11,12 @@
 .. _aws-boto3-cw-subscription-filters:   
 
 ####################################################
-Using Subscription Filters in Amazon CloudWatch Logs
+Using subscription filters in Amazon CloudWatch Logs
 ####################################################
 
 This Python example shows you how to create and delete filters for log events in CloudWatch Logs.
 
-The Scenario
+The scenario
 ============
 
 Subscriptions provide access to a real-time feed of log events from CloudWatch Logs and deliver that 
@@ -41,7 +41,7 @@ in the Amazon CloudWatch Logs User Guide.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 * Configure your AWS credentials, as described in :doc:`quickstart`.
@@ -85,7 +85,7 @@ Prerequisite Tasks
            ]
         }
  
-List Existing Subscription Filters
+List existing subscription filters
 ==================================
 
 List the subscription filters for the specified log group.
@@ -115,7 +115,7 @@ Example
 
 
  
-Create a Subscription Filter
+Create a subscription filter
 ============================
 
 Create or update a subscription filter and associates it with the specified log group.
@@ -144,7 +144,7 @@ Example
     )
 
  
-Delete a Subscription Filter
+Delete a subscription filter
 ============================
 
 The example below shows how to:
