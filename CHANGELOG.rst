@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.13.17
+=======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``macie``: [``botocore``] Update macie client to latest version
+
+
 1.13.16
 =======
 
