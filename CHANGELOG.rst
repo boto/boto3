@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.13.19
+=======
+
+* api-change:``marketplace-catalog``: [``botocore``] Update marketplace-catalog client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``qldb-session``: [``botocore``] Update qldb-session client to latest version
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+
+
 1.13.18
 =======
 
