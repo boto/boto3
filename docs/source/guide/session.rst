@@ -6,17 +6,17 @@ Session
 Overview
 ---------
 
-A session manages state about a particular configuration. By default, a session is created for you when needed. However, it is possible and recommended to maintain your own session in some scenarios. Sessions typically store:
+A session manages state about a particular configuration. By default, a session is created for you when needed. However, it's possible and recommended that in some scenarios you maintain your own session. Sessions typically store the following:
 
 * Credentials
-* Region
+* AWS Region
 * Other configurations related to your profile
 
 
 Default session
 ----------------
 
-Boto3 acts as a proxy to the default session, which is created automatically when you create a low-level client or resource client:: 
+Boto3 acts as a proxy to the default session. This is created automatically when you create a low-level client or resource client::
 
     import boto3
 
@@ -28,7 +28,7 @@ Boto3 acts as a proxy to the default session, which is created automatically whe
 Custom session
 ---------------
 
-It is also possible to manage your own session and create low-level clients or resource clients from it::
+You can also manage your own session and create low-level clients or resource clients from it::
 
 
     import boto3
@@ -45,24 +45,24 @@ It is also possible to manage your own session and create low-level clients or r
 Session configurations
 ------------------------
 
-You can configure each session with specific credentials, region information, or profiles. The most common configurations you might use are: 
+You can configure each session with specific credentials, AWS Region information, or profiles. The most common configurations you might use are:
 
-* ``aws_access_key_id``: a specific AWS access key ID
-* ``aws_secret_access_key``: a specific AWS secret access key
-* ``region_name``: the region where you want to create new connections
-* ``profile_name``: the profile you want to use when creating your session
-
-
-.. note:: 
-    Only set the ``profile_name`` parameter when a specific profile is required for your session. If you want to use the default profile, don’t set the ``profile_name`` parameter at all. If the ``profile_name`` parameter is not set *and* there is no default profile, an empty config dictionary will be used. 
-
-    For a detailed list of per session configurations, please see the `Session core reference <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html>`_.
+* ``aws_access_key_id`` - A specific AWS access key ID.
+* ``aws_secret_access_key`` - A specific AWS secret access key.
+* ``region_name`` - The AWS Region where you want to create new connections.
+* ``profile_name`` - The profile to use when creating your session.
 
 
-Multi-threading/multi-processing with sessions
+.. note::
+    Only set the ``profile_name`` parameter when a specific profile is required for your session. To use the default profile, don’t set the ``profile_name`` parameter at all. If the ``profile_name`` parameter isn't set *and* there is no default profile, an empty config dictionary will be used.
+
+    For a detailed list of per-session configurations, see the `Session core reference <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html>`_.
+
+
+Multithreading or multiprocessing with sessions
 -----------------------------------------------
 
-Similar to ``Resource`` objects, ``Session`` objects are not thread safe and should not be shared across threads and processes. A new ``Session`` object should be created for each thread or process::
+Similar to ``Resource`` objects, ``Session`` objects are not thread safe and should not be shared across threads and processes. You should create a new ``Session`` object for each thread or process::
 
 
     import boto3
@@ -71,11 +71,10 @@ Similar to ``Resource`` objects, ``Session`` objects are not thread safe and sho
 
     class MyTask(threading.Thread):
         def run(self):
-            # Here we'll create a new session per thread
+            # Here we create a new session per thread
             session = boto3.session.Session()
-            
-            # Next, we'll create a resource client using our thread's session object
-            s3 = session.resource('s3')
-            
-            # Put your thread-safe code here
 
+            # Next, we create a resource client using our thread's session object
+            s3 = session.resource('s3')
+
+            # Put your thread-safe code here
