@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.13.20
+=======
+
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``worklink``: [``botocore``] Update worklink client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.13.19
 =======
 
