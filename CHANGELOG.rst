@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.13.22
+=======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.13.21
 =======
 
