@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.13.23
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.13.22
 =======
 
