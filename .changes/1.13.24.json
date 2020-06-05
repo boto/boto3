@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize-runtime``", 
+    "description": "[``botocore``] Update personalize-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker-runtime``", 
+    "description": "[``botocore``] Update sagemaker-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticbeanstalk``", 
+    "description": "[``botocore``] Update elasticbeanstalk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update personalize client to latest version", 
+    "type": "api-change"
+  }
+]
