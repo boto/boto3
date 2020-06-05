@@ -1,0 +1,5 @@
+{
+  "category": "``sagemaker-runtime``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update sagemaker-runtime client to latest version"
+}
