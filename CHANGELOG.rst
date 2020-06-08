@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.13.25
+=======
+
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+
+
 1.13.24
 =======
 
