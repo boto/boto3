@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.13.26
+=======
+
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+
+
 1.13.25
 =======
 
