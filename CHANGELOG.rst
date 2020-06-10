@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.14.0
+======
+
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``codeartifact``: [``botocore``] Update codeartifact client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+* feature:SSO: [``botocore``] Added support for the SSO credential provider. This allows the SDK to retrieve temporary AWS credentials from a profile configured to use SSO credentials.
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+
+
 1.13.26
 =======
 
