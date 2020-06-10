@@ -224,7 +224,7 @@ Using Amazon S3 as an example resource service, you can use the client’s excep
         client.create_bucket(BucketName='myTestBucket')
 
     except client.meta.client.exceptions.BucketAlreadyExists as err:
-        print("Bucket {} already exists!".format(err.response['Error']['BucketName'])
+        print("Bucket {} already exists!".format(err.response['Error']['BucketName']))
         raise err
 
 Discerning useful information from error responses
@@ -256,6 +256,6 @@ Using a low-level Amazon SQS client, here’s an example of catching a generic o
             # We grab the message, request ID, and HTTP code to give to customer support
             print('Error Message: {}'.format(err.response['Error']['Message']))
             print('Request ID: {}'.format(err.response['ResponseMetadata']['RequestId'])
-            print('Http code: {}'.format(err.response['ResponseMetatdata']['HTTPStatusCode']
+            print('Http code: {}'.format(err.response['ResponseMetadata']['HTTPStatusCode']
         else:
             raise err
