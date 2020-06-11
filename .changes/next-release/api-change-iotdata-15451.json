@@ -1,0 +1,5 @@
+{
+  "category": "``iot-data``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update iot-data client to latest version"
+}
