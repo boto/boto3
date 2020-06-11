@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.1
+======
+
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``iot-data``: [``botocore``] Update iot-data client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.14.0
 ======
 
