@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.2
+======
+
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+
+
 1.14.1
 ======
 
