@@ -372,7 +372,7 @@ Here is the list of events that users of Boto3 can register handlers to:
 ~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
-  ``'provide-client.service-name.operation-name'``
+  ``'provide-client-params.service-name.operation-name'``
 
   Note: ``service-name`` refers to the value used to instantiate a client i.e.
   ``boto3.client('service-name')``. ``operation-name`` refers to the
