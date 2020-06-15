@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.3
+======
+
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``appconfig``: [``botocore``] Update appconfig client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+
+
 1.14.2
 ======
 
