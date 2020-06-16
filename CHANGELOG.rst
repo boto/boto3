@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.4
+======
+
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``dataexchange``: [``botocore``] Update dataexchange client to latest version
+* api-change:``qldb``: [``botocore``] Update qldb client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+
+
 1.14.3
 ======
 
