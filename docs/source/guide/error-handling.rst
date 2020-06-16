@@ -5,20 +5,19 @@ Error handling
 
 Overview
 --------
-AWS services require clients to use a variety of parameters, behaviors, or limits when interacting with their APIs.
 Boto3 provides many features to assist in navigating the errors and exceptions that you might encounter when interacting with AWS services.
 
 Specifically, this guide provides details on the following:
 
-* How to find what exceptions there are to catch when using Boto3 and interacting with AWS services
-* How to catch/handle exceptions thrown by both Boto3 and AWS services
+* How to find what exceptions could be thrown by both Boto3 and AWS services
+* How to catch and handle exceptions thrown by both Boto3 and AWS services
 * How to parse error responses from AWS services
 
 Why catch exceptions from AWS and Boto
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* *Retries* - Your call rate to an AWS service might be too frequent, or you might have reached a specific AWS service quota. In either case, without proper error handling you wouldn’t know or wouldn’t handle them.
-* *Parameter validation/checking* - API requirements can change, especially across API versions. Catching these errors helps to identify if there’s an issue with the parameters you provide to any given API call.
-* *Proper logging/messaging* - Catching errors and exceptions means you can log them. This can be instrumental in troubleshooting any code you write when interacting with AWS services.
+* *Service limits and quotas* - Your call rate to an AWS service might be too frequent, or you might have reached a specific AWS service quota. In either case, without proper error handling you wouldn’t know or wouldn’t handle them.
+* *Parameter validation and checking* - API requirements can change, especially across API versions. Catching these errors helps to identify if there’s an issue with the parameters you provide to any given API call.
+* *Proper logging and messaging* - Catching errors and exceptions means you can log them. This can be instrumental in troubleshooting any code you write when interacting with AWS services.
 
 Determining what exceptions to catch
 ------------------------------------
@@ -36,7 +35,9 @@ These exceptions are statically defined within the botocore package, a dependenc
         if isinstance(value, type):
             print(key)
 
-This produces a list of statically defined botocore exceptions::
+This produces a list of statically defined botocore exceptions:
+
+.. code-block:: text
 
     AliasConflictParameterError
     ApiVersionNotFoundError
