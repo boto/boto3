@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dataexchange``", 
+    "description": "[``botocore``] Update dataexchange client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``qldb``", 
+    "description": "[``botocore``] Update qldb client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling``", 
+    "description": "[``botocore``] Update autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }
+]
