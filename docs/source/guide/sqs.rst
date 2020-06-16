@@ -3,7 +3,7 @@
 A sample tutorial
 =================
 This tutorial will show you how to use Boto3 with an AWS service. In this
-sample tutorial, you will learn how to use Boto3 with 
+sample tutorial, you will learn how to use Boto3 with
 `Amazon Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
 
 SQS
@@ -121,6 +121,56 @@ messages, so you can retry failures if needed.
 
 Reference: :py:meth:`SQS.Queue.send_message`,
 :py:meth:`SQS.Queue.send_messages`
+
+Batch writing
+-------------
+If you are sending a lot of messages at a time, you can make use of
+:py:meth:`SQS.Queue.batch_sender` so you can both speed up the process and
+reduce the number of send requests made to the service.
+
+This method returns a handle to a batch sender object that will automatically
+handle buffering and sending messages in batches.  In addition, the
+batch sender will also automatically handle any failed sends and
+resend them as needed.  All you need to do is call ``send_message`` for any
+message you want to send::
+
+    with queue.batch_sender() as batch:
+        batch.send_message(
+            Id='1', MessageBody=b'...'
+        )
+        batch.send_message(
+            Id='2', MessageBody=b'...'
+        )
+
+The batch sender is even able to handle a very large amount of messages.
+
+::
+
+    with queue.batch_sender() as batch:
+        for i in range(50):
+            batch.send_message(
+                Id=str(i), MessageBody=str(i)
+            )
+
+The batch sender can help to de-duplicate messages by specifying ``overwrite_by_id=True``.
+
+It will drop messages in the buffer if their Id value is
+the same as newly added one.
+
+::
+
+    with queue.batch_sender(overwrite_by_id=True) as batch:
+        batch.send_message(Id="1", MessageBody=b'...')
+        batch.send_message(Id="1", MessageBody=b'...')
+        batch.send_message(Id="2", MessageBody=b'...')
+        batch.send_message(Id="2", MessageBody=b'...')
+
+after de-duplicate:
+
+::
+
+    batch.send_message(Id="1", MessageBody=b'...')
+    batch.send_message(Id="2", MessageBody=b'...')
 
 Processing messages
 -------------------

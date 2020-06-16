@@ -451,3 +451,10 @@ class Session(object):
             boto3.utils.lazy_call(
                 'boto3.ec2.deletetags.inject_delete_tags',
                 event_emitter=self.events))
+
+        # SQS customizations
+        self._session.register(
+            'creating-resource-class.sqs.Queue',
+            boto3.utils.lazy_call(
+                'boto3.sqs.queue.register_queue_methods'),
+            unique_id='high-level-sqs-queue')
