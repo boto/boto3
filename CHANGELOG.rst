@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.5
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+
+
 1.14.4
 ======
 
