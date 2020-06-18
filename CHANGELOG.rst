@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.14.6
+======
+
+* api-change:``support``: [``botocore``] Update support client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+
+
 1.14.5
 ======
 
