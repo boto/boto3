@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.7
+======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``opsworkscm``: [``botocore``] Update opsworkscm client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.14.6
 ======
 
