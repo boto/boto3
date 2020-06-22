@@ -82,7 +82,7 @@ class S3UploadFailedError(Boto3Error):
 
 
 class DynamoDBOperationNotSupportedError(Boto3Error):
-    """Raised for operantions that are not supported for an operand"""
+    """Raised for operations that are not supported for an operand."""
     def __init__(self, operation, value):
         msg = (
             '%s operation cannot be applied to value %s of type %s directly. '
