@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.8
+======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+
+
 1.14.7
 ======
 
