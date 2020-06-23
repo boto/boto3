@@ -19,6 +19,10 @@ You may also install a specific version::
    The latest development version can always be found on
    `GitHub <https://github.com/boto/boto3>`_.
 
+.. note::
+
+    For best results, please ensure your version of Python is up-to-date. For more information on how to get the latest version of Python, please refer to the official `Python documentation <https://www.python.org/downloads/>`_. 
+
 Configuration
 -------------
 Before you can begin using Boto3, you should set up authentication

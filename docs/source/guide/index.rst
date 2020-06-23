@@ -11,29 +11,30 @@
 .. _user_guides:
 
 +++++++++++
-User guides
+Developer guide
 +++++++++++
 
 
-General feature guide
-=====================
+SDK features
+=============
 
 .. toctree::
    :maxdepth: 1
 
-   resources
-   collections
+   configuration
+   credentials
    clients
-   paginators
+   resources
    session
+   collections
+   paginators
    error-handling
    retries
-   configuration
    events
 
 
-Tool guide
-==========
+Tools
+======
 
 .. toctree::
    :maxdepth: 1
@@ -42,8 +43,8 @@ Tool guide
    sdk-metrics
 
 
-Migration guide
-===============
+Migrations
+===========
 
 .. toctree::
    :maxdepth: 1

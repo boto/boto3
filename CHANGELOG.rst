@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.14.9
+======
+
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.14.8
 ======
 
