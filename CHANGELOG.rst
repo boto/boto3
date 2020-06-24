@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.14.10
+=======
+
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``codecommit``: [``botocore``] Update codecommit client to latest version
+* api-change:``honeycode``: [``botocore``] Update honeycode client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
 1.14.9
 ======
 
