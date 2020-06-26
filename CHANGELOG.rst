@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.12
+=======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+
+
 1.14.11
 =======
 
