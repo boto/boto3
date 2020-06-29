@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.13
+=======
+
+* api-change:``codestar-connections``: [``botocore``] Update codestar-connections client to latest version
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
 1.14.12
 =======
 
