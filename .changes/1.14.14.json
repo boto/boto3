@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``ecr``", 
+    "description": "[``botocore``] Update ecr client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguru-reviewer``", 
+    "description": "[``botocore``] Update codeguru-reviewer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehendmedical``", 
+    "description": "[``botocore``] Update comprehendmedical client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }
+]
