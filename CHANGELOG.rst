@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.14
+=======
+
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+* api-change:``comprehendmedical``: [``botocore``] Update comprehendmedical client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.14.13
 =======
 
