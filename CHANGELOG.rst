@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.15
+=======
+
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.14.14
 =======
 
