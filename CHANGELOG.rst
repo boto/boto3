@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.14.16
+=======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.14.15
 =======
 
