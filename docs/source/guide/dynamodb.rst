@@ -1,7 +1,7 @@
 .. _dynamodb_guide:
 
-DynamoDB
-========
+Amazon DynamoDB
+================
 By following this guide, you will learn how to use the
 :py:class:`DynamoDB.ServiceResource` and :py:class:`DynamoDB.Table`
 resources in order to create tables, write items to tables, modify existing
