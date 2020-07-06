@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.14.17
+=======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+
+
 1.14.16
 =======
 
