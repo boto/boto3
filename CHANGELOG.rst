@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.18
+=======
+
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``lakeformation``: [``botocore``] Update lakeformation client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+
+
 1.14.17
 =======
 
