@@ -25,3 +25,4 @@ env3
 
 # Visual Studio used to edit docs
 docs/source/.vs
+.vscode
