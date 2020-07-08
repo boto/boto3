@@ -5,9 +5,6 @@ matrix:
     - python: 2.7
       dist: trusty
       sudo: false
-    - python: 3.4
-      dist: trusty
-      sudo: false
     - python: 3.5
       dist: trusty
       sudo: false
