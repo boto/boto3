@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from nose.tools import assert_true
+import pytest
 
 from boto3.session import Session
 import botocore.session
@@ -34,7 +34,7 @@ def _test_create_resource(session, service_name):
     resource = session.resource(service_name)
     # Verifying we have a "meta" attr is just an arbitrary
     # sanity check.
-    assert_true(hasattr(resource, 'meta'))
+    assert hasattr(resource, 'meta')
 
 
 def test_can_create_all_clients():
@@ -45,7 +45,7 @@ def test_can_create_all_clients():
 
 def _test_create_client(session, service_name):
     client = session.client(service_name)
-    assert_true(hasattr(client, 'meta'))
+    assert hasattr(client, 'meta')
 
 
 def test_api_versions_synced_with_botocore():

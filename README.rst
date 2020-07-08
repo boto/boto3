@@ -84,9 +84,9 @@ Running Tests
 ~~~~~~~~~~~~~
 You can run tests in all supported Python versions using ``tox``. By default,
 it will run all of the unit and functional tests, but you can also specify your own
-``nosetests`` options. Note that this requires that you have all supported
+``pytest`` options. Note that this requires that you have all supported
 versions of Python installed, otherwise you must pass ``-e`` or run the
-``nosetests`` command directly:
+``pytest`` command directly:
 
 .. code-block:: sh
 
@@ -98,7 +98,7 @@ You can also run individual tests with your default Python version:
 
 .. code-block:: sh
 
-    $ nosetests tests/unit
+    $ pytest tests/unit
 
 
 Getting Help
