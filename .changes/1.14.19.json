@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``forecast``", 
+    "description": "[``botocore``] Update forecast client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``organizations``", 
+    "description": "[``botocore``] Update organizations client to latest version", 
+    "type": "api-change"
+  }
+]
