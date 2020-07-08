@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from nose.tools import assert_true
+import pytest
 import botocore.session
 from botocore import xform_name
 from botocore.exceptions import DataNotFoundError
@@ -62,7 +62,7 @@ def test_docs_generated():
 
 def _assert_contains_lines_in_order(lines, contents):
     for line in lines:
-        assert_true(line in contents)
+        assert line in contents
         beginning = contents.find(line)
         contents = contents[(beginning + len(line)):]
 
