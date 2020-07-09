@@ -35,74 +35,83 @@ These exceptions are statically defined within the botocore package, a dependenc
         if isinstance(value, type):
             print(key)
 
-This produces a list of statically defined botocore exceptions:
+.. tip::
 
-.. code-block:: text
+    .. raw:: html
 
-    AliasConflictParameterError
-    ApiVersionNotFoundError
-    BaseEndpointResolverError
-    BotoCoreError
-    ChecksumError
-    ClientError
-    ConfigNotFound
-    ConfigParseError
-    ConnectTimeoutError
-    ConnectionClosedError
-    ConnectionError
-    CredentialRetrievalError
-    DataNotFoundError
-    EndpointConnectionError
-    EventStreamError
-    HTTPClientError
-    ImminentRemovalWarning
-    IncompleteReadError
-    InfiniteLoopConfigError
-    InvalidConfigError
-    InvalidDNSNameError
-    InvalidExpressionError
-    InvalidMaxRetryAttemptsError
-    InvalidRetryConfigurationError
-    InvalidS3AddressingStyleError
-    InvalidS3UsEast1RegionalEndpointConfigError
-    InvalidSTSRegionalEndpointsConfigError
-    MD5UnavailableError
-    MetadataRetrievalError
-    MissingParametersError
-    MissingServiceIdError
-    NoCredentialsError
-    NoRegionError
-    OperationNotPageableError
-    PaginationError
-    ParamValidationError
-    PartialCredentialsError
-    ProfileNotFound
-    ProxyConnectionError
-    RangeError
-    ReadTimeoutError
-    RefreshWithMFAUnsupportedError
-    SSLError
-    ServiceNotInRegionError
-    StubAssertionError
-    StubResponseError
-    UnStubbedResponseError
-    UndefinedModelAttributeError
-    UnknownClientMethodError
-    UnknownCredentialError
-    UnknownEndpointError
-    UnknownKeyError
-    UnknownParameterError
-    UnknownServiceError
-    UnknownServiceStyle
-    UnknownSignatureVersionError
-    UnseekableStreamError
-    UnsupportedS3AccesspointConfigurationError
-    UnsupportedS3ArnError
-    UnsupportedSignatureVersionError
-    UnsupportedTLSVersionWarning
-    ValidationError
-    WaiterConfigError
-    WaiterError
+        <details>
+        <summary>Click to see a full list of static exceptions</summary>
+
+    .. code-block:: text
+
+        AliasConflictParameterError
+        ApiVersionNotFoundError
+        BaseEndpointResolverError
+        BotoCoreError
+        ChecksumError
+        ClientError
+        ConfigNotFound
+        ConfigParseError
+        ConnectTimeoutError
+        ConnectionClosedError
+        ConnectionError
+        CredentialRetrievalError
+        DataNotFoundError
+        EndpointConnectionError
+        EventStreamError
+        HTTPClientError
+        ImminentRemovalWarning
+        IncompleteReadError
+        InfiniteLoopConfigError
+        InvalidConfigError
+        InvalidDNSNameError
+        InvalidExpressionError
+        InvalidMaxRetryAttemptsError
+        InvalidRetryConfigurationError
+        InvalidS3AddressingStyleError
+        InvalidS3UsEast1RegionalEndpointConfigError
+        InvalidSTSRegionalEndpointsConfigError
+        MD5UnavailableError
+        MetadataRetrievalError
+        MissingParametersError
+        MissingServiceIdError
+        NoCredentialsError
+        NoRegionError
+        OperationNotPageableError
+        PaginationError
+        ParamValidationError
+        PartialCredentialsError
+        ProfileNotFound
+        ProxyConnectionError
+        RangeError
+        ReadTimeoutError
+        RefreshWithMFAUnsupportedError
+        SSLError
+        ServiceNotInRegionError
+        StubAssertionError
+        StubResponseError
+        UnStubbedResponseError
+        UndefinedModelAttributeError
+        UnknownClientMethodError
+        UnknownCredentialError
+        UnknownEndpointError
+        UnknownKeyError
+        UnknownParameterError
+        UnknownServiceError
+        UnknownServiceStyle
+        UnknownSignatureVersionError
+        UnseekableStreamError
+        UnsupportedS3AccesspointConfigurationError
+        UnsupportedS3ArnError
+        UnsupportedSignatureVersionError
+        UnsupportedTLSVersionWarning
+        ValidationError
+        WaiterConfigError
+        WaiterError
+
+    .. raw:: html
+
+        </details>
 
 .. note::
 
@@ -257,6 +266,6 @@ Using a low-level Amazon SQS client, here’s an example of catching a generic o
             # We grab the message, request ID, and HTTP code to give to customer support
             print('Error Message: {}'.format(err.response['Error']['Message']))
             print('Request ID: {}'.format(err.response['ResponseMetadata']['RequestId']))
-            print('Http code: {}'.format(err.response['ResponseMetadata']['HTTPStatusCode'])
+            print('Http code: {}'.format(err.response['ResponseMetadata']['HTTPStatusCode']))
         else:
             raise err
