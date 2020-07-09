@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.14.20
+=======
+
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``ebs``: [``botocore``] Update ebs client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+
+
 1.14.19
 =======
 
