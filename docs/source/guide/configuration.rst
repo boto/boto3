@@ -23,7 +23,7 @@ Using the Config object
 This option is for configuring client-specific configurations that affect the behavior of your specific client object only. As described earlier, there are options used here that will supersede those found in other configuration locations:
 
 * ``region_name`` (string) - The AWS Region used in instantiating the client. If used, this takes precedence over environment variable and configuration file values. But it doesn't overwrite a ``region_name`` value *explicitly* passed to individual service methods.
-* ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL, you should specify Signature Version 2. 
+* ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL with an expiry of greater than 7 days, you should specify Signature Version 2.
 * ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
 * ``retries`` (dictionary) - Client retry behavior configuration options that include retry mode and maximum retry attempts. For more information, see the :ref:`guide_retries` guide.  
 

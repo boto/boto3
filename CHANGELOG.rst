@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.14.21
+=======
+
+* api-change:``ivs``: [``botocore``] Update ivs client to latest version
+
+
 1.14.20
 =======
 
