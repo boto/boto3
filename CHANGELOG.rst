@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.14.22
+=======
+
+* enhancement:examples: [``botocore``] Pull in latest examples from EFS.
+
+
 1.14.21
 =======
 
