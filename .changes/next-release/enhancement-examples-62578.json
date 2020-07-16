@@ -1,5 +1,0 @@
-{
-  "category": "examples", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Pull in latest examples from EFS."
-}
