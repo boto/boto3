@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.23
+=======
+
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.14.22
 =======
 
