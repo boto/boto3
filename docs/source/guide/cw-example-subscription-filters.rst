@@ -118,7 +118,7 @@ Example
 Create a subscription filter
 ============================
 
-Create or update a subscription filter and associates it with the specified log group.
+Create or update a subscription filter and associate it with the specified log group.
 
 The example below shows how to:
  
