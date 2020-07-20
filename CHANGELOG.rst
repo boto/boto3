@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.14.24
+=======
+
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``groundstation``: [``botocore``] Update groundstation client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+
+
 1.14.23
 =======
 
