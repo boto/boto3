@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.14.25
+=======
+
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+
+
 1.14.24
 =======
 
