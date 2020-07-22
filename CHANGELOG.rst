@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.14.26
+=======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.14.25
 =======
 
