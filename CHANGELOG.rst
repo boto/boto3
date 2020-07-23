@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.27
+=======
+
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+
+
 1.14.26
 =======
 
