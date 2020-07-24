@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.14.28
+=======
+
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+
+
 1.14.27
 =======
 
