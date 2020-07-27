@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.29
+=======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+
+
 1.14.28
 =======
 
