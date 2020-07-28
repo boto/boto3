@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.14.30
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``ivs``: [``botocore``] Update ivs client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+
+
 1.14.29
 =======
 

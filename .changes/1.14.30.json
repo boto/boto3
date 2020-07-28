@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling``", 
+    "description": "[``botocore``] Update autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ivs``", 
+    "description": "[``botocore``] Update ivs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``imagebuilder``", 
+    "description": "[``botocore``] Update imagebuilder client to latest version", 
+    "type": "api-change"
+  }
+]
