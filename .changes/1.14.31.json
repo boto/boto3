@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``resource-groups``", 
+    "description": "[``botocore``] Update resource-groups client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``firehose``", 
+    "description": "[``botocore``] Update firehose client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicediscovery``", 
+    "description": "[``botocore``] Update servicediscovery client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecr``", 
+    "description": "[``botocore``] Update ecr client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``guardduty``", 
+    "description": "[``botocore``] Update guardduty client to latest version", 
+    "type": "api-change"
+  }
+]
