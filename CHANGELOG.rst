@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.31
+=======
+
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``firehose``: [``botocore``] Update firehose client to latest version
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+
+
 1.14.30
 =======
 
