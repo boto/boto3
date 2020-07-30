@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.14.32
+=======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+
+
 1.14.31
 =======
 
