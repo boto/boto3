@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.33
+=======
+
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+
+
 1.14.32
 =======
 
