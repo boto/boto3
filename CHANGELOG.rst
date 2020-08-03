@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.14.34
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.14.33
 =======
 
