@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.14.35
+=======
+
+* api-change:``health``: [``botocore``] Update health client to latest version
+
+
 1.14.34
 =======
 
