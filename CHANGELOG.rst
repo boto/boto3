@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.36
+=======
+
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+
+
 1.14.35
 =======
 
