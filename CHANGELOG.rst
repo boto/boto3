@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.37
+=======
+
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``personalize-events``: [``botocore``] Update personalize-events client to latest version
+
+
 1.14.36
 =======
 
