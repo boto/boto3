@@ -1,5 +1,0 @@
-{
-  "category": "``personalize-runtime``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update personalize-runtime client to latest version"
-}
