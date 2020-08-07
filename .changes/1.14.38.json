@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``sms``", 
+    "description": "[``botocore``] Update sms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``organizations``", 
+    "description": "[``botocore``] Update organizations client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }
+]
