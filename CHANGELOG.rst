@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.14.39
+=======
+
+* api-change:``savingsplans``: [``botocore``] Update savingsplans client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.14.38
 =======
 
