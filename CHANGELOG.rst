@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.40
+=======
+
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.14.39
 =======
 
