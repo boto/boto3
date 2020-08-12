@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.14.41
+=======
+
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``cloud9``: [``botocore``] Update cloud9 client to latest version
+
+
 1.14.40
 =======
 
