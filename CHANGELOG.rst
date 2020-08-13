@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.14.42
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``braket``: [``botocore``] Update braket client to latest version
+
+
 1.14.41
 =======
 
