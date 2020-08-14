@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.43
+=======
+
+* api-change:``braket``: [``botocore``] Update braket client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+
+
 1.14.42
 =======
 
