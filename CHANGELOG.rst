@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.14.44
+=======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``kinesis``: [``botocore``] Update kinesis client to latest version
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``elb``: [``botocore``] Update elb client to latest version
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+
+
 1.14.43
 =======
 
