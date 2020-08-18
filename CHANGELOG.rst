@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.14.45
+=======
+
+* api-change:``identitystore``: [``botocore``] Update identitystore client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+
+
 1.14.44
 =======
 
