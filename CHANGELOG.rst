@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.46
+=======
+
+* api-change:``lakeformation``: [``botocore``] Update lakeformation client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ivs``: [``botocore``] Update ivs client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.14.45
 =======
 
