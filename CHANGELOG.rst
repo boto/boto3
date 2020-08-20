@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.14.47
+=======
+
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+
+
 1.14.46
 =======
 
