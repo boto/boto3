@@ -190,7 +190,7 @@ Using Amazon Kinesis as an example service, you can use Boto3 to catch the excep
         client.describe_stream(StreamName='myDataStream')
 
     except botocore.exceptions.ClientError as error:
-        if error.response['Error']['Code'] == 'LimitExceededException'
+        if error.response['Error']['Code'] == 'LimitExceededException':
             logger.warn('API call limit exceeded; backing off and retrying...')
         else:
             raise error
@@ -262,7 +262,7 @@ Using a low-level Amazon SQS client, here’s an example of catching a generic o
         client.send_message(QueueUrl=queue_url, MessageBody=('some_message')
 
     except botocore.exceptions.ClientError as err:
-        if err.response['Error']['Code'] == 'InternalError' # Generic error
+        if err.response['Error']['Code'] == 'InternalError': # Generic error
             # We grab the message, request ID, and HTTP code to give to customer support
             print('Error Message: {}'.format(err.response['Error']['Message']))
             print('Request ID: {}'.format(err.response['ResponseMetadata']['RequestId']))
