@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.14.48
+=======
+
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``logs``: [``botocore``] Update logs client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+
+
 1.14.47
 =======
 
