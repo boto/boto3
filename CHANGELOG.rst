@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.14.49
+=======
+
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+* api-change:``route53resolver``: [``botocore``] Update route53resolver client to latest version
+
+
 1.14.48
 =======
 

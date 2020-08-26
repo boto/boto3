@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``appflow``", 
+    "description": "[``botocore``] Update appflow client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``route53resolver``", 
+    "description": "[``botocore``] Update route53resolver client to latest version", 
+    "type": "api-change"
+  }
+]
