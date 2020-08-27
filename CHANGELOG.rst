@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.50
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.14.49
 =======
 
