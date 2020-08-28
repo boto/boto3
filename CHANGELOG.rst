@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.51
+=======
+
+* api-change:``cur``: [``botocore``] Update cur client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.14.50
 =======
 
