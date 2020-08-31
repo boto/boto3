@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.52
+=======
+
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.14.51
 =======
 
