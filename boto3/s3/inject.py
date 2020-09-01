@@ -638,15 +638,15 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
         with open('filename', 'wb') as data:
             s3.download_fileobj('mybucket', 'mykey', data)
 
-    :type Fileobj: a file-like object
-    :param Fileobj: A file-like object to download into. At a minimum, it must
-        implement the `write` method and must accept bytes.
-
     :type Bucket: str
     :param Bucket: The name of the bucket to download from.
 
     :type Key: str
     :param Key: The name of the key to download from.
+
+    :type Fileobj: a file-like object
+    :param Fileobj: A file-like object to download into. At a minimum, it must
+        implement the `write` method and must accept bytes.
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
