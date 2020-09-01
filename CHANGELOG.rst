@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.14.53
+=======
+
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+
+
 1.14.52
 =======
 
