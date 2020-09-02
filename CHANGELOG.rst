@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.14.54
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+
+
 1.14.53
 =======
 
