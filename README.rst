@@ -40,12 +40,13 @@ Assuming that you have Python and ``virtualenv`` installed, set up your environm
     $ virtualenv venv
     ...
     $ . venv/bin/activate
-    $ pip install -r requirements.txt
-    $ pip install -e .
+    $ python -m pip install -r requirements.txt
+    $ python -m pip install -e .
 
 .. code-block:: sh
 
-    $ pip install boto3
+    $ python -m pip install boto3
+
     
 Using Boto3
 ~~~~~~~~~~~~~~
@@ -76,7 +77,6 @@ Then, from a Python interpreter:
     >>> s3 = boto3.resource('s3')
     >>> for bucket in s3.buckets.all():
             print(bucket.name)
-
 
 Running Tests
 ~~~~~~~~~~~~~
