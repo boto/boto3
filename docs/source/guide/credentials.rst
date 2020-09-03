@@ -14,7 +14,7 @@ Interactive configuration
 
 If you have the `AWS CLI <http://aws.amazon.com/cli/>`_, then you can use its interactive ``configure`` command to set up your credentials and default region:
 
-.. code-block::
+.. code-block:: shell
 
     aws configure
 
@@ -100,7 +100,7 @@ This file is an INI formatted file with section names corresponding to profiles.
 
 Below is an minimal example of the shared credentials file:
 
-.. code-block::
+.. code-block:: ini
 
     [default]
     aws_access_key_id=foo
@@ -109,7 +109,7 @@ Below is an minimal example of the shared credentials file:
 
 The shared credentials file also supports the concept of profiles. Profiles represent logical groups of configuration. The shared credential file can have multiple profiles:
 
-.. code-block::
+.. code-block:: ini
 
     [default]
     aws_access_key_id=foo
@@ -140,7 +140,7 @@ AWS config file
 
 Boto3 can also load credentials from ``~/.aws/config``. You can change this default location by setting the ``AWS_CONFIG_FILE`` environment variable. The config file is an INI format, with the same keys supported by the shared credentials file. The only difference is that profile sections *must* have the format of ``[profile profile-name]``, except for the default profile:
 
-.. code-block::
+.. code-block:: ini
 
     [default]
     aws_access_key_id=foo
@@ -186,7 +186,7 @@ If you specify ``mfa_serial``, then the first time an ``AssumeRole`` call is mad
 
 Below is an example configuration for the minimal amount of configuration needed to configure an assume role profile:
 
-.. code-block::
+.. code-block:: ini
 
     # In ~/.aws/credentials:
     [development]
@@ -215,7 +215,7 @@ You can specify the following configuration values for configuring an IAM role i
 
 Below is an example configuration for the minimal amount of configuration needed to configure an assume role with web identity profile:
 
-.. code-block:: 
+.. code-block:: ini
 
     # In ~/.aws/config
     [profile web-identity]
@@ -238,7 +238,7 @@ Boto 2 config
 
 Boto3 will attempt to load credentials from the Boto2 config file. It first checks the file pointed to by ``BOTO_CONFIG`` if set, otherwise it will check ``/etc/boto.cfg`` and ``~/.boto``. Note that only the ``[Credentials]`` section of the boto config file is used. All other configuration data in the boto config file is ignored.
 
-.. code-block::
+.. code-block:: ini
 
     # Example ~/.boto file
     [Credentials]
