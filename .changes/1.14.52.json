@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``sqs``", 
+    "description": "[``botocore``] Update sqs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``backup``", 
+    "description": "[``botocore``] Update backup client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }
+]

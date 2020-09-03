@@ -123,6 +123,21 @@ class TestServiceActionCall(BaseTestCase):
             operation_name='GetFrobs'
         )
 
+    def test_service_action_call_positional_argument(self):
+        def _api_call(*args, **kwargs):
+            if args:
+                raise TypeError(
+                    "%s() only accepts keyword arguments." % 'get_frobs')
+
+        resource = mock.Mock()
+        resource.meta = ResourceMeta('test', client=mock.Mock())
+        resource.meta.client.get_frobs = _api_call
+
+        action = ServiceAction(self.action)
+
+        with self.assertRaises(TypeError):
+            action(resource, 'item1')
+
 
 class TestWaiterActionCall(BaseTestCase):
     def setUp(self):
@@ -274,3 +289,30 @@ class TestBatchActionCall(BaseTestCase):
         crp_mock.assert_called_with(item, model.request,
                                     params={'foo': 'bar'}, index=0)
         client.get_frobs.assert_called_with(foo='bar')
+
+    @mock.patch('boto3.resources.action.create_request_parameters')
+    def test_batch_action_with_positional_argument(self, crp_mock):
+        def side_effect(resource, model, params=None, index=None):
+            params['foo'] = 'bar'
+
+        def _api_call(*args, **kwargs):
+            if args:
+                raise TypeError(
+                    "%s() only accepts keyword arguments." % 'get_frobs')
+
+        crp_mock.side_effect = side_effect
+
+        client = mock.Mock()
+        client.get_frobs = _api_call
+
+        item = mock.Mock()
+        item.meta = ResourceMeta('test', client=client)
+
+        collection = mock.Mock()
+        collection.pages.return_value = [[item]]
+
+        model = self.model
+        action = BatchAction(model)
+
+        with self.assertRaises(TypeError):
+            action(collection, 'item1')

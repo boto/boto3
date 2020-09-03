@@ -1,0 +1,57 @@
+[
+  {
+    "category": "``amplify``", 
+    "description": "[``botocore``] Update amplify client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``wafv2``", 
+    "description": "[``botocore``] Update wafv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ebs``", 
+    "description": "[``botocore``] Update ebs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``events``", 
+    "description": "[``botocore``] Update events client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudhsmv2``", 
+    "description": "[``botocore``] Update cloudhsmv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appmesh``", 
+    "description": "[``botocore``] Update appmesh client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``alexaforbusiness``", 
+    "description": "[``botocore``] Update alexaforbusiness client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sns``", 
+    "description": "[``botocore``] Update sns client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``secretsmanager``", 
+    "description": "[``botocore``] Update secretsmanager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }
+]

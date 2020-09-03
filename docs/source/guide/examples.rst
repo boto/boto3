@@ -11,7 +11,7 @@
 .. _aws-boto3-examples:
 
 #############
-Code Examples
+Code examples
 #############
 
 This section describes code examples that demonstrate how to use the AWS SDK

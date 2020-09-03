@@ -17,7 +17,7 @@ data. Example of a collection::
     for queue in sqs.queues.all():
         print(queue.url)
 
-When Collections Make Requests
+When collections make requests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Collections can be created and manipulated without any request being made
 to the underlying service. A collection makes a remote service request under
@@ -68,8 +68,8 @@ in common::
     base = ec2.instances.filter(InstanceIds=['id1', 'id2', 'id3'])
 
     filters = [{
-        'name': 'tenancy',
-        'value': 'dedicated'
+        'Name': 'tenancy',
+        'Values': ['dedicated']
     }]
     filtered1 = base.filter(Filters=filters)
 
@@ -89,7 +89,7 @@ in common::
     for instance in filtered2:
         print(instance.id)
 
-Limiting Results
+Limiting results
 ----------------
 It is possible to limit the number of items returned from a collection
 by using either the
@@ -102,7 +102,7 @@ by using either the
 In both cases, up to 10 items total will be returned. If you do not
 have 10 buckets, then all of your buckets will be returned.
 
-Controlling Page Size
+Controlling page size
 ---------------------
 Collections automatically handle paging through results, but you may want
 to control the number of items returned from a single service operation
@@ -118,7 +118,7 @@ By default, S3 will return 1000 objects at a time, so the above code
 would let you process the items in smaller batches, which could be
 beneficial for slow or unreliable internet connections.
 
-Batch Actions
+Batch actions
 -------------
 Some collections support batch actions, which are actions that operate
 on an entire page of results at a time. They will automatically handle

@@ -11,7 +11,7 @@
 .. _aws-boto3-s3-examples:
 
 ##################
-Amazon S3 Examples
+Amazon S3 examples
 ##################
 
 .. meta::

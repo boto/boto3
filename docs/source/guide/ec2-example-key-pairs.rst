@@ -11,7 +11,7 @@
 .. _aws-boto-ec2-example-key-pairs:
 
 #################################
-Working with Amazon EC2 Key Pairs
+Working with Amazon EC2 key pairs
 #################################
 
 This Python example shows you how to:
@@ -22,7 +22,7 @@ This Python example shows you how to:
 
 * Delete an existing key pair
 
-The Scenario
+The scenario
 ============
 
 Amazon EC2 uses public–key cryptography to encrypt and decrypt login information. Public–key cryptography 
@@ -45,12 +45,12 @@ in the *Amazon EC2 User Guide for Windows Instances*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
     
-Describe Key Pairs
+Describe key pairs
 ==================
 
 Describe one or more of your key pairs.
@@ -72,7 +72,7 @@ Example
     print(response)
 
 
-Create a Key Pair
+Create a key pair
 =================
 
 Create a 2048-bit RSA key pair with the specified name. Amazon EC2 stores the public key and displays 
@@ -96,7 +96,7 @@ Example
     print(response)
 
 
-Delete a Key Pair
+Delete a key pair
 =================
 
 Delete the specified key pair, by removing the public key from Amazon EC2.

@@ -1,4 +1,4 @@
-.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -11,27 +11,30 @@
 .. _user_guides:
 
 +++++++++++
-User Guides
+Developer guide
 +++++++++++
 
 
-General Feature Guide
-=====================
+SDK features
+=============
 
 .. toctree::
    :maxdepth: 1
 
-   resources
-   collections
-   clients
-   paginators
-   session
    configuration
+   credentials
+   clients
+   resources
+   session
+   collections
+   paginators
+   error-handling
+   retries
    events
 
 
-Tool Guide
-==========
+Tools
+======
 
 .. toctree::
    :maxdepth: 1
@@ -40,8 +43,8 @@ Tool Guide
    sdk-metrics
 
 
-Migration Guide
-===============
+Migrations
+===========
 
 .. toctree::
    :maxdepth: 1

@@ -11,12 +11,12 @@
 .. _aws-boto3-iam-managing-account-aliases:   
 
 ############################
-Managing IAM Account Aliases
+Managing IAM account aliases
 ############################
 
 This Python example shows you how to manage aliases for your AWS account ID.
 
-The Scenario
+The scenario
 ============
 
 If you want the URL for your sign-in page to contain your company name or other friendly identifier 
@@ -37,12 +37,12 @@ in the *IAM User Guide*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Create an Account Alias
+Create an account alias
 =======================
 
 Create an alias for your AWS account. For information about using an AWS account alias, see 
@@ -69,7 +69,7 @@ Example
         AccountAlias='ALIAS'
     )
 
-List an Account Alias
+List an account alias
 =====================
 
 List the account alias associated with the AWS account (Note: you can have only one). For information 
@@ -98,7 +98,7 @@ Example
     for response in paginator.paginate():
         print(response['AccountAliases'])
 
-Delete an Account Alias
+Delete an account alias
 =========================
 
 Delete the specified AWS account alias. For information about using an AWS account alias, see 

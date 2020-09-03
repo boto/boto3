@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotsitewise``", 
+    "description": "[``botocore``] Update iotsitewise client to latest version", 
+    "type": "api-change"
+  }
+]

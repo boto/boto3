@@ -1,4 +1,4 @@
-Extensibility Guide
+Extensibility guide
 ===================
 
 All of Boto3's resource and client classes are generated at runtime.
@@ -11,7 +11,7 @@ However it is still possible to extend the functionality of classes through
 Boto3's event system.
 
 
-An Introduction to the Event System
+An introduction to the event system
 -----------------------------------
 
 Boto3's event system allows users to register a function to
@@ -74,7 +74,7 @@ Here are the takeaways from this example:
   `provide-client-params`_
 
 
-A Hierarchical Structure
+A hierarchical structure
 ------------------------
 
 The event system also provides a hierarchy for registering events such that
@@ -131,7 +131,7 @@ method is called via its registration to ``'provide-client-params.s3'``. The
 registered ``add_my_specific_bucket`` function is never called.
 
 
-Wildcard Matching
+Wildcard matching
 -----------------
 
 Another aspect of Boto3's event system is that it has the capability
@@ -169,7 +169,7 @@ to ``'provide-client-params.s3.*'`` which is more specific than the event
 ``'provide-client.s3'``.
 
 
-Isolation of Event Systems
+Isolation of event systems
 --------------------------
 
 The event system in Boto3 has the notion of isolation:
@@ -206,20 +206,20 @@ inject ``'myotherbucket'`` for its ``list_objects`` method call because
 was registered to ``client2``.
 
 
-Boto3 Specific Events
+Boto3 specific events
 ---------------------
 
 Boto3 emits a set of events that users can register to
 customize clients or resources and modify the behavior of method calls.
 
-Here is the list of events that users of boto3 can register handlers to:
+Here is the list of events that users of Boto3 can register handlers to:
 
 * ``'creating-client-class``
 * ``'creating-resource-class``
 * ``'provide-client-params'``
 
 
-creating-client-class
+`creating-client-class`
 ~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
@@ -292,7 +292,7 @@ creating-client-class
     Client instantiated!
 
 
-creating-resource-class
+`creating-resource-class`
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
@@ -368,11 +368,11 @@ creating-resource-class
     Resource instantiated!
 
 
-provide-client-params
+`provide-client-params`
 ~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
-  ``'provide-client.service-name.operation-name'``
+  ``'provide-client-params.service-name.operation-name'``
 
   Note: ``service-name`` refers to the value used to instantiate a client i.e.
   ``boto3.client('service-name')``. ``operation-name`` refers to the

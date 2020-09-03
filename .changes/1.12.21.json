@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``appconfig``", 
+    "description": "[``botocore``] Update appconfig client to latest version", 
+    "type": "api-change"
+  }
+]

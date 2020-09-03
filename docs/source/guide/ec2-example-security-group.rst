@@ -11,7 +11,7 @@
 .. _aws-boto-ec2-example-security-group:
 
 ##########################################
-Working with Security Groups in Amazon EC2
+Working with security groups in Amazon EC2
 ##########################################
 
 This Python example shows you how to:
@@ -22,7 +22,7 @@ This Python example shows you how to:
 
 * Delete an existing security group
 
-The Scenario
+The scenario
 ============
 
 An Amazon EC2 security group acts as a virtual firewall that controls the traffic for one or more instances. 
@@ -50,12 +50,12 @@ in the *Amazon EC2 User Guide for Windows Instances*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
-Describe Security Groups
+Describe security groups
 =======================
 Describe one or more of your security groups.
 
@@ -86,7 +86,7 @@ Example
     except ClientError as e:
         print(e)
 
-Create a Security Group and Rules
+Create a security group and rules
 =================================
 
 * Create a security group.
@@ -140,7 +140,7 @@ Example
     except ClientError as e:
         print(e)
 
-Delete a Security Group
+Delete a security group
 =======================
 
 If you attempt to delete a security group that is associated with an instance, or is referenced by 

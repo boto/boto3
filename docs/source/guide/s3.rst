@@ -10,7 +10,7 @@
 
 
 ###########################
-File Transfer Configuration
+File transfer configuration
 ###########################
 
 When uploading, downloading, or copying a file or S3 object, the AWS SDK for 
@@ -29,7 +29,7 @@ The remaining sections demonstrate how to configure various transfer operations
 with the ``TransferConfig`` object.
 
 
-Multipart Transfers
+Multipart transfers
 ===================
 
 Multipart transfers occur when the file size exceeds the value of the 
@@ -53,7 +53,7 @@ if the file size is larger than the threshold specified in the
     s3.upload_file('FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME', Config=config)
 
 
-Concurrent Transfer Operations
+Concurrent transfer operations
 ==============================
 
 The maximum number of concurrent S3 API transfer operations can be tuned to 

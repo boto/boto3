@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] Update elasticache client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``opsworkscm``", 
+    "description": "[``botocore``] Update opsworkscm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }
+]

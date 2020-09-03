@@ -1,7 +1,7 @@
 .. _ref_core_session:
 
 =================
-Session Reference
+Session reference
 =================
 
 .. automodule:: boto3.session

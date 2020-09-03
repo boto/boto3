@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``support``", 
+    "description": "[``botocore``] Update support client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``meteringmarketplace``", 
+    "description": "[``botocore``] Update meteringmarketplace client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Update route53 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sesv2``", 
+    "description": "[``botocore``] Update sesv2 client to latest version", 
+    "type": "api-change"
+  }
+]

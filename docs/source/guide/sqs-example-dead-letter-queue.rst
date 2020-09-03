@@ -11,13 +11,13 @@
 .. _aws-boto3-sqs-dead-letter-queue:   
 
 ######################################
-Using Dead Letter Queues in Amazon SQS
+Using dead-letter queues in Amazon SQS
 ######################################
 
 This Python example shows you how to use a queue to receive and hold messages from other queues that 
 the queues can't process.
 
-The Scenario
+The scenario
 ============
 
 A dead letter queue is one that other (source) queues can target for messages that can't be processed
@@ -34,7 +34,7 @@ For more information about Amazon SQS dead letter queues, see
 `Using Amazon SQS Dead Letter Queues <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
@@ -42,7 +42,7 @@ To set up and run this example, you must first complete these tasks:
 * Create an Amazon SQS queue to serve as a dead letter queue. For an example 
   of creating an Amazon SQS queue, see :ref:`aws-boto3-sqs-create-queue`.
 
-Configure Source Queues
+Configure source queues
 =======================
 
 After you create a queue to act as a dead letter queue, you must configure the other queues that route 

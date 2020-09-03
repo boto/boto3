@@ -2,11 +2,11 @@
 
 Quickstart
 ==========
-Getting started with Boto 3 is easy, but requires a few steps.
+Getting started with Boto3 is easy, but requires a few steps.
 
 Installation
 ------------
-Install the latest Boto 3 release via :command:`pip`::
+Install the latest Boto3 release via :command:`pip`::
 
     pip install boto3
 
@@ -19,9 +19,13 @@ You may also install a specific version::
    The latest development version can always be found on
    `GitHub <https://github.com/boto/boto3>`_.
 
+.. note::
+
+    For best results, please ensure your version of Python is up-to-date. For more information on how to get the latest version of Python, please refer to the official `Python documentation <https://www.python.org/downloads/>`_. 
+
 Configuration
 -------------
-Before you can begin using Boto 3, you should set up authentication
+Before you can begin using Boto3, you should set up authentication
 credentials. Credentials for your AWS account can be found in the
 `IAM Console <https://console.aws.amazon.com/iam/home>`_. You can
 create or use an existing user. Go to manage access keys and
@@ -53,9 +57,9 @@ region to use when creating connections. See
 :ref:`guide_configuration` for in-depth configuration sources and
 options.
 
-Using Boto 3
+Using Boto3
 ------------
-To use Boto 3, you must first import it and tell it what service you are
+To use Boto3, you must first import it and tell it what service you are
 going to use::
 
     import boto3

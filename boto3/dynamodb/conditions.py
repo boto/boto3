@@ -119,8 +119,8 @@ class AttributeBase(object):
         """Creates a condition where the attribute is greater than or equal
         to the low value and less than or equal to the high value.
 
-        :param low_value: The value that the attribute is greater than.
-        :param high_value: The value that the attribute is less than.
+        :param low_value: The value that the attribute is greater than or equal to.
+        :param high_value: The value that the attribute is less than or equal to.
         """
         return Between(self, low_value, high_value)
 

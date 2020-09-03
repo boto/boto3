@@ -11,12 +11,12 @@
 .. _aws-boto3-sqs-messages:   
 
 ############################################
-Sending and Receiving Messages in Amazon SQS
+Sending and receiving messages in Amazon SQS
 ############################################
 
 This Python example shows you how to send, receive, and delete messages in a queue.
 
-The Scenario
+The scenario
 ============
 
 In this example, Python code is used to send and receive messages. The code uses the AWS SDK for Python 
@@ -33,7 +33,7 @@ For more information about Amazon SQS messages, see
 and `Receiving and Deleting a Message from an Amazon SQS Queue <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-receive-delete-message.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
@@ -43,7 +43,7 @@ To set up and run this example, you must first complete these tasks:
 
 .. _aws-boto3-sqs-send-message:
 
-Send a Message to a Queue
+Send a message to a queue
 =========================
 
 The example below shows how to:
@@ -90,7 +90,7 @@ Example
     print(response['MessageId'])
 
 
-Receive and Delete Messages from a Queue
+Receive and delete messages from a queue
 ========================================
 
 The example below shows how to:

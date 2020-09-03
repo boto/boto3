@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``frauddetector``", 
+    "description": "[``botocore``] Update frauddetector client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``groundstation``", 
+    "description": "[``botocore``] Update groundstation client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fms``", 
+    "description": "[``botocore``] Update fms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }
+]

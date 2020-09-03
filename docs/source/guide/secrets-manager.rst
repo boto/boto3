@@ -24,7 +24,7 @@ in the *AWS Secrets Manager Developer Guide*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first set up the following:
@@ -32,7 +32,7 @@ To set up and run this example, you must first set up the following:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 * Create a secret with the AWS Secrets Manager, as described in the `AWS Secrets Manager Developer Guide <https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html>`_
 
-Retrieve the Secret Value
+Retrieve the secret value
 =============================================
 
 The following example shows how to:
