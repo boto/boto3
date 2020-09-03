@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.55
+=======
+
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+
+
 1.14.54
 =======
 
