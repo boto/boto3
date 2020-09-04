@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.14.56
+=======
+
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.14.55
 =======
 

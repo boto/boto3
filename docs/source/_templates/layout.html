@@ -1,5 +1,4 @@
 {%- extends "!layout.html" %}
-
 {%- block breadcrumbs %}
 {{ super() }}
 <!--REGION_DISCLAIMER_DO_NOT_REMOVE-->
@@ -7,14 +6,17 @@
 
 
 {%- block footer %}
-{{ super() }}
-<script type="text/javascript" src="https://media.amazonwebservices.com/js/sitecatalyst/s_code.min.js"></script>
-<script type="text/javascript">
-s.prop66 = 'AWS SDK for Python (boto3)';
-s.eVar66 = 'D=c66';
-s.prop65 = 'API Reference';
-s.eVar65 = 'D=c65';
-var s_code = s.t();
-if (s_code) document.write(s_code);
-</script>
+<div class="footer">
+    <script type="text/javascript" src="{{ pathto('_static/shortbreadv1.js',1 ) }}"></script>
+    <script type="text/javascript">
+            const shortbread = AWSCShortbread({
+                domain: ".amazonaws.com",
+});
+            shortbread.checkForCookieConsent();
+    </script>
+    <a href="http://aws.amazon.com/privacy">Privacy</a> | <a href="http://aws.amazon.com/terms">Site Terms</a> | <a
+        href="#" onclick="shortbread.customizeCookies();">Cookie preferences</a> |
+    &copy; Copyright {{ copyright }}. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+</div>
+
 {%- endblock %}
