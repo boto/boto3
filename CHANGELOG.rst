@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.57
+=======
+
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+
+
 1.14.56
 =======
 
