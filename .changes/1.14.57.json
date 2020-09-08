@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``lex-models``", 
+    "description": "[``botocore``] Update lex-models client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigatewayv2``", 
+    "description": "[``botocore``] Update apigatewayv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }
+]
