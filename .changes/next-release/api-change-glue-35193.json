@@ -1,0 +1,5 @@
+{
+  "category": "``glue``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update glue client to latest version"
+}
