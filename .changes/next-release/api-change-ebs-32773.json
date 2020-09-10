@@ -1,5 +1,0 @@
-{
-  "category": "``ebs``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update ebs client to latest version"
-}
