@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.59
+=======
+
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``ebs``: [``botocore``] Update ebs client to latest version
+* api-change:``sso-admin``: [``botocore``] Update sso-admin client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.14.58
 =======
 
