@@ -1,0 +1,5 @@
+{
+  "category": "``sso-admin``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update sso-admin client to latest version"
+}
