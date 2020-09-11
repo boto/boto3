@@ -1,5 +1,0 @@
-{
-  "category": "``workspaces``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update workspaces client to latest version"
-}
