@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.14.60
+=======
+
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+
+
 1.14.59
 =======
 
