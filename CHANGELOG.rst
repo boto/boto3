@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.14.61
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+
+
 1.14.60
 =======
 
