@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.14.62
+=======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.14.61
 =======
 
