@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.14.63
+=======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``greengrass``: [``botocore``] Update greengrass client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.14.62
 =======
 

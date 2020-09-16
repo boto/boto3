@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dlm``", 
+    "description": "[``botocore``] Update dlm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``greengrass``", 
+    "description": "[``botocore``] Update greengrass client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }
+]
