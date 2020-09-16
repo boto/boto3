@@ -1,5 +1,0 @@
-{
-  "category": "``greengrass``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update greengrass client to latest version"
-}
