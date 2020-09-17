@@ -1,5 +1,0 @@
-{
-  "category": "``apigateway``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update apigateway client to latest version"
-}
