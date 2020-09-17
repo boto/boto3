@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.15.0
+======
+
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+* feature:dependency: [``botocore``] botocore has removed docutils as a required dependency
+
+
 1.14.63
 =======
 
