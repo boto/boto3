@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.15.1
+======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``sso-admin``: [``botocore``] Update sso-admin client to latest version
+* api-change:``codestar-connections``: [``botocore``] Update codestar-connections client to latest version
+
+
 1.15.0
 ======
 
