@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.15.2
+======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.15.1
 ======
 
