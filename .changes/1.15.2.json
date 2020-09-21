@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``resourcegroupstaggingapi``", 
+    "description": "[``botocore``] Update resourcegroupstaggingapi client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotsitewise``", 
+    "description": "[``botocore``] Update iotsitewise client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``events``", 
+    "description": "[``botocore``] Update events client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``resource-groups``", 
+    "description": "[``botocore``] Update resource-groups client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }
+]
