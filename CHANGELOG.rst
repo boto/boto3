@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.15.3
+======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``dynamodbstreams``: [``botocore``] Update dynamodbstreams client to latest version
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+
+
 1.15.2
 ======
 
