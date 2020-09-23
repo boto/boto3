@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.15.4
+======
+
+* api-change:``translate``: [``botocore``] Update translate client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+
+
 1.15.3
 ======
 
