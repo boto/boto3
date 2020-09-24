@@ -1,5 +1,0 @@
-{
-  "category": "``synthetics``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update synthetics client to latest version"
-}

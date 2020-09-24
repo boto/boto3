@@ -1,5 +1,0 @@
-{
-  "category": "``savingsplans``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update savingsplans client to latest version"
-}
