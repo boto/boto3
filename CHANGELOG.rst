@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.15.5
+======
+
+* api-change:``transcribe``: [``botocore``] Update transcribe client to latest version
+* api-change:``textract``: [``botocore``] Update textract client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``savingsplans``: [``botocore``] Update savingsplans client to latest version
+* api-change:``synthetics``: [``botocore``] Update synthetics client to latest version
+
+
 1.15.4
 ======
 
