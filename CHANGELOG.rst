@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.15.6
+======
+
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``sts``: [``botocore``] Update sts client to latest version
+
+
 1.15.5
 ======
 
