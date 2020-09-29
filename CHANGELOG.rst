@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.15.8
+======
+
+* api-change:``timestream-write``: [``botocore``] Update timestream-write client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``schemas``: [``botocore``] Update schemas client to latest version
+* api-change:``timestream-query``: [``botocore``] Update timestream-query client to latest version
+
+
 1.15.7
 ======
 
