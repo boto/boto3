@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.15.9
+======
+
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``s3outposts``: [``botocore``] Update s3outposts client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``mediaconnect``: [``botocore``] Update mediaconnect client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+
+
 1.15.8
 ======
 

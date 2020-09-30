@@ -1,5 +1,0 @@
-{
-  "category": "``s3control``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update s3control client to latest version"
-}
