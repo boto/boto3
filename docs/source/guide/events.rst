@@ -37,7 +37,7 @@ Here is an example of how the event system works::
     def add_my_bucket(params, **kwargs):
         # Add the name of the bucket you want to default to.
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'DOC-EXAMPLE-BUCKET'
 
     # Register the function to an event
     event_system.register('provide-client-params.s3.ListObjects', add_my_bucket)
@@ -46,7 +46,7 @@ Here is an example of how the event system works::
 
 In this example, the handler ``add_my_bucket``
 is registered such that the handler will inject the
-value ``'mybucket`` for the ``Bucket`` parameter whenever the the
+value ``'DOC-EXAMPLE-BUCKET'`` for the ``Bucket`` parameter whenever the the
 ``list_objects`` client call is made without the ``Bucket`` parameter. Note
 that if the same ``list_objects`` call is made without the ``Bucket``
 parameter and the registered handler, it will result in a validation error.
@@ -103,7 +103,7 @@ its hierarchical structure::
 
     def add_my_general_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'DOC-EXAMPLE-BUCKET'
 
     def add_my_specific_bucket(params, **kwargs):
         if 'Bucket' not in params:
@@ -116,14 +116,14 @@ its hierarchical structure::
     put_obj_response = s3.put_object(Key='mykey', Body=b'my body')
 
 In this example, the ``list_objects`` method call will use the
-``'myspecificbucket'`` for the bucket instead of ``'mybucket'`` because
+``'myspecificbucket'`` for the bucket instead of ``'DOC-EXAMPLE-BUCKET'`` because
 the ``add_my_specific_bucket`` method was registered to the
 ``'provide-client-params.s3.ListObjects'`` event which is more specific than
 the ``'provide-client-params.s3'`` event. Thus, the
 ``add_my_specific_bucket`` function is called before the
 ``add_my_general_bucket`` function is called when the event is emitted.
 
-However for the ``put_object`` call, the bucket used is ``'mybucket'``. This
+However for the ``put_object`` call, the bucket used is ``'DOC-EXAMPLE-BUCKET'``. This
 is because the event emitted for the ``put_object`` client call is
 ``'provide-client-params.s3.PutObject'`` and the ``add_my_general_bucket``
 method is called via its registration to ``'provide-client-params.s3'``. The
@@ -147,7 +147,7 @@ of using wildcards in the event system::
 
     def add_my_wildcard_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'DOC-EXAMPLE-BUCKET'
 
     event_system.register('provide-client-params.s3.*', add_my_wildcard_bucket)
     response = s3.list_objects()
@@ -184,7 +184,7 @@ to another client's event system::
 
     def add_my_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'DOC-EXAMPLE-BUCKET'
 
     def add_my_other_bucket(params, **kwargs):
         if 'Bucket' not in params:
@@ -200,7 +200,7 @@ to another client's event system::
 
 
 Thanks to the isolation of clients' event systems, ``client1`` will inject
-``'mybucket'`` for its ``list_objects`` method call while ``client2`` will
+``'DOC-EXAMPLE-BUCKET'`` for its ``list_objects`` method call while ``client2`` will
 inject ``'myotherbucket'`` for its ``list_objects`` method call because
 ``add_my_bucket`` was registered to ``client1`` while ``add_my_other_bucket``
 was registered to ``client2``.
@@ -415,7 +415,7 @@ Here is the list of events that users of Boto3 can register handlers to:
     def add_my_bucket(params, **kwargs):
         # Add the name of the bucket you want to default to.
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'DOC-EXAMPLE-BUCKET'
 
     # Register the function to an event
     event_system.register('provide-client-params.s3.ListObjects', add_my_bucket)

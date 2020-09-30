@@ -34,10 +34,10 @@ Second, while every service now uses the runtime-generated low-level client, som
     # High-level connections & resource objects
     from boto.s3.bucket import Bucket
     s3_conn = boto.connect_s3()
-    boto2_bucket = Bucket('mybucket')
+    boto2_bucket = Bucket('DOC-EXAMPLE-BUCKET')
 
     s3 = boto3.resource('s3')
-    boto3_bucket = s3.Bucket('mybucket')
+    boto3_bucket = s3.Bucket('DOC-EXAMPLE-BUCKET')
 
 Installation and configuration
 ----------------------------

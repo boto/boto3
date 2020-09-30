@@ -21,12 +21,12 @@ Creating a bucket
 Creating a bucket in Boto 2 and Boto3 is very similar, except that in Boto3 all action parameters must be passed via keyword arguments and a bucket configuration must be specified manually::
 
     # Boto 2.x
-    s3_connection.create_bucket('mybucket')
-    s3_connection.create_bucket('mybucket', location=Location.USWest)
+    s3_connection.create_bucket('DOC-EXAMPLE-BUCKET')
+    s3_connection.create_bucket('DOC-EXAMPLE-BUCKET', location=Location.USWest)
 
     # Boto3
-    s3.create_bucket(Bucket='mybucket')
-    s3.create_bucket(Bucket='mybucket', CreateBucketConfiguration={
+    s3.create_bucket(Bucket='DOC-EXAMPLE-BUCKET')
+    s3.create_bucket(Bucket='DOC-EXAMPLE-BUCKET', CreateBucketConfiguration={
         'LocationConstraint': 'us-west-1'})
 
 Storing data
@@ -39,7 +39,7 @@ Storing data from a file, stream, or string is easy::
     key.set_contents_from_file('/tmp/hello.txt')
 
     # Boto3
-    s3.Object('mybucket', 'hello.txt').put(Body=open('/tmp/hello.txt', 'rb'))
+    s3.Object('DOC-EXAMPLE-BUCKET', 'hello.txt').put(Body=open('/tmp/hello.txt', 'rb'))
 
 
 Accessing a bucket
@@ -47,15 +47,15 @@ Accessing a bucket
 Getting a bucket is easy with Boto3's resources, however these do not automatically validate whether a bucket exists::
 
     # Boto 2.x
-    bucket = s3_connection.get_bucket('mybucket', validate=False)
-    exists = s3_connection.lookup('mybucket')
+    bucket = s3_connection.get_bucket('DOC-EXAMPLE-BUCKET', validate=False)
+    exists = s3_connection.lookup('DOC-EXAMPLE-BUCKET')
 
     # Boto3
     import botocore
-    bucket = s3.Bucket('mybucket')
+    bucket = s3.Bucket('DOC-EXAMPLE-BUCKET')
     exists = True
     try:
-        s3.meta.client.head_bucket(Bucket='mybucket')
+        s3.meta.client.head_bucket(Bucket='DOC-EXAMPLE-BUCKET')
     except botocore.exceptions.ClientError as e:
         # If a client error is thrown, then check that it was a 404 error.
         # If it was a 404 error, then the bucket does not exist.
