@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kafka``", 
+    "description": "[``botocore``] Update kafka client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appsync``", 
+    "description": "[``botocore``] Update appsync client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``emr``", 
+    "description": "[``botocore``] Update emr client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``wafv2``", 
+    "description": "[``botocore``] Update wafv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }
+]
