@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.15.10
+=======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+
+
 1.15.9
 ======
 
