@@ -122,6 +122,8 @@ transfer.  For example:
 
 
 """
+import os
+
 from botocore.exceptions import ClientError
 from botocore.compat import six
 from s3transfer.exceptions import RetriesExceededError as \
@@ -269,8 +271,13 @@ class S3Transfer(object):
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
-        if not isinstance(filename, six.string_types):
-            raise ValueError('Filename must be a string')
+        try:
+            filename = os.fspath(filename)
+        except TypeError:
+            raise ValueError('Filename must be a path-like object')
+        except AttributeError:
+            if not isinstance(filename, six.string_types):
+                raise ValueError('Filename must be a string')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
@@ -297,8 +304,13 @@ class S3Transfer(object):
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
-        if not isinstance(filename, six.string_types):
-            raise ValueError('Filename must be a string')
+        try:
+            filename = os.fspath(filename)
+        except TypeError:
+            raise ValueError('Filename must be a path-like object')
+        except AttributeError:
+            if not isinstance(filename, six.string_types):
+                raise ValueError('Filename must be a string')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
