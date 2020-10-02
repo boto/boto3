@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.15.11
+=======
+
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``personalize-events``: [``botocore``] Update personalize-events client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+
+
 1.15.10
 =======
 
