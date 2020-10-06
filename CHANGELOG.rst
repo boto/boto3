@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.15.13
+=======
+
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``kinesisanalyticsv2``: [``botocore``] Update kinesisanalyticsv2 client to latest version
+* api-change:``marketplace-catalog``: [``botocore``] Update marketplace-catalog client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.15.12
 =======
 
