@@ -1,0 +1,5 @@
+{
+  "category": "``elasticache``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update elasticache client to latest version"
+}
