@@ -100,12 +100,10 @@ class TestInputOutputTransformer(BaseTransformationTest):
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation,
             target_shape=self.target_shape)
-        self.assertEqual(
-            input_params,
-            {'Structure': {
+        assert input_params == {
+            'Structure': {
                 'TransformMe': self.transformed_value,
                 'LeaveAlone': self.original_value}}
-        )
 
     def test_transform_map(self):
         input_params = {
@@ -136,11 +134,10 @@ class TestInputOutputTransformer(BaseTransformationTest):
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation,
             target_shape=self.target_shape)
-        self.assertEqual(
-            input_params,
-            {'TransformMe': {'foo': self.transformed_value},
-             'LeaveAlone': {'foo': self.original_value}}
-        )
+        assert input_params == {
+            'TransformMe': 
+                {'foo': self.transformed_value},
+                 'LeaveAlone': {'foo': self.original_value}}
 
     def test_transform_list(self):
         input_params = {
@@ -172,11 +169,9 @@ class TestInputOutputTransformer(BaseTransformationTest):
         self.transformer.transform(
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation, target_shape=self.target_shape)
-        self.assertEqual(
-            input_params,
-            {'TransformMe': [self.transformed_value, self.transformed_value],
-             'LeaveAlone': [self.original_value, self.original_value]}
-        )
+        assert input_params == {
+            'TransformMe': [self.transformed_value, self.transformed_value],
+            'LeaveAlone': [self.original_value, self.original_value]}
 
     def test_transform_nested_structure(self):
         input_params = {
@@ -210,12 +205,10 @@ class TestInputOutputTransformer(BaseTransformationTest):
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation,
             target_shape=self.target_shape)
-        self.assertEqual(
-            input_params,
-            {'WrapperStructure': {
+        assert input_params == {
+            'WrapperStructure': {
                 'Structure': {'TransformMe': self.transformed_value,
                               'LeaveAlone': self.original_value}}}
-        )
 
     def test_transform_nested_map(self):
         input_params = {
@@ -271,11 +264,9 @@ class TestInputOutputTransformer(BaseTransformationTest):
         self.transformer.transform(
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation, target_shape=self.target_shape)
-        self.assertEqual(
-            input_params,
-            {'TargetedWrapperMap': {'foo': {'bar': self.transformed_value}},
-             'UntargetedWrapperMap': {'foo': {'bar': self.original_value}}}
-        )
+        assert input_params == {
+            'TargetedWrapperMap': {'foo': {'bar': self.transformed_value}},
+            'UntargetedWrapperMap': {'foo': {'bar': self.original_value}}}
 
     def test_transform_nested_list(self):
         input_params = {
@@ -323,13 +314,11 @@ class TestInputOutputTransformer(BaseTransformationTest):
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation,
             target_shape=self.target_shape)
-        self.assertEqual(
-            input_params,
-            {'TargetedWrapperList': [[
+        assert input_params == {
+            'TargetedWrapperList': [[
                 self.transformed_value, self.transformed_value]],
-             'UntargetedWrapperList': [[
+            'UntargetedWrapperList': [[
                  self.original_value, self.original_value]]}
-        )
 
     def test_transform_incorrect_type_for_structure(self):
         input_params = {
@@ -351,7 +340,7 @@ class TestInputOutputTransformer(BaseTransformationTest):
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation,
             target_shape=self.target_shape)
-        self.assertEqual(input_params, {'Structure': 'foo'})
+        assert input_params == {'Structure': 'foo'}
 
     def test_transform_incorrect_type_for_map(self):
         input_params = {
@@ -372,7 +361,7 @@ class TestInputOutputTransformer(BaseTransformationTest):
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation,
             target_shape=self.target_shape)
-        self.assertEqual(input_params, {'Map': 'foo'})
+        assert input_params == {'Map': 'foo'}
 
     def test_transform_incorrect_type_for_list(self):
         input_params = {
@@ -391,7 +380,7 @@ class TestInputOutputTransformer(BaseTransformationTest):
         self.transformer.transform(
             params=input_params, model=self.operation_model.input_shape,
             transformation=self.transformation, target_shape=self.target_shape)
-        self.assertEqual(input_params, {'List': 'foo'})
+        assert input_params == {'List': 'foo'}
 
 
 class BaseTransformAttributeValueTest(BaseTransformationTest):
@@ -427,12 +416,10 @@ class TestTransformAttributeValueInput(BaseTransformAttributeValueTest):
 
         self.injector.inject_attribute_value_input(
             params=input_params, model=self.operation_model)
-        self.assertEqual(
-            input_params,
-            {'Structure': {
+        assert input_params == {
+            'Structure': {
                 'TransformMe': self.dynamodb_value,
                 'LeaveAlone': 'unchanged'}}
-        )
 
 
 class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
@@ -456,13 +443,10 @@ class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
         self.add_input_shape(input_shape)
         self.injector.inject_attribute_value_output(
             parsed=parsed, model=self.operation_model)
-        self.assertEqual(
-            parsed,
-            {'Structure': {
+        assert parsed == {
+            'Structure': {
                 'TransformMe': self.python_value,
                 'LeaveAlone': 'unchanged'}}
-        )
-
 
     def test_no_output(self):
         service_model = ServiceModel({
@@ -487,8 +471,7 @@ class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
         parsed = {}
         self.injector.inject_attribute_value_output(
             parsed=parsed, model=operation_model)
-        self.assertEqual(parsed, {})
-
+        assert parsed == {}
 
 
 class TestTransformConditionExpression(BaseTransformationTest):
@@ -511,8 +494,7 @@ class TestTransformConditionExpression(BaseTransformationTest):
         }
         self.injector.inject_condition_expressions(
             params, self.operation_model)
-        self.assertEqual(
-            params, {'KeyCondition': 'foo', 'AttrCondition': 'bar'})
+        assert params == {'KeyCondition': 'foo', 'AttrCondition': 'bar'}
 
     def test_single_attr_condition_expression(self):
         params = {
@@ -520,12 +502,10 @@ class TestTransformConditionExpression(BaseTransformationTest):
         }
         self.injector.inject_condition_expressions(
             params, self.operation_model)
-        self.assertEqual(
-            params,
-            {'AttrCondition': '#n0 = :v0',
-             'ExpressionAttributeNames': {'#n0': 'foo'},
-             'ExpressionAttributeValues': {':v0': 'bar'}}
-        )
+        assert params == {
+            'AttrCondition': '#n0 = :v0',
+            'ExpressionAttributeNames': {'#n0': 'foo'},
+            'ExpressionAttributeValues': {':v0': 'bar'}}
 
     def test_single_key_conditon_expression(self):
         params = {
@@ -533,12 +513,10 @@ class TestTransformConditionExpression(BaseTransformationTest):
         }
         self.injector.inject_condition_expressions(
             params, self.operation_model)
-        self.assertEqual(
-            params,
-            {'KeyCondition': '#n0 = :v0',
-             'ExpressionAttributeNames': {'#n0': 'foo'},
-             'ExpressionAttributeValues': {':v0': 'bar'}}
-        )
+        assert params == {
+            'KeyCondition': '#n0 = :v0',
+            'ExpressionAttributeNames': {'#n0': 'foo'},
+            'ExpressionAttributeValues': {':v0': 'bar'}}
 
     def test_key_and_attr_conditon_expression(self):
         params = {
@@ -547,13 +525,11 @@ class TestTransformConditionExpression(BaseTransformationTest):
         }
         self.injector.inject_condition_expressions(
             params, self.operation_model)
-        self.assertEqual(
-            params,
-            {'KeyCondition': '#n1 = :v1',
-             'AttrCondition': '#n0 = :v0',
-             'ExpressionAttributeNames': {'#n0': 'biz', '#n1': 'foo'},
-             'ExpressionAttributeValues': {':v0': 'baz', ':v1': 'bar'}}
-        )
+        assert params == {
+            'KeyCondition': '#n1 = :v1',
+            'AttrCondition': '#n0 = :v0',
+            'ExpressionAttributeNames': {'#n0': 'biz', '#n1': 'foo'},
+            'ExpressionAttributeValues': {':v0': 'baz', ':v1': 'bar'}}
 
     def test_key_and_attr_conditon_expression_with_placeholders(self):
         params = {
@@ -564,23 +540,21 @@ class TestTransformConditionExpression(BaseTransformationTest):
         }
         self.injector.inject_condition_expressions(
             params, self.operation_model)
-        self.assertEqual(
-            params,
-            {'KeyCondition': '#n1 = :v1',
-             'AttrCondition': '#n0 = :v0',
-             'ExpressionAttributeNames': {
-                 '#n0': 'biz', '#n1': 'foo', '#a': 'b'},
-             'ExpressionAttributeValues': {
-                 ':v0': 'baz', ':v1': 'bar', ':c': 'd'}}
-        )
+        assert params == {
+            'KeyCondition': '#n1 = :v1',
+            'AttrCondition': '#n0 = :v0',
+            'ExpressionAttributeNames': {
+                '#n0': 'biz', '#n1': 'foo', '#a': 'b'},
+            'ExpressionAttributeValues': {
+                ':v0': 'baz', ':v1': 'bar', ':c': 'd'}}
 
 
 class TestCopyDynamoDBParams(unittest.TestCase):
     def test_copy_dynamodb_params(self):
         params = {'foo': 'bar'}
         new_params = copy_dynamodb_params(params)
-        self.assertEqual(params, new_params)
-        self.assertIsNot(new_params, params)
+        assert params == new_params
+        assert new_params is not params
 
 
 class TestDynamoDBHighLevelResource(unittest.TestCase):
@@ -605,37 +579,35 @@ class TestDynamoDBHighLevelResource(unittest.TestCase):
 
         # It should have fired the following events upon instantiation.
         event_call_args = self.events.register.call_args_list
-        self.assertEqual(
-            event_call_args,
-            [mock.call(
+        assert event_call_args == [
+            mock.call(
                 'provide-client-params.dynamodb',
                 copy_dynamodb_params,
                 unique_id='dynamodb-create-params-copy'),
-             mock.call(
+            mock.call(
                 'before-parameter-build.dynamodb',
                 mock_injector.return_value.inject_condition_expressions,
                 unique_id='dynamodb-condition-expression'),
-             mock.call(
+            mock.call(
                 'before-parameter-build.dynamodb',
                 mock_injector.return_value.inject_attribute_value_input,
                 unique_id='dynamodb-attr-value-input'),
-             mock.call(
+            mock.call(
                 'after-call.dynamodb',
                 mock_injector.return_value.inject_attribute_value_output,
                 unique_id='dynamodb-attr-value-output'),
-             mock.call(
+            mock.call(
                 'docs.*.dynamodb.*.complete-section',
                 mock_modify_documentation_method,
                 unique_id='dynamodb-attr-value-docs'),
-             mock.call(
+            mock.call(
                 'docs.*.dynamodb.*.complete-section',
                 mock_modify_documentation_method,
                 unique_id='dynamodb-key-expression-docs'),
-             mock.call(
+            mock.call(
                 'docs.*.dynamodb.*.complete-section',
                 mock_modify_documentation_method,
                 unique_id='dynamodb-cond-expression-docs')]
-        )
 
 
 class TestRegisterHighLevelInterface(unittest.TestCase):
@@ -644,4 +616,4 @@ class TestRegisterHighLevelInterface(unittest.TestCase):
         register_high_level_interface(base_classes)
 
         # Check that the base classes are as expected
-        self.assertEqual(base_classes, [DynamoDBHighLevelResource, object])
+        assert base_classes == [DynamoDBHighLevelResource, object]

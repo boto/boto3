@@ -28,17 +28,16 @@ class BaseTransformationTest(unittest.TestCase):
                                         self.flush_amount)
 
     def assert_batch_write_calls_are(self, expected_batch_writes):
-        self.assertEqual(self.client.batch_write_item.call_count,
-                         len(expected_batch_writes))
+        assert self.client.batch_write_item.call_count == len(expected_batch_writes)
         batch_write_calls = [
             args[1] for args in
             self.client.batch_write_item.call_args_list
         ]
-        self.assertEqual(batch_write_calls, expected_batch_writes)
+        assert batch_write_calls == expected_batch_writes
 
     def test_batch_write_does_not_immediately_write(self):
         self.batch_writer.put_item(Item={'Hash': 'foo'})
-        self.assertFalse(self.client.batch_write_item.called)
+        assert not self.client.batch_write_item.called
 
     def test_batch_write_flushes_at_flush_amount(self):
         self.batch_writer.put_item(Item={'Hash': 'foo1'})

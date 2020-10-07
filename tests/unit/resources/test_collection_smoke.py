@@ -63,7 +63,7 @@ def _shape_has_pagination_param(shape):
     return False
 
 
-def test_all_collections_have_paginators_if_needed():
+def generate_collection_paginator_models():
     # If a collection relies on an operation that is paginated, it
     # will require a paginator to iterate through all of the resources
     # with the all() method. If there is no paginator, it will only
@@ -91,12 +91,13 @@ def test_all_collections_have_paginators_if_needed():
             # Iterate over all of the collections for each resource model
             # and ensure that the collection has a paginator if it needs one.
             for collection_model in resource_model.collections:
-                yield (
-                    _assert_collection_has_paginator_if_needed, client,
-                    service_name, resource_name, collection_model)
+                yield (client, service_name, resource_name, collection_model)
 
-
-def _assert_collection_has_paginator_if_needed(
+@pytest.mark.parametrize(
+    "client,service_name,resource_name,collection_model",
+    generate_collection_paginator_models()
+)
+def test_collection_has_paginator_if_needed(
         client, service_name, resource_name, collection_model):
     underlying_operation_name = collection_model.request.operation
     # See if the operation can be paginated from the client.
@@ -108,10 +109,11 @@ def _assert_collection_has_paginator_if_needed(
     # Make sure that if the operation looks paginated then there is
     # a paginator for the client to use for the collection.
     if not can_paginate_operation:
-        assert not\
-            looks_paginated,\
-            'Collection %s on resource %s of service %s uses the operation '\
-            '%s, but the operation has no paginator even though it looks '\
-            'paginated.' % (\
-                collection_model.name, resource_name, service_name,\
+        error_msg = (
+            'Collection %s on resource %s of service %s uses the operation '
+            '%s, but the operation has no paginator even though it looks '
+            'paginated.' % (collection_model.name, resource_name, service_name,
                 underlying_operation_name)
+        )
+
+        assert not looks_paginated, error_msg
