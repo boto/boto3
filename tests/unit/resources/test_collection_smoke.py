@@ -113,10 +113,11 @@ def _assert_collection_has_paginator_if_needed(
     # Make sure that if the operation looks paginated then there is
     # a paginator for the client to use for the collection.
     if not can_paginate_operation:
-        assert not\
-            looks_paginated,\
-            'Collection %s on resource %s of service %s uses the operation '\
-            '%s, but the operation has no paginator even though it looks '\
-            'paginated.' % (\
-                collection_model.name, resource_name, service_name,\
-                underlying_operation_name)
+        error_msg = (
+            f'Collection {collection_model.name} on resource {resource_name} '
+            f'of service {service_name} uses the operation '
+            f'{underlying_operation_name}, but the operation has no paginator '
+            f'even though it looks paginated.'
+        )
+
+        assert not looks_paginated, error_msg
