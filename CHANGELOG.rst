@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.15.14
+=======
+
+* api-change:``mediapackage``: [``botocore``] Update mediapackage client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.15.13
 =======
 
