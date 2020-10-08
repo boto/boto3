@@ -25,9 +25,8 @@ class TestCollection(unittest.TestCase):
         self.ec2_resource = self.session.resource('ec2')
 
     def test_can_use_collection_methods(self):
-        self.assertIsInstance(
-            self.ec2_resource.instances.all(), ResourceCollection)
+        assert isinstance(self.ec2_resource.instances.all(), ResourceCollection)
 
     def test_can_chain_methods(self):
-        self.assertIsInstance(
+        assert isinstance(
             self.ec2_resource.instances.all().page_size(5), ResourceCollection)
