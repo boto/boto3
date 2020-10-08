@@ -15,57 +15,38 @@ import pytest
 from boto3.session import Session
 import botocore.session
 
-boto3_session = None
 
-def create_session():
-    global boto3_session
-    if boto3_session is None:
-        boto3_session = Session(
+boto3_session = Session(
             aws_access_key_id='dummy',
             aws_secret_access_key='dummy',
             region_name='us-east-1'
-        )
-
-    return boto3_session
-
-
-def available_resources():
-    session = create_session()
-    return session.get_available_resources()
-
-
-def available_services():
-    session = create_session()
-    return session.get_available_services()
+)
 
 
 @pytest.mark.parametrize(
-    "resource_name", available_resources()
+    "resource_name", boto3_session.get_available_resources()
 )
 def test_create_resource(resource_name):
     """Verify we can create all existing resources."""
-    session = create_session()
-    resource = session.resource(resource_name)
+    resource = boto3_session.resource(resource_name)
     # Verifying we have a "meta" attr is just an arbitrary
     # sanity check.
     assert hasattr(resource, 'meta')
 
 
 @pytest.mark.parametrize(
-    "service_name", available_services()
+    "service_name", boto3_session.get_available_services()
 )
 def test_create_client(service_name):
-    session = create_session()
-    client = session.client(service_name)
+    client = boto3_session.client(service_name)
     assert hasattr(client, 'meta')
 
 
 @pytest.mark.parametrize(
-    "resource_name", available_resources()
+    "resource_name", boto3_session.get_available_resources()
 )
 def test_api_versions_synced_with_botocore(resource_name):
     botocore_session = botocore.session.get_session()
-    boto3_session = create_session()
     resource = boto3_session.resource(resource_name)
     boto3_api_version = resource.meta.client.meta.service_model.api_version
     client = botocore_session.create_client(resource_name,
