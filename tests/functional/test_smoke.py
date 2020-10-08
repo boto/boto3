@@ -15,13 +15,18 @@ import pytest
 from boto3.session import Session
 import botocore.session
 
+boto3_session = None
 
 def create_session():
-    session = Session(aws_access_key_id='dummy',
-                      aws_secret_access_key='dummy',
-                      region_name='us-east-1')
-    return session
+    global boto3_session
+    if boto3_session is None:
+        boto3_session = Session(
+            aws_access_key_id='dummy',
+            aws_secret_access_key='dummy',
+            region_name='us-east-1'
+        )
 
+    return boto3_session
 
 def _all_resources():
     session = create_session()
@@ -43,12 +48,9 @@ def _all_api_version_args():
 
 
 @pytest.mark.parametrize('resource_args', _all_resources())
-def test_can_create_all_resources(all_resources):
+def test_can_create_all_resources(resource_args):
     """Verify we can create all existing resources."""
-    _test_create_resource(*resource_args)
-
-
-def _test_create_resource(session, service_name):
+    session, service_name = resource_args
     resource = session.resource(service_name)
     # Verifying we have a "meta" attr is just an arbitrary
     # sanity check.
@@ -56,12 +58,9 @@ def _test_create_resource(session, service_name):
 
 
 @pytest.mark.parametrize('client_args', _all_clients())
-def test_can_create_all_resources(client_args):
+def test_can_create_all_clients(client_args):
     """Verify we can create all existing clients."""
-    _test_create_client(*client_args)
-
-
-def _test_create_client(session, service_name):
+    session, service_name = client_args
     client = session.client(service_name)
     assert hasattr(client, 'meta')
 
@@ -69,20 +68,18 @@ def _test_create_client(session, service_name):
 @pytest.mark.parametrize('api_version_args', _all_api_version_args())
 def test_api_versions_synced_with_botocore(api_version_args):
     """Verify both boto3 and botocore clients stay in sync."""
-    _assert_same_api_versions(*api_version_args)
-
-
-def _assert_same_api_versions(service_name, botocore_session, boto3_session):
+    service_name, botocore_session, boto3_session = api_version_args
     resource = boto3_session.resource(service_name)
     boto3_api_version = resource.meta.client.meta.service_model.api_version
-    client = botocore_session.create_client(service_name,
-                                            region_name='us-east-1',
-                                            aws_access_key_id='foo',
-                                            aws_secret_access_key='bar')
+    client = botocore_session.create_client(
+        service_name,
+        region_name='us-east-1',
+        aws_access_key_id='foo',
+        aws_secret_access_key='bar'
+    )
     botocore_api_version = client.meta.service_model.api_version
-    if botocore_api_version != boto3_api_version:
-        raise AssertionError(
-            "Different latest API versions found for %s: "
-            "%s (botocore), %s (boto3)\n" % (service_name,
-                                             botocore_api_version,
-                                             boto3_api_version))
+    err = (
+        f"Different latest API versions found for {service_name}: "
+        f"{botocore_api_version} (botocore), {boto3_api_version} (boto3)\n"
+    )
+    assert botocore_api_version == boto3_api_version, err
