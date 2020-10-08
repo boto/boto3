@@ -16,14 +16,14 @@ from tests import unittest
 class BaseDocsFunctionalTests(unittest.TestCase):
     def assert_contains_lines_in_order(self, lines, contents):
         for line in lines:
-            self.assertIn(line, contents)
+            assert line in contents
             beginning = contents.find(line)
             contents = contents[(beginning + len(line)):]
 
     def get_class_document_block(self, class_name, contents):
         start_class_document = '.. py:class:: %s' % class_name
         start_index = contents.find(start_class_document)
-        self.assertNotEqual(start_index, -1, 'Class is not found in contents')
+        assert start_index != -1, 'Class is not found in contents'
         contents = contents[start_index:]
         end_index = contents.find(
             '  .. py:class::', len(start_class_document))
@@ -32,7 +32,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
     def get_method_document_block(self, method_name, contents):
         start_method_document = '  .. py:method:: %s(' % method_name
         start_index = contents.find(start_method_document)
-        self.assertNotEqual(start_index, -1, 'Method is not found in contents')
+        assert start_index != -1, 'Method is not found in contents'
         contents = contents[start_index:]
         end_index = contents.find(
             '  .. py:method::', len(start_method_document))
@@ -41,8 +41,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
     def get_request_syntax_document_block(self, contents):
         start_marker = '**Request Syntax**'
         start_index = contents.find(start_marker)
-        self.assertNotEqual(
-            start_index, -1, 'There is no request syntax section')
+        assert start_index != -1, 'There is no request syntax section'
         contents = contents[start_index:]
         end_index = contents.find(
             ':type', len(start_marker))
@@ -51,8 +50,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
     def get_response_syntax_document_block(self, contents):
         start_marker = '**Response Syntax**'
         start_index = contents.find(start_marker)
-        self.assertNotEqual(
-            start_index, -1, 'There is no response syntax section')
+        assert start_index != -1, 'There is no response syntax section'
         contents = contents[start_index:]
         end_index = contents.find(
             '**Response Structure**', len(start_marker))
@@ -61,7 +59,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
     def get_request_parameter_document_block(self, param_name, contents):
         start_param_document = ':type %s:' % param_name
         start_index = contents.find(start_param_document)
-        self.assertNotEqual(start_index, -1, 'Param is not found in contents')
+        assert start_index != -1, 'Param is not found in contents'
         contents = contents[start_index:]
         end_index = contents.find(':type', len(start_param_document))
         return contents[:end_index]
@@ -69,11 +67,11 @@ class BaseDocsFunctionalTests(unittest.TestCase):
     def get_response_parameter_document_block(self, param_name, contents):
         start_param_document = '**Response Structure**'
         start_index = contents.find(start_param_document)
-        self.assertNotEqual(start_index, -1, 'There is no response structure')
+        assert start_index != -1, 'There is no response structure'
 
         start_param_document = '- **%s**' % param_name
         start_index = contents.find(start_param_document)
-        self.assertNotEqual(start_index, -1, 'Param is not found in contents')
+        assert start_index != -1, 'Param is not found in contents'
         contents = contents[start_index:]
         end_index = contents.find('- **', len(start_param_document))
         return contents[:end_index]
