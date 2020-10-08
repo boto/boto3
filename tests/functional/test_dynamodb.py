@@ -43,13 +43,12 @@ class TestDynamoDB(unittest.TestCase):
         table.scan(FilterExpression=Attr('mykey').eq('myvalue'))
         request = self.make_request_mock.call_args_list[0][0][1]
         request_params = json.loads(request['body'].decode('utf-8'))
-        self.assertEqual(
-            request_params,
-            {'TableName': 'MyTable',
-             'FilterExpression': '#n0 = :v0',
-             'ExpressionAttributeNames': {'#n0': 'mykey'},
-             'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}}}
-        )
+        assert request_params == {
+            'TableName': 'MyTable',
+            'FilterExpression': '#n0 = :v0',
+            'ExpressionAttributeNames': {'#n0': 'mykey'},
+            'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}}
+        }
 
     def test_client(self):
         dynamodb = self.session.client('dynamodb')
@@ -62,10 +61,9 @@ class TestDynamoDB(unittest.TestCase):
         )
         request = self.make_request_mock.call_args_list[0][0][1]
         request_params = json.loads(request['body'].decode('utf-8'))
-        self.assertEqual(
-            request_params,
-            {'TableName': 'MyTable',
-             'FilterExpression': '#n0 = :v0',
-             'ExpressionAttributeNames': {'#n0': 'mykey'},
-             'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}}}
-        )
+        assert request_params == {
+            'TableName': 'MyTable',
+            'FilterExpression': '#n0 = :v0',
+            'ExpressionAttributeNames': {'#n0': 'mykey'},
+            'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}}
+        }

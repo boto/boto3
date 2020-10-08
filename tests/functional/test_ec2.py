@@ -23,8 +23,7 @@ class TestInstanceDeleteTags(unittest.TestCase):
         self.instance_resource = self.service_resource.Instance('i-abc123')
 
     def test_delete_tags_injected(self):
-        self.assertTrue(hasattr(self.instance_resource, 'delete_tags'),
-                        'delete_tags was not injected onto Instance resource.')
+        assert hasattr(self.instance_resource, 'delete_tags')
 
     def test_delete_tags(self):
         stubber = Stubber(self.instance_resource.meta.client)
@@ -32,7 +31,7 @@ class TestInstanceDeleteTags(unittest.TestCase):
         stubber.activate()
         response = self.instance_resource.delete_tags(Tags=[{'Key': 'foo'}])
         stubber.assert_no_pending_responses()
-        self.assertEqual(response, {})
+        assert response == {}
         stubber.deactivate()
 
     def test_mutating_filters(self):

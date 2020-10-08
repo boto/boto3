@@ -25,7 +25,7 @@ class TestTableResourceCustomizations(unittest.TestCase):
 
     def test_resource_has_batch_writer_added(self):
         table = self.resource.Table('mytable')
-        self.assertTrue(hasattr(table, 'batch_writer'))
+        assert hasattr(table, 'batch_writer')
 
     def test_operation_without_output(self):
         table = self.resource.Table('mytable')
