@@ -16,4 +16,4 @@ args = sys.argv[1:]
 if not args:
     args = ['unit/', 'functional/']
 
-check_call(['pytest', '--cov=boto3', '--cov-report=xml', '-v'] + args)
+check_call(['pytest', '-n', 'auto', '--cov=boto3', '--cov-report=xml', '-v'] + args)

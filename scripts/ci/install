@@ -16,6 +16,7 @@ def run(command):
 run('pip install -r requirements.txt')
 run('pip install coverage')
 run('pip install pytest-cov')
+run('pip install pytest-xdist')
 if os.path.isdir('dist') and os.listdir('dist'):
     shutil.rmtree('dist')
 run('python setup.py bdist_wheel')

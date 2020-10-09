@@ -16,4 +16,4 @@ def run(command):
     return check_call(command, shell=True)
 
 
-run('pytest --cov=boto3 -cov-report xml -v integration')
+run('pytest -n auto --cov=boto3 -cov-report xml -v integration')
