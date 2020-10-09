@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.15.16
+=======
+
+* api-change:``snowball``: [``botocore``] Update snowball client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.15.15
 =======
 
