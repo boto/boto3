@@ -232,7 +232,16 @@ class TypeSerializer(object):
 
 
 class TypeDeserializer(object):
-    """This class deserializes DynamoDB types to Python types."""
+    """This class deserializes DynamoDB types to Python types.
+    
+    :type use_decimal: bool
+    :param use_decimal: Set to False to deserialize Numbers (N) to float instead 
+        of Decimal. Default: True
+    """
+    
+    def __init__(self, use_decimal = True):
+        self._use_decimal = use_decimal
+
     def deserialize(self, value):
         """The method to deserialize the DynamoDB data types.
 
@@ -243,10 +252,10 @@ class TypeDeserializer(object):
             --------                                ------
             {'NULL': True}                          None
             {'BOOL': True/False}                    True/False
-            {'N': str(value)}                       Decimal(str(value))
+            {'N': str(value)}                       Decimal(str(value))/float
             {'S': string}                           string
             {'B': bytes}                            Binary(bytes)
-            {'NS': [str(value)]}                    set([Decimal(str(value))])
+            {'NS': [str(value)]}                    set([Decimal(str(value))])/set([float])
             {'SS': [string]}                        set([string])
             {'BS': [bytes]}                         set([bytes])
             {'L': list}                             list
@@ -274,7 +283,8 @@ class TypeDeserializer(object):
         return value
 
     def _deserialize_n(self, value):
-        return DYNAMODB_CONTEXT.create_decimal(value)
+        decimal_value = DYNAMODB_CONTEXT.create_decimal(value)
+        return decimal_value if _use_decimal else float(decimal_value)
 
     def _deserialize_s(self, value):
         return value
