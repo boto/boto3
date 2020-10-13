@@ -284,7 +284,7 @@ class TypeDeserializer(object):
 
     def _deserialize_n(self, value):
         decimal_value = DYNAMODB_CONTEXT.create_decimal(value)
-        return decimal_value if _use_decimal else float(decimal_value)
+        return decimal_value if self._use_decimal else float(decimal_value)
 
     def _deserialize_s(self, value):
         return value
