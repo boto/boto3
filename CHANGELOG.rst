@@ -2,6 +2,26 @@
 CHANGELOG
 =========
 
+1.15.17
+=======
+
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``groundstation``: [``botocore``] Update groundstation client to latest version
+* api-change:``rekognition``: [``botocore``] Update rekognition client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``budgets``: [``botocore``] Update budgets client to latest version
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+
+
 1.15.16
 =======
 
