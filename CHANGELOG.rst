@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.15.18
+=======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.15.17
 =======
 
