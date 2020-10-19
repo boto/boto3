@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.16.0
+======
+
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+* api-change:``docdb``: [``botocore``] Update docdb client to latest version
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* feature:imds: [``botocore``] Updated InstanceMetadataFetcher to use custom ipv6 uri as endpoint if envvar or config set
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.15.18
 =======
 

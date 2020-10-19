@@ -1,5 +1,0 @@
-{
-  "category": "imds", 
-  "type": "feature", 
-  "description": "[``botocore``] Updated InstanceMetadataFetcher to use custom ipv6 uri as endpoint if envvar or config set"
-}
