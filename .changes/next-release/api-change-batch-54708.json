@@ -1,0 +1,5 @@
+{
+  "category": "``batch``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update batch client to latest version"
+}
