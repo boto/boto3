@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.1
+======
+
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+
+
 1.16.0
 ======
 
