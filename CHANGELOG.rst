@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.16.3
+======
+
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+
+
 1.16.2
 ======
 
