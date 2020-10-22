@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sns``", 
+    "description": "[``botocore``] Update sns client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``accessanalyzer``", 
+    "description": "[``botocore``] Update accessanalyzer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appflow``", 
+    "description": "[``botocore``] Update appflow client to latest version", 
+    "type": "api-change"
+  }
+]

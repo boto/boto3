@@ -1,5 +1,0 @@
-{
-  "category": "``appflow``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update appflow client to latest version"
-}
