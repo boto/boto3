@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.4
+======
+
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+
+
 1.16.3
 ======
 
