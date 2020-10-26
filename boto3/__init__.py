@@ -14,6 +14,7 @@
 import logging
 
 from boto3.session import Session
+from boto3.compat import _warn_deprecated_python
 
 
 __author__ = 'Amazon Web Services'
@@ -78,6 +79,7 @@ def _get_default_session():
     """
     if DEFAULT_SESSION is None:
         setup_default_session()
+    _warn_deprecated_python()
 
     return DEFAULT_SESSION
 
