@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.5
+======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``neptune``: [``botocore``] Update neptune client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+
+
 1.16.4
 ======
 
