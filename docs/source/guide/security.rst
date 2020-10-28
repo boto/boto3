@@ -29,6 +29,14 @@ and `AWS services that are in scope of AWS compliance efforts by compliance prog
 Data protection
 ---------------
 
+The AWS `shared responsibility model <https://aws.amazon.com/compliance/shared-responsibility-model>`_
+applies to data protection in AWS SDK for Python (Boto3). As described in this model,
+AWS is responsible for protecting the global infrastructure that runs all of the AWS
+Cloud. You are responsible for maintaining control over your content that is hosted on
+this infrastructure. This content includes the security configuration and management
+tasks for the AWS services that you use. For more information about data privacy, see
+the `Data Privacy FAQ <https://aws.amazon.com/compliance/data-privacy-faq>`_.
+
 For data protection purposes, we recommend that you protect AWS account credentials and set up individual user accounts with
 AWS Identity and Access Management (IAM), so that each user is given only the permissions necessary to fulfill their job duties. We also recommend that
 you secure your data in the following ways:
@@ -45,10 +53,6 @@ free-form fields such as a **Name** field. This includes when you work with Boto
 using the console, API, AWS CLI, or AWS SDKs. Any data that you enter into Boto3 or other services might get picked up
 for inclusion in diagnostic logs. When you provide a URL to an external server, don't include credentials information in the URL
 to validate your request to that server.
-
-For more information about data protection, see the
-`AWS Shared Responsibility Model and GDPR <https://aws.amazon.com/blogs/security/the-aws-shared-responsibility-model-and-gdpr/>`_
-blog post on the *AWS Security Blog*.
 
 .. _identity_and_access_management_intro:
 
