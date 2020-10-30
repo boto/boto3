@@ -1,0 +1,5 @@
+{
+  "category": "``sns``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update sns client to latest version"
+}
