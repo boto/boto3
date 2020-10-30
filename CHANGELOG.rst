@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.16.9
+======
+
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``braket``: [``botocore``] Update braket client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.16.8
 ======
 
