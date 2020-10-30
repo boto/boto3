@@ -14,8 +14,10 @@ import sys
 import os
 import errno
 import socket
+import warnings
 
 from botocore.vendored import six
+from boto3.exceptions import PythonDeprecationWarning
 
 if six.PY3:
     # In python3, socket.error is OSError, which is too general
@@ -46,3 +48,32 @@ if sys.platform.startswith('win'):
         os.rename(current_filename, new_filename)
 else:
     rename_file = os.rename
+
+
+def filter_python_deprecation_warnings():
+    """
+    Invoking this filter acknowledges your runtime will soon be deprecated
+    at which time you will stop receiving all updates to your client.
+    """
+    warnings.filterwarnings(
+        'ignore',
+        message=".*Boto3 will no longer support Python.*",
+        category=PythonDeprecationWarning,
+        module=r".*boto3\.compat"
+    )
+
+
+def _warn_deprecated_python():
+    deprecated_versions = ((3,4), (3,5))
+    py_version = sys.version_info[:2]
+
+    if py_version in deprecated_versions:
+        warning = (
+            "Boto3 will no longer support Python {}.{} "
+            "starting February 1, 2021. To continue receiving service updates, "
+            "bug fixes, and security updates please upgrade to Python 3.6 or "
+            "later. More information can be found here: https://aws.amazon.com"
+            "/blogs/developer/announcing-the-end-of-support-for-python-3-4-and"
+            "-3-5-in-the-aws-sdk-for-python-and-aws-cli-v1/"
+        ).format(py_version[0], py_version[1])
+        warnings.warn(warning, PythonDeprecationWarning)
