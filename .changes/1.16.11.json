@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``cloudwatch``", 
+    "description": "[``botocore``] Update cloudwatch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``xray``", 
+    "description": "[``botocore``] Update xray client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mq``", 
+    "description": "[``botocore``] Update mq client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``meteringmarketplace``", 
+    "description": "[``botocore``] Update meteringmarketplace client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling``", 
+    "description": "[``botocore``] Update autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog``", 
+    "description": "[``botocore``] Update servicecatalog client to latest version", 
+    "type": "api-change"
+  }
+]
