@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.16.11
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``xray``: [``botocore``] Update xray client to latest version
+* api-change:``mq``: [``botocore``] Update mq client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``meteringmarketplace``: [``botocore``] Update meteringmarketplace client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+
+
 1.16.10
 =======
 
