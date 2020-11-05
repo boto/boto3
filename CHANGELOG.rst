@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.16.12
+=======
+
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+
+
 1.16.11
 =======
 
