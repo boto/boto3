@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.16.13
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+
+
 1.16.12
 =======
 
