@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.16.14
+=======
+
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``iotanalytics``: [``botocore``] Update iotanalytics client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``storagegateway``: [``botocore``] Update storagegateway client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+
+
 1.16.13
 =======
 
