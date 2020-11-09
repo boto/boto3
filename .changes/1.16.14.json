@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``dynamodb``", 
+    "description": "[``botocore``] Update dynamodb client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] Update fsx client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``macie2``", 
+    "description": "[``botocore``] Update macie2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotanalytics``", 
+    "description": "[``botocore``] Update iotanalytics client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``datasync``", 
+    "description": "[``botocore``] Update datasync client to latest version", 
+    "type": "api-change"
+  }
+]
