@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.16.15
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+
+
 1.16.14
 =======
 
