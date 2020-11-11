@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.16.16
+=======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``amplify``: [``botocore``] Update amplify client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+
+
 1.16.15
 =======
 
