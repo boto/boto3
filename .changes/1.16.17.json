@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``personalize-runtime``", 
+    "description": "[``botocore``] Update personalize-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog-appregistry``", 
+    "description": "[``botocore``] Update servicecatalog-appregistry client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lex-models``", 
+    "description": "[``botocore``] Update lex-models client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``polly``", 
+    "description": "[``botocore``] Update polly client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``robomaker``", 
+    "description": "[``botocore``] Update robomaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lightsail``", 
+    "description": "[``botocore``] Update lightsail client to latest version", 
+    "type": "api-change"
+  }
+]

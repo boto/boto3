@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.16.17
+=======
+
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``servicecatalog-appregistry``: [``botocore``] Update servicecatalog-appregistry client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``polly``: [``botocore``] Update polly client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+
+
 1.16.16
 =======
 
