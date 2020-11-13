@@ -1,5 +1,0 @@
-{
-  "category": "``textract``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update textract client to latest version"
-}

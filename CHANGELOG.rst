@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.18
+=======
+
+* api-change:``textract``: [``botocore``] Update textract client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+
+
 1.16.17
 =======
 
