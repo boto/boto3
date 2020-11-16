@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.16.19
+=======
+
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``iotsecuretunneling``: [``botocore``] Update iotsecuretunneling client to latest version
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+* api-change:``synthetics``: [``botocore``] Update synthetics client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+
+
 1.16.18
 =======
 
