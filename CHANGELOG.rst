@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.16.20
+=======
+
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``fms``: [``botocore``] Update fms client to latest version
+* api-change:``network-firewall``: [``botocore``] Update network-firewall client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+
+
 1.16.19
 =======
 
