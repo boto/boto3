@@ -1,5 +1,0 @@
-{
-  "category": "Retry", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Fix bug where retries were attempted on any response with an \"Error\" key."
-}

@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.16.21
+=======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* bugfix:Retry: [``botocore``] Fix bug where retries were attempted on any response with an "Error" key.
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+* api-change:``outposts``: [``botocore``] Update outposts client to latest version
+
+
 1.16.20
 =======
 
