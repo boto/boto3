@@ -97,7 +97,8 @@ class BaseDocsTest(unittest.TestCase):
                 'String': {
                     'type': 'string'
                 }
-            }
+            },
+            'documentation':'AWS MyService Description' 
         }
 
         self.example_json_model = {
