@@ -1,5 +1,0 @@
-{
-  "category": "``cognito-identity``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update cognito-identity client to latest version"
-}
