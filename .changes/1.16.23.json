@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``servicecatalog-appregistry``", 
+    "description": "[``botocore``] Update servicecatalog-appregistry client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appmesh``", 
+    "description": "[``botocore``] Update appmesh client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kafka``", 
+    "description": "[``botocore``] Update kafka client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``macie2``", 
+    "description": "[``botocore``] Update macie2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``chime``", 
+    "description": "[``botocore``] Update chime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudhsmv2``", 
+    "description": "[``botocore``] Update cloudhsmv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguru-reviewer``", 
+    "description": "[``botocore``] Update codeguru-reviewer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cognito-identity``", 
+    "description": "[``botocore``] Update cognito-identity client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }
+]
