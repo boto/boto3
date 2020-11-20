@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.16.23
+=======
+
+* api-change:``servicecatalog-appregistry``: [``botocore``] Update servicecatalog-appregistry client to latest version
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
+* api-change:``codeguru-reviewer``: [``botocore``] Update codeguru-reviewer client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``cognito-identity``: [``botocore``] Update cognito-identity client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.16.22
 =======
 
