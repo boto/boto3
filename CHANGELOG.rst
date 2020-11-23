@@ -2,6 +2,32 @@
 CHANGELOG
 =========
 
+1.16.24
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``translate``: [``botocore``] Update translate client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``application-insights``: [``botocore``] Update application-insights client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``signer``: [``botocore``] Update signer client to latest version
+* api-change:``codestar-connections``: [``botocore``] Update codestar-connections client to latest version
+* api-change:``codeartifact``: [``botocore``] Update codeartifact client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+* api-change:``timestream-query``: [``botocore``] Update timestream-query client to latest version
+* api-change:``sso-admin``: [``botocore``] Update sso-admin client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``outposts``: [``botocore``] Update outposts client to latest version
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``dynamodb``: [``botocore``] Update dynamodb client to latest version
+
+
 1.16.23
 =======
 
