@@ -1,0 +1,87 @@
+[
+  {
+    "category": "``mediaconvert``", 
+    "description": "[``botocore``] Update mediaconvert client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudformation``", 
+    "description": "[``botocore``] Update cloudformation client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appflow``", 
+    "description": "[``botocore``] Update appflow client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] Update fsx client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``stepfunctions``", 
+    "description": "[``botocore``] Update stepfunctions client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``timestream-write``", 
+    "description": "[``botocore``] Update timestream-write client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticbeanstalk``", 
+    "description": "[``botocore``] Update elasticbeanstalk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``batch``", 
+    "description": "[``botocore``] Update batch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudtrail``", 
+    "description": "[``botocore``] Update cloudtrail client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cognito-idp``", 
+    "description": "[``botocore``] Update cognito-idp client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotsitewise``", 
+    "description": "[``botocore``] Update iotsitewise client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codebuild``", 
+    "description": "[``botocore``] Update codebuild client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehend``", 
+    "description": "[``botocore``] Update comprehend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mwaa``", 
+    "description": "[``botocore``] Update mwaa client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lex-models``", 
+    "description": "[``botocore``] Update lex-models client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``gamelift``", 
+    "description": "[``botocore``] Update gamelift client to latest version", 
+    "type": "api-change"
+  }
+]
