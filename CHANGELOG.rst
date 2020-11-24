@@ -2,6 +2,28 @@
 CHANGELOG
 =========
 
+1.16.25
+=======
+
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+* api-change:``fsx``: [``botocore``] Update fsx client to latest version
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``timestream-write``: [``botocore``] Update timestream-write client to latest version
+* api-change:``elasticbeanstalk``: [``botocore``] Update elasticbeanstalk client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+* api-change:``cognito-idp``: [``botocore``] Update cognito-idp client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``mwaa``: [``botocore``] Update mwaa client to latest version
+* api-change:``lex-models``: [``botocore``] Update lex-models client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+
+
 1.16.24
 =======
 
