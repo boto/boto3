@@ -2,6 +2,27 @@
 CHANGELOG
 =========
 
+1.16.27
+=======
+
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] Update sagemaker-featurestore-runtime client to latest version
+* api-change:``ecr-public``: [``botocore``] Update ecr-public client to latest version
+* api-change:``honeycode``: [``botocore``] Update honeycode client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``amplifybackend``: [``botocore``] Update amplifybackend client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``lookoutvision``: [``botocore``] Update lookoutvision client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``connect-contact-lens``: [``botocore``] Update connect-contact-lens client to latest version
+* api-change:``profile``: [``botocore``] Update profile client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``appintegrations``: [``botocore``] Update appintegrations client to latest version
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* api-change:``devops-guru``: [``botocore``] Update devops-guru client to latest version
+
+
 1.16.26
 =======
 

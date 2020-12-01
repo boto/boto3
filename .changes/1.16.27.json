@@ -1,0 +1,82 @@
+[
+  {
+    "category": "``sagemaker-featurestore-runtime``", 
+    "description": "[``botocore``] Update sagemaker-featurestore-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecr-public``", 
+    "description": "[``botocore``] Update ecr-public client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``honeycode``", 
+    "description": "[``botocore``] Update honeycode client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Update eks client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``amplifybackend``", 
+    "description": "[``botocore``] Update amplifybackend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lookoutvision``", 
+    "description": "[``botocore``] Update lookoutvision client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect-contact-lens``", 
+    "description": "[``botocore``] Update connect-contact-lens client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``profile``", 
+    "description": "[``botocore``] Update profile client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appintegrations``", 
+    "description": "[``botocore``] Update appintegrations client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ds``", 
+    "description": "[``botocore``] Update ds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``devops-guru``", 
+    "description": "[``botocore``] Update devops-guru client to latest version", 
+    "type": "api-change"
+  }
+]
