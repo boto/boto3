@@ -1,0 +1,5 @@
+{
+  "category": "``lookoutvision``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update lookoutvision client to latest version"
+}
