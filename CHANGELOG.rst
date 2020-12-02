@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.16.28
+=======
+
+* api-change:``customer-profiles``: [``botocore``] Update customer-profiles client to latest version
+
+
 1.16.27
 =======
 
