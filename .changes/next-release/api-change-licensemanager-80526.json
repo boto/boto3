@@ -1,0 +1,5 @@
+{
+  "category": "``license-manager``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update license-manager client to latest version"
+}
