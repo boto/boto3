@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.16.29
+=======
+
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``amplifybackend``: [``botocore``] Update amplifybackend client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+
+
 1.16.28
 =======
 
