@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.16.30
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``workspaces``: [``botocore``] Update workspaces client to latest version
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``ds``: [``botocore``] Update ds client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.16.29
 =======
 
