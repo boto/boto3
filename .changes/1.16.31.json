@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``dms``", 
+    "description": "[``botocore``] Update dms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog-appregistry``", 
+    "description": "[``botocore``] Update servicecatalog-appregistry client to latest version", 
+    "type": "api-change"
+  }
+]

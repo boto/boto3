@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.31
+=======
+
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``servicecatalog-appregistry``: [``botocore``] Update servicecatalog-appregistry client to latest version
+
+
 1.16.30
 =======
 
