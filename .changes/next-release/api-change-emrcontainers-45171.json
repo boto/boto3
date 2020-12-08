@@ -1,0 +1,5 @@
+{
+  "category": "``emr-containers``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update emr-containers client to latest version"
+}
