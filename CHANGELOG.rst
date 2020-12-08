@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.16.32
+=======
+
+* api-change:``ecr``: [``botocore``] Update ecr client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``auditmanager``: [``botocore``] Update auditmanager client to latest version
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``sagemaker-edge``: [``botocore``] Update sagemaker-edge client to latest version
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``healthlake``: [``botocore``] Update healthlake client to latest version
+* api-change:``emr-containers``: [``botocore``] Update emr-containers client to latest version
+
+
 1.16.31
 =======
 
