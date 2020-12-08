@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``ecr``", 
+    "description": "[``botocore``] Update ecr client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kendra``", 
+    "description": "[``botocore``] Update kendra client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``auditmanager``", 
+    "description": "[``botocore``] Update auditmanager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker-runtime``", 
+    "description": "[``botocore``] Update sagemaker-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker-edge``", 
+    "description": "[``botocore``] Update sagemaker-edge client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``forecast``", 
+    "description": "[``botocore``] Update forecast client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``healthlake``", 
+    "description": "[``botocore``] Update healthlake client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``emr-containers``", 
+    "description": "[``botocore``] Update emr-containers client to latest version", 
+    "type": "api-change"
+  }
+]
