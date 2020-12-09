@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.33
+=======
+
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+
+
 1.16.32
 =======
 
