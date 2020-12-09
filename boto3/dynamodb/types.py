@@ -191,7 +191,7 @@ class TypeSerializer(object):
         return False
 
     def _is_listlike(self, value):
-        if isinstance(value, list) or isinstance(value, tuple):
+        if isinstance(value, (list, tuple)):
             return True
         return False
 
