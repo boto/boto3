@@ -133,7 +133,7 @@ class TypeSerializer(object):
         elif self._is_map(value):
             dynamodb_type = MAP
 
-        elif self._is_list(value):
+        elif self._is_listlike(value):
             dynamodb_type = LIST
 
         else:
@@ -190,8 +190,8 @@ class TypeSerializer(object):
             return True
         return False
 
-    def _is_list(self, value):
-        if isinstance(value, list):
+    def _is_listlike(self, value):
+        if isinstance(value, (list, tuple)):
             return True
         return False
 
