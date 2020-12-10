@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.34
+=======
+
+* api-change:``networkmanager``: [``botocore``] Update networkmanager client to latest version
+* api-change:``kendra``: [``botocore``] Update kendra client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.16.33
 =======
 
