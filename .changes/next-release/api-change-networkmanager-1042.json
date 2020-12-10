@@ -1,0 +1,5 @@
+{
+  "category": "``networkmanager``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update networkmanager client to latest version"
+}
