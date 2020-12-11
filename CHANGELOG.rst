@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.16.35
+=======
+
+* api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``pi``: [``botocore``] Update pi client to latest version
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+
+
 1.16.34
 =======
 
