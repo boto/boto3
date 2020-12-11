@@ -119,7 +119,7 @@ We value feedback and contributions from our community. Whether it's a bug repor
 
 
 Maintenance and Support for SDK Major Versions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 Boto3 was made generally available on 06/22/2015 and is currently in the full support phase of the availability life cycle.
 
