@@ -130,6 +130,15 @@ class TestSerializer(unittest.TestCase):
             [{'S': 'foo'}, {'N': '1'}, {'L': [{'N': '1'}]}]
         )
 
+    def test_serialize_tuple(self):
+        serialized_value = self.serializer.serialize(('foo', 1, (1,)))
+        self.assertEqual(len(serialized_value), 1)
+        self.assertIn('L', serialized_value)
+        self.assertCountEqual(
+            serialized_value['L'],
+            [{'S': 'foo'}, {'N': '1'}, {'L': [{'N': '1'}]}]
+        )
+
     def test_serialize_map(self):
         serialized_value = self.serializer.serialize(
             {'foo': 'bar', 'baz': {'biz': 1}})
