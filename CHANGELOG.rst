@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.36
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+* api-change:``devops-guru``: [``botocore``] Update devops-guru client to latest version
+
+
 1.16.35
 =======
 
