@@ -224,7 +224,7 @@ Below is an example configuration for the minimal amount of configuration needed
 
 This provider can also be configured via environment variables:
 
-* ``AWS_ROLE_ARN` - The ARN of the role you want to assume.
+* ``AWS_ROLE_ARN`` - The ARN of the role you want to assume.
 * ``AWS_WEB_IDENTITY_TOKEN_FILE`` - The path to the web identity token file.
 * ``AWS_ROLE_SESSION_NAME`` - The name applied to this assume-role session.
 
