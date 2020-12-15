@@ -1,0 +1,5 @@
+{
+  "category": "``iotdeviceadvisor``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update iotdeviceadvisor client to latest version"
+}
