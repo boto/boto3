@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``iotwireless``", 
+    "description": "[``botocore``] Update iotwireless client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lambda``", 
+    "description": "[``botocore``] Update lambda client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``greengrassv2``", 
+    "description": "[``botocore``] Update greengrassv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotdeviceadvisor``", 
+    "description": "[``botocore``] Update iotdeviceadvisor client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotanalytics``", 
+    "description": "[``botocore``] Update iotanalytics client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``amp``", 
+    "description": "[``botocore``] Update amp client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotfleethub``", 
+    "description": "[``botocore``] Update iotfleethub client to latest version", 
+    "type": "api-change"
+  }
+]
