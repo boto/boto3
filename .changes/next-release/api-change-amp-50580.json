@@ -1,0 +1,5 @@
+{
+  "category": "``amp``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update amp client to latest version"
+}

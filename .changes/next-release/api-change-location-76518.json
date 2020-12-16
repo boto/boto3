@@ -1,0 +1,5 @@
+{
+  "category": "``location``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update location client to latest version"
+}
