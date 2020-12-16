@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``ce``", 
+    "description": "[``botocore``] Update ce client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``amp``", 
+    "description": "[``botocore``] Update amp client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``location``", 
+    "description": "[``botocore``] Update location client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``wellarchitected``", 
+    "description": "[``botocore``] Update wellarchitected client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }
+]

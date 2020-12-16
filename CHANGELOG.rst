@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.16.38
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``amp``: [``botocore``] Update amp client to latest version
+* api-change:``location``: [``botocore``] Update location client to latest version
+* api-change:``wellarchitected``: [``botocore``] Update wellarchitected client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+
+
 1.16.37
 =======
 
