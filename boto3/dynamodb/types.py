@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from decimal import Decimal, Context, Clamped
+from decimal import Decimal, Context, Clamped, localcontext
 from decimal import Overflow, Inexact, Underflow, Rounded
 
 from boto3.compat import collections_abc
@@ -153,11 +153,8 @@ class TypeSerializer(object):
         return False
 
     def _is_number(self, value):
-        if isinstance(value, (six.integer_types, Decimal)):
+        if isinstance(value, (six.integer_types, Decimal, float)):
             return True
-        elif isinstance(value, float):
-            raise TypeError(
-                'Float types are not supported. Use Decimal types instead.')
         return False
 
     def _is_string(self, value):
@@ -202,7 +199,14 @@ class TypeSerializer(object):
         return value
 
     def _serialize_n(self, value):
-        number = str(DYNAMODB_CONTEXT.create_decimal(value))
+        if isinstance(value, float):  # Convert float to Decimal
+            with localcontext(DYNAMODB_CONTEXT) as context:
+                # Do not raise an exception if value is rounded
+                context.traps[Inexact] = 0
+                context.traps[Rounded] = 0
+                number = str(context.create_decimal_from_float(value))
+        else:
+            number = str(DYNAMODB_CONTEXT.create_decimal(value))
         if number in ['Infinity', 'NaN']:
             raise TypeError('Infinity and NaN not supported')
         return number

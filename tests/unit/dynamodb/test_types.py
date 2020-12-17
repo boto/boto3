@@ -73,12 +73,10 @@ class TestSerializer(unittest.TestCase):
     def test_serialize_decimal(self):
         self.assertEqual(
             self.serializer.serialize(Decimal('1.25')), {'N': '1.25'})
-
-    def test_serialize_float_error(self):
-        with self.assertRaisesRegexp(
-                TypeError,
-                'Float types are not supported. Use Decimal types instead'):
-            self.serializer.serialize(1.25)
+    
+    def test_serialize_float(self):
+        self.assertEqual(
+            self.serializer.serialize(1.25), {'N': '1.25'})
 
     def test_serialize_NaN_error(self):
         with self.assertRaisesRegexp(
