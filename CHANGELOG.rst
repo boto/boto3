@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.16.39
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``servicecatalog``: [``botocore``] Update servicecatalog client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+* api-change:``route53resolver``: [``botocore``] Update route53resolver client to latest version
+* api-change:``sqs``: [``botocore``] Update sqs client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+
+
 1.16.38
 =======
 
