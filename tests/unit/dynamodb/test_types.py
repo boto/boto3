@@ -10,12 +10,12 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from decimal import Decimal
+from decimal import Decimal, Inexact, Rounded, localcontext
 from tests import unittest
 
 from botocore.compat import six
 
-from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer
+from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer, DYNAMODB_CONTEXT
 
 
 class TestBinary(unittest.TestCase):
@@ -75,8 +75,10 @@ class TestSerializer(unittest.TestCase):
             self.serializer.serialize(Decimal('1.25')), {'N': '1.25'})
     
     def test_serialize_float(self):
-        self.assertEqual(
-            self.serializer.serialize(1.25), {'N': '1.25'})
+        for val in [0.999999999999, 0.1, 0.25, 
+                    1.23456789012345678901234567890123456789012]: # 42 places
+            self.assertEqual(
+                self.serializer.serialize(val), {'N': format(val, '.38g')} )
 
     def test_serialize_NaN_error(self):
         with self.assertRaisesRegexp(
