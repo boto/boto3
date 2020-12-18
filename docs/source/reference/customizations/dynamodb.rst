@@ -47,7 +47,8 @@ These are the valid item types to use with Boto3 Table Resource (:py:class:`dyna
   of the computer hardware representation of binary fractions.  
   This issue is explained in the Python documentation section titled `Floating Point Arithmetic`_.
   Because of this, float values are converted to Decimal using create_decimal_from_float_ 
-  and may be an inexact and/or rounded representation of the true value.
+  and may be an inexact rounded representation of the value.
+  Sterilization of float uses decimal precision set to 38 places.
   
 .. _Floating Point Arithmetic: https://docs.python.org/3/tutorial/floatingpoint.html
 .. _create_decimal_from_float: https://docs.python.org/3/library/decimal.html#decimal.Context.create_decimal_from_float

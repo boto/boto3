@@ -10,12 +10,12 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from decimal import Decimal, Inexact, Rounded, localcontext
+from decimal import Decimal
 from tests import unittest
 
 from botocore.compat import six
 
-from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer, DYNAMODB_CONTEXT
+from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer
 
 
 class TestBinary(unittest.TestCase):
