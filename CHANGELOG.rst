@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.16.40
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* bugfix:SSO: [``botocore``] Fixed timestamp format for SSO credential expirations
+* api-change:``personalize-runtime``: [``botocore``] Update personalize-runtime client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.16.39
 =======
 

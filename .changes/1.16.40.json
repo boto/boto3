@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "SSO", 
+    "description": "[``botocore``] Fixed timestamp format for SSO credential expirations", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``personalize-runtime``", 
+    "description": "[``botocore``] Update personalize-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }
+]
