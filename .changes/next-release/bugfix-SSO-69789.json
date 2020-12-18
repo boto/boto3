@@ -1,0 +1,5 @@
+{
+  "category": "SSO", 
+  "type": "bugfix", 
+  "description": "[``botocore``] Fixed timestamp format for SSO credential expirations"
+}
