@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.16.41
+=======
+
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``batch``: [``botocore``] Update batch client to latest version
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``service-quotas``: [``botocore``] Update service-quotas client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``connectparticipant``: [``botocore``] Update connectparticipant client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``qldb-session``: [``botocore``] Update qldb-session client to latest version
+* api-change:``outposts``: [``botocore``] Update outposts client to latest version
+* api-change:``servicecatalog-appregistry``: [``botocore``] Update servicecatalog-appregistry client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+* api-change:``apigateway``: [``botocore``] Update apigateway client to latest version
+
+
 1.16.40
 =======
 
