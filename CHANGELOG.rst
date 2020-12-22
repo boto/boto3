@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.16.42
+=======
+
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``iotwireless``: [``botocore``] Update iotwireless client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.16.41
 =======
 
