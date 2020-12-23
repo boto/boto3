@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.43
+=======
+
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``resource-groups``: [``botocore``] Update resource-groups client to latest version
+* api-change:``dms``: [``botocore``] Update dms client to latest version
+
+
 1.16.42
 =======
 
