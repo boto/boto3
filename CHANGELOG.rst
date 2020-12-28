@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.16.44
+=======
+
+* api-change:``cloudfront``: [``botocore``] Update cloudfront client to latest version
+
+
 1.16.43
 =======
 
