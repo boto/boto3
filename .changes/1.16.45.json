@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``acm-pca``", 
+    "description": "[``botocore``] Update acm-pca client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigatewayv2``", 
+    "description": "[``botocore``] Update apigatewayv2 client to latest version", 
+    "type": "api-change"
+  }
+]

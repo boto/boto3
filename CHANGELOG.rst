@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.45
+=======
+
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+* api-change:``apigatewayv2``: [``botocore``] Update apigatewayv2 client to latest version
+
+
 1.16.44
 =======
 
