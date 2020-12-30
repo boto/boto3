@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.46
+=======
+
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.16.45
 =======
 
