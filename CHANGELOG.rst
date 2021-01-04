@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.48
+=======
+
+* api-change:``healthlake``: [``botocore``] Update healthlake client to latest version
+* api-change:``cloudsearch``: [``botocore``] Update cloudsearch client to latest version
+
+
 1.16.47
 =======
 
