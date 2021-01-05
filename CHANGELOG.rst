@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.49
+=======
+
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+
+
 1.16.48
 =======
 
