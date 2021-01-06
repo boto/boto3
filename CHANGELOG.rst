@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.50
+=======
+
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+* api-change:``autoscaling-plans``: [``botocore``] Update autoscaling-plans client to latest version
+
+
 1.16.49
 =======
 
