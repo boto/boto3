@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.51
+=======
+
+* api-change:``devops-guru``: [``botocore``] Update devops-guru client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+
+
 1.16.50
 =======
 
