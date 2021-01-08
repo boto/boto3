@@ -451,3 +451,11 @@ class Session(object):
             boto3.utils.lazy_call(
                 'boto3.ec2.deletetags.inject_delete_tags',
                 event_emitter=self.events))
+
+        # IAM Customizations
+        self._session.register(
+            'creating-resource-class.iam.AccessKey',
+            boto3.utils.lazy_call(
+                'boto3.iam.inject.inject_access_key_methods'
+            )
+        )
