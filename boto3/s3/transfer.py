@@ -278,7 +278,7 @@ class S3Transfer(object):
           if isinstance(filename, Path):
               filename = fspath(filename)
         if not isinstance(filename, six.string_types):
-            raise ValueError('Filename must be a string')
+            raise ValueError('Filename must be a string or a path-like object')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
@@ -309,7 +309,7 @@ class S3Transfer(object):
           if isinstance(filename, Path):
               filename = fspath(filename)
         if not isinstance(filename, six.string_types):
-            raise ValueError('Filename must be a string')
+            raise ValueError('Filename must be a string or a path-like object')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
