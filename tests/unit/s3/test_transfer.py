@@ -151,7 +151,7 @@ class TestS3Transfer(unittest.TestCase):
                 'SSECustomerKey': 'foo',
                 'SSECustomerAlgorithm': 'AES256',
             }
-            self.transfer.download_file(Path('bucket'), 'key', '/tmp/smallfile',
+            self.transfer.download_file('bucket', 'key', Path('/tmp/smallfile'),
                                         extra_args=extra_args)
             self.manager.download.assert_called_with(
                 'bucket', 'key', '/tmp/smallfile', extra_args, None)
