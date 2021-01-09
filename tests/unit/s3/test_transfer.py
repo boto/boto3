@@ -130,7 +130,7 @@ class TestS3Transfer(unittest.TestCase):
             self.transfer.upload_file(Path('smallfile'), 'bucket', 'key',
                                       extra_args=extra_args)
             self.manager.upload.assert_called_with(
-                'smallfile', 'bucket', 'key', extra_args, None)
+                Path('smallfile').name, 'bucket', 'key', extra_args, None)
         else:
             self.skipTest("Python version is irrelevant for this test")
         
@@ -154,7 +154,7 @@ class TestS3Transfer(unittest.TestCase):
             self.transfer.download_file('bucket', 'key', Path('/tmp/smallfile'),
                                         extra_args=extra_args)
             self.manager.download.assert_called_with(
-                'bucket', 'key', '/tmp/smallfile', extra_args, None)
+                'bucket', 'key', os.fspath('/tmp/smallfile'), extra_args, None)
         else:
             self.skipTest("Python version is irrelevant for this test")
         
