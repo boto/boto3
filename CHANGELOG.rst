@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.52
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``kms``: [``botocore``] Update kms client to latest version
+
+
 1.16.51
 =======
 
