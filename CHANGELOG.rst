@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.16.53
+=======
+
+* api-change:``appstream``: [``botocore``] Update appstream client to latest version
+* api-change:``auditmanager``: [``botocore``] Update auditmanager client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+
+
 1.16.52
 =======
 
