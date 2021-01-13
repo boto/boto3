@@ -10,9 +10,9 @@
 
 .. _user_guides:
 
-+++++++++++
++++++++++++++++
 Developer guide
-+++++++++++
++++++++++++++++
 
 
 SDK features
@@ -51,4 +51,5 @@ Migrations
 
    new
    migration
+   migrationpy3
    upgrading
