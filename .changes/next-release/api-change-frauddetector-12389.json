@@ -1,5 +1,0 @@
-{
-  "category": "``frauddetector``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update frauddetector client to latest version"
-}
