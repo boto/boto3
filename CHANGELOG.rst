@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.16.54
+=======
+
+* api-change:``frauddetector``: [``botocore``] Update frauddetector client to latest version
+* api-change:``personalize``: [``botocore``] Update personalize client to latest version
+
+
 1.16.53
 =======
 
