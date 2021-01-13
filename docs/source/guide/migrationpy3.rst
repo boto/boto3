@@ -90,10 +90,12 @@ If you're still using the AWS CLI v1 as installed using the Windows MSI Installe
 You can download these installers using the links below.
 
 **For Python 3**
+
 * `Windows MSI Installer for Python 3 (32 bit) <https://s3.amazonaws.com/aws-cli/AWSCLI32PY3.msi>`_
 * `Windows MSI Installer for Python 3 (64 bit) <https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi>`_
 
 **For Python 2**
+
 * `Windows MSI Installer for Python 2 (32 bit) <https://s3.amazonaws.com/aws-cli/AWSCLI32.msi>`_
 * `Windows MSI Installer for Python 2 (64 bit) <https://s3.amazonaws.com/aws-cli/AWSCLI64.msi>`_
 
