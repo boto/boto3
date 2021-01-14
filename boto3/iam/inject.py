@@ -1,4 +1,4 @@
-# Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
 # may not use this file except in compliance with the License. A copy of
@@ -18,10 +18,11 @@ def inject_access_key_methods(class_attributes, **kwargs):
 
 def access_key_load(self, *args, **kwargs):
     """
-    Call s3.client.list_access_keys to get the status
+    Call iam.client.list_access_keys to get the status
     """
-    response = self.meta.client.list_access_keys(UserName= self.user_name)
-    for access_key in response['AccessKeyMetadata']:
-        if access_key['AccessKeyId'] == self.id:
-            response = access_key
-    self.meta.data = response 
+    response = self.meta.client.list_access_keys(UserName=self.user_name)
+    for access_key_dict in response['AccessKeyMetadata']:
+        if access_key_dict['AccessKeyId'] == self.id:
+            new_response = access_key_dict
+            break
+    self.meta.data = new_response 
