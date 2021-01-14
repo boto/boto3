@@ -85,9 +85,9 @@ Windows MSI Installer
 ~~~~~~~~~~~~~~~~~~~~~
 If you installed the AWS CLI v1 using the Windows MSI Installer for Python 3 [`32 bit <https://s3.amazonaws.com/aws-cli/AWSCLI32PY3.msi>`_] [`64 bit <https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi>`_], you're not impacted by this transition, since these installers stay up-to-date with each release.
 
-If you're still using the AWS CLI v1 as installed using the Windows MSI Installer for *Python 2*, be aware that after the deprecation date, we will no longer offer these Python 2-based installers, so you may wish to download and save copies now if you believe you need them [`32 bit <https://s3.amazonaws.com/aws-cli/AWSCLI32.msi>`_] [`64 bit <https://s3.amazonaws.com/aws-cli/AWSCLI64.msi>`_].
+If you're still using the AWS CLI v1 as installed using the Windows MSI Installer for *Python 2*, be aware that after the deprecation date, the download links for the latest version of the CLI v1 Windows MSI Installer will *only* be available for Python 3. The previous releases, including those for Python 2, will remain available at their version-specific URLs (``https://s3.amazonaws.com/aws-cli/AWSCLI32-{VERSION}.msi`` and ``https://s3.amazonaws.com/aws-cli/AWSCLI64-{VERSION}.msi``).
 
-You can download these installers using the links below.
+You can download the current versions of these installers using the links below.
 
 **For Python 3**
 
