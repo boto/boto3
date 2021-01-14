@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.16.55
+=======
+
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``cognito-identity``: [``botocore``] Update cognito-identity client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.16.54
 =======
 

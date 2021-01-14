@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cognito-identity``", 
+    "description": "[``botocore``] Update cognito-identity client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3control``", 
+    "description": "[``botocore``] Update s3control client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] Update sagemaker client to latest version", 
+    "type": "api-change"
+  }
+]
