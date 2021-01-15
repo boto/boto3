@@ -33,7 +33,7 @@ Once you're sure you have Python 3 installed, you can proceed to upgrade boto3 a
 
     $ python3 -m pip install boto3
 
-3. You can optionally verify that the freshly installed copy of the :command:`aws` tool is using the correct version of Python. One way to do that is to run a snippet of code that uses boto3 and outputs the Python and boto3 versions, such as the following::
+3. You can optionally verify that the freshly installed copy of Boto3 is using the correct version of Python. One way to do that is to run a snippet of code that uses boto3 and outputs the Python and boto3 versions, such as the following::
 
     $ python3 -c "import boto3, sys; print(f'{sys.version} \nboto3: {boto3.__version__}')"
     3.8.6 (default, Jan  7 2021, 17:11:21)
