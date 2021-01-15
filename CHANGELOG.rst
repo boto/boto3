@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.16.56
+=======
+
+* api-change:``sns``: [``botocore``] Update sns client to latest version
+
+
 1.16.55
 =======
 
