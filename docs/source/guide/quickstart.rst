@@ -6,6 +6,24 @@ Getting started with Boto3 is easy, but requires a few steps.
 
 Installation
 ------------
+Prior to using Boto3, you need to install it and its dependencies.
+
+.. _quickstart_install_python:
+
+Install or update Python
+~~~~~~~~~~~~~~~~~~~~~~~~
+Before installing Boto3, ensure that you're using an up-to-date version of
+Python. Unless you have specific reasons to use another version of Python, you
+should be using Python 3.7 or later. Boto3 support for Python 2.7 is
+deprecated and will end effective July 15, 2021. See :ref:`guide_migration_py3`
+for more details, including timeline information and guidance regarding how to
+transition to Python 3 if you haven't done so yet.
+
+For more information on how to get the latest version of Python, please refer
+to the official `Python documentation <https://www.python.org/downloads/>`_. 
+
+Install Boto3
+~~~~~~~~~~~~~
 Install the latest Boto3 release via :command:`pip`::
 
     pip install boto3
@@ -16,12 +34,8 @@ You may also install a specific version::
 
 .. note::
 
-   The latest development version can always be found on
+   The latest development version of Boto3 can always be found on
    `GitHub <https://github.com/boto/boto3>`_.
-
-.. note::
-
-    For best results, please ensure your version of Python is up-to-date. For more information on how to get the latest version of Python, please refer to the official `Python documentation <https://www.python.org/downloads/>`_. 
 
 Configuration
 -------------
