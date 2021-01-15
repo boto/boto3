@@ -15,7 +15,7 @@ Install or update Python
 Before installing Boto3, ensure that you're using an up-to-date version of
 Python. Unless you have specific reasons to use another version of Python, you
 should be using Python 3.7 or later. Boto3 support for Python 2.7 is
-deprecated and will end effective June 1, 2021. See :ref:`guide_migration_py3`
+deprecated and will end effective July 15, 2021. See :ref:`guide_migration_py3`
 for more details, including timeline information and guidance regarding how to
 transition to Python 3 if you haven't done so yet.
 
