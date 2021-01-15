@@ -40,7 +40,7 @@ Second, while every service now uses the runtime-generated low-level client, som
     boto3_bucket = s3.Bucket('mybucket')
 
 Installation and configuration
-----------------------------
+------------------------------
 The :ref:`guide_quickstart` guide provides instructions for installing Boto3. You can also follow the instructions there to set up new credential files, or you can continue to use your existing Boto 2.x credentials. Please note that Boto3, the AWS CLI, and several other SDKs all use the shared credentials file (usually at ``~/.aws/credentials``).
 
 Once configured, you may begin using Boto3::
