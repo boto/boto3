@@ -11,11 +11,11 @@ Going forward, all projects using the AWS SDK for Python need to transition to u
 ==================     ===================
 Python version         Deprecation date
 ==================     ===================
-Python 2.7             July 14, 2021
+Python 2.7             July 15, 2021
 Python 3.4 and 3.5     February 1, 2021
 ==================     ===================
 
-As shown in the table, Python 2.7 projects must transition to Python 3.6 by July 14, 2021, while Python 3.4 and 3.5 projects need to be updated to Python 3.6 by February 1, 2021.
+As shown in the table, Python 2.7 projects must transition to Python 3.6 by July 15, 2021, while Python 3.4 and 3.5 projects need to be updated to Python 3.6 by February 1, 2021.
 
 Updating your project to use Python 3
 -------------------------------------
