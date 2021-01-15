@@ -48,7 +48,7 @@ Under these circumstances, you should be prepared for the deprecation date in or
 
 pip-based installations
 ~~~~~~~~~~~~~~~~~~~~~~~
-If you installed boto3 using pip 10.0 or later, you'll automatically stop receiving boto3 updates after the last Python 2 compatible version of boto3 is installed. If you're using an older version of pip, you need to pin your boto3 install to no later than version 1.17.
+If you installed boto3 using :command:`pip` 10.0 or later, you'll automatically stop receiving boto3 updates after the last Python 2 compatible version of boto3 is installed. If you're using an older version of :command:`pip`, you need to pin your boto3 install to no later than version 1.17.
 
 Other installation methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
