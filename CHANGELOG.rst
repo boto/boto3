@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.57
+=======
+
+* api-change:``acm-pca``: [``botocore``] Update acm-pca client to latest version
+* api-change:``chime``: [``botocore``] Update chime client to latest version
+* api-change:``ecs``: [``botocore``] Update ecs client to latest version
+
+
 1.16.56
 =======
 
