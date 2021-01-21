@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.58
+=======
+
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``kafka``: [``botocore``] Update kafka client to latest version
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Update resourcegroupstaggingapi client to latest version
+
+
 1.16.57
 =======
 
