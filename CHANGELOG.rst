@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.16.59
+=======
+
+* api-change:``greengrassv2``: [``botocore``] Update greengrassv2 client to latest version
+* api-change:``redshift``: [``botocore``] Update redshift client to latest version
+* api-change:``lexv2-runtime``: [``botocore``] Update lexv2-runtime client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.16.58
 =======
 
