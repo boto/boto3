@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.16.60
+=======
+
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+
+
 1.16.59
 =======
 
