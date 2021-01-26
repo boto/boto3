@@ -28,7 +28,7 @@ Before installing Boto3, install Python 3.6 or later. Boto3 support for earlier 
 deprecated and will be removed entirely during the first half of 2021. For more information about
 this change, its timing, and how to transition to Python 3, see :ref:`guide_migration_py3`.
 
-For information about how to get the latest version of Python, please see the official `Python
+For information about how to get the latest version of Python, see the official `Python
 documentation <https://www.python.org/downloads/>`_. 
 
 Install Boto3
@@ -91,7 +91,7 @@ at ``~/.aws/config``::
 
 Alternatively, you can pass a ``region_name`` when creating clients and resources.
 
-These steps configure credentials for the default profile as well as a default region to use when
+You have now configured credentials for the default profile as well as a default region to use when
 creating connections. See :ref:`guide_configuration` for in-depth configuration sources and options.
 
 Using Boto3

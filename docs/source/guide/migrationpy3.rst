@@ -3,8 +3,7 @@
 Migrating to Python 3
 =====================
 
-Python 2.7 was deprecated by the `Python Software Foundation <https://www.python.org/psf-landing/>`_
-back on January 1, 2020 following a multi-year process of phasing it out. Because of this, AWS has
+Python 2.7 was deprecated by the `Python Software Foundation <https://www.python.org/psf-landing/>`_ on January 1, 2020 following a multi-year process of phasing it out. Because of this, AWS has
 deprecated support for Python 2.7, which means that new releases of the SDK will no longer work on
 Python 2.7.
 
@@ -26,18 +25,19 @@ Python 3.6 or later as described in :ref:`upgrade to Python 3 <quickstart_instal
 get Python from the `PSF web site <https://www.python.org/downloads>`_ or using your local package
 manager.
 
-Once you're sure you have Python 3 installed, you can proceed to upgrade the SDK. To do so, you need
-to update both the Boto3 and Botocore Python modules. You can do this globally, or within your
+After you have installed Python 3, you can upgrade the SDK. To do so, you need
+to update both the Boto3 and Botocore Python modules. You can do this globally
+or within your
 virtual environment if you use one for your project.
 
 To update the AWS SDK for Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Begin by uninstalling the currently installed copies of Boto3 and Botocore::
+1. Uninstall the currently installed copies of Boto3 and Botocore::
 
     $ python -m pip uninstall boto3 botocore
 
-2. Then install the new version of Boto3. This will also install Botocore, which it requires::
+2. Install the new version of Boto3. This will also install Botocore, which it requires::
 
     $ python3 -m pip install boto3
 
@@ -51,7 +51,7 @@ To update the AWS SDK for Python
 If you're unable to upgrade to Python 3
 ---------------------------------------
 
-It may be that you're unable to upgrade to Python 3, for example f you have a large project that's
+It may be that you're unable to upgrade to Python 3, for example if you have a large project that's
 heavily dependent on syntax or features that no longer work as desired in Python 3. It's also
 possible that you need to postpone the Python transition while you finish updates to your code.
 

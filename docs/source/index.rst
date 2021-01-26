@@ -6,9 +6,15 @@
 Boto3 documentation
 ====================
 
-You use the AWS SDK for Python (Boto3) to create, configure, and manage AWS services, such as Amazon
-Elastic Compute Cloud (Amazon EC2) and Amazon Simple Storage Service (Amazon S3). Boto3 provides an
+You use the AWS SDK for Python to create, configure, and manage AWS services, such as Amazon
+Elastic Compute Cloud (Amazon EC2) and Amazon Simple Storage Service (Amazon
+S3). The SDK provides an
 object-oriented API as well as low-level access to AWS services.
+
+.. note::
+
+    Documentation and developers tend to refer to the AWS SDK for Python as "Boto3," and this
+    documentation often does so as well.
 
 Quickstart
 ----------
