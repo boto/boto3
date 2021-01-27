@@ -12,12 +12,11 @@
 # language governing permissions and limitations under the License.
 from tests import unittest
 
-import botocore
 from botocore.stub import Stubber
 
 import boto3.session
 
-class TestiamAccessKey(unittest.TestCase):
+class TestIAMAccessKey(unittest.TestCase):
     def setUp(self):
         self.session = boto3.session.Session(
             aws_access_key_id='foo', aws_secret_access_key='bar',
@@ -27,7 +26,6 @@ class TestiamAccessKey(unittest.TestCase):
 
     def test_access_key_load(self):
         stubber = Stubber(self.iam.meta.client)
-        stubber.activate()
         stubber.add_response(
             method='list_access_keys',
             service_response={
@@ -37,9 +35,22 @@ class TestiamAccessKey(unittest.TestCase):
                 ]
             }
         )
-        self.assertEqual(self.access_key.status, 'Active')
-        stubber.deactivate()
+        with stubber:
+            self.assertEqual(self.access_key.status, 'Active')
 
     def test_has_load(self):
         self.assertTrue(hasattr(self.access_key, 'load'),
-                        'load() was not injected onto ObjectSummary resource.')
+                        'load() was not injected onto AccessKey resource.')
+
+    def test_access_key_not_present(self):
+        stubber = Stubber(self.iam.meta.client)
+        stubber.add_response(
+            method='list_access_keys',
+            service_response={
+                'AccessKeyMetadata':[
+                    {'AccessKeyId':'access_key_id_value2' , 'Status': 'Inactive'}
+                ]
+            }
+        )
+        with stubber:
+            self.assertEqual(self.access_key.status, None)

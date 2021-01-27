@@ -12,7 +12,6 @@
 # language governing permissions and limitations under the License.
 import mock
 
-from botocore.exceptions import ClientError
 from boto3.iam import inject
 from tests import unittest
 

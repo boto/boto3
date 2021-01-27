@@ -21,6 +21,8 @@ def access_key_load(self, *args, **kwargs):
     Call iam.client.list_access_keys to get the status
     """
     response = self.meta.client.list_access_keys(UserName=self.user_name)
+    # If the key is not present then it will retrun a empty dict as response
+    new_response = {}
     for access_key_dict in response['AccessKeyMetadata']:
         if access_key_dict['AccessKeyId'] == self.id:
             new_response = access_key_dict
