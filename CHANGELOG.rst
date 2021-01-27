@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.16.61
+=======
+
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+* api-change:``customer-profiles``: [``botocore``] Update customer-profiles client to latest version
+* api-change:``sesv2``: [``botocore``] Update sesv2 client to latest version
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+
+
 1.16.60
 =======
 
