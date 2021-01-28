@@ -1,5 +1,0 @@
-{
-  "category": "Validator", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Fix showing incorrect max-value in error message for range and length value validation"
-}
