@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.16.62
+=======
+
+* api-change:``wellarchitected``: [``botocore``] Update wellarchitected client to latest version
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* bugfix:Validator: [``botocore``] Fix showing incorrect max-value in error message for range and length value validation
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+
+
 1.16.61
 =======
 
