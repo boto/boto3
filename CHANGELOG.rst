@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.16.63
+=======
+
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
 1.16.62
 =======
 
