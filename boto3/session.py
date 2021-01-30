@@ -255,6 +255,12 @@ class Session(object):
         :return: Service client instance
 
         """
+        if endpoint_url is None:
+            try:
+                endpoint_url = os.environ["AWS_ENDPOINT_URL"]
+            except KeyError:
+                pass
+
         return self._session.create_client(
             service_name, region_name=region_name, api_version=api_version,
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,

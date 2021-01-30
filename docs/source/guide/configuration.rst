@@ -131,6 +131,9 @@ Configurations can be set through the use of system-wide environment variables. 
     Specifies the types of retries the SDK will use.  For more information,
     see the ``retry_mode`` configuration file section.
 
+``AWS_ENDPOINT_URL``
+    Overrides the default AWS endpoint_url.  Useful when testing with localstack or minio, for example.
+
 Using a configuration file
 -------------------
 
