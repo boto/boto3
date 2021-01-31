@@ -20,5 +20,6 @@ class TestEndpointUrl(unittest.TestCase):
             aws_secret_access_key='secret')
         client = boto3.DEFAULT_SESSION.client('s3')
         self.assertTrue(client._endpoint.host == ENDPOINT_URL, 'AWS_ENDPOINT_URL env var not used when set')
+        del os.environ["AWS_ENDPOINT_URL"]
 
 # eof
