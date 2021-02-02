@@ -1,0 +1,5 @@
+{
+  "category": "s3", 
+  "type": "enhancement", 
+  "description": "[``botocore``] Amazon S3 now supports AWS PrivateLink, providing direct access to S3 via a private endpoint within your virtual private network."
+}
