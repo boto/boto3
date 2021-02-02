@@ -1,5 +1,0 @@
-{
-  "category": "``appmesh``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update appmesh client to latest version"
-}
