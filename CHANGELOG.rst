@@ -2,6 +2,44 @@
 CHANGELOG
 =========
 
+1.17.0
+======
+
+* api-change:``appmesh``: [``botocore``] Update appmesh client to latest version
+* feature:Python: Dropped support for Python 3.4 and 3.5
+* api-change:``application-autoscaling``: [``botocore``] Update application-autoscaling client to latest version
+* api-change:``lookoutvision``: [``botocore``] Update lookoutvision client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+* feature:Python: [``botocore``] Dropped support for Python 3.4 and 3.5
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``rds-data``: [``botocore``] Update rds-data client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``route53``: [``botocore``] Update route53 client to latest version
+* api-change:``location``: [``botocore``] Update location client to latest version
+* enhancement:s3: [``botocore``] Amazon S3 now supports AWS PrivateLink, providing direct access to S3 via a private endpoint within your virtual private network.
+* api-change:``iotwireless``: [``botocore``] Update iotwireless client to latest version
+
+
+1.16.63
+=======
+
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+
+
+1.16.62
+=======
+
+* api-change:``wellarchitected``: [``botocore``] Update wellarchitected client to latest version
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* bugfix:Validator: [``botocore``] Fix showing incorrect max-value in error message for range and length value validation
+* api-change:``iot``: [``botocore``] Update iot client to latest version
+* api-change:``robomaker``: [``botocore``] Update robomaker client to latest version
+
+
 1.16.61
 =======
 
