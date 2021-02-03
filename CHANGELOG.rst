@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.17.1
+======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``ce``: [``botocore``] Update ce client to latest version
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* api-change:``securityhub``: [``botocore``] Update securityhub client to latest version
+* api-change:``workmail``: [``botocore``] Update workmail client to latest version
+* api-change:``auditmanager``: [``botocore``] Update auditmanager client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+
+
 1.17.0
 ======
 
