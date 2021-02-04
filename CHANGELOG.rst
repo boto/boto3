@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.2
+======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+* api-change:``emr-containers``: [``botocore``] Update emr-containers client to latest version
+* api-change:``dlm``: [``botocore``] Update dlm client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+
+
 1.17.1
 ======
 
