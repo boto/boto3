@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.3
+======
+
+* api-change:``macie``: [``botocore``] Update macie client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``organizations``: [``botocore``] Update organizations client to latest version
+
+
 1.17.2
 ======
 
