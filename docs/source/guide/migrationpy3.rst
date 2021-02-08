@@ -5,8 +5,8 @@ Migrating to Python 3
 
 Python 2.7 was deprecated by the `Python Software Foundation <https://www.python.org/psf-landing/>`_
 on January 1, 2020 following a multi-year process of phasing it out. Because of this, AWS has
-deprecated support for Python 2.7, which means that new releases of the SDK will no longer work on
-Python 2.7.
+deprecated support for Python 2.7, which means that releases of the SDK issued after the deprecation
+date will no longer work on Python 2.7.
 
 This affects both modules that comprise the AWS SDK for Python: Botocore (the underlying low-level
 module) and Boto3 (which implements the API functionality and higher-level features).
@@ -15,8 +15,17 @@ Timeline
 --------
 Going forward, all projects using the AWS SDK for Python need to transition to using Python 3, with
 Python 3.6 becoming the minimum by the end of the transition. Boto3 and Botocore will end support
-for Python 2.7 effective July 14, 2021, while Python 3.5 and lower will need to be updated to Python
+for Python 2.7 effective July 15, 2021, while Python 3.5 and lower will need to be updated to Python
 3.6 by February 1, 2021.
+
+The following table summarizes this schedule:
+
+==================     ===================
+Python version         Deprecation date
+==================     ===================
+Python 2.7             July 15, 2021
+Python 3.4 and 3.5     February 1, 2021
+==================     ===================
 
 Updating your project to use Python 3
 -------------------------------------

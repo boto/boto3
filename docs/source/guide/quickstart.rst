@@ -24,9 +24,11 @@ To use Boto3, you first need to install it and its dependencies.
 Install or update Python
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before installing Boto3, install Python 3.6 or later. Boto3 support for earlier versions is
-deprecated and will be removed entirely during the first half of 2021. For more information about
-this change, its timing, and how to transition to Python 3, see :ref:`guide_migration_py3`.
+Before installing Boto3, install Python 3.6 or later; support for Python 3.5 and earlier (including
+Python 2.7)
+is deprecated. Versions of the AWS SDK for Python released following the deprecation dates will not be supported in new releases of the SDK after their deprecation dates
+arrive. Those dates are covered in more detail in :ref:`guide_migration_py3`. This guide also covers
+how to go about updating your project to Python 3.6 or later.
 
 For information about how to get the latest version of Python, see the official `Python
 documentation <https://www.python.org/downloads/>`_. 
