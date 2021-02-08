@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.17.4
+======
+
+* api-change:``dataexchange``: [``botocore``] Update dataexchange client to latest version
+* api-change:``cloudtrail``: [``botocore``] Update cloudtrail client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``ivs``: [``botocore``] Update ivs client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``globalaccelerator``: [``botocore``] Update globalaccelerator client to latest version
+* api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
+* api-change:``elasticache``: [``botocore``] Update elasticache client to latest version
+
+
 1.17.3
 ======
 
