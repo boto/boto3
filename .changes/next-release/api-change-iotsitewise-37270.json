@@ -1,0 +1,5 @@
+{
+  "category": "``iotsitewise``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update iotsitewise client to latest version"
+}
