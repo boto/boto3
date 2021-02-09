@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``macie2``", 
+    "description": "[``botocore``] Update macie2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connect``", 
+    "description": "[``botocore``] Update connect client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }
+]

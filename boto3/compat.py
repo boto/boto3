@@ -64,12 +64,6 @@ def filter_python_deprecation_warnings():
 
 
 def _warn_deprecated_python():
-    py_34_35_params = {
-        'date': 'February 1, 2021',
-        'blog_link': 'https://aws.amazon.com/blogs/developer/announcing-'
-                     'the-end-of-support-for-python-3-4-and-3-5-in-the-'
-                     'aws-sdk-for-python-and-aws-cli-v1/'
-    }
     py_27_params = {
         'date': 'July 15, 2021',
         'blog_link': 'https://aws.amazon.com/blogs/developer/announcing-end-'
@@ -77,8 +71,6 @@ def _warn_deprecated_python():
                      'aws-cli-v1/'
     }
     deprecated_versions = {
-        (3,4): py_34_35_params,
-        (3,5): py_34_35_params,
         (2,7): py_27_params,
     }
     py_version = sys.version_info[:2]
