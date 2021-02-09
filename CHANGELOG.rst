@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.5
+======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``qldb-session``: [``botocore``] Update qldb-session client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+
+
 1.17.4
 ======
 
