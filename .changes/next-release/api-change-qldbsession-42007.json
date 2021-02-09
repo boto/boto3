@@ -1,5 +1,0 @@
-{
-  "category": "``qldb-session``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update qldb-session client to latest version"
-}
