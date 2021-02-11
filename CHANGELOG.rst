@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.6
+======
+
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
 1.17.5
 ======
 
