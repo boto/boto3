@@ -2,6 +2,38 @@
 CHANGELOG
 =========
 
+1.17.7
+======
+
+* api-change:``personalize-events``: [``botocore``] Update personalize-events client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``iam``: [``botocore``] Update iam client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``detective``: [``botocore``] Update detective client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``appsync``: [``botocore``] Update appsync client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
+1.17.6
+======
+
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+
+
+1.17.5
+======
+
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``mediaconvert``: [``botocore``] Update mediaconvert client to latest version
+* api-change:``qldb-session``: [``botocore``] Update qldb-session client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``gamelift``: [``botocore``] Update gamelift client to latest version
+
+
 1.17.4
 ======
 
