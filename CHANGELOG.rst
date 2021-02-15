@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.17.8
+======
+
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``redshift-data``: [``botocore``] Update redshift-data client to latest version
+* api-change:``workmailmessageflow``: [``botocore``] Update workmailmessageflow client to latest version
+* api-change:``mediatailor``: [``botocore``] Update mediatailor client to latest version
+
+
 1.17.7
 ======
 
