@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.9
+======
+
+* api-change:``devops-guru``: [``botocore``] Update devops-guru client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.17.8
 ======
 
