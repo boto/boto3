@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.10
+=======
+
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``config``: [``botocore``] Update config client to latest version
+* api-change:``lookoutvision``: [``botocore``] Update lookoutvision client to latest version
+
+
 1.17.9
 ======
 
