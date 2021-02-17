@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``config``", 
+    "description": "[``botocore``] Update config client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lookoutvision``", 
+    "description": "[``botocore``] Update lookoutvision client to latest version", 
+    "type": "api-change"
+  }
+]
