@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.11
+=======
+
+* api-change:``health``: [``botocore``] Update health client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``cloudformation``: [``botocore``] Update cloudformation client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+
+
 1.17.10
 =======
 
