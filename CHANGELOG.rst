@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.13
+=======
+
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+
+
 1.17.12
 =======
 
