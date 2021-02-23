@@ -1,7 +1,7 @@
 .. _guide_configuration:
 
 Configuration
-===========
+=============
 
 Overview
 ---------
@@ -19,12 +19,14 @@ For details about credential configuration, see the :ref:`guide_credentials` gui
 
 
 Using the Config object
--------------------------
+-----------------------
 This option is for configuring client-specific configurations that affect the behavior of your specific client object only. As described earlier, there are options used here that will supersede those found in other configuration locations:
 
 * ``region_name`` (string) - The AWS Region used in instantiating the client. If used, this takes precedence over environment variable and configuration file values. But it doesn't overwrite a ``region_name`` value *explicitly* passed to individual service methods.
 * ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL with an expiry of greater than 7 days, you should specify Signature Version 2.
-* ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
+* ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
+* ``proxies`` (dictionary) - A dictionary mapping protocol names or endpoint locations to the proxy servers that should be used when communicating with them. These proxies, if specified, are used for every request. See :ref:`specify_proxies` for more information.
+* ``proxies_config`` (dictionary) - Additional proxy configuration settings. These are described in :ref:`configure_proxies`.
 * ``retries`` (dictionary) - Client retry behavior configuration options that include retry mode and maximum retry attempts. For more information, see the :ref:`guide_retries` guide.  
 
 
@@ -48,9 +50,83 @@ To set these configuration options, create a ``Config`` object with the options 
 
     client = boto3.client('kinesis', config=my_config)
 
+
+Using proxies
+~~~~~~~~~~~~~
+Boto3 supports using proxies as intermediaries between your code and AWS. Proxies may provide any number of functions, from filtering to security and firewalls to privacy assurance.
+
+
+.. _specify_proxies:
+
+Specifying proxy servers
+''''''''''''''''''''''''
+
+You can specify proxy servers to be used when communicating between specific endpoints, or when
+using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary that maps
+the protocol name or endpoint URL to the address of a proxy server.
+
+.. code-block:: python
+
+    import boto3
+    from botocore.config import Config
+
+    proxy_list = {
+        'http': 'proxy.example.com:6502',
+        'http://mysite.org': 'proxy.example.org:2010'
+    }
+
+    my_config = Config(
+        'region_name': 'us-east-2',
+        'signature_version': 'v4',
+        'proxies': proxy_list
+    }
+
+    client = boto3.client('kinesis', config=my_config)
+
+
+In the above example, a proxy list is set up to use ``proxy.example.com``, port 6502 as the proxy for all HTTP requests by default. For requests to ``http://mysite.org``, port 2010 on ``proxy.example.org`` is used instead.
+
+
+.. _configure_proxies:
+
+Configuring proxies
+'''''''''''''''''''
+You can configure proxy usage with the ``proxies-config`` option, which is a dictionary that specifies the values of several proxy options by name. The valid keys for this dictionary are:
+
+* ``proxy_ca_bundle`` (string) - The pathname of a custom certificate bundle to use when establishing TLS/SSL connections using a proxy.
+* ``proxy_client_cert`` (string or tuple) - Specifies the certificate to use for proxy TLS client authentication. When the value is a string, it's the pathname of a certificate file. If it's a tuple it must be two comma-separated strings. The first is used as the pathname of the client certificate, and the second is the path to the certificate's key.
+* ``proxy_use_forwarding_for_https`` (Boolean) - When true, HTTPS requests which specify absolute URIs will be forwarded using the proxy. Only set this to true for highly trusted or corporate proxies; otherwise, the proxy can become a man-in-the-middle attack vector.
+
+.. code-block:: python
+
+    import boto3
+    from botocore.config import Config
+
+    proxy_list = {
+        'http': 'proxy.example.com:6502'
+    }
+
+    my_config = Config(
+        'region_name': 'us-east-2',
+        'signature_version': 'v4',
+        'proxies': proxy_list,
+        'proxy_config': {
+            'proxy_client_cert': '/path/of/certificate',
+            'proxy_use_forwarding_for_https': False
+        }
+    }
+
+    client = boto3.client('kinesis', config=my_config)
+
+With the addition of the ``proxy_config`` option shown here, the proxy will use the specified certificate file for authentication, and we guarantee that HTTPS will not be passed through the proxy by setting ``proxy_use_forwarding_for_https`` to :code:`False`.
+
+
 Using environment variables 
 ---------------------------
-Configurations can be set through the use of system-wide environment variables. If set, these configurations are global and will affect all clients created unless explicitly overwritten through the use of a ``Config`` object. 
+Configurations can be set through the use of system-wide environment variables. If set, these configurations are global and will affect all clients created unless explicitly overwritten through the use of a ``Config`` object.
+
+.. note::
+    Not all configurations can be set using environment variables.
 
 ``AWS_ACCESS_KEY_ID``
     The access key for your AWS account.
@@ -132,7 +208,7 @@ Configurations can be set through the use of system-wide environment variables. 
     see the ``retry_mode`` configuration file section.
 
 Using a configuration file
--------------------
+--------------------------
 
 Boto3 will also search the ``~/.aws/config`` file when looking for
 configuration values.  You can change the location of this file by
