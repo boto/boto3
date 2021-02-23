@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.17.14
+=======
+
+* api-change:``glue``: [``botocore``] Update glue client to latest version
+* api-change:``redshift-data``: [``botocore``] Update redshift-data client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``pinpoint``: [``botocore``] Update pinpoint client to latest version
+* api-change:``quicksight``: [``botocore``] Update quicksight client to latest version
+* api-change:``iotevents``: [``botocore``] Update iotevents client to latest version
+* api-change:``connect``: [``botocore``] Update connect client to latest version
+
+
 1.17.13
 =======
 
