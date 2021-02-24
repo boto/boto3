@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.15
+=======
+
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``mediapackage-vod``: [``botocore``] Update mediapackage-vod client to latest version
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+* api-change:``ecr-public``: [``botocore``] Update ecr-public client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+
+
 1.17.14
 =======
 
