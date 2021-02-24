@@ -1,0 +1,5 @@
+{
+  "category": "``compute-optimizer``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update compute-optimizer client to latest version"
+}
