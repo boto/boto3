@@ -202,6 +202,7 @@ The presigned POST URL and fields values can also be used in an HTML page.
           <input type="hidden" name="key" value="VALUE" />
           <input type="hidden" name="AWSAccessKeyId" value="VALUE" />
           <input type="hidden" name="policy" value="VALUE" />
+          <input type="hidden" name="x-amz-security-token" value="VALUE" />
           <input type="hidden" name="signature" value="VALUE" />
         File:
           <input type="file"   name="file" /> <br />
