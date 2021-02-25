@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.16
+=======
+
+* api-change:``databrew``: [``botocore``] Update databrew client to latest version
+* api-change:``detective``: [``botocore``] Update detective client to latest version
+* api-change:``lightsail``: [``botocore``] Update lightsail client to latest version
+* api-change:``imagebuilder``: [``botocore``] Update imagebuilder client to latest version
+* api-change:``transfer``: [``botocore``] Update transfer client to latest version
+
+
 1.17.15
 =======
 
