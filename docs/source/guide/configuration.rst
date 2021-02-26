@@ -61,64 +61,57 @@ Boto3 supports using proxies as intermediaries between your code and AWS. Proxie
 Specifying proxy servers
 ''''''''''''''''''''''''
 
-You can specify proxy servers to be used when communicating between specific endpoints, or when
-using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary that maps
-the protocol name or endpoint URL to the address of a proxy server.
+You can specify proxy servers to be used for connections when using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary that maps the protocol name to the address and port number of a proxy server.
 
 .. code-block:: python
 
     import boto3
     from botocore.config import Config
 
-    proxy_list = {
-        'http': 'proxy.example.com:6502',
-        'http://mysite.org': 'proxy.example.org:2010'
+    proxy_definitions = {
+        'http': 'https://proxy.amazon.com:6502',
+        'https': 'https://proxy.amazon.org:2010'
     }
 
     my_config = Config(
         'region_name': 'us-east-2',
         'signature_version': 'v4',
-        'proxies': proxy_list
+        'proxies': proxy_definitions
     }
 
     client = boto3.client('kinesis', config=my_config)
 
 
-In the above example, a proxy list is set up to use ``proxy.example.com``, port 6502 as the proxy for all HTTP requests by default. For requests to ``http://mysite.org``, port 2010 on ``proxy.example.org`` is used instead.
+In the above example, a proxy list is set up to use ``proxy.amazon.com``, port 6502 as the proxy for all HTTP requests by default. HTTPS requests use port 2010 on ``proxy.amazon.org`` instead.
 
 
 .. _configure_proxies:
 
 Configuring proxies
 '''''''''''''''''''
-You can configure proxy usage with the ``proxies-config`` option, which is a dictionary that specifies the values of several proxy options by name. The valid keys for this dictionary are:
-
-* ``proxy_ca_bundle`` (string) - The pathname of a custom certificate bundle to use when establishing TLS/SSL connections using a proxy.
-* ``proxy_client_cert`` (string or tuple) - Specifies the certificate to use for proxy TLS client authentication. When the value is a string, it's the pathname of a certificate file. If it's a tuple it must be two comma-separated strings. The first is used as the pathname of the client certificate, and the second is the path to the certificate's key.
-* ``proxy_use_forwarding_for_https`` (Boolean) - When true, HTTPS requests which specify absolute URIs will be forwarded using the proxy. Only set this to true for highly trusted or corporate proxies; otherwise, the proxy can become a man-in-the-middle attack vector.
+You can configure proxy usage with the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. See the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_ for more information about these.
 
 .. code-block:: python
 
     import boto3
     from botocore.config import Config
 
-    proxy_list = {
-        'http': 'proxy.example.com:6502'
+    proxy_definitions = {
+        'http': 'proxy.amazon.com:6502'
     }
 
     my_config = Config(
         'region_name': 'us-east-2',
         'signature_version': 'v4',
-        'proxies': proxy_list,
-        'proxy_config': {
-            'proxy_client_cert': '/path/of/certificate',
-            'proxy_use_forwarding_for_https': False
+        'proxies': proxy_definitions,
+        'proxies_config': {
+            'proxy_client_cert': '/path/of/certificate'
         }
     }
 
     client = boto3.client('kinesis', config=my_config)
 
-With the addition of the ``proxy_config`` option shown here, the proxy will use the specified certificate file for authentication, and we guarantee that HTTPS will not be passed through the proxy by setting ``proxy_use_forwarding_for_https`` to :code:`False`.
+With the addition of the ``proxies_config`` option shown here, the proxy will use the specified certificate file for authentication.
 
 
 Using environment variables 
