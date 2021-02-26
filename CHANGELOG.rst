@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.17
+=======
+
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``sso-admin``: [``botocore``] Update sso-admin client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.17.16
 =======
 
