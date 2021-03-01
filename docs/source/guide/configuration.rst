@@ -25,7 +25,7 @@ This option is for configuring client-specific configurations that affect the be
 * ``region_name`` (string) - The AWS Region used in instantiating the client. If used, this takes precedence over environment variable and configuration file values. But it doesn't overwrite a ``region_name`` value *explicitly* passed to individual service methods.
 * ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL with an expiry of greater than 7 days, you should specify Signature Version 2.
 * ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
-* ``proxies`` (dictionary) - A dictionary mapping protocol names or endpoint locations to the proxy servers that should be used when communicating with them. These proxies, if specified, are used for every request. See :ref:`specify_proxies` for more information.
+* ``proxies`` (dictionary) - A dictionary mapping protocol names to the proxy servers that should be used when communicating with them. These proxies, if specified, are used for every request. See :ref:`specify_proxies` for more information.
 * ``proxies_config`` (dictionary) - Additional proxy configuration settings. These are described in :ref:`configure_proxies`.
 * ``retries`` (dictionary) - Client retry behavior configuration options that include retry mode and maximum retry attempts. For more information, see the :ref:`guide_retries` guide.  
 
@@ -61,7 +61,7 @@ Boto3 supports using proxies as intermediaries between your code and AWS. Proxie
 Specifying proxy servers
 ''''''''''''''''''''''''
 
-You can specify proxy servers to be used for connections when using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary that maps the protocol name to the address and port number of a proxy server.
+You can specify proxy servers to be used for connections when using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary in which each entry maps a protocol to the address and port number of the proxy server for that protocol.
 
 .. code-block:: python
 
@@ -69,7 +69,7 @@ You can specify proxy servers to be used for connections when using specific pro
     from botocore.config import Config
 
     proxy_definitions = {
-        'http': 'https://proxy.amazon.com:6502',
+        'http': 'http://proxy.amazon.com:6502',
         'https': 'https://proxy.amazon.org:2010'
     }
 
@@ -89,7 +89,7 @@ In the above example, a proxy list is set up to use ``proxy.amazon.com``, port 6
 
 Configuring proxies
 '''''''''''''''''''
-You can configure proxy usage with the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. See the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_ for more information about these.
+You can configure proxy usage with the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. See the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config>`_ for more information about these keys.
 
 .. code-block:: python
 
@@ -97,7 +97,7 @@ You can configure proxy usage with the ``proxies_config`` option, which is a dic
     from botocore.config import Config
 
     proxy_definitions = {
-        'http': 'proxy.amazon.com:6502'
+        'http': 'http://proxy.amazon.com:6502'
     }
 
     my_config = Config(
