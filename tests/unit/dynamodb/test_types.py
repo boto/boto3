@@ -49,6 +49,9 @@ class TestBinary(unittest.TestCase):
     def test_str(self):
         self.assertEqual(Binary(b'\x01').__str__(), b'\x01')
 
+    def test_bytes(self):
+        self.assertEqual(bytes(Binary(b'\x01')), b'\x01')
+
     def test_repr(self):
         self.assertIn('Binary', repr(Binary(b'1')))
 
