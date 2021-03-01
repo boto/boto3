@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "DynamoDB",
-  "description": "Add a `__bytes__` method to the `Binary` DynamoDB type."
-}
