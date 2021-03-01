@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.18
+=======
+
+* enhancement:DynamoDB: Add a `__bytes__` method to the `Binary` DynamoDB type.
+* api-change:``alexaforbusiness``: [``botocore``] Update alexaforbusiness client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``eks``: [``botocore``] Update eks client to latest version
+
+
 1.17.17
 =======
 
