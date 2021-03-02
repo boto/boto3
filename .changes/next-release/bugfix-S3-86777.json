@@ -1,0 +1,5 @@
+{
+  "category": "S3", 
+  "type": "bugfix", 
+  "description": "[``botocore``] Fix an issue with XML newline normalization that could result in the DeleteObjects operation incorrectly deleting the wrong keys."
+}
