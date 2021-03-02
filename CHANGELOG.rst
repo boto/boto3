@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.17.19
+=======
+
+* api-change:``iotwireless``: [``botocore``] Update iotwireless client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* bugfix:S3: [``botocore``] Fix an issue with XML newline normalization that could result in the DeleteObjects operation incorrectly deleting the wrong keys.
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+
+
 1.17.18
 =======
 
