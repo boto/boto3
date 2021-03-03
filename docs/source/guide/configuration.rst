@@ -25,8 +25,8 @@ This option is for configuring client-specific configurations that affect the be
 * ``region_name`` (string) - The AWS Region used in instantiating the client. If used, this takes precedence over environment variable and configuration file values. But it doesn't overwrite a ``region_name`` value *explicitly* passed to individual service methods.
 * ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL with an expiry of greater than 7 days, you should specify Signature Version 2.
 * ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
-* ``proxies`` (dictionary) - A dictionary mapping protocol names to the proxy servers that should be used when communicating with them. These proxies, if specified, are used for every request. See :ref:`specify_proxies` for more information.
-* ``proxies_config`` (dictionary) - Additional proxy configuration settings. These are described in :ref:`configure_proxies`.
+* ``proxies`` (dictionary) - Each entry maps a protocol name to the proxy server Boto3 should use to communicate using that protocol. See :ref:`specify_proxies` for more information.
+* ``proxies_config`` (dictionary) - Additional proxy configuration settings. For more information, see :ref:`configure_proxies`.
 * ``retries`` (dictionary) - Client retry behavior configuration options that include retry mode and maximum retry attempts. For more information, see the :ref:`guide_retries` guide.  
 
 
@@ -53,8 +53,7 @@ To set these configuration options, create a ``Config`` object with the options 
 
 Using proxies
 ~~~~~~~~~~~~~
-Boto3 supports using proxies as intermediaries between your code and AWS. Proxies may provide any number of functions, from filtering to security and firewalls to privacy assurance.
-
+With Boto3, you can use proxies as intermediaries between your code and AWS. Proxies can provide functions such as filtering, security, firewalls, and privacy assurance.
 
 .. _specify_proxies:
 
@@ -62,6 +61,9 @@ Specifying proxy servers
 ''''''''''''''''''''''''
 
 You can specify proxy servers to be used for connections when using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary in which each entry maps a protocol to the address and port number of the proxy server for that protocol.
+
+In the following example, a proxy list is set up to use ``proxy.amazon.com``, port 6502 as the proxy for all HTTP requests by default. HTTPS requests use port 2010 on ``proxy.amazon.org`` instead.
+
 
 .. code-block:: python
 
@@ -82,14 +84,11 @@ You can specify proxy servers to be used for connections when using specific pro
     client = boto3.client('kinesis', config=my_config)
 
 
-In the above example, a proxy list is set up to use ``proxy.amazon.com``, port 6502 as the proxy for all HTTP requests by default. HTTPS requests use port 2010 on ``proxy.amazon.org`` instead.
-
-
 .. _configure_proxies:
 
 Configuring proxies
 '''''''''''''''''''
-You can configure proxy usage with the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. See the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config>`_ for more information about these keys.
+You can configure how Boto3 uses proxies by specifying the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. For more information about these keys, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config>`_.
 
 .. code-block:: python
 
@@ -116,10 +115,11 @@ With the addition of the ``proxies_config`` option shown here, the proxy will us
 
 Using environment variables 
 ---------------------------
-Configurations can be set through the use of system-wide environment variables. If set, these configurations are global and will affect all clients created unless explicitly overwritten through the use of a ``Config`` object.
+You can set configuration settings using system-wide environment variables. These configurations are global and will affect all clients created unless you override them with a ``Config`` object.
 
 .. note::
-    Not all configurations can be set using environment variables.
+    Not all configuration settings can be set using environment variables. The `Using environment variables <https://docs.aws.amazon.com/credref/latest/refdocs/environment-variables.html>`_ chapter of AWS SDKs and Tools Shared Configuration and Credentials provides this information.
+
 
 ``AWS_ACCESS_KEY_ID``
     The access key for your AWS account.
