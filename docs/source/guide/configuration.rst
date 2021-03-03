@@ -118,7 +118,7 @@ Using environment variables
 You can set configuration settings using system-wide environment variables. These configurations are global and will affect all clients created unless you override them with a ``Config`` object.
 
 .. note::
-    Not all configuration settings can be set using environment variables. See `Using environment variables <https://docs.aws.amazon.com/credref/latest/refdocs/environment-variables.html>`_ in AWS SDKs and Tools Shared Configuration and Credentials provides this information.
+    Only the configuration settings listed below can be set using environment variables.
 
 
 ``AWS_ACCESS_KEY_ID``
