@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.17.20
+=======
+
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``wellarchitected``: [``botocore``] Update wellarchitected client to latest version
+
+
 1.17.19
 =======
 
