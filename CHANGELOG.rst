@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.21
+=======
+
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``mwaa``: [``botocore``] Update mwaa client to latest version
+
+
 1.17.20
 =======
 
