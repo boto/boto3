@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.17.22
+=======
+
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``network-firewall``: [``botocore``] Update network-firewall client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+
+
 1.17.21
 =======
 

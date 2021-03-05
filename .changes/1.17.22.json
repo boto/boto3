@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``license-manager``", 
+    "description": "[``botocore``] Update license-manager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``network-firewall``", 
+    "description": "[``botocore``] Update network-firewall client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``athena``", 
+    "description": "[``botocore``] Update athena client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``shield``", 
+    "description": "[``botocore``] Update shield client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appflow``", 
+    "description": "[``botocore``] Update appflow client to latest version", 
+    "type": "api-change"
+  }
+]
