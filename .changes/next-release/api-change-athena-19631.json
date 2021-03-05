@@ -1,5 +1,0 @@
-{
-  "category": "``athena``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Update athena client to latest version"
-}
