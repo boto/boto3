@@ -183,7 +183,7 @@ class TransferConfig(S3TransferConfig):
         :param max_concurrency: The maximum number of threads that will be
             making requests to perform a transfer. If ``use_threads`` is
             set to ``False``, the value provided is ignored as the transfer
-            will only ever use the main thread.
+            will only ever use the current thread.
 
         :param multipart_chunksize: The partition size of each part for a
             multipart transfer.
@@ -208,7 +208,7 @@ class TransferConfig(S3TransferConfig):
 
         :param use_threads: If True, threads will be used when performing
             S3 transfers. If False, no threads will be used in
-            performing transfers: all logic will be ran in the main thread.
+            performing transfers: all logic will be ran in the current thread.
         """
         super(TransferConfig, self).__init__(
             multipart_threshold=multipart_threshold,
