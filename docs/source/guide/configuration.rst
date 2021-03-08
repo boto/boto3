@@ -96,7 +96,8 @@ You can configure how Boto3 uses proxies by specifying the ``proxies_config`` op
     from botocore.config import Config
 
     proxy_definitions = {
-        'http': 'http://proxy.amazon.com:6502'
+        'http': 'http://proxy.amazon.com:6502',
+        'https': 'https://proxy.amazon.org:2010'
     }
 
     my_config = Config(
@@ -110,7 +111,7 @@ You can configure how Boto3 uses proxies by specifying the ``proxies_config`` op
 
     client = boto3.client('kinesis', config=my_config)
 
-With the addition of the ``proxies_config`` option shown here, the proxy will use the specified certificate file for authentication.
+With the addition of the ``proxies_config`` option shown here, the proxy will use the specified certificate file for authentication when using the HTTPS proxy.
 
 
 Using environment variables 
