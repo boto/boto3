@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.23
+=======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
 1.17.22
 =======
 
