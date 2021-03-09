@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.24
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``iotwireless``: [``botocore``] Update iotwireless client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+
+
 1.17.23
 =======
 
