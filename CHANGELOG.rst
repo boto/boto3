@@ -2,6 +2,73 @@
 CHANGELOG
 =========
 
+1.17.24
+=======
+
+* api-change:``rds``: [``botocore``] Update rds client to latest version
+* api-change:``codeguruprofiler``: [``botocore``] Update codeguruprofiler client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+* api-change:``iotwireless``: [``botocore``] Update iotwireless client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+
+
+1.17.23
+=======
+
+* api-change:``lambda``: [``botocore``] Update lambda client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update kinesis-video-archived-media client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``s3control``: [``botocore``] Update s3control client to latest version
+* api-change:``autoscaling``: [``botocore``] Update autoscaling client to latest version
+
+
+1.17.22
+=======
+
+* api-change:``license-manager``: [``botocore``] Update license-manager client to latest version
+* api-change:``network-firewall``: [``botocore``] Update network-firewall client to latest version
+* api-change:``ec2``: [``botocore``] Update ec2 client to latest version
+* api-change:``athena``: [``botocore``] Update athena client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``shield``: [``botocore``] Update shield client to latest version
+* api-change:``codepipeline``: [``botocore``] Update codepipeline client to latest version
+* api-change:``appflow``: [``botocore``] Update appflow client to latest version
+
+
+1.17.21
+=======
+
+* api-change:``servicediscovery``: [``botocore``] Update servicediscovery client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
+* api-change:``mwaa``: [``botocore``] Update mwaa client to latest version
+
+
+1.17.20
+=======
+
+* api-change:``forecast``: [``botocore``] Update forecast client to latest version
+* api-change:``secretsmanager``: [``botocore``] Update secretsmanager client to latest version
+* api-change:``macie2``: [``botocore``] Update macie2 client to latest version
+* api-change:``codebuild``: [``botocore``] Update codebuild client to latest version
+* api-change:``es``: [``botocore``] Update es client to latest version
+* api-change:``acm``: [``botocore``] Update acm client to latest version
+* api-change:``wellarchitected``: [``botocore``] Update wellarchitected client to latest version
+
+
+1.17.19
+=======
+
+* api-change:``iotwireless``: [``botocore``] Update iotwireless client to latest version
+* api-change:``directconnect``: [``botocore``] Update directconnect client to latest version
+* bugfix:S3: [``botocore``] Fix an issue with XML newline normalization that could result in the DeleteObjects operation incorrectly deleting the wrong keys.
+* api-change:``managedblockchain``: [``botocore``] Update managedblockchain client to latest version
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``compute-optimizer``: [``botocore``] Update compute-optimizer client to latest version
+* api-change:``datasync``: [``botocore``] Update datasync client to latest version
+
+
 1.17.18
 =======
 
