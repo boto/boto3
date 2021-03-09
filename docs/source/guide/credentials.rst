@@ -164,7 +164,7 @@ Assume role provider
 
     This is a different set of credentials configuration than using IAM roles for EC2 instances, which is discussed in a section below.
 
-Within the ``~/.aws/config file``, you can also configure a profile to indicate that Boto3 should assume a role. When you do this, Boto3 will automatically make the corresponding AssumeRole calls to AWS STS on your behalf. It will handle in-memory caching as well as refreshing credentials as needed.
+Within the ``~/.aws/config`` file, you can also configure a profile to indicate that Boto3 should assume a role. When you do this, Boto3 will automatically make the corresponding AssumeRole calls to AWS STS on your behalf. It will handle in-memory caching as well as refreshing credentials as needed.
 
 You can specify the following configuration values for configuring an IAM role in Boto3. For more information about a particular setting, see the :ref:`guide_configuration` section.
 
