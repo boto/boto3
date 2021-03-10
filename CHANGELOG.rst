@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.25
+=======
+
+* api-change:``accessanalyzer``: [``botocore``] Update accessanalyzer client to latest version
+* api-change:``ssm``: [``botocore``] Update ssm client to latest version
+* api-change:``s3``: [``botocore``] Update s3 client to latest version
+* api-change:``backup``: [``botocore``] Update backup client to latest version
+
+
 1.17.24
 =======
 
