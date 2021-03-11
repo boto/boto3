@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.26
+=======
+
+* api-change:``comprehend``: [``botocore``] Update comprehend client to latest version
+* api-change:``wafv2``: [``botocore``] Update wafv2 client to latest version
+* api-change:``medialive``: [``botocore``] Update medialive client to latest version
+* api-change:``network-firewall``: [``botocore``] Update network-firewall client to latest version
+
+
 1.17.25
 =======
 
