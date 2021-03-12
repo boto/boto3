@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.27
+=======
+
+* api-change:``mediatailor``: [``botocore``] MediaTailor channel assembly is a new manifest-only service that allows you to assemble linear streams using your existing VOD content.
+* api-change:``workspaces``: [``botocore``] Adds API support for WorkSpaces bundle management operations.
+* api-change:``cur``: [``botocore``] - Added optional billingViewArn field for OSG.
+
+
 1.17.26
 =======
 
