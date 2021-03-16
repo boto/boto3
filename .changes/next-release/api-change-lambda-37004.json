@@ -1,0 +1,5 @@
+{
+  "category": "``lambda``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Allow empty list for function response types"
+}
