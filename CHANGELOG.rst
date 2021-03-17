@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.30
+=======
+
+* api-change:``sagemaker``: [``botocore``] Support new target device ml_eia2 in SageMaker CreateCompilationJob API
+* api-change:``batch``: [``botocore``] Making serviceRole an optional parameter when creating a compute environment. If serviceRole is not provided then Service Linked Role will be created (or reused if it already exists).
+
+
 1.17.29
 =======
 
