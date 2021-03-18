@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.32
+=======
+
+* bugfix:s3: [``botocore``] Updated mislabeled exceptions for S3 Object Lambda
+
+
 1.17.31
 =======
 
