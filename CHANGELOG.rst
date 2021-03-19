@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.33
+=======
+
+* api-change:``sagemaker``: [``botocore``] Adding authentication support for pulling images stored in private Docker registries to build containers for real-time inference.
+* api-change:``ec2``: [``botocore``] X2gd instances are the next generation of memory-optimized instances powered by AWS-designed, Arm-based AWS Graviton2 processors.
+
+
 1.17.32
 =======
 
