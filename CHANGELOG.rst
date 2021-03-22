@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.34
+=======
+
+* api-change:``ec2``: [``botocore``] This release adds support for UEFI boot on selected AMD- and Intel-based EC2 instances.
+* api-change:``redshift``: [``botocore``] Added support to enable AQUA in Amazon Redshift clusters.
+* api-change:``codeartifact``: [``botocore``] Documentation updates for CodeArtifact
+* api-change:``macie2``: [``botocore``] This release of the Amazon Macie API adds support for publishing sensitive data findings to AWS Security Hub and specifying which categories of findings to publish to Security Hub.
+
+
 1.17.33
 =======
 
