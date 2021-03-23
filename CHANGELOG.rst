@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.35
+=======
+
+* api-change:``ce``: [``botocore``] You can now create cost categories with inherited value rules and specify default values for any uncategorized costs.
+* api-change:``fis``: [``botocore``] Updated maximum allowed size of action parameter from 64 to 1024
+* api-change:``redshift``: [``botocore``] Removed APIs to control AQUA on clusters.
+* api-change:``iam``: [``botocore``] Documentation updates for IAM operations and descriptions.
+* api-change:``gamelift``: [``botocore``] GameLift adds support for using event notifications to monitor game session placements. Specify an SNS topic or use CloudWatch Events to track activity for a game session queue.
+
+
 1.17.34
 =======
 
