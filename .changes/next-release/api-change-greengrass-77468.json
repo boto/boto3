@@ -1,0 +1,5 @@
+{
+  "category": "``greengrass``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Updated the parameters to make name required for CreateGroup API."
+}
