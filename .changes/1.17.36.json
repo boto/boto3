@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] This release allows SSM Explorer customers to enable OpsData sources across their organization when creating a resource data sync.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Documentation updates for route53", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "S3", 
+    "description": "[``botocore``] Fix an issue with XML newline normalization in PutBucketLifecycleConfiguration requests.", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Documentation updates for Amazon S3", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3control``", 
+    "description": "[``botocore``] Documentation updates for s3-control", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] maximumEfaInterfaces added to DescribeInstanceTypes API", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``greengrass``", 
+    "description": "[``botocore``] Updated the parameters to make name required for CreateGroup API.", 
+    "type": "api-change"
+  }
+]

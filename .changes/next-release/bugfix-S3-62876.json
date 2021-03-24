@@ -1,5 +1,0 @@
-{
-  "category": "S3", 
-  "type": "bugfix", 
-  "description": "[``botocore``] Fix an issue with XML newline normalization in PutBucketLifecycleConfiguration requests."
-}

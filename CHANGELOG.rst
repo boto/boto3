@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.17.36
+=======
+
+* api-change:``ssm``: [``botocore``] This release allows SSM Explorer customers to enable OpsData sources across their organization when creating a resource data sync.
+* api-change:``route53``: [``botocore``] Documentation updates for route53
+* bugfix:S3: [``botocore``] Fix an issue with XML newline normalization in PutBucketLifecycleConfiguration requests.
+* api-change:``s3``: [``botocore``] Documentation updates for Amazon S3
+* api-change:``s3control``: [``botocore``] Documentation updates for s3-control
+* api-change:``ec2``: [``botocore``] maximumEfaInterfaces added to DescribeInstanceTypes API
+* api-change:``greengrass``: [``botocore``] Updated the parameters to make name required for CreateGroup API.
+
+
 1.17.35
 =======
 
