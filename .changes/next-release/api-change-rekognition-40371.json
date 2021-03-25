@@ -1,5 +1,0 @@
-{
-  "category": "``rekognition``", 
-  "type": "api-change", 
-  "description": "[``botocore``] This release introduces AWS tagging support for Amazon Rekognition collections, stream processors, and Custom Label models."
-}
