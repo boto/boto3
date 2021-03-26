@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.38
+=======
+
+* api-change:``lookoutmetrics``: [``botocore``] Allowing uppercase alphabets for RDS and Redshift database names.
+
+
 1.17.37
 =======
 
