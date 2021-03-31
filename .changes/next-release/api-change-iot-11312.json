@@ -1,5 +1,0 @@
-{
-  "category": "``iot``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Added ability to prefix search on attribute value for ListThings API."
-}

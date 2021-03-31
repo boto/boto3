@@ -1,5 +1,0 @@
-{
-  "category": "``directconnect``", 
-  "type": "api-change", 
-  "description": "[``botocore``] This release adds MACsec support to AWS Direct Connect"
-}

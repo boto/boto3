@@ -2,6 +2,27 @@
 CHANGELOG
 =========
 
+1.17.42
+=======
+
+* api-change:``iot``: [``botocore``] Added ability to prefix search on attribute value for ListThings API.
+* api-change:``pricing``: [``botocore``] Minor documentation and link updates.
+* api-change:``transcribe``: [``botocore``] Amazon Transcribe now supports creating custom language models in the following languages: British English (en-GB), Australian English (en-AU), Indian Hindi (hi-IN), and US Spanish (es-US).
+* api-change:``cloudhsm``: [``botocore``] Minor documentation and link updates.
+* api-change:``comprehend``: [``botocore``] Support for customer managed KMS encryption of Comprehend custom models
+* api-change:``cognito-sync``: [``botocore``] Minor documentation updates and link updates.
+* api-change:``batch``: [``botocore``] AWS Batch adds support for Amazon EFS File System
+* api-change:``detective``: [``botocore``] Added the ability to assign tag values to Detective behavior graphs. Tag values can be used for attribute-based access control, and for cost allocation for billing.
+* api-change:``iotwireless``: [``botocore``] Add Sidewalk support to APIs: GetWirelessDevice, ListWirelessDevices, GetWirelessDeviceStatistics. Add Gateway connection status in GetWirelessGatewayStatistics API.
+* api-change:``cloudformation``: [``botocore``] 1. Added a new parameter RegionConcurrencyType in OperationPreferences. 2. Changed the name of AccountUrl to AccountsUrl in DeploymentTargets parameter.
+* api-change:``cloud9``: [``botocore``] Add ImageId input parameter to CreateEnvironmentEC2 endpoint. New parameter enables creation of environments with different AMIs.
+* api-change:``directconnect``: [``botocore``] This release adds MACsec support to AWS Direct Connect
+* api-change:``redshift``: [``botocore``] Enable customers to share access to their Redshift clusters from other VPCs (including VPCs from other accounts).
+* api-change:``workmail``: [``botocore``] This release adds support for mobile device access rules management in Amazon WorkMail.
+* api-change:``datapipeline``: [``botocore``] Minor documentation updates and link updates.
+* api-change:``machinelearning``: [``botocore``] Minor documentation updates and link updates.
+
+
 1.17.41
 =======
 
