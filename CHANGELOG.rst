@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.17.43
+=======
+
+* api-change:``route53resolver``: [``botocore``] Route 53 Resolver DNS Firewall is a firewall service that allows you to filter and regulate outbound DNS traffic for your VPCs.
+* api-change:``mediaconvert``: [``botocore``] MediaConvert now supports HLS ingest, sidecar WebVTT ingest, Teletext color & style passthrough to TTML subtitles, TTML to WebVTT subtitle conversion with style, & DRC profiles in AC3 audio.
+* api-change:``lightsail``: [``botocore``] - This release adds support for state detail for Amazon Lightsail container services.
+* api-change:``kendra``: [``botocore``] AWS Kendra's ServiceNow data source now supports OAuth 2.0 authentication and knowledge article filtering via a ServiceNow query.
+* api-change:``lex-models``: [``botocore``] Lex now supports the ja-JP locale
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``fms``: [``botocore``] Added Firewall Manager policy support for AWS Route 53 Resolver DNS Firewall.
+* api-change:``ec2``: [``botocore``] VPC Flow Logs Service adds a new API, GetFlowLogsIntegrationTemplate, which generates CloudFormation templates for Athena. For more info, see https://docs.aws.amazon.com/console/vpc/flow-logs/athena
+* api-change:``wafv2``: [``botocore``] Added support for ScopeDownStatement for ManagedRuleGroups, Labels, LabelMatchStatement, and LoggingFilter. For more information on these features, see the AWS WAF Developer Guide.
+
+
 1.17.42
 =======
 
