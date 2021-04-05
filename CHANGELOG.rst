@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.45
+=======
+
+* api-change:``auditmanager``: [``botocore``] AWS Audit Manager has updated the GetAssessment API operation to include a new response field called userRole. The userRole field indicates the role information and IAM ARN of the API caller.
+* api-change:``medialive``: [``botocore``] MediaLive now support HTML5 Motion Graphics overlay
+* api-change:``appflow``: [``botocore``] Added destination properties for Zendesk.
+
+
 1.17.44
 =======
 
