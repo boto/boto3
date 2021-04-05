@@ -2,6 +2,86 @@
 CHANGELOG
 =========
 
+1.17.44
+=======
+
+* api-change:``mediapackage``: [``botocore``] SPEKE v2 is an upgrade to the existing SPEKE API to support multiple encryption keys, based on an encryption contract selected by the customer.
+* api-change:``imagebuilder``: [``botocore``] This release adds support for Block Device Mappings for container image builds, and adds distribution configuration support for EC2 launch templates in AMI builds.
+
+
+1.17.43
+=======
+
+* api-change:``route53resolver``: [``botocore``] Route 53 Resolver DNS Firewall is a firewall service that allows you to filter and regulate outbound DNS traffic for your VPCs.
+* api-change:``mediaconvert``: [``botocore``] MediaConvert now supports HLS ingest, sidecar WebVTT ingest, Teletext color & style passthrough to TTML subtitles, TTML to WebVTT subtitle conversion with style, & DRC profiles in AC3 audio.
+* api-change:``lightsail``: [``botocore``] - This release adds support for state detail for Amazon Lightsail container services.
+* api-change:``kendra``: [``botocore``] AWS Kendra's ServiceNow data source now supports OAuth 2.0 authentication and knowledge article filtering via a ServiceNow query.
+* api-change:``lex-models``: [``botocore``] Lex now supports the ja-JP locale
+* api-change:``lex-runtime``: [``botocore``] Update lex-runtime client to latest version
+* api-change:``fms``: [``botocore``] Added Firewall Manager policy support for AWS Route 53 Resolver DNS Firewall.
+* api-change:``ec2``: [``botocore``] VPC Flow Logs Service adds a new API, GetFlowLogsIntegrationTemplate, which generates CloudFormation templates for Athena. For more info, see https://docs.aws.amazon.com/console/vpc/flow-logs/athena
+* api-change:``wafv2``: [``botocore``] Added support for ScopeDownStatement for ManagedRuleGroups, Labels, LabelMatchStatement, and LoggingFilter. For more information on these features, see the AWS WAF Developer Guide.
+
+
+1.17.42
+=======
+
+* api-change:``iot``: [``botocore``] Added ability to prefix search on attribute value for ListThings API.
+* api-change:``pricing``: [``botocore``] Minor documentation and link updates.
+* api-change:``transcribe``: [``botocore``] Amazon Transcribe now supports creating custom language models in the following languages: British English (en-GB), Australian English (en-AU), Indian Hindi (hi-IN), and US Spanish (es-US).
+* api-change:``cloudhsm``: [``botocore``] Minor documentation and link updates.
+* api-change:``comprehend``: [``botocore``] Support for customer managed KMS encryption of Comprehend custom models
+* api-change:``cognito-sync``: [``botocore``] Minor documentation updates and link updates.
+* api-change:``batch``: [``botocore``] AWS Batch adds support for Amazon EFS File System
+* api-change:``detective``: [``botocore``] Added the ability to assign tag values to Detective behavior graphs. Tag values can be used for attribute-based access control, and for cost allocation for billing.
+* api-change:``iotwireless``: [``botocore``] Add Sidewalk support to APIs: GetWirelessDevice, ListWirelessDevices, GetWirelessDeviceStatistics. Add Gateway connection status in GetWirelessGatewayStatistics API.
+* api-change:``cloudformation``: [``botocore``] 1. Added a new parameter RegionConcurrencyType in OperationPreferences. 2. Changed the name of AccountUrl to AccountsUrl in DeploymentTargets parameter.
+* api-change:``cloud9``: [``botocore``] Add ImageId input parameter to CreateEnvironmentEC2 endpoint. New parameter enables creation of environments with different AMIs.
+* api-change:``directconnect``: [``botocore``] This release adds MACsec support to AWS Direct Connect
+* api-change:``redshift``: [``botocore``] Enable customers to share access to their Redshift clusters from other VPCs (including VPCs from other accounts).
+* api-change:``workmail``: [``botocore``] This release adds support for mobile device access rules management in Amazon WorkMail.
+* api-change:``datapipeline``: [``botocore``] Minor documentation updates and link updates.
+* api-change:``machinelearning``: [``botocore``] Minor documentation updates and link updates.
+
+
+1.17.41
+=======
+
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Autopilot now supports 1) feature importance reports for AutoML jobs and 2) PartialFailures for AutoML jobs
+* api-change:``ec2-instance-connect``: [``botocore``] Adding support to push SSH keys to the EC2 serial console in order to allow an SSH connection to your Amazon EC2 instance's serial port.
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``databrew``: [``botocore``] This SDK release adds two new dataset features: 1) support for specifying a database connection as a dataset input 2) support for dynamic datasets that accept configurable parameters in S3 path.
+* api-change:``frauddetector``: [``botocore``] This release adds support for Batch Predictions in Amazon Fraud Detector.
+* api-change:``ec2``: [``botocore``] ReplaceRootVolume feature enables customers to replace the EBS root volume of a running instance to a previously known state. Add support to grant account-level access to the EC2 serial console
+* api-change:``config``: [``botocore``] Adding new APIs to support ConformancePack Compliance CI in Aggregators
+* api-change:``pinpoint``: [``botocore``] Added support for journey pause/resume, journey updatable import segment and journey quiet time wait.
+
+
+1.17.40
+=======
+
+* api-change:``wafv2``: [``botocore``] Added custom request handling and custom response support in rule actions and default action; Added the option to inspect the web request body as parsed and filtered JSON.
+* api-change:``iam``: [``botocore``] AWS Identity and Access Management GetAccessKeyLastUsed API will throw a custom error if customer public key is not found for access keys.
+* api-change:``glue``: [``botocore``] Allow Dots in Registry and Schema Names for CreateRegistry, CreateSchema; Fixed issue when duplicate keys are present and not returned as part of QuerySchemaVersionMetadata.
+* api-change:``docdb``: [``botocore``] This release adds support for Event Subscriptions to DocumentDB.
+* api-change:``location``: [``botocore``] Amazon Location added support for specifying pricing plan information on resources in alignment with our cost model.
+
+
+1.17.39
+=======
+
+* api-change:``iotwireless``: [``botocore``] Support tag-on-create for WirelessDevice.
+* api-change:``customer-profiles``: [``botocore``] This release adds an optional parameter named FlowDefinition in PutIntegrationRequest.
+* api-change:``events``: [``botocore``] Add support for SageMaker Model Builder Pipelines Targets to EventBridge
+* api-change:``transcribe``: [``botocore``] Amazon Transcribe now supports tagging words that match your vocabulary filter for batch transcription.
+
+
+1.17.38
+=======
+
+* api-change:``lookoutmetrics``: [``botocore``] Allowing uppercase alphabets for RDS and Redshift database names.
+
+
 1.17.37
 =======
 
