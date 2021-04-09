@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.49
+=======
+
+* api-change:``redshift``: [``botocore``] Add support for case sensitive table level restore
+* api-change:``ec2``: [``botocore``] Add paginator support to DescribeStoreImageTasks and update documentation.
+* api-change:``shield``: [``botocore``] CreateProtection now throws InvalidParameterException instead of InternalErrorException when system tags (tag with keys prefixed with "aws:") are passed in.
+
+
 1.17.48
 =======
 
