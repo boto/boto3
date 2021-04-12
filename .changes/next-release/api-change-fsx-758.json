@@ -1,0 +1,5 @@
+{
+  "category": "``fsx``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Support for cross-region and cross-account backup copies"
+}
