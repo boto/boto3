@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``lightsail``", 
+    "description": "[``botocore``] Documentation updates for Amazon Lightsail.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sts``", 
+    "description": "[``botocore``] This release adds the SourceIdentity parameter that can be set when assuming a role.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``comprehendmedical``", 
+    "description": "[``botocore``] The InferICD10CM API now returns TIME_EXPRESSION entities that refer to medical conditions.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Clarify that enabling or disabling automated backups causes a brief downtime, not an outage.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``redshift``", 
+    "description": "[``botocore``] Added support to enable AQUA in Amazon Redshift clusters.", 
+    "type": "api-change"
+  }
+]

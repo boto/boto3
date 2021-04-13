@@ -1,5 +1,0 @@
-{
-  "category": "``redshift``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Added support to enable AQUA in Amazon Redshift clusters."
-}
