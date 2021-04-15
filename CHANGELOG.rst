@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.53
+=======
+
+* api-change:``sts``: [``botocore``] STS now supports assume role with Web Identity using JWT token length upto 20000 characters
+* api-change:``dms``: [``botocore``] AWS DMS added support of TLS for Kafka endpoint. Added Describe endpoint setting API for DMS endpoints.
+
+
 1.17.52
 =======
 
