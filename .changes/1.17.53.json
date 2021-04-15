@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``sts``", 
+    "description": "[``botocore``] STS now supports assume role with Web Identity using JWT token length upto 20000 characters", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dms``", 
+    "description": "[``botocore``] AWS DMS added support of TLS for Kafka endpoint. Added Describe endpoint setting API for DMS endpoints.", 
+    "type": "api-change"
+  }
+]
