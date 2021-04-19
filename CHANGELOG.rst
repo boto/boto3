@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.54
+=======
+
+* api-change:``savingsplans``: [``botocore``] Added support for Amazon SageMaker in Machine Learning Savings Plans
+* api-change:``ce``: [``botocore``] Adding support for Sagemaker savings plans in GetSavingsPlansPurchaseRecommendation API
+
+
 1.17.53
 =======
 
