@@ -184,8 +184,8 @@
           "resource": {
             "type": "StackResource",
             "identifiers": [
-              { "target": "LogicalId", "source": "identifier", "name": "LogicalId" },
-              { "target": "StackName", "source": "identifier", "name": "StackName" }
+              { "target": "StackName", "source": "identifier", "name": "StackName" },
+              { "target": "LogicalId", "source": "identifier", "name": "LogicalId" }
             ]
           }
         }
