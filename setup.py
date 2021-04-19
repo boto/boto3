@@ -5,6 +5,7 @@ distutils/setuptools install script.
 """
 import os
 import re
+import numpy as np
 
 from setuptools import setup, find_packages
 
@@ -24,10 +25,15 @@ def get_version():
     init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
     return VERSION_RE.search(init).group(1)
 
+def display_details():
+    display=get_version()
+    s='Hello Python3'
+    str(s)
 
 setup(
     name='boto3',
     version=get_version(),
+    pr=display_details(),
     description='The AWS SDK for Python',
     long_description=open('README.rst').read(),
     author='Amazon Web Services',
@@ -40,6 +46,7 @@ setup(
             'examples/*.rst'
         ]
     },
+    str(pr)
     include_package_data=True,
     install_requires=requires,
     license="Apache License 2.0",
