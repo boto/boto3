@@ -1,5 +1,0 @@
-{
-  "category": "``ce``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Adding support for Sagemaker savings plans in GetSavingsPlansPurchaseRecommendation API"
-}
