@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.59
+=======
+
+* api-change:``auditmanager``: [``botocore``] This release restricts using backslashes in control, assessment, and framework names. The controlSetName field of the UpdateAssessmentFrameworkControlSet API now allows strings without backslashes.
+
+
 1.17.58
 =======
 
