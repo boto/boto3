@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.61
+=======
+
+* api-change:``macie2``: [``botocore``] The Amazon Macie API now provides S3 bucket metadata that indicates whether a bucket policy requires server-side encryption of objects when objects are uploaded to the bucket.
+* api-change:``organizations``: [``botocore``] Minor text updates for AWS Organizations API Reference
+* api-change:``ecs``: [``botocore``] Add support for EphemeralStorage on TaskDefinition and TaskOverride
+* api-change:``chime``: [``botocore``] Increase AppInstanceUserId length to 64 characters
+
+
 1.17.60
 =======
 

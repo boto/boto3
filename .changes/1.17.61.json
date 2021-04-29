@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``macie2``", 
+    "description": "[``botocore``] The Amazon Macie API now provides S3 bucket metadata that indicates whether a bucket policy requires server-side encryption of objects when objects are uploaded to the bucket.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``organizations``", 
+    "description": "[``botocore``] Minor text updates for AWS Organizations API Reference", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Add support for EphemeralStorage on TaskDefinition and TaskOverride", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``chime``", 
+    "description": "[``botocore``] Increase AppInstanceUserId length to 64 characters", 
+    "type": "api-change"
+  }
+]
