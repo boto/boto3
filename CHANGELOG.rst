@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.64
+=======
+
+* api-change:``finspace-data``: [``botocore``] Update FinSpace Data serviceAbbreviation
+
+
 1.17.63
 =======
 
