@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``finspace-data``", 
+    "description": "[``botocore``] This is the initial SDK release for the data APIs for Amazon FinSpace. Amazon FinSpace is a data management and analytics application for the financial services industry (FSI).", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mturk``", 
+    "description": "[``botocore``] Update mturk client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``chime``", 
+    "description": "[``botocore``] Added new BatchCreateChannelMembership API to support multiple membership creation for channels", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``finspace``", 
+    "description": "[``botocore``] This is the initial SDK release for the management APIs for Amazon FinSpace. Amazon FinSpace is a data management and analytics service for the financial services industry (FSI).", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Updated ASFF to add the following new resource details objects: AwsEc2NetworkAcl, AwsEc2Subnet, and AwsElasticBeanstalkEnvironment.", 
+    "type": "api-change"
+  }
+]
