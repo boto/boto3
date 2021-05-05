@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.66
+=======
+
+* api-change:``finspace``: [``botocore``] Documentation updates for FinSpace API.
+* api-change:``finspace-data``: [``botocore``] Documentation updates for FinSpaceData API.
+
+
 1.17.65
 =======
 
