@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.67
+=======
+
+* api-change:``auditmanager``: [``botocore``] This release updates the CreateAssessmentFrameworkControlSet and UpdateAssessmentFrameworkControlSet API data types. For both of these data types, the control set name is now a required attribute.
+* api-change:``nimble``: [``botocore``] Documentation Updates for Amazon Nimble Studio.
+* api-change:``kinesisanalyticsv2``: [``botocore``] Amazon Kinesis Analytics now supports RollbackApplication for Apache Flink applications to revert the application to the previous running version
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Autopilot now provides the ability to automatically deploy the best model to an endpoint
+
+
 1.17.66
 =======
 
