@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``servicediscovery``", 
+    "description": "[``botocore``] Bugfix: Improved input validation for RegisterInstance action, InstanceId field", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kafka``", 
+    "description": "[``botocore``] IAM Access Control for Amazon MSK enables you to create clusters that use IAM to authenticate clients and to allow or deny Apache Kafka actions for those clients.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] SSM feature release - ChangeCalendar integration with StateManager.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``snowball``", 
+    "description": "[``botocore``] AWS Snow Family adds APIs for ordering and managing Snow jobs with long term pricing", 
+    "type": "api-change"
+  }
+]
