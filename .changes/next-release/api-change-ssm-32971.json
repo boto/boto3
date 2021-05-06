@@ -1,5 +1,0 @@
-{
-  "category": "``ssm``", 
-  "type": "api-change", 
-  "description": "[``botocore``] SSM feature release - ChangeCalendar integration with StateManager."
-}
