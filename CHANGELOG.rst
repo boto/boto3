@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.71
+=======
+
+* api-change:``ssm-incidents``: [``botocore``] AWS Systems Manager Incident Manager enables faster resolution of critical application availability and performance issues, management of contacts and post-incident analysis
+* api-change:``ssm-contacts``: [``botocore``] AWS Systems Manager Incident Manager enables faster resolution of critical application availability and performance issues, management of contacts and post incident analysis
+* api-change:``s3control``: [``botocore``] Documentation updates for Amazon S3-control
+
+
 1.17.70
 =======
 
