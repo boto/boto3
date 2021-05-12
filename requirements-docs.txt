@@ -1,3 +1,8 @@
+# Sphinx does not have an upper bound pin on jinja2, and jinja2 does
+# not have an upper bound pin on markupsafe. Since jinja2 and markupsafe
+# removed python 3.5 support we need to add our own pins.
+markupsafe>=1.1,<2.0
+jinja2>=2.3,<3.0
 Sphinx>=1.1.3,<1.3
 guzzle_sphinx_theme>=0.7.10,<0.8
 -rrequirements.txt
