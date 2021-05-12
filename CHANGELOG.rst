@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.72
+=======
+
+* api-change:``ec2``: [``botocore``] High Memory virtual instances are powered by Intel Sky Lake CPUs and offer up to 12TB of memory.
+
+
 1.17.71
 =======
 
