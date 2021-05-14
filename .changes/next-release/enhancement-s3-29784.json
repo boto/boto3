@@ -1,0 +1,5 @@
+{
+  "category": "``s3``", 
+  "type": "enhancement", 
+  "description": "[``botocore``] Block endpoint resolution of clients configured with S3 pseudo-regions (e.g. ``aws-global``, ``s3-external-1``) that will never resolve to a correct access point endpoint."
+}
