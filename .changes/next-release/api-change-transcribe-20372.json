@@ -1,5 +1,0 @@
-{
-  "category": "``transcribe``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Transcribe Medical now supports identification of PHI entities within transcripts"
-}

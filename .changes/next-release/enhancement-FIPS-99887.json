@@ -1,5 +1,0 @@
-{
-  "category": "FIPS", 
-  "type": "enhancement", 
-  "description": "[``botocore``] Add validation to only attempt to connect to FIPS endpoints with a FIPS pseudo-region if the pseudo-region is explicitly known to the SDK."
-}
