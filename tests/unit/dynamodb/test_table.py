@@ -286,6 +286,58 @@ class BaseTransformationTest(unittest.TestCase):
         self.assert_batch_write_calls_are([first_batch, second_batch,
                                            third_batch])
 
+    def test_flush_on_fully_unprocessed_batch(self):
+        # Test a bug that could drop an item after fully unprocessed batch
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                        {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {}
+            },
+            {
+                'UnprocessedItems': {}
+            },
+        ]
+        with BatchWriter(self.table_name, self.client, flush_amount=2) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo2'})
+            b.put_item(Item={'Hash': 'foo3'})
+        # So when we exit, we expect three calls.
+        # First we try to write the first batch where all items are unprocessed
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        # So we send the batch again
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        # Then we send the last item which was missing before fixed
+        third_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}}
+                ]
+            }
+        }
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch])
+
     def test_auto_dedup_for_dup_requests(self):
         with BatchWriter(self.table_name, self.client,
                          flush_amount=5, overwrite_by_pkeys=["pkey", "skey"]) as b:

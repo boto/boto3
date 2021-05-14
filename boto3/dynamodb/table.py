@@ -135,16 +135,15 @@ class BatchWriter(object):
         self._items_buffer = self._items_buffer[self._flush_amount:]
         response = self._client.batch_write_item(
             RequestItems={self._table_name: items_to_send})
-        unprocessed_items = response['UnprocessedItems']
+        unprocessed_items = response['UnprocessedItems'].get(
+            self._table_name, [])
 
-        if unprocessed_items and unprocessed_items[self._table_name]:
+        if unprocessed_items:
             # Any unprocessed_items are immediately added to the
             # next batch we send.
-            self._items_buffer.extend(unprocessed_items[self._table_name])
-        else:
-            self._items_buffer = []
+            self._items_buffer.extend(unprocessed_items)
         logger.debug("Batch write sent %s, unprocessed: %s",
-                     len(items_to_send), len(self._items_buffer))
+                     len(items_to_send), len(unprocessed_items))
 
     def __enter__(self):
         return self
