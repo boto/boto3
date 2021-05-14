@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.17.73
+=======
+
+* api-change:``events``: [``botocore``] Update InputTransformer variable limit from 10 to 100 variables.
+* enhancement:``s3``: [``botocore``] Block endpoint resolution of clients configured with S3 pseudo-regions (e.g. ``aws-global``, ``s3-external-1``) that will never resolve to a correct access point endpoint.
+* api-change:``macie2``: [``botocore``] This release of the Amazon Macie API adds support for defining run-time, S3 bucket criteria for classification jobs. It also adds resources for querying data about AWS resources that Macie monitors.
+* api-change:``es``: [``botocore``] Adds support for cold storage.
+* api-change:``securityhub``: [``botocore``] Updated descriptions to add notes on array lengths.
+* api-change:``detective``: [``botocore``] Updated descriptions of array parameters to add the restrictions on the array and value lengths.
+* api-change:``transcribe``: [``botocore``] Transcribe Medical now supports identification of PHI entities within transcripts
+* api-change:``imagebuilder``: [``botocore``] Text-only updates for bundled documentation feedback tickets - spring 2021.
+* enhancement:FIPS: [``botocore``] Add validation to only attempt to connect to FIPS endpoints with a FIPS pseudo-region if the pseudo-region is explicitly known to the SDK.
+
+
 1.17.72
 =======
 
