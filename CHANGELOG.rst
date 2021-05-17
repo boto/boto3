@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.74
+=======
+
+* api-change:``mediaconnect``: [``botocore``] MediaConnect now supports JPEG XS for AWS Cloud Digital Interface (AWS CDI) uncompressed workflows, allowing you to establish a bridge between your on-premises live video network and the AWS Cloud.
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Documentation updates for Amazon A2I Runtime model
+* api-change:``applicationcostprofiler``: [``botocore``] APIs for AWS Application Cost Profiler.
+* api-change:``neptune``: [``botocore``] Neptune support for CopyTagsToSnapshots
+* api-change:``iotdeviceadvisor``: [``botocore``] AWS IoT Core Device Advisor is fully managed test capability for IoT devices. Device manufacturers can use Device Advisor to test their IoT devices for reliable and secure connectivity with AWS IoT.
+* api-change:``elasticache``: [``botocore``] Documentation updates for elasticache
+
+
 1.17.73
 =======
 
