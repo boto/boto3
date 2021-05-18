@@ -44,7 +44,7 @@ class TableResource(object):
         Example usage::
 
             with table.batch_writer() as batch:
-                for _ in xrange(1000000):
+                for _ in range(1000000):
                     batch.put_item(Item={'HashKey': '...',
                                          'Otherstuff': '...'})
                 # You can also delete_items in a batch.
