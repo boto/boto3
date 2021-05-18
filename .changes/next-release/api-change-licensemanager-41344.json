@@ -1,5 +1,0 @@
-{
-  "category": "``license-manager``", 
-  "type": "api-change", 
-  "description": "[``botocore``] AWS License Manager now supports periodic report generation."
-}
