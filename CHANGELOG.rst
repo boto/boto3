@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.76
+=======
+
+* api-change:``kinesisanalyticsv2``: [``botocore``] Kinesis Data Analytics now allows rapid iteration on Apache Flink stream processing through the Kinesis Data Analytics Studio feature.
+* api-change:``rekognition``: [``botocore``] Amazon Rekognition Custom Labels adds support for customer managed encryption, using AWS Key Management Service, of image files copied into the service and files written back to the customer.
+* api-change:``iam``: [``botocore``] Add pagination to ListUserTags operation
+* api-change:``eks``: [``botocore``] Update the EKS AddonActive waiter.
+* api-change:``autoscaling``: [``botocore``] With this release, customers can easily use Predictive Scaling as a policy directly through Amazon EC2 Auto Scaling configurations to proactively scale their applications ahead of predicted demand.
+* api-change:``lightsail``: [``botocore``] Documentation updates for Amazon Lightsail.
+
+
 1.17.75
 =======
 
