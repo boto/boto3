@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.77
+=======
+
+* api-change:``personalize``: [``botocore``] Added new API to stop a solution version creation that is pending or in progress for Amazon Personalize
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``quicksight``: [``botocore``] Add ARN based Row Level Security support to CreateDataSet/UpdateDataSet APIs.
+* api-change:``iam``: [``botocore``] Documentation updates for AWS Identity and Access Management (IAM).
+
+
 1.17.76
 =======
 

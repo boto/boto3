@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Added new API to stop a solution version creation that is pending or in progress for Amazon Personalize", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lexv2-models``", 
+    "description": "[``botocore``] Update lexv2-models client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Add ARN based Row Level Security support to CreateDataSet/UpdateDataSet APIs.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Documentation updates for AWS Identity and Access Management (IAM).", 
+    "type": "api-change"
+  }
+]
