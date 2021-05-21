@@ -126,7 +126,7 @@ few attributes (namely ``meta``, ``exceptions`` and ``waiter_names``).
 These are safe to read but any mutations should not be considered
 thread-safe.
 
-**Custom**\ `Botocore Events`_\ **:** Botocore (the library Boto3 is
+**Custom** \ `Botocore Events`_\ **:** Botocore (the library Boto3 is
 built on) allows advanced users to provide their own custom event hooks
 which may interact with boto3’s client. The majority of users will not
 need to use these interfaces, but those that do should no longer
