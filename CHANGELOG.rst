@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.79
+=======
+
+* api-change:``quicksight``: [``botocore``] Add new parameters on RegisterUser and UpdateUser APIs to assign or update external ID associated to QuickSight users federated through web identity.
+* api-change:``ce``: [``botocore``] Introduced FindingReasonCodes, PlatformDifferences, DiskResourceUtilization and NetworkResourceUtilization to GetRightsizingRecommendation action
+* api-change:``compute-optimizer``: [``botocore``] Adds support for 1) additional instance types, 2) additional instance metrics, 3) finding reasons for instance recommendations, and 4) platform differences between a current instance and a recommended instance type.
+* api-change:``ec2``: [``botocore``] This release adds support for creating and managing EC2 On-Demand Capacity Reservations on Outposts.
+* api-change:``logs``: [``botocore``] This release provides dimensions and unit support for metric filters.
+
+
 1.17.78
 =======
 
