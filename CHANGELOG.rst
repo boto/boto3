@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.80
+=======
+
+* api-change:``transfer``: [``botocore``] AWS Transfer Family customers can now use AWS Managed Active Directory or AD Connector to authenticate their end users, enabling seamless migration of file transfer workflows that rely on AD authentication, without changing end users' credentials or needing a custom authorizer.
+* api-change:``iot``: [``botocore``] This release includes support for a new feature: Job templates for AWS IoT Device Management Jobs. The release includes job templates as a new resource and APIs for managing job templates.
+* api-change:``workspaces``: [``botocore``] Adds support for Linux device types in WorkspaceAccessProperties
+
+
 1.17.79
 =======
 
