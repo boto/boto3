@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.17.83
+=======
+
+* api-change:``iotevents-data``: [``botocore``] Releasing new APIs for AWS IoT Events Alarms
+* api-change:``devicefarm``: [``botocore``] Introduces support for using our desktop testing service with applications hosted within your Virtual Private Cloud (VPC).
+* api-change:``kendra``: [``botocore``] Amazon Kendra now suggests popular queries in order to help guide query typing and help overall accuracy.
+* api-change:``iotsitewise``: [``botocore``] IoT SiteWise Monitor Portal API updates to add alarms feature configuration.
+* api-change:``resource-groups``: [``botocore``] Documentation updates for Resource Groups.
+* api-change:``lightsail``: [``botocore``] Documentation updates for Lightsail
+* api-change:``iotevents``: [``botocore``] Releasing new APIs for AWS IoT Events Alarms
+* api-change:``fsx``: [``botocore``] This release adds LZ4 data compression support to FSx for Lustre to reduce storage consumption of both file system storage and file system backups.
+* api-change:``sqs``: [``botocore``] Documentation updates for Amazon SQS for General Availability of high throughput for FIFO queues.
+
+
 1.17.82
 =======
 
