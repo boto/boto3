@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.82
+=======
+
+* api-change:``ec2``: [``botocore``] This release removes resource ids and tagging support for VPC security group rules.
+
+
 1.17.81
 =======
 
