@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``iotevents-data``", 
+    "description": "[``botocore``] Releasing new APIs for AWS IoT Events Alarms", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``devicefarm``", 
+    "description": "[``botocore``] Introduces support for using our desktop testing service with applications hosted within your Virtual Private Cloud (VPC).", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kendra``", 
+    "description": "[``botocore``] Amazon Kendra now suggests popular queries in order to help guide query typing and help overall accuracy.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotsitewise``", 
+    "description": "[``botocore``] IoT SiteWise Monitor Portal API updates to add alarms feature configuration.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``resource-groups``", 
+    "description": "[``botocore``] Documentation updates for Resource Groups.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lightsail``", 
+    "description": "[``botocore``] Documentation updates for Lightsail", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotevents``", 
+    "description": "[``botocore``] Releasing new APIs for AWS IoT Events Alarms", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``fsx``", 
+    "description": "[``botocore``] This release adds LZ4 data compression support to FSx for Lustre to reduce storage consumption of both file system storage and file system backups.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sqs``", 
+    "description": "[``botocore``] Documentation updates for Amazon SQS for General Availability of high throughput for FIFO queues.", 
+    "type": "api-change"
+  }
+]
