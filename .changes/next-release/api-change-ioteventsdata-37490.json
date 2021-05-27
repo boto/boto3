@@ -1,0 +1,5 @@
+{
+  "category": "``iotevents-data``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Releasing new APIs for AWS IoT Events Alarms"
+}
