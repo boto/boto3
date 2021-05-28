@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.84
+=======
+
+* api-change:``lookoutmetrics``: [``botocore``] Allowing dot(.) character in table name for RDS and Redshift as source connector.
+* api-change:``location``: [``botocore``] Adds support for calculation of routes, resource tagging and customer provided KMS keys.
+* api-change:``datasync``: [``botocore``] Added SecurityDescriptorCopyFlags option that allows for control of which components of SMB security descriptors are copied from source to destination objects.
+
+
 1.17.83
 =======
 
