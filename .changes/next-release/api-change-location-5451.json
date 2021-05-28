@@ -1,0 +1,5 @@
+{
+  "category": "``location``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Adds support for calculation of routes, resource tagging and customer provided KMS keys."
+}
