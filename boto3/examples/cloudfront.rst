@@ -28,7 +28,7 @@ Note that you will need the ``cryptography`` `library <https://cryptography.io/e
 
     cloudfront_signer = CloudFrontSigner(key_id, rsa_signer)
 
-    # Create a signed url that will be valid until the specfic expiry date
+    # Create a signed url that will be valid until the specific expiry date
     # provided using a canned policy.
     signed_url = cloudfront_signer.generate_presigned_url(
         url, date_less_than=expire_date)
