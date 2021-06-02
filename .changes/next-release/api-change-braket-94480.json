@@ -1,5 +1,0 @@
-{
-  "category": "``braket``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Introduction of a RETIRED status for devices."
-}
