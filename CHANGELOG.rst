@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.17.87
+=======
+
+* api-change:``s3``: [``botocore``] S3 Inventory now supports Bucket Key Status
+* api-change:``s3control``: [``botocore``] Amazon S3 Batch Operations now supports S3 Bucket Keys.
+* api-change:``route53resolver``: [``botocore``] Documentation updates for Route 53 Resolver
+* api-change:``ssm``: [``botocore``] Documentation updates for ssm to fix customer reported issue
+* api-change:``forecast``: [``botocore``] Added optional field AutoMLOverrideStrategy to CreatePredictor API that allows users to customize AutoML strategy. If provided in CreatePredictor request, this field is visible in DescribePredictor and GetAccuracyMetrics responses.
+
+
 1.17.86
 =======
 
