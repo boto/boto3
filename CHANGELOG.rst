@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.88
+=======
+
+* api-change:``rds``: [``botocore``] Documentation updates for RDS: fixing an outdated link to the RDS documentation in DBInstance$DBInstanceStatus
+* api-change:``pi``: [``botocore``] The new GetDimensionKeyDetails action retrieves the attributes of the specified dimension group for a DB instance or data source.
+* api-change:``cloudtrail``: [``botocore``] AWS CloudTrail supports data events on new service resources, including Amazon DynamoDB tables and S3 Object Lambda access points.
+* api-change:``medialive``: [``botocore``] Add support for automatically setting the H.264 adaptive quantization and GOP B-frame fields.
+* api-change:``autoscaling``: [``botocore``] Documentation updates for Amazon EC2 Auto Scaling
+* api-change:``qldb``: [``botocore``] Documentation updates for Amazon QLDB
+
+
 1.17.87
 =======
 
