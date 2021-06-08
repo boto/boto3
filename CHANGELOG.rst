@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.90
+=======
+
+* api-change:``fsx``: [``botocore``] This release adds support for auditing end-user access to files, folders, and file shares using Windows event logs, enabling customers to meet their security and compliance needs.
+* api-change:``servicecatalog``: [``botocore``] increase max pagesize for List/Search apis
+* api-change:``macie2``: [``botocore``] This release of the Amazon Macie API introduces stricter validation of S3 object criteria for classification jobs.
+* api-change:``cognito-idp``: [``botocore``] Documentation updates for cognito-idp
+
+
 1.17.89
 =======
 
