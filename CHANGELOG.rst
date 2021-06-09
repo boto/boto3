@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.91
+=======
+
+* api-change:``transfer``: [``botocore``] Documentation updates for the AWS Transfer Family service.
+* api-change:``personalize-events``: [``botocore``] Support for unstructured text inputs in the items dataset to to automatically extract key information from product/content description as an input when creating solution versions.
+* api-change:``proton``: [``botocore``] This is the initial SDK release for AWS Proton
+* api-change:``kendra``: [``botocore``] AWS Kendra now supports checking document status.
+
+
 1.17.90
 =======
 
