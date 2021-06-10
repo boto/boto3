@@ -1,5 +1,0 @@
-{
-  "category": "``appflow``", 
-  "type": "api-change", 
-  "description": "[``botocore``] Adding MAP_ALL task type support."
-}
