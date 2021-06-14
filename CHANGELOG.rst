@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.94
+=======
+
+* api-change:``lookoutmetrics``: [``botocore``] Added "LEARNING" status for anomaly detector and updated description for "Offset" parameter in MetricSet APIs.
+* api-change:``iotanalytics``: [``botocore``] Adds support for data store partitions.
+* api-change:``greengrassv2``: [``botocore``] We have verified the APIs being released here and are ready to release
+
+
 1.17.93
 =======
 
