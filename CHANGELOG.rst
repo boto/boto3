@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.96
+=======
+
+* api-change:``kms``: [``botocore``] Adds support for multi-Region keys
+* api-change:``ec2``: [``botocore``] This release adds support for VLAN-tagged network traffic over an Elastic Network Interface (ENI). This feature is in limited Preview for this release. Contact your account manager if you are interested in this feature.
+* api-change:``rds``: [``botocore``] This release enables fast cloning in Aurora Serverless. You can now clone between Aurora Serverless clusters and Aurora Provisioned clusters.
+* api-change:``mediatailor``: [``botocore``] Adds AWS Secrets Manager Access Token Authentication for Source Locations
+
+
 1.17.95
 =======
 
