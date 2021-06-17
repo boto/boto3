@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.17.97
+=======
+
+* api-change:``kendra``: [``botocore``] Amazon Kendra now supports the indexing of web documents for search through the web crawler.
+* api-change:``sagemaker``: [``botocore``] Enable ml.g4dn instance types for SageMaker Batch Transform and SageMaker Processing
+* api-change:``rds``: [``botocore``] This release enables Database Activity Streams for RDS Oracle
+* api-change:``chime``: [``botocore``] This release adds a new API UpdateSipMediaApplicationCall, to update an in-progress call for SipMediaApplication.
+
+
 1.17.96
 =======
 
