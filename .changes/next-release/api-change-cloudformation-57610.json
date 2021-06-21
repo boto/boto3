@@ -1,5 +1,0 @@
-{
-  "category": "``cloudformation``", 
-  "type": "api-change", 
-  "description": "[``botocore``] CloudFormation registry service now supports 3rd party public type sharing"
-}
