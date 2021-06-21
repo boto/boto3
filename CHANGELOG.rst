@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.17.98
+=======
+
+* api-change:``cloudformation``: [``botocore``] CloudFormation registry service now supports 3rd party public type sharing
+
+
 1.17.97
 =======
 
