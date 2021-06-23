@@ -1,0 +1,5 @@
+{
+  "category": "``mediatailor``", 
+  "type": "api-change", 
+  "description": "[``botocore``] Update GetChannelSchedule to return information on ad breaks."
+}
