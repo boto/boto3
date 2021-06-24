@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.17.100
+========
+
+* api-change:``chime``: [``botocore``] Adds EventIngestionUrl field to MediaPlacement
+* api-change:``cloud9``: [``botocore``] Minor update to AWS Cloud9 documentation to allow correct parsing of outputted text
+* api-change:``connect``: [``botocore``] Released Amazon Connect quick connects management API for general availability (GA). For more information, see https://docs.aws.amazon.com/connect/latest/APIReference/Welcome.html
+* api-change:``dax``: [``botocore``] Add support for encryption in transit to DAX clusters.
+* api-change:``wafv2``: [``botocore``] Added support for 15 new text transformation.
+* api-change:``kendra``: [``botocore``] Amazon Kendra now supports SharePoint 2013 and SharePoint 2016 when using a SharePoint data source.
+* api-change:``securityhub``: [``botocore``] Added new resource details for ECS clusters and ECS task definitions. Added additional information for S3 buckets, Elasticsearch domains, and API Gateway V2 stages.
+* api-change:``transfer``: [``botocore``] Customers can successfully use legacy clients with Transfer Family endpoints enabled for FTPS and FTP behind routers, firewalls, and load balancers by providing a Custom IP address used for data channel communication.
+* api-change:``codebuild``: [``botocore``] BucketOwnerAccess is currently not supported
+
+
 1.17.99
 =======
 
