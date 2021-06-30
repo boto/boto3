@@ -11,7 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 from decimal import Decimal, Context, Clamped
-from decimal import Overflow, Inexact, Underflow, Rounded
+from decimal import Overflow, Inexact, Underflow
 
 from boto3.compat import collections_abc
 
@@ -32,7 +32,7 @@ LIST = 'L'
 
 DYNAMODB_CONTEXT = Context(
     Emin=-128, Emax=126, prec=38,
-    traps=[Clamped, Overflow, Inexact, Rounded, Underflow])
+    traps=[Clamped, Overflow, Inexact, Underflow])
 
 
 BINARY_TYPES = (bytearray, six.binary_type)
@@ -277,7 +277,7 @@ class TypeDeserializer(object):
         return value
 
     def _deserialize_n(self, value):
-        return DYNAMODB_CONTEXT.create_decimal(value)
+        return Decimal(value, context=DYNAMODB_CONTEXT)
 
     def _deserialize_s(self, value):
         return value

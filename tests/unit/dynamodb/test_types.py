@@ -10,7 +10,7 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from decimal import Decimal
+from decimal import Decimal, DecimalException
 from tests import unittest
 
 from botocore.compat import six
@@ -76,6 +76,26 @@ class TestSerializer(unittest.TestCase):
     def test_serialize_decimal(self):
         self.assertEqual(
             self.serializer.serialize(Decimal('1.25')), {'N': '1.25'})
+
+        # Ensure insignificant digits truncated to fit precision:
+        self.assertEqual(
+            self.serializer.serialize(
+                Decimal('1000000000000000000000000000000000000000000000'
+                        '0000000000000000000000000000000000000000000000'
+                        '000000000')
+            ),
+            {'N': '1.0000000000000000000000000000000000000E+100'}
+        )
+
+        # Ensure significant digits aren't truncated or changed to fit:
+        with self.assertRaises(DecimalException):
+            self.serializer.serialize(
+                Decimal('1.99999999999999999999999999999999999999')
+            )
+        with self.assertRaises(DecimalException):
+            self.serializer.serialize(
+                Decimal('1.22222222222222222222222222222222222222')
+            )
 
     def test_serialize_float_error(self):
         with self.assertRaisesRegexp(
@@ -175,6 +195,14 @@ class TestDeserializer(unittest.TestCase):
     def test_deserialize_decimal(self):
         self.assertEqual(
             self.deserializer.deserialize({'N': '1.25'}), Decimal('1.25'))
+
+        self.assertEqual(
+            self.deserializer.deserialize(
+                {'N': '1000000000000000000000000000000000000000000000000000000'
+                      '0000000000000000000000000000000000000000000000'}
+            ),
+            Decimal('1E+100')
+        )
 
     def test_deserialize_string(self):
         self.assertEqual(
