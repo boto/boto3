@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.17.104
+========
+
+* api-change:``sagemaker``: [``botocore``] SageMaker model registry now supports up to 5 containers and associated environment variables.
+* api-change:``sqs``: [``botocore``] Documentation updates for Amazon SQS.
+* api-change:``ec2``: [``botocore``] Adding a new reserved field to support future infrastructure improvements for Amazon EC2 Fleet.
+
+
 1.17.103
 ========
 
