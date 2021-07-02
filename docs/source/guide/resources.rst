@@ -184,7 +184,7 @@ exist without a bucket, these are parent to child relationships.
 
 Waiters
 -------
-A waiter is similiar to an action. A waiter will poll the status of a
+A waiter is similar to an action. A waiter will poll the status of a
 resource and suspend execution until the resource reaches the state that is
 being polled for or a failure occurs while polling.
 Waiters automatically set the resource

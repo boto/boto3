@@ -34,7 +34,7 @@ in the *AWS Cloud9 User Guide*.
 Step 2: Create an environment
 -----------------------------
 After you sign in to the AWS Cloud9 console, use the console to 
-create an AWS Cloud9 development environment. (A *development environment* is 
+create an AWS Cloud9 development environment. (A *development environment* 
 is a place where you store your project's files and where you run the tools 
 to develop your apps.) After you create 
 the environment, AWS Cloud9 automatically opens the IDE for that environment.
