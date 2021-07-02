@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.105
+========
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``ec2``: [``botocore``] This release removes network-insights-boundary
+
+
 1.17.104
 ========
 
