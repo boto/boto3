@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.106
+========
+
+* api-change:``lambda``: [``botocore``] Added support for AmazonMQRabbitMQ as an event source. Added support for VIRTUAL_HOST as SourceAccessType for streams event source mappings.
+* api-change:``imagebuilder``: [``botocore``] Adds support for specifying parameters to customize components for recipes. Expands configuration of the Amazon EC2 instances that are used for building and testing images, including the ability to specify commands to run on launch, and more control over installation and removal of the SSM agent.
+* api-change:``mgn``: [``botocore``] Bug fix: Remove not supported EBS encryption type "NONE"
+* api-change:``eks``: [``botocore``] Adding new error code UnsupportedAddonModification for Addons in EKS
+* api-change:``macie2``: [``botocore``] Sensitive data findings in Amazon Macie now include enhanced location data for JSON and JSON Lines files
+* api-change:``sns``: [``botocore``] Documentation updates for Amazon SNS.
+
+
 1.17.105
 ========
 
