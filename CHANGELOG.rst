@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.108
+========
+
+* api-change:``eks``: [``botocore``] Added waiters for EKS FargateProfiles.
+* api-change:``outposts``: [``botocore``] Added property filters for listOutposts
+* api-change:``fms``: [``botocore``] AWS Firewall Manager now supports route table monitoring, and provides remediation action recommendations to security administrators for AWS Network Firewall policies with misconfigured routes.
+* api-change:``mediatailor``: [``botocore``] Add ListAlerts for Channel, Program, Source Location, and VOD Source to return alerts for resources.
+* api-change:``devops-guru``: [``botocore``] Add AnomalyReportedTimeRange field to include open and close time of anomalies.
+* api-change:``ssm-contacts``: [``botocore``] Updated description for CreateContactChannel contactId.
+
+
 1.17.107
 ========
 
