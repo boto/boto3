@@ -58,7 +58,7 @@ certain versions, you may provide constraints when installing::
 Using the AWS Common Runtime (CRT)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In addition to the default install of Boto3, you can choose to include the new AWS Common Runtime
+In addition to the default install of Boto3, you can choose to include the new `AWS Common Runtime <https://docs.aws.amazon.com/sdkref/latest/guide/common-runtime.html>`_
 (CRT). The AWS CRT is a collection of modular packages that serve as a new foundation for AWS SDKs.
 Each library provides better performance and minimal footprint for the functional area it
 implements. Using the CRT, SDKs can share the same base code when possible, improving consistency
