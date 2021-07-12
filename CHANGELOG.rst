@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.17.110
+========
+
+* api-change:``eks``: [``botocore``] Documentation updates for Wesley to support the parallel node upgrade feature.
+* api-change:``kendra``: [``botocore``] Amazon Kendra now supports Principal Store
+
+
 1.17.109
 ========
 
