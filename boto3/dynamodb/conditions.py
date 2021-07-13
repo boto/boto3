@@ -124,6 +124,13 @@ class AttributeBase(object):
         """
         return Between(self, low_value, high_value)
 
+    def cts(self, value):
+        """Creates a condition where the attribute contains the value.
+
+        :param value: The value the attribute contains.
+        """
+        return Contains(self, value)
+
     def __eq__(self, other):
         return isinstance(other, type(self)) and self.name == other.name
 
