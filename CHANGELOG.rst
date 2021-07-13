@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.17.111
+========
+
+* api-change:``amplifybackend``: [``botocore``] Added Sign in with Apple OAuth provider.
+* api-change:``redshift``: [``botocore``] Release new APIs to support new Redshift feature - Authentication Profile
+* api-change:``ssm``: [``botocore``] Changes to OpsCenter APIs to support a new feature, operational insights.
+* api-change:``lex-models``: [``botocore``] Customers can now migrate bots built with Lex V1 APIs to V2 APIs. This release adds APIs to initiate and manage the migration of a bot.
+* api-change:``directconnect``: [``botocore``] This release adds a new filed named awsLogicalDeviceId that it displays the AWS Direct Connect endpoint which terminates a physical connection's BGP Sessions.
+* api-change:``pricing``: [``botocore``] Documentation updates for api.pricing
+
+
 1.17.110
 ========
 
