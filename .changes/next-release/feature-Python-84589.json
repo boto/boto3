@@ -1,0 +1,5 @@
+{
+  "type": "feature",
+  "category": "Python",
+  "description": "[``botocore``] Dropped support for Python 2.7"
+}
