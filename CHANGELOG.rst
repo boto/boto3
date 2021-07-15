@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.18.0
+======
+
+* api-change:``ec2``: [``botocore``] This feature enables customers  to specify weekly recurring time window(s) for scheduled events that reboot, stop or terminate EC2 instances.
+* api-change:``cognito-idp``: [``botocore``] Documentation updates for cognito-idp
+* api-change:``ecs``: [``botocore``] Documentation updates for support of awsvpc mode on Windows.
+* api-change:``lex-models``: [``botocore``] Lex now supports the en-IN locale
+* api-change:``iotsitewise``: [``botocore``] Update the default endpoint for the APIs used to manage asset models, assets, gateways, tags, and account configurations. If you have firewalls with strict egress rules, configure the rules to grant you access to api.iotsitewise.[region].amazonaws.com or api.iotsitewise.[cn-region].amazonaws.com.cn.
+* feature:Python: Drop support for Python 2.7
+* feature:Python: [``botocore``] Dropped support for Python 2.7
+
+
 1.17.112
 ========
 

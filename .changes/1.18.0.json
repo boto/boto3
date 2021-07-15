@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] This feature enables customers  to specify weekly recurring time window(s) for scheduled events that reboot, stop or terminate EC2 instances.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-idp``",
+    "description": "[``botocore``] Documentation updates for cognito-idp",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Documentation updates for support of awsvpc mode on Windows.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lex-models``",
+    "description": "[``botocore``] Lex now supports the en-IN locale",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotsitewise``",
+    "description": "[``botocore``] Update the default endpoint for the APIs used to manage asset models, assets, gateways, tags, and account configurations. If you have firewalls with strict egress rules, configure the rules to grant you access to api.iotsitewise.[region].amazonaws.com or api.iotsitewise.[cn-region].amazonaws.com.cn.",
+    "type": "api-change"
+  },
+  {
+    "category": "Python",
+    "description": "Drop support for Python 2.7",
+    "type": "feature"
+  },
+  {
+    "category": "Python",
+    "description": "[``botocore``] Dropped support for Python 2.7",
+    "type": "feature"
+  }
+]
