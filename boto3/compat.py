@@ -64,6 +64,10 @@ def filter_python_deprecation_warnings():
 
 
 def _warn_deprecated_python():
+    """Python 2.7 is deprecated so this code will no longer run.
+
+    Use this template for future deprecation campaigns as needed.
+    """
     py_27_params = {
         'date': 'July 15, 2021',
         'blog_link': 'https://aws.amazon.com/blogs/developer/announcing-end-'
