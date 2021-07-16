@@ -91,6 +91,7 @@ class DynamoDBOperationNotSupportedError(Boto3Error):
             (operation, value, type(value)))
         Exception.__init__(self, msg)
 
+
 # FIXME: Backward compatibility
 DynanmoDBOperationNotSupportedError = DynamoDBOperationNotSupportedError
 
