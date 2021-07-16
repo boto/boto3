@@ -55,4 +55,8 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
+    project_urls={
+        'Documentation': 'https://boto3.amazonaws.com/v1/documentation/api/latest/index.html',
+        'Source': 'https://github.com/boto/boto3',
+    },
 )
