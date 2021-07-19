@@ -14,7 +14,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.21.1,<1.22.0',
+    'botocore>=1.21.2,<1.22.0',
     'jmespath>=0.7.1,<1.0.0',
     's3transfer>=0.5.0,<0.6.0'
 ]
@@ -55,4 +55,8 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
+    project_urls={
+        'Documentation': 'https://boto3.amazonaws.com/v1/documentation/api/latest/index.html',
+        'Source': 'https://github.com/boto/boto3',
+    },
 )

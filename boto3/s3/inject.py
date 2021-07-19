@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -77,6 +77,7 @@ def bucket_load(self, *args, **kwargs):
     except ClientError as e:
         if not e.response.get('Error', {}).get('Code') == 'AccessDenied':
             raise
+
 
 def object_summary_load(self, *args, **kwargs):
     """
@@ -758,4 +759,3 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     return self.meta.client.download_fileobj(
         Bucket=self.bucket_name, Key=self.key, Fileobj=Fileobj,
         ExtraArgs=ExtraArgs, Callback=Callback, Config=Config)
-
