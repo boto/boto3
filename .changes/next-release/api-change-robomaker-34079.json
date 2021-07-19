@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``robomaker``",
+  "description": "[``botocore``] This release allows customers to create a new version of WorldTemplates with support for Doors."
+}
