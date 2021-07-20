@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.18.3
+======
+
+* api-change:``compute-optimizer``: [``botocore``] Documentation updates for Compute Optimizer
+* api-change:``ec2``: [``botocore``] Added idempotency to the CreateVolume API using the ClientToken request parameter
+
+
 1.18.2
 ======
 

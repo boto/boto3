@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``compute-optimizer``",
+    "description": "[``botocore``] Documentation updates for Compute Optimizer",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Added idempotency to the CreateVolume API using the ClientToken request parameter",
+    "type": "api-change"
+  }
+]
