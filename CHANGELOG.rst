@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.18.5
+======
+
+* api-change:``medialive``: [``botocore``] MediaLive now supports passing through style data on WebVTT caption outputs.
+* api-change:``databrew``: [``botocore``] This SDK release adds two new features: 1) Output to Native JDBC destinations and 2) Adding configurations to profile jobs
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``s3control``: [``botocore``] Documentation updates for Amazon S3-control
+* api-change:``ec2``: [``botocore``] This release allows customers to assign prefixes to their elastic network interface and to reserve IP blocks in their subnet CIDRs. These reserved blocks can be used to assign prefixes to elastic network interfaces or be excluded from auto-assignment.
+* api-change:``qldb``: [``botocore``] Amazon QLDB now supports ledgers encrypted with customer managed KMS keys. Changes in CreateLedger, UpdateLedger and DescribeLedger APIs to support the changes.
+
+
 1.18.4
 ======
 
