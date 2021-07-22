@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medialive``",
-  "description": "[``botocore``] MediaLive now supports passing through style data on WebVTT caption outputs."
-}
