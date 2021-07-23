@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.6
+======
+
+* api-change:``securityhub``: [``botocore``] Added product name, company name, and Region fields for security findings. Added details objects for RDS event subscriptions and AWS ECS services. Added fields to the details for AWS Elasticsearch domains.
+* api-change:``imagebuilder``: [``botocore``] Update to documentation to reapply missing change to SSM uninstall switch default value and improve description.
+* api-change:``s3outposts``: [``botocore``] Add on-premise access type support for endpoints
+
+
 1.18.5
 ======
 
