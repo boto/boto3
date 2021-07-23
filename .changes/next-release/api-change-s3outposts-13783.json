@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``s3outposts``",
+  "description": "[``botocore``] Add on-premise access type support for endpoints"
+}
