@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``s3control``",
+    "description": "[``botocore``] S3 Access Point aliases can be used anywhere you use S3 bucket names to access data in S3",
+    "type": "api-change"
+  },
+  {
+    "category": "``textract``",
+    "description": "[``botocore``] Adds support for AnalyzeExpense, a new API to extract relevant data such as contact information, items purchased, and vendor name, from almost any invoice or receipt without the need for any templates or configuration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``proton``",
+    "description": "[``botocore``] Documentation-only update links",
+    "type": "api-change"
+  },
+  {
+    "category": "``identitystore``",
+    "description": "[``botocore``] Documentation updates for SSO API Ref.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Update cloudwatch client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``synthetics``",
+    "description": "[``botocore``] CloudWatch Synthetics now supports visual testing in its canaries.",
+    "type": "api-change"
+  }
+]
