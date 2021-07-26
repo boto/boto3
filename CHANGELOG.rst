@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.18.7
+======
+
+* api-change:``s3control``: [``botocore``] S3 Access Point aliases can be used anywhere you use S3 bucket names to access data in S3
+* api-change:``textract``: [``botocore``] Adds support for AnalyzeExpense, a new API to extract relevant data such as contact information, items purchased, and vendor name, from almost any invoice or receipt without the need for any templates or configuration.
+* api-change:``proton``: [``botocore``] Documentation-only update links
+* api-change:``identitystore``: [``botocore``] Documentation updates for SSO API Ref.
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``synthetics``: [``botocore``] CloudWatch Synthetics now supports visual testing in its canaries.
+
+
 1.18.6
 ======
 
