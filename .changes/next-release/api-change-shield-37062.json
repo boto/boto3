@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``shield``",
-  "description": "[``botocore``] Change name of DDoS Response Team (DRT) to Shield Response Team (SRT)"
-}

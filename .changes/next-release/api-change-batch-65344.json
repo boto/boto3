@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``batch``",
-  "description": "[``botocore``] Add support for ListJob filters"
-}
