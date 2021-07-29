@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``savingsplans``",
-  "description": "[``botocore``] Documentation update for valid Savings Plans offering ID pattern"
-}
