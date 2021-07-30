@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.11
+=======
+
+* api-change:``appsync``: [``botocore``] AWS AppSync now supports a new authorization mode allowing you to define your own authorization logic using an AWS Lambda function.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``secretsmanager``: [``botocore``] Add support for KmsKeyIds in the ListSecretVersionIds API response
+* api-change:``sagemaker``: [``botocore``] API changes with respect to Lambda steps in model building pipelines. Adds several waiters to async Sagemaker Image APIs. Add more instance types to AppInstanceType field
+
+
 1.18.10
 =======
 
