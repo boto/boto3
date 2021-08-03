@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.13
+=======
+
+* api-change:``redshift``: [``botocore``] API support for Redshift Data Sharing feature.
+* api-change:``iotsitewise``: [``botocore``] My AWS Service (placeholder) - This release introduces custom Intervals and offset for tumbling window in metric for AWS IoT SiteWise.
+* api-change:``glue``: [``botocore``] Add ConcurrentModificationException to create-table, delete-table, create-database, update-database, delete-database
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK has added control over the passthrough of XDS captions metadata to outputs.
+* api-change:``proton``: [``botocore``] Docs only add idempotent create apis
+
+
 1.18.12
 =======
 
