@@ -4,7 +4,7 @@ A sample tutorial
 =================
 This tutorial will show you how to use Boto3 with an AWS service. In this
 sample tutorial, you will learn how to use Boto3 with 
-`Amazon Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
+`Amazon Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_.
 
 SQS
 ---
@@ -18,7 +18,9 @@ Creating a queue
 Queues are created with a name. You may also optionally set queue
 attributes, such as the number of seconds to wait before an item may be
 processed. The examples below will use the queue name ``test``.
-Before creating a queue, you must first get the SQS service resource::
+Before creating a queue, you must first get the SQS service resource:
+
+.. code-block:: python
 
     # Get the service resource
     sqs = boto3.resource('sqs')
@@ -40,7 +42,9 @@ Reference: :py:meth:`SQS.ServiceResource.create_queue`
 Using an existing queue
 -----------------------
 It is possible to look up a queue by its name. If the queue does not exist,
-then an exception will be thrown::
+then an exception will be thrown:
+
+.. code-block:: python
 
     # Get the service resource
     sqs = boto3.resource('sqs')
@@ -52,7 +56,9 @@ then an exception will be thrown::
     print(queue.url)
     print(queue.attributes.get('DelaySeconds'))
 
-It is also possible to list all of your existing queues::
+It is also possible to list all of your existing queues:
+
+.. code-block:: python
 
     # Print out each queue name, which is part of its ARN
     for queue in sqs.queues.all():
@@ -60,8 +66,9 @@ It is also possible to list all of your existing queues::
 
 .. note::
 
-   To get the name from a queue, you must use its ARN, which is available
-   in the queue's ``attributes`` attribute. Using
+   To get the name from a queue, you must use its `Amazon Resource Name (ARN)
+   <https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html>`_,
+   which is available in the queue's ``attributes`` attribute. Using
    ``queue.attributes['QueueArn'].split(':')[-1]`` will return its name.
 
 Reference: :py:meth:`SQS.ServiceResource.get_queue_by_name`,
@@ -69,7 +76,9 @@ Reference: :py:meth:`SQS.ServiceResource.get_queue_by_name`,
 
 Sending messages
 ----------------
-Sending a message adds it to the end of the queue::
+Sending a message adds it to the end of the queue:
+
+.. code-block:: python
 
     # Get the service resource
     sqs = boto3.resource('sqs')
@@ -84,7 +93,9 @@ Sending a message adds it to the end of the queue::
     print(response.get('MessageId'))
     print(response.get('MD5OfMessageBody'))
 
-You can also create messages with custom attributes::
+You can also create messages with custom attributes:
+
+.. code-block:: python
 
     queue.send_message(MessageBody='boto3', MessageAttributes={
         'Author': {
@@ -94,7 +105,9 @@ You can also create messages with custom attributes::
     })
 
 Messages can also be sent in batches. For example, sending the two messages
-described above in a single request would look like the following::
+described above in a single request would look like the following:
+
+.. code-block:: python
 
     response = queue.send_messages(Entries=[
         {
@@ -124,7 +137,9 @@ Reference: :py:meth:`SQS.Queue.send_message`,
 
 Processing messages
 -------------------
-Messages are processed in batches::
+Messages are processed in batches:
+
+.. code-block:: python
 
     # Get the service resource
     sqs = boto3.resource('sqs')
@@ -149,7 +164,9 @@ Messages are processed in batches::
 
 Given *only* the messages that were sent in a batch with
 :py:meth:`SQS.Queue.send_messages` in the previous section, the above code
-will print out::
+will print out:
+
+.. code-block:: text
 
     Hello, world!
     Hello, boto3! (Daniel)

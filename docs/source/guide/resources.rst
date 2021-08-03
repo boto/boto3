@@ -9,7 +9,9 @@ Resources represent an object-oriented interface to Amazon Web Services (AWS).
 They provide a higher-level abstraction than the raw, low-level calls made by
 service clients. To use resources, you invoke the
 :py:meth:`~boto3.session.Session.resource` method of a
-:py:class:`~boto3.session.Session` and pass in a service name::
+:py:class:`~boto3.session.Session` and pass in a service name:
+
+.. code-block:: python
 
     # Get resources from the default session
     sqs = boto3.resource('sqs')
@@ -34,7 +36,9 @@ An identifier is a unique value that is used to call actions on the resource.
 Resources **must** have at least one identifier, except for the top-level
 service resources (e.g. ``sqs`` or ``s3``). An identifier is set at instance
 creation-time, and failing to provide all necessary identifiers during
-instantiation will result in an exception. Examples of identifiers::
+instantiation will result in an exception. Examples of identifiers:
+
+.. code-block:: python
 
     # SQS Queue (url is an identifier)
     queue = sqs.Queue(url='http://...')
@@ -48,7 +52,9 @@ instantiation will result in an exception. Examples of identifiers::
     # Raises exception, missing identifier: key!
     obj = s3.Object(bucket_name='boto3')
 
-Identifiers may also be passed as positional arguments::
+Identifiers may also be passed as positional arguments:
+
+.. code-block:: python
 
     # SQS Queue
     queue = sqs.Queue('http://...')
@@ -61,7 +67,9 @@ Identifiers may also be passed as positional arguments::
 
 Identifiers also play a role in resource instance equality. For two
 instances of a resource to be considered equal, their identifiers must
-be equal::
+be equal:
+
+.. code-block:: python
 
     >>> bucket1 = s3.Bucket('boto3')
     >>> bucket2 = s3.Bucket('boto3')
@@ -72,7 +80,9 @@ be equal::
     >>> bucket1 == bucket3
     False
 
-.. note::
+.. note:
+
+.. code-block:: python
 
    Only identifiers are taken into account for instance equality. Region,
    account ID and other data members are not considered. When using temporary
@@ -81,7 +91,9 @@ be equal::
 Resources may also have attributes, which are *lazy-loaded* properties on the
 instance. They may be set at creation time from the response of an action on
 another resource, or they may be set when accessed or via an explicit call to
-the ``load`` or ``reload`` action. Examples of attributes::
+the ``load`` or ``reload`` action. Examples of attributes:
+
+.. code-block:: python
 
     # SQS Message
     message.body
@@ -111,7 +123,9 @@ An action is a method which makes a call to the service. Actions may return a
 low-level response, a new resource instance or a list of new resource
 instances. Actions automatically set the resource identifiers as parameters,
 but allow you to pass additional parameters via keyword arguments. Examples
-of actions::
+of actions:
+
+.. code-block:: python
 
     # SQS Queue
     messages = queue.receive_messages()
@@ -125,7 +139,9 @@ of actions::
     response = obj.get()
     data = response['Body'].read()
 
-Examples of sending additional parameters::
+Examples of sending additional parameters:
+
+.. code-block:: python
 
     # SQS Service
     queue = sqs.get_queue_by_name(QueueName='test')
@@ -133,7 +149,9 @@ Examples of sending additional parameters::
     # SQS Queue
     queue.send_message(MessageBody='hello')
 
-.. note::
+.. note:
+
+.. code-block:: python
 
    Parameters **must** be passed as keyword arguments. They will not work
    as positional arguments.
@@ -146,7 +164,9 @@ A reference is an attribute which may be ``None`` or a related resource
 instance. The resource instance does not share identifiers with its
 reference resource, that is, it is not a strict parent to child relationship.
 In relational terms, these can be considered many-to-one or one-to-one.
-Examples of references::
+Examples of references:
+
+.. code-block:: python
 
     # EC2 Instance
     instance.subnet
@@ -164,7 +184,9 @@ Sub-resources
 A sub-resource is similar to a reference, but is a related class rather than
 an instance. Sub-resources, when instantiated, share identifiers with their
 parent. It is a strict parent-child relationship. In relational terms, these
-can be considered one-to-many. Examples of sub-resources::
+can be considered one-to-many. Examples of sub-resources:
+
+.. code-block:: python
 
     # SQS
     queue = sqs.Queue(url='...')
@@ -184,12 +206,14 @@ exist without a bucket, these are parent to child relationships.
 
 Waiters
 -------
-A waiter is similiar to an action. A waiter will poll the status of a
+A waiter is similar to an action. A waiter will poll the status of a
 resource and suspend execution until the resource reaches the state that is
 being polled for or a failure occurs while polling.
 Waiters automatically set the resource
 identifiers as parameters, but allow you to pass additional parameters via
-keyword arguments. Examples of waiters include::
+keyword arguments. Examples of waiters include:
+
+.. code-block:: python
 
     # S3: Wait for a bucket to exist.
     bucket.wait_until_exists()
@@ -199,8 +223,10 @@ keyword arguments. Examples of waiters include::
 
 
 Multithreading and multiprocessing
---------------------------------
-It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example::
+----------------------------------
+It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example:
+
+.. code-block:: python
 
     import boto3
     import boto3.session

@@ -10,11 +10,11 @@ Notes to refer to when upgrading ``boto3`` versions.
 What changed
 ~~~~~~~~~~~~
 
-The boto3 event system was changed to emit events based on the service id
+The boto3 event system was changed to emit events based on the service ID
 rather than the endpoint prefix or service name.
 
-Why was the change made
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Why it changed
+~~~~~~~~~~~~~~
 
 This was done to handle several issues that were becoming increasingly
 problematic:
@@ -27,8 +27,8 @@ problematic:
 * Services whose client name and endpoint prefix differed would require two
   different strings if you want to register against all events.
 
-How do I know if I'm impacted
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How to know you're impacted
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Any users relying on registering an event against one service impacting other
 services are impacted. You can consult the following table to see if you are
@@ -38,7 +38,7 @@ in the rightmost column, then you are impacted and will need to update.
 
 +----------------------+-------------------------+---------------------------------------------------+
 | Event Part           | Intended Target Service | Unintended Target Services                        |
-+----------------------+-------------------------+---------------------------------------------------+
++======================+=========================+===================================================+
 | rds                  | rds                     | neptune                                           |
 +----------------------+-------------------------+---------------------------------------------------+
 | autoscaling          | autoscaling             | application-autoscaling, autoscaling-plans        |
@@ -53,7 +53,7 @@ For example, if you are registering an event against
 an ``elbv2`` client, you will be impacted.
 
 If you are registering an event against one of the services in the Unintended
-Targets column, you may be impacted if you were relying on those events not
+Target Services column, you may be impacted if you were relying on those events not
 firing.
 
 If you are registering events using ``*`` in the service place, or are
@@ -63,7 +63,7 @@ without shared endpoints we do the work of translating the event name at
 registration and emission time. In future versions of boto3 we will remove
 this translation, so you may wish to update your code anyway.
 
-How do I update my code
+How to update your code
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 You will need to look at the events you are registering against and determine
@@ -93,7 +93,9 @@ To get the new event name, consult this table:
 | neptune                      | rds                  | neptune                      |
 +------------------------------+----------------------+------------------------------+
 
-Additionally, you can get the new event name in code like so::
+Additionally, you can get the new event name in code like so:
+
+.. code-block:: python
 
     import boto3
 

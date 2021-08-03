@@ -91,7 +91,6 @@ the appropriate method so this argument is not normally required.
     import boto3
     from botocore.exceptions import ClientError
 
-
     def create_presigned_url_expanded(client_method_name, method_parameters=None,
                                       expiration=3600, http_method=None):
         """Generate a presigned URL to invoke an S3.Client method

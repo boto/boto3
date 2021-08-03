@@ -410,8 +410,7 @@ in the ``~/.aws/config`` file.
 ``tcp_keepalive``
     Toggles the TCP Keep-Alive socket option used when creating connections.
     By default this value is ``false``; TCP Keepalive will not be used
-    when creating connections. To enable TCP Keepalive with the system default configurations,
-    set this value to ``true``.
+    when creating connections. To enable TCP Keepalive with the system default configurations, set this value to ``true``.
 
 ``max_attempts``
     An integer representing the maximum number of attempts that will be made for
@@ -424,16 +423,16 @@ in the ``~/.aws/config`` file.
 ``retry_mode``
     A string representing the type of retries Boto3 will perform.  Valid values are the following:
 
-        * ``legacy`` - The preexisting retry behavior.  This is the default value if
-          no retry mode is provided.
-        * ``standard`` - A standardized set of retry rules across the AWS SDKs.
-          This includes a standard set of errors that are retried and
-          support for retry quotas, which limit the number of unsuccessful retries
-          an SDK can make.  This mode will default the maximum number of attempts
-          to 3 unless a ``max_attempts`` is explicitly provided.
-        * ``adaptive`` - An experimental retry mode that includes all the
-          functionality of ``standard`` mode with automatic client-side
-          throttling.  This is a provisional mode whose behavior might change.
+    * ``legacy`` - The preexisting retry behavior.  This is the default value if
+      no retry mode is provided.
+    * ``standard`` - A standardized set of retry rules across the AWS SDKs.
+      This includes a standard set of errors that are retried and
+      support for retry quotas, which limit the number of unsuccessful retries
+      an SDK can make.  This mode will default the maximum number of attempts
+      to 3 unless a ``max_attempts`` is explicitly provided.
+    * ``adaptive`` - An experimental retry mode that includes all the
+      functionality of ``standard`` mode with automatic client-side
+      throttling.  This is a provisional mode whose behavior might change.
 
 
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html

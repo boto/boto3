@@ -18,7 +18,7 @@ This Python example shows you how to enable long polling in Amazon SQS in one of
 
 * For a newly created queue
 
-* For an existing queue
+* For an existing queuedd
 
 * Upon receipt of a message
 

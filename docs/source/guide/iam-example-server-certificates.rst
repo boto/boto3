@@ -11,7 +11,6 @@
 .. _aws-boto3-iam-examples-server-certs:   
 
 
-####################################
 Working with IAM server certificates
 ####################################
 

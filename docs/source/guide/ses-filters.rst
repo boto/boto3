@@ -10,7 +10,6 @@
    
 .. _aws-boto3-ses-filters:  
 
-
 ###################################
 Managing email filters with SES API 
 ###################################

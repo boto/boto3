@@ -6,7 +6,9 @@ Boto 2.x contains a number of customizations to make working with Amazon EC2 ins
 
 Creating the connection
 -----------------------
-Boto3 has both low-level clients and higher-level resources. For Amazon EC2, the higher-level resources are the most similar to Boto 2.x's ``ec2`` and ``vpc`` modules::
+Boto3 has both low-level clients and higher-level resources. For Amazon EC2, the higher-level resources are the most similar to Boto 2.x's ``ec2`` and ``vpc`` modules:
+
+.. code-block:: python
 
     # Boto 2.x
     import boto
@@ -19,7 +21,9 @@ Boto3 has both low-level clients and higher-level resources. For Amazon EC2, the
 
 Launching new instances
 -----------------------
-Launching new instances requires an image ID and the number of instances to launch. It can also take several optional parameters, such as the instance type and security group::
+Launching new instances requires an image ID and the number of instances to launch. It can also take several optional parameters, such as the instance type and security group:
+
+.. code-block:: python
 
     # Boto 2.x
     ec2_connection.run_instances('<ami-image-id>')
@@ -29,7 +33,9 @@ Launching new instances requires an image ID and the number of instances to laun
 
 Stopping and terminating instances
 --------------------------------
-Stopping and terminating multiple instances given a list of instance IDs uses Boto3 collection filtering::
+Stopping and terminating multiple instances given a list of instance IDs uses Boto3 collection filtering:
+
+.. code-block:: python
 
     ids = ['instance-id-1', 'instance-id-2', ...]
 
@@ -43,7 +49,9 @@ Stopping and terminating multiple instances given a list of instance IDs uses Bo
 
 Checking what instances are running
 -----------------------------------
-Boto3 collections come in handy when listing all your running instances as well. Every collection exposes a ``filter`` method that allows you to pass additional parameters to the underlying service API operation. The EC2 instances collection takes a parameter called ``Filters`` which is a list of names and values, for example::
+Boto3 collections come in handy when listing all your running instances as well. Every collection exposes a ``filter`` method that allows you to pass additional parameters to the underlying service API operation. The EC2 instances collection takes a parameter called ``Filters`` which is a list of names and values, for example:
+
+.. code-block:: python
 
     # Boto 2.x
     reservations = ec2_connection.get_all_reservations(
@@ -62,7 +70,9 @@ Boto3 collections come in handy when listing all your running instances as well.
 
 Checking health status of instances
 -----------------------------------
-It is possible to get scheduled maintenance information for your running instances. At the time of this writing Boto3 does not have a status resource, so you must drop down to the low-level client via ``ec2.meta.client``::
+It is possible to get scheduled maintenance information for your running instances. At the time of this writing Boto3 does not have a status resource, so you must drop down to the low-level client via ``ec2.meta.client``:
+
+.. code-block:: python
 
     # Boto 2.x
     for status in ec2_connection.get_all_instance_statuses():
@@ -74,7 +84,9 @@ It is possible to get scheduled maintenance information for your running instanc
 
 Working with EBS snapshots
 --------------------------
-Snapshots provide a way to create a copy of an EBS volume, as well as make new volumes from the snapshot which can be attached to an instance::
+Snapshots provide a way to create a copy of an EBS volume, as well as make new volumes from the snapshot which can be attached to an instance:
+
+.. code-block:: python
 
     # Boto 2.x
     snapshot = ec2_connection.create_snapshot('volume-id', 'Description')
@@ -90,7 +102,9 @@ Snapshots provide a way to create a copy of an EBS volume, as well as make new v
 
 Creating a VPC, subnet, and gateway
 -----------------------------------
-Creating VPC resources in Boto3 is very similar to Boto 2.x::
+Creating VPC resources in Boto3 is very similar to Boto 2.x:
+
+.. code-block:: python
 
     # Boto 2.x
     vpc = vpc_connection.create_vpc('10.0.0.0/24')
@@ -104,7 +118,9 @@ Creating VPC resources in Boto3 is very similar to Boto 2.x::
 
 Attaching and detaching an elastic IP and gateway
 -------------------------------------------------
-Elastic IPs and gateways provide a way for instances inside of a VPC to communicate with the outside world::
+Elastic IPs and gateways provide a way for instances inside of a VPC to communicate with the outside world:
+
+.. code-block:: python
 
     # Boto 2.x
     ec2_connection.attach_internet_gateway(gateway.id, vpc.id)

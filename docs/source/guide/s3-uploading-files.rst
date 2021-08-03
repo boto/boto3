@@ -26,7 +26,6 @@ and uploading each chunk in parallel.
     import boto3
     from botocore.exceptions import ClientError
 
-
     def upload_file(file_name, bucket, object_name=None):
         """Upload a file to an S3 bucket
 

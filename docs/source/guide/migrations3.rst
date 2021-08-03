@@ -6,7 +6,9 @@ Boto 2.x contains a number of customizations to make working with Amazon S3 buck
 
 Creating the connection
 -----------------------
-Boto3 has both low-level clients and higher-level resources. For Amazon S3, the higher-level resources are the most similar to Boto 2.x's ``s3`` module::
+Boto3 has both low-level clients and higher-level resources. For Amazon S3, the higher-level resources are the most similar to Boto 2.x's ``s3`` module:
+
+.. code-block:: python
 
     # Boto 2.x
     import boto
@@ -18,7 +20,9 @@ Boto3 has both low-level clients and higher-level resources. For Amazon S3, the 
 
 Creating a bucket
 -----------------
-Creating a bucket in Boto 2 and Boto3 is very similar, except that in Boto3 all action parameters must be passed via keyword arguments and a bucket configuration must be specified manually::
+Creating a bucket in Boto 2 and Boto3 is very similar, except that in Boto3 all action parameters must be passed via keyword arguments and a bucket configuration must be specified manually:
+
+.. code-block:: python
 
     # Boto 2.x
     s3_connection.create_bucket('mybucket')
@@ -31,7 +35,9 @@ Creating a bucket in Boto 2 and Boto3 is very similar, except that in Boto3 all 
 
 Storing data
 ------------
-Storing data from a file, stream, or string is easy::
+Storing data from a file, stream, or string is easy:
+
+.. code-block:: python
 
     # Boto 2.x
     from boto.s3.key import Key
@@ -44,7 +50,9 @@ Storing data from a file, stream, or string is easy::
 
 Accessing a bucket
 ------------------
-Getting a bucket is easy with Boto3's resources, however these do not automatically validate whether a bucket exists::
+Getting a bucket is easy with Boto3's resources, however these do not automatically validate whether a bucket exists:
+
+.. code-block:: python
 
     # Boto 2.x
     bucket = s3_connection.get_bucket('mybucket', validate=False)
@@ -65,7 +73,9 @@ Getting a bucket is easy with Boto3's resources, however these do not automatica
 
 Deleting a bucket
 -----------------
-All of the keys in a bucket must be deleted before the bucket itself can be deleted::
+All of the keys in a bucket must be deleted before the bucket itself can be deleted:
+
+.. code-block:: python
 
     # Boto 2.x
     for key in bucket:
@@ -79,7 +89,9 @@ All of the keys in a bucket must be deleted before the bucket itself can be dele
 
 Iteration of buckets and keys
 -----------------------------
-Bucket and key objects are no longer iterable, but now provide collection attributes which can be iterated::
+Bucket and key objects are no longer iterable, but now provide collection attributes which can be iterated:
+
+.. code-block:: python
 
     # Boto 2.x
     for bucket in s3_connection:
@@ -93,7 +105,9 @@ Bucket and key objects are no longer iterable, but now provide collection attrib
 
 Access controls
 ---------------
-Getting and setting canned access control values in Boto3 operates on an ``ACL`` resource object::
+Getting and setting canned access control values in Boto3 operates on an ``ACL`` resource object:
+
+.. code-block:: python
 
     # Boto 2.x
     bucket.set_acl('public-read')
@@ -103,7 +117,9 @@ Getting and setting canned access control values in Boto3 operates on an ``ACL``
     bucket.Acl().put(ACL='public-read')
     obj.Acl().put(ACL='public-read')
 
-It's also possible to retrieve the policy grant information::
+It's also possible to retrieve the policy grant information:
+
+.. code-block:: python
 
     # Boto 2.x
     acp = bucket.get_acl()
@@ -115,7 +131,9 @@ It's also possible to retrieve the policy grant information::
     for grant in acl.grants:
         print(grant['Grantee']['DisplayName'], grant['Permission'])
 
-Boto3 lacks the grant shortcut methods present in Boto 2.x, but it is still fairly simple to add grantees::
+Boto3 lacks the grant shortcut methods present in Boto 2.x, but it is still fairly simple to add grantees:
+
+.. code-block:: python
 
     # Boto 2.x
     bucket.add_email_grant('READ', 'user@domain.tld')
@@ -125,7 +143,9 @@ Boto3 lacks the grant shortcut methods present in Boto 2.x, but it is still fair
 
 Key metadata
 ------------
-It's possible to set arbitrary metadata on keys::
+It's possible to set arbitrary metadata on keys:
+
+.. code-block:: python
 
     # Boto 2.x
     key.set_metadata('meta1', 'This is my metadata value')
@@ -137,7 +157,9 @@ It's possible to set arbitrary metadata on keys::
 
 Managing CORS configurations
 ---------------------------
-Allows you to manage the cross-origin resource sharing configuration for S3 buckets::
+Allows you to manage the cross-origin resource sharing configuration for S3 buckets:
+
+.. code-block:: python
 
     # Boto 2.x
     cors = bucket.get_cors()

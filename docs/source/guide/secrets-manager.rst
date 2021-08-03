@@ -10,7 +10,6 @@
    
 .. _aws-boto3-secrets-manager:   
 
-###################
 AWS Secrets Manager
 ###################
 
@@ -33,7 +32,7 @@ To set up and run this example, you must first set up the following:
 * Create a secret with the AWS Secrets Manager, as described in the `AWS Secrets Manager Developer Guide <https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html>`_
 
 Retrieve the secret value
-=============================================
+=========================
 
 The following example shows how to:
  
@@ -47,7 +46,6 @@ Example
 
     import boto3
     from botocore.exceptions import ClientError
-
 
     def get_secret():
         secret_name = "MySecretName"
