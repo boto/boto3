@@ -24,10 +24,11 @@ To use Boto3, you first need to install it and its dependencies.
 Install or update Python
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before installing Boto3, install Python 3.6 or later; support for Python 2.7 and Python 3.5 and
-earlier is deprecated. After the deprecation date listed for each Python version, new releases of
-Boto3 will not include support for that version of Python. For details, including the deprecation
-schedule and how to update your project to use Python 3.6, see :ref:`guide_migration_py3`.
+Before installing Boto3, install Python 3.6 or later; support for Python 3.5 and
+earlier is deprecated. After the deprecation date listed for each Python
+version, new releases of Boto3 will not include support for that version of
+Python. For details, including the deprecation schedule and how to update your
+project to use Python 3.6, see :ref:`guide_migration_py3`.
 
 For information about how to get the latest version of Python, see the official `Python
 documentation <https://www.python.org/downloads/>`_. 
@@ -59,6 +60,37 @@ certain versions, you may provide constraints when installing:
 .. note::
 
    The latest development version of Boto3 is on `GitHub <https://github.com/boto/boto3>`_.
+
+Using the AWS Common Runtime (CRT)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In addition to the default install of Boto3, you can choose to include the new `AWS Common Runtime <https://docs.aws.amazon.com/sdkref/latest/guide/common-runtime.html>`_
+(CRT). The AWS CRT is a collection of modular packages that serve as a new foundation for AWS SDKs.
+Each library provides better performance and minimal footprint for the functional area it
+implements. Using the CRT, SDKs can share the same base code when possible, improving consistency
+and throughput optimizations across AWS SDKs.
+
+When the AWS CRT is included, Boto3 uses it to incorporate features not otherwise
+available in the AWS SDK for Python.
+
+At this time, Boto3 uses the AWS CRT's authentication package (`aws-c-auth
+<https://github.com/awslabs/aws-c-auth>`_) to add support for the `AWS Signature Version 4
+<https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html>`_ (sigv4) signer, which
+adds authentication to your AWS requests using your security credentials (your AWS access key and
+secret access key).
+
+Boto3 doesn't use the AWS CRT by default but you can opt into using it by specifying the
+:code:`crt` `extra feature <https://www.python.org/dev/peps/pep-0508/#extras>`_ when installing Boto3::
+
+    pip install boto3[crt]
+
+To revert to the non-CRT version of Boto3, use this command::
+
+    pip uninstall awscrt
+
+If you need to re-enable CRT,  reinstall :code:`boto3[crt]` to ensure you get a compatible version of :code:`awscrt`::
+
+    pip install boto3[crt]
 
 Configuration
 -------------

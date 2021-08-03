@@ -46,7 +46,7 @@ Here is an example of how the event system works::
 
 In this example, the handler ``add_my_bucket``
 is registered such that the handler will inject the
-value ``'mybucket`` for the ``Bucket`` parameter whenever the the
+value ``'mybucket`` for the ``Bucket`` parameter whenever the
 ``list_objects`` client call is made without the ``Bucket`` parameter. Note
 that if the same ``list_objects`` call is made without the ``Bucket``
 parameter and the registered handler, it will result in a validation error.
@@ -58,7 +58,7 @@ Here are the takeaways from this example:
   ``meta.events`` attribute on the client.
 * All functions registered to the event system must have ``**kwargs`` in
   the function signature. This is because emitting an event can have any
-  number of keyword arguments emitted along side it, and so if your
+  number of keyword arguments emitted alongside it, and so if your
   function is called without ``**kwargs``, its signature will have to
   match every keyword argument emitted by the event. This also allows for
   more keyword arguments to be added to the emitted event in the future

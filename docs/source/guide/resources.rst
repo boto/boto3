@@ -222,9 +222,13 @@ keyword arguments. Examples of waiters include:
     instance.wait_until_running()
 
 
-Multithreading and multiprocessing
+Multithreading or multiprocessing with resources
 ----------------------------------
-It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example:
+
+Resource instances are **not** thread safe and should not be shared
+across threads or processes. These special classes contain additional
+metadata that cannot be shared. It's recommended to create a new
+Resource for each thread or process:
 
 .. code-block:: python
 
@@ -234,13 +238,16 @@ It is recommended to create a resource instance for each thread / process in a m
 
     class MyTask(threading.Thread):
         def run(self):
+            # Here we create a new session per thread
             session = boto3.session.Session()
+
+            # Next, we create a resource client using our thread's session object
             s3 = session.resource('s3')
-            # ... do some work with S3 ...
 
-In the example above, each thread would have its own Boto3 session and its own instance of the S3 resource. This is a good idea because resources contain shared data when loaded and calling actions, accessing properties, or manually loading or reloading the resource can modify this data.
+            # Put your thread-safe code here
 
-.. note::
-    Resources are **not** thread safe. These special classes contain additional meta data that cannot be shared between threads. When using a Resource, it is recommended to instantiate a new Resource for each thread, as is shown in the example above. 
-    
-    Low-level clients **are** thread safe. When using a low-level client, it is recommended to instantiate your client then pass that client object to each of your threads. 
+In the example above, each thread would have its own Boto3 session and
+its own instance of the S3 resource. This is a good idea because
+resources contain shared data when loaded and calling actions, accessing
+properties, or manually loading or reloading the resource can modify
+this data.

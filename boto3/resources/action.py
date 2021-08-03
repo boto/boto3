@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -78,7 +78,7 @@ class ServiceAction(object):
         params.update(kwargs)
 
         logger.debug('Calling %s:%s with %r', parent.meta.service_name,
-                    operation_name, params)
+                     operation_name, params)
 
         response = getattr(parent.meta.client, operation_name)(*args, **params)
 
@@ -147,7 +147,7 @@ class BatchAction(ServiceAction):
             params.update(kwargs)
 
             logger.debug('Calling %s:%s with %r',
-                        service_name, operation_name, params)
+                         service_name, operation_name, params)
 
             response = getattr(client, operation_name)(*args, **params)
 
@@ -194,8 +194,8 @@ class WaiterAction(object):
         params.update(kwargs)
 
         logger.debug('Calling %s:%s with %r',
-                    parent.meta.service_name,
-                    self._waiter_resource_name, params)
+                     parent.meta.service_name,
+                     self._waiter_resource_name, params)
 
         client = parent.meta.client
         waiter = client.get_waiter(client_waiter_name)
