@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift``",
-  "description": "[``botocore``] API support for Redshift Data Sharing feature."
-}

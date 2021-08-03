@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediaconvert``",
-  "description": "[``botocore``] AWS Elemental MediaConvert SDK has added control over the passthrough of XDS captions metadata to outputs."
-}
