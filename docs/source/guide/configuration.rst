@@ -408,9 +408,10 @@ in the ``~/.aws/config`` file.
         All other Regions will use their respective regional endpoint.
 
 ``tcp_keepalive``
-    Toggles the TCP Keep-Alive socket option used when creating connections.
-    By default this value is ``false``; TCP Keepalive will not be used
-    when creating connections. To enable TCP Keepalive with the system default configurations, set this value to ``true``.
+    Toggles the TCP Keep-Alive socket option used when creating connections. By
+    default this value is ``false``; TCP Keepalive will not be used when
+    creating connections. To enable TCP Keepalive with the system default
+    configurations, set this value to ``true``.
 
 ``max_attempts``
     An integer representing the maximum number of attempts that will be made for
@@ -421,7 +422,8 @@ in the ``~/.aws/config`` file.
     and 3 in the ``standard`` and ``adaptive`` retry modes.
 
 ``retry_mode``
-    A string representing the type of retries Boto3 will perform.  Valid values are the following:
+    A string representing the type of retries Boto3 will perform.  Valid values
+    are the following:
 
     * ``legacy`` - The preexisting retry behavior.  This is the default value if
       no retry mode is provided.

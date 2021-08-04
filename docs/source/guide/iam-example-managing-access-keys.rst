@@ -111,9 +111,9 @@ Example
 Get the access key last used
 ============================
 
-Get information about when the specified access key was last used. The information includes the 
-date and time of last use, along with the AWS service and region that were specified in the last request 
-made with that key.
+Get information about when the specified access key was last used. The
+information includes the date and time of last use, along with the AWS service
+and region that were specified in the last request made with that key.
 
 The example below shows how to:
  
@@ -127,6 +127,7 @@ Example
 
     import boto3
 
+
     # Create IAM client
     iam = boto3.client('iam')
 
@@ -137,7 +138,7 @@ Example
 
     print(response['AccessKeyLastUsed'])
 
- 
+
 Update access key status
 ========================
 
