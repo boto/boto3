@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``transcribe``",
+  "description": "[``botocore``] This release adds support for call analytics (batch) within Amazon Transcribe."
+}
