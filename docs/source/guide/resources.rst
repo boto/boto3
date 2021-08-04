@@ -206,10 +206,9 @@ exist without a bucket, these are parent to child relationships.
 
 Waiters
 -------
-A waiter is similar to an action. A waiter will poll the status of a
-resource and suspend execution until the resource reaches the state that is
-being polled for or a failure occurs while polling.
-Waiters automatically set the resource
+A waiter is similar to an action. A waiter will poll the status of a resource
+and suspend execution until the resource reaches the state that is being polled
+for or a failure occurs while polling. Waiters automatically set the resource
 identifiers as parameters, but allow you to pass additional parameters via
 keyword arguments. Examples of waiters include:
 
@@ -223,10 +222,9 @@ keyword arguments. Examples of waiters include:
 
 Multithreading or multiprocessing with resources
 ------------------------------------------------
-
 Resource instances are **not** thread safe and should not be shared
 across threads or processes. These special classes contain additional
-meta data that cannot be shared. It's recommended to create a new
+metadata that cannot be shared. It's recommended that you create a new
 Resource for each thread or process:
 
 .. code-block:: python
