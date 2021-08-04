@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.14
+=======
+
+* api-change:``rds``: [``botocore``] This release adds AutomaticRestartTime to the DescribeDBInstances and DescribeDBClusters operations. AutomaticRestartTime indicates the time when a stopped DB instance or DB cluster is restarted automatically.
+* api-change:``imagebuilder``: [``botocore``] Updated list actions to include a list of valid filters that can be used in the request.
+* api-change:``transcribe``: [``botocore``] This release adds support for call analytics (batch) within Amazon Transcribe.
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``ssm-incidents``: [``botocore``] Documentation updates for Incident Manager.
+
+
 1.18.13
 =======
 
