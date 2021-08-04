@@ -131,22 +131,31 @@ To ensure the AWS SDK for Python uses no TLS version earlier than TLS 1.2, you m
 Determining supported protocols
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-First, create a self-signed certificate to use for the test server and the SDK using OpenSSL::
+First, create a self-signed certificate to use for the test server and the SDK
+using OpenSSL:
 
-    openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+.. code-block:: sh
 
-Then spin up a test server using OpenSSL::
+    $ openssl req -subj '/CN=localhost' -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
 
-    openssl s_server -key key.pem -cert cert.pem -www
+Then spin up a test server using OpenSSL:
 
-In a new terminal window, create a virtual environment and install the SDK::
+.. code-block:: sh
 
-    python3 -m venv test-env
-    source test-env/bin/activate
-    pip install botocore
+    $ openssl s_server -key key.pem -cert cert.pem -www
+
+In a new terminal window, create a virtual environment and install the SDK:
+
+.. code-block:: sh
+
+    $ python3 -m venv test-env
+    $ source test-env/bin/activate
+    $ pip install botocore
 
 
-Create a new Python script called ``check.py`` that will use the SDK’s underlying HTTP library::
+Create a new Python script called ``check.py`` that will use the SDK’s underlying HTTP library:
+
+.. code-block:: sh
 
     import urllib3
     URL = 'https://localhost:4433/'
@@ -158,36 +167,52 @@ Create a new Python script called ``check.py`` that will use the SDK’s underly
     r = http.request('GET', URL)
     print(r.data.decode('utf-8'))
 
-Run the script::
+Run the script:
 
-    python check.py 
+.. code-block:: sh
+
+    $ python check.py
 
 This will give details about the connection made. Search for ``Protocol :`` in the output. If the output is ``TLSv1.2`` or later, the SDK will default to TLS v1.2 and later. If it's earlier, you need to recompile OpenSSL and then recompile Python.
 
-However, even if your installation of Python defaults to TLS v1.2 or later, it's still possible for Python to renegotiate to a version earlier than TLS v1.2 if the server doesn't support TLS v1.2+. To check that Python will not automatically renegotiate to these earlier versions, restart the test server with the following::
+However, even if your installation of Python defaults to TLS v1.2 or later,
+it's still possible for Python to renegotiate to a version earlier than TLS
+v1.2 if the server doesn't support TLS v1.2+. To check that Python will not
+automatically renegotiate to these earlier versions, restart the test server
+with the following:
 
-    openssl s_server -key key.pem -cert cert.pem -no_tls1_3 -no_tls1_2 -www
+.. code-block:: sh
+
+    $ openssl s_server -key key.pem -cert cert.pem -no_tls1_3 -no_tls1_2 -www
 
 .. note::
 
     If you are using an older version of OpenSSL, you might not have the ``-no_tls_3`` flag available. 
     In this case, just remove the flag because the version of OpenSSL you are using doesn't support TLS v1.3.
 
-Rerun the Python script::
+Rerun the Python script:
 
-    python check.py
+.. code-block:: sh
 
-If your installation of Python correctly does not renegotiate for versions earlier than TLS 1.2, you should receive an SSL error::
+    $ python check.py
 
-    urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='localhost', port=4433): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: UNSUPPORTED_PROTOCOL] unsupported protocol (_ssl.c:1108)')))
+If your installation of Python correctly does not renegotiate for versions
+earlier than TLS 1.2, you should receive an SSL error:
+
+.. code-block:: sh
+
+    urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='localhost',
+    port=4433): Max retries exceeded with url: / (Caused by SSLError(SSLError(1,
+    '[SSL: UNSUPPORTED_PROTOCOL] unsupported protocol (_ssl.c:1108)')))
 
 If you are able to make a connection, you need to recompile OpenSSL and Python to disable negotiation of protocols earlier than TLS v1.2.
 
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure the SDK or CLI doesn't not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
+To ensure the SDK or CLI doesn't not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it:
 
+.. code-block:: sh
 
     #!/usr/bin/env bash
     set -e
@@ -210,18 +235,23 @@ To ensure the SDK or CLI doesn't not negotiate for anything earlier than TLS 1.2
     curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
-    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
+    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX \
+            --disable-shared > /dev/null
     make > /dev/null
     sudo make install > /dev/null
 
 
 This will compile a version of Python that has a statically linked OpenSSL that will not automatically negotiate anything earlier than TLS 1.2. This will also install OpenSSL in the directory: ``/opt/openssl-with-min-tls1_2`` and install Python in the directory: ``/opt/python-with-min-tls1_2``. 
 
-After you run this script, you should be able to use this newly installed version of Python::
+After you run this script, you should be able to use this newly installed version of Python:
 
-    /opt/python-with-min-tls1_2/bin/python3 --version
+.. code-block:: sh
 
-This should print out::
+    $ /opt/python-with-min-tls1_2/bin/python3 --version
+
+This should print out:
+
+.. code-block:: sh
 
     Python 3.8.1
 

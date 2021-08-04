@@ -6,7 +6,7 @@ Session
 Overview
 ---------
 
-A session manages state about a particular configuration. By default, a session is created for you when needed. However, it's possible and recommended that in some scenarios you maintain your own session. Sessions typically store the following:
+A session manages state about a particular :doc:`configuration <configuration>`. By default, a session is created for you when needed. However, it's possible and recommended that in some scenarios you maintain your own session. Sessions typically store the following:
 
 * Credentials
 * AWS Region
@@ -16,7 +16,9 @@ A session manages state about a particular configuration. By default, a session 
 Default session
 ----------------
 
-Boto3 acts as a proxy to the default session. This is created automatically when you create a low-level client or resource client::
+Boto3 acts as a proxy to the default session. This is created automatically when you create a low-level client or resource client:
+
+.. code-block:: python
 
     import boto3
 
@@ -28,8 +30,9 @@ Boto3 acts as a proxy to the default session. This is created automatically when
 Custom session
 ---------------
 
-You can also manage your own session and create low-level clients or resource clients from it::
+You can also manage your own session and create low-level clients or resource clients from it:
 
+.. code-block:: python
 
     import boto3
     import boto3.session
@@ -62,9 +65,9 @@ You can configure each session with specific credentials, AWS Region information
 Multithreading or multiprocessing with sessions
 -----------------------------------------------
 
-Similar to ``Resource`` objects, ``Session`` objects are not thread safe
-and should not be shared across threads and processes. It's recommended
-to create a new ``Session`` object for each thread or process::
+Similar to ``Resource`` objects, ``Session`` objects are not thread safe and should not be shared across threads and processes. You should create a new ``Session`` object for each thread or process:
+
+.. code-block:: python
 
     import boto3
     import boto3.session

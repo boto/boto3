@@ -15,8 +15,8 @@ Amazon EC2 examples
 ###################
 
 .. meta::
-   :description:
-   :keywords: AWS EC2 code examples for the AWS SDK for Python
+   :description: AWS EC2 code examples for the AWS SDK for Python.
+   :keywords: AWS EC2
    
 Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizeable computing 
 capacity in servers in Amazon's data centers—that you use to build and host your software systems.

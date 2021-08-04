@@ -10,7 +10,6 @@
    
 .. _aws-boto3-iam-managing-access-keys:   
 
-########################
 Managing IAM access keys
 ########################
 
@@ -128,7 +127,6 @@ Example
 
     import boto3
 
-
     # Create IAM client
     iam = boto3.client('iam')
 
@@ -138,7 +136,6 @@ Example
     )
 
     print(response['AccessKeyLastUsed'])
-
 
  
 Update access key status

@@ -18,10 +18,12 @@ Creating paginators
 
 Paginators are created via the ``get_paginator()`` method of a boto3
 client. The ``get_paginator()`` method accepts an operation name and returns
-a reusable ``Paginator`` object. You then call the ``paginate`` method of the
+a reusable ``Paginator`` object. You then call the ``paginate()`` method of the
 Paginator, passing in any relevant operation parameters to apply to the
-underlying API operation. The ``paginate`` method then returns an iterable
-``PageIterator``::
+underlying API operation. The ``paginate()`` method then returns an iterable
+``PageIterator``:
+
+.. code-block:: python
 
     import boto3
 
@@ -41,10 +43,12 @@ underlying API operation. The ``paginate`` method then returns an iterable
 Customizing page iterators
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You must call the ``paginate`` method of a Paginator in order to iterate over
-the pages of API operation results. The ``paginate`` method accepts a
+You must call the ``paginate()`` method of a Paginator in order to iterate over
+the pages of API operation results. The ``paginate()`` method accepts a
 ``PaginationConfig`` named argument that can be used to customize the
-pagination::
+pagination:
+
+.. code-block:: python
 
     paginator = client.get_paginator('list_objects')
     page_iterator = paginator.paginate(Bucket='my-bucket',
@@ -76,7 +80,9 @@ Many Paginators can be filtered server-side with options that are passed
 through to each underlying API call. For example,
 :py:meth:`S3.Paginator.list_objects.paginate` accepts a ``Prefix`` parameter
 used to filter the paginated results by prefix server-side before sending them
-to the client::
+to the client:
+
+.. code-block:: python
 
     import boto3
     
@@ -92,10 +98,14 @@ to the client::
 Filtering results with JMESPath
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`JMESPath <http://jmespath.org>`_ is a query language for JSON that can be used
-directly on paginated results. You can filter results client-side using
+`JMESPath <http://jmespath.org>`_ is a query language for JSON that can be
+used directly on paginated results. You can filter results client-side using
 JMESPath expressions that are applied to each page of results through the
 ``search`` method of a ``PageIterator``.
+
+This example shows how to use a JMESPath expression to paginate through the
+results of a search for objects in the S3 bucket "my-bucket" whose size is
+greater than 100 bytes.
 
 .. code-block:: python
 
@@ -105,14 +115,14 @@ JMESPath expressions that are applied to each page of results through the
     paginator = client.get_paginator('list_objects')
     page_iterator = paginator.paginate(Bucket='my-bucket')
     filtered_iterator = page_iterator.search("Contents[?Size > `100`][]")
+
     for key_data in filtered_iterator:
         print(key_data)
 
-When filtering with JMESPath expressions, each page of results that is yielded
-by the paginator is mapped through the JMESPath expression. If a JMESPath
-expression returns a single value that is not an array, that value is yielded
-directly. If the result of applying the JMESPath expression to a page of
-results is a list, then each value of the list is yielded individually
-(essentially implementing a flat map). For example, in the above expression,
-each key that has a ``Size`` greater than `100` is yielded by the
-``filtered_iterator``.
+When filtering with JMESPath expressions, each page of results the paginator
+yields is mapped through the JMESPath expression. If a JMESPath expression
+returns a single value that is not an array, that value is yielded directly.
+If the result of applying the JMESPath expression to a page of results is a
+list, then each value of the list is yielded individually (essentially
+implementing a flat map). For example, in the above expression, each key that
+has a ``Size`` greater than ``100`` is yielded by the ``filtered_iterator``.

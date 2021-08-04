@@ -10,7 +10,6 @@
    
 .. _aws-boto3-iam-examples-policies:
 
-#########################
 Working with IAM policies
 #########################
 

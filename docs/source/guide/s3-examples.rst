@@ -15,8 +15,8 @@ Amazon S3 examples
 ##################
 
 .. meta::
-   :description:
-   :keywords: s3 python
+   :description: Python examples that use the AWS Simple Storage Service (Amazon S3).
+   :keywords: Amazon S3 Python
 
 Amazon Simple Storage Service (Amazon S3) is an object storage service that 
 offers scalability, data availability, security, and performance.

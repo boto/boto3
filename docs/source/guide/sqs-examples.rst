@@ -15,7 +15,7 @@ Amazon SQS examples
 ###################
 
 .. meta::
-   :description:
+   :description: Python examples for the AWS Simple Queue Service (AWS SQS).
    :keywords: AWS SQS
 
 The code examples in this section demonstrate using the Amazon Web Services 

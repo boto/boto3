@@ -8,16 +8,16 @@
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
 
-##################
+#############################
 AWS PrivateLink for Amazon S3
-##################
+#############################
 
 This section demonstrates how to configure an S3 client to use an interface
 VPC endpoint.
 
 
 Configuring the client endpoint URL
-================================
+===================================
 
 When configuring an S3 client to use an interface VPC endpoint it's important
 to note that only the resource type specified in the endpoint can be addressed

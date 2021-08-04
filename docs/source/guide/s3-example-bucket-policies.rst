@@ -21,9 +21,9 @@ policies are defined using the same JSON format as a resource-based IAM policy.
 Retrieve a bucket policy
 ========================
 
-Retrieve a bucket's policy by calling the AWS SDK for Python 
-``get_bucket_policy`` method. The method accepts a parameter that specifies 
-the bucket name.
+Retrieve a bucket's policy by calling the AWS SDK for Python
+:py:meth:`~S3.Client.get_bucket_policy` method. The method accepts a parameter
+that specifies the bucket name.
 
 .. code-block:: python
 
@@ -38,12 +38,11 @@ the bucket name.
 Set a bucket policy
 ===================
 
-A bucket's policy can be set by calling the ``put_bucket_policy`` method.
+A bucket's policy can be set by calling the :py:meth:`~S3.Client.put_bucket_policy` method.
 
 The policy is defined in the same JSON format as an IAM policy. The policy 
 defined in the example below enables any user to retrieve any object 
 stored in the bucket identified by the ``bucket_name`` variable.
-
 
 .. code-block:: python
 
@@ -73,7 +72,7 @@ stored in the bucket identified by the ``bucket_name`` variable.
 Delete a bucket policy
 ======================
 
-A bucket's policy can be deleted by calling the ``delete_bucket_policy`` method.
+A bucket's policy can be deleted by calling the :py:meth:`~S3.Client.delete_bucket_policy` method.
 
 .. code-block:: python
 

@@ -10,13 +10,12 @@
 
 .. _aws-boto-iam-examples:
 
-###########################################
 AWS Identity and Access Management examples
 ###########################################
 
 .. meta::
-   :description:
-   :keywords: AWS IAM code examples for the Amazon Web Services (AWS) SDK for Python
+   :description: AWS IAM code examples for the Amazon Web Services (AWS) SDK for Python.
+   :keywords: AWS IAM
    
    
 AWS Identity and Access Management (IAM) is a web service that enables Amazon Web Services (AWS) 

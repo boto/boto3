@@ -10,9 +10,8 @@
    
 .. _aws-boto3-iam-examples-managing-users:   
 
-******************
 Managing IAM users
-******************
+##################
 
 This Python example shows you how to create a user, list users, update a user name and delete a user.
 

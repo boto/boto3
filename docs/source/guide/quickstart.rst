@@ -36,12 +36,17 @@ documentation <https://www.python.org/downloads/>`_.
 Install Boto3
 ~~~~~~~~~~~~~
 
-Install the latest Boto3 release via :command:`pip`::
+Install the latest Boto3 release via :command:`pip`:
+
+.. code-block:: sh
 
     pip install boto3
 
 If your project requires a specific version of Boto3, or has compatibility concerns with
-certain versions, you may provide constraints when installing::
+certain versions, you may provide constraints when installing:
+
+.. code-block:: sh
+
 
     # Install Boto3 version 1.0 specifically
     pip install boto3==1.0.0
@@ -101,20 +106,26 @@ Once the user has been created, see `Managing access keys
 to learn how to create and retrieve the keys used to authenticate the user.
 
 If you have the `AWS CLI <http://aws.amazon.com/cli/>`_ installed, then you can use the
-:command:`aws configure` command to configure your credentials file::
+:command:`aws configure` command to configure your credentials file:
+
+.. code-block:: sh
 
     aws configure
 
 Alternatively, you can create the credentials file yourself. By default, its location is
 ``~/.aws/credentials``. At a minimum, the credentials file should specify the access key and secret
-access key. In this example, the key and secret key for the account are specified the ``default`` profile::
+access key. In this example, the key and secret key for the account are specified the ``default`` profile:
+
+.. code-block:: ini
 
     [default]
     aws_access_key_id = YOUR_ACCESS_KEY
     aws_secret_access_key = YOUR_SECRET_KEY
 
 You may also want to add a default region to the AWS configuration file, which is located by default
-at ``~/.aws/config``::
+at ``~/.aws/config``:
+
+.. code-block:: ini
 
     [default]
     region=us-east-1
@@ -127,23 +138,28 @@ creating connections. See :ref:`guide_configuration` for in-depth configuration 
 Using Boto3
 ------------
 
-To use Boto3, you must first import it and indicate which service or services you're going to use::
+To use Boto3, you must first import it and indicate which service or services you're going to use:
+
+.. code-block:: python
 
     import boto3
 
     # Let's use Amazon S3
     s3 = boto3.resource('s3')
 
-Now that you have an ``s3`` resource, you can make send requests to the service. The following code uses the ``buckets`` collection to print out all bucket names::
+Now that you have an ``s3`` resource, you can make send requests to the service. The following code uses the ``buckets`` collection to print out all bucket names:
+
+.. code-block:: python
 
     # Print out bucket names
     for bucket in s3.buckets.all():
         print(bucket.name)
 
 You can also upload and download binary data. For example, the following uploads a new file to S3,
-assuming that the bucket ``my-bucket`` already exists::
+assuming that the bucket ``my-bucket`` already exists:
 
-    # Upload a new file
+.. code-block:: python
+
     data = open('test.jpg', 'rb')
     s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
 

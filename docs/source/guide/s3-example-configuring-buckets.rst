@@ -22,8 +22,7 @@ the allowed origins, HTTP methods (GET, PUT, etc.), and other elements.
 Retrieve a bucket CORS configuration
 ====================================
 
-Retrieve a bucket's CORS configuration by calling the AWS SDK for Python 
-``get_bucket_cors`` method.
+Retrieve a bucket's CORS configuration by calling the AWS SDK for Python :py:meth:`~S3.Client.get_bucket_cors` method.
 
 .. code-block:: python
 
@@ -57,8 +56,8 @@ Retrieve a bucket's CORS configuration by calling the AWS SDK for Python
 Set a bucket CORS configuration
 ===============================
 
-A bucket's CORS configuration can be set by calling the ``put_bucket_cors`` 
-method.
+A bucket's CORS configuration can be set by calling the
+:py:meth:`~S3.Client.put_bucket_cors` method.
 
 .. code-block:: python
 

@@ -10,7 +10,6 @@
    
 .. _aws-boto3-iam-managing-account-aliases:   
 
-############################
 Managing IAM account aliases
 ############################
 

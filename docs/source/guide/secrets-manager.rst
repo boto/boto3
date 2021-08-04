@@ -7,12 +7,13 @@
    This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
-   
+    
 .. _aws-boto3-secrets-manager:   
-
+ 
 ###################
 AWS Secrets Manager
 ###################
+ 
 
 This Python example shows you how to retrieve the decrypted secret value from an AWS Secrets Manager secret. The secret could be created using either the Secrets Manager console or the CLI/SDK. 
 

@@ -10,7 +10,6 @@
 
 .. _aws-boto3-examples:
 
-#############
 Code examples
 #############
 

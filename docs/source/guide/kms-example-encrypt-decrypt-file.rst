@@ -25,7 +25,7 @@ To encrypt and decrypt data, the example uses the well-known Python ``cryptograp
 This package is not part of the Python standard library and must be installed separately, for
 example, with the ``pip`` command.
 
-::
+.. code-block:: sh
 
     pip install cryptography
 

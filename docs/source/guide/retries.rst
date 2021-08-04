@@ -24,8 +24,10 @@ Legacy mode is the default mode used by any Boto3 client you create. As its name
 
 **Legacy mode’s functionality includes:**
 
-* A default value of 5 for maximum retry attempts. This value can be overwritten through the ``max_attempts`` configuration parameter.
-* Retry attempts for a limited number of errors/exceptions::
+* A default value of 5 for maximum retry attempts. This value can be overwritten through the ``max-attempts`` configuration parameter.
+* Retry attempts for a limited number of errors/exceptions:
+
+.. code-block:: python
 
    # General socket/connection errors
    ConnectionError
@@ -41,7 +43,7 @@ Legacy mode is the default mode used by any Boto3 client you create. As its name
    ProvisionedThroughputExceededException
 
 * Retry attempts on several HTTP status codes, including 429, 500, 502, 503, 504, and 509.
-* Any retry attempt will include an exponential backoff by a base factor of 2.
+* Any retry attempt will include an exponential back-off by a base factor of 2.
 
 
 .. note::
@@ -56,7 +58,9 @@ Standard mode is a retry mode that was introduced with the updated retry handler
 **Standard mode’s functionality includes:**
 
 * A default value of 3 for maximum retry attempts. This value can be overwritten through the ``max_attempts`` configuration parameter.
-* Retry attempts for an expanded list of errors/exceptions::
+* Retry attempts for an expanded list of errors/exceptions:
+
+.. code-block:: python
 
    # Transient errors/exceptions
    RequestTimeout
@@ -81,10 +85,10 @@ Standard mode is a retry mode that was introduced with the updated retry handler
    EC2ThrottledException
 
 * Retry attempts on nondescriptive, transient error codes. Specifically, these HTTP status codes: 500, 502, 503, 504.
-* Any retry attempt will include an exponential backoff by a base factor of 2 for a maximum backoff time of 20 seconds.
+* Any retry attempt will include an exponential back-off by a base factor of 2 for a maximum back-off time of 20 seconds.
 
 Adaptive retry mode
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Adaptive retry mode is an experimental retry mode that includes all the features of standard mode. In addition to the standard mode features, adaptive mode also introduces client-side rate limiting through the use of a token bucket and rate-limit variables that are dynamically updated with each retry attempt. This mode offers flexibility in client-side retries that adapts to the error/exception state response from an AWS service.
 
@@ -95,12 +99,12 @@ With each new retry attempt, adaptive mode modifies the rate-limit variables bas
 
 
 Configuring a retry mode
--------------------------
+------------------------
 
 Boto3 includes a variety of both retry configurations as well as configuration methods to consider when creating your client object.
 
 Available configuration options
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Boto3, users can customize two retry configurations:
 
@@ -108,9 +112,11 @@ In Boto3, users can customize two retry configurations:
 * ``max_attempts`` - This provides Boto3’s retry handler with a value of maximum retry attempts, where the initial call counts toward the ``max_attempts`` value that you provide.
 
 Defining a retry configuration in your AWS configuration file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This first way to define your retry configuration is to update your global AWS configuration file. The default location for your AWS config file is ``~/.aws/config``. Here’s an example of an AWS config file with the retry configuration options used::
+This first way to define your retry configuration is to update your global AWS configuration file. The default location for your AWS config file is ``~/.aws/config``. Here’s an example of an AWS config file with the retry configuration options used:
+
+.. code-block:: ini
 
    [myConfigProfile]
    region = us-east-1
@@ -120,7 +126,7 @@ This first way to define your retry configuration is to update your global AWS c
 Any Boto3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``legacy``, and the default ``max_attempts`` value is 5.
 
 Defining a retry configuration in a Config object for your Boto3 client
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The second way to define your retry configuration is to use botocore to enable more flexibility for you to specify your retry configuration using a ``Config`` object that you can pass to your client at runtime. This method is useful if you don't want to configure retry behavior globally with your AWS config file 
 
@@ -161,12 +167,12 @@ The following is an example of instantiating a ``Config`` object and passing it 
 
 
 Validating retry attempts
---------------------------
+-------------------------
 
 To ensure that your retry configuration is correct and working properly, there are a number of ways you can validate that your client's retries are occurring. 
 
 Checking retry attempts in your client logs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you enable Boto3’s logging, you can validate and check your client’s retry attempts in your client’s logs. Notice, however, that you need to enable ``DEBUG`` mode in your logger to see any retry attempts. The client log entries for retry attempts will appear differently, depending on which retry mode you’ve configured.
 
@@ -190,7 +196,9 @@ Retry messages are generated by ``botocore.retries.standard``. You’ll see one 
 Checking retry attempts in an AWS service response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can check the number of retry attempts your client has made by parsing the response botocore provides when making a call to an AWS service API. Responses are handled by an underlying botocore module, and formatted into a dictionary that's part of the JSON response object. You can access the number of retry attempts your client has taken by calling the ``RetryAttempts`` key in the ``ResponseMetaData`` dictionary::
+You can check the number of retry attempts your client has made by parsing the response botocore provides when making a call to an AWS service API. Responses are handled by an underlying botocore module, and formatted into a dictionary that's part of the JSON response object. You can access the number of retry attempts your client has taken by calling the ``RetryAttempts`` key in the ``ResponseMetaData`` dictionary:
+
+.. code-block:: python
 
    'ResponseMetadata': {
       'RequestId': '1234567890ABCDEF',

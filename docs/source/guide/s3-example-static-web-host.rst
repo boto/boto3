@@ -20,7 +20,7 @@ Retrieve a website configuration
 ================================
 
 Retrieve a bucket's website configuration by calling the AWS SDK for Python 
-``get_bucket_website`` method.
+:py:meth:`~S3.Client.get_bucket_website` method.
 
 .. code-block:: python
 
@@ -35,7 +35,7 @@ Set a website configuration
 ===========================
 
 A bucket's website configuration can be set by calling the 
-``put_bucket_website`` method.
+:py:meth:`~S3.Client.put_bucket_website` method.
 
 
 .. code-block:: python
@@ -56,7 +56,7 @@ Delete a website configuration
 ==============================
 
 A bucket's website configuration can be deleted by calling the 
-``delete_bucket_website`` method.
+:py:meth:`~S3.Client.delete_bucket_website` method.
 
 .. code-block:: python
 
