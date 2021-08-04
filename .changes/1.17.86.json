@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``autoscaling``", 
+    "description": "[``botocore``] You can now launch EC2 instances with GP3 volumes when using Auto Scaling groups with Launch Configurations", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lightsail``", 
+    "description": "[``botocore``] Documentation updates for Lightsail", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Documentation updates for Amazon ECS.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``docdb``", 
+    "description": "[``botocore``] This SDK release adds support for DocDB global clusters.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Documentation updates for AWS Identity and Access Management (IAM).", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``braket``", 
+    "description": "[``botocore``] Introduction of a RETIRED status for devices.", 
+    "type": "api-change"
+  }
+]

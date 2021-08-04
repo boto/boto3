@@ -54,7 +54,7 @@ Prerequisite tasks
   
   Use the following role policy when creating the IAM role.
 
- .. code-block::  python
+ .. code-block:: python
 
         {
            "Version": "2012-10-17",

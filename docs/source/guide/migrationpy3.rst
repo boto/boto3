@@ -14,7 +14,8 @@ module) and Boto3 (which implements the API functionality and higher-level featu
 Timeline
 --------
 Going forward, all projects using Boto3 need to transition to Python 3.6 or later. Boto3 and
-Botocore support for Python 3.4 and 3.5 has already ended, and support for Python 2.7 will end effective July 15, 2021.
+Botocore ended support for Python 3.4 and 3.5 on Feb 21, 2021, and support for Python 2.7
+ended July 15, 2021.
 
 Updating your project to use Python 3
 -------------------------------------

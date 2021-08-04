@@ -259,7 +259,7 @@ Using a low-level Amazon SQS client, here’s an example of catching a generic o
     queue_url = 'SQS_QUEUE_URL'
 
     try:
-        client.send_message(QueueUrl=queue_url, MessageBody=('some_message')
+        client.send_message(QueueUrl=queue_url, MessageBody=('some_message'))
 
     except botocore.exceptions.ClientError as err:
         if err.response['Error']['Code'] == 'InternalError': # Generic error

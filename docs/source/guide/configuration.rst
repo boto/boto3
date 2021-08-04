@@ -76,10 +76,10 @@ In the following example, a proxy list is set up to use ``proxy.amazon.com``, po
     }
 
     my_config = Config(
-        'region_name': 'us-east-2',
-        'signature_version': 'v4',
-        'proxies': proxy_definitions
-    }
+        region_name='us-east-2',
+        signature_version='v4',
+        proxies=proxy_definitions
+    )
 
     client = boto3.client('kinesis', config=my_config)
 
@@ -101,13 +101,13 @@ You can configure how Boto3 uses proxies by specifying the ``proxies_config`` op
     }
 
     my_config = Config(
-        'region_name': 'us-east-2',
-        'signature_version': 'v4',
-        'proxies': proxy_definitions,
-        'proxies_config': {
+        region_name='us-east-2',
+        signature_version='v4',
+        proxies=proxy_definitions,
+        proxies_config={
             'proxy_client_cert': '/path/of/certificate'
         }
-    }
+    )
 
     client = boto3.client('kinesis', config=my_config)
 

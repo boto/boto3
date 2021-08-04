@@ -107,3 +107,52 @@ with the method's appropriate parameters passed in::
 
     # Begin waiting for the S3 bucket, mybucket, to exist
     s3_bucket_exists_waiter.wait(Bucket='mybucket')
+
+Multithreading or multiprocessing with clients
+----------------------------------------------
+
+Unlike Resources and Sessions, clients **are** generally *thread-safe*.
+There are some caveats, defined below, to be aware of though.
+
+Caveats
+~~~~~~~
+
+**Multi-Processing:** While clients are *thread-safe*, they cannot be
+shared across processes due to their networking implementation. Doing so
+may lead to incorrect response ordering when calling services.
+
+**Shared Metadata:** Clients expose metadata to the end user through a
+few attributes (namely ``meta``, ``exceptions`` and ``waiter_names``).
+These are safe to read but any mutations should not be considered
+thread-safe.
+
+**Custom** \ `Botocore Events`_\ **:** Botocore (the library Boto3 is
+built on) allows advanced users to provide their own custom event hooks
+which may interact with boto3’s client. The majority of users will not
+need to use these interfaces, but those that do should no longer
+consider their clients thread-safe without careful review.
+
+General Example
+~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    import boto3.session
+    from concurrent.futures import ThreadPoolExecutor
+
+    def do_s3_task(client, task_definition):
+        # Put your thread-safe code here
+
+    def my_workflow():
+        # Create a session and use it to make our client
+        session = boto3.session.Session()
+        s3_client = session.client('s3')
+
+        # Define some work to be done, this can be anything
+        my_tasks = [ ... ]
+
+        # Dispatch work tasks with our s3_client
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = [executor.submit(do_s3_task, s3_client, task) for task in my_tasks]
+
+.. _Botocore Events: https://botocore.amazonaws.com/v1/documentation/api/latest/topics/events.html
