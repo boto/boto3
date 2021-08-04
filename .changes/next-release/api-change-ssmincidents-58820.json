@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ssm-incidents``",
-  "description": "[``botocore``] Documentation updates for Incident Manager."
-}
