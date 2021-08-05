@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.18.15
+=======
+
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``autoscaling``: [``botocore``] EC2 Auto Scaling adds configuration checks and Launch Template validation to Instance Refresh.
+
+
 1.18.14
 =======
 
