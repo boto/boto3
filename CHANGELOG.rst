@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.18.16
+=======
+
+* api-change:``synthetics``: [``botocore``] Documentation updates for Visual Monitoring feature and other doc ticket fixes.
+* api-change:``chime-sdk-identity``: [``botocore``] The Amazon Chime SDK Identity APIs allow software developers to create and manage unique instances of their messaging applications.
+* api-change:``chime-sdk-messaging``: [``botocore``] The Amazon Chime SDK Messaging APIs allow software developers to send and receive messages in custom messaging applications.
+* api-change:``connect``: [``botocore``] This release adds support for agent status and hours of operation. For details, see the Release Notes in the Amazon Connect Administrator Guide.
+* api-change:``lightsail``: [``botocore``] This release adds support to track when a bucket access key was last used.
+* api-change:``athena``: [``botocore``] Documentation updates for Athena.
+
+
 1.18.15
 =======
 
