@@ -1,5 +1,0 @@
-{
-  "type": "enchancement",
-  "category": "Client",
-  "description": "[``botocore``] Improve client performance by caching _alias_event_name on EventAliaser"
-}

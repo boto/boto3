@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``chime``",
+    "description": "[``botocore``] Add support for \"auto\" in Region field of StartMeetingTranscription API request.",
+    "type": "api-change"
+  },
+  {
+    "category": "Client",
+    "description": "[``botocore``] Improve client performance by caching _alias_event_name on EventAliaser",
+    "type": "enchancement"
+  }
+]

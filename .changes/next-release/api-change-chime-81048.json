@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``chime``",
-  "description": "[``botocore``] Add support for \"auto\" in Region field of StartMeetingTranscription API request."
-}

@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.18.18
+=======
+
+* api-change:``chime``: [``botocore``] Add support for "auto" in Region field of StartMeetingTranscription API request.
+* enchancement:Client: [``botocore``] Improve client performance by caching _alias_event_name on EventAliaser
+
+
 1.18.17
 =======
 
