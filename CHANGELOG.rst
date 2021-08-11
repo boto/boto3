@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.18.19
+=======
+
+* api-change:``snow-device-management``: [``botocore``] AWS Snow Family customers can remotely monitor and operate their connected AWS Snowcone devices.
+* api-change:``ecs``: [``botocore``] Documentation updates for ECS.
+* api-change:``nimble``: [``botocore``] Add new attribute 'ownedBy' in Streaming Session APIs. 'ownedBy' represents the AWS SSO Identity Store User ID of the owner of the Streaming Session resource.
+* api-change:``codebuild``: [``botocore``] CodeBuild now allows you to make the build results for your build projects available to the public without requiring access to an AWS account.
+* api-change:``ebs``: [``botocore``] Documentation updates for Amazon EBS direct APIs.
+* api-change:``route53``: [``botocore``] Documentation updates for route53
+
+
 1.18.18
 =======
 
