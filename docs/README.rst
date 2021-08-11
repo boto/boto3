@@ -4,7 +4,7 @@ Documentation for boto3 can be found `here <https://boto3.amazonaws.com/v1/docum
 
 Generating Documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~
-Note: `Botocore's <https://github.com/boto/botocore>`_ requirement-docs.txt must be installed prior to attempting the following steps.
+Note: `Botocore's <https://github.com/boto/botocore/blob/develop/requirements-docs.txt>`_ requirement-docs.txt must be installed prior to attempting the following steps.
 
 Sphinx is used for documentation. You can generate HTML locally with the
 following:
