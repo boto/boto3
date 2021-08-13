@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.21
+=======
+
+* api-change:``quicksight``: [``botocore``] Documentation updates for QuickSight.
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``customer-profiles``: [``botocore``] This release introduces Standard Profile Objects, namely Asset and Case which contain values populated by data from third party systems and belong to a specific profile. This release adds an optional parameter, ObjectFilter to the ListProfileObjects API in order to search for these Standard Objects.
+* api-change:``elasticache``: [``botocore``] This release adds ReplicationGroupCreateTime field to ReplicationGroup which indicates the UTC time when ElastiCache ReplicationGroup is created
+
+
 1.18.20
 =======
 
