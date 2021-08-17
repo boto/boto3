@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.23
+=======
+
+* api-change:``cloud9``: [``botocore``] Added DryRun parameter to CreateEnvironmentEC2 API. Added ManagedCredentialsActions parameter to UpdateEnvironment API
+* api-change:``ec2``: [``botocore``] This release adds support for EC2 ED25519 key pairs for authentication
+* api-change:``clouddirectory``: [``botocore``] Documentation updates for clouddirectory
+* api-change:``ce``: [``botocore``] This release is a new feature for Cost Categories: Split charge rules. Split charge rules enable you to allocate shared costs between your cost category values.
+* api-change:``logs``: [``botocore``] Documentation-only update for CloudWatch Logs
+
+
 1.18.22
 =======
 
