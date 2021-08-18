@@ -45,7 +45,7 @@ class TestSessionErrorMessages(unittest.TestCase):
         err_regex = (
             '%s.*resource does not exist.' % bad_resource_name
         )
-        with self.assertRaisesRegexp(ResourceNotExistsError, err_regex):
+        with self.assertRaisesRegex(ResourceNotExistsError, err_regex):
             boto3.resource(bad_resource_name)
 
 
