@@ -685,8 +685,8 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
         p = resource.Queue('test1')
         q = resource.Queue('test2')
 
-        self.assertNotEquals(p, q, "Should not be equal resource")
-        self.assertNotEquals(hash(p), hash(q), "Hash values should be different")
+        self.assertNotEqual(p, q, "Should not be equal resource")
+        self.assertNotEqual(hash(p), hash(q), "Hash values should be different")
 
     def test_dangling_resource_create_with_kwarg(self):
         resource = self.load('test', self.model, self.defs)()
