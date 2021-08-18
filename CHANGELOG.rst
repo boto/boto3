@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.24
+=======
+
+* api-change:``codebuild``: [``botocore``] CodeBuild now allows you to make the build results for your build projects available to the public without requiring access to an AWS account.
+* api-change:``route53``: [``botocore``] Documentation updates for route53
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``route53resolver``: [``botocore``] Documentation updates for Route 53 Resolver
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker now supports Asynchronous Inference endpoints. Adds PlatformIdentifier field that allows Notebook Instance creation with different platform selections. Increases the maximum number of containers in multi-container endpoints to 15. Adds more instance types to InstanceType field.
+
+
 1.18.23
 =======
 
