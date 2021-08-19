@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``appflow``",
+  "description": "[``botocore``] This release adds support for SAPOData connector and extends Veeva connector for document extraction."
+}
