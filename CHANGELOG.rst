@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.25
+=======
+
+* api-change:``ec2``: [``botocore``] The ImportImage API now supports the ability to create AMIs with AWS-managed licenses for Microsoft SQL Server for both Windows and Linux.
+* api-change:``memorydb``: [``botocore``] AWS MemoryDB  SDK now supports all APIs for newly launched MemoryDB service.
+* api-change:``application-autoscaling``: [``botocore``] This release extends Application Auto Scaling support for replication group of Amazon ElastiCache Redis clusters. Auto Scaling monitors and automatically expands node group count and number of replicas per node group when a critical usage threshold is met or according to customer-defined schedule.
+* api-change:``appflow``: [``botocore``] This release adds support for SAPOData connector and extends Veeva connector for document extraction.
+
+
 1.18.24
 =======
 
