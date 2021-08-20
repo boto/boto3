@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ec2``",
-  "description": "[``botocore``] encryptionInTransitSupported added to DescribeInstanceTypes API"
-}
