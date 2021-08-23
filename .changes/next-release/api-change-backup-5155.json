@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``backup``",
-  "description": "[``botocore``] AWS Backup - Features: Evaluate your backup activity and generate audit reports."
-}
