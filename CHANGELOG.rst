@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.28
+=======
+
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK has added MBAFF encoding support for AVC video and the ability to pass encryption context from the job settings to S3.
+* api-change:``polly``: [``botocore``] Amazon Polly adds new New Zealand English voice - Aria. Aria is available as Neural voice only.
+* api-change:``transcribe``: [``botocore``] This release adds support for feature tagging with Amazon Transcribe batch jobs.
+* api-change:``ssm``: [``botocore``] Updated Parameter Store property for logging improvements.
+* api-change:``iot-data``: [``botocore``] Updated Publish with support for new Retain flag and added two new API operations: GetRetainedMessage, ListRetainedMessages.
+
+
 1.18.27
 =======
 
