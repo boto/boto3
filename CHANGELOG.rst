@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.29
+=======
+
+* api-change:``fms``: [``botocore``] AWS Firewall Manager now supports triggering resource cleanup workflow when account or resource goes out of policy scope for AWS WAF, Security group, AWS Network Firewall, and Amazon Route 53 Resolver DNS Firewall policies.
+* api-change:``ec2``: [``botocore``] Support added for IMDS IPv6 endpoint
+* api-change:``datasync``: [``botocore``] Added include filters to CreateTask and UpdateTask, and added exclude filters to StartTaskExecution, giving customers more granular control over how DataSync transfers files, folders, and objects.
+* api-change:``events``: [``botocore``] AWS CWEvents adds an enum of EXTERNAL for EcsParameters LaunchType for PutTargets API
+
+
 1.18.28
 =======
 
