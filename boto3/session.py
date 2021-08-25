@@ -256,10 +256,7 @@ class Session(object):
 
         """
         if endpoint_url is None:
-            try:
-                endpoint_url = os.environ["AWS_ENDPOINT_URL"]
-            except KeyError:
-                pass
+            endpoint_url = os.environ.get("AWS_ENDPOINT_URL")
 
         return self._session.create_client(
             service_name, region_name=region_name, api_version=api_version,
