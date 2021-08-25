@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -64,6 +64,10 @@ def filter_python_deprecation_warnings():
 
 
 def _warn_deprecated_python():
+    """Python 2.7 is deprecated so this code will no longer run.
+
+    Use this template for future deprecation campaigns as needed.
+    """
     py_27_params = {
         'date': 'July 15, 2021',
         'blog_link': 'https://aws.amazon.com/blogs/developer/announcing-end-'

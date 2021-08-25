@@ -2,7 +2,7 @@
 Boto3 - The AWS SDK for Python
 ===============================
 
-|Build Status| |Version| |Gitter|
+|Version| |Gitter|
 
 Boto3 is the Amazon Web Services (AWS) Software Development Kit (SDK) for
 Python, which allows Python developers to write software that makes use
@@ -10,12 +10,14 @@ of services like Amazon S3 and Amazon EC2. You can find the latest, most
 up to date, documentation at our `doc site`_, including a list of
 services that are supported.
 
+On 01/15/2021 deprecation for Python 2.7 was announced and support was dropped
+on 07/15/2021. To avoid disruption, customers using Boto3 on Python 2.7 may
+need to upgrade their version of Python or pin the version of Boto3. For
+more information, see this `blog post <https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-python-2-7-in-aws-sdk-for-python-and-aws-cli-v1/>`__.
+
 
 .. _boto: https://docs.pythonboto.org/
 .. _`doc site`: https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
-.. |Build Status| image:: http://img.shields.io/travis/boto/boto3/develop.svg?style=flat
-    :target: https://travis-ci.org/boto/boto3
-    :alt: Build Status
 .. |Gitter| image:: https://badges.gitter.im/boto/boto3.svg
    :target: https://gitter.im/boto/boto3
    :alt: Gitter
@@ -134,5 +136,5 @@ More Resources
 
 * `NOTICE <https://github.com/boto/boto3/blob/develop/NOTICE>`__
 * `Changelog <https://github.com/boto/boto3/blob/develop/CHANGELOG.rst>`__
-* `License <https://github.com/boto/boto3/blob/develop/LICENSE.txt>`__
+* `License <https://github.com/boto/boto3/blob/develop/LICENSE>`__
 

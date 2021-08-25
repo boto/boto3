@@ -38,3 +38,4 @@ services.
    s3-example-access-permissions
    s3-example-static-web-host
    s3-example-configuring-buckets
+   s3-example-privatelink

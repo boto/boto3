@@ -20,9 +20,17 @@ venv
 env2
 env3
 
+# Virtualenv support files and directories
+.python-version
+
 # IntelliJ / PyCharm IDE
 .idea/
 
 # Visual Studio used to edit docs
 docs/source/.vs
 .vscode
+
+# Project-specific
+.doctrees
+
+source/_build

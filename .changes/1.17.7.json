@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``personalize-events``", 
+    "description": "[``botocore``] Update personalize-events client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Update eks client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iam``", 
+    "description": "[``botocore``] Update iam client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``detective``", 
+    "description": "[``botocore``] Update detective client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``macie2``", 
+    "description": "[``botocore``] Update macie2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``wafv2``", 
+    "description": "[``botocore``] Update wafv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appsync``", 
+    "description": "[``botocore``] Update appsync client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``rds``", 
+    "description": "[``botocore``] Update rds client to latest version", 
+    "type": "api-change"
+  }
+]

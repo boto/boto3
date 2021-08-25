@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] File Gateway APIs now support FSx for Windows as a cloud storage.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``accessanalyzer``", 
+    "description": "[``botocore``] IAM Access Analyzer now analyzes your CloudTrail events to identify actions and services that have been used by an IAM entity (user or role) and generates an IAM policy that is based on that activity.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] This release adds tagging support for all AWS ElastiCache resources except Global Replication Groups.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ivs``", 
+    "description": "[``botocore``] This release adds support for the Auto-Record to S3 feature. Amazon IVS now enables you to save your live video to Amazon S3.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mgn``", 
+    "description": "[``botocore``] Add new service - Application Migration Service.", 
+    "type": "api-change"
+  }
+]

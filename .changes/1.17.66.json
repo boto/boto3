@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``finspace``", 
+    "description": "[``botocore``] Documentation updates for FinSpace API.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``finspace-data``", 
+    "description": "[``botocore``] Documentation updates for FinSpaceData API.", 
+    "type": "api-change"
+  }
+]

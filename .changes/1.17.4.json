@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``dataexchange``", 
+    "description": "[``botocore``] Update dataexchange client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudtrail``", 
+    "description": "[``botocore``] Update cloudtrail client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ivs``", 
+    "description": "[``botocore``] Update ivs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``macie2``", 
+    "description": "[``botocore``] Update macie2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``globalaccelerator``", 
+    "description": "[``botocore``] Update globalaccelerator client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotsitewise``", 
+    "description": "[``botocore``] Update iotsitewise client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] Update elasticache client to latest version", 
+    "type": "api-change"
+  }
+]

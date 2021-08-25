@@ -98,7 +98,7 @@ The shared credentials file has a default location of ``~/.aws/credentials``. Yo
 
 This file is an INI formatted file with section names corresponding to profiles. With each section, the three configuration variables shown above can be specified: ``aws_access_key_id``, ``aws_secret_access_key``, ``aws_session_token``. *These are the only supported values in the shared credential file.*
 
-Below is an minimal example of the shared credentials file:
+Below is a minimal example of the shared credentials file:
 
 .. code-block:: ini
 
@@ -164,7 +164,7 @@ Assume role provider
 
     This is a different set of credentials configuration than using IAM roles for EC2 instances, which is discussed in a section below.
 
-Within the ``~/.aws/config file``, you can also configure a profile to indicate that Boto3 should assume a role. When you do this, Boto3 will automatically make the corresponding AssumeRole calls to AWS STS on your behalf. It will handle in-memory caching as well as refreshing credentials as needed.
+Within the ``~/.aws/config`` file, you can also configure a profile to indicate that Boto3 should assume a role. When you do this, Boto3 will automatically make the corresponding AssumeRole calls to AWS STS on your behalf. It will handle in-memory caching as well as refreshing credentials as needed.
 
 You can specify the following configuration values for configuring an IAM role in Boto3. For more information about a particular setting, see the :ref:`guide_configuration` section.
 
@@ -232,6 +232,38 @@ This provider can also be configured via environment variables:
 
     These environment variables currently only apply to the assume role with web identity provider and do not apply to the general assume role provider configuration.
 
+AWS Single Sign-On Provider (SSO)
+-----------------------------------
+
+Support for the AWS Single Sign-On (SSO) credential provider was added in 1.14.0.
+
+To begin using the SSO credential provider, start by using the AWS CLI V2 to configure and manage your SSO profiles and login sessions.
+For detailed instructions on the configuration and login process see the `AWS CLI User Guide for SSO <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html>`_.
+Once completed you will have one or many profiles in the shared configuration file with the following settings:
+
+.. code-block:: ini
+
+    # In ~/.aws/config
+    [profile my-sso-profile]
+    sso_start_url = https://my-sso-portal.awsapps.com/start
+    sso_region = us-east-1
+    sso_account_id = 123456789011
+    sso_role_name = readOnly
+
+* ``sso_start_url`` - The URL that points to the organization's AWS SSO user portal.
+* ``sso_region`` - The AWS Region that contains the AWS SSO portal host. This is separate from, and can be a different region than the default CLI region parameter.
+* ``sso_account_id`` - The AWS account ID that contains the IAM role that you want to use with this profile.
+* ``sso_role_name`` - The name of the IAM role that defines the user's permissions when using this profile.
+
+You can then specify the profile name via the ``AWS_PROFILE`` environment variable or the ``profile_name`` argument when creating a ``Session``.
+For example, we can create a Session using the ``my-sso-profile`` profile and any clients created from this session will use the ``my-sso-profile`` credentials:
+
+.. code-block:: python
+
+    import boto3
+
+    session = boto3.Session(profile_name='my-sso-profile')
+    s3_client = session.client('s3')
 
 Boto 2 config
 ---------------

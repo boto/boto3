@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the 'license' file accompanying this file. This file is
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -685,8 +685,8 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
         p = resource.Queue('test1')
         q = resource.Queue('test2')
 
-        self.assertNotEquals(p, q, "Should not be equal resource")
-        self.assertNotEquals(hash(p), hash(q), "Hash values should be different")
+        self.assertNotEqual(p, q, "Should not be equal resource")
+        self.assertNotEqual(hash(p), hash(q), "Hash values should be different")
 
     def test_dangling_resource_create_with_kwarg(self):
         resource = self.load('test', self.model, self.defs)()

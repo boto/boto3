@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the 'license' file accompanying this file. This file is
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -49,6 +49,9 @@ class TestBinary(unittest.TestCase):
     def test_str(self):
         self.assertEqual(Binary(b'\x01').__str__(), b'\x01')
 
+    def test_bytes(self):
+        self.assertEqual(bytes(Binary(b'\x01')), b'\x01')
+
     def test_repr(self):
         self.assertIn('Binary', repr(Binary(b'1')))
 
@@ -58,7 +61,7 @@ class TestSerializer(unittest.TestCase):
         self.serializer = TypeSerializer()
 
     def test_serialize_unsupported_type(self):
-        with self.assertRaisesRegexp(TypeError, 'Unsupported type'):
+        with self.assertRaisesRegex(TypeError, 'Unsupported type'):
             self.serializer.serialize(object())
 
     def test_serialize_null(self):
@@ -75,13 +78,13 @@ class TestSerializer(unittest.TestCase):
             self.serializer.serialize(Decimal('1.25')), {'N': '1.25'})
 
     def test_serialize_float_error(self):
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 TypeError,
                 'Float types are not supported. Use Decimal types instead'):
             self.serializer.serialize(1.25)
 
     def test_serialize_NaN_error(self):
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 TypeError,
                 'Infinity and NaN not supported'):
             self.serializer.serialize(Decimal('NaN'))
@@ -152,11 +155,11 @@ class TestDeserializer(unittest.TestCase):
         self.deserializer = TypeDeserializer()
 
     def test_deserialize_invalid_type(self):
-        with self.assertRaisesRegexp(TypeError, 'FOO is not supported'):
+        with self.assertRaisesRegex(TypeError, 'FOO is not supported'):
             self.deserializer.deserialize({'FOO': 'bar'})
 
     def test_deserialize_empty_structure(self):
-        with self.assertRaisesRegexp(TypeError, 'Value must be a nonempty'):
+        with self.assertRaisesRegex(TypeError, 'Value must be a nonempty'):
             self.assertEqual(self.deserializer.deserialize({}), {})
 
     def test_deserialize_null(self):

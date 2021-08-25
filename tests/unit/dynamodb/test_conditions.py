@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -35,17 +35,17 @@ class TestK(unittest.TestCase):
         self.value2 = 'foo2'
 
     def test_and(self):
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 DynamoDBOperationNotSupportedError, 'AND'):
             self.attr & self.attr2
 
     def test_or(self):
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 DynamoDBOperationNotSupportedError, 'OR'):
             self.attr | self.attr2
 
     def test_not(self):
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 DynamoDBOperationNotSupportedError, 'NOT'):
             ~self.attr
 
@@ -243,7 +243,7 @@ class TestConditions(unittest.TestCase):
 
     def test_and_operator_throws_excepetion(self):
         cond1 = Equals(self.value, self.value2)
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 DynamoDBOperationNotSupportedError, 'AND'):
             cond1 & self.value2
 
@@ -254,7 +254,7 @@ class TestConditions(unittest.TestCase):
 
     def test_or_operator_throws_excepetion(self):
         cond1 = Equals(self.value, self.value2)
-        with self.assertRaisesRegexp(
+        with self.assertRaisesRegex(
                 DynamoDBOperationNotSupportedError, 'OR'):
             cond1 | self.value2
 
