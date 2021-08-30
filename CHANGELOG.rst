@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.32
+=======
+
+* api-change:``codebuild``: [``botocore``] Documentation updates for CodeBuild
+* api-change:``firehose``: [``botocore``] This release adds the Dynamic Partitioning feature to Kinesis Data Firehose service for S3 destinations.
+* api-change:``kms``: [``botocore``] This release has changes to KMS nomenclature to remove the word master from both the "Customer master key" and "CMK" abbreviation and replace those naming conventions with "KMS key".
+* api-change:``cloudformation``: [``botocore``] AWS CloudFormation allows you to iteratively develop your applications when failures are encountered without rolling back successfully provisioned resources. By specifying stack failure options, you can troubleshoot resources in a CREATE_FAILED or UPDATE_FAILED status.
+
+
 1.18.31
 =======
 
