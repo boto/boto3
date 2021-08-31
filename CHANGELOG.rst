@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.33
+=======
+
+* api-change:``iot``: [``botocore``] Added Create/Update/Delete/Describe/List APIs for a new IoT resource named FleetMetric. Added a new Fleet Indexing query API named GetBucketsAggregation. Added a new field named DisconnectedReason in Fleet Indexing query response. Updated their related documentations.
+* api-change:``polly``: [``botocore``] Amazon Polly adds new South African English voice - Ayanda. Ayanda is available as Neural voice only.
+* api-change:``compute-optimizer``: [``botocore``] Documentation updates for Compute Optimizer
+* api-change:``sqs``: [``botocore``] Amazon SQS adds a new queue attribute, RedriveAllowPolicy, which includes the dead-letter queue redrive permission parameters. It defines which source queues can specify dead-letter queues as a JSON object.
+* api-change:``memorydb``: [``botocore``] Documentation updates for MemoryDB
+
+
 1.18.32
 =======
 
