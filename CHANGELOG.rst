@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.34
+=======
+
+* api-change:``ec2``: [``botocore``] Added LaunchTemplate support for the IMDS IPv6 endpoint
+* api-change:``cloudtrail``: [``botocore``] Documentation updates for CloudTrail
+* api-change:``mediatailor``: [``botocore``] This release adds support for wall clock programs in LINEAR channels.
+* api-change:``config``: [``botocore``] Documentation updates for config
+* api-change:``servicecatalog-appregistry``: [``botocore``] Introduction of GetAssociatedResource API and GetApplication response extension for Resource Groups support.
+
+
 1.18.33
 =======
 
