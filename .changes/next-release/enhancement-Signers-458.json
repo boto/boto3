@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Signers",
-  "description": "[``botocore``] Added support for Sigv4a Signing Algorithm"
-}
