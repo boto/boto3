@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.36
+=======
+
+* api-change:``chime-sdk-identity``: [``botocore``] Documentation updates for Chime
+* api-change:``chime-sdk-messaging``: [``botocore``] Documentation updates for Chime
+* api-change:``outposts``: [``botocore``] This release adds a new API CreateOrder.
+* api-change:``frauddetector``: [``botocore``] Enhanced GetEventPrediction API response to include risk scores from imported SageMaker models
+* api-change:``codeguru-reviewer``: [``botocore``] Added support for CodeInconsistencies detectors
+
+
 1.18.35
 =======
 
