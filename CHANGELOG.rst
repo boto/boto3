@@ -8157,4 +8157,3 @@ CHANGELOG
 
 * feature:Resources: Supports S3, EC2, SQS, SNS, and IAM resources
 * feature:Clients: Supports low-level clients for most services
-

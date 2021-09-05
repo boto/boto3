@@ -171,16 +171,20 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
 
     def test_condition_and(self):
         r = self.scan(
-            filter_expression=(Attr('MyHashKey').eq('mykey') &
-                               Attr('MyString').eq('mystring')))
+            filter_expression=(
+                Attr('MyHashKey').eq('mykey') & Attr('MyString').eq('mystring')
+            )
+        )
         item = r['Items'][0]
         self.assertTrue(
             item['MyHashKey'] == 'mykey' and item['MyString'] == 'mystring')
 
     def test_condition_or(self):
         r = self.scan(
-            filter_expression=(Attr('MyHashKey').eq('mykey2') |
-                               Attr('MyString').eq('mystring')))
+            filter_expression=(
+                Attr('MyHashKey').eq('mykey2') | Attr('MyString').eq('mystring')
+            )
+        )
         item = r['Items'][0]
         self.assertTrue(
             item['MyHashKey'] == 'mykey2' or item['MyString'] == 'mystring')

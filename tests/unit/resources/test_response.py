@@ -17,8 +17,9 @@ from boto3.utils import ServiceContext
 from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
-from boto3.resources.response import build_identifiers, build_empty_response,\
-                                     RawHandler, ResourceHandler
+from boto3.resources.response import (
+    build_identifiers, build_empty_response, RawHandler, ResourceHandler
+)
 
 
 class TestBuildIdentifiers(BaseTestCase):
@@ -216,7 +217,6 @@ class TestBuildEmptyResponse(BaseTestCase):
         response = self.get_response()
         assert response is None
 
-
     def test_path_list(self):
         self.search_path = 'Container[1].Frob'
 
@@ -234,7 +234,6 @@ class TestBuildEmptyResponse(BaseTestCase):
 
         response = self.get_response()
         assert response is None
-
 
     def test_path_invalid(self):
         self.search_path = 'Container.Invalid'

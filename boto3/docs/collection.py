@@ -185,11 +185,13 @@ def document_collection_method(section, resource_name, action_name,
             'method_description': (
                 'Creates an iterable of all %s resources '
                 'in the collection filtered by kwargs passed to '
-                'method.' % collection_model.resource.type +
-                'A %s collection will include all resources by '
+                'method. A %s collection will include all resources by '
                 'default if no filters are provided, and extreme '
                 'caution should be taken when performing actions '
-                'on all resources.'% collection_model.resource.type),
+                'on all resources.' % (
+                    collection_model.resource.type,
+                    collection_model.resource.type
+                )),
             'example_prefix': '%s_iterator = %s.%s.filter' % (
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),

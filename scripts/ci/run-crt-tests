@@ -29,7 +29,7 @@ def run(command):
 
 
 try:
-    import awscrt
+    import awscrt # noqa
 except ImportError:
     print("MISSING DEPENDENCY: awscrt must be installed to run the crt tests.")
     sys.exit(1)

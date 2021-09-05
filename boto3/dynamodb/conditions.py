@@ -144,8 +144,9 @@ class ConditionAttributeBase(ConditionBase, AttributeBase):
         AttributeBase.__init__(self, values[0].name)
 
     def __eq__(self, other):
-        return ConditionBase.__eq__(self, other) and \
-               AttributeBase.__eq__(self, other)
+        return (
+            ConditionBase.__eq__(self, other) and AttributeBase.__eq__(self, other)
+        )
 
     def __ne__(self, other):
         return not self.__eq__(other)

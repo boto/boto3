@@ -49,10 +49,10 @@ Assuming that you have Python and ``virtualenv`` installed, set up your environm
 
     $ python -m pip install boto3
 
-    
+
 Using Boto3
 ~~~~~~~~~~~~~~
-After installing boto3 
+After installing boto3
 
 Next, set up credentials (in e.g. ``~/.aws/credentials``):
 
@@ -68,7 +68,7 @@ Then, set up a default region (in e.g. ``~/.aws/config``):
 
    [default]
    region=us-east-1
-    
+
 Other credentials configuration method can be found `here <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>`__
 
 Then, from a Python interpreter:
@@ -137,4 +137,3 @@ More Resources
 * `NOTICE <https://github.com/boto/boto3/blob/develop/NOTICE>`__
 * `Changelog <https://github.com/boto/boto3/blob/develop/CHANGELOG.rst>`__
 * `License <https://github.com/boto/boto3/blob/develop/LICENSE>`__
-

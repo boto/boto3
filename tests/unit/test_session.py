@@ -13,11 +13,11 @@
 import pytest
 
 from botocore import loaders
-from botocore.exceptions import DataNotFoundError, UnknownServiceError
+from botocore.exceptions import UnknownServiceError
 from botocore.client import Config
 
 from boto3 import __version__
-from boto3.exceptions import NoVersionFound, ResourceNotExistsError
+from boto3.exceptions import ResourceNotExistsError
 from boto3.session import Session
 from tests import mock, BaseTestCase
 
@@ -116,7 +116,7 @@ class TestSession(BaseTestCase):
 
     def test_available_profiles(self):
         bc_session = mock.Mock()
-        bc_session.available_profiles.return_value = ['foo','bar']
+        bc_session.available_profiles.return_value = ['foo', 'bar']
         session = Session(botocore_session=bc_session)
         profiles = session.available_profiles
         assert len(profiles.return_value) == 2
@@ -245,7 +245,7 @@ class TestSession(BaseTestCase):
             config=mock.ANY)
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
-        assert client_config.signature_version == None
+        assert client_config.signature_version is None
 
     def test_create_resource_with_config(self):
         mock_bc_session = mock.Mock()
