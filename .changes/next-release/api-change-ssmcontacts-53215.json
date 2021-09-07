@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ssm-contacts``",
-  "description": "[``botocore``] Added SDK examples for SSM-Contacts."
-}
