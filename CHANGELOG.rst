@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.38
+=======
+
+* api-change:``opensearch``: [``botocore``] Updated Configuration APIs for Amazon OpenSearch Service (successor to Amazon Elasticsearch Service)
+* api-change:``ram``: [``botocore``] A minor text-only update that fixes several customer issues.
+* api-change:``kafka``: [``botocore``] Amazon MSK has added a new API that allows you to update the encrypting and authentication settings for an existing cluster.
+
+
 1.18.37
 =======
 
