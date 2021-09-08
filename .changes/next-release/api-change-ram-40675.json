@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ram``",
+  "description": "[``botocore``] A minor text-only update that fixes several customer issues."
+}
