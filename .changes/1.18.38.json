@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``opensearch``",
+    "description": "[``botocore``] Updated Configuration APIs for Amazon OpenSearch Service (successor to Amazon Elasticsearch Service)",
+    "type": "api-change"
+  },
+  {
+    "category": "``ram``",
+    "description": "[``botocore``] A minor text-only update that fixes several customer issues.",
+    "type": "api-change"
+  },
+  {
+    "category": "``kafka``",
+    "description": "[``botocore``] Amazon MSK has added a new API that allows you to update the encrypting and authentication settings for an existing cluster.",
+    "type": "api-change"
+  }
+]
