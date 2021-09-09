@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.39
+=======
+
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``codeguru-reviewer``: [``botocore``] The Amazon CodeGuru Reviewer API now includes the RuleMetadata data object and a Severity attribute on a RecommendationSummary object. A RuleMetadata object contains information about a rule that generates a recommendation. Severity indicates how severe the issue associated with a recommendation is.
+* api-change:``lookoutequipment``: [``botocore``] Added OffCondition parameter to CreateModel API
+
+
 1.18.38
 =======
 
