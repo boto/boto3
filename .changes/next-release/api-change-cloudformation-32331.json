@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] Doc only update for CloudFormation that fixes several customer-reported issues."
-}
