@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``iot``",
+    "description": "[``botocore``] AWS IoT Rules Engine adds OpenSearch action. The OpenSearch rule action lets you stream data from IoT sensors and applications to Amazon OpenSearch Service which is a successor to Amazon Elasticsearch Service.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Adds support for T3 instances on Amazon EC2 Dedicated Hosts.",
+    "type": "api-change"
+  },
+  {
+    "category": "Tagged Unions",
+    "description": "[``botocore``] Introducing support for the `union` trait on structures in request and response objects.",
+    "type": "enhancement"
+  }
+]
