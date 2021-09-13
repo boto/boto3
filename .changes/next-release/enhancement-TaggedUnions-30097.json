@@ -1,5 +1,0 @@
-{
-  "category": "Tagged Unions",
-  "type": "enhancement",
-  "description": "[``botocore``] Introducing support for the `union` trait on structures in request and response objects."
-}
