@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``kafkaconnect``",
+    "description": "[``botocore``] This is the initial SDK release for Amazon Managed Streaming for Apache Kafka Connect (MSK Connect).",
+    "type": "api-change"
+  },
+  {
+    "category": "``macie2``",
+    "description": "[``botocore``] This release adds support for specifying which managed data identifiers are used by a classification job, and retrieving a list of managed data identifiers that are available.",
+    "type": "api-change"
+  },
+  {
+    "category": "``robomaker``",
+    "description": "[``botocore``] Adding support to create container based Robot and Simulation applications by introducing an environment field",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3``",
+    "description": "[``botocore``] Add support for access point arn filtering in S3 CW Request Metrics",
+    "type": "api-change"
+  },
+  {
+    "category": "``transcribe``",
+    "description": "[``botocore``] This release adds support for subtitling with Amazon Transcribe batch jobs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Add API for users to retry a failed pipeline execution or resume a stopped one.",
+    "type": "api-change"
+  },
+  {
+    "category": "``pinpoint``",
+    "description": "[``botocore``] This SDK release adds a new feature for Pinpoint campaigns, in-app messaging.",
+    "type": "api-change"
+  }
+]

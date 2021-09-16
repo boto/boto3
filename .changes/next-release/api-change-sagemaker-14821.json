@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Add API for users to retry a failed pipeline execution or resume a stopped one."
-}

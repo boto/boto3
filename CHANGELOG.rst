@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.18.43
+=======
+
+* api-change:``kafkaconnect``: [``botocore``] This is the initial SDK release for Amazon Managed Streaming for Apache Kafka Connect (MSK Connect).
+* api-change:``macie2``: [``botocore``] This release adds support for specifying which managed data identifiers are used by a classification job, and retrieving a list of managed data identifiers that are available.
+* api-change:``robomaker``: [``botocore``] Adding support to create container based Robot and Simulation applications by introducing an environment field
+* api-change:``s3``: [``botocore``] Add support for access point arn filtering in S3 CW Request Metrics
+* api-change:``transcribe``: [``botocore``] This release adds support for subtitling with Amazon Transcribe batch jobs.
+* api-change:``sagemaker``: [``botocore``] Add API for users to retry a failed pipeline execution or resume a stopped one.
+* api-change:``pinpoint``: [``botocore``] This SDK release adds a new feature for Pinpoint campaigns, in-app messaging.
+
+
 1.18.42
 =======
 
