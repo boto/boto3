@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.44
+=======
+
+* api-change:``opensearch``: [``botocore``] This release adds an optional parameter in the ListDomainNames API to filter domains based on the engine type (OpenSearch/Elasticsearch).
+* api-change:``es``: [``botocore``] This release adds an optional parameter in the ListDomainNames API to filter domains based on the engine type (OpenSearch/Elasticsearch).
+* api-change:``dms``: [``botocore``] Optional flag force-planned-failover added to reboot-replication-instance API call. This flag can be used to test a planned failover scenario used during some maintenance operations.
+
+
 1.18.43
 =======
 
