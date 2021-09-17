@@ -23,11 +23,29 @@ def create_session():
     return session
 
 
-def test_can_create_all_resources():
-    """Verify we can create all existing resources."""
+def _all_resources():
     session = create_session()
     for service_name in session.get_available_resources():
-        yield _test_create_resource, session, service_name
+        yield session, service_name
+
+
+def _all_clients():
+    session = create_session()
+    for service_name in session.get_available_services():
+        yield session, service_name
+
+
+def _all_api_version_args():
+    botocore_session = botocore.session.get_session()
+    boto3_session = create_session()
+    for service_name in boto3_session.get_available_resources():
+        yield (service_name, botocore_session, boto3_session)
+
+
+@pytest.mark.parametrize('resource_args', _all_resources())
+def test_can_create_all_resources(all_resources):
+    """Verify we can create all existing resources."""
+    _test_create_resource(*resource_args)
 
 
 def _test_create_resource(session, service_name):
@@ -37,10 +55,10 @@ def _test_create_resource(session, service_name):
     assert hasattr(resource, 'meta')
 
 
-def test_can_create_all_clients():
-    session = create_session()
-    for service_name in session.get_available_services():
-        yield _test_create_client, session, service_name
+@pytest.mark.parametrize('client_args', _all_clients())
+def test_can_create_all_resources(client_args):
+    """Verify we can create all existing clients."""
+    _test_create_client(*client_args)
 
 
 def _test_create_client(session, service_name):
@@ -48,12 +66,10 @@ def _test_create_client(session, service_name):
     assert hasattr(client, 'meta')
 
 
-def test_api_versions_synced_with_botocore():
-    botocore_session = botocore.session.get_session()
-    boto3_session = create_session()
-    for service_name in boto3_session.get_available_resources():
-        yield (_assert_same_api_versions, service_name,
-               botocore_session, boto3_session)
+@pytest.mark.parametrize('api_version_args', _all_api_version_args())
+def test_api_versions_synced_with_botocore(api_version_args):
+    """Verify both boto3 and botocore clients stay in sync."""
+    _assert_same_api_versions(*api_version_args)
 
 
 def _assert_same_api_versions(service_name, botocore_session, boto3_session):
