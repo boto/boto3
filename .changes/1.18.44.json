@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``opensearch``",
+    "description": "[``botocore``] This release adds an optional parameter in the ListDomainNames API to filter domains based on the engine type (OpenSearch/Elasticsearch).",
+    "type": "api-change"
+  },
+  {
+    "category": "``es``",
+    "description": "[``botocore``] This release adds an optional parameter in the ListDomainNames API to filter domains based on the engine type (OpenSearch/Elasticsearch).",
+    "type": "api-change"
+  },
+  {
+    "category": "``dms``",
+    "description": "[``botocore``] Optional flag force-planned-failover added to reboot-replication-instance API call. This flag can be used to test a planned failover scenario used during some maintenance operations.",
+    "type": "api-change"
+  }
+]
