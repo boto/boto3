@@ -19,45 +19,71 @@ import boto3
 from boto3.docs.service import ServiceDocumenter
 
 
-def test_docs_generated():
-    """Verify we can generate the appropriate docs for all services"""
+@pytest.fixture
+def botocore_session():
+    return botocore.session.get_session()
+
+@pytest.fixture
+def boto3_session():
+    return boto3.Session(region_name='us-east-1')
+
+def all_services():
     botocore_session = botocore.session.get_session()
     session = boto3.Session(region_name='us-east-1')
     for service_name in session.get_available_services():
-        generated_docs = ServiceDocumenter(
-            service_name, session=session).document_service()
-        generated_docs = generated_docs.decode('utf-8')
-        client = boto3.client(service_name, 'us-east-1')
+        yield service_name
 
-        # Check that all of the services have the appropriate title
-        yield (_assert_has_title, generated_docs, client)
 
-        # Check that all services have the client documented.
-        yield (_assert_has_client_documentation, generated_docs, service_name,
-               client)
+@pytest.fixture
+def available_resources():
+    session = boto3.Session(region_name='us-east-1')
+    return session.get_available_resources()
 
-        # If the client can paginate, make sure the paginators are documented.
-        try:
-            paginator_model = botocore_session.get_paginator_model(
+
+@pytest.mark.parametrize('service_name', all_services())
+def test_documentation(
+    boto3_session, botocore_session, available_resources, service_name
+):
+    generated_docs = ServiceDocumenter(
+        service_name, session=boto3_session).document_service()
+    generated_docs = generated_docs.decode('utf-8')
+    client = boto3.client(service_name, 'us-east-1')
+
+    # Check that all of the services have the appropriate title
+    _assert_has_title(generated_docs, client)
+
+
+    # Check that all services have the client documented.
+    _assert_has_client_documentation(generated_docs, service_name, client)
+
+
+    #If the service has resources, make sure the service resource
+    #is at least documented.
+    if service_name in available_resources:
+    
+        resource = boto3.resource(service_name, 'us-east-1')
+        _assert_has_resource_documentation(
+            generated_docs, service_name, resource
+        )
+
+    # If the client can paginate, make sure the paginators are documented.
+    try:
+        paginator_model = botocore_session.get_paginator_model(
                 service_name)
-            yield (_assert_has_paginator_documentation, generated_docs,
-                   service_name, client,
-                   sorted(paginator_model._paginator_config))
-        except DataNotFoundError:
-            pass
+        _assert_has_paginator_documentation(
+            generated_docs, service_name, client,
+            sorted(paginator_model._paginator_config)
+        )
+    except DataNotFoundError:
+        pass
 
-        # If the client has waiters, make sure the waiters are documented
-        if client.waiter_names:
-            waiter_model = botocore_session.get_waiter_model(service_name)
-            yield (_assert_has_waiter_documentation, generated_docs,
-                   service_name, client, waiter_model)
 
-        # If the service has resources, make sure the service resource
-        # is at least documented.
-        if service_name in session.get_available_resources():
-            resource = boto3.resource(service_name, 'us-east-1')
-            yield (_assert_has_resource_documentation, generated_docs,
-                   service_name, resource)
+    # If the client has waiters, make sure the waiters are documented.
+    if client.waiter_names:
+        waiter_model = botocore_session.get_waiter_model(service_name)
+        _assert_has_waiter_documentation(
+            generated_docs, service_name, client, waiter_model
+        )
 
 
 def _assert_contains_lines_in_order(lines, contents):

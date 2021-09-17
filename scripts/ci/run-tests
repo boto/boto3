@@ -34,8 +34,7 @@ def process_args(args):
     test_args = ""
     if args.with_cov:
         test_args += (
-            f"--with-xunit --cover-erase --with-coverage "
-            f"--cover-package {PACKAGE} --cover-xml -v "
+            f"--cov={PACKAGE} --cov-report xml -v "
         )
     dirs = " ".join(args.test_dirs)
 
@@ -53,8 +52,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "-r",
         "--test-runner",
-        default="nosetests",
-        help="Test runner to execute tests. Defaults to nose.",
+        default="pytest",
+        help="Test runner to execute tests. Defaults to pytest.",
     )
     parser.add_argument(
         "-c",
