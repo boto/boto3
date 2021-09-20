@@ -10,8 +10,7 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import unittest
-import mock
+from tests import mock, unittest
 
 from boto3.ec2.deletetags import delete_tags
 
