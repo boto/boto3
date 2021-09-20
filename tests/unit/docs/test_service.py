@@ -11,9 +11,9 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import os
-import mock
 
 import boto3
+from tests import mock
 from tests.unit.docs import BaseDocsTest
 from boto3.docs.service import ServiceDocumenter
 
