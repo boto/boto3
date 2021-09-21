@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.45
+=======
+
+* api-change:``comprehend``: [``botocore``] Amazon Comprehend now supports versioning of custom models, improved training with ONE_DOC_PER_FILE text documents for custom entity recognition, ability to provide specific test sets during training, and live migration to new model endpoints.
+* api-change:``iot``: [``botocore``] This release adds support for verifying, viewing and filtering AWS IoT Device Defender detect violations with four verification states.
+* api-change:``ecr``: [``botocore``] This release adds additional support for repository replication
+* api-change:``ec2``: [``botocore``] This update adds support for downloading configuration templates using new APIs (GetVpnConnectionDeviceTypes and GetVpnConnectionDeviceSampleConfiguration) and Internet Key Exchange version 2 (IKEv2) parameters for many popular CGW devices.
+
+
 1.18.44
 =======
 

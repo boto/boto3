@@ -5,12 +5,23 @@
 
 import os
 import sys
+from contextlib import contextmanager
 from subprocess import check_call
 
 _dname = os.path.dirname
 
 REPO_ROOT = _dname(_dname(_dname(os.path.abspath(__file__))))
-os.chdir(os.path.join(REPO_ROOT, "tests"))
+
+
+@contextmanager
+def cd(path):
+    """Change directory while inside context manager."""
+    cwd = os.getcwd()
+    try:
+        os.chdir(path)
+        yield
+    finally:
+        os.chdir(cwd)
 
 
 def run(command):
@@ -23,4 +34,6 @@ except ImportError:
     print("MISSING DEPENDENCY: awscrt must be installed to run the crt tests.")
     sys.exit(1)
 
-run(f'{REPO_ROOT}/scripts/ci/run-tests unit/ functional/')
+if __name__ == "__main__":
+    with cd(os.path.join(REPO_ROOT, "tests")):
+        run(f"{REPO_ROOT}/scripts/ci/run-tests unit/ functional/")
