@@ -37,10 +37,10 @@
                         {
                             "target": "Name",
                             "source": "response",
-                            "path": "MetricAlarms[].AlarmName"
+                            "path": "[MetricAlarms[], CompositeAlarms[]][].AlarmName"
                         }
                     ],
-                    "path": "MetricAlarms[]"
+                    "path": "[MetricAlarms[], CompositeAlarms[]][]"
                 }
             },
             "Metrics": {
