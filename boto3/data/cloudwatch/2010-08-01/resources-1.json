@@ -81,10 +81,20 @@
                             "target": "AlarmNames[0]",
                             "source": "identifier",
                             "name": "Name"
+                        },
+                        {
+                            "target": "AlarmTypes[0]",
+                            "source": "string",
+                            "value": "MetricAlarm"
+                        },
+                        {
+                            "target": "AlarmTypes[1]",
+                            "source": "string",
+                            "value": "CompositeAlarm"
                         }
                     ]
                 },
-                "path": "MetricAlarms[0]"
+                "path": "MetricAlarms[0] || CompositeAlarms[0]"
             },
             "actions": {
                 "Delete": {
