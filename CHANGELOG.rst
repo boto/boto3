@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.47
+=======
+
+* api-change:``mediaconvert``: [``botocore``] This release adds style and positioning support for caption or subtitle burn-in from rich text sources such as TTML. This release also introduces configurable image-based trick play track generation.
+* api-change:``appsync``: [``botocore``] Documented the new OpenSearchServiceDataSourceConfig data type. Added deprecation notes to the ElasticsearchDataSourceConfig data type.
+* api-change:``ssm``: [``botocore``] Added cutoff behavior support for preventing new task invocations from starting when the maintenance window cutoff time is reached.
+
+
 1.18.46
 =======
 
