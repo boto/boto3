@@ -41,7 +41,7 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
             response = table.query(KeyConditionExpression=key_expr,
                                    FilterExpression=filter_expr)
 
-        self.assertEqual(list(), response['Items'])
+        assert response['Items'] == []
         stubber.assert_no_pending_responses()
 
     def test_table_scan_can_be_stubbed_with_expressions(self):
@@ -59,5 +59,5 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
         with stubber:
             response = table.scan(FilterExpression=filter_expr)
 
-        self.assertEqual(list(), response['Items'])
+        assert response['Items'] == []
         stubber.assert_no_pending_responses()
