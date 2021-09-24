@@ -6,8 +6,7 @@ distutils/setuptools install script.
 import os
 import re
 
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 ROOT = os.path.dirname(__file__)
 VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
@@ -54,6 +53,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
     project_urls={
         'Documentation': 'https://boto3.amazonaws.com/v1/documentation/api/latest/index.html',
