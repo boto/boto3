@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.18.49
+=======
+
+* api-change:``appintegrations``: [``botocore``] The Amazon AppIntegrations service enables you to configure and reuse connections to external applications.
+* api-change:``wisdom``: [``botocore``] Released Amazon Connect Wisdom, a feature of Amazon Connect, which provides real-time recommendations and search functionality in general availability (GA).  For more information, see https://docs.aws.amazon.com/wisdom/latest/APIReference/Welcome.html.
+* api-change:``pinpoint``: [``botocore``] Added support for journey with contact center activity
+* api-change:``voice-id``: [``botocore``] Released the Amazon Voice ID SDK, for usage with the Amazon Connect Voice ID feature released for Amazon Connect.
+* api-change:``connect``: [``botocore``] This release updates a set of APIs: CreateIntegrationAssociation, ListIntegrationAssociations, CreateUseCase, and StartOutboundVoiceContact. You can use it to create integrations with Amazon Pinpoint for the Amazon Connect Campaigns use case, Amazon Connect Voice ID, and Amazon Connect Wisdom.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+
+
 1.18.48
 =======
 

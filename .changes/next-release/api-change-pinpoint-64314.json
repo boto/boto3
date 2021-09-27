@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pinpoint``",
-  "description": "[``botocore``] Added support for journey with contact center activity"
-}
