@@ -158,6 +158,8 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -196,6 +198,8 @@ def bucket_upload_file(self, Filename, Key,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -233,6 +237,8 @@ def bucket_download_file(self, Key, Filename,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -301,6 +307,8 @@ def object_download_file(self, Filename,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -652,6 +660,8 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -707,6 +717,8 @@ def bucket_download_fileobj(self, Key, Fileobj, ExtraArgs=None,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -747,6 +759,8 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation.
+        To download a specific version of an object,
+        use ``ExtraArgs={'VersionId': v}``.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
