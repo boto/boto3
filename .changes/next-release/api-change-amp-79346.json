@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``amp``",
-  "description": "[``botocore``] This release adds alert manager and rule group namespace APIs"
-}
