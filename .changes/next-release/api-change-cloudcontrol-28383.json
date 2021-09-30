@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudcontrol``",
-  "description": "[``botocore``] Initial release of the SDK for AWS Cloud Control API"
-}
