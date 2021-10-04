@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.54
+=======
+
+* api-change:``codebuild``: [``botocore``] CodeBuild now allows you to select how batch build statuses are sent to the source provider for a project.
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``kms``: [``botocore``] Added SDK examples for ConnectCustomKeyStore, CreateCustomKeyStore, CreateKey, DeleteCustomKeyStore, DescribeCustomKeyStores, DisconnectCustomKeyStore, GenerateDataKeyPair, GenerateDataKeyPairWithoutPlaintext, GetPublicKey, ReplicateKey, Sign, UpdateCustomKeyStore and Verify APIs
+
+
 1.18.53
 =======
 
