@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``location``",
-  "description": "[``botocore``] Add support for PositionFiltering."
-}
