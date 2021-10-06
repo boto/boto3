@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.56
+=======
+
+* api-change:``sagemaker``: [``botocore``] This release adds a new TrainingInputMode FastFile for SageMaker Training APIs.
+* api-change:``amplifybackend``: [``botocore``] Adding a new field 'AmplifyFeatureFlags' to the response of the GetBackend operation. It will return a stringified version of the cli.json file for the given Amplify project.
+* api-change:``fsx``: [``botocore``] This release adds support for Lustre 2.12 to FSx for Lustre.
+* api-change:``kendra``: [``botocore``] Amazon Kendra now supports integration with AWS SSO
+
+
 1.18.55
 =======
 
