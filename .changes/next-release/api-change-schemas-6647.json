@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``schemas``",
-  "description": "[``botocore``] Removing unused request/response objects."
-}

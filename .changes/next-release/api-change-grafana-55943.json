@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``grafana``",
-  "description": "[``botocore``] Initial release of the SDK for Amazon Managed Grafana API."
-}
