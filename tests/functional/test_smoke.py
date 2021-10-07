@@ -17,6 +17,7 @@ import botocore.session
 
 boto3_session = None
 
+
 def create_session():
     global boto3_session
     if boto3_session is None:
@@ -27,6 +28,7 @@ def create_session():
         )
 
     return boto3_session
+
 
 def _all_resources():
     session = create_session()

@@ -16,8 +16,6 @@ import pytest
 
 from tests import unittest
 
-from botocore.compat import six
-
 from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer
 
 
@@ -97,8 +95,6 @@ class TestSerializer(unittest.TestCase):
     def test_serialize_bytearray(self):
         assert self.serializer.serialize(bytearray([1])) == {'B': b'\x01'}
 
-    @pytest.mark.skipif(six.PY2,
-                     reason='This is a test when using python3 version of bytes')
     def test_serialize_bytes(self):
         assert self.serializer.serialize(b'\x01') == {'B': b'\x01'}
 
@@ -141,9 +137,13 @@ class TestSerializer(unittest.TestCase):
 
     def test_serialize_map(self):
         serialized_value = self.serializer.serialize(
-            {'foo': 'bar', 'baz': {'biz': 1}})
-        assert serialized_value == {'M': 
-            {'foo': {'S': 'bar'}, 'baz': {'M': {'biz': {'N': '1'}}}}
+            {'foo': 'bar', 'baz': {'biz': 1}}
+        )
+        assert serialized_value == {
+            'M': {
+                'foo': {'S': 'bar'},
+                'baz': {'M': {'biz': {'N': '1'}}}
+            }
         }
 
 
@@ -179,22 +179,22 @@ class TestDeserializer(unittest.TestCase):
 
     def test_deserialize_number_set(self):
         assert self.deserializer.deserialize(
-                {'NS': ['1', '1.25']}), set([Decimal('1') == Decimal('1.25')])
+            {'NS': ['1', '1.25']}) == set([Decimal('1'), Decimal('1.25')])
 
     def test_deserialize_string_set(self):
         assert self.deserializer.deserialize(
-                {'SS': ['foo', 'bar']}) == set(['foo', 'bar'])
+            {'SS': ['foo', 'bar']}) == set(['foo', 'bar'])
 
     def test_deserialize_binary_set(self):
-        assert self.deserializer.deserialize({'BS': [b'\x00', b'\x01']}) == set(
-            [Binary(b'\x00'), Binary(b'\x01')])
+        assert self.deserializer.deserialize(
+            {'BS': [b'\x00', b'\x01']}) == set([Binary(b'\x00'), Binary(b'\x01')])
 
     def test_deserialize_list(self):
-        assert self.deserializer.deserialize({'L': 
-            [{'N': '1'}, {'S': 'foo'}, {'L': [{'N': '1.25'}]}]}
+        assert self.deserializer.deserialize(
+            {'L': [{'N': '1'}, {'S': 'foo'}, {'L': [{'N': '1.25'}]}]}
         ) == [Decimal('1'), 'foo', [Decimal('1.25')]]
 
     def test_deserialize_map(self):
-        assert self.deserializer.deserialize({'M': {'foo': 
-            {'S': 'mystring'}, 'bar': {'M': {'baz': {'N': '1'}}}}}
+        assert self.deserializer.deserialize(
+            {'M': {'foo': {'S': 'mystring'}, 'bar': {'M': {'baz': {'N': '1'}}}}}
         ) == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}

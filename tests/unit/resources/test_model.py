@@ -169,8 +169,11 @@ class TestModels(BaseTestCase):
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
-                            {'target':'Id', 'source':'data',
-                             'path':'FrobId'}
+                            {
+                                'target': 'Id',
+                                'source': 'data',
+                                'path': 'FrobId'
+                            }
                         ]
                     }
                 }
@@ -237,6 +240,7 @@ class TestModels(BaseTestCase):
         assert waiter.waiter_name == 'ObjectExists'
         assert waiter.params[0].target == 'Bucket'
 
+
 class TestRenaming(BaseTestCase):
     def test_multiple(self):
         # This tests a bunch of different renames working together
@@ -250,8 +254,11 @@ class TestRenaming(BaseTestCase):
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
-                            {'target':'Id', 'source':'data',
-                             'path': 'FrobId'}
+                            {
+                                'target': 'Id',
+                                'source': 'data',
+                                'path': 'FrobId'
+                            }
                         ]
                     }
                 }
@@ -348,8 +355,11 @@ class TestRenaming(BaseTestCase):
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
-                            {'target':'Id', 'source':'data',
-                             'path': 'FrobId'}
+                            {
+                                'target': 'Id',
+                                'source': 'data',
+                                'path': 'FrobId'
+                            }
                         ]
                     }
                 }
@@ -368,8 +378,11 @@ class TestRenaming(BaseTestCase):
                     'resource': {
                         'type': 'Frob',
                         'identifiers': [
-                            {'target':'Id', 'source':'data',
-                             'path': 'FrobId'}
+                            {
+                                'target': 'Id',
+                                'source': 'data',
+                                'path': 'FrobId'
+                            }
                         ]
                     }
                 }

@@ -100,6 +100,7 @@ class TestBucketLoad(unittest.TestCase):
         with pytest.raises(ClientError):
             inject.bucket_load(self.resource)
 
+
 class TestBucketTransferMethods(unittest.TestCase):
 
     def setUp(self):

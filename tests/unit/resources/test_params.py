@@ -15,9 +15,11 @@ import pytest
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import Request
-from boto3.resources.params import create_request_parameters, \
-                                   build_param_structure
+from boto3.resources.params import (
+    create_request_parameters, build_param_structure
+)
 from tests import BaseTestCase, mock
+
 
 class TestServiceActionParams(BaseTestCase):
     def test_service_action_params_identifier(self):
@@ -104,7 +106,7 @@ class TestServiceActionParams(BaseTestCase):
         parent.meta = ResourceMeta('test', data=None)
 
         with pytest.raises(ResourceLoadException):
-            params = create_request_parameters(parent, request_model)
+            create_request_parameters(parent, request_model)
 
     def test_service_action_params_constants(self):
         request_model = Request({
