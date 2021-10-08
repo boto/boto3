@@ -1,4 +1,4 @@
-exclude: ^(.github|.changes|docs/|boto3/compat.py|boto3/data)
+exclude: ^(.github|.changes|docs/|boto3/compat.py|boto3/data|CHANGELOG.rst)
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.3.0
