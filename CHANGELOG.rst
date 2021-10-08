@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.18.58
+=======
+
+* api-change:``lexv2-runtime``: [``botocore``] Update lexv2-runtime client to latest version
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+* api-change:``securityhub``: [``botocore``] Added new resource details objects to ASFF, including resources for WAF rate-based rules, EC2 VPC endpoints, ECR repositories, EKS clusters, X-Ray encryption, and OpenSearch domains. Added additional details for CloudFront distributions, CodeBuild projects, ELB V2 load balancers, and S3 buckets.
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert has added the ability to set account policies which control access restrictions for HTTP, HTTPS, and S3 content sources.
+* api-change:``ec2``: [``botocore``] This release removes a requirement for filters on SearchLocalGatewayRoutes operations.
+
+
 1.18.57
 =======
 

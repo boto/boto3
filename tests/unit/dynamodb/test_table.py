@@ -225,7 +225,6 @@ class BaseTransformationTest(unittest.TestCase):
         self.assert_batch_write_calls_are([first_batch, second_batch,
                                            third_batch])
 
-
     def test_repeated_flushing_on_exit(self):
         # We're going to simulate unprocessed_items
         # returning multiple unprocessed items across calls.
@@ -348,39 +347,63 @@ class BaseTransformationTest(unittest.TestCase):
         first_batch = {
             'RequestItems': {
                 self.table_name: [
-                    {'PutRequest': { 'Item': {
-                        'pkey': 'foo1',
-                        'skey': 'bar1',
-                        'other': 'other2'
-                    }}},
-                    {'PutRequest': { 'Item': {
-                        'pkey': 'foo1',
-                        'skey': 'bar2',
-                        'other': 'other3'
-                    }}},
-                    {'DeleteRequest': {'Key': {
-                        'pkey': 'foo2',
-                        'skey': 'bar2',
-                    }}},
-                    {'DeleteRequest': {'Key': {
-                        'pkey': 'foo2',
-                        'skey': 'bar3',
-                    }}},
-                    {'DeleteRequest': {'Key': {
-                        'pkey': 'foo3',
-                        'skey': 'bar3',
-                    }}},
+                    {
+                        'PutRequest': {
+                            'Item': {
+                                'pkey': 'foo1',
+                                'skey': 'bar1',
+                                'other': 'other2'
+                            }
+                        }
+                    },
+                    {
+                        'PutRequest': {
+                            'Item': {
+                                'pkey': 'foo1',
+                                'skey': 'bar2',
+                                'other': 'other3'
+                            }
+                        }
+                    },
+                    {
+                        'DeleteRequest': {
+                            'Key': {
+                                'pkey': 'foo2',
+                                'skey': 'bar2',
+                            }
+                        }
+                    },
+                    {
+                        'DeleteRequest': {
+                            'Key': {
+                                'pkey': 'foo2',
+                                'skey': 'bar3',
+                            }
+                        }
+                    },
+                    {
+                        'DeleteRequest': {
+                            'Key': {
+                                'pkey': 'foo3',
+                                'skey': 'bar3',
+                            }
+                        }
+                    },
                 ]
             }
         }
         second_batch = {
             'RequestItems': {
                 self.table_name: [
-                    {'PutRequest': { 'Item': {
-                        'pkey': 'foo1',
-                        'skey': 'bar1',
-                        'other': 'other2'
-                    }}},
+                    {
+                        'PutRequest': {
+                            'Item': {
+                                'pkey': 'foo1',
+                                'skey': 'bar1',
+                                'other': 'other2'
+                            }
+                        }
+                    },
                 ]
             }
         }

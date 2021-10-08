@@ -135,9 +135,9 @@ class TestInputOutputTransformer(BaseTransformationTest):
             transformation=self.transformation,
             target_shape=self.target_shape)
         assert input_params == {
-            'TransformMe': 
-                {'foo': self.transformed_value},
-                 'LeaveAlone': {'foo': self.original_value}}
+            'TransformMe': {'foo': self.transformed_value},
+            'LeaveAlone': {'foo': self.original_value}
+        }
 
     def test_transform_list(self):
         input_params = {
@@ -315,10 +315,13 @@ class TestInputOutputTransformer(BaseTransformationTest):
             transformation=self.transformation,
             target_shape=self.target_shape)
         assert input_params == {
-            'TargetedWrapperList': [[
-                self.transformed_value, self.transformed_value]],
-            'UntargetedWrapperList': [[
-                 self.original_value, self.original_value]]}
+            'TargetedWrapperList': [
+                [self.transformed_value, self.transformed_value]
+            ],
+            'UntargetedWrapperList': [
+                [self.original_value, self.original_value]
+            ]
+        }
 
     def test_transform_incorrect_type_for_structure(self):
         input_params = {

@@ -20,7 +20,6 @@ from boto3.utils import ServiceContext
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
-from boto3.resources.action import WaiterAction
 
 
 class BaseTestResourceFactory(BaseTestCase):
@@ -35,13 +34,13 @@ class BaseTestResourceFactory(BaseTestCase):
             resource_json_definition = {}
         if resource_json_definitions is None:
             resource_json_definitions = {}
-        service_context=ServiceContext(
+        service_context = ServiceContext(
             service_name='test',
             resource_json_definitions=resource_json_definitions,
             service_model=service_model,
             service_waiter_model=None
         )
-                
+
         return self.factory.load_from_definition(
             resource_name=resource_name,
             single_resource_json_definition=resource_json_definition,
@@ -573,10 +572,14 @@ class TestResourceFactory(BaseTestResourceFactory):
         model = {
             "waiters": {
                 "Exists": {
-                "waiterName": "BucketExists",
-                "params": [
-                    {"target": "Bucket", "source": "identifier",
-                     "name": "Name"}]
+                    "waiterName": "BucketExists",
+                    "params": [
+                        {
+                            "target": "Bucket",
+                            "source": "identifier",
+                            "name": "Name"
+                        }
+                    ]
                 }
             }
         }
@@ -595,10 +598,14 @@ class TestResourceFactory(BaseTestResourceFactory):
         model = {
             "waiters": {
                 "Exists": {
-                "waiterName": "BucketExists",
-                "params": [
-                    {"target": "Bucket", "source": "identifier",
-                     "name": "Name"}]
+                    "waiterName": "BucketExists",
+                    "params": [
+                        {
+                            "target": "Bucket",
+                            "source": "identifier",
+                            "name": "Name"
+                        }
+                    ]
                 }
             }
         }

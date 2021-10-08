@@ -31,11 +31,15 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
         )
 
         stubber = Stubber(table.meta.client)
-        stubber.add_response('query', dict(Items=list()), expected_params=dict(
+        stubber.add_response(
+            'query',
+            dict(Items=list()),
+            expected_params=dict(
                 TableName='mytable',
                 KeyConditionExpression=key_expr,
                 FilterExpression=filter_expr
-        ))
+            )
+        )
 
         with stubber:
             response = table.query(KeyConditionExpression=key_expr,
@@ -46,15 +50,20 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
 
     def test_table_scan_can_be_stubbed_with_expressions(self):
         table = self.resource.Table('mytable')
-        filter_expr = Attr('myattr').eq('foo') & (
-                Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')
+        filter_expr = (
+            Attr('myattr').eq('foo') &
+            (Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz'))
         )
 
         stubber = Stubber(table.meta.client)
-        stubber.add_response('scan', dict(Items=list()), expected_params=dict(
+        stubber.add_response(
+            'scan',
+            dict(Items=list()),
+            expected_params=dict(
                 TableName='mytable',
                 FilterExpression=filter_expr
-        ))
+            )
+        )
 
         with stubber:
             response = table.scan(FilterExpression=filter_expr)

@@ -87,6 +87,7 @@ def _collection_test_args():
             for collection_model in resource_model.collections:
                 yield (client, service_name, resource_name, collection_model)
 
+
 @pytest.mark.parametrize(
     'collection_args',
     _collection_test_args()
@@ -99,6 +100,7 @@ def test_all_collections_have_paginators_if_needed(collection_args):
     # if a collection looks like it uses a paginated operation then there
     # should be a paginator applied to it.
     _assert_collection_has_paginator_if_needed(*collection_args)
+
 
 def _assert_collection_has_paginator_if_needed(
     client, service_name, resource_name, collection_model

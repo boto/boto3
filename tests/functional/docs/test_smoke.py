@@ -23,12 +23,13 @@ from boto3.docs.service import ServiceDocumenter
 def botocore_session():
     return botocore.session.get_session()
 
+
 @pytest.fixture
 def boto3_session():
     return boto3.Session(region_name='us-east-1')
 
+
 def all_services():
-    botocore_session = botocore.session.get_session()
     session = boto3.Session(region_name='us-east-1')
     for service_name in session.get_available_services():
         yield service_name
@@ -52,15 +53,13 @@ def test_documentation(
     # Check that all of the services have the appropriate title
     _assert_has_title(generated_docs, client)
 
-
     # Check that all services have the client documented.
     _assert_has_client_documentation(generated_docs, service_name, client)
 
-
-    #If the service has resources, make sure the service resource
-    #is at least documented.
+    # If the service has resources, make sure the service resource
+    # is at least documented.
     if service_name in available_resources:
-    
+
         resource = boto3.resource(service_name, 'us-east-1')
         _assert_has_resource_documentation(
             generated_docs, service_name, resource
@@ -68,15 +67,13 @@ def test_documentation(
 
     # If the client can paginate, make sure the paginators are documented.
     try:
-        paginator_model = botocore_session.get_paginator_model(
-                service_name)
+        paginator_model = botocore_session.get_paginator_model(service_name)
         _assert_has_paginator_documentation(
             generated_docs, service_name, client,
             sorted(paginator_model._paginator_config)
         )
     except DataNotFoundError:
         pass
-
 
     # If the client has waiters, make sure the waiters are documented.
     if client.waiter_names:

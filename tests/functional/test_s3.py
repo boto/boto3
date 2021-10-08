@@ -377,7 +377,7 @@ class TestDownloadFileobj(BaseTransferTest):
         # If this is a ranged get, ContentRange needs to be returned,
         # contents needs to be pruned, and Range needs to be an expected param.
         if end_byte is not None:
-            contents = full_contents[start_byte:end_byte+1]
+            contents = full_contents[start_byte:end_byte + 1]
             part_range = 'bytes=%s-%s' % (start_byte, end_byte_range)
             content_range = 'bytes=%s-%s/%s' % (
                 start_byte, end_byte, len(full_contents))
