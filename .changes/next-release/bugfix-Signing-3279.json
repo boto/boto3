@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "Signing",
+  "description": "[``botocore``] SigV4QueryAuth and CrtSigV4QueryAuth now properly respect AWSRequest.params while signing boto/botocore`#2521 <https://github.com/boto/botocore/issues/2521>`__"
+}
