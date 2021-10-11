@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ec2``",
-  "description": "[``botocore``] Documentation update for Amazon EC2."
-}
