@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.59
+=======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* bugfix:Signing: [``botocore``] SigV4QueryAuth and CrtSigV4QueryAuth now properly respect AWSRequest.params while signing boto/botocore`#2521 <https://github.com/boto/botocore/issues/2521>`__
+* api-change:``medialive``: [``botocore``] This release adds support for Transport Stream files as an input type to MediaLive encoders.
+* api-change:``ec2``: [``botocore``] Documentation update for Amazon EC2.
+* api-change:``frauddetector``: [``botocore``] New model type: Transaction Fraud Insights, which is optimized for online transaction fraud. Stored Events, which allows customers to send and store data directly within Amazon Fraud Detector. Batch Import, which allows customers to upload a CSV file of historic event data for processing and storage
+
+
 1.18.58
 =======
 
