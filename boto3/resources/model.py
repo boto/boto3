@@ -30,7 +30,7 @@ from botocore import xform_name
 logger = logging.getLogger(__name__)
 
 
-class Identifier(object):
+class Identifier:
     """
     A resource identifier, given by its name.
 
@@ -43,7 +43,7 @@ class Identifier(object):
         self.member_name = member_name
 
 
-class Action(object):
+class Action:
     """
     A service operation action.
 
@@ -72,7 +72,7 @@ class Action(object):
         self.path = definition.get('path')
 
 
-class DefinitionWithParams(object):
+class DefinitionWithParams:
     """
     An item which has parameters exposed via the ``params`` property.
     A request has an operation and parameters, while a waiter has
@@ -99,7 +99,7 @@ class DefinitionWithParams(object):
         return params
 
 
-class Parameter(object):
+class Parameter:
     """
     An auto-filled parameter which has a source and target. For example,
     the ``QueueUrl`` may be auto-filled from a resource's ``url`` identifier
@@ -138,7 +138,7 @@ class Request(DefinitionWithParams):
     :param definition: The JSON definition
     """
     def __init__(self, definition):
-        super(Request, self).__init__(definition)
+        super().__init__(definition)
 
         #: (``string``) The name of the low-level service operation
         self.operation = definition.get('operation')
@@ -156,7 +156,7 @@ class Waiter(DefinitionWithParams):
     PREFIX = 'WaitUntil'
 
     def __init__(self, name, definition):
-        super(Waiter, self).__init__(definition)
+        super().__init__(definition)
 
         #: (``string``) The name of this waiter
         self.name = name
@@ -165,7 +165,7 @@ class Waiter(DefinitionWithParams):
         self.waiter_name = definition.get('waiterName')
 
 
-class ResponseResource(object):
+class ResponseResource:
     """
     A resource response to create after performing an action.
 
@@ -233,7 +233,7 @@ class Collection(Action):
         return self.resource.model.batch_actions
 
 
-class ResourceModel(object):
+class ResourceModel:
     """
     A model representing a resource, defined via a JSON description
     format. A resource has identifiers, attributes, actions,
@@ -295,7 +295,7 @@ class ResourceModel(object):
         :param shape: The underlying shape for this resource.
         """
         # Meta is a reserved name for resources
-        names = set(['meta'])
+        names = {'meta'}
         self._renamed = {}
 
         if self._definition.get('load'):
@@ -354,14 +354,14 @@ class ResourceModel(object):
             name = xform_name(name)
 
         if name in names:
-            logger.debug('Renaming %s %s %s' % (self.name, category, name))
+            logger.debug(f'Renaming {self.name} {category} {name}')
             self._renamed[(category, name)] = name + '_' + category
             name += '_' + category
 
             if name in names:
                 # This isn't good, let's raise instead of trying to keep
                 # renaming this value.
-                raise ValueError('Problem renaming {0} {1} to {2}!'.format(
+                raise ValueError('Problem renaming {} {} to {}!'.format(
                     self.name, category, name))
 
         names.add(name)

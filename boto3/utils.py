@@ -73,7 +73,7 @@ def inject_attribute(class_attributes, name, value):
         class_attributes[name] = value
 
 
-class LazyLoadedWaiterModel(object):
+class LazyLoadedWaiterModel:
     """A lazily loaded waiter model
 
     This does not load the service waiter model until an attempt is made

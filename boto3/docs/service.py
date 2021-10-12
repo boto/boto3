@@ -27,7 +27,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
     EXAMPLE_PATH = os.path.join(os.path.dirname(boto3.__file__), 'examples')
 
     def __init__(self, service_name, session):
-        super(ServiceDocumenter, self).__init__(
+        super().__init__(
             service_name=service_name,
             # I know that this is an internal attribute, but the botocore session
             # is needed to load the paginator and waiter models.
@@ -126,5 +126,5 @@ class ServiceDocumenter(BaseServiceDocumenter):
             section.write(".. contents::\n    :local:\n    :depth: 1")
             section.style.new_line()
             section.style.new_line()
-            with open(examples_file, 'r') as f:
+            with open(examples_file) as f:
                 section.write(f.read())

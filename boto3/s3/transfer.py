@@ -122,7 +122,6 @@ transfer.  For example:
 
 
 """
-from botocore.compat import six
 from botocore.exceptions import ClientError
 from s3transfer.exceptions import (
     RetriesExceededError as S3TransferRetriesExceededError,
@@ -217,7 +216,7 @@ class TransferConfig(S3TransferConfig):
             in uploading and downloading file content. The value is an integer
             in terms of bytes per second.
         """
-        super(TransferConfig, self).__init__(
+        super().__init__(
             multipart_threshold=multipart_threshold,
             max_request_concurrency=max_concurrency,
             multipart_chunksize=multipart_chunksize,
@@ -237,12 +236,12 @@ class TransferConfig(S3TransferConfig):
         # If the alias name is used, make sure we set the name that it points
         # to as that is what actually is used in governing the TransferManager.
         if name in self.ALIAS:
-            super(TransferConfig, self).__setattr__(self.ALIAS[name], value)
+            super().__setattr__(self.ALIAS[name], value)
         # Always set the value of the actual name provided.
-        super(TransferConfig, self).__setattr__(name, value)
+        super().__setattr__(name, value)
 
 
-class S3Transfer(object):
+class S3Transfer:
     ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
     ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
 
@@ -277,7 +276,7 @@ class S3Transfer(object):
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
-        if not isinstance(filename, six.string_types):
+        if not isinstance(filename, str):
             raise ValueError('Filename must be a string')
 
         subscribers = self._get_subscribers(callback)
@@ -291,7 +290,7 @@ class S3Transfer(object):
         # client error.
         except ClientError as e:
             raise S3UploadFailedError(
-                "Failed to upload %s to %s: %s" % (
+                "Failed to upload {} to {}: {}".format(
                     filename, '/'.join([bucket, key]), e))
 
     def download_file(self, bucket, key, filename, extra_args=None,
@@ -305,7 +304,7 @@ class S3Transfer(object):
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
-        if not isinstance(filename, six.string_types):
+        if not isinstance(filename, str):
             raise ValueError('Filename must be a string')
 
         subscribers = self._get_subscribers(callback)

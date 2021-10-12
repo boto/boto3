@@ -25,7 +25,7 @@ from .response import ResourceHandler, build_identifiers
 logger = logging.getLogger(__name__)
 
 
-class ResourceFactory(object):
+class ResourceFactory:
     """
     A factory to create new :py:class:`~boto3.resources.base.ServiceResource`
     classes from a :py:class:`~boto3.resources.model.ResourceModel`. There are
@@ -179,9 +179,9 @@ class ResourceFactory(object):
         shape = service_context.service_model.shape_for(
             resource_model.shape)
 
-        identifiers = dict(
-            (i.member_name, i)
-            for i in resource_model.identifiers if i.member_name)
+        identifiers = {
+            i.member_name: i
+            for i in resource_model.identifiers if i.member_name}
         attributes = resource_model.get_attributes(shape)
         for name, (orig_name, member) in attributes.items():
             if name in identifiers:
@@ -337,7 +337,7 @@ class ResourceFactory(object):
                     self.load()
                 else:
                     raise ResourceLoadException(
-                        '{0} has no load method'.format(
+                        '{} has no load method'.format(
                             self.__class__.__name__))
 
             return self.meta.data.get(name)

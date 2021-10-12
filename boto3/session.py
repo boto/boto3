@@ -25,7 +25,7 @@ from boto3.exceptions import ResourceNotExistsError, UnknownAPIVersionError
 from .resources.factory import ResourceFactory
 
 
-class Session(object):
+class Session:
     """
     A session stores configuration state and allows you to create service
     clients and resources.
@@ -56,7 +56,7 @@ class Session(object):
 
         # Setup custom user-agent string if it isn't already customized
         if self._session.user_agent_name == 'Botocore':
-            botocore_info = 'Botocore/{0}'.format(
+            botocore_info = 'Botocore/{}'.format(
                 self._session.user_agent_version)
             if self._session.user_agent_extra:
                 self._session.user_agent_extra += ' ' + botocore_info
@@ -81,7 +81,7 @@ class Session(object):
         self._register_default_handlers()
 
     def __repr__(self):
-        return '{0}(region_name={1})'.format(
+        return '{}(region_name={})'.format(
             self.__class__.__name__,
             repr(self._session.get_config_variable('region')))
 

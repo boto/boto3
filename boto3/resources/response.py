@@ -69,7 +69,7 @@ def build_identifiers(identifiers, parent, params=None, raw_response=None):
             continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source))
+                f'Unsupported source type: {source}')
 
         results.append((xform_name(target), value))
 
@@ -111,7 +111,7 @@ def build_empty_response(search_path, operation_name, service_model):
                 shape = shape.member
             else:
                 raise NotImplementedError(
-                    'Search path hits shape type {0} from {1}'.format(
+                    'Search path hits shape type {} from {}'.format(
                         shape.type_name, item))
 
     # Anything not handled here is set to None
@@ -125,7 +125,7 @@ def build_empty_response(search_path, operation_name, service_model):
     return response
 
 
-class RawHandler(object):
+class RawHandler:
     """
     A raw action response handler. This passed through the response
     dictionary, optionally after performing a JMESPath search if one
@@ -155,7 +155,7 @@ class RawHandler(object):
         return response
 
 
-class ResourceHandler(object):
+class ResourceHandler:
     """
     Creates a new resource or list of new resources from the low-level
     response based on the given response resource definition.

@@ -26,9 +26,9 @@ def copy_dynamodb_params(params, **kwargs):
     return copy.deepcopy(params)
 
 
-class DynamoDBHighLevelResource(object):
+class DynamoDBHighLevelResource:
     def __init__(self, *args, **kwargs):
-        super(DynamoDBHighLevelResource, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Apply handler that creates a copy of the user provided dynamodb
         # item such that it can be modified.
@@ -119,7 +119,7 @@ class DynamoDBHighLevelResource(object):
             unique_id='dynamodb-cond-expression-docs')
 
 
-class TransformationInjector(object):
+class TransformationInjector:
     """Injects the transformations into the user provided parameters."""
     def __init__(self, transformer=None, condition_builder=None,
                  serializer=None, deserializer=None):
@@ -204,7 +204,7 @@ class TransformationInjector(object):
             )
 
 
-class ConditionExpressionTransformation(object):
+class ConditionExpressionTransformation:
     """Provides a transformation for condition expressions
 
     The ``ParameterTransformer`` class can call this class directly
@@ -234,7 +234,7 @@ class ConditionExpressionTransformation(object):
         return value
 
 
-class ParameterTransformer(object):
+class ParameterTransformer:
     """Transforms the input to and output from botocore based on shape"""
 
     def transform(self, params, model, transformation, target_shape):

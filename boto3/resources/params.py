@@ -42,7 +42,7 @@ def get_data_member(parent, path):
             parent.load()
         else:
             raise ResourceLoadException(
-                '{0} has no load method!'.format(parent.__class__.__name__))
+                f'{parent.__class__.__name__} has no load method!')
 
     return jmespath.search(path, parent.meta.data)
 
@@ -90,7 +90,7 @@ def create_request_parameters(parent, request_model, params=None, index=None):
             continue
         else:
             raise NotImplementedError(
-                'Unsupported source type: {0}'.format(source))
+                f'Unsupported source type: {source}')
 
         build_param_structure(params, target, value, index)
 

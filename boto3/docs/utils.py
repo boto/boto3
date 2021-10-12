@@ -13,7 +13,6 @@
 import inspect
 
 import jmespath
-from botocore.compat import six
 
 
 def get_resource_ignore_params(params):
@@ -38,10 +37,7 @@ def get_resource_ignore_params(params):
 
 
 def is_resource_action(action_handle):
-    if six.PY3:
-        return inspect.isfunction(action_handle)
-    else:
-        return inspect.ismethod(action_handle)
+    return inspect.isfunction(action_handle)
 
 
 def get_resource_public_actions(resource_class):
@@ -66,7 +62,7 @@ def get_identifier_args_for_signature(identifier_names):
 
 
 def get_identifier_description(resource_name, identifier_name):
-    return "The %s's %s identifier. This **must** be set." % (
+    return "The {}'s {} identifier. This **must** be set.".format(
         resource_name, identifier_name)
 
 
@@ -88,7 +84,7 @@ def add_resource_type_overview(section, resource_type, description,
         section.style.new_line()
 
 
-class DocumentModifiedShape(object):
+class DocumentModifiedShape:
     def __init__(self, shape_name, new_type, new_description,
                  new_example_value):
         self._shape_name = shape_name
@@ -134,7 +130,7 @@ class DocumentModifiedShape(object):
             type_section = section.get_section('param-type')
             if type_section.getvalue().decode('utf-8').startswith(':type'):
                 type_section.clear_text()
-                type_section.write(':type %s: %s' % (
+                type_section.write(':type {}: {}'.format(
                     section.name, self._new_type))
             else:
                 type_section.clear_text()

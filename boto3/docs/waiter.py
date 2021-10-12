@@ -23,7 +23,7 @@ from boto3.docs.utils import (
 
 class WaiterResourceDocumenter(BaseDocumenter):
     def __init__(self, resource, service_waiter_model):
-        super(WaiterResourceDocumenter, self).__init__(resource)
+        super().__init__(resource)
         self._service_waiter_model = service_waiter_model
 
     def document_resource_waiters(self, section):
@@ -72,7 +72,7 @@ def document_resource_waiter(section, resource_name, event_emitter,
             service_module_name,
             xform_name(waiter_model.operation),
             waiter_model.delay, waiter_model.max_attempts))
-    example_prefix = '%s.%s' % (
+    example_prefix = '{}.{}'.format(
         xform_name(resource_name), resource_waiter_model.name)
     document_model_driven_method(
         section=section, method_name=resource_waiter_model.name,

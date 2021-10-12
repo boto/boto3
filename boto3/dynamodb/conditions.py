@@ -22,7 +22,7 @@ from boto3.exceptions import (
 ATTR_NAME_REGEX = re.compile(r'[^.\[\]]+(?![^\[]*\])')
 
 
-class ConditionBase(object):
+class ConditionBase:
 
     expression_format = ''
     expression_operator = ''
@@ -59,7 +59,7 @@ class ConditionBase(object):
         return not self.__eq__(other)
 
 
-class AttributeBase(object):
+class AttributeBase:
     def __init__(self, name):
         self.name = name
 
@@ -295,7 +295,7 @@ BuiltConditionExpression = namedtuple(
 )
 
 
-class ConditionExpressionBuilder(object):
+class ConditionExpressionBuilder:
     """This class is used to build condition expressions with placeholders"""
     def __init__(self):
         self._name_count = 0

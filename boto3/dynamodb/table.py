@@ -24,9 +24,9 @@ def register_table_methods(base_classes, **kwargs):
 # base class for every method we can just update this
 # class instead.  Just be sure to move the bulk of the
 # actual method implementation to another class.
-class TableResource(object):
+class TableResource:
     def __init__(self, *args, **kwargs):
-        super(TableResource, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def batch_writer(self, overwrite_by_pkeys=None):
         """Create a batch writer object.
@@ -59,7 +59,7 @@ class TableResource(object):
                            overwrite_by_pkeys=overwrite_by_pkeys)
 
 
-class BatchWriter(object):
+class BatchWriter:
     """Automatically handle batch writes to DynamoDB for a single table."""
     def __init__(self, table_name, client, flush_amount=25,
                  overwrite_by_pkeys=None):

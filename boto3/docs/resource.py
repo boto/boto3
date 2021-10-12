@@ -33,7 +33,7 @@ from boto3.docs.waiter import WaiterResourceDocumenter
 
 class ResourceDocumenter(BaseDocumenter):
     def __init__(self, resource, botocore_session):
-        super(ResourceDocumenter, self).__init__(resource)
+        super().__init__(resource)
         self._botocore_session = botocore_session
 
     def document_resource(self, section):
@@ -61,7 +61,7 @@ class ResourceDocumenter(BaseDocumenter):
         # Write out the class signature.
         class_args = get_identifier_args_for_signature(identifier_names)
         section.style.start_sphinx_py_class(
-            class_name='%s(%s)' % (self.class_name, class_args))
+            class_name=f'{self.class_name}({class_args})')
 
         # Add as short description about the resource
         description_section = section.add_new_section('description')
@@ -80,7 +80,7 @@ class ResourceDocumenter(BaseDocumenter):
         official_service_name = get_official_service_name(
             self._service_model)
         section.write(
-            'A resource representing an %s %s' % (
+            'A resource representing an {} {}'.format(
                 official_service_name, self._resource_name))
 
     def _add_example(self, section, identifier_names):
@@ -90,13 +90,13 @@ class ResourceDocumenter(BaseDocumenter):
         section.style.new_line()
         section.style.new_line()
         section.write(
-            '%s = boto3.resource(\'%s\')' % (
+            '{} = boto3.resource(\'{}\')'.format(
                 self._service_name, self._service_name)
         )
         section.style.new_line()
         example_values = get_identifier_values_for_example(identifier_names)
         section.write(
-            '%s = %s.%s(%s)' % (
+            '{} = {}.{}({})'.format(
                 xform_name(self._resource_name), self._service_name,
                 self._resource_name, example_values))
         section.style.end_codeblock()
@@ -107,7 +107,7 @@ class ResourceDocumenter(BaseDocumenter):
                 self._resource_name, identifier_name)
             section.write(':type %s: string' % identifier_name)
             section.style.new_line()
-            section.write(':param %s: %s' % (
+            section.write(':param {}: {}'.format(
                 identifier_name, description))
             section.style.new_line()
 
@@ -258,6 +258,6 @@ class ServiceResourceDocumenter(ResourceDocumenter):
         section.style.new_line()
         section.style.new_line()
         section.write(
-            '%s = boto3.resource(\'%s\')' % (
+            '{} = boto3.resource(\'{}\')'.format(
                 self._service_name, self._service_name))
         section.style.end_codeblock()

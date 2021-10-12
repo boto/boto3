@@ -25,7 +25,7 @@ from .response import RawHandler, ResourceHandler
 logger = logging.getLogger(__name__)
 
 
-class ServiceAction(object):
+class ServiceAction:
     """
     A class representing a callable action on a resource, for example
     ``sqs.get_queue_by_name(...)`` or ``s3.Bucket('foo').delete()``.
@@ -158,7 +158,7 @@ class BatchAction(ServiceAction):
         return responses
 
 
-class WaiterAction(object):
+class WaiterAction:
     """
     A class representing a callable waiter action on a resource, for example
     ``s3.Bucket('foo').wait_until_bucket_exists()``.
@@ -203,7 +203,7 @@ class WaiterAction(object):
         logger.debug('Response: %r', response)
 
 
-class CustomModeledAction(object):
+class CustomModeledAction:
     """A custom, modeled action to inject into a resource."""
     def __init__(self, action_name, action_model,
                  function, event_emitter):

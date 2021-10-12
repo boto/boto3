@@ -83,7 +83,7 @@ def document_sub_resource(section, resource_name, sub_resource_model,
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example = '%s = %s.%s(%s)' % (
+    example = '{} = {}.{}({})'.format(
         xform_name(sub_resource_model.resource.type),
         example_resource_name,
         sub_resource_model.name, example_values
@@ -98,14 +98,14 @@ def document_sub_resource(section, resource_name, sub_resource_model,
             sub_resource_model.name, identifier)
         param_section.write(':type %s: string' % identifier)
         param_section.style.new_line()
-        param_section.write(':param %s: %s' % (
+        param_section.write(':param {}: {}'.format(
             identifier, description))
         param_section.style.new_line()
 
     return_section = section.add_new_section('return')
     return_section.style.new_line()
     return_section.write(
-        ':rtype: :py:class:`%s.%s`' % (
+        ':rtype: :py:class:`{}.{}`'.format(
             get_service_module_name(service_model),
             sub_resource_model.resource.type))
     return_section.style.new_line()

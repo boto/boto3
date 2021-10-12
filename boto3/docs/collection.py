@@ -125,7 +125,7 @@ def document_batch_action(section, resource_name, event_emitter,
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example_prefix = '%s = %s.%s.%s' % (
+    example_prefix = '{} = {}.{}.{}'.format(
         example_return_value, example_resource_name,
         collection_model.name, batch_action_model.name
     )
@@ -178,7 +178,7 @@ def document_collection_method(section, resource_name, action_name,
             'method_description': (
                 'Creates an iterable of all %s resources '
                 'in the collection.' % collection_model.resource.type),
-            'example_prefix': '%s_iterator = %s.%s.all' % (
+            'example_prefix': '{}_iterator = {}.{}.all'.format(
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),
             'exclude_input': underlying_operation_members
@@ -194,7 +194,7 @@ def document_collection_method(section, resource_name, action_name,
                     collection_model.resource.type,
                     collection_model.resource.type
                 )),
-            'example_prefix': '%s_iterator = %s.%s.filter' % (
+            'example_prefix': '{}_iterator = {}.{}.filter'.format(
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),
             'exclude_input': get_resource_ignore_params(
@@ -205,7 +205,7 @@ def document_collection_method(section, resource_name, action_name,
                 'Creates an iterable up to a specified amount of '
                 '%s resources in the collection.' %
                 collection_model.resource.type),
-            'example_prefix': '%s_iterator = %s.%s.limit' % (
+            'example_prefix': '{}_iterator = {}.{}.limit'.format(
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),
             'include_input': [
@@ -222,7 +222,7 @@ def document_collection_method(section, resource_name, action_name,
                 'in the collection, but limits the number of '
                 'items returned by each service call by the specified '
                 'amount.' % collection_model.resource.type),
-            'example_prefix': '%s_iterator = %s.%s.page_size' % (
+            'example_prefix': '{}_iterator = {}.{}.page_size'.format(
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),
             'include_input': [

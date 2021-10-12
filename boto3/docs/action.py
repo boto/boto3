@@ -96,7 +96,7 @@ def document_action(section, resource_name, event_emitter, action_model,
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example_prefix = '%s = %s.%s' % (
+    example_prefix = '{} = {}.{}'.format(
         example_return_value, example_resource_name, action_model.name)
     document_model_driven_resource_method(
         section=section, method_name=action_model.name,
@@ -141,7 +141,7 @@ def document_load_reload_action(section, action_name, resource_name,
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example_prefix = '%s.%s' % (example_resource_name, action_name)
+    example_prefix = f'{example_resource_name}.{action_name}'
     document_model_driven_method(
         section=section, method_name=action_name,
         operation_model=OperationModel({}, service_model),
