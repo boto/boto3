@@ -24,14 +24,18 @@ class TestDynamoDB(unittest.TestCase):
         self.http_response = AWSResponse(None, 200, {}, None)
         self.parsed_response = {}
         self.make_request_patch = mock.patch(
-            'botocore.endpoint.Endpoint.make_request')
+            'botocore.endpoint.Endpoint.make_request'
+        )
         self.make_request_mock = self.make_request_patch.start()
         self.make_request_mock.return_value = (
-            self.http_response, self.parsed_response)
+            self.http_response,
+            self.parsed_response,
+        )
         self.session = Session(
             aws_access_key_id='dummy',
             aws_secret_access_key='dummy',
-            region_name='us-east-1')
+            region_name='us-east-1',
+        )
 
     def tearDown(self):
         self.make_request_patch.stop()
@@ -47,7 +51,7 @@ class TestDynamoDB(unittest.TestCase):
             'TableName': 'MyTable',
             'FilterExpression': '#n0 = :v0',
             'ExpressionAttributeNames': {'#n0': 'mykey'},
-            'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}}
+            'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}},
         }
 
     def test_client(self):
@@ -57,7 +61,7 @@ class TestDynamoDB(unittest.TestCase):
             TableName='MyTable',
             FilterExpression='#n0 = :v0',
             ExpressionAttributeNames={'#n0': 'mykey'},
-            ExpressionAttributeValues={':v0': {'S': 'myvalue'}}
+            ExpressionAttributeValues={':v0': {'S': 'myvalue'}},
         )
         request = self.make_request_mock.call_args_list[0][0][1]
         request_params = json.loads(request['body'].decode('utf-8'))
@@ -65,5 +69,5 @@ class TestDynamoDB(unittest.TestCase):
             'TableName': 'MyTable',
             'FilterExpression': '#n0 = :v0',
             'ExpressionAttributeNames': {'#n0': 'mykey'},
-            'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}}
+            'ExpressionAttributeValues': {':v0': {'S': 'myvalue'}},
         }

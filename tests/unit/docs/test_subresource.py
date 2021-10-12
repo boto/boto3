@@ -18,12 +18,14 @@ class TestSubResourceDocumenter(BaseDocsTest):
     def test_document_sub_resources(self):
         sub_resource_documentor = SubResourceDocumenter(self.resource)
         sub_resource_documentor.document_sub_resources(self.doc_structure)
-        self.assert_contains_lines_in_order([
-            '.. py:method:: Sample(name)',
-            '  Creates a Sample resource.::',
-            "    sample = myservice.Sample('name')",
-            '  :type name: string',
-            "  :param name: The Sample's name identifier.",
-            '  :rtype: :py:class:`MyService.Sample`',
-            '  :returns: A Sample resource',
-        ])
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:method:: Sample(name)',
+                '  Creates a Sample resource.::',
+                "    sample = myservice.Sample('name')",
+                '  :type name: string',
+                "  :param name: The Sample's name identifier.",
+                '  :rtype: :py:class:`MyService.Sample`',
+                '  :returns: A Sample resource',
+            ]
+        )

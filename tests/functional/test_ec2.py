@@ -51,15 +51,12 @@ class TestInstanceDeleteTags(unittest.TestCase):
 
         stubber.add_response(
             method='describe_instances',
-            service_response={
-                'Reservations': []
-            },
+            service_response={'Reservations': []},
             expected_params={
-                'Filters': [{
-                    'Name': 'instance-state-name',
-                    'Values': ['running']
-                }]
-            }
+                'Filters': [
+                    {'Name': 'instance-state-name', 'Values': ['running']}
+                ]
+            },
         )
 
         with stubber:

@@ -24,7 +24,7 @@ def create_session():
         boto3_session = Session(
             aws_access_key_id='dummy',
             aws_secret_access_key='dummy',
-            region_name='us-east-1'
+            region_name='us-east-1',
         )
 
     return boto3_session
@@ -77,7 +77,7 @@ def test_api_versions_synced_with_botocore(api_version_args):
         service_name,
         region_name='us-east-1',
         aws_access_key_id='foo',
-        aws_secret_access_key='bar'
+        aws_secret_access_key='bar',
     )
     botocore_api_version = client.meta.service_model.api_version
     err = (

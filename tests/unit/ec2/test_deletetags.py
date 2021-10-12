@@ -27,7 +27,7 @@ class TestDeleteTags(unittest.TestCase):
             'Tags': [
                 {'Key': 'key1', 'Value': 'value1'},
                 {'Key': 'key2', 'Value': 'value2'},
-                {'Key': 'key3', 'Value': 'value3'}
+                {'Key': 'key3', 'Value': 'value3'},
             ]
         }
 

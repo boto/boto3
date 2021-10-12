@@ -19,16 +19,14 @@ from boto3.resources.collection import CollectionManager
 
 # A map of services to regions that cannot use us-west-2
 # for the integration tests.
-REGION_MAP = {
-    'opsworks': 'us-east-1'
-}
+REGION_MAP = {'opsworks': 'us-east-1'}
 
 # A list of collections to ignore. They require parameters
 # or are very slow to run.
 BLOCKLIST = {
     'ec2': ['images'],
     'iam': ['signing_certificates'],
-    'sqs': ['dead_letter_source_queues']
+    'sqs': ['dead_letter_source_queues'],
 }
 
 
@@ -38,8 +36,8 @@ def all_collections():
     session = boto3.session.Session()
     for service_name in session.get_available_resources():
         resource = session.resource(
-            service_name,
-            region_name=REGION_MAP.get(service_name, 'us-west-2'))
+            service_name, region_name=REGION_MAP.get(service_name, 'us-west-2')
+        )
 
         for key in dir(resource):
             if key in BLOCKLIST.get(service_name, []):

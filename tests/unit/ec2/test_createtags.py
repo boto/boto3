@@ -20,14 +20,7 @@ class TestCreateTags(unittest.TestCase):
         self.client = mock.Mock()
         self.resource = mock.Mock()
         self.resource.meta.client = self.client
-        self.ref_tags = [
-            'tag1',
-            'tag2',
-            'tag3',
-            'tag4',
-            'tag5',
-            'tag6'
-        ]
+        self.ref_tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6']
         self.resource.Tag.side_effect = self.ref_tags
 
     def test_create_tags(self):
@@ -36,8 +29,8 @@ class TestCreateTags(unittest.TestCase):
             'Tags': [
                 {'Key': 'key1', 'Value': 'value1'},
                 {'Key': 'key2', 'Value': 'value2'},
-                {'Key': 'key3', 'Value': 'value3'}
-            ]
+                {'Key': 'key3', 'Value': 'value3'},
+            ],
         }
 
         result_tags = createtags.create_tags(self.resource, **ref_kwargs)
@@ -52,7 +45,8 @@ class TestCreateTags(unittest.TestCase):
             mock.call('foo', 'key3', 'value3'),
             mock.call('bar', 'key1', 'value1'),
             mock.call('bar', 'key2', 'value2'),
-            mock.call('bar', 'key3', 'value3')]
+            mock.call('bar', 'key3', 'value3'),
+        ]
 
         # Ensure the return values are as expected.
         assert result_tags == self.ref_tags

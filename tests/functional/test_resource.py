@@ -29,12 +29,14 @@ class TestResourceCustomization(unittest.TestCase):
     def add_new_method(self, name):
         def handler(class_attributes, **kwargs):
             class_attributes[name] = identity
+
         return handler
 
     def test_can_inject_method_onto_resource(self):
         session = boto3.Session(botocore_session=self.botocore_session)
-        self.botocore_session.register('creating-resource-class.s3',
-                                       self.add_new_method(name='my_method'))
+        self.botocore_session.register(
+            'creating-resource-class.s3', self.add_new_method(name='my_method')
+        )
         resource = session.resource('s3')
         assert hasattr(resource, 'my_method')
         assert resource.my_method('anything') == 'anything'

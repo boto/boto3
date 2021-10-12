@@ -24,16 +24,18 @@ from tests import BaseTestCase, mock
 
 class TestServiceActionParams(BaseTestCase):
     def test_service_action_params_identifier(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'WarehouseUrl',
-                    'source': 'identifier',
-                    'name': 'Url'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrl',
+                        'source': 'identifier',
+                        'name': 'Url',
+                    }
+                ],
+            }
+        )
 
         parent = mock.Mock()
         parent.url = 'w-url'
@@ -43,44 +45,44 @@ class TestServiceActionParams(BaseTestCase):
         assert params['WarehouseUrl'] == 'w-url'
 
     def test_service_action_params_data_member(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'WarehouseUrl',
-                    'source': 'data',
-                    'path': 'SomeMember'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrl',
+                        'source': 'data',
+                        'path': 'SomeMember',
+                    }
+                ],
+            }
+        )
 
         parent = mock.Mock()
-        parent.meta = ResourceMeta('test', data={
-            'SomeMember': 'w-url'
-        })
+        parent.meta = ResourceMeta('test', data={'SomeMember': 'w-url'})
 
         params = create_request_parameters(parent, request_model)
 
         assert params['WarehouseUrl'] == 'w-url'
 
     def test_service_action_params_data_member_missing(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'WarehouseUrl',
-                    'source': 'data',
-                    'path': 'SomeMember'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrl',
+                        'source': 'data',
+                        'path': 'SomeMember',
+                    }
+                ],
+            }
+        )
 
         parent = mock.Mock()
 
         def load_data():
-            parent.meta.data = {
-                'SomeMember': 'w-url'
-            }
+            parent.meta.data = {'SomeMember': 'w-url'}
 
         parent.load.side_effect = load_data
         parent.meta = ResourceMeta('test')
@@ -91,16 +93,18 @@ class TestServiceActionParams(BaseTestCase):
         assert params['WarehouseUrl'] == 'w-url'
 
     def test_service_action_params_data_member_missing_no_load(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'WarehouseUrl',
-                    'source': 'data',
-                    'path': 'SomeMember'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrl',
+                        'source': 'data',
+                        'path': 'SomeMember',
+                    }
+                ],
+            }
+        )
 
         # This mock has no ``load`` method.
         parent = mock.Mock(spec=ServiceResource)
@@ -110,26 +114,20 @@ class TestServiceActionParams(BaseTestCase):
             create_request_parameters(parent, request_model)
 
     def test_service_action_params_constants(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'Param1',
-                    'source': 'string',
-                    'value': 'param1'
-                },
-                {
-                    'target': 'Param2',
-                    'source': 'integer',
-                    'value': 123
-                },
-                {
-                    'target': 'Param3',
-                    'source': 'boolean',
-                    'value': True
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'Param1',
+                        'source': 'string',
+                        'value': 'param1',
+                    },
+                    {'target': 'Param2', 'source': 'integer', 'value': 123},
+                    {'target': 'Param3', 'source': 'boolean', 'value': True},
+                ],
+            }
+        )
 
         params = create_request_parameters(None, request_model)
 
@@ -138,12 +136,12 @@ class TestServiceActionParams(BaseTestCase):
         assert params['Param3'] is True
 
     def test_service_action_params_input(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {'target': 'Param1', 'source': 'input'}
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [{'target': 'Param1', 'source': 'input'}],
+            }
+        )
 
         params = create_request_parameters(None, request_model)
         assert params == {}
@@ -153,30 +151,29 @@ class TestServiceActionParams(BaseTestCase):
         assert params == {'param1': 'myinput'}
 
     def test_service_action_params_invalid(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'Param1',
-                    'source': 'invalid'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [{'target': 'Param1', 'source': 'invalid'}],
+            }
+        )
 
         with pytest.raises(NotImplementedError):
             create_request_parameters(None, request_model)
 
     def test_service_action_params_list(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'WarehouseUrls[0]',
-                    'source': 'string',
-                    'value': 'w-url'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'WarehouseUrls[0]',
+                        'source': 'string',
+                        'value': 'w-url',
+                    }
+                ],
+            }
+        )
 
         params = create_request_parameters(None, request_model)
 
@@ -185,26 +182,24 @@ class TestServiceActionParams(BaseTestCase):
         assert 'w-url' in params['WarehouseUrls']
 
     def test_service_action_params_reuse(self):
-        request_model = Request({
-            'operation': 'GetFrobs',
-            'params': [
-                {
-                    'target': 'Delete.Objects[].Key',
-                    'source': 'data',
-                    'path': 'Key'
-                }
-            ]
-        })
+        request_model = Request(
+            {
+                'operation': 'GetFrobs',
+                'params': [
+                    {
+                        'target': 'Delete.Objects[].Key',
+                        'source': 'data',
+                        'path': 'Key',
+                    }
+                ],
+            }
+        )
 
         item1 = mock.Mock()
-        item1.meta = ResourceMeta('test', data={
-            'Key': 'item1'
-        })
+        item1.meta = ResourceMeta('test', data={'Key': 'item1'})
 
         item2 = mock.Mock()
-        item2.meta = ResourceMeta('test', data={
-            'Key': 'item2'
-        })
+        item2.meta = ResourceMeta('test', data={'Key': 'item2'})
 
         # Here we create params and then re-use it to build up a more
         # complex structure over multiple calls.
@@ -212,12 +207,7 @@ class TestServiceActionParams(BaseTestCase):
         create_request_parameters(item2, request_model, params=params)
 
         assert params == {
-            'Delete': {
-                'Objects': [
-                    {'Key': 'item1'},
-                    {'Key': 'item2'}
-                ]
-            }
+            'Delete': {'Objects': [{'Key': 'item1'}, {'Key': 'item2'}]}
         }
 
 
@@ -248,11 +238,7 @@ class TestStructBuilder(BaseTestCase):
         assert params['foo']['bar'][0]['baz'] == 123
 
     def test_modify_existing(self):
-        params = {
-            'foo': [
-                {'key': 'abc'}
-            ]
-        }
+        params = {'foo': [{'key': 'abc'}]}
         build_param_structure(params, 'foo[0].secret', 123)
         assert params['foo'][0]['key'] == 'abc'
         assert params['foo'][0]['secret'] == 123
@@ -277,5 +263,5 @@ class TestStructBuilder(BaseTestCase):
         build_param_structure(params, 'foo[*].baz', 123, index)
         assert params['foo'] == [
             {'bar': 123, 'baz': 456},
-            {'bar': 789, 'baz': 123}
+            {'bar': 789, 'baz': 123},
         ]

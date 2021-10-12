@@ -20,10 +20,12 @@ class TestUserAgentCustomizations(unittest.TestCase):
     def setUp(self):
         self.botocore_session = botocore.session.get_session()
         self.session = boto3.session.Session(
-            region_name='us-west-2', botocore_session=self.botocore_session)
+            region_name='us-west-2', botocore_session=self.botocore_session
+        )
         self.actual_user_agent = None
-        self.botocore_session.register('request-created',
-                                       self.record_user_agent)
+        self.botocore_session.register(
+            'request-created', self.record_user_agent
+        )
 
     def record_user_agent(self, request, **kwargs):
         self.actual_user_agent = request.headers['User-Agent']

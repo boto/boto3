@@ -21,8 +21,9 @@ from tests import unittest
 class TestUtils(unittest.TestCase):
     def test_runtime_error_raised_when_shadowing_client_method(self):
         botocore_session = botocore.session.get_session()
-        session = boto3.session.Session(region_name='us-west-2',
-                                        botocore_session=botocore_session)
+        session = boto3.session.Session(
+            region_name='us-west-2', botocore_session=botocore_session
+        )
 
         def shadows_put_object(class_attributes, **kwargs):
             utils.inject_attribute(class_attributes, 'put_object', 'invalid')

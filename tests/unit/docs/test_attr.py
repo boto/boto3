@@ -19,32 +19,36 @@ from tests.unit.docs import BaseDocsTest
 class TestDocumentAttribute(BaseDocsTest):
     def setUp(self):
         super().setUp()
-        self.add_shape({
-            'NestedStruct': {
-                'type': 'structure',
-                'members': {
-                    'NestedStrAttr': {
-                        'shape': 'String',
-                        'documentation': 'Documents a nested string attribute'
-                    }
-                }
-            }
-        })
-        self.add_shape({
-            'ResourceShape': {
-                'type': 'structure',
-                'members': {
-                    'StringAttr': {
-                        'shape': 'String',
-                        'documentation': 'Documents a string attribute'
+        self.add_shape(
+            {
+                'NestedStruct': {
+                    'type': 'structure',
+                    'members': {
+                        'NestedStrAttr': {
+                            'shape': 'String',
+                            'documentation': 'Documents a nested string attribute',
+                        }
                     },
-                    'NestedAttr': {
-                        'shape': 'NestedStruct',
-                        'documentation': 'Documents a nested attribute'
-                    }
                 }
             }
-        })
+        )
+        self.add_shape(
+            {
+                'ResourceShape': {
+                    'type': 'structure',
+                    'members': {
+                        'StringAttr': {
+                            'shape': 'String',
+                            'documentation': 'Documents a string attribute',
+                        },
+                        'NestedAttr': {
+                            'shape': 'NestedStruct',
+                            'documentation': 'Documents a nested attribute',
+                        },
+                    },
+                }
+            }
+        )
         self.setup_client_and_resource()
 
         self.event_emitter = HierarchicalEmitter()
@@ -56,22 +60,38 @@ class TestDocumentAttribute(BaseDocsTest):
         shape_model = self.service_model.shape_for('ResourceShape')
         attr_name = 'StringAttr'
         document_attribute(
-            self.doc_structure, self.service_name, self.resource_name,
-            attr_name, self.event_emitter, shape_model.members[attr_name])
-        self.assert_contains_lines_in_order([
-            '.. py:attribute:: StringAttr',
-            '  - *(string) --* Documents a string attribute'
-        ])
+            self.doc_structure,
+            self.service_name,
+            self.resource_name,
+            attr_name,
+            self.event_emitter,
+            shape_model.members[attr_name],
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:attribute:: StringAttr',
+                '  - *(string) --* Documents a string attribute',
+            ]
+        )
 
     def test_document_attr_structure(self):
         shape_model = self.service_model.shape_for('ResourceShape')
         attr_name = 'NestedAttr'
         document_attribute(
-            self.doc_structure, self.service_name, self.resource_name,
-            attr_name, self.event_emitter, shape_model.members[attr_name])
-        self.assert_contains_lines_in_order([
-            '.. py:attribute:: NestedAttr',
-            '  - *(dict) --* Documents a nested attribute',
-            ('    - **NestedStrAttr** *(string) --* Documents a nested '
-             'string attribute')
-        ])
+            self.doc_structure,
+            self.service_name,
+            self.resource_name,
+            attr_name,
+            self.event_emitter,
+            shape_model.members[attr_name],
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:attribute:: NestedAttr',
+                '  - *(dict) --* Documents a nested attribute',
+                (
+                    '    - **NestedStrAttr** *(string) --* Documents a nested '
+                    'string attribute'
+                ),
+            ]
+        )

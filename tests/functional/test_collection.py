@@ -18,14 +18,19 @@ from tests import unittest
 class TestCollection(unittest.TestCase):
     def setUp(self):
         self.session = Session(
-            aws_access_key_id='dummy', aws_secret_access_key='dummy',
-            region_name='us-east-1')
+            aws_access_key_id='dummy',
+            aws_secret_access_key='dummy',
+            region_name='us-east-1',
+        )
         # Pick an arbitrary resource.
         self.ec2_resource = self.session.resource('ec2')
 
     def test_can_use_collection_methods(self):
-        assert isinstance(self.ec2_resource.instances.all(), ResourceCollection)
+        assert isinstance(
+            self.ec2_resource.instances.all(), ResourceCollection
+        )
 
     def test_can_chain_methods(self):
         assert isinstance(
-            self.ec2_resource.instances.all().page_size(5), ResourceCollection)
+            self.ec2_resource.instances.all().page_size(5), ResourceCollection
+        )

@@ -27,26 +27,41 @@ class TestInjectTransferMethods(unittest.TestCase):
 
     def test_upload_file_proxies_to_transfer_object(self):
         with mock.patch('boto3.s3.inject.S3Transfer') as transfer:
-            inject.upload_file(mock.sentinel.CLIENT,
-                               Filename='filename',
-                               Bucket='bucket', Key='key')
-            transfer_in_context_manager = \
+            inject.upload_file(
+                mock.sentinel.CLIENT,
+                Filename='filename',
+                Bucket='bucket',
+                Key='key',
+            )
+            transfer_in_context_manager = (
                 transfer.return_value.__enter__.return_value
+            )
             transfer_in_context_manager.upload_file.assert_called_with(
-                filename='filename', bucket='bucket', key='key',
-                extra_args=None, callback=None)
+                filename='filename',
+                bucket='bucket',
+                key='key',
+                extra_args=None,
+                callback=None,
+            )
 
     def test_download_file_proxies_to_transfer_object(self):
         with mock.patch('boto3.s3.inject.S3Transfer') as transfer:
             inject.download_file(
                 mock.sentinel.CLIENT,
-                Bucket='bucket', Key='key',
-                Filename='filename')
-            transfer_in_context_manager = \
+                Bucket='bucket',
+                Key='key',
+                Filename='filename',
+            )
+            transfer_in_context_manager = (
                 transfer.return_value.__enter__.return_value
+            )
             transfer_in_context_manager.download_file.assert_called_with(
-                bucket='bucket', key='key', filename='filename',
-                extra_args=None, callback=None)
+                bucket='bucket',
+                key='key',
+                filename='filename',
+                extra_args=None,
+                callback=None,
+            )
 
 
 class TestBucketLoad(unittest.TestCase):
@@ -67,7 +82,7 @@ class TestBucketLoad(unittest.TestCase):
         inject.bucket_load(self.resource)
         assert self.resource.meta.data == {
             'Name': self.resource.name,
-            'CreationDate': 2
+            'CreationDate': 2,
         }
 
     def test_bucket_load_doesnt_find_bucket(self):
@@ -83,25 +98,27 @@ class TestBucketLoad(unittest.TestCase):
 
     def test_bucket_load_encounters_access_exception(self):
         self.client.list_buckets.side_effect = ClientError(
-            {'Error':
-             {'Code': 'AccessDenied',
-              'Message': 'Access Denied'}},
-            'ListBuckets')
+            {'Error': {'Code': 'AccessDenied', 'Message': 'Access Denied'}},
+            'ListBuckets',
+        )
         inject.bucket_load(self.resource)
         assert self.resource.meta.data == {}
 
     def test_bucket_load_encounters_other_exception(self):
         self.client.list_buckets.side_effect = ClientError(
-            {'Error':
-             {'Code': 'ExpiredToken',
-              'Message': 'The provided token has expired.'}},
-            'ListBuckets')
+            {
+                'Error': {
+                    'Code': 'ExpiredToken',
+                    'Message': 'The provided token has expired.',
+                }
+            },
+            'ListBuckets',
+        )
         with pytest.raises(ClientError):
             inject.bucket_load(self.resource)
 
 
 class TestBucketTransferMethods(unittest.TestCase):
-
     def setUp(self):
         self.bucket = mock.Mock(name='my_bucket')
         self.copy_source = {'Bucket': 'foo', 'Key': 'bar'}
@@ -109,38 +126,63 @@ class TestBucketTransferMethods(unittest.TestCase):
     def test_upload_file_proxies_to_meta_client(self):
         inject.bucket_upload_file(self.bucket, Filename='foo', Key='key')
         self.bucket.meta.client.upload_file.assert_called_with(
-            Filename='foo', Bucket=self.bucket.name, Key='key',
-            ExtraArgs=None, Callback=None, Config=None)
+            Filename='foo',
+            Bucket=self.bucket.name,
+            Key='key',
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
     def test_download_file_proxies_to_meta_client(self):
         inject.bucket_download_file(self.bucket, Key='key', Filename='foo')
         self.bucket.meta.client.download_file.assert_called_with(
-            Bucket=self.bucket.name, Key='key', Filename='foo',
-            ExtraArgs=None, Callback=None, Config=None)
+            Bucket=self.bucket.name,
+            Key='key',
+            Filename='foo',
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
     def test_copy(self):
         inject.bucket_copy(self.bucket, self.copy_source, Key='key')
         self.bucket.meta.client.copy.assert_called_with(
-            CopySource=self.copy_source, Bucket=self.bucket.name, Key='key',
-            ExtraArgs=None, Callback=None, SourceClient=None, Config=None)
+            CopySource=self.copy_source,
+            Bucket=self.bucket.name,
+            Key='key',
+            ExtraArgs=None,
+            Callback=None,
+            SourceClient=None,
+            Config=None,
+        )
 
     def test_upload_fileobj(self):
         fileobj = six.BytesIO(b'foo')
         inject.bucket_upload_fileobj(self.bucket, Key='key', Fileobj=fileobj)
         self.bucket.meta.client.upload_fileobj.assert_called_with(
-            Bucket=self.bucket.name, Fileobj=fileobj, Key='key',
-            ExtraArgs=None, Callback=None, Config=None)
+            Bucket=self.bucket.name,
+            Fileobj=fileobj,
+            Key='key',
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
     def test_download_fileobj(self):
         obj = six.BytesIO()
         inject.bucket_download_fileobj(self.bucket, Key='key', Fileobj=obj)
         self.bucket.meta.client.download_fileobj.assert_called_with(
-            Bucket=self.bucket.name, Key='key', Fileobj=obj, ExtraArgs=None,
-            Callback=None, Config=None)
+            Bucket=self.bucket.name,
+            Key='key',
+            Fileobj=obj,
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
 
 class TestObjectTransferMethods(unittest.TestCase):
-
     def setUp(self):
         self.obj = mock.Mock(bucket_name='my_bucket', key='my_key')
         self.copy_source = {'Bucket': 'foo', 'Key': 'bar'}
@@ -148,35 +190,60 @@ class TestObjectTransferMethods(unittest.TestCase):
     def test_upload_file_proxies_to_meta_client(self):
         inject.object_upload_file(self.obj, Filename='foo')
         self.obj.meta.client.upload_file.assert_called_with(
-            Filename='foo', Bucket=self.obj.bucket_name, Key=self.obj.key,
-            ExtraArgs=None, Callback=None, Config=None)
+            Filename='foo',
+            Bucket=self.obj.bucket_name,
+            Key=self.obj.key,
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
     def test_download_file_proxies_to_meta_client(self):
         inject.object_download_file(self.obj, Filename='foo')
         self.obj.meta.client.download_file.assert_called_with(
-            Bucket=self.obj.bucket_name, Key=self.obj.key, Filename='foo',
-            ExtraArgs=None, Callback=None, Config=None)
+            Bucket=self.obj.bucket_name,
+            Key=self.obj.key,
+            Filename='foo',
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
     def test_copy(self):
         inject.object_copy(self.obj, self.copy_source)
         self.obj.meta.client.copy.assert_called_with(
-            CopySource=self.copy_source, Bucket=self.obj.bucket_name,
-            Key=self.obj.key, ExtraArgs=None, Callback=None,
-            SourceClient=None, Config=None)
+            CopySource=self.copy_source,
+            Bucket=self.obj.bucket_name,
+            Key=self.obj.key,
+            ExtraArgs=None,
+            Callback=None,
+            SourceClient=None,
+            Config=None,
+        )
 
     def test_upload_fileobj(self):
         fileobj = six.BytesIO(b'foo')
         inject.object_upload_fileobj(self.obj, Fileobj=fileobj)
         self.obj.meta.client.upload_fileobj.assert_called_with(
-            Bucket=self.obj.bucket_name, Fileobj=fileobj, Key=self.obj.key,
-            ExtraArgs=None, Callback=None, Config=None)
+            Bucket=self.obj.bucket_name,
+            Fileobj=fileobj,
+            Key=self.obj.key,
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
     def test_download_fileobj(self):
         fileobj = six.BytesIO()
         inject.object_download_fileobj(self.obj, Fileobj=fileobj)
         self.obj.meta.client.download_fileobj.assert_called_with(
-            Bucket=self.obj.bucket_name, Key=self.obj.key, Fileobj=fileobj,
-            ExtraArgs=None, Callback=None, Config=None)
+            Bucket=self.obj.bucket_name,
+            Key=self.obj.key,
+            Fileobj=fileobj,
+            ExtraArgs=None,
+            Callback=None,
+            Config=None,
+        )
 
 
 class TestObejctSummaryLoad(unittest.TestCase):
@@ -184,9 +251,7 @@ class TestObejctSummaryLoad(unittest.TestCase):
         self.client = mock.Mock()
         self.resource = mock.Mock()
         self.resource.meta.client = self.client
-        self.head_object_response = {
-            'ContentLength': 5, 'ETag': 'my-etag'
-        }
+        self.head_object_response = {'ContentLength': 5, 'ETag': 'my-etag'}
         self.client.head_object.return_value = self.head_object_response
 
     def test_object_summary_load(self):

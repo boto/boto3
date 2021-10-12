@@ -23,19 +23,15 @@ class TestServiceActionCall(BaseTestCase):
     def setUp(self):
         super().setUp()
 
-        self.action_def = {
-            'request': {
-                'operation': 'GetFrobs',
-                'params': []
-            }
-        }
+        self.action_def = {'request': {'operation': 'GetFrobs', 'params': []}}
 
     @property
     def action(self):
         return Action('test', self.action_def, {})
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters', return_value={}
+    )
     def test_service_action_creates_params(self, params_mock):
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -46,8 +42,10 @@ class TestServiceActionCall(BaseTestCase):
 
         assert params_mock.called
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={'bar': 'baz'})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters',
+        return_value={'bar': 'baz'},
+    )
     def test_service_action_calls_operation(self, params_mock):
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -61,8 +59,9 @@ class TestServiceActionCall(BaseTestCase):
         operation.assert_called_with(foo=1, bar='baz')
         assert response == 'response'
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters', return_value={}
+    )
     @mock.patch('boto3.resources.action.RawHandler')
     def test_service_action_calls_raw_handler(self, handler_mock, params_mock):
         resource = mock.Mock()
@@ -79,14 +78,14 @@ class TestServiceActionCall(BaseTestCase):
         handler_mock.assert_called_with(None)
         handler_mock.return_value.assert_called_with(resource, {}, 'response')
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters', return_value={}
+    )
     @mock.patch('boto3.resources.action.ResourceHandler')
-    def test_service_action_calls_resource_handler(self, handler_mock, params_mock):
-        self.action_def['resource'] = {
-            'type': 'Frob',
-            'path': 'Container'
-        }
+    def test_service_action_calls_resource_handler(
+        self, handler_mock, params_mock
+    ):
+        self.action_def['resource'] = {'type': 'Frob', 'path': 'Container'}
 
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -103,12 +102,13 @@ class TestServiceActionCall(BaseTestCase):
             service_name='test',
             service_model=service_model,
             resource_json_definitions=resource_defs,
-            service_waiter_model=None
+            service_waiter_model=None,
         )
 
         action = ServiceAction(
-            action_model=action_model, factory=factory,
-            service_context=service_context
+            action_model=action_model,
+            factory=factory,
+            service_context=service_context,
         )
 
         handler_mock.return_value.return_value = 'response'
@@ -116,17 +116,19 @@ class TestServiceActionCall(BaseTestCase):
         action(resource)
 
         handler_mock.assert_called_with(
-            search_path='Container', factory=factory,
+            search_path='Container',
+            factory=factory,
             resource_model=action_model.resource,
             service_context=service_context,
-            operation_name='GetFrobs'
+            operation_name='GetFrobs',
         )
 
     def test_service_action_call_positional_argument(self):
         def _api_call(*args, **kwargs):
             if args:
                 raise TypeError(
-                    "%s() only accepts keyword arguments." % 'get_frobs')
+                    "%s() only accepts keyword arguments." % 'get_frobs'
+                )
 
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -145,16 +147,21 @@ class TestWaiterActionCall(BaseTestCase):
         self.waiter_def = {
             "waiterName": "FrobExists",
             "params": [
-                {"target": "Frob", "sourceType": "identifier",
-                 "source": "Name"}]
+                {
+                    "target": "Frob",
+                    "sourceType": "identifier",
+                    "source": "Name",
+                }
+            ],
         }
 
     @property
     def waiter(self):
         return Waiter('test', self.waiter_def)
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters', return_value={}
+    )
     def test_service_waiter_creates_params(self, params_mock):
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -165,8 +172,10 @@ class TestWaiterActionCall(BaseTestCase):
 
         assert params_mock.called
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={'bar': 'baz'})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters',
+        return_value={'bar': 'baz'},
+    )
     def test_service_action_calls_operation(self, params_mock):
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -186,12 +195,7 @@ class TestBatchActionCall(BaseTestCase):
     def setUp(self):
         super().setUp()
 
-        self.action_def = {
-            'request': {
-                'operation': 'GetFrobs',
-                'params': []
-            }
-        }
+        self.action_def = {'request': {'operation': 'GetFrobs', 'params': []}}
 
     @property
     def model(self):
@@ -209,23 +213,28 @@ class TestBatchActionCall(BaseTestCase):
     def test_batch_action_creates_parameters_from_items(self):
         self.action_def['request']['params'] = [
             {'target': 'Bucket', 'source': 'data', 'path': 'BucketName'},
-            {'target': 'Delete.Objects[].Key', 'source': 'data',
-             'path': 'Key'}
+            {
+                'target': 'Delete.Objects[].Key',
+                'source': 'data',
+                'path': 'Key',
+            },
         ]
 
         client = mock.Mock()
 
         item1 = mock.Mock()
-        item1.meta = ResourceMeta('test', client=client, data={
-            'BucketName': 'bucket',
-            'Key': 'item1'
-        })
+        item1.meta = ResourceMeta(
+            'test',
+            client=client,
+            data={'BucketName': 'bucket', 'Key': 'item1'},
+        )
 
         item2 = mock.Mock()
-        item2.meta = ResourceMeta('test', client=client, data={
-            'BucketName': 'bucket',
-            'Key': 'item2'
-        })
+        item2.meta = ResourceMeta(
+            'test',
+            client=client,
+            data={'BucketName': 'bucket', 'Key': 'item2'},
+        )
 
         collection = mock.Mock()
         collection.pages.return_value = [[item1, item2]]
@@ -233,15 +242,14 @@ class TestBatchActionCall(BaseTestCase):
         action = BatchAction(self.model)
         action(collection)
 
-        client.get_frobs.assert_called_with(Bucket='bucket', Delete={
-            'Objects': [
-                {'Key': 'item1'},
-                {'Key': 'item2'}
-            ]
-        })
+        client.get_frobs.assert_called_with(
+            Bucket='bucket',
+            Delete={'Objects': [{'Key': 'item1'}, {'Key': 'item2'}]},
+        )
 
-    @mock.patch('boto3.resources.action.create_request_parameters',
-                return_value={})
+    @mock.patch(
+        'boto3.resources.action.create_request_parameters', return_value={}
+    )
     def test_batch_action_skips_operation(self, crp_mock):
         # In this test we have an item from the collection, but no
         # parameters are set up. Because of this, we do NOT call
@@ -284,8 +292,9 @@ class TestBatchActionCall(BaseTestCase):
 
         # Here the call is made with params={}, but they are edited
         # in-place so we need to compare to the final edited value.
-        crp_mock.assert_called_with(item, model.request,
-                                    params={'foo': 'bar'}, index=0)
+        crp_mock.assert_called_with(
+            item, model.request, params={'foo': 'bar'}, index=0
+        )
         client.get_frobs.assert_called_with(foo='bar')
 
     @mock.patch('boto3.resources.action.create_request_parameters')
@@ -296,7 +305,8 @@ class TestBatchActionCall(BaseTestCase):
         def _api_call(*args, **kwargs):
             if args:
                 raise TypeError(
-                    "%s() only accepts keyword arguments." % 'get_frobs')
+                    "%s() only accepts keyword arguments." % 'get_frobs'
+                )
 
         crp_mock.side_effect = side_effect
 

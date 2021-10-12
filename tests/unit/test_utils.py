@@ -29,7 +29,8 @@ class TestUtils(unittest.TestCase):
         with mock.patch('boto3.utils.import_module') as importer:
             importer.return_value = FakeModule
             lazy_function = utils.lazy_call(
-                'fakemodule.FakeModule.entry_point')
+                'fakemodule.FakeModule.entry_point'
+            )
             assert lazy_function(a=1, b=2) == {'a': 1, 'b': 2}
 
     def test_import_module(self):
@@ -52,9 +53,11 @@ class TestLazyLoadedWaiterModel(unittest.TestCase):
     def test_get_waiter_model_is_lazy(self):
         session = mock.Mock()
         waiter_model = utils.LazyLoadedWaiterModel(
-            session, 'myservice', '2014-01-01')
+            session, 'myservice', '2014-01-01'
+        )
         assert not session.get_waiter_model.called
         waiter_model.get_waiter('Foo')
         assert session.get_waiter_model.called
         session.get_waiter_model.return_value.get_waiter.assert_called_with(
-            'Foo')
+            'Foo'
+        )

@@ -35,8 +35,7 @@ class TestTableResourceCustomizations(unittest.TestCase):
 
         with stubber:
             table.meta.client.tag_resource(
-                ResourceArn=arn,
-                Tags=[{'Key': 'project', 'Value': 'val'}]
+                ResourceArn=arn, Tags=[{'Key': 'project', 'Value': 'val'}]
             )
 
         stubber.assert_no_pending_responses()

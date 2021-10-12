@@ -36,5 +36,5 @@ class TestInstanceDeleteTags(BaseDocsFunctionalTests):
                 'DryRun=True|False,',
                 'Tags=[',
             ],
-            method_contents
+            method_contents,
         )

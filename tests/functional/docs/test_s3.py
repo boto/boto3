@@ -18,16 +18,19 @@ from tests.functional.docs import BaseDocsFunctionalTests
 class TestS3Customizations(BaseDocsFunctionalTests):
     def setUp(self):
         self.documenter = ServiceDocumenter(
-            's3', session=Session(region_name='us-east-1'))
+            's3', session=Session(region_name='us-east-1')
+        )
         self.generated_contents = self.documenter.document_service()
         self.generated_contents = self.generated_contents.decode('utf-8')
 
     def test_file_transfer_methods_are_documented(self):
-        self.assert_contains_lines_in_order([
-            '.. py:class:: S3.Client',
-            '  *   :py:meth:`~S3.Client.download_file`',
-            '  *   :py:meth:`~S3.Client.upload_file`',
-            '  .. py:method:: download_file(',
-            '  .. py:method:: upload_file('],
-            self.generated_contents
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:class:: S3.Client',
+                '  *   :py:meth:`~S3.Client.download_file`',
+                '  *   :py:meth:`~S3.Client.upload_file`',
+                '  .. py:method:: download_file(',
+                '  .. py:method:: upload_file(',
+            ],
+            self.generated_contents,
         )
