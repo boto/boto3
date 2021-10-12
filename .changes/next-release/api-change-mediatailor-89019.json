@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mediatailor``",
+  "description": "[``botocore``] MediaTailor now supports ad prefetching."
+}
