@@ -10,6 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import collections.abc
 from decimal import (
     Clamped,
     Context,
@@ -19,8 +20,6 @@ from decimal import (
     Rounded,
     Underflow,
 )
-
-from boto3.compat import collections_abc
 
 STRING = 'S'
 NUMBER = 'N'
@@ -35,8 +34,11 @@ LIST = 'L'
 
 
 DYNAMODB_CONTEXT = Context(
-    Emin=-128, Emax=126, prec=38,
-    traps=[Clamped, Overflow, Inexact, Rounded, Underflow])
+    Emin=-128,
+    Emax=126,
+    prec=38,
+    traps=[Clamped, Overflow, Inexact, Rounded, Underflow],
+)
 
 
 BINARY_TYPES = (bytearray, bytes)
@@ -49,10 +51,13 @@ class Binary:
     binary data for item in DynamoDB. It is essentially a wrapper around
     binary. Unicode and Python 3 string types are not allowed.
     """
+
     def __init__(self, value):
         if not isinstance(value, BINARY_TYPES):
-            raise TypeError('Value must be of the following types: %s.' %
-                            ', '.join([str(t) for t in BINARY_TYPES]))
+            raise TypeError(
+                'Value must be of the following types: %s.'
+                % ', '.join([str(t) for t in BINARY_TYPES])
+            )
         self.value = value
 
     def __eq__(self, other):
@@ -78,6 +83,7 @@ class Binary:
 
 class TypeSerializer:
     """This class serializes Python data types to DynamoDB types."""
+
     def serialize(self, value):
         """The method to serialize the Python data types.
 
@@ -164,7 +170,8 @@ class TypeSerializer:
             return True
         elif isinstance(value, float):
             raise TypeError(
-                'Float types are not supported. Use Decimal types instead.')
+                'Float types are not supported. Use Decimal types instead.'
+            )
         return False
 
     def _is_string(self, value):
@@ -178,7 +185,7 @@ class TypeSerializer:
         return False
 
     def _is_set(self, value):
-        if isinstance(value, collections_abc.Set):
+        if isinstance(value, collections.abc.Set):
             return True
         return False
 
@@ -189,7 +196,7 @@ class TypeSerializer:
         return False
 
     def _is_map(self, value):
-        if isinstance(value, collections_abc.Mapping):
+        if isinstance(value, collections.abc.Mapping):
             return True
         return False
 
@@ -236,6 +243,7 @@ class TypeSerializer:
 
 class TypeDeserializer:
     """This class deserializes DynamoDB types to Python types."""
+
     def deserialize(self, value):
         """The method to deserialize the DynamoDB data types.
 
@@ -259,15 +267,19 @@ class TypeDeserializer:
         """
 
         if not value:
-            raise TypeError('Value must be a nonempty dictionary whose key '
-                            'is a valid dynamodb type.')
+            raise TypeError(
+                'Value must be a nonempty dictionary whose key '
+                'is a valid dynamodb type.'
+            )
         dynamodb_type = list(value.keys())[0]
         try:
             deserializer = getattr(
-                self, '_deserialize_%s' % dynamodb_type.lower())
+                self, '_deserialize_%s' % dynamodb_type.lower()
+            )
         except AttributeError:
             raise TypeError(
-                'Dynamodb type %s is not supported' % dynamodb_type)
+                'Dynamodb type %s is not supported' % dynamodb_type
+            )
         return deserializer(value[dynamodb_type])
 
     def _deserialize_null(self, value):

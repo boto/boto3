@@ -63,11 +63,13 @@ def get_identifier_args_for_signature(identifier_names):
 
 def get_identifier_description(resource_name, identifier_name):
     return "The {}'s {} identifier. This **must** be set.".format(
-        resource_name, identifier_name)
+        resource_name, identifier_name
+    )
 
 
-def add_resource_type_overview(section, resource_type, description,
-                               intro_link=None):
+def add_resource_type_overview(
+    section, resource_type, description, intro_link=None
+):
     section.style.new_line()
     section.write('.. rst-class:: admonition-title')
     section.style.new_line()
@@ -78,22 +80,26 @@ def add_resource_type_overview(section, resource_type, description,
     section.write(description)
     section.style.new_line()
     if intro_link is not None:
-        section.write('For more information about %s refer to the '
-                      ':ref:`Resources Introduction Guide<%s>`.' % (
-                          resource_type.lower(), intro_link))
+        section.write(
+            'For more information about %s refer to the '
+            ':ref:`Resources Introduction Guide<%s>`.'
+            % (resource_type.lower(), intro_link)
+        )
         section.style.new_line()
 
 
 class DocumentModifiedShape:
-    def __init__(self, shape_name, new_type, new_description,
-                 new_example_value):
+    def __init__(
+        self, shape_name, new_type, new_description, new_example_value
+    ):
         self._shape_name = shape_name
         self._new_type = new_type
         self._new_description = new_description
         self._new_example_value = new_example_value
 
-    def replace_documentation_for_matching_shape(self, event_name, section,
-                                                 **kwargs):
+    def replace_documentation_for_matching_shape(
+        self, event_name, section, **kwargs
+    ):
         if self._shape_name == section.context.get('shape'):
             self._replace_documentation(event_name, section)
         for section_name in section.available_sections:
@@ -102,23 +108,30 @@ class DocumentModifiedShape:
                 self._replace_documentation(event_name, sub_section)
             else:
                 self.replace_documentation_for_matching_shape(
-                    event_name, sub_section)
+                    event_name, sub_section
+                )
 
     def _replace_documentation(self, event_name, section):
-        if event_name.startswith('docs.request-example') or \
-                event_name.startswith('docs.response-example'):
+        if event_name.startswith(
+            'docs.request-example'
+        ) or event_name.startswith('docs.response-example'):
             section.remove_all_sections()
             section.clear_text()
             section.write(self._new_example_value)
 
-        if event_name.startswith('docs.request-params') or \
-                event_name.startswith('docs.response-params'):
+        if event_name.startswith(
+            'docs.request-params'
+        ) or event_name.startswith('docs.response-params'):
             for section_name in section.available_sections:
                 # Delete any extra members as a new shape is being
                 # used.
-                if section_name not in ['param-name', 'param-documentation',
-                                        'end-structure', 'param-type',
-                                        'end-param']:
+                if section_name not in [
+                    'param-name',
+                    'param-documentation',
+                    'end-structure',
+                    'param-type',
+                    'end-param',
+                ]:
                     section.delete_section(section_name)
 
             # Update the documentation
@@ -130,8 +143,7 @@ class DocumentModifiedShape:
             type_section = section.get_section('param-type')
             if type_section.getvalue().decode('utf-8').startswith(':type'):
                 type_section.clear_text()
-                type_section.write(':type {}: {}'.format(
-                    section.name, self._new_type))
+                type_section.write(f':type {section.name}: {self._new_type}')
             else:
                 type_section.clear_text()
                 type_section.style.italics('(%s) -- ' % self._new_type)

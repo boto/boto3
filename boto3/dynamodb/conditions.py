@@ -45,9 +45,11 @@ class ConditionBase:
         return Not(self)
 
     def get_expression(self):
-        return {'format': self.expression_format,
-                'operator': self.expression_operator,
-                'values': self._values}
+        return {
+            'format': self.expression_format,
+            'operator': self.expression_operator,
+            'values': self._values,
+        }
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
@@ -138,6 +140,7 @@ class ConditionAttributeBase(ConditionBase, AttributeBase):
     One example is the Size condition. To complete a condition, you need
     to apply another AttributeBase method like eq().
     """
+
     def __init__(self, *values):
         ConditionBase.__init__(self, *values)
         # This is assuming the first value to the condition is the attribute
@@ -145,8 +148,8 @@ class ConditionAttributeBase(ConditionBase, AttributeBase):
         AttributeBase.__init__(self, values[0].name)
 
     def __eq__(self, other):
-        return (
-            ConditionBase.__eq__(self, other) and AttributeBase.__eq__(self, other)
+        return ConditionBase.__eq__(self, other) and AttributeBase.__eq__(
+            self, other
         )
 
     def __ne__(self, other):
@@ -242,6 +245,7 @@ class Key(AttributeBase):
 
 class Attr(AttributeBase):
     """Represents an DynamoDB item's attribute."""
+
     def ne(self, value):
         """Creates a condition where the attribute is not equal to the value
 
@@ -290,13 +294,17 @@ class Attr(AttributeBase):
 
 BuiltConditionExpression = namedtuple(
     'BuiltConditionExpression',
-    ['condition_expression', 'attribute_name_placeholders',
-     'attribute_value_placeholders']
+    [
+        'condition_expression',
+        'attribute_name_placeholders',
+        'attribute_value_placeholders',
+    ],
 )
 
 
 class ConditionExpressionBuilder:
     """This class is used to build condition expressions with placeholders"""
+
     def __init__(self):
         self._name_count = 0
         self._value_count = 0
@@ -338,40 +346,60 @@ class ConditionExpressionBuilder:
         attribute_name_placeholders = {}
         attribute_value_placeholders = {}
         condition_expression = self._build_expression(
-            condition, attribute_name_placeholders,
-            attribute_value_placeholders, is_key_condition=is_key_condition)
+            condition,
+            attribute_name_placeholders,
+            attribute_value_placeholders,
+            is_key_condition=is_key_condition,
+        )
         return BuiltConditionExpression(
             condition_expression=condition_expression,
             attribute_name_placeholders=attribute_name_placeholders,
-            attribute_value_placeholders=attribute_value_placeholders
+            attribute_value_placeholders=attribute_value_placeholders,
         )
 
-    def _build_expression(self, condition, attribute_name_placeholders,
-                          attribute_value_placeholders, is_key_condition):
+    def _build_expression(
+        self,
+        condition,
+        attribute_name_placeholders,
+        attribute_value_placeholders,
+        is_key_condition,
+    ):
         expression_dict = condition.get_expression()
         replaced_values = []
         for value in expression_dict['values']:
             # Build the necessary placeholders for that value.
             # Placeholders are built for both attribute names and values.
             replaced_value = self._build_expression_component(
-                value, attribute_name_placeholders,
-                attribute_value_placeholders, condition.has_grouped_values,
-                is_key_condition)
+                value,
+                attribute_name_placeholders,
+                attribute_value_placeholders,
+                condition.has_grouped_values,
+                is_key_condition,
+            )
             replaced_values.append(replaced_value)
         # Fill out the expression using the operator and the
         # values that have been replaced with placeholders.
         return expression_dict['format'].format(
-            *replaced_values, operator=expression_dict['operator'])
+            *replaced_values, operator=expression_dict['operator']
+        )
 
-    def _build_expression_component(self, value, attribute_name_placeholders,
-                                    attribute_value_placeholders,
-                                    has_grouped_values, is_key_condition):
+    def _build_expression_component(
+        self,
+        value,
+        attribute_name_placeholders,
+        attribute_value_placeholders,
+        has_grouped_values,
+        is_key_condition,
+    ):
         # Continue to recurse if the value is a ConditionBase in order
         # to extract out all parts of the expression.
         if isinstance(value, ConditionBase):
             return self._build_expression(
-                value, attribute_name_placeholders,
-                attribute_value_placeholders, is_key_condition)
+                value,
+                attribute_name_placeholders,
+                attribute_value_placeholders,
+                is_key_condition,
+            )
         # If it is not a ConditionBase, we can recurse no further.
         # So we check if it is an attribute and add placeholders for
         # its name
@@ -380,14 +408,17 @@ class ConditionExpressionBuilder:
                 raise DynamoDBNeedsKeyConditionError(
                     'Attribute object %s is of type %s. '
                     'KeyConditionExpression only supports Attribute objects '
-                    'of type Key' % (value.name, type(value)))
+                    'of type Key' % (value.name, type(value))
+                )
             return self._build_name_placeholder(
-                value, attribute_name_placeholders)
+                value, attribute_name_placeholders
+            )
         # If it is anything else, we treat it as a value and thus placeholders
         # are needed for the value.
         else:
             return self._build_value_placeholder(
-                value, attribute_value_placeholders, has_grouped_values)
+                value, attribute_value_placeholders, has_grouped_values
+            )
 
     def _build_name_placeholder(self, value, attribute_name_placeholders):
         attribute_name = value.name
@@ -406,8 +437,9 @@ class ConditionExpressionBuilder:
         # Replace the temporary placeholders with the designated placeholders.
         return placeholder_format % tuple(str_format_args)
 
-    def _build_value_placeholder(self, value, attribute_value_placeholders,
-                                 has_grouped_values=False):
+    def _build_value_placeholder(
+        self, value, attribute_value_placeholders, has_grouped_values=False
+    ):
         # If the values are grouped, we need to add a placeholder for
         # each element inside of the actual value.
         if has_grouped_values:

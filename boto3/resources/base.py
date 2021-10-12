@@ -22,8 +22,15 @@ class ResourceMeta:
     """
     An object containing metadata about a resource.
     """
-    def __init__(self, service_name, identifiers=None, client=None,
-                 data=None, resource_model=None):
+
+    def __init__(
+        self,
+        service_name,
+        identifiers=None,
+        client=None,
+        data=None,
+        resource_model=None,
+    ):
         #: (``string``) The service name, e.g. 's3'
         self.service_name = service_name
 
@@ -42,7 +49,8 @@ class ResourceMeta:
 
     def __repr__(self):
         return 'ResourceMeta(\'{}\', identifiers={})'.format(
-            self.service_name, self.identifiers)
+            self.service_name, self.identifiers
+        )
 
     def __eq__(self, other):
         # Two metas are equal if their components are all equal
@@ -114,14 +122,14 @@ class ServiceResource:
         # Validate that all identifiers have been set.
         for identifier in self.meta.identifiers:
             if getattr(self, identifier) is None:
-                raise ValueError(
-                    f'Required parameter {identifier} not set')
+                raise ValueError(f'Required parameter {identifier} not set')
 
     def __repr__(self):
         identifiers = []
         for identifier in self.meta.identifiers:
-            identifiers.append('{}={}'.format(
-                identifier, repr(getattr(self, identifier))))
+            identifiers.append(
+                f'{identifier}={repr(getattr(self, identifier))}'
+            )
         return "{}({})".format(
             self.__class__.__name__,
             ', '.join(identifiers),

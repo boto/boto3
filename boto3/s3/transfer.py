@@ -162,7 +162,7 @@ def create_transfer_manager(client, config, osutil=None):
 class TransferConfig(S3TransferConfig):
     ALIAS = {
         'max_concurrency': 'max_request_concurrency',
-        'max_io_queue': 'max_io_queue_size'
+        'max_io_queue': 'max_io_queue_size',
     }
 
     def __init__(
@@ -265,8 +265,9 @@ class S3Transfer:
         else:
             self._manager = create_transfer_manager(client, config, osutil)
 
-    def upload_file(self, filename, bucket, key,
-                    callback=None, extra_args=None):
+    def upload_file(
+        self, filename, bucket, key, callback=None, extra_args=None
+    ):
         """Upload a file to an S3 object.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -281,7 +282,8 @@ class S3Transfer:
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
-            filename, bucket, key, extra_args, subscribers)
+            filename, bucket, key, extra_args, subscribers
+        )
         try:
             future.result()
         # If a client error was raised, add the backwards compatibility layer
@@ -291,10 +293,13 @@ class S3Transfer:
         except ClientError as e:
             raise S3UploadFailedError(
                 "Failed to upload {} to {}: {}".format(
-                    filename, '/'.join([bucket, key]), e))
+                    filename, '/'.join([bucket, key]), e
+                )
+            )
 
-    def download_file(self, bucket, key, filename, extra_args=None,
-                      callback=None):
+    def download_file(
+        self, bucket, key, filename, extra_args=None, callback=None
+    ):
         """Download an S3 object to a file.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -309,7 +314,8 @@ class S3Transfer:
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
-            bucket, key, filename, extra_args, subscribers)
+            bucket, key, filename, extra_args, subscribers
+        )
         try:
             future.result()
         # This is for backwards compatibility where when retries are
@@ -338,6 +344,7 @@ class ProgressCallbackInvoker(BaseSubscriber):
     :param callback: A callable that takes a single positional argument for
         how many bytes were transferred.
     """
+
     def __init__(self, callback):
         self._callback = callback
 

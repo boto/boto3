@@ -42,7 +42,8 @@ def get_data_member(parent, path):
             parent.load()
         else:
             raise ResourceLoadException(
-                f'{parent.__class__.__name__} has no load method!')
+                f'{parent.__class__.__name__} has no load method!'
+            )
 
     return jmespath.search(path, parent.meta.data)
 
@@ -89,8 +90,7 @@ def create_request_parameters(parent, request_model, params=None, index=None):
             # This is provided by the user, so ignore it here
             continue
         else:
-            raise NotImplementedError(
-                f'Unsupported source type: {source}')
+            raise NotImplementedError(f'Unsupported source type: {source}')
 
         build_param_structure(params, target, value, index)
 
@@ -132,7 +132,7 @@ def build_param_structure(params, target, value, index=None):
                 else:
                     # We have an explicit index
                     index = int(result.group(1))
-                    part = part[:-len(str(index) + '[]')]
+                    part = part[: -len(str(index) + '[]')]
             else:
                 # Index will be set after we know the proper part
                 # name and that it's a list instance.

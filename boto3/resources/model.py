@@ -37,6 +37,7 @@ class Identifier:
     :type name: string
     :param name: The name of the identifier
     """
+
     def __init__(self, name, member_name=None):
         #: (``string``) The name of the identifier
         self.name = name
@@ -54,6 +55,7 @@ class Action:
     :type resource_defs: dict
     :param resource_defs: All resources defined in the service
     """
+
     def __init__(self, name, definition, resource_defs):
         self._definition = definition
 
@@ -66,8 +68,9 @@ class Action:
         #: (:py:class:`ResponseResource`) This action's resource or ``None``
         self.resource = None
         if 'resource' in definition:
-            self.resource = ResponseResource(definition.get('resource', {}),
-                                             resource_defs)
+            self.resource = ResponseResource(
+                definition.get('resource', {}), resource_defs
+            )
         #: (``string``) The JMESPath search path or ``None``
         self.path = definition.get('path')
 
@@ -81,6 +84,7 @@ class DefinitionWithParams:
     :type definition: dict
     :param definition: The JSON definition
     """
+
     def __init__(self, definition):
         self._definition = definition
 
@@ -112,8 +116,10 @@ class Parameter:
     :type source: string
     :param source: The source name, e.g. ``Url``
     """
-    def __init__(self, target, source, name=None, path=None, value=None,
-                 **kwargs):
+
+    def __init__(
+        self, target, source, name=None, path=None, value=None, **kwargs
+    ):
         #: (``string``) The destination parameter name
         self.target = target
         #: (``string``) Where the source is defined
@@ -137,6 +143,7 @@ class Request(DefinitionWithParams):
     :type definition: dict
     :param definition: The JSON definition
     """
+
     def __init__(self, definition):
         super().__init__(definition)
 
@@ -153,6 +160,7 @@ class Waiter(DefinitionWithParams):
     :type definition: dict
     :param definition: The JSON definition
     """
+
     PREFIX = 'WaitUntil'
 
     def __init__(self, name, definition):
@@ -174,6 +182,7 @@ class ResponseResource:
     :type resource_defs: dict
     :param resource_defs: All resources defined in the service
     """
+
     def __init__(self, definition, resource_defs):
         self._definition = definition
         self._resource_defs = resource_defs
@@ -194,8 +203,7 @@ class ResponseResource:
         identifiers = []
 
         for item in self._definition.get('identifiers', []):
-            identifiers.append(
-                Parameter(**item))
+            identifiers.append(Parameter(**item))
 
         return identifiers
 
@@ -206,8 +214,9 @@ class ResponseResource:
 
         :type: :py:class:`ResourceModel`
         """
-        return ResourceModel(self.type, self._resource_defs[self.type],
-                             self._resource_defs)
+        return ResourceModel(
+            self.type, self._resource_defs[self.type], self._resource_defs
+        )
 
 
 class Collection(Action):
@@ -221,6 +230,7 @@ class Collection(Action):
     :type resource_defs: dict
     :param resource_defs: All resources defined in the service
     """
+
     @property
     def batch_actions(self):
         """
@@ -247,6 +257,7 @@ class ResourceModel:
     :type resource_defs: dict
     :param resource_defs: All resources defined in the service
     """
+
     def __init__(self, name, definition, resource_defs):
         self._definition = definition
         self._resource_defs = resource_defs
@@ -317,8 +328,9 @@ class ResourceModel:
                     break
 
             if not data_required:
-                self._load_name_with_category(names, name, 'subresource',
-                                              snake_case=False)
+                self._load_name_with_category(
+                    names, name, 'subresource', snake_case=False
+                )
             else:
                 self._load_name_with_category(names, name, 'reference')
 
@@ -326,15 +338,15 @@ class ResourceModel:
             self._load_name_with_category(names, name, 'collection')
 
         for name in self._definition.get('waiters', {}):
-            self._load_name_with_category(names, Waiter.PREFIX + name,
-                                          'waiter')
+            self._load_name_with_category(
+                names, Waiter.PREFIX + name, 'waiter'
+            )
 
         if shape is not None:
             for name in shape.members.keys():
                 self._load_name_with_category(names, name, 'attribute')
 
-    def _load_name_with_category(self, names, name, category,
-                                 snake_case=True):
+    def _load_name_with_category(self, names, name, category, snake_case=True):
         """
         Load a name with a given category, possibly renaming it
         if that name is already in use. The name will be stored
@@ -361,8 +373,11 @@ class ResourceModel:
             if name in names:
                 # This isn't good, let's raise instead of trying to keep
                 # renaming this value.
-                raise ValueError('Problem renaming {} {} to {}!'.format(
-                    self.name, category, name))
+                raise ValueError(
+                    'Problem renaming {} {} to {}!'.format(
+                        self.name, category, name
+                    )
+                )
 
         names.add(name)
 
@@ -410,8 +425,9 @@ class ResourceModel:
             if snake_cased in identifier_names:
                 # Skip identifiers, these are set through other means
                 continue
-            snake_cased = self._get_name('attribute', snake_cased,
-                                         snake_case=False)
+            snake_cased = self._get_name(
+                'attribute', snake_cased, snake_case=False
+            )
             attributes[snake_cased] = (name, member)
 
         return attributes
@@ -523,17 +539,12 @@ class ResourceModel:
                     #   }
                     # }
                     #
-                    fake_has = {
-                        'resource': {
-                            'type': name,
-                            'identifiers': []
-                        }
-                    }
+                    fake_has = {'resource': {'type': name, 'identifiers': []}}
 
                     for identifier in resource_def.get('identifiers', []):
-                        fake_has['resource']['identifiers'].append({
-                            'target': identifier['name'], 'source': 'input'
-                        })
+                        fake_has['resource']['identifiers'].append(
+                            {'target': identifier['name'], 'source': 'input'}
+                        )
 
                     definition[name] = fake_has
         else:

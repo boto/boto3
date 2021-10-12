@@ -15,7 +15,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 requires = [
     'botocore>=1.22.9,<1.23.0',
     'jmespath>=0.7.1,<1.0.0',
-    's3transfer>=0.5.0,<0.6.0'
+    's3transfer>=0.5.0,<0.6.0',
 ]
 
 
@@ -33,12 +33,7 @@ setup(
     url='https://github.com/boto/boto3',
     scripts=[],
     packages=find_packages(exclude=['tests*']),
-    package_data={
-        'boto3': [
-            'data/aws/resources/*.json',
-            'examples/*.rst'
-        ]
-    },
+    package_data={'boto3': ['data/aws/resources/*.json', 'examples/*.rst']},
     include_package_data=True,
     install_requires=requires,
     license="Apache License 2.0",

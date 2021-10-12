@@ -24,7 +24,8 @@ class BaseDocumenter:
         self._service_docs_name = self._client.__class__.__name__
         self.member_map = OrderedDict()
         self.represents_service_resource = (
-            self._service_name == self._resource_name)
+            self._service_name == self._resource_name
+        )
 
     @property
     def class_name(self):

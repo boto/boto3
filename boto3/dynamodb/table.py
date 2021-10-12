@@ -55,14 +55,17 @@ class TableResource:
             ``["partition_key1", "sort_key2", "sort_key3"]``
 
         """
-        return BatchWriter(self.name, self.meta.client,
-                           overwrite_by_pkeys=overwrite_by_pkeys)
+        return BatchWriter(
+            self.name, self.meta.client, overwrite_by_pkeys=overwrite_by_pkeys
+        )
 
 
 class BatchWriter:
     """Automatically handle batch writes to DynamoDB for a single table."""
-    def __init__(self, table_name, client, flush_amount=25,
-                 overwrite_by_pkeys=None):
+
+    def __init__(
+        self, table_name, client, flush_amount=25, overwrite_by_pkeys=None
+    ):
         """
 
         :type table_name: str
@@ -113,16 +116,22 @@ class BatchWriter:
         for item in self._items_buffer:
             if self._extract_pkey_values(item) == pkey_values_new:
                 self._items_buffer.remove(item)
-                logger.debug("With overwrite_by_pkeys enabled, skipping "
-                             "request:%s", item)
+                logger.debug(
+                    "With overwrite_by_pkeys enabled, skipping " "request:%s",
+                    item,
+                )
 
     def _extract_pkey_values(self, request):
         if request.get('PutRequest'):
-            return [request['PutRequest']['Item'][key]
-                    for key in self._overwrite_by_pkeys]
+            return [
+                request['PutRequest']['Item'][key]
+                for key in self._overwrite_by_pkeys
+            ]
         elif request.get('DeleteRequest'):
-            return [request['DeleteRequest']['Key'][key]
-                    for key in self._overwrite_by_pkeys]
+            return [
+                request['DeleteRequest']['Key'][key]
+                for key in self._overwrite_by_pkeys
+            ]
         return None
 
     def _flush_if_needed(self):
@@ -130,10 +139,11 @@ class BatchWriter:
             self._flush()
 
     def _flush(self):
-        items_to_send = self._items_buffer[:self._flush_amount]
-        self._items_buffer = self._items_buffer[self._flush_amount:]
+        items_to_send = self._items_buffer[: self._flush_amount]
+        self._items_buffer = self._items_buffer[self._flush_amount :]
         response = self._client.batch_write_item(
-            RequestItems={self._table_name: items_to_send})
+            RequestItems={self._table_name: items_to_send}
+        )
         unprocessed_items = response['UnprocessedItems']
 
         if unprocessed_items and unprocessed_items[self._table_name]:
@@ -142,8 +152,11 @@ class BatchWriter:
             self._items_buffer.extend(unprocessed_items[self._table_name])
         else:
             self._items_buffer = []
-        logger.debug("Batch write sent %s, unprocessed: %s",
-                     len(items_to_send), len(self._items_buffer))
+        logger.debug(
+            "Batch write sent %s, unprocessed: %s",
+            len(items_to_send),
+            len(self._items_buffer),
+        )
 
     def __enter__(self):
         return self
