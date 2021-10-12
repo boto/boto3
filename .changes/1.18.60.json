@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cloudsearch``",
+    "description": "[``botocore``] Adds an additional validation exception for Amazon CloudSearch configuration APIs for better error handling.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Documentation only update to address tickets.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediatailor``",
+    "description": "[``botocore``] MediaTailor now supports ad prefetching.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] EncryptionSupport for InstanceStorageInfo added to DescribeInstanceTypes API",
+    "type": "api-change"
+  }
+]
