@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.60
+=======
+
+* api-change:``cloudsearch``: [``botocore``] Adds an additional validation exception for Amazon CloudSearch configuration APIs for better error handling.
+* api-change:``ecs``: [``botocore``] Documentation only update to address tickets.
+* api-change:``mediatailor``: [``botocore``] MediaTailor now supports ad prefetching.
+* api-change:``ec2``: [``botocore``] EncryptionSupport for InstanceStorageInfo added to DescribeInstanceTypes API
+
+
 1.18.59
 =======
 
