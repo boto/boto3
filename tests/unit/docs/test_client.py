@@ -16,7 +16,7 @@ from tests.unit.docs import BaseDocsTest
 
 class TestBoto3ClientDocumenter(BaseDocsTest):
     def setUp(self):
-        super(TestBoto3ClientDocumenter, self).setUp()
+        super().setUp()
         self.client_documenter = Boto3ClientDocumenter(self.client)
 
     def test_document_client(self):

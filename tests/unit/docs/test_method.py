@@ -20,7 +20,7 @@ from tests.unit.docs import BaseDocsTest
 
 class TestDocumentModelDrivenResourceMethod(BaseDocsTest):
     def setUp(self):
-        super(TestDocumentModelDrivenResourceMethod, self).setUp()
+        super().setUp()
         self.event_emitter = HierarchicalEmitter()
         self.service_model = self.client.meta.service_model
         self.operation_model = self.service_model.operation_model(

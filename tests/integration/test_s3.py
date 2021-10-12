@@ -33,12 +33,12 @@ LOG = logging.getLogger('boto3.tests.integration')
 
 def assert_files_equal(first, second):
     if os.path.getsize(first) != os.path.getsize(second):
-        raise AssertionError("Files are not equal: %s, %s" % (first, second))
+        raise AssertionError(f"Files are not equal: {first}, {second}")
     first_md5 = md5_checksum(first)
     second_md5 = md5_checksum(second)
     if first_md5 != second_md5:
         raise AssertionError(
-            "Files are not equal: %s(md5=%s) != %s(md5=%s)" % (
+            "Files are not equal: {}(md5={}) != {}(md5={})".format(
                 first, first_md5, second, second_md5))
 
 
@@ -105,7 +105,7 @@ def teardown_module():
     clear_out_bucket(_SHARED_BUCKET, _DEFAULT_REGION, delete_bucket=True)
 
 
-class FileCreator(object):
+class FileCreator:
     def __init__(self):
         self.rootdir = tempfile.mkdtemp()
 

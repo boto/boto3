@@ -18,7 +18,7 @@ from boto3 import utils
 from tests import mock, unittest
 
 
-class FakeModule(object):
+class FakeModule:
     @staticmethod
     def entry_point(**kwargs):
         return kwargs

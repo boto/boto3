@@ -31,8 +31,7 @@ def boto3_session():
 
 def all_services():
     session = boto3.Session(region_name='us-east-1')
-    for service_name in session.get_available_services():
-        yield service_name
+    yield from session.get_available_services()
 
 
 @pytest.fixture
@@ -129,12 +128,12 @@ def _assert_has_paginator_documentation(generated_docs, service_name, client,
     ]
     for paginator_name in paginator_names:
         ref_lines.append(
-            '* :py:class:`%s.Paginator.%s`' % (
+            '* :py:class:`{}.Paginator.{}`'.format(
                 client.__class__.__name__, paginator_name))
 
     for paginator_name in paginator_names:
         ref_lines.append(
-            '.. py:class:: %s.Paginator.%s' % (
+            '.. py:class:: {}.Paginator.{}'.format(
                 client.__class__.__name__, paginator_name))
         ref_lines.append(
             '  .. py:method:: paginate(')
@@ -152,12 +151,12 @@ def _assert_has_waiter_documentation(generated_docs, service_name, client,
     ]
     for waiter_name in waiter_model.waiter_names:
         ref_lines.append(
-            '* :py:class:`%s.Waiter.%s`' % (
+            '* :py:class:`{}.Waiter.{}`'.format(
                 client.__class__.__name__, waiter_name))
 
     for waiter_name in waiter_model.waiter_names:
         ref_lines.append(
-            '.. py:class:: %s.Waiter.%s' % (
+            '.. py:class:: {}.Waiter.{}'.format(
                 client.__class__.__name__, waiter_name))
         ref_lines.append(
             '    waiter = client.get_waiter(\'%s\')' % xform_name(waiter_name))
@@ -176,6 +175,6 @@ def _assert_has_resource_documentation(generated_docs, service_name, resource):
             resource.meta.client.__class__.__name__),
         '  A resource representing',
         '    import boto3',
-        '    %s = boto3.resource(\'%s\')' % (service_name, service_name),
+        f'    {service_name} = boto3.resource(\'{service_name}\')',
     ]
     _assert_contains_lines_in_order(ref_lines, generated_docs)

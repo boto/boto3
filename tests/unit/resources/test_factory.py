@@ -23,7 +23,7 @@ from tests import BaseTestCase, mock
 
 class BaseTestResourceFactory(BaseTestCase):
     def setUp(self):
-        super(BaseTestResourceFactory, self).setUp()
+        super().setUp()
         self.emitter = mock.Mock()
         self.factory = ResourceFactory(self.emitter)
 
@@ -545,7 +545,7 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_resource_loads_collections(self, mock_model):
         model = {
             'hasMany': {
-                u'Queues': {
+                'Queues': {
                     'request': {
                         'operation': 'ListQueues'
                     },
@@ -623,7 +623,7 @@ class TestResourceFactory(BaseTestResourceFactory):
 
 class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
     def setUp(self):
-        super(TestResourceFactoryDanglingResource, self).setUp()
+        super().setUp()
 
         self.model = {
             'has': {
@@ -801,7 +801,7 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
 
 class TestServiceResourceSubresources(BaseTestResourceFactory):
     def setUp(self):
-        super(TestServiceResourceSubresources, self).setUp()
+        super().setUp()
 
         self.model = {
             'has': {

@@ -21,7 +21,7 @@ from tests import BaseTestCase, mock
 
 class TestServiceActionCall(BaseTestCase):
     def setUp(self):
-        super(TestServiceActionCall, self).setUp()
+        super().setUp()
 
         self.action_def = {
             'request': {
@@ -140,7 +140,7 @@ class TestServiceActionCall(BaseTestCase):
 
 class TestWaiterActionCall(BaseTestCase):
     def setUp(self):
-        super(TestWaiterActionCall, self).setUp()
+        super().setUp()
         self.waiter_resource_name = 'wait_until_exists'
         self.waiter_def = {
             "waiterName": "FrobExists",
@@ -184,7 +184,7 @@ class TestWaiterActionCall(BaseTestCase):
 
 class TestBatchActionCall(BaseTestCase):
     def setUp(self):
-        super(TestBatchActionCall, self).setUp()
+        super().setUp()
 
         self.action_def = {
             'request': {

@@ -75,7 +75,7 @@ class BaseTransformationTest(unittest.TestCase):
 
 class TestInputOutputTransformer(BaseTransformationTest):
     def setUp(self):
-        super(TestInputOutputTransformer, self).setUp()
+        super().setUp()
         self.transformation = lambda params: self.transformed_value
         self.add_shape({self.target_shape: {'type': 'string'}})
 
@@ -480,7 +480,7 @@ class TestTransformAttributeValueOutput(BaseTransformAttributeValueTest):
 
 class TestTransformConditionExpression(BaseTransformationTest):
     def setUp(self):
-        super(TestTransformConditionExpression, self).setUp()
+        super().setUp()
         self.add_shape({'ConditionExpression': {'type': 'string'}})
         self.add_shape({'KeyExpression': {'type': 'string'}})
 

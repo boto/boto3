@@ -124,7 +124,7 @@ class BaseTransferTest(unittest.TestCase):
 
 class TestCopy(BaseTransferTest):
     def setUp(self):
-        super(TestCopy, self).setUp()
+        super().setUp()
         self.copy_source = {'Bucket': 'foo', 'Key': 'bar'}
 
     def stub_single_part_copy(self):
@@ -144,7 +144,7 @@ class TestCopy(BaseTransferTest):
         for i in range(num_parts):
             # Fill in the parts
             part_number = i + 1
-            copy_range = "bytes=%s-%s" % (
+            copy_range = "bytes={}-{}".format(
                 i * part_size,
                 i * part_size + (part_size - 1)
             )
@@ -239,7 +239,7 @@ class TestCopy(BaseTransferTest):
 
 class TestUploadFileobj(BaseTransferTest):
     def setUp(self):
-        super(TestUploadFileobj, self).setUp()
+        super().setUp()
         self.contents = six.BytesIO(b'foo\n')
 
     def stub_put_object(self):
@@ -341,7 +341,7 @@ class TestUploadFileobj(BaseTransferTest):
 
 class TestDownloadFileobj(BaseTransferTest):
     def setUp(self):
-        super(TestDownloadFileobj, self).setUp()
+        super().setUp()
         self.contents = b'foo'
         self.fileobj = six.BytesIO()
 
@@ -376,8 +376,8 @@ class TestDownloadFileobj(BaseTransferTest):
         # contents needs to be pruned, and Range needs to be an expected param.
         if end_byte is not None:
             contents = full_contents[start_byte:end_byte + 1]
-            part_range = 'bytes=%s-%s' % (start_byte, end_byte_range)
-            content_range = 'bytes=%s-%s/%s' % (
+            part_range = f'bytes={start_byte}-{end_byte_range}'
+            content_range = 'bytes={}-{}/{}'.format(
                 start_byte, end_byte, len(full_contents))
             get_object_response['ContentRange'] = content_range
             expected_params['Range'] = part_range

@@ -28,7 +28,7 @@ from tests import BaseTestCase, mock
 
 class TestCollectionFactory(BaseTestCase):
     def setUp(self):
-        super(TestCollectionFactory, self).setUp()
+        super().setUp()
 
         self.client = mock.Mock()
         self.client.can_paginate.return_value = False
@@ -149,7 +149,7 @@ class TestCollectionFactory(BaseTestCase):
 
 class TestResourceCollection(BaseTestCase):
     def setUp(self):
-        super(TestResourceCollection, self).setUp()
+        super().setUp()
 
         # Minimal definition so things like repr work
         self.collection_def = {

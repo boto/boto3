@@ -37,7 +37,7 @@ class TestBinary(unittest.TestCase):
 
     def test_unicode_throws_error(self):
         with pytest.raises(TypeError):
-            Binary(u'\u00e9')
+            Binary('\u00e9')
 
     def test_integer_throws_error(self):
         with pytest.raises(TypeError):
@@ -98,20 +98,20 @@ class TestSerializer(unittest.TestCase):
         assert self.serializer.serialize(b'\x01') == {'B': b'\x01'}
 
     def test_serialize_number_set(self):
-        serialized_value = self.serializer.serialize(set([1, 2, 3]))
+        serialized_value = self.serializer.serialize({1, 2, 3})
         assert len(serialized_value) == 1
         assert 'NS' in serialized_value
         self.assertCountEqual(serialized_value['NS'], ['1', '2', '3'])
 
     def test_serialize_string_set(self):
-        serialized_value = self.serializer.serialize(set(['foo', 'bar']))
+        serialized_value = self.serializer.serialize({'foo', 'bar'})
         assert len(serialized_value) == 1
         assert 'SS' in serialized_value
         self.assertCountEqual(serialized_value['SS'], ['foo', 'bar'])
 
     def test_serialize_binary_set(self):
         serialized_value = self.serializer.serialize(
-            set([Binary(b'\x01'), Binary(b'\x02')]))
+            {Binary(b'\x01'), Binary(b'\x02')})
         assert len(serialized_value) == 1
         assert 'BS' in serialized_value
         self.assertCountEqual(serialized_value['BS'], [b'\x01', b'\x02'])
@@ -178,15 +178,15 @@ class TestDeserializer(unittest.TestCase):
 
     def test_deserialize_number_set(self):
         assert self.deserializer.deserialize(
-            {'NS': ['1', '1.25']}) == set([Decimal('1'), Decimal('1.25')])
+            {'NS': ['1', '1.25']}) == {Decimal('1'), Decimal('1.25')}
 
     def test_deserialize_string_set(self):
         assert self.deserializer.deserialize(
-            {'SS': ['foo', 'bar']}) == set(['foo', 'bar'])
+            {'SS': ['foo', 'bar']}) == {'foo', 'bar'}
 
     def test_deserialize_binary_set(self):
         assert self.deserializer.deserialize(
-            {'BS': [b'\x00', b'\x01']}) == set([Binary(b'\x00'), Binary(b'\x01')])
+            {'BS': [b'\x00', b'\x01']}) == {Binary(b'\x00'), Binary(b'\x01')}
 
     def test_deserialize_list(self):
         assert self.deserializer.deserialize(

@@ -140,7 +140,7 @@ class TestBuildIdentifiers(BaseTestCase):
 
 class TestBuildEmptyResponse(BaseTestCase):
     def setUp(self):
-        super(TestBuildEmptyResponse, self).setUp()
+        super().setUp()
 
         self.search_path = ''
         self.operation_name = 'GetFrobs'
@@ -287,7 +287,7 @@ class TestRawHandler(BaseTestCase):
 
 class TestResourceHandler(BaseTestCase):
     def setUp(self):
-        super(TestResourceHandler, self).setUp()
+        super().setUp()
         self.identifier_path = ''
         self.factory = ResourceFactory(mock.Mock())
         self.resource_defs = {

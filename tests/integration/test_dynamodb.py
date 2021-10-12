@@ -32,9 +32,9 @@ class BaseDynamoDBTest(unittest.TestCase):
             'MyString': 'mystring',
             'MyNumber': Decimal('1.25'),
             'MyBinary': Binary(b'\x01'),
-            'MyStringSet': set(['foo']),
-            'MyNumberSet': set([Decimal('1.25')]),
-            'MyBinarySet': set([Binary(b'\x01')]),
+            'MyStringSet': {'foo'},
+            'MyNumberSet': {Decimal('1.25')},
+            'MyBinarySet': {Binary(b'\x01')},
             'MyList': ['foo'],
             'MyMap': {'foo': 'bar'}
         }
@@ -65,13 +65,13 @@ class TestDynamoDBTypes(BaseDynamoDBTest):
 class TestDynamoDBConditions(BaseDynamoDBTest):
     @classmethod
     def setUpClass(cls):
-        super(TestDynamoDBConditions, cls).setUpClass()
+        super().setUpClass()
         cls.table.put_item(Item=cls.item_data)
 
     @classmethod
     def tearDownClass(cls):
         cls.table.delete_item(Key={'MyHashKey': 'mykey'})
-        super(TestDynamoDBConditions, cls).tearDownClass()
+        super().tearDownClass()
 
     def scan(self, filter_expression):
         return self.table.scan(FilterExpression=filter_expression,

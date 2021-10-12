@@ -18,7 +18,7 @@ from tests.unit.docs import BaseDocsTest
 
 class TestDocumentAttribute(BaseDocsTest):
     def setUp(self):
-        super(TestDocumentAttribute, self).setUp()
+        super().setUp()
         self.add_shape({
             'NestedStruct': {
                 'type': 'structure',
