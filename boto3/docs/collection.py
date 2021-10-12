@@ -15,9 +15,11 @@ from botocore.docs.method import get_instance_public_methods
 from botocore.docs.utils import DocumentedShape
 
 from boto3.docs.base import BaseDocumenter
-from boto3.docs.utils import get_resource_ignore_params
 from boto3.docs.method import document_model_driven_resource_method
-from boto3.docs.utils import add_resource_type_overview
+from boto3.docs.utils import (
+    add_resource_type_overview,
+    get_resource_ignore_params,
+)
 
 
 class CollectionDocumenter(BaseDocumenter):

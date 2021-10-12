@@ -10,13 +10,14 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from collections import namedtuple
 import re
+from collections import namedtuple
 
-from boto3.exceptions import DynamoDBOperationNotSupportedError
-from boto3.exceptions import DynamoDBNeedsConditionError
-from boto3.exceptions import DynamoDBNeedsKeyConditionError
-
+from boto3.exceptions import (
+    DynamoDBNeedsConditionError,
+    DynamoDBNeedsKeyConditionError,
+    DynamoDBOperationNotSupportedError,
+)
 
 ATTR_NAME_REGEX = re.compile(r'[^.\[\]]+(?![^\[]*\])')
 

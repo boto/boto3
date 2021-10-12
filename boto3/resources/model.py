@@ -27,7 +27,6 @@ import logging
 
 from botocore import xform_name
 
-
 logger = logging.getLogger(__name__)
 
 

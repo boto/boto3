@@ -11,12 +11,14 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 from botocore import xform_name
-from botocore.utils import get_service_module_name
 from botocore.docs.method import document_model_driven_method
+from botocore.utils import get_service_module_name
 
 from boto3.docs.base import BaseDocumenter
-from boto3.docs.utils import get_resource_ignore_params
-from boto3.docs.utils import add_resource_type_overview
+from boto3.docs.utils import (
+    add_resource_type_overview,
+    get_resource_ignore_params,
+)
 
 
 class WaiterResourceDocumenter(BaseDocumenter):

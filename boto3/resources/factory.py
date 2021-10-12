@@ -14,15 +14,13 @@
 import logging
 from functools import partial
 
-from .action import ServiceAction
-from .action import WaiterAction
+from ..docs import docstring
+from ..exceptions import ResourceLoadException
+from .action import ServiceAction, WaiterAction
 from .base import ResourceMeta, ServiceResource
 from .collection import CollectionFactory
 from .model import ResourceModel
-from .response import build_identifiers, ResourceHandler
-from ..exceptions import ResourceLoadException
-from ..docs import docstring
-
+from .response import ResourceHandler, build_identifiers
 
 logger = logging.getLogger(__name__)
 

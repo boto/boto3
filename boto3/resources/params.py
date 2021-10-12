@@ -18,7 +18,6 @@ from botocore import xform_name
 
 from ..exceptions import ResourceLoadException
 
-
 INDEX_RE = re.compile(r'\[(.*)\]$')
 
 

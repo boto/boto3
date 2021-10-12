@@ -17,11 +17,10 @@ import logging
 from botocore import xform_name
 from botocore.utils import merge_dicts
 
+from ..docs import docstring
 from .action import BatchAction
 from .params import create_request_parameters
 from .response import ResourceHandler
-from ..docs import docstring
-
 
 logger = logging.getLogger(__name__)
 

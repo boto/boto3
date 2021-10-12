@@ -13,7 +13,6 @@
 import inspect
 
 import jmespath
-
 from botocore.compat import six
 
 

@@ -10,13 +10,19 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from decimal import Decimal, Context, Clamped
-from decimal import Overflow, Inexact, Underflow, Rounded
-
-from boto3.compat import collections_abc
+from decimal import (
+    Clamped,
+    Context,
+    Decimal,
+    Inexact,
+    Overflow,
+    Rounded,
+    Underflow,
+)
 
 from botocore.compat import six
 
+from boto3.compat import collections_abc
 
 STRING = 'S'
 NUMBER = 'N'

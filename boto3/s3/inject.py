@@ -12,10 +12,13 @@
 # language governing permissions and limitations under the License.
 from botocore.exceptions import ClientError
 
-from boto3.s3.transfer import create_transfer_manager
-from boto3.s3.transfer import TransferConfig, S3Transfer
-from boto3.s3.transfer import ProgressCallbackInvoker
 from boto3 import utils
+from boto3.s3.transfer import (
+    ProgressCallbackInvoker,
+    S3Transfer,
+    TransferConfig,
+    create_transfer_manager,
+)
 
 
 def inject_s3_transfer_methods(class_attributes, **kwargs):

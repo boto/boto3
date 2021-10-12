@@ -15,13 +15,12 @@ import logging
 
 from botocore import xform_name
 
-from .params import create_request_parameters
-from .response import RawHandler, ResourceHandler
-from .model import Action
-
 from boto3.docs.docstring import ActionDocstring
 from boto3.utils import inject_attribute
 
+from .model import Action
+from .params import create_request_parameters
+from .response import RawHandler, ResourceHandler
 
 logger = logging.getLogger(__name__)
 

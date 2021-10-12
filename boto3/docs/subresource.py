@@ -14,10 +14,12 @@ from botocore import xform_name
 from botocore.utils import get_service_module_name
 
 from boto3.docs.base import BaseDocumenter
-from boto3.docs.utils import get_identifier_args_for_signature
-from boto3.docs.utils import get_identifier_values_for_example
-from boto3.docs.utils import get_identifier_description
-from boto3.docs.utils import add_resource_type_overview
+from boto3.docs.utils import (
+    add_resource_type_overview,
+    get_identifier_args_for_signature,
+    get_identifier_description,
+    get_identifier_values_for_example,
+)
 
 
 class SubResourceDocumenter(BaseDocumenter):

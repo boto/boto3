@@ -13,7 +13,6 @@
 import sys
 from collections import namedtuple
 
-
 _ServiceContext = namedtuple(
     'ServiceContext',
     ['service_name', 'service_model', 'service_waiter_model',
