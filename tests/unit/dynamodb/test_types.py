@@ -14,9 +14,8 @@ from decimal import Decimal
 
 import pytest
 
+from boto3.dynamodb.types import Binary, TypeDeserializer, TypeSerializer
 from tests import unittest
-
-from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer
 
 
 class TestBinary(unittest.TestCase):

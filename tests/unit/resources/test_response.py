@@ -12,14 +12,17 @@
 # language governing permissions and limitations under the License.
 import pytest
 
-from tests import BaseTestCase, mock
-from boto3.utils import ServiceContext
 from boto3.resources.base import ResourceMeta, ServiceResource
-from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
+from boto3.resources.model import Parameter, ResponseResource
 from boto3.resources.response import (
-    build_identifiers, build_empty_response, RawHandler, ResourceHandler
+    RawHandler,
+    ResourceHandler,
+    build_empty_response,
+    build_identifiers,
 )
+from boto3.utils import ServiceContext
+from tests import BaseTestCase, mock
 
 
 class TestBuildIdentifiers(BaseTestCase):

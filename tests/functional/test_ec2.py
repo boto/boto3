@@ -12,8 +12,9 @@
 # language governing permissions and limitations under the License.
 import unittest
 
-import boto3.session
 from botocore.stub import Stubber
+
+import boto3.session
 
 
 class TestInstanceDeleteTags(unittest.TestCase):

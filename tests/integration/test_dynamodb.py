@@ -14,9 +14,9 @@ from decimal import Decimal
 
 import boto3.session
 from boto3.compat import collections_abc
-from boto3.dynamodb.types import Binary
 from boto3.dynamodb.conditions import Attr, Key
-from tests import unittest, unique_id
+from boto3.dynamodb.types import Binary
+from tests import unique_id, unittest
 
 
 class BaseDynamoDBTest(unittest.TestCase):

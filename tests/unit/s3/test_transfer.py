@@ -11,19 +11,22 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
-from tests import mock, unittest
-
-from s3transfer.manager import TransferManager
 from s3transfer.futures import NonThreadedExecutor
+from s3transfer.manager import TransferManager
 
-from boto3.exceptions import RetriesExceededError
-from boto3.exceptions import S3UploadFailedError
-from boto3.s3.transfer import create_transfer_manager
-from boto3.s3.transfer import S3Transfer
-from boto3.s3.transfer import OSUtils, TransferConfig, ProgressCallbackInvoker
-from boto3.s3.transfer import ClientError, S3TransferRetriesExceededError
-from boto3.s3.transfer import KB, MB
+from boto3.exceptions import RetriesExceededError, S3UploadFailedError
+from boto3.s3.transfer import (
+    KB,
+    MB,
+    ClientError,
+    OSUtils,
+    ProgressCallbackInvoker,
+    S3Transfer,
+    S3TransferRetriesExceededError,
+    TransferConfig,
+    create_transfer_manager,
+)
+from tests import mock, unittest
 
 
 class TestCreateTransferManager(unittest.TestCase):

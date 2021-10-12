@@ -10,23 +10,22 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import os
-import threading
-import math
-import tempfile
-import shutil
-import hashlib
-import string
 import datetime
+import hashlib
 import logging
+import math
+import os
+import shutil
+import string
+import tempfile
+import threading
 
-from tests import unittest, unique_id
-from botocore.compat import six
 from botocore.client import Config
+from botocore.compat import six
 
-import boto3.session
 import boto3.s3.transfer
-
+import boto3.session
+from tests import unique_id, unittest
 
 urlopen = six.moves.urllib.request.urlopen
 LOG = logging.getLogger('boto3.tests.integration')

@@ -14,18 +14,34 @@ import copy
 
 import pytest
 
-from tests import unittest
-
-from boto3.exceptions import (
-    DynamoDBOperationNotSupportedError, DynamoDBNeedsConditionError,
-    DynamoDBNeedsKeyConditionError,
-)
 from boto3.dynamodb.conditions import (
-    Attr, Key, And, Or, Not, Equals, LessThan,
-    LessThanEquals, GreaterThan, GreaterThanEquals, BeginsWith, Between,
-    NotEquals, In, AttributeExists, AttributeNotExists, Contains, Size,
-    AttributeType, ConditionExpressionBuilder
+    And,
+    Attr,
+    AttributeExists,
+    AttributeNotExists,
+    AttributeType,
+    BeginsWith,
+    Between,
+    ConditionExpressionBuilder,
+    Contains,
+    Equals,
+    GreaterThan,
+    GreaterThanEquals,
+    In,
+    Key,
+    LessThan,
+    LessThanEquals,
+    Not,
+    NotEquals,
+    Or,
+    Size,
 )
+from boto3.exceptions import (
+    DynamoDBNeedsConditionError,
+    DynamoDBNeedsKeyConditionError,
+    DynamoDBOperationNotSupportedError,
+)
+from tests import unittest
 
 
 class TestK(unittest.TestCase):

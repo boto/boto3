@@ -11,15 +11,14 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
 from botocore.model import DenormalizedStructureBuilder, ServiceModel
-from tests import BaseTestCase, mock
 
 from boto3.exceptions import ResourceLoadException
-from boto3.utils import ServiceContext
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
+from boto3.utils import ServiceContext
+from tests import BaseTestCase, mock
 
 
 class BaseTestResourceFactory(BaseTestCase):

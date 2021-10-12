@@ -11,17 +11,18 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
 from botocore.hooks import HierarchicalEmitter
 from botocore.model import ServiceModel
 
-from boto3.utils import ServiceContext
-from boto3.resources.collection import (
-    CollectionFactory, CollectionManager, ResourceCollection
-)
 from boto3.resources.base import ResourceMeta
+from boto3.resources.collection import (
+    CollectionFactory,
+    CollectionManager,
+    ResourceCollection,
+)
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.model import Collection
+from boto3.utils import ServiceContext
 from tests import BaseTestCase, mock
 
 

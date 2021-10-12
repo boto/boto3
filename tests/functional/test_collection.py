@@ -10,10 +10,9 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest
-
-from boto3.session import Session
 from boto3.resources.collection import ResourceCollection
+from boto3.session import Session
+from tests import unittest
 
 
 class TestCollection(unittest.TestCase):

@@ -12,8 +12,7 @@
 # language governing permissions and limitations under the License.
 
 import boto3.session
-
-from tests import unittest, unique_id
+from tests import unique_id, unittest
 
 
 class TestSQSResource(unittest.TestCase):

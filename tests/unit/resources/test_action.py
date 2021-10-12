@@ -12,10 +12,10 @@
 # language governing permissions and limitations under the License.
 import pytest
 
-from boto3.utils import ServiceContext
 from boto3.resources.action import BatchAction, ServiceAction, WaiterAction
 from boto3.resources.base import ResourceMeta
 from boto3.resources.model import Action, Waiter
+from boto3.utils import ServiceContext
 from tests import BaseTestCase, mock
 
 

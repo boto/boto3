@@ -10,9 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests.unit.docs import BaseDocsTest
-
 from boto3.docs.client import Boto3ClientDocumenter
+from tests.unit.docs import BaseDocsTest
 
 
 class TestBoto3ClientDocumenter(BaseDocsTest):

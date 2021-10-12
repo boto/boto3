@@ -11,12 +11,11 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import botocore.session
-from botocore import xform_name
 import pytest
+from botocore import xform_name
 
-from boto3.session import Session
 from boto3.resources.model import ResourceModel
-
+from boto3.session import Session
 
 # A list of names that are common names of a pagination parameter.
 # Note that this list is not comprehensive. It may have to be updated

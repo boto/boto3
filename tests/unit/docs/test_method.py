@@ -10,12 +10,12 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from botocore.hooks import HierarchicalEmitter
 from botocore.docs.utils import DocumentedShape
+from botocore.hooks import HierarchicalEmitter
 
-from tests.unit.docs import BaseDocsTest
-from boto3.resources.model import ResponseResource
 from boto3.docs.method import document_model_driven_resource_method
+from boto3.resources.model import ResponseResource
+from tests.unit.docs import BaseDocsTest
 
 
 class TestDocumentModelDrivenResourceMethod(BaseDocsTest):

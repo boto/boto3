@@ -12,8 +12,8 @@
 # language governing permissions and limitations under the License.
 from botocore.hooks import HierarchicalEmitter
 
-from tests.unit.docs import BaseDocsTest
 from boto3.docs.attr import document_attribute
+from tests.unit.docs import BaseDocsTest
 
 
 class TestDocumentAttribute(BaseDocsTest):

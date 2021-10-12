@@ -10,18 +10,18 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import os
 import json
-import tempfile
+import os
 import shutil
-from tests import unittest
+import tempfile
 
 import botocore.session
 from botocore.compat import OrderedDict
-from botocore.loaders import Loader
 from botocore.docs.bcdoc.restdoc import DocumentStructure
+from botocore.loaders import Loader
 
 from boto3.session import Session
+from tests import unittest
 
 
 class BaseDocsTest(unittest.TestCase):

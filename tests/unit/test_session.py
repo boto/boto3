@@ -11,15 +11,14 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
 from botocore import loaders
-from botocore.exceptions import UnknownServiceError
 from botocore.client import Config
+from botocore.exceptions import UnknownServiceError
 
 from boto3 import __version__
 from boto3.exceptions import ResourceNotExistsError
 from boto3.session import Session
-from tests import mock, BaseTestCase
+from tests import BaseTestCase, mock
 
 
 class TestSession(BaseTestCase):

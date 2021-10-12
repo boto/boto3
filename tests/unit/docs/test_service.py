@@ -13,9 +13,9 @@
 import os
 
 import boto3
+from boto3.docs.service import ServiceDocumenter
 from tests import mock
 from tests.unit.docs import BaseDocsTest
-from boto3.docs.service import ServiceDocumenter
 
 
 class TestServiceDocumenter(BaseDocsTest):

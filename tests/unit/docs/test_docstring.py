@@ -12,8 +12,8 @@
 # language governing permissions and limitations under the License.
 from botocore.compat import six
 
-from tests.unit.docs import BaseDocsTest
 from tests import mock
+from tests.unit.docs import BaseDocsTest
 
 
 class TestResourceDocstrings(BaseDocsTest):

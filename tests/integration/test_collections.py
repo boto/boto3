@@ -14,9 +14,8 @@
 import pytest
 
 import boto3.session
-from boto3.resources.collection import CollectionManager
 from boto3.resources.base import ServiceResource
-
+from boto3.resources.collection import CollectionManager
 
 # A map of services to regions that cannot use us-west-2
 # for the integration tests.

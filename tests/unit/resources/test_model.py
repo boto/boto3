@@ -13,7 +13,7 @@
 
 from botocore.model import DenormalizedStructureBuilder
 
-from boto3.resources.model import ResourceModel, Action, Collection, Waiter
+from boto3.resources.model import Action, Collection, ResourceModel, Waiter
 from tests import BaseTestCase
 
 

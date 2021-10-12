@@ -11,12 +11,12 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import json
-from tests import unittest, mock
 
 from botocore.awsrequest import AWSResponse
 
-from boto3.session import Session
 from boto3.dynamodb.conditions import Attr
+from boto3.session import Session
+from tests import mock, unittest
 
 
 class TestDynamoDB(unittest.TestCase):

@@ -10,14 +10,12 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import botocore.session
 import pytest
 
-from tests import unittest
-
-import botocore.session
-
-from boto3 import utils
 import boto3.session
+from boto3 import utils
+from tests import unittest
 
 
 class TestUtils(unittest.TestCase):

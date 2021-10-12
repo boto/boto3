@@ -16,7 +16,8 @@ from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import Request
 from boto3.resources.params import (
-    create_request_parameters, build_param_structure
+    build_param_structure,
+    create_request_parameters,
 )
 from tests import BaseTestCase, mock
 

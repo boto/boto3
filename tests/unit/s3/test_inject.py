@@ -11,9 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
-from botocore.exceptions import ClientError
 from botocore.compat import six
+from botocore.exceptions import ClientError
 
 from boto3.s3 import inject
 from tests import mock, unittest

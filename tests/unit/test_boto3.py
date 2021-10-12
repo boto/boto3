@@ -12,7 +12,6 @@
 # language governing permissions and limitations under the License.
 
 import boto3
-
 from tests import mock, unittest
 
 

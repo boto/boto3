@@ -10,8 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import pytest
 import botocore.session
+import pytest
 from botocore import xform_name
 from botocore.exceptions import DataNotFoundError
 
