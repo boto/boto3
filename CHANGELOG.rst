@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.18.61
+=======
+
+* api-change:``config``: [``botocore``] Adding Config support for AWS::OpenSearch::Domain
+* api-change:``ec2``: [``botocore``] This release adds support for additional VPC Flow Logs delivery options to S3, such as Apache Parquet formatted files, Hourly partitions and Hive-compatible S3 prefixes
+* api-change:``storagegateway``: [``botocore``] Adding support for Audit Logs on NFS shares and Force Closing Files on SMB shares.
+* api-change:``workmail``: [``botocore``] This release adds APIs for adding, removing and retrieving details of mail domains
+* api-change:``kinesisanalyticsv2``: [``botocore``] Support for Apache Flink 1.13 in Kinesis Data Analytics. Changed the required status of some Update properties to better fit the corresponding Create properties.
+
+
 1.18.60
 =======
 
