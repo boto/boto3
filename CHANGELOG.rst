@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.18.62
+=======
+
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``autoscaling``: [``botocore``] Amazon EC2 Auto Scaling now supports filtering describe Auto Scaling groups API using tags
+* api-change:``sagemaker``: [``botocore``] This release updates the provisioning artifact ID to an optional parameter in CreateProject API. The provisioning artifact ID defaults to the latest provisioning artifact ID of the product if you don't provide one.
+* api-change:``robomaker``: [``botocore``] Adding support to GPU simulation jobs as well as non-ROS simulation jobs.
+
+
 1.18.61
 =======
 
