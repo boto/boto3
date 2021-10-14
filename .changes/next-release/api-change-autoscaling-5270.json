@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``autoscaling``",
+  "description": "[``botocore``] Amazon EC2 Auto Scaling now supports filtering describe Auto Scaling groups API using tags"
+}
