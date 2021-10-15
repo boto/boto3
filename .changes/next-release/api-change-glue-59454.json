@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Enable S3 event base crawler API."
-}

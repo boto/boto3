@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.18.63
+=======
+
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``glue``: [``botocore``] Enable S3 event base crawler API.
+
+
 1.18.62
 =======
 
