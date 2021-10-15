@@ -61,6 +61,6 @@ you can commit the changes prior to publishing the PR.
 These checks are also included in our CI setup under the "Lint" workflow which
 will provide output on Github for anything missed locally.
 
-See the `flake8` section of the 
-`setup.cfg <https://github.com/boto/boto3/blob/develop/setup.cfg>`__ for the 
+See the `flake8` section of the
+`setup.cfg <https://github.com/boto/boto3/blob/develop/setup.cfg>`__ for the
 currently enforced rules.
