@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.18.64
+=======
+
+* api-change:``quicksight``: [``botocore``] AWS QuickSight Service  Features    - Add IP Restriction UI and public APIs support.
+* enchancement:AWSCRT: [``botocore``] Upgrade awscrt extra to 0.12.5
+* api-change:``ivs``: [``botocore``] Bug fix: remove unsupported maxResults and nextToken pagination parameters from ListTagsForResource
+
+
 1.18.63
 =======
 
