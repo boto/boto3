@@ -1,5 +1,0 @@
-{
-  "type": "enchancement",
-  "category": "AWSCRT",
-  "description": "[``botocore``] Upgrade awscrt extra to 0.12.5"
-}

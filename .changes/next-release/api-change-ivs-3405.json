@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ivs``",
-  "description": "[``botocore``] Bug fix: remove unsupported maxResults and nextToken pagination parameters from ListTagsForResource"
-}
