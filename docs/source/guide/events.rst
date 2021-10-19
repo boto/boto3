@@ -214,8 +214,8 @@ customize clients or resources and modify the behavior of method calls.
 
 Here is the list of events that users of Boto3 can register handlers to:
 
-* ``'creating-client-class``
-* ``'creating-resource-class``
+* ``'creating-client-class'``
+* ``'creating-resource-class'``
 * ``'provide-client-params'``
 
 
