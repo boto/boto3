@@ -1,0 +1,5 @@
+{
+  "type": "feature",
+  "category": "Serialization",
+  "description": "[``botocore``] rest-json serialization defaults aligned across AWS SDKs"
+}
