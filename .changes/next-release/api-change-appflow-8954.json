@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appflow``",
-  "description": "[``botocore``] Feature to add support for  JSON-L format for S3 as a source."
-}

@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.19.0
+======
+
+* api-change:``appflow``: [``botocore``] Feature to add support for  JSON-L format for S3 as a source.
+* api-change:``mediapackage-vod``: [``botocore``] MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK has added support for specifying caption time delta in milliseconds and the ability to apply color range legalization to source content other than AVC video.
+* api-change:``mediapackage``: [``botocore``] When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.
+* api-change:``panorama``: [``botocore``] General availability for AWS Panorama. AWS SDK for Panorama includes APIs to manage your devices and nodes, and deploy computer vision applications to the edge. For more information, see the AWS Panorama documentation at http://docs.aws.amazon.com/panorama
+* feature:Serialization: [``botocore``] rest-json serialization defaults aligned across AWS SDKs
+* api-change:``directconnect``: [``botocore``] This release adds 4 new APIS, which needs to be public able
+* api-change:``securityhub``: [``botocore``] Added support for cross-Region finding aggregation, which replicates findings from linked Regions to a single aggregation Region. Added operations to view, enable, update, and delete the finding aggregation.
+
+
 1.18.65
 =======
 
