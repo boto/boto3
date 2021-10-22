@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``chime``",
-  "description": "[``botocore``] Chime VoiceConnector and VoiceConnectorGroup APIs will now return an ARN."
-}

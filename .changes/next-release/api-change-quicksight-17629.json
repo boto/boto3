@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Added QSearchBar option for GenerateEmbedUrlForRegisteredUser ExperienceConfiguration to support Q search bar embedding"
-}
