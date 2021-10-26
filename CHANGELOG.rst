@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.19.4
+======
+
+* api-change:``emr-containers``: [``botocore``] This feature enables auto-generation of certificate  to secure the managed-endpoint and removes the need for customer provided certificate-arn during managed-endpoint setup.
+* api-change:``chime-sdk-messaging``: [``botocore``] The Amazon Chime SDK now supports push notifications through Amazon Pinpoint
+* api-change:``chime-sdk-identity``: [``botocore``] The Amazon Chime SDK now supports push notifications through Amazon Pinpoint
+
+
 1.19.3
 ======
 
