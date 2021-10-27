@@ -166,14 +166,17 @@ class TransferConfig(S3TransferConfig):
         'max_io_queue': 'max_io_queue_size'
     }
 
-    def __init__(self,
-                 multipart_threshold=8 * MB,
-                 max_concurrency=10,
-                 multipart_chunksize=8 * MB,
-                 num_download_attempts=5,
-                 max_io_queue=100,
-                 io_chunksize=256 * KB,
-                 use_threads=True):
+    def __init__(
+        self,
+        multipart_threshold=8 * MB,
+        max_concurrency=10,
+        multipart_chunksize=8 * MB,
+        num_download_attempts=5,
+        max_io_queue=100,
+        io_chunksize=256 * KB,
+        use_threads=True,
+        max_bandwidth=None,
+    ):
         """Configuration object for managed S3 transfers
 
         :param multipart_threshold: The transfer size threshold for which
@@ -209,6 +212,10 @@ class TransferConfig(S3TransferConfig):
         :param use_threads: If True, threads will be used when performing
             S3 transfers. If False, no threads will be used in
             performing transfers: all logic will be ran in the main thread.
+
+        :param max_bandwidth: The maximum bandwidth that will be consumed
+            in uploading and downloading file content. The value is an integer
+            in terms of bytes per second.
         """
         super(TransferConfig, self).__init__(
             multipart_threshold=multipart_threshold,
@@ -217,6 +224,7 @@ class TransferConfig(S3TransferConfig):
             num_download_attempts=num_download_attempts,
             max_io_queue_size=max_io_queue,
             io_chunksize=io_chunksize,
+            max_bandwidth=max_bandwidth,
         )
         # Some of the argument names are not the same as the inherited
         # S3TransferConfig so we add aliases so you can still access the

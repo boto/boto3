@@ -1,0 +1,5 @@
+{
+  "type": "enchancement",
+  "category": "``s3``",
+  "description": "TransferConfig now supports the `max_bandwidth` argument."
+}
