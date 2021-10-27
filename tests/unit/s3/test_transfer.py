@@ -23,6 +23,7 @@ from boto3.s3.transfer import create_transfer_manager
 from boto3.s3.transfer import S3Transfer
 from boto3.s3.transfer import OSUtils, TransferConfig, ProgressCallbackInvoker
 from boto3.s3.transfer import ClientError, S3TransferRetriesExceededError
+from boto3.s3.transfer import KB, MB
 
 
 class TestCreateTransferManager(unittest.TestCase):
@@ -82,6 +83,26 @@ class TestTransferConfig(unittest.TestCase):
         # value that will be used in the TransferManager
         self.assert_value_of_actual_and_alias(
             config, 'max_io_queue_size', 'max_io_queue', new_value)
+
+    def test_transferconfig_parameters(self):
+        config = TransferConfig(
+            multipart_threshold=8 * MB,
+            max_concurrency=10,
+            multipart_chunksize=8 * MB,
+            num_download_attempts=5,
+            max_io_queue=100,
+            io_chunksize=256 * KB,
+            use_threads=True,
+            max_bandwidth=1024 * KB,
+        )
+        assert config.multipart_threshold == 8 * MB
+        assert config.multipart_chunksize == 8 * MB
+        assert config.max_request_concurrency == 10
+        assert config.num_download_attempts == 5
+        assert config.max_io_queue_size == 100
+        assert config.io_chunksize == 256 * KB
+        assert config.use_threads is True
+        assert config.max_bandwidth == 1024 * KB
 
 
 class TestProgressCallbackInvoker(unittest.TestCase):
