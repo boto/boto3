@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Session",
+  "description": "Added `get_partition_for_region` to lookup partition for a given region_name"
+}

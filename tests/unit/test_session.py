@@ -207,6 +207,17 @@ class TestSession(BaseTestCase):
         )
         assert partitions == ['foo']
 
+    def test_get_partition_for_region(self):
+        bc_session = mock.Mock()
+        bc_session.get_partition_for_region.return_value = 'baz'
+        session = Session(botocore_session=bc_session)
+
+        partition = session.get_partition_for_region('foo-bar-1')
+        bc_session.get_partition_for_region.assert_called_with(
+            'foo-bar-1'
+        )
+        assert partition == 'baz'
+
     def test_create_client(self):
         session = Session(region_name='us-east-1')
         client = session.client('sqs', region_name='us-west-2')
