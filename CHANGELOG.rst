@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.19.5
+======
+
+* api-change:``autoscaling``: [``botocore``] This release adds support for attribute-based instance type selection, a new EC2 Auto Scaling feature that lets customers express their instance requirements as a set of attributes, such as vCPU, memory, and storage.
+* api-change:``ec2``: [``botocore``] This release adds: attribute-based instance type selection for EC2 Fleet, Spot Fleet, a feature that lets customers express instance requirements as attributes like vCPU, memory, and storage; and Spot placement score, a feature that helps customers identify an optimal location to run Spot workloads.
+* enhancement:Session: Added `get_partition_for_region` to lookup partition for a given region_name
+* api-change:``eks``: [``botocore``] EKS managed node groups now support BOTTLEROCKET_x86_64 and BOTTLEROCKET_ARM_64 AMI types.
+* api-change:``sagemaker``: [``botocore``] This release allows customers to describe one or more versioned model packages through BatchDescribeModelPackage, update project via UpdateProject, modify and read customer metadata properties using Create, Update and Describe ModelPackage and enables cross account registration of model packages.
+* enhancement:Session: [``botocore``] Added `get_partition_for_region` allowing partition lookup by region name.
+* api-change:``textract``: [``botocore``] This release adds support for asynchronously analyzing invoice and receipt documents through two new APIs: StartExpenseAnalysis and GetExpenseAnalysis
+* enchancement:``s3``: TransferConfig now supports the `max_bandwidth` argument.
+
+
 1.19.4
 ======
 
