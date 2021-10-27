@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Session",
+  "description": "[``botocore``] Added `get_partition_for_region` allowing partition lookup by region name."
+}
