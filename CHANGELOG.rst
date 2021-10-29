@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.19.7
+======
+
+* api-change:``transcribe``: [``botocore``] Transcribe and Transcribe Call Analytics now support automatic language identification along with custom vocabulary, vocabulary filter, custom language model and PII redaction.
+* api-change:``application-insights``: [``botocore``] Added Monitoring support for SQL Server Failover Cluster Instance. Additionally, added a new API to allow one-click monitoring of containers resources.
+* api-change:``rekognition``: [``botocore``] This release added new attributes to Rekognition Video GetCelebrityRecognition API operations.
+* api-change:``connect``: [``botocore``] Amazon Connect Chat now supports real-time message streaming.
+* api-change:``ec2``: [``botocore``] Support added for AMI sharing with organizations and organizational units in ModifyImageAttribute API
+
+
 1.19.6
 ======
 
