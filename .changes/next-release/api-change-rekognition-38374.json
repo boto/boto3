@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rekognition``",
+  "description": "[``botocore``] This Amazon Rekognition Custom Labels release introduces the management of datasets with  projects"
+}
