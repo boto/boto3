@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.19.8
+======
+
+* api-change:``rekognition``: [``botocore``] This Amazon Rekognition Custom Labels release introduces the management of datasets with  projects
+* api-change:``networkmanager``: [``botocore``] This release adds API support to aggregate resources, routes, and telemetry data across a Global Network.
+* api-change:``lightsail``: [``botocore``] This release adds support to enable access logging for buckets in the Lightsail object storage service.
+* api-change:``neptune``: [``botocore``] Adds support for major version upgrades to ModifyDbCluster API
+
+
 1.19.7
 ======
 
