@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.19.9
+======
+
+* api-change:``cloudfront``: [``botocore``] CloudFront now supports response headers policies to add HTTP headers to the responses that CloudFront sends to viewers. You can use these policies to add CORS headers, control browser caching, and more, without modifying your origin or writing any code.
+* api-change:``connect``: [``botocore``] Amazon Connect Chat now supports real-time message streaming.
+* api-change:``nimble``: [``botocore``] Amazon Nimble Studio adds support for users to stop and start streaming sessions.
+
+
 1.19.8
 ======
 
