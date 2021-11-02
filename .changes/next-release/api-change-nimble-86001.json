@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``nimble``",
+  "description": "[``botocore``] Amazon Nimble Studio adds support for users to stop and start streaming sessions."
+}
