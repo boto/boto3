@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.19.12
+=======
+
+* api-change:``ec2``: [``botocore``] DescribeInstances now returns customer-owned IP addresses for instances running on an AWS Outpost.
+* api-change:``translate``: [``botocore``] This release enable customers to use their own KMS keys to encrypt output files when they submit a batch transform job.
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Documentation updates and improvements.
+
+
 1.19.11
 =======
 
