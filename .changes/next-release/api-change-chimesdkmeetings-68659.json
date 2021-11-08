@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``chime-sdk-meetings``",
+  "description": "[``botocore``] Updated format validation for ids and regions."
+}
