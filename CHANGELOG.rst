@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.1
+======
+
+* bugfix:urllib3: [``botocore``] Fix NO_OP_TICKET import bug in older versions of urllib3
+
+
 1.20.0
 ======
 
