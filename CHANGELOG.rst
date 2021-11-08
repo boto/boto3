@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.20.0
+======
+
+* feature:EndpointResolver: [``botocore``] Adding support for resolving modeled FIPS and Dualstack endpoints.
+* feature:``six``: [``botocore``] Updated vendored version of ``six`` from 1.10.0 to 1.16.0
+* api-change:``sagemaker``: [``botocore``] SageMaker CreateEndpoint and UpdateEndpoint APIs now support additional deployment configuration to manage traffic shifting options and automatic rollback monitoring. DescribeEndpoint now shows new in-progress deployment details with stage status.
+* api-change:``chime-sdk-meetings``: [``botocore``] Updated format validation for ids and regions.
+* api-change:``wafv2``: [``botocore``] You can now configure rules to run a CAPTCHA check against web requests and, as needed, send a CAPTCHA challenge to the client.
+* api-change:``ec2``: [``botocore``] This release adds internal validation on the GatewayAssociationState field
+
+
 1.19.12
 =======
 
