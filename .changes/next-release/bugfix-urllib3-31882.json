@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "urllib3",
+  "description": "[``botocore``] Fix NO_OP_TICKET import bug in older versions of urllib3"
+}
