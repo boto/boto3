@@ -1,5 +1,0 @@
-{
-  "type": "feature",
-  "category": "``six``",
-  "description": "[``botocore``] Updated vendored version of ``six`` from 1.10.0 to 1.16.0"
-}

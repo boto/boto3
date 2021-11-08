@@ -1,5 +1,0 @@
-{
-  "type": "feature",
-  "category": "EndpointResolver",
-  "description": "[``botocore``] Adding support for resolving modeled FIPS and Dualstack endpoints."
-}
