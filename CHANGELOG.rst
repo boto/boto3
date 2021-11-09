@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.20.2
+======
+
+* api-change:``batch``: [``botocore``] Adds support for scheduling policy APIs.
+* api-change:``health``: [``botocore``] Documentation updates for AWS Health.
+* api-change:``greengrassv2``: [``botocore``] This release adds support for Greengrass core devices running Windows. You can now specify name of a Windows user to run a component.
+
+
 1.20.1
 ======
 
