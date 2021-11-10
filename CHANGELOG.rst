@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.20.3
+======
+
+* api-change:``backup``: [``botocore``] AWS Backup SDK provides new options when scheduling backups: select supported services and resources that are assigned to a particular tag, linked to a combination of tags, or can be identified by a partial tag value, and exclude resources from their assignments.
+* api-change:``ecs``: [``botocore``] This release adds support for container instance health.
+* api-change:``resiliencehub``: [``botocore``] Initial release of AWS Resilience Hub, a managed service that enables you to define, validate, and track the resilience of your applications on AWS
+
+
 1.20.2
 ======
 
