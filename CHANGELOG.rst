@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.20.4
+======
+
+* api-change:``dynamodb``: [``botocore``] Updated Help section for "dynamodb update-contributor-insights" API
+* api-change:``ec2``: [``botocore``] This release provides an additional route target for the VPC route table.
+* api-change:``translate``: [``botocore``] This release enables customers to import Multi-Directional Custom Terminology and use Multi-Directional Custom Terminology in both real-time translation and asynchronous batch translation.
+
+
 1.20.3
 ======
 

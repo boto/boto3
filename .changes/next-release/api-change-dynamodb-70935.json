@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dynamodb``",
-  "description": "[``botocore``] Updated Help section for \"dynamodb update-contributor-insights\" API"
-}
