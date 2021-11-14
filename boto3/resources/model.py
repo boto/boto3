@@ -560,11 +560,7 @@ class ResourceModel(object):
                 name = self._get_name('reference', name)
             action = Action(name, definition, self._resource_defs)
 
-            data_required = False
-            for identifier in action.resource.identifiers:
-                if identifier.source == 'data':
-                    data_required = True
-                    break
+            data_required = any([identifier for identifier in action.resource.identifiers if identifier.source == 'data'])
 
             if subresources and not data_required:
                 resources.append(action)
