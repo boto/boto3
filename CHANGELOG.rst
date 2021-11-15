@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.20.6
+======
+
+* api-change:``migrationhubstrategy``: [``botocore``] AWS SDK for Migration Hub Strategy Recommendations. It includes APIs to start the portfolio assessment, import portfolio data for assessment, and to retrieve recommendations. For more information, see the AWS Migration Hub documentation at https://docs.aws.amazon.com/migrationhub/index.html
+* api-change:``ec2``: [``botocore``] Adds a new VPC Subnet attribute "EnableDns64." When enabled on IPv6 Subnets, the Amazon-Provided DNS Resolver returns synthetic IPv6 addresses for IPv4-only destinations.
+* api-change:``wafv2``: [``botocore``] Your options for logging web ACL traffic now include Amazon CloudWatch Logs log groups and Amazon S3 buckets.
+* api-change:``dms``: [``botocore``] Add Settings in JSON format for the source GCP MySQL endpoint
+* api-change:``ssm``: [``botocore``] Adds support for Session Reason and Max Session Duration for Systems Manager Session Manager.
+* api-change:``appstream``: [``botocore``] This release includes support for images of AmazonLinux2 platform type.
+* api-change:``eks``: [``botocore``] Adding Tags support to Cluster Registrations.
+* api-change:``transfer``: [``botocore``] AWS Transfer Family now supports integrating a custom identity provider using AWS Lambda
+
+
 1.20.5
 ======
 

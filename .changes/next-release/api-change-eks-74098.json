@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks``",
-  "description": "[``botocore``] Adding Tags support to Cluster Registrations."
-}
