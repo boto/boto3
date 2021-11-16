@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.20.7
+======
+
+* api-change:``location``: [``botocore``] This release adds the support for Relevance, Distance, Time Zone, Language and Interpolated Address for Geocoding and Reverse Geocoding.
+* api-change:``cloudtrail``: [``botocore``] CloudTrail Insights now supports ApiErrorRateInsight, which enables customers to identify unusual activity in their AWS account based on API error codes and their rate.
+
+
 1.20.6
 ======
 
