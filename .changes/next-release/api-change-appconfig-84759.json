@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appconfig``",
-  "description": "[``botocore``] Add Type to support feature flag configuration profiles"
-}
