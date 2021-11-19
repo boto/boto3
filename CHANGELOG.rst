@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.20.10
+=======
+
+* api-change:``lexv2-runtime``: [``botocore``] Update lexv2-runtime client to latest version
+* api-change:``cloudformation``: [``botocore``] The StackSets ManagedExecution feature will allow concurrency for non-conflicting StackSet operations and queuing the StackSet operations that conflict at a given time for later execution.
+* api-change:``redshift``: [``botocore``] Added support of default IAM role for CreateCluster, RestoreFromClusterSnapshot and ModifyClusterIamRoles APIs
+* api-change:``lambda``: [``botocore``] Add support for Lambda Function URLs. Customers can use Function URLs to create built-in HTTPS endpoints on their functions.
+* api-change:``appstream``: [``botocore``] Includes APIs for managing resources for Elastic fleets: applications, app blocks, and application-fleet associations.
+* api-change:``medialive``: [``botocore``] This release adds support for specifying a SCTE-35 PID on input. MediaLive now supports SCTE-35 PID selection on inputs containing one or more active SCTE-35 PIDs.
+* api-change:``batch``: [``botocore``] Documentation updates for AWS Batch.
+* api-change:``application-insights``: [``botocore``] Application Insights now supports monitoring for HANA
+
+
 1.20.9
 ======
 
