@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.20.11
+=======
+
+* api-change:``connect``: [``botocore``] This release adds support for UpdateContactFlowMetadata, DeleteContactFlow and module APIs. For details, see the Release Notes in the Amazon Connect Administrator Guide.
+* api-change:``dms``: [``botocore``] Added new S3 endpoint settings to allow to convert the current UTC time into a specified time zone when a date partition folder is created. Using with 'DatePartitionedEnabled'.
+* api-change:``es``: [``botocore``] This release adds an optional parameter dry-run for the UpdateElasticsearchDomainConfig API to perform basic validation checks, and detect the deployment type that will be required for the configuration change, without actually applying the change.
+* api-change:``ssm``: [``botocore``] Adds new parameter to CreateActivation API . This parameter is for "internal use only".
+* api-change:``chime-sdk-meetings``: [``botocore``] Added new APIs for enabling Echo Reduction with Voice Focus.
+* api-change:``eks``: [``botocore``] Adding missing exceptions to RegisterCluster operation
+* api-change:``quicksight``: [``botocore``] Add support for Exasol data source, 1 click enterprise embedding and email customization.
+* api-change:``cloudformation``: [``botocore``] This release include SDK changes for the feature launch of Stack Import to Service Managed StackSet.
+* api-change:``rds``: [``botocore``] Adds local backup support to Amazon RDS on AWS Outposts.
+* api-change:``braket``: [``botocore``] This release adds support for Amazon Braket Hybrid Jobs.
+* api-change:``s3control``: [``botocore``] Added Amazon CloudWatch publishing option for S3 Storage Lens metrics.
+* api-change:``finspace-data``: [``botocore``] Add new APIs for managing Datasets, Changesets, and Dataviews.
+
+
 1.20.10
 =======
 
