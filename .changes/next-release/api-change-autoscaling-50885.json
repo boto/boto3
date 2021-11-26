@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``autoscaling``",
-  "description": "[``botocore``] Documentation updates for Amazon EC2 Auto Scaling."
-}

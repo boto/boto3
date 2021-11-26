@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.20.14
+=======
+
+* api-change:``autoscaling``: [``botocore``] Documentation updates for Amazon EC2 Auto Scaling.
+* api-change:``mgn``: [``botocore``] Application Migration Service now supports an additional replication method that does not require agent installation on each source server. This option is available for source servers running on VMware vCenter versions 6.7 and 7.0.
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2.
+* api-change:``iotdeviceadvisor``: [``botocore``] Documentation update for Device Advisor GetEndpoint API
+* api-change:``pinpoint``: [``botocore``] Added a One-Time Password (OTP) management feature. You can use the Amazon Pinpoint API to generate OTP codes and send them to your users as SMS messages. Your apps can then call the API to verify the OTP codes that your users input
+* api-change:``outposts``: [``botocore``] This release adds new APIs for working with Outpost sites and orders.
+
+
 1.20.13
 =======
 
