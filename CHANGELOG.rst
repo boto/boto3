@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.20.15
+=======
+
+* api-change:``migration-hub-refactor-spaces``: [``botocore``] This is the initial SDK release for AWS Migration Hub Refactor Spaces
+* api-change:``textract``: [``botocore``] This release adds support for synchronously analyzing identity documents through a new API: AnalyzeID
+* api-change:``personalize-runtime``: [``botocore``] This release adds inference support for Recommenders.
+* api-change:``personalize``: [``botocore``] This release adds API support for Recommenders and BatchSegmentJobs.
+
+
 1.20.14
 =======
 
