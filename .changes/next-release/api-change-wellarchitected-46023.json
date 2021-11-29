@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wellarchitected``",
-  "description": "[``botocore``] This update provides support for Well-Architected API users to use custom lens features."
-}
