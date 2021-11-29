@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``personalize-runtime``",
-  "description": "[``botocore``] This release adds inference support for Recommenders."
-}
