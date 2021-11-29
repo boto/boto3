@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``personalize``",
+  "description": "[``botocore``] This release adds API support for Recommenders and BatchSegmentJobs."
+}
