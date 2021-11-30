@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kinesis``",
-  "description": "[``botocore``] Amazon Kinesis Data Streams now supports on demand streams."
-}
