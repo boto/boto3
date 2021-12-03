@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.20
+=======
+
+* api-change:``rekognition``: [``botocore``] This release added new KnownGender types for Celebrity Recognition.
+
+
 1.20.19
 =======
 
