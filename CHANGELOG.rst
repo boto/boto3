@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.20.21
+=======
+
+* api-change:``location``: [``botocore``] This release adds support for Accuracy position filtering, position metadata and autocomplete for addresses and points of interest based on partial or misspelled free-form text.
+* api-change:``appsync``: [``botocore``] AWS AppSync now supports custom domain names, allowing you to associate a domain name that you own with an AppSync API in your account.
+* api-change:``route53``: [``botocore``] Add PriorRequestNotComplete exception to UpdateHostedZoneComment API
+
+
 1.20.20
 =======
 
