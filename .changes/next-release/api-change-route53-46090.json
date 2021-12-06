@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53``",
-  "description": "[``botocore``] Add PriorRequestNotComplete exception to UpdateHostedZoneComment API"
-}
