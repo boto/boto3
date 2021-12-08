@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.20.22
+=======
+
+* api-change:``lookoutvision``: [``botocore``] This release adds new APIs for packaging an Amazon Lookout for Vision model as an AWS IoT Greengrass component.
+* api-change:``sagemaker``: [``botocore``] This release added a new Ambarella device(amba_cv2) compilation support for Sagemaker Neo.
+* api-change:``comprehendmedical``: [``botocore``] This release adds a new set of APIs (synchronous and batch) to support the SNOMED-CT ontology.
+* api-change:``health``: [``botocore``] Documentation updates for AWS Health
+* api-change:``logs``: [``botocore``] This release adds AWS Organizations support as condition key in destination policy for cross account Subscriptions in CloudWatch Logs.
+* api-change:``outposts``: [``botocore``] This release adds the UpdateOutpost API.
+* api-change:``support``: [``botocore``] Documentation updates for AWS Support.
+* api-change:``iot``: [``botocore``] This release allows customer to enable caching of custom authorizer on HTTP protocol for clients that use persistent or Keep-Alive connection in order to reduce the number of Lambda invocations.
+
+
 1.20.21
 =======
 
