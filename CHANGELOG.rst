@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.24
+=======
+
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+
+
 1.20.23
 =======
 
