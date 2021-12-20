@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``devops-guru``",
-  "description": "[``botocore``] Adds Tags support to DescribeOrganizationResourceCollectionHealth"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``forecast``",
-  "description": "[``botocore``] Adds ForecastDimensions field to the DescribeAutoPredictorResponse"
-}
