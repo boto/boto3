@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.20.26
+=======
+
+* api-change:``nimble``: [``botocore``] Amazon Nimble Studio adds support for users to upload files during a streaming session using NICE DCV native client or browser.
+* api-change:``chime-sdk-messaging``: [``botocore``] The Amazon Chime SDK now supports updating message attributes via channel flows
+* api-change:``imagebuilder``: [``botocore``] Added a note to infrastructure configuration actions and data types concerning delivery of Image Builder event messages to encrypted SNS topics. The key that's used to encrypt the SNS topic must reside in the account that Image Builder runs under.
+* api-change:``workmail``: [``botocore``] This release allows customers to change their email monitoring configuration in Amazon WorkMail.
+* api-change:``transfer``: [``botocore``] Property for Transfer Family used with the FTPS protocol. TLS Session Resumption provides a mechanism to resume or share a negotiated secret key between the control and data connection for an FTPS session.
+* api-change:``lookoutmetrics``: [``botocore``] This release adds support for Causal Relationships. Added new ListAnomalyGroupRelatedMetrics API operation and InterMetricImpactDetails API data type
+* api-change:``mediaconnect``: [``botocore``] You can now use the Fujitsu-QoS protocol for your MediaConnect sources and outputs to transport content to and from Fujitsu devices.
+* api-change:``qldb``: [``botocore``] Amazon QLDB now supports journal exports in JSON and Ion Binary formats. This release adds an optional OutputFormat parameter to the ExportJournalToS3 API.
+
+
 1.20.25
 =======
 
