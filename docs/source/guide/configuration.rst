@@ -83,6 +83,7 @@ In the following example, a proxy list is set up to use ``proxy.amazon.com``, po
 
     client = boto3.client('kinesis', config=my_config)
 
+Alternatively, you can use the ``HTTP_PROXY`` and ``HTTPS_PROXY`` environment variables to specify proxy servers.  The ``NO_PROXY`` environment variable can be used to override proxy servers set by ``HTTP_PROXY`` and  ``HTTPS_PROXY``.  Proxy servers specified using the ``proxies`` option in the ``Config`` object will override proxy servers specified using environment variables.
 
 .. _configure_proxies:
 

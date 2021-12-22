@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``emr-containers``",
+    "description": "[``botocore``] This feature enables auto-generation of certificate  to secure the managed-endpoint and removes the need for customer provided certificate-arn during managed-endpoint setup.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-messaging``",
+    "description": "[``botocore``] The Amazon Chime SDK now supports push notifications through Amazon Pinpoint",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-identity``",
+    "description": "[``botocore``] The Amazon Chime SDK now supports push notifications through Amazon Pinpoint",
+    "type": "api-change"
+  }
+]

@@ -472,6 +472,7 @@ class TestS3Transfers(unittest.TestCase):
         # twice when using signature version 4.
         self.amount_seen = 0
         lock = threading.Lock()
+
         def progress_callback(amount):
             with lock:
                 self.amount_seen += amount
@@ -593,9 +594,11 @@ class TestS3Transfers(unittest.TestCase):
 
     def test_download_file_with_directory_not_exist(self):
         transfer = self.create_s3_transfer()
-        self.client.put_object(Bucket=self.bucket_name,
-                                Key='foo.txt',
-                                Body=b'foo')
+        self.client.put_object(
+            Bucket=self.bucket_name,
+            Key='foo.txt',
+            Body=b'foo'
+        )
         self.addCleanup(self.delete_object, 'foo.txt')
         download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
                                      'downloaded.txt')
@@ -667,7 +670,7 @@ class TestS3Transfers(unittest.TestCase):
         # This is just a sanity check to ensure that the bucket interface work.
         key = 'bucket.txt'
         bucket = self.session.resource('s3').Bucket(self.bucket_name)
-        filename = self.files.create_file_with_size(key, 1024*1024)
+        filename = self.files.create_file_with_size(key, 1024 * 1024)
         bucket.upload_file(Filename=filename, Key=key)
         self.addCleanup(self.delete_object, key)
         download_path = os.path.join(self.files.rootdir, unique_id('foo'))
@@ -678,7 +681,7 @@ class TestS3Transfers(unittest.TestCase):
         # This is just a sanity check to ensure that the object interface work.
         key = 'object.txt'
         obj = self.session.resource('s3').Object(self.bucket_name, key)
-        filename = self.files.create_file_with_size(key, 1024*1024)
+        filename = self.files.create_file_with_size(key, 1024 * 1024)
         obj.upload_file(Filename=filename)
         self.addCleanup(self.delete_object, key)
         download_path = os.path.join(self.files.rootdir, unique_id('foo'))

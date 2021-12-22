@@ -75,7 +75,7 @@ def _warn_deprecated_python():
                      'aws-cli-v1/'
     }
     deprecated_versions = {
-        (2,7): py_27_params,
+        (2, 7): py_27_params,
     }
     py_version = sys.version_info[:2]
 
