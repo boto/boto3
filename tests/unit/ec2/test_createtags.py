@@ -10,8 +10,7 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest
-import mock
+from tests import mock, unittest
 
 import boto3.session
 from boto3.ec2 import createtags
@@ -48,17 +47,16 @@ class TestCreateTags(unittest.TestCase):
         self.client.create_tags.assert_called_with(**ref_kwargs)
 
         # Ensure the calls to the Tag reference were correct.
-        self.assertEqual(
-            self.resource.Tag.call_args_list,
-            [mock.call('foo', 'key1', 'value1'),
-             mock.call('foo', 'key2', 'value2'),
-             mock.call('foo', 'key3', 'value3'),
-             mock.call('bar', 'key1', 'value1'),
-             mock.call('bar', 'key2', 'value2'),
-             mock.call('bar', 'key3', 'value3')])
+        assert self.resource.Tag.call_args_list == [
+            mock.call('foo', 'key1', 'value1'),
+            mock.call('foo', 'key2', 'value2'),
+            mock.call('foo', 'key3', 'value3'),
+            mock.call('bar', 'key1', 'value1'),
+            mock.call('bar', 'key2', 'value2'),
+            mock.call('bar', 'key3', 'value3')]
 
         # Ensure the return values are as expected.
-        self.assertEqual(result_tags, self.ref_tags)
+        assert result_tags == self.ref_tags
 
 
 class TestCreateTagsInjection(unittest.TestCase):
@@ -66,8 +64,5 @@ class TestCreateTagsInjection(unittest.TestCase):
         session = boto3.session.Session(region_name='us-west-2')
         with mock.patch('boto3.ec2.createtags.create_tags') as mock_method:
             resource = session.resource('ec2')
-            self.assertTrue(hasattr(resource, 'create_tags'),
-                            'EC2 resource does not have create_tags method.')
-            self.assertIs(resource.create_tags, mock_method,
-                          'custom create_tags method was not injected onto '
-                          'EC2 service resource')
+            assert hasattr(resource, 'create_tags')
+            assert resource.create_tags is mock_method

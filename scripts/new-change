@@ -135,7 +135,7 @@ def replace_issue_references(parsed, repo_name):
             '`%s <https://github.com/%s/issues/%s>`__' % (
                 match.group(), repo_name, number))
 
-    new_description = re.sub('#\d+', linkify, description)
+    new_description = re.sub(r'#\d+', linkify, description)
     parsed['description'] = new_description
 
 

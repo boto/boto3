@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``efs``",
+    "description": "[``botocore``] Update efs client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Enable S3 event base crawler API.",
+    "type": "api-change"
+  }
+]

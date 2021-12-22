@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``migration-hub-refactor-spaces``",
+    "description": "[``botocore``] This is the initial SDK release for AWS Migration Hub Refactor Spaces",
+    "type": "api-change"
+  },
+  {
+    "category": "``textract``",
+    "description": "[``botocore``] This release adds support for synchronously analyzing identity documents through a new API: AnalyzeID",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize-runtime``",
+    "description": "[``botocore``] This release adds inference support for Recommenders.",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize``",
+    "description": "[``botocore``] This release adds API support for Recommenders and BatchSegmentJobs.",
+    "type": "api-change"
+  }
+]

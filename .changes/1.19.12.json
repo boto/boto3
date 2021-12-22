@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] DescribeInstances now returns customer-owned IP addresses for instances running on an AWS Outpost.",
+    "type": "api-change"
+  },
+  {
+    "category": "``translate``",
+    "description": "[``botocore``] This release enable customers to use their own KMS keys to encrypt output files when they submit a batch transform job.",
+    "type": "api-change"
+  },
+  {
+    "category": "``resourcegroupstaggingapi``",
+    "description": "[``botocore``] Documentation updates and improvements.",
+    "type": "api-change"
+  }
+]

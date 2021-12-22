@@ -182,6 +182,18 @@ class Session(object):
         """
         return self._session.get_credentials()
 
+    def get_partition_for_region(self, region_name):
+        """Lists the partition name of a particular region.
+
+        :type region_name: string
+        :param region_name: Name of the region to list partition for (e.g.,
+             us-east-1).
+
+        :rtype: string
+        :return: Returns the respective partition name (e.g., aws).
+        """
+        return self._session.get_partition_for_region(region_name)
+
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,

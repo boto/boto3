@@ -6,15 +6,14 @@ distutils/setuptools install script.
 import os
 import re
 
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 ROOT = os.path.dirname(__file__)
 VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.21.28,<1.22.0',
+    'botocore>=1.23.26,<1.24.0',
     'jmespath>=0.7.1,<1.0.0',
     's3transfer>=0.5.0,<0.6.0'
 ]
@@ -54,6 +53,8 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
     project_urls={
         'Documentation': 'https://boto3.amazonaws.com/v1/documentation/api/latest/index.html',

@@ -12,28 +12,10 @@
 # language governing permissions and limitations under the License.
 
 import random
-import sys
 import time
 
-from botocore.compat import six
-
-
 import unittest
-
-
-# Python 3 includes mocking, while 2 requires an extra module.
-if sys.version_info[0] == 2:
-    import mock
-else:
-    from unittest import mock
-
-
-# In python 3, order matters when calling assertEqual to
-# compare lists and dictionaries with lists. Therefore,
-# assertItemsEqual needs to be used but it is renamed to
-# assertCountEqual in python 3.
-if six.PY2:
-    unittest.TestCase.assertCountEqual = unittest.TestCase.assertItemsEqual
+from unittest import mock
 
 
 def unique_id(name):

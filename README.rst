@@ -10,6 +10,11 @@ of services like Amazon S3 and Amazon EC2. You can find the latest, most
 up to date, documentation at our `doc site`_, including a list of
 services that are supported.
 
+Boto3 is maintained and published by Amazon Web Services.
+
+Notices
+-------
+
 On 01/15/2021 deprecation for Python 2.7 was announced and support was dropped
 on 07/15/2021. To avoid disruption, customers using Boto3 on Python 2.7 may
 need to upgrade their version of Python or pin the version of Boto3. For
@@ -49,10 +54,10 @@ Assuming that you have Python and ``virtualenv`` installed, set up your environm
 
     $ python -m pip install boto3
 
-    
+
 Using Boto3
 ~~~~~~~~~~~~~~
-After installing boto3 
+After installing boto3
 
 Next, set up credentials (in e.g. ``~/.aws/credentials``):
 
@@ -68,7 +73,7 @@ Then, set up a default region (in e.g. ``~/.aws/config``):
 
    [default]
    region=us-east-1
-    
+
 Other credentials configuration method can be found `here <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>`__
 
 Then, from a Python interpreter:
@@ -84,9 +89,9 @@ Running Tests
 ~~~~~~~~~~~~~
 You can run tests in all supported Python versions using ``tox``. By default,
 it will run all of the unit and functional tests, but you can also specify your own
-``nosetests`` options. Note that this requires that you have all supported
+``pytest`` options. Note that this requires that you have all supported
 versions of Python installed, otherwise you must pass ``-e`` or run the
-``nosetests`` command directly:
+``pytest`` command directly:
 
 .. code-block:: sh
 
@@ -98,7 +103,7 @@ You can also run individual tests with your default Python version:
 
 .. code-block:: sh
 
-    $ nosetests tests/unit
+    $ pytest tests/unit
 
 
 Getting Help
@@ -137,4 +142,3 @@ More Resources
 * `NOTICE <https://github.com/boto/boto3/blob/develop/NOTICE>`__
 * `Changelog <https://github.com/boto/boto3/blob/develop/CHANGELOG.rst>`__
 * `License <https://github.com/boto/boto3/blob/develop/LICENSE>`__
-
