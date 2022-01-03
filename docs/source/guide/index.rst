@@ -40,7 +40,6 @@ Tools
    :maxdepth: 1
 
    cloud9
-   sdk-metrics
 
 
 Migrations
