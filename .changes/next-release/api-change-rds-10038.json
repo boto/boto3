@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Multiple doc-only updates for Relational Database Service (RDS)"
-}
