@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.20.28
+=======
+
+* api-change:``rekognition``: [``botocore``] This release introduces a new field IndexFacesModelVersion, which is the version of the face detect and storage model that was used when indexing the face vector.
+* api-change:``s3``: [``botocore``] Minor doc-based updates based on feedback bugs received.
+* enhancement:JSONFileCache: [``botocore``] Add support for __delitem__ in JSONFileCache
+* api-change:``s3control``: [``botocore``] Documentation updates for the renaming of Glacier to Glacier Flexible Retrieval.
+
+
 1.20.27
 =======
 
