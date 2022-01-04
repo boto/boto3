@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "JSONFileCache",
+  "description": "[``botocore``] Add support for __delitem__ in JSONFileCache"
+}
