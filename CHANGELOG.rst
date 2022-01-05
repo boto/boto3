@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.20.29
+=======
+
+* api-change:``cloudtrail``: [``botocore``] This release adds support for CloudTrail Lake, a new feature that lets you run SQL-based queries on events that you have aggregated into event data stores. New APIs have been added for creating and managing event data stores, and creating, running, and managing queries in CloudTrail Lake.
+* api-change:``iot``: [``botocore``] This release adds an automatic retry mechanism for AWS IoT Jobs. You can now define a maximum number of retries for each Job rollout, along with the criteria to trigger the retry for FAILED/TIMED_OUT/ALL(both FAILED an TIMED_OUT) job.
+* api-change:``ec2``: [``botocore``] This release adds a new API called ModifyVpcEndpointServicePayerResponsibility which allows VPC endpoint service owners to take payer responsibility of their VPC Endpoint connections.
+* api-change:``snowball``: [``botocore``] Updating validation rules for interfaces used in the Snowball API to tighten security of service.
+* api-change:``lakeformation``: [``botocore``] Add new APIs for 3rd Party Support for Lake Formation
+* api-change:``appstream``: [``botocore``] Includes APIs for App Entitlement management regarding entitlement and entitled application association.
+* api-change:``eks``: [``botocore``] Amazon EKS now supports running applications using IPv6 address space
+* api-change:``quicksight``: [``botocore``] Multiple Doc-only updates for Amazon QuickSight.
+* api-change:``ecs``: [``botocore``] Documentation update for ticket fixes.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker now supports running training jobs on ml.g5 instance types.
+* api-change:``glue``: [``botocore``] Add Delta Lake target support for Glue Crawler and 3rd Party Support for Lake Formation
+
+
 1.20.28
 =======
 
