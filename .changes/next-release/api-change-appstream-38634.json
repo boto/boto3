@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``appstream``",
+  "description": "[``botocore``] Includes APIs for App Entitlement management regarding entitlement and entitled application association."
+}
