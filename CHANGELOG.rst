@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.20.30
+=======
+
+* api-change:``ec2``: [``botocore``] This release introduces On-Demand Capacity Reservation support for Cluster Placement Groups, adds Tags on instance Metadata, and includes documentation updates for Amazon EC2.
+* api-change:``mediatailor``: [``botocore``] This release adds support for filler slate when updating MediaTailor channels that use the linear playback mode.
+* api-change:``opensearch``: [``botocore``] Amazon OpenSearch Service adds support for Fine Grained Access Control for existing domains running Elasticsearch version 6.7 and above
+* api-change:``iotwireless``: [``botocore``] Downlink Queue Management feature provides APIs for customers to manage the queued messages destined to device inside AWS IoT Core for LoRaWAN. Customer can view, delete or purge the queued message(s). It allows customer to preempt the queued messages and let more urgent messages go through.
+* api-change:``es``: [``botocore``] Amazon OpenSearch Service adds support for Fine Grained Access Control for existing domains running Elasticsearch version 6.7 and above
+* api-change:``mwaa``: [``botocore``] This release adds a "Source" field that provides the initiator of an update, such as due to an automated patch from AWS or due to modification via Console or API.
+* api-change:``appsync``: [``botocore``] AppSync: AWS AppSync now supports configurable batching sizes for AWS Lambda resolvers, Direct AWS Lambda resolvers and pipeline functions
+
+
 1.20.29
 =======
 
