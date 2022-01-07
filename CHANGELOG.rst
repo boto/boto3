@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.31
+=======
+
+* api-change:``medialive``: [``botocore``] This release adds support for selecting the Program Date Time (PDT) Clock source algorithm for HLS outputs.
+
+
 1.20.30
 =======
 
