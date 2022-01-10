@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.20.32
+=======
+
+* api-change:``ec2``: [``botocore``] New feature: Updated EC2 API to support faster launching for Windows images. Optimized images are pre-provisioned, using snapshots to launch instances up to 65% faster.
+* api-change:``compute-optimizer``: [``botocore``] Adds support for new Compute Optimizer capability that makes it easier for customers to optimize their EC2 instances by leveraging multiple CPU architectures.
+* api-change:``lookoutmetrics``: [``botocore``] This release adds FailureType in the response of DescribeAnomalyDetector.
+* api-change:``databrew``: [``botocore``] This SDK release adds support for specifying a Bucket Owner for an S3 location.
+* api-change:``transcribe``: [``botocore``] Documentation updates for Amazon Transcribe.
+
+
 1.20.31
 =======
 
