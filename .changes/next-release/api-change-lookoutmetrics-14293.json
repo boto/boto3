@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lookoutmetrics``",
-  "description": "[``botocore``] This release adds FailureType in the response of DescribeAnomalyDetector."
-}
