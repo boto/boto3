@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kendra``",
-  "description": "[``botocore``] Amazon Kendra now supports advanced query language and query-less search."
-}
