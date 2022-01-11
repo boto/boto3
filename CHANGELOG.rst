@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.20.33
+=======
+
+* api-change:``finspace-data``: [``botocore``] Documentation updates for FinSpace.
+* api-change:``rds``: [``botocore``] This release adds the db-proxy event type to support subscribing to RDS Proxy events.
+* api-change:``ce``: [``botocore``] Doc only update for Cost Explorer API that fixes missing clarifications for MatchOptions definitions
+* api-change:``kendra``: [``botocore``] Amazon Kendra now supports advanced query language and query-less search.
+* api-change:``workspaces``: [``botocore``] Introducing new APIs for Workspaces audio optimization with Amazon Connect: CreateConnectClientAddIn, DescribeConnectClientAddIns, UpdateConnectClientAddIn and DeleteConnectClientAddIn.
+* api-change:``iotevents-data``: [``botocore``] This release provides documentation updates for Timer.timestamp in the IoT Events API Reference Guide.
+* api-change:``ec2``: [``botocore``] EC2 Capacity Reservations now supports RHEL instance platforms (RHEL with SQL Server Standard, RHEL with SQL Server Enterprise, RHEL with SQL Server Web, RHEL with HA, RHEL with HA and SQL Server Standard, RHEL with HA and SQL Server Enterprise)
+
+
 1.20.32
 =======
 
