@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.20.35
+=======
+
+* api-change:``pinpoint``: [``botocore``] Adds JourneyChannelSettings to WriteJourneyRequest
+* api-change:``lexv2-runtime``: [``botocore``] Update lexv2-runtime client to latest version
+* api-change:``nimble``: [``botocore``] Amazon Nimble Studio now supports validation for Launch Profiles. Launch Profiles now report static validation results after create/update to detect errors in network or active directory configuration.
+* api-change:``glue``: [``botocore``] This SDK release adds support to pass run properties when starting a workflow run
+* api-change:``ssm``: [``botocore``] AWS Systems Manager adds category support for DescribeDocument API
+* api-change:``elasticache``: [``botocore``] AWS ElastiCache for Redis has added a new Engine Log LogType in LogDelivery feature. You can now publish the Engine Log from your Amazon ElastiCache for Redis clusters to Amazon CloudWatch Logs and Amazon Kinesis Data Firehose.
+
+
 1.20.34
 =======
 
