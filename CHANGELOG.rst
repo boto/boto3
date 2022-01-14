@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.20.36
+=======
+
+* api-change:``config``: [``botocore``] Update ResourceType enum with values for CodeDeploy, EC2 and Kinesis resources
+* api-change:``application-insights``: [``botocore``] Application Insights support for Active Directory and SharePoint
+* api-change:``honeycode``: [``botocore``] Added read and write api support for multi-select picklist. And added errorcode field to DescribeTableDataImportJob API output, when import job fails.
+* api-change:``ram``: [``botocore``] This release adds the ListPermissionVersions API which lists the versions for a given permission.
+* api-change:``lookoutmetrics``: [``botocore``] This release adds a new DeactivateAnomalyDetector API operation.
+
+
 1.20.35
 =======
 

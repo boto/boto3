@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lookoutmetrics``",
-  "description": "[``botocore``] This release adds a new DeactivateAnomalyDetector API operation."
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ram``",
-  "description": "[``botocore``] This release adds the ListPermissionVersions API which lists the versions for a given permission."
-}
