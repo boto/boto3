@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.37
+=======
+
+* enhancement:Configuration: [``botocore``] Adding support for `defaults_mode` configuration. The `defaults_mode` will be used to determine how certain default configuration options are resolved in the SDK.
+
+
 1.20.36
 =======
 
