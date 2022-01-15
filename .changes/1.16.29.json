@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``license-manager``", 
+    "description": "[``botocore``] Update license-manager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``compute-optimizer``", 
+    "description": "[``botocore``] Update compute-optimizer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``amplifybackend``", 
+    "description": "[``botocore``] Update amplifybackend client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``batch``", 
+    "description": "[``botocore``] Update batch client to latest version", 
+    "type": "api-change"
+  }
+]

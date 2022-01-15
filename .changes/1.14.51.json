@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cur``", 
+    "description": "[``botocore``] Update cur client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``route53``", 
+    "description": "[``botocore``] Update route53 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``emr``", 
+    "description": "[``botocore``] Update emr client to latest version", 
+    "type": "api-change"
+  }
+]

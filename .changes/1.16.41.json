@@ -1,0 +1,72 @@
+[
+  {
+    "category": "``config``", 
+    "description": "[``botocore``] Update config client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Update glue client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``batch``", 
+    "description": "[``botocore``] Update batch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``managedblockchain``", 
+    "description": "[``botocore``] Update managedblockchain client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``service-quotas``", 
+    "description": "[``botocore``] Update service-quotas client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``connectparticipant``", 
+    "description": "[``botocore``] Update connectparticipant client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``qldb-session``", 
+    "description": "[``botocore``] Update qldb-session client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``outposts``", 
+    "description": "[``botocore``] Update outposts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``servicecatalog-appregistry``", 
+    "description": "[``botocore``] Update servicecatalog-appregistry client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``dms``", 
+    "description": "[``botocore``] Update dms client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }
+]

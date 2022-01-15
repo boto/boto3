@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``es``", 
+    "description": "[``botocore``] Update es client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediapackage-vod``", 
+    "description": "[``botocore``] Update mediapackage-vod client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``appflow``", 
+    "description": "[``botocore``] Update appflow client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecr-public``", 
+    "description": "[``botocore``] Update ecr-public client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``compute-optimizer``", 
+    "description": "[``botocore``] Update compute-optimizer client to latest version", 
+    "type": "api-change"
+  }
+]

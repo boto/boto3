@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -81,7 +81,11 @@ def document_collection_object(section, collection_model,
     if include_signature:
         section.style.start_sphinx_py_attr(collection_model.name)
     section.include_doc_string(
-        'A collection of %s resources' % collection_model.resource.type)
+        'A collection of %s resources.' % collection_model.resource.type)
+    section.include_doc_string(
+        'A %s Collection will include all resources by default, '
+        'and extreme caution should be taken when performing '
+        'actions on all resources.' % collection_model.resource.type)
 
 
 def document_batch_action(section, resource_name, event_emitter,
@@ -181,7 +185,13 @@ def document_collection_method(section, resource_name, action_name,
             'method_description': (
                 'Creates an iterable of all %s resources '
                 'in the collection filtered by kwargs passed to '
-                'method.' % collection_model.resource.type),
+                'method. A %s collection will include all resources by '
+                'default if no filters are provided, and extreme '
+                'caution should be taken when performing actions '
+                'on all resources.' % (
+                    collection_model.resource.type,
+                    collection_model.resource.type
+                )),
             'example_prefix': '%s_iterator = %s.%s.filter' % (
                 xform_name(collection_model.resource.type),
                 example_resource_name, collection_model.name),

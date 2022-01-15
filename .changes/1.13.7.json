@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``kendra``", 
+    "description": "[``botocore``] Update kendra client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeguru-reviewer``", 
+    "description": "[``botocore``] Update codeguru-reviewer client to latest version", 
+    "type": "api-change"
+  }
+]

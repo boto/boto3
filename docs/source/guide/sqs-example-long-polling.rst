@@ -11,7 +11,7 @@
 .. _aws-boto3-sqs-long-polling:   
 
 ###################################
-Enabling Long Polling in Amazon SQS
+Enabling long polling in Amazon SQS
 ###################################
 
 This Python example shows you how to enable long polling in Amazon SQS in one of these ways:
@@ -22,7 +22,7 @@ This Python example shows you how to enable long polling in Amazon SQS in one of
 
 * Upon receipt of a message
 
-The Scenario
+The scenario
 ============
 
 Long polling reduces the number of empty responses by allowing Amazon SQS to wait a specified time 
@@ -45,7 +45,7 @@ For more information, see
 `Amazon SQS Long Polling <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html>`_ 
 in the *Amazon Simple Queue Service Developer Guide*.
 
-Enable Long Polling When Creating a Queue
+Enable long polling when creating a queue
 =========================================
 
 The example below shows how to:
@@ -71,7 +71,7 @@ Example
 
     print(response['QueueUrl'])
 
-Enable Long Polling on an Existing Queue
+Enable long polling on an existing queue
 ========================================
 
 The example below shows how to:
@@ -97,7 +97,7 @@ Example
         Attributes={'ReceiveMessageWaitTimeSeconds': '20'}
     )
 
-Enable Long Polling on Message Receipt
+Enable long polling on message receipt
 ======================================
 
 The example below shows how to:

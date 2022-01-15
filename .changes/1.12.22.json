@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``s3control``", 
+    "description": "[``botocore``] Update s3control client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Stubber", 
+    "description": "[``botocore``] fixes `#1884 <https://github.com/boto/botocore/issues/1884>`__", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``cognito-idp``", 
+    "description": "[``botocore``] Update cognito-idp client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ssm``", 
+    "description": "[``botocore``] Update ssm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elasticache``", 
+    "description": "[``botocore``] Update elasticache client to latest version", 
+    "type": "api-change"
+  }
+]

@@ -1,12 +1,12 @@
 .. _guide_clients:
 
-Low-level Clients
+Low-level clients
 =================
 Clients provide a low-level interface to AWS whose methods map close to 1:1
 with service APIs. All service operations are supported by clients. Clients
 are generated from a JSON service definition file.
 
-Creating Clients
+Creating clients
 ----------------
 Clients are created in a similar fashion to resources::
 
@@ -24,7 +24,7 @@ resource::
     # Get the client from the resource
     sqs = sqs_resource.meta.client
 
-Service Operations
+Service operations
 ------------------
 Service operations map to client methods of the same name and provide
 access to the same operation parameters via keyword arguments::
@@ -42,7 +42,7 @@ As can be seen above, the method arguments map directly to the associated
    Parameters **must** be sent as keyword arguments. They will not work
    as positional arguments.
 
-Handling Responses
+Handling responses
 ------------------
 Responses are returned as python dictionaries. It is up to you to traverse
 or otherwise process the response for the data you need, keeping in mind
@@ -107,3 +107,52 @@ with the method's appropriate parameters passed in::
 
     # Begin waiting for the S3 bucket, mybucket, to exist
     s3_bucket_exists_waiter.wait(Bucket='mybucket')
+
+Multithreading or multiprocessing with clients
+----------------------------------------------
+
+Unlike Resources and Sessions, clients **are** generally *thread-safe*.
+There are some caveats, defined below, to be aware of though.
+
+Caveats
+~~~~~~~
+
+**Multi-Processing:** While clients are *thread-safe*, they cannot be
+shared across processes due to their networking implementation. Doing so
+may lead to incorrect response ordering when calling services.
+
+**Shared Metadata:** Clients expose metadata to the end user through a
+few attributes (namely ``meta``, ``exceptions`` and ``waiter_names``).
+These are safe to read but any mutations should not be considered
+thread-safe.
+
+**Custom** \ `Botocore Events`_\ **:** Botocore (the library Boto3 is
+built on) allows advanced users to provide their own custom event hooks
+which may interact with boto3’s client. The majority of users will not
+need to use these interfaces, but those that do should no longer
+consider their clients thread-safe without careful review.
+
+General Example
+~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    import boto3.session
+    from concurrent.futures import ThreadPoolExecutor
+
+    def do_s3_task(client, task_definition):
+        # Put your thread-safe code here
+
+    def my_workflow():
+        # Create a session and use it to make our client
+        session = boto3.session.Session()
+        s3_client = session.client('s3')
+
+        # Define some work to be done, this can be anything
+        my_tasks = [ ... ]
+
+        # Dispatch work tasks with our s3_client
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = [executor.submit(do_s3_task, s3_client, task) for task in my_tasks]
+
+.. _Botocore Events: https://botocore.amazonaws.com/v1/documentation/api/latest/topics/events.html

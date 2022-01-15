@@ -11,12 +11,12 @@
 .. _aws-boto3-iam-examples-managing-users:   
 
 ******************
-Managing IAM Users
+Managing IAM users
 ******************
 
 This Python example shows you how to create a user, list users, update a user name and delete a user.
 
-The Scenario
+The scenario
 ============
 
 In this example Python code is used to create and manage users in IAM. The code uses the 
@@ -36,12 +36,12 @@ All the example code for the Amazon Web Services (AWS) SDK for Python is availab
 For more information about IAM users, see `IAM Users <http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html>`_ 
 in the *IAM User Guide*.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
     
-Create a User
+Create a user
 =============
 
 Create a new IAM user for your AWS account.
@@ -72,7 +72,7 @@ Example
 
     print(response)
 
-List Users in Your Account
+List users in your account
 ==========================
 
 List the IAM users.
@@ -99,7 +99,7 @@ Example
     for response in paginator.paginate():
         print(response)
 
-Update a User's Name
+Update a user's name
 ====================
 
 Update the name and/or the path of the specified IAM user.
@@ -132,7 +132,7 @@ Example
     )
 
  
-Delete a User
+Delete a user
 =============
 
 Delete the specified IAM user. The user must not belong to any groups or have any access keys, signing 

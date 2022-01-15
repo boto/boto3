@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -63,6 +63,9 @@ class Binary(object):
         return 'Binary(%r)' % self.value
 
     def __str__(self):
+        return self.value
+
+    def __bytes__(self):
         return self.value
 
     def __hash__(self):
@@ -133,7 +136,7 @@ class TypeSerializer(object):
         elif self._is_map(value):
             dynamodb_type = MAP
 
-        elif self._is_list(value):
+        elif self._is_listlike(value):
             dynamodb_type = LIST
 
         else:
@@ -190,8 +193,8 @@ class TypeSerializer(object):
             return True
         return False
 
-    def _is_list(self, value):
-        if isinstance(value, list):
+    def _is_listlike(self, value):
+        if isinstance(value, (list, tuple)):
             return True
         return False
 

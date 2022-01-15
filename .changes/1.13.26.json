@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``transfer``", 
+    "description": "[``botocore``] Update transfer client to latest version", 
+    "type": "api-change"
+  }
+]

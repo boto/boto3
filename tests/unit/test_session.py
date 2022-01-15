@@ -4,19 +4,20 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import pytest
 
 from botocore import loaders
-from botocore.exceptions import DataNotFoundError, UnknownServiceError
+from botocore.exceptions import UnknownServiceError
 from botocore.client import Config
 
 from boto3 import __version__
-from boto3.exceptions import NoVersionFound, ResourceNotExistsError
+from boto3.exceptions import ResourceNotExistsError
 from boto3.session import Session
 from tests import mock, BaseTestCase
 
@@ -30,7 +31,7 @@ class TestSession(BaseTestCase):
 
         session = Session('abc123', region_name='us-west-2')
 
-        self.assertEqual(repr(session), 'Session(region_name=\'us-west-2\')')
+        assert repr(session) == 'Session(region_name=\'us-west-2\')'
 
     def test_repr_on_subclasses(self):
         bc_session = self.bc_session_cls.return_value
@@ -42,7 +43,7 @@ class TestSession(BaseTestCase):
 
         session = MySession('abc123', region_name='us-west-2')
 
-        self.assertEqual(repr(session), 'MySession(region_name=\'us-west-2\')')
+        assert repr(session) == 'MySession(region_name=\'us-west-2\')'
 
     def test_can_access_region_name(self):
         bc_session = self.bc_session_cls.return_value
@@ -51,13 +52,12 @@ class TestSession(BaseTestCase):
         bc_session.set_config_variable.assert_called_with('region',
                                                           'us-west-2')
 
-        self.assertEqual(session.region_name, 'us-west-2')
+        assert session.region_name == 'us-west-2'
 
     def test_arguments_not_required(self):
         Session()
 
-        self.assertTrue(self.bc_session_cls.called,
-                        'Botocore session was not created')
+        assert self.bc_session_cls.called
 
     def test_credentials_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
@@ -67,10 +67,8 @@ class TestSession(BaseTestCase):
                 aws_secret_access_key='secret',
                 aws_session_token='token')
 
-        self.assertTrue(self.bc_session_cls.called,
-                        'Botocore session was not created')
-        self.assertTrue(bc_session.set_credentials.called,
-                        'Botocore session set_credentials not called from constructor')
+        assert self.bc_session_cls.called
+        assert bc_session.set_credentials.called
         bc_session.set_credentials.assert_called_with(
             'key', 'secret', 'token')
 
@@ -93,9 +91,9 @@ class TestSession(BaseTestCase):
             aws_session_token=token)
 
         credentials = session.get_credentials()
-        self.assertEqual(credentials.access_key, access_key)
-        self.assertEqual(credentials.secret_key, secret_key)
-        self.assertEqual(credentials.token, token)
+        assert credentials.access_key == access_key
+        assert credentials.secret_key == secret_key
+        assert credentials.token == token
 
     def test_profile_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
@@ -107,21 +105,21 @@ class TestSession(BaseTestCase):
         bc_session.profile = 'foo'
 
         # We should also be able to read the value
-        self.assertEqual(session.profile_name, 'foo')
+        assert session.profile_name == 'foo'
 
     def test_profile_default(self):
         self.bc_session_cls.return_value.profile = None
 
         session = Session()
 
-        self.assertEqual(session.profile_name, 'default')
+        assert session.profile_name == 'default'
 
     def test_available_profiles(self):
         bc_session = mock.Mock()
-        bc_session.available_profiles.return_value = ['foo','bar']
+        bc_session.available_profiles.return_value = ['foo', 'bar']
         session = Session(botocore_session=bc_session)
         profiles = session.available_profiles
-        self.assertEqual(len(profiles.return_value), 2)
+        assert len(profiles.return_value) == 2
 
     def test_custom_session(self):
         bc_session = self.bc_session_cls()
@@ -130,10 +128,10 @@ class TestSession(BaseTestCase):
         Session(botocore_session=bc_session)
 
         # No new session was created
-        self.assertFalse(self.bc_session_cls.called)
+        assert not self.bc_session_cls.called
 
     def test_user_agent(self):
-        # Here we get the underlying Botocore session, create a Boto 3
+        # Here we get the underlying Botocore session, create a Boto3
         # session, and ensure that the user-agent is modified as expected
         bc_session = self.bc_session_cls.return_value
         bc_session.user_agent_name = 'Botocore'
@@ -142,9 +140,9 @@ class TestSession(BaseTestCase):
 
         Session(botocore_session=bc_session)
 
-        self.assertEqual(bc_session.user_agent_name, 'Boto3')
-        self.assertEqual(bc_session.user_agent_version, __version__)
-        self.assertEqual(bc_session.user_agent_extra, 'Botocore/0.68.0')
+        assert bc_session.user_agent_name == 'Boto3'
+        assert bc_session.user_agent_version == __version__
+        assert bc_session.user_agent_extra == 'Botocore/0.68.0'
 
     def test_user_agent_extra(self):
         # This test is the same as above, but includes custom extra content
@@ -156,7 +154,7 @@ class TestSession(BaseTestCase):
 
         Session(botocore_session=bc_session)
 
-        self.assertEqual(bc_session.user_agent_extra, 'foo Botocore/0.68.0')
+        assert bc_session.user_agent_extra == 'foo Botocore/0.68.0'
 
     def test_custom_user_agent(self):
         # This test ensures that a customized user-agent is left untouched.
@@ -167,9 +165,9 @@ class TestSession(BaseTestCase):
 
         Session(botocore_session=bc_session)
 
-        self.assertEqual(bc_session.user_agent_name, 'Custom')
-        self.assertEqual(bc_session.user_agent_version, '1.0')
-        self.assertEqual(bc_session.user_agent_extra, '')
+        assert bc_session.user_agent_name == 'Custom'
+        assert bc_session.user_agent_version == '1.0'
+        assert bc_session.user_agent_extra == ''
 
     def test_get_available_services(self):
         bc_session = self.bc_session_cls.return_value
@@ -177,8 +175,7 @@ class TestSession(BaseTestCase):
         session = Session()
         session.get_available_services()
 
-        self.assertTrue(bc_session.get_available_services.called,
-                        'Botocore session get_available_services not called')
+        assert bc_session.get_available_services.called
 
     def test_get_available_resources(self):
         mock_bc_session = mock.Mock()
@@ -188,7 +185,7 @@ class TestSession(BaseTestCase):
         session = Session(botocore_session=mock_bc_session)
 
         names = session.get_available_resources()
-        self.assertEqual(names, ['foo', 'bar'])
+        assert names == ['foo', 'bar']
 
     def test_get_available_partitions(self):
         bc_session = mock.Mock()
@@ -196,7 +193,7 @@ class TestSession(BaseTestCase):
         session = Session(botocore_session=bc_session)
 
         partitions = session.get_available_partitions()
-        self.assertEqual(partitions, ['foo'])
+        assert partitions == ['foo']
 
     def test_get_available_regions(self):
         bc_session = mock.Mock()
@@ -208,14 +205,24 @@ class TestSession(BaseTestCase):
             service_name='myservice', partition_name='aws',
             allow_non_regional=False
         )
-        self.assertEqual(partitions, ['foo'])
+        assert partitions == ['foo']
+
+    def test_get_partition_for_region(self):
+        bc_session = mock.Mock()
+        bc_session.get_partition_for_region.return_value = 'baz'
+        session = Session(botocore_session=bc_session)
+
+        partition = session.get_partition_for_region('foo-bar-1')
+        bc_session.get_partition_for_region.assert_called_with(
+            'foo-bar-1'
+        )
+        assert partition == 'baz'
 
     def test_create_client(self):
         session = Session(region_name='us-east-1')
         client = session.client('sqs', region_name='us-west-2')
 
-        self.assertTrue(client,
-                        'No low-level client was returned')
+        assert client, 'No low-level client was returned'
 
     def test_create_client_with_args(self):
         bc_session = self.bc_session_cls.return_value
@@ -248,8 +255,8 @@ class TestSession(BaseTestCase):
             verify=False, region_name=None, api_version='2014-11-02',
             config=mock.ANY)
         client_config = session.client.call_args[1]['config']
-        self.assertEqual(client_config.user_agent_extra, 'Resource')
-        self.assertEqual(client_config.signature_version, None)
+        assert client_config.user_agent_extra == 'Resource'
+        assert client_config.signature_version is None
 
     def test_create_resource_with_config(self):
         mock_bc_session = mock.Mock()
@@ -271,8 +278,8 @@ class TestSession(BaseTestCase):
             verify=None, region_name=None, api_version='2014-11-02',
             config=mock.ANY)
         client_config = session.client.call_args[1]['config']
-        self.assertEqual(client_config.user_agent_extra, 'Resource')
-        self.assertEqual(client_config.signature_version, 'v4')
+        assert client_config.user_agent_extra == 'Resource'
+        assert client_config.signature_version == 'v4'
 
     def test_create_resource_with_config_override_user_agent_extra(self):
         mock_bc_session = mock.Mock()
@@ -294,8 +301,8 @@ class TestSession(BaseTestCase):
             verify=None, region_name=None, api_version='2014-11-02',
             config=mock.ANY)
         client_config = session.client.call_args[1]['config']
-        self.assertEqual(client_config.user_agent_extra, 'foo')
-        self.assertEqual(client_config.signature_version, 'v4')
+        assert client_config.user_agent_extra == 'foo'
+        assert client_config.signature_version == 'v4'
 
     def test_create_resource_latest_version(self):
         mock_bc_session = mock.Mock()
@@ -323,16 +330,17 @@ class TestSession(BaseTestCase):
         mock_bc_session.get_available_services.return_value = ['sqs']
 
         session = Session(botocore_session=mock_bc_session)
-        with self.assertRaises(ResourceNotExistsError) as e:
+        with pytest.raises(ResourceNotExistsError) as e:
             session.resource('sqs')
-        err_msg = str(e.exception)
-        # 1. should say the resource doesn't exist.
-        self.assertIn('resource does not exist', err_msg)
-        self.assertIn('sqs', err_msg)
-        # 2. Should list available resources you can choose.
-        self.assertIn('good-resource', err_msg)
-        # 3. Should list client if available.
-        self.assertIn('client', err_msg)
+
+            err_msg = str(e.exception)
+            # 1. should say the resource doesn't exist.
+            assert 'resource does not exist' in err_msg
+            assert 'sqs' in err_msg
+            # 2. Should list available resources you can choose.
+            assert 'good-resource' in err_msg
+            # 3. Should list client if available.
+            assert 'client' in err_msg
 
     def test_bad_resource_name_with_no_client_has_simple_err_msg(self):
         mock_bc_session = mock.Mock()
@@ -345,12 +353,13 @@ class TestSession(BaseTestCase):
         mock_bc_session.get_available_services.return_value = ['good-client']
 
         session = Session(botocore_session=mock_bc_session)
-        with self.assertRaises(ResourceNotExistsError) as e:
+        with pytest.raises(ResourceNotExistsError) as e:
             session.resource('bad-client')
-        err_msg = str(e.exception)
-        # Shouldn't mention anything about clients because
-        # 'bad-client' it not a valid boto3.client(...)
-        self.assertNotIn('boto3.client', err_msg)
+
+            err_msg = str(e.exception)
+            # Shouldn't mention anything about clients because
+            # 'bad-client' it not a valid boto3.client(...)
+            assert 'boto3.client' not in err_msg
 
     def test_can_reach_events(self):
         mock_bc_session = self.bc_session_cls()

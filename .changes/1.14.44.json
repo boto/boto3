@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``quicksight``", 
+    "description": "[``botocore``] Update quicksight client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis``", 
+    "description": "[``botocore``] Update kinesis client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecr``", 
+    "description": "[``botocore``] Update ecr client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm``", 
+    "description": "[``botocore``] Update acm client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``robomaker``", 
+    "description": "[``botocore``] Update robomaker client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``elb``", 
+    "description": "[``botocore``] Update elb client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm-pca``", 
+    "description": "[``botocore``] Update acm-pca client to latest version", 
+    "type": "api-change"
+  }
+]

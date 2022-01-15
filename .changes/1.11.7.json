@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codepipeline``", 
+    "description": "[``botocore``] Update codepipeline client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``discovery``", 
+    "description": "[``botocore``] Update discovery client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iotevents``", 
+    "description": "[``botocore``] Update iotevents client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``marketplacecommerceanalytics``", 
+    "description": "[``botocore``] Update marketplacecommerceanalytics client to latest version", 
+    "type": "api-change"
+  }
+]

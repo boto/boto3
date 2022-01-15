@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sso-admin``", 
+    "description": "[``botocore``] Update sso-admin client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codestar-connections``", 
+    "description": "[``botocore``] Update codestar-connections client to latest version", 
+    "type": "api-change"
+  }
+]

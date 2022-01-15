@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``lex-runtime``", 
+    "description": "[``botocore``] Update lex-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update personalize client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize-runtime``", 
+    "description": "[``botocore``] Update personalize-runtime client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``lex-models``", 
+    "description": "[``botocore``] Update lex-models client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize-events``", 
+    "description": "[``botocore``] Update personalize-events client to latest version", 
+    "type": "api-change"
+  }
+]

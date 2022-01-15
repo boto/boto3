@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -119,8 +119,8 @@ class AttributeBase(object):
         """Creates a condition where the attribute is greater than or equal
         to the low value and less than or equal to the high value.
 
-        :param low_value: The value that the attribute is greater than.
-        :param high_value: The value that the attribute is less than.
+        :param low_value: The value that the attribute is greater than or equal to.
+        :param high_value: The value that the attribute is less than or equal to.
         """
         return Between(self, low_value, high_value)
 
@@ -144,8 +144,9 @@ class ConditionAttributeBase(ConditionBase, AttributeBase):
         AttributeBase.__init__(self, values[0].name)
 
     def __eq__(self, other):
-        return ConditionBase.__eq__(self, other) and \
-               AttributeBase.__eq__(self, other)
+        return (
+            ConditionBase.__eq__(self, other) and AttributeBase.__eq__(self, other)
+        )
 
     def __ne__(self, other):
         return not self.__eq__(other)

@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``lexv2-models``",
+    "description": "[``botocore``] Update lexv2-models client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``autoscaling``",
+    "description": "[``botocore``] EC2 Auto Scaling adds configuration checks and Launch Template validation to Instance Refresh.",
+    "type": "api-change"
+  }
+]

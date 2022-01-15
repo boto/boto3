@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] AWS SageMaker - Releasing new APIs related to Callback steps in model building pipelines. Adds experiment integration to model building pipelines.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``glue``", 
+    "description": "[``botocore``] Add SampleSize variable to S3Target to enable s3-sampling feature through API.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``personalize``", 
+    "description": "[``botocore``] Update regex validation in kmsKeyArn and s3 path API parameters for AWS Personalize APIs", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``eks``", 
+    "description": "[``botocore``] Added updateConfig option that allows customers to control upgrade velocity in Managed Node Group.", 
+    "type": "api-change"
+  }
+]

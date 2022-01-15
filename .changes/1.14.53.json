@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``codeguru-reviewer``", 
+    "description": "[``botocore``] Update codeguru-reviewer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``securityhub``", 
+    "description": "[``botocore``] Update securityhub client to latest version", 
+    "type": "api-change"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``lex-models``", 
+    "description": "[``botocore``] Update lex-models client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``imagebuilder``", 
+    "description": "[``botocore``] Update imagebuilder client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``iot-data``", 
+    "description": "[``botocore``] Update iot-data client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ecs``", 
+    "description": "[``botocore``] Update ecs client to latest version", 
+    "type": "api-change"
+  }
+]

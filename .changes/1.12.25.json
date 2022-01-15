@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``outposts``", 
+    "description": "[``botocore``] Update outposts client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``acm``", 
+    "description": "[``botocore``] Update acm client to latest version", 
+    "type": "api-change"
+  }
+]

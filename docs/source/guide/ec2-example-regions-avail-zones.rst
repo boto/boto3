@@ -19,7 +19,7 @@ Availability Zones. Each region is a separate geographic area. Each region has m
 locations known as Availability Zones. Amazon EC2 provides the ability to place instances and data 
 in multiple locations.
 
-The Scenario
+The scenario
 ============
 
 In this example, Python code is used to get details about regions and Availability Zones. The code uses the 
@@ -37,7 +37,7 @@ in the *Amazon EC2 User Guide for Windows Instances*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
@@ -45,7 +45,7 @@ To set up and run this example, you must first configure your AWS credentials, a
 Describe Regions and Availability Zones
 =======================================
 
-* Describe one or more regions that are currently available to you. 
+* Describe one or more Regions that are currently available to you. 
 
 * Describe one or more of the Availability Zones that are available to you. The results include zones 
   only for the region you're currently using. If there is an event impacting an Availability Zone, 
@@ -53,10 +53,10 @@ Describe Regions and Availability Zones
 
 The example below shows how to:
  
-* Describe regions using 
+* Describe Regions using 
   `describe_regions <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_regions>`_.
 
-* Describe AvailabilityZones using 
+* Describe Availability Zones using 
   `describe_availability_zones <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#EC2.Client.describe_availability_zones>`_.
  
 Example

@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -181,6 +181,18 @@ class Session(object):
         credentials.
         """
         return self._session.get_credentials()
+
+    def get_partition_for_region(self, region_name):
+        """Lists the partition name of a particular region.
+
+        :type region_name: string
+        :param region_name: Name of the region to list partition for (e.g.,
+             us-east-1).
+
+        :rtype: string
+        :return: Returns the respective partition name (e.g., aws).
+        """
+        return self._session.get_partition_for_region(region_name)
 
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
@@ -392,10 +404,11 @@ class Session(object):
         # Create a ServiceContext object to serve as a reference to
         # important read-only information about the general service.
         service_context = boto3.utils.ServiceContext(
-                service_name=service_name, service_model=service_model,
-                resource_json_definitions=resource_model['resources'],
-                service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
-                    self._session, service_name, api_version)
+            service_name=service_name, service_model=service_model,
+            resource_json_definitions=resource_model['resources'],
+            service_waiter_model=boto3.utils.LazyLoadedWaiterModel(
+                self._session, service_name, api_version
+            )
         )
 
         # Create the service resource class.

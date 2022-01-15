@@ -12,7 +12,7 @@
 
 
 ###################################
-Managing Email Filters with SES API 
+Managing email filters with SES API 
 ###################################
 
 .. meta::
@@ -36,7 +36,7 @@ The following examples show how to:
   `delete_receipt_filter() <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html#SES.Client.delete_receipt_filter>`__.
 
 
-Prerequisite Tasks
+Prerequisite tasks
 ==================
 
 To set up and run this example, you must first complete these tasks:
@@ -44,7 +44,7 @@ To set up and run this example, you must first complete these tasks:
 * Configure your AWS credentials, as described in :doc:`quickstart`.
 
 
-Create an Email Filter
+Create an email filter
 ======================
 
 To allow or block emails from a specific IP address, use the 
@@ -76,7 +76,7 @@ Example
     print(response)
 
 
-List All Email Filters
+List all email filters
 ======================
 
 To list the IP address filters associated with your AWS account in the current 
@@ -99,7 +99,7 @@ Example
     print(response)
 
 
-Delete an Email Filter
+Delete an email filter
 ======================
 
 To remove an existing filter for a specific IP address use the 

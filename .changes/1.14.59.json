@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cloudfront``", 
+    "description": "[``botocore``] Update cloudfront client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ebs``", 
+    "description": "[``botocore``] Update ebs client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sso-admin``", 
+    "description": "[``botocore``] Update sso-admin client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``s3``", 
+    "description": "[``botocore``] Update s3 client to latest version", 
+    "type": "api-change"
+  }
+]

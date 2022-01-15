@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -171,16 +171,20 @@ class TestDynamoDBConditions(BaseDynamoDBTest):
 
     def test_condition_and(self):
         r = self.scan(
-            filter_expression=(Attr('MyHashKey').eq('mykey') &
-                               Attr('MyString').eq('mystring')))
+            filter_expression=(
+                Attr('MyHashKey').eq('mykey') & Attr('MyString').eq('mystring')
+            )
+        )
         item = r['Items'][0]
         self.assertTrue(
             item['MyHashKey'] == 'mykey' and item['MyString'] == 'mystring')
 
     def test_condition_or(self):
         r = self.scan(
-            filter_expression=(Attr('MyHashKey').eq('mykey2') |
-                               Attr('MyString').eq('mystring')))
+            filter_expression=(
+                Attr('MyHashKey').eq('mykey2') | Attr('MyString').eq('mystring')
+            )
+        )
         item = r['Items'][0]
         self.assertTrue(
             item['MyHashKey'] == 'mykey2' or item['MyString'] == 'mystring')

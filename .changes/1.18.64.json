@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] AWS QuickSight Service  Features    - Add IP Restriction UI and public APIs support.",
+    "type": "api-change"
+  },
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Upgrade awscrt extra to 0.12.5",
+    "type": "enchancement"
+  },
+  {
+    "category": "``ivs``",
+    "description": "[``botocore``] Bug fix: remove unsupported maxResults and nextToken pagination parameters from ListTagsForResource",
+    "type": "api-change"
+  }
+]

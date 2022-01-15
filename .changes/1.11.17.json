@@ -1,0 +1,7 @@
+[
+  {
+    "category": "``mediapackage-vod``", 
+    "description": "[``botocore``] Update mediapackage-vod client to latest version", 
+    "type": "api-change"
+  }
+]

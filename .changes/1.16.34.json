@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``networkmanager``", 
+    "description": "[``botocore``] Update networkmanager client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kendra``", 
+    "description": "[``botocore``] Update kendra client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }
+]

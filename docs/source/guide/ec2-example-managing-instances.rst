@@ -11,7 +11,7 @@
 .. _aws-boto3-ec2-managing-instances:   
 
 #############################
-Managing Amazon EC2 Instances
+Managing Amazon EC2 instances
 #############################
 
 This Python example shows you how to:
@@ -24,7 +24,7 @@ This Python example shows you how to:
 
 * Reboot an Amazon EC2 instance
 
-The Scenario
+The scenario
 ============
 
 In this example, Python code is used perform several basic instance management operations. The code uses the 
@@ -49,12 +49,12 @@ in the *Amazon EC2 User Guide for Windows Instances*.
 
 All the example code for the Amazon Web Services (AWS) SDK for Python is available `here on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code>`_.
 
-Prerequisite Task
+Prerequisite tasks
 =================
 
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
     
-Describe Instances
+Describe instances
 ==================
 
 An EC2 instance is a virtual server in Amazon's Elastic Compute Cloud (EC2) for running applications 
@@ -79,7 +79,7 @@ Example
     print(response)
 
 
-Monitor and Unmonitor Instances
+Monitor and unmonitor instances
 ===============================
 
 Enable or disable detailed monitoring for a running instance. If detailed monitoring is not enabled, 
@@ -112,7 +112,7 @@ Example
     print(response)
 
 
-Start and Stop Instances
+Start and stop instances
 ========================
 
 Instances that use Amazon EBS volumes as their root devices can be quickly stopped and started. When 
@@ -175,7 +175,7 @@ Example
             print(e)
 
 
-Reboot Instances
+Reboot instances
 ================
 Request a reboot of one or more instances. This operation is asynchronous; it only queues a request 
 to reboot the specified instances. The operation succeeds if the instances are valid and belong to 

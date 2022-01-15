@@ -11,7 +11,7 @@
 .. _aws-boto-ec2-examples:
 
 ###################
-Amazon EC2 Examples
+Amazon EC2 examples
 ###################
 
 .. meta::

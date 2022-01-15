@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``wellarchitected``", 
+    "description": "[``botocore``] Update wellarchitected client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``managedblockchain``", 
+    "description": "[``botocore``] Update managedblockchain client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``cloudwatch``", 
+    "description": "[``botocore``] Update cloudwatch client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``databrew``", 
+    "description": "[``botocore``] Update databrew client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "Validator", 
+    "description": "[``botocore``] Fix showing incorrect max-value in error message for range and length value validation", 
+    "type": "bugfix"
+  }, 
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``robomaker``", 
+    "description": "[``botocore``] Update robomaker client to latest version", 
+    "type": "api-change"
+  }
+]

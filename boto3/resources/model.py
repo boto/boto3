@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -549,7 +549,7 @@ class ResourceModel(object):
         :type subresources: bool
         :param subresources: ``True`` to get sub-resources, ``False`` to
                              get references.
-        :rtype: list(:py:class:`ResponseResource`)
+        :rtype: list(:py:class:`Action`)
         """
         resources = []
 
@@ -578,7 +578,7 @@ class ResourceModel(object):
         """
         Get a list of sub-resources.
 
-        :type: list(:py:class:`ResponseResource`)
+        :type: list(:py:class:`Action`)
         """
         return self._get_related_resources(True)
 
@@ -587,7 +587,7 @@ class ResourceModel(object):
         """
         Get a list of reference resources.
 
-        :type: list(:py:class:`ResponseResource`)
+        :type: list(:py:class:`Action`)
         """
         return self._get_related_resources(False)
 

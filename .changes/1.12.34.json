@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``iot``", 
+    "description": "[``botocore``] Update iot client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediaconnect``", 
+    "description": "[``botocore``] Update mediaconnect client to latest version", 
+    "type": "api-change"
+  }
+]

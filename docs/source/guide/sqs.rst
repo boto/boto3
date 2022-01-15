@@ -1,6 +1,6 @@
 .. _sample_tutorial:
 
-A Sample Tutorial
+A sample tutorial
 =================
 This tutorial will show you how to use Boto3 with an AWS service. In this
 sample tutorial, you will learn how to use Boto3 with 
@@ -13,7 +13,7 @@ create a new queue, get and use an existing queue, push new messages onto the
 queue, and process messages from the queue by using
 :ref:`guide_resources` and :ref:`guide_collections`.
 
-Creating a Queue
+Creating a queue
 ----------------
 Queues are created with a name. You may also optionally set queue
 attributes, such as the number of seconds to wait before an item may be
@@ -37,7 +37,7 @@ Reference: :py:meth:`SQS.ServiceResource.create_queue`
    The code above may throw an exception if you already have a queue named
    ``test``.
 
-Using an Existing Queue
+Using an existing queue
 -----------------------
 It is possible to look up a queue by its name. If the queue does not exist,
 then an exception will be thrown::
@@ -67,7 +67,7 @@ It is also possible to list all of your existing queues::
 Reference: :py:meth:`SQS.ServiceResource.get_queue_by_name`,
 :py:attr:`SQS.ServiceResource.queues`
 
-Sending Messages
+Sending messages
 ----------------
 Sending a message adds it to the end of the queue::
 
@@ -122,7 +122,7 @@ messages, so you can retry failures if needed.
 Reference: :py:meth:`SQS.Queue.send_message`,
 :py:meth:`SQS.Queue.send_messages`
 
-Processing Messages
+Processing messages
 -------------------
 Messages are processed in batches::
 

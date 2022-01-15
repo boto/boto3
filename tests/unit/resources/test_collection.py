@@ -4,18 +4,21 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the 'license' file accompanying this file. This file is
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import pytest
+
 from botocore.hooks import HierarchicalEmitter
 from botocore.model import ServiceModel
 
 from boto3.utils import ServiceContext
-from boto3.resources.collection import CollectionFactory, CollectionManager, \
-                                       ResourceCollection
+from boto3.resources.collection import (
+    CollectionFactory, CollectionManager, ResourceCollection
+)
 from boto3.resources.base import ResourceMeta
 from boto3.resources.factory import ResourceFactory
 from boto3.resources.model import Collection
@@ -76,17 +79,16 @@ class TestCollectionFactory(BaseTestCase):
             service_context=service_context
         )
 
-        self.assertEqual(collection_cls.__name__,
-                        'test.Chain.FrobsCollectionManager')
-        self.assertIsInstance(collection, CollectionManager)
+        assert collection_cls.__name__ == 'test.Chain.FrobsCollectionManager'
+        assert isinstance(collection, CollectionManager)
 
         # Make sure that collection manager created from the factory
         # returns a ResourceCollection.
-        self.assertIsInstance(collection.all(), ResourceCollection)
+        assert isinstance(collection.all(), ResourceCollection)
 
         # Make sure that the collection returned from the collection
         # manager can be chained and return a ResourceCollection as well.
-        self.assertIsInstance(collection.all().all(), ResourceCollection)
+        assert isinstance(collection.all().all(), ResourceCollection)
 
     @mock.patch('boto3.resources.collection.BatchAction')
     def test_create_batch_actions(self, action_mock):
@@ -137,7 +139,7 @@ class TestCollectionFactory(BaseTestCase):
             service_context=service_context
         )
 
-        self.assertTrue(hasattr(collection, 'delete'))
+        assert hasattr(collection, 'delete')
 
         collection.delete()
 
@@ -200,13 +202,13 @@ class TestResourceCollection(BaseTestCase):
 
     def test_repr(self):
         collection = self.get_collection()
-        self.assertIn('CollectionManager', repr(collection))
+        assert 'CollectionManager' in repr(collection)
 
     def test_iteration_manager(self):
         # A collection manager is not iterable. You must first call
         # .all or .filter or another method to get an iterable.
         collection = self.get_collection()
-        with self.assertRaises(TypeError):
+        with pytest.raises(TypeError):
             list(collection)
 
     def test_iteration_non_paginated(self):
@@ -235,11 +237,11 @@ class TestResourceCollection(BaseTestCase):
         }
         collection = self.get_collection()
         items = list(collection.all())
-        self.assertEqual(len(items), 4)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
-        self.assertEqual(items[2].id, 'three')
-        self.assertEqual(items[3].id, 'four')
+        assert len(items) == 4
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
+        assert items[2].id == 'three'
+        assert items[3].id == 'four'
 
     def test_limit_param_non_paginated(self):
         self.collection_def = {
@@ -267,11 +269,11 @@ class TestResourceCollection(BaseTestCase):
         }
         collection = self.get_collection()
         items = list(collection.all().limit(2))
-        self.assertEqual(len(items), 2)
+        assert len(items) == 2
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
 
     def test_limit_method_non_paginated(self):
         self.collection_def = {
@@ -299,11 +301,11 @@ class TestResourceCollection(BaseTestCase):
         }
         collection = self.get_collection()
         items = list(collection.limit(2))
-        self.assertEqual(len(items), 2)
+        assert len(items) == 2
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_filters_non_paginated(self, handler):
@@ -357,9 +359,9 @@ class TestResourceCollection(BaseTestCase):
         ]
         collection = self.get_collection()
         pages = list(collection.limit(3).pages())
-        self.assertEqual(len(pages), 2)
-        self.assertEqual(len(pages[0]), 2)
-        self.assertEqual(len(pages[1]), 1)
+        assert len(pages) == 2
+        assert len(pages[0]) == 2
+        assert len(pages[1]) == 1
 
     def test_page_iterator_page_size(self):
         self.collection_def = {
@@ -419,11 +421,11 @@ class TestResourceCollection(BaseTestCase):
         ]
         collection = self.get_collection()
         items = list(collection.all())
-        self.assertEqual(len(items), 4)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
-        self.assertEqual(items[2].id, 'three')
-        self.assertEqual(items[3].id, 'four')
+        assert len(items) == 4
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
+        assert items[2].id == 'three'
+        assert items[3].id == 'four'
 
         # Low-level pagination should have been called
         self.client.get_paginator.assert_called_with('get_frobs')
@@ -463,11 +465,11 @@ class TestResourceCollection(BaseTestCase):
         ]
         collection = self.get_collection()
         items = list(collection.all().limit(2))
-        self.assertEqual(len(items), 2)
+        assert len(items) == 2
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
 
     def test_limit_method_paginated(self):
         self.collection_def = {
@@ -501,11 +503,11 @@ class TestResourceCollection(BaseTestCase):
         ]
         collection = self.get_collection()
         items = list(collection.all().limit(2))
-        self.assertEqual(len(items), 2)
+        assert len(items) == 2
 
         # Only the first two should be present
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_filters_paginated(self, handler):
@@ -612,11 +614,11 @@ class TestResourceCollection(BaseTestCase):
 
         items = list(collection.filter().all().all())
 
-        self.assertEqual(len(items), 4)
-        self.assertEqual(items[0].id, 'one')
-        self.assertEqual(items[1].id, 'two')
-        self.assertEqual(items[2].id, 'three')
-        self.assertEqual(items[3].id, 'four')
+        assert len(items) == 4
+        assert items[0].id == 'one'
+        assert items[1].id == 'two'
+        assert items[2].id == 'three'
+        assert items[3].id == 'four'
 
     @mock.patch('boto3.resources.collection.ResourceHandler')
     def test_chaining_copies_parameters(self, handler):
@@ -674,4 +676,4 @@ class TestResourceCollection(BaseTestCase):
     def test_chained_repr(self):
         collection = self.get_collection()
 
-        self.assertIn('ResourceCollection', repr(collection.all()))
+        assert 'ResourceCollection' in repr(collection.all())

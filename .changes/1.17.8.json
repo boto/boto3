@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``lightsail``", 
+    "description": "[``botocore``] Update lightsail client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``medialive``", 
+    "description": "[``botocore``] Update medialive client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``kinesis-video-archived-media``", 
+    "description": "[``botocore``] Update kinesis-video-archived-media client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``config``", 
+    "description": "[``botocore``] Update config client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``pinpoint``", 
+    "description": "[``botocore``] Update pinpoint client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``redshift-data``", 
+    "description": "[``botocore``] Update redshift-data client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``workmailmessageflow``", 
+    "description": "[``botocore``] Update workmailmessageflow client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``mediatailor``", 
+    "description": "[``botocore``] Update mediatailor client to latest version", 
+    "type": "api-change"
+  }
+]

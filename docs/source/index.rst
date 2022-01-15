@@ -3,12 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Boto 3 Documentation
+Boto3 documentation
 ====================
-Boto is the Amazon Web Services (AWS) SDK for Python. It enables Python
-developers to create, configure, and manage AWS services, such as EC2 
-and S3. Boto provides an easy to use, object-oriented API, as well as 
-low-level access to AWS services.
+
+You use the AWS SDK for Python (Boto3) to create, configure, and manage AWS services, such as Amazon
+Elastic Compute Cloud (Amazon EC2) and Amazon Simple Storage Service (Amazon S3). The SDK provides
+an object-oriented API as well as low-level access to AWS services.
+
+.. note::
+
+    Documentation and developers tend to refer to the AWS SDK for Python as "Boto3," and this
+    documentation often does so as well.
 
 Quickstart
 ----------
@@ -20,7 +25,7 @@ Quickstart
    guide/sqs
    guide/examples
 
-User Guides
+User guides
 -----------
 
 .. toctree::
@@ -28,7 +33,15 @@ User Guides
 
    guide/index
 
-API Reference
+Security
+--------
+
+.. toctree::
+   :maxdepth: 2
+
+   guide/security
+
+API reference
 -------------
 
 Services

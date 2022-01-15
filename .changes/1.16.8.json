@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``elbv2``", 
+    "description": "[``botocore``] Update elbv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``codeartifact``", 
+    "description": "[``botocore``] Update codeartifact client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``marketplacecommerceanalytics``", 
+    "description": "[``botocore``] Update marketplacecommerceanalytics client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``apigateway``", 
+    "description": "[``botocore``] Update apigateway client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sesv2``", 
+    "description": "[``botocore``] Update sesv2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Update ec2 client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``storagegateway``", 
+    "description": "[``botocore``] Update storagegateway client to latest version", 
+    "type": "api-change"
+  }
+]

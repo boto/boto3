@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 import botocore.session
 from botocore import xform_name
-from nose.tools import assert_false
+import pytest
 
 from boto3.session import Session
 from boto3.resources.model import ResourceModel
@@ -63,13 +63,7 @@ def _shape_has_pagination_param(shape):
     return False
 
 
-def test_all_collections_have_paginators_if_needed():
-    # If a collection relies on an operation that is paginated, it
-    # will require a paginator to iterate through all of the resources
-    # with the all() method. If there is no paginator, it will only
-    # make it through the first page of results. So we need to make sure
-    # if a collection looks like it uses a paginated operation then there
-    # should be a paginator applied to it.
+def _collection_test_args():
     botocore_session = botocore.session.get_session()
     session = Session(botocore_session=botocore_session)
     loader = botocore_session.get_component('data_loader')
@@ -91,13 +85,26 @@ def test_all_collections_have_paginators_if_needed():
             # Iterate over all of the collections for each resource model
             # and ensure that the collection has a paginator if it needs one.
             for collection_model in resource_model.collections:
-                yield (
-                    _assert_collection_has_paginator_if_needed, client,
-                    service_name, resource_name, collection_model)
+                yield (client, service_name, resource_name, collection_model)
+
+
+@pytest.mark.parametrize(
+    'collection_args',
+    _collection_test_args()
+)
+def test_all_collections_have_paginators_if_needed(collection_args):
+    # If a collection relies on an operation that is paginated, it
+    # will require a paginator to iterate through all of the resources
+    # with the all() method. If there is no paginator, it will only
+    # make it through the first page of results. So we need to make sure
+    # if a collection looks like it uses a paginated operation then there
+    # should be a paginator applied to it.
+    _assert_collection_has_paginator_if_needed(*collection_args)
 
 
 def _assert_collection_has_paginator_if_needed(
-        client, service_name, resource_name, collection_model):
+    client, service_name, resource_name, collection_model
+):
     underlying_operation_name = collection_model.request.operation
     # See if the operation can be paginated from the client.
     can_paginate_operation = client.can_paginate(
@@ -108,10 +115,11 @@ def _assert_collection_has_paginator_if_needed(
     # Make sure that if the operation looks paginated then there is
     # a paginator for the client to use for the collection.
     if not can_paginate_operation:
-        assert_false(
-            looks_paginated,
-            'Collection %s on resource %s of service %s uses the operation '
-            '%s, but the operation has no paginator even though it looks '
-            'paginated.' % (
-                collection_model.name, resource_name, service_name,
-                underlying_operation_name))
+        error_msg = (
+            f'Collection {collection_model.name} on resource {resource_name} '
+            f'of service {service_name} uses the operation '
+            f'{underlying_operation_name}, but the operation has no paginator '
+            f'even though it looks paginated.'
+        )
+
+        assert not looks_paginated, error_msg

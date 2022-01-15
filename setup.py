@@ -6,17 +6,16 @@ distutils/setuptools install script.
 import os
 import re
 
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 ROOT = os.path.dirname(__file__)
 VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.13.49,<1.14.0',
+    'botocore>=1.23.37,<1.24.0',
     'jmespath>=0.7.1,<1.0.0',
-    's3transfer>=0.2.0,<0.3.0'
+    's3transfer>=0.5.0,<0.6.0'
 ]
 
 
@@ -43,19 +42,22 @@ setup(
     include_package_data=True,
     install_requires=requires,
     license="Apache License 2.0",
+    python_requires=">= 3.6",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
+    project_urls={
+        'Documentation': 'https://boto3.amazonaws.com/v1/documentation/api/latest/index.html',
+        'Source': 'https://github.com/boto/boto3',
+    },
 )

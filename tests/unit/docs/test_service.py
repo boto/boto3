@@ -4,16 +4,16 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import os
-import mock
 
 import boto3
+from tests import mock
 from tests.unit.docs import BaseDocsTest
 from boto3.docs.service import ServiceDocumenter
 
@@ -98,7 +98,7 @@ class TestServiceDocumenter(BaseDocsTest):
         os.remove(self.resource_model_file)
         service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
-        self.assertNotIn('Service Resource', contents)
+        assert 'Service Resource' not in contents
 
     def test_document_service_no_paginators(self):
         # Delete the resource model so that the resource is not documented
@@ -107,7 +107,7 @@ class TestServiceDocumenter(BaseDocsTest):
         os.remove(self.paginator_model_file)
         service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
-        self.assertNotIn('Paginators', contents)
+        assert 'Paginators' not in contents
 
     def test_document_service_no_waiter(self):
         # Delete the resource model so that the resource is not documented
@@ -116,7 +116,7 @@ class TestServiceDocumenter(BaseDocsTest):
         os.remove(self.waiter_model_file)
         service_documenter = ServiceDocumenter('myservice', self.session)
         contents = service_documenter.document_service().decode('utf-8')
-        self.assertNotIn('Waiters', contents)
+        assert 'Waiters' not in contents
 
     def test_creates_correct_path_to_examples_based_on_service_name(self):
         path = os.sep.join([os.path.dirname(boto3.__file__),
@@ -126,9 +126,7 @@ class TestServiceDocumenter(BaseDocsTest):
             isfile.return_value = False
             s = ServiceDocumenter('myservice', self.session)
             s.document_service()
-            self.assertEqual(
-                isfile.call_args_list[-1],
-                mock.call(path))
+            assert isfile.call_args_list[-1] == mock.call(path)
 
     def test_injects_examples_when_found(self):
         examples_path = os.sep.join([os.path.dirname(__file__), '..', 'data',
@@ -137,5 +135,5 @@ class TestServiceDocumenter(BaseDocsTest):
             'myservice', self.session)
         service_documenter.EXAMPLE_PATH = examples_path
         contents = service_documenter.document_service().decode('utf-8')
-        self.assertIn('This is an example', contents)
-        self.assertNotIn('This is for another service', contents)
+        assert 'This is an example' in contents
+        assert 'This is for another service' not in contents

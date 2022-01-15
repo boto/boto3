@@ -28,7 +28,7 @@ identifiers or attributes. The two share the same components otherwise.
 
 .. _identifiers_attributes_intro:
 
-Identifiers & Attributes
+Identifiers and attributes
 ------------------------
 An identifier is a unique value that is used to call actions on the resource.
 Resources **must** have at least one identifier, except for the top-level
@@ -184,7 +184,7 @@ exist without a bucket, these are parent to child relationships.
 
 Waiters
 -------
-A waiter is similiar to an action. A waiter will poll the status of a
+A waiter is similar to an action. A waiter will poll the status of a
 resource and suspend execution until the resource reaches the state that is
 being polled for or a failure occurs while polling.
 Waiters automatically set the resource
@@ -198,9 +198,13 @@ keyword arguments. Examples of waiters include::
     instance.wait_until_running()
 
 
-Multithreading / Multiprocessing
---------------------------------
-It is recommended to create a resource instance for each thread / process in a multithreaded or multiprocess application rather than sharing a single instance among the threads / processes. For example::
+Multithreading or multiprocessing with resources
+----------------------------------
+
+Resource instances are **not** thread safe and should not be shared
+across threads or processes. These special classes contain additional
+meta data that cannot be shared. It's recommended to create a new
+Resource for each thread or process::
 
     import boto3
     import boto3.session
@@ -208,8 +212,16 @@ It is recommended to create a resource instance for each thread / process in a m
 
     class MyTask(threading.Thread):
         def run(self):
+            # Here we create a new session per thread
             session = boto3.session.Session()
-            s3 = session.resource('s3')
-            # ... do some work with S3 ...
 
-In the example above, each thread would have its own Boto 3 session and its own instance of the S3 resource. This is a good idea because resources contain shared data when loaded and calling actions, accessing properties, or manually loading or reloading the resource can modify this data.
+            # Next, we create a resource client using our thread's session object
+            s3 = session.resource('s3')
+
+            # Put your thread-safe code here
+
+In the example above, each thread would have its own Boto3 session and
+its own instance of the S3 resource. This is a good idea because
+resources contain shared data when loaded and calling actions, accessing
+properties, or manually loading or reloading the resource can modify
+this data.

@@ -11,7 +11,7 @@
 .. _aws-boto3-s3-examples:
 
 ##################
-Amazon S3 Examples
+Amazon S3 examples
 ##################
 
 .. meta::
@@ -38,3 +38,4 @@ services.
    s3-example-access-permissions
    s3-example-static-web-host
    s3-example-configuring-buckets
+   s3-example-privatelink

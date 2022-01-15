@@ -4,19 +4,22 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the 'license' file accompanying this file. This file is
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import pytest
 
 from boto3.exceptions import ResourceLoadException
 from boto3.resources.base import ResourceMeta, ServiceResource
 from boto3.resources.model import Request
-from boto3.resources.params import create_request_parameters, \
-                                   build_param_structure
+from boto3.resources.params import (
+    create_request_parameters, build_param_structure
+)
 from tests import BaseTestCase, mock
+
 
 class TestServiceActionParams(BaseTestCase):
     def test_service_action_params_identifier(self):
@@ -36,8 +39,7 @@ class TestServiceActionParams(BaseTestCase):
 
         params = create_request_parameters(parent, request_model)
 
-        self.assertEqual(params['WarehouseUrl'], 'w-url',
-            'Parameter not set from resource identifier')
+        assert params['WarehouseUrl'] == 'w-url'
 
     def test_service_action_params_data_member(self):
         request_model = Request({
@@ -58,8 +60,7 @@ class TestServiceActionParams(BaseTestCase):
 
         params = create_request_parameters(parent, request_model)
 
-        self.assertEqual(params['WarehouseUrl'], 'w-url',
-            'Parameter not set from resource property')
+        assert params['WarehouseUrl'] == 'w-url'
 
     def test_service_action_params_data_member_missing(self):
         request_model = Request({
@@ -86,8 +87,7 @@ class TestServiceActionParams(BaseTestCase):
         params = create_request_parameters(parent, request_model)
 
         parent.load.assert_called_with()
-        self.assertEqual(params['WarehouseUrl'], 'w-url',
-            'Parameter not set from resource property')
+        assert params['WarehouseUrl'] == 'w-url'
 
     def test_service_action_params_data_member_missing_no_load(self):
         request_model = Request({
@@ -105,8 +105,8 @@ class TestServiceActionParams(BaseTestCase):
         parent = mock.Mock(spec=ServiceResource)
         parent.meta = ResourceMeta('test', data=None)
 
-        with self.assertRaises(ResourceLoadException):
-            params = create_request_parameters(parent, request_model)
+        with pytest.raises(ResourceLoadException):
+            create_request_parameters(parent, request_model)
 
     def test_service_action_params_constants(self):
         request_model = Request({
@@ -132,12 +132,9 @@ class TestServiceActionParams(BaseTestCase):
 
         params = create_request_parameters(None, request_model)
 
-        self.assertEqual(params['Param1'], 'param1',
-            'Parameter not set from string constant')
-        self.assertEqual(params['Param2'], 123,
-            'Parameter not set from integer constant')
-        self.assertEqual(params['Param3'], True,
-            'Parameter not set from boolean constant')
+        assert params['Param1'] == 'param1'
+        assert params['Param2'] == 123
+        assert params['Param3'] is True
 
     def test_service_action_params_input(self):
         request_model = Request({
@@ -148,11 +145,11 @@ class TestServiceActionParams(BaseTestCase):
         })
 
         params = create_request_parameters(None, request_model)
-        self.assertEqual(params, {})
+        assert params == {}
 
         params['param1'] = 'myinput'
         params = create_request_parameters(None, request_model, params=params)
-        self.assertEqual(params, {'param1': 'myinput'})
+        assert params == {'param1': 'myinput'}
 
     def test_service_action_params_invalid(self):
         request_model = Request({
@@ -165,7 +162,7 @@ class TestServiceActionParams(BaseTestCase):
             ]
         })
 
-        with self.assertRaises(NotImplementedError):
+        with pytest.raises(NotImplementedError):
             create_request_parameters(None, request_model)
 
     def test_service_action_params_list(self):
@@ -182,12 +179,9 @@ class TestServiceActionParams(BaseTestCase):
 
         params = create_request_parameters(None, request_model)
 
-        self.assertIsInstance(params['WarehouseUrls'], list,
-            'Parameter did not create a list')
-        self.assertEqual(len(params['WarehouseUrls']), 1,
-            'Parameter list should only have a single item')
-        self.assertIn('w-url', params['WarehouseUrls'],
-            'Parameter not in expected list')
+        assert isinstance(params['WarehouseUrls'], list)
+        assert len(params['WarehouseUrls']) == 1
+        assert 'w-url' in params['WarehouseUrls']
 
     def test_service_action_params_reuse(self):
         request_model = Request({
@@ -216,41 +210,41 @@ class TestServiceActionParams(BaseTestCase):
         params = create_request_parameters(item1, request_model)
         create_request_parameters(item2, request_model, params=params)
 
-        self.assertEqual(params, {
+        assert params == {
             'Delete': {
                 'Objects': [
                     {'Key': 'item1'},
                     {'Key': 'item2'}
                 ]
             }
-        })
+        }
 
 
 class TestStructBuilder(BaseTestCase):
     def test_simple_value(self):
         params = {}
         build_param_structure(params, 'foo', 'bar')
-        self.assertEqual(params['foo'], 'bar')
+        assert params['foo'] == 'bar'
 
     def test_nested_dict(self):
         params = {}
         build_param_structure(params, 'foo.bar.baz', 123)
-        self.assertEqual(params['foo']['bar']['baz'], 123)
+        assert params['foo']['bar']['baz'] == 123
 
     def test_nested_list(self):
         params = {}
         build_param_structure(params, 'foo.bar[0]', 'test')
-        self.assertEqual(params['foo']['bar'][0], 'test')
+        assert params['foo']['bar'][0] == 'test'
 
     def test_strange_offset(self):
         params = {}
         build_param_structure(params, 'foo[2]', 'test')
-        self.assertEqual(params['foo'], [{}, {}, 'test'])
+        assert params['foo'] == [{}, {}, 'test']
 
     def test_nested_list_dict(self):
         params = {}
         build_param_structure(params, 'foo.bar[0].baz', 123)
-        self.assertEqual(params['foo']['bar'][0]['baz'], 123)
+        assert params['foo']['bar'][0]['baz'] == 123
 
     def test_modify_existing(self):
         params = {
@@ -259,28 +253,28 @@ class TestStructBuilder(BaseTestCase):
             ]
         }
         build_param_structure(params, 'foo[0].secret', 123)
-        self.assertEqual(params['foo'][0]['key'], 'abc')
-        self.assertEqual(params['foo'][0]['secret'], 123)
+        assert params['foo'][0]['key'] == 'abc'
+        assert params['foo'][0]['secret'] == 123
 
     def test_append_no_index(self):
         params = {}
         build_param_structure(params, 'foo[]', 123)
-        self.assertEqual(params['foo'], [123])
+        assert params['foo'] == [123]
 
         build_param_structure(params, 'foo[]', 456)
-        self.assertEqual(params['foo'], [123, 456])
+        assert params['foo'] == [123, 456]
 
     def test_provided_index_with_wildcard(self):
         params = {}
         index = 0
         build_param_structure(params, 'foo[*].bar', 123, index)
         build_param_structure(params, 'foo[*].baz', 456, index)
-        self.assertEqual(params['foo'][index], {'bar': 123, 'baz': 456})
+        assert params['foo'][index] == {'bar': 123, 'baz': 456}
 
         index = 1
         build_param_structure(params, 'foo[*].bar', 789, index)
         build_param_structure(params, 'foo[*].baz', 123, index)
-        self.assertEqual(params['foo'], [
+        assert params['foo'] == [
             {'bar': 123, 'baz': 456},
             {'bar': 789, 'baz': 123}
-        ])
+        ]

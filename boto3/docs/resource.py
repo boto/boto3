@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -131,7 +131,7 @@ class ResourceDocumenter(BaseDocumenter):
                 resource_type='Identifiers',
                 description=(
                     'Identifiers are properties of a resource that are '
-                    'set upon instantation of the resource.'),
+                    'set upon instantiation of the resource.'),
                 intro_link='identifiers_attributes_intro')
         for identifier in identifiers:
             identifier_section = section.add_new_section(identifier.name)

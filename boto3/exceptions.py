@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -82,7 +82,7 @@ class S3UploadFailedError(Boto3Error):
 
 
 class DynamoDBOperationNotSupportedError(Boto3Error):
-    """Raised for operantions that are not supported for an operand"""
+    """Raised for operations that are not supported for an operand."""
     def __init__(self, operation, value):
         msg = (
             '%s operation cannot be applied to value %s of type %s directly. '
@@ -90,6 +90,7 @@ class DynamoDBOperationNotSupportedError(Boto3Error):
             'generate ConditionBase instances first.' %
             (operation, value, type(value)))
         Exception.__init__(self, msg)
+
 
 # FIXME: Backward compatibility
 DynanmoDBOperationNotSupportedError = DynamoDBOperationNotSupportedError
@@ -106,4 +107,12 @@ class DynamoDBNeedsConditionError(Boto3Error):
 
 
 class DynamoDBNeedsKeyConditionError(Boto3Error):
+    pass
+
+
+class PythonDeprecationWarning(Warning):
+    """
+    Python version being used is scheduled to become unsupported
+    in an future release. See warning for specifics.
+    """
     pass

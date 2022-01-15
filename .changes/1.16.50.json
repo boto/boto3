@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``autoscaling``", 
+    "description": "[``botocore``] Update autoscaling client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``transfer``", 
+    "description": "[``botocore``] Update transfer client to latest version", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``autoscaling-plans``", 
+    "description": "[``botocore``] Update autoscaling-plans client to latest version", 
+    "type": "api-change"
+  }
+]

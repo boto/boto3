@@ -29,7 +29,7 @@ You'll see this template::
 Fill in the appropriate values, save and exit the editor.
 Make sure to commit these changes as part of your pull request.
 
-If, when your editor is open, you decide don't don't want to add a changelog
+If, when your editor is open, you decide don't want to add a changelog
 entry, save an empty file and no entry will be generated.
 
 You can then use the ``scripts/gen-changelog`` to generate the
@@ -135,7 +135,7 @@ def replace_issue_references(parsed, repo_name):
             '`%s <https://github.com/%s/issues/%s>`__' % (
                 match.group(), repo_name, number))
 
-    new_description = re.sub('#\d+', linkify, description)
+    new_description = re.sub(r'#\d+', linkify, description)
     parsed['description'] = new_description
 
 

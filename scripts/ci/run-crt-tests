@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+# Don't run tests from the root repo dir.
+# We want to ensure we're importing from the installed
+# binary package not from the CWD.
+
+import os
+import sys
+from contextlib import contextmanager
+from subprocess import check_call
+
+_dname = os.path.dirname
+
+REPO_ROOT = _dname(_dname(_dname(os.path.abspath(__file__))))
+
+
+@contextmanager
+def cd(path):
+    """Change directory while inside context manager."""
+    cwd = os.getcwd()
+    try:
+        os.chdir(path)
+        yield
+    finally:
+        os.chdir(cwd)
+
+
+def run(command):
+    return check_call(command, shell=True)
+
+
+try:
+    import awscrt # noqa
+except ImportError:
+    print("MISSING DEPENDENCY: awscrt must be installed to run the crt tests.")
+    sys.exit(1)
+
+if __name__ == "__main__":
+    with cd(os.path.join(REPO_ROOT, "tests")):
+        run(f"{REPO_ROOT}/scripts/ci/run-tests unit/ functional/")
