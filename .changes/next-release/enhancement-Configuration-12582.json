@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Configuration",
+  "description": "[``botocore``] Adding support for `defaults_mode` configuration. The `defaults_mode` will be used to determine how certain default configuration options are resolved in the SDK."
+}
