@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.20.39
+=======
+
+* api-change:``macie2``: [``botocore``] This release of the Amazon Macie API introduces stricter validation of requests to create custom data identifiers.
+* api-change:``ec2-instance-connect``: [``botocore``] Adds support for ED25519 keys. PushSSHPublicKey Availability Zone parameter is now optional. Adds EC2InstanceStateInvalidException for instances that are not running. This was previously a service exception, so this may require updating your code to handle this new exception.
+
+
 1.20.38
 =======
 
