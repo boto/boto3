@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.20.40
+=======
+
+* api-change:``guardduty``: [``botocore``] Amazon GuardDuty findings now include remoteAccountDetails under AwsApiCallAction section if instance credential is exfiltrated.
+* api-change:``connect``: [``botocore``] This release adds tagging support for UserHierarchyGroups resource.
+* api-change:``mediatailor``: [``botocore``] This release adds support for multiple Segment Delivery Configurations. Users can provide a list of names and URLs when creating or editing a source location. When retrieving content, users can send a header to choose which URL should be used to serve content.
+* api-change:``fis``: [``botocore``] Added action startTime and action endTime timestamp fields to the ExperimentAction object
+* api-change:``ec2``: [``botocore``] C6i, M6i and R6i instances are powered by a third-generation Intel Xeon Scalable processor (Ice Lake) delivering all-core turbo frequency of 3.5 GHz
+
+
 1.20.39
 =======
 
