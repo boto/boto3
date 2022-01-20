@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``fis``",
-  "description": "[``botocore``] Added action startTime and action endTime timestamp fields to the ExperimentAction object"
-}
