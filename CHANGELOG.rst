@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.20.41
+=======
+
+* enhancement:Exceptions: [``botocore``] ProxyConnectionError previously provided the full proxy URL. User info will now be appropriately masked if needed.
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK has added support for 4K AV1 output resolutions & 10-bit AV1 color, the ability to ingest sidecar Dolby Vision XML metadata files, and the ability to flag WebVTT and IMSC tracks for accessibility in HLS.
+* api-change:``transcribe``: [``botocore``] Add support for granular PIIEntityTypes when using Batch ContentRedaction.
+
+
 1.20.40
 =======
 
