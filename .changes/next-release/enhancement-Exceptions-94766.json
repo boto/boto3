@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Exceptions",
+  "description": "[``botocore``] ProxyConnectionError previously provided the full proxy URL. User info will now be appropriately masked if needed."
+}
