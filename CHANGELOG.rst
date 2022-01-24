@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.42
+=======
+
+* api-change:``route53-recovery-readiness``: [``botocore``] Updated documentation for Route53 Recovery Readiness APIs.
+
+
 1.20.41
 =======
 
