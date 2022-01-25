@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Amazon GuardDuty expands threat detection coverage to protect Amazon Elastic Kubernetes Service (EKS) workloads."
-}
