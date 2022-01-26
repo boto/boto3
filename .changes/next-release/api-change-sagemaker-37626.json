@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker``",
+  "description": "[``botocore``] API changes relating to Fail steps in model building pipeline and add PipelineExecutionFailureReason in PipelineExecutionSummary."
+}
