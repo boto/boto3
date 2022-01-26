@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ebs``",
-  "description": "[``botocore``] Documentation updates for Amazon EBS Direct APIs."
-}
