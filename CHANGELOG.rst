@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.20.44
+=======
+
+* api-change:``frauddetector``: [``botocore``] Added new APIs for viewing past predictions and obtaining prediction metadata including prediction explanations: ListEventPredictions and GetEventPredictionMetadata
+* api-change:``ebs``: [``botocore``] Documentation updates for Amazon EBS Direct APIs.
+* api-change:``codeguru-reviewer``: [``botocore``] Added failure state and adjusted timeout in waiter
+* api-change:``securityhub``: [``botocore``] Adding top level Sample boolean field
+* api-change:``sagemaker``: [``botocore``] API changes relating to Fail steps in model building pipeline and add PipelineExecutionFailureReason in PipelineExecutionSummary.
+
+
 1.20.43
 =======
 
