@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cognito-idp``",
+  "description": "[``botocore``] Doc updates for Cognito user pools API Reference."
+}
