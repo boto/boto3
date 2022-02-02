@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.20.47
+=======
+
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``personalize``: [``botocore``] Adding minRecommendationRequestsPerSecond attribute to recommender APIs.
+* enhancement:Request headers: [``botocore``] Adding request headers with retry information.
+* api-change:``appflow``: [``botocore``] Launching Amazon AppFlow Custom Connector SDK.
+* api-change:``dynamodb``: [``botocore``] Documentation update for DynamoDB Java SDK.
+* api-change:``iot``: [``botocore``] This release adds support for configuring AWS IoT logging level per client ID, source IP, or principal ID.
+* api-change:``comprehend``: [``botocore``] Amazon Comprehend now supports sharing and importing custom trained models from one AWS account to another within the same region.
+* api-change:``ce``: [``botocore``] Doc-only update for Cost Explorer API that adds INVOICING_ENTITY dimensions
+* api-change:``fis``: [``botocore``] Added GetTargetResourceType and ListTargetResourceTypesAPI actions. These actions return additional details about resource types and parameters that can be targeted by FIS actions. Added a parameters field for the targets that can be specified in experiment templates.
+* api-change:``es``: [``botocore``] Allows customers to get progress updates for blue/green deployments
+* api-change:``glue``: [``botocore``] Launch Protobuf support for AWS Glue Schema Registry
+* api-change:``elasticache``: [``botocore``] Documentation update for AWS ElastiCache
+
+
 1.20.46
 =======
 
