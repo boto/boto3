@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Request headers",
+  "description": "[``botocore``] Adding request headers with retry information."
+}

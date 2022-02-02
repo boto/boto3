@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``es``",
+  "description": "[``botocore``] Allows customers to get progress updates for blue/green deployments"
+}
