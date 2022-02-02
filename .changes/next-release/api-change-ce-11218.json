@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ce``",
-  "description": "[``botocore``] Doc-only update for Cost Explorer API that adds INVOICING_ENTITY dimensions"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dynamodb``",
-  "description": "[``botocore``] Documentation update for DynamoDB Java SDK."
-}
