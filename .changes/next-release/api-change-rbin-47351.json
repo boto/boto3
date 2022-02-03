@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rbin``",
+  "description": "[``botocore``] Add EC2 Image recycle bin support."
+}
