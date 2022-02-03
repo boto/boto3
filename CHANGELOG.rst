@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.20.48
+=======
+
+* api-change:``ec2``: [``botocore``] adds support for AMIs in Recycle Bin
+* api-change:``robomaker``: [``botocore``] The release deprecates the use various APIs of RoboMaker Deployment Service in favor of AWS IoT GreenGrass v2.0.
+* api-change:``meteringmarketplace``: [``botocore``] Add CustomerAWSAccountId to ResolveCustomer API response and increase UsageAllocation limit to 2500.
+* api-change:``rbin``: [``botocore``] Add EC2 Image recycle bin support.
+
+
 1.20.47
 =======
 
