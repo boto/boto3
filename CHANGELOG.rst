@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.20.49
+=======
+
+* api-change:``athena``: [``botocore``] You can now optionally specify the account ID that you expect to be the owner of your query results output location bucket in Athena. If the account ID of the query results bucket owner does not match the specified account ID, attempts to output to the bucket will fail with an S3 permissions error.
+* api-change:``rds``: [``botocore``] updates for RDS Custom for Oracle 12.1 support
+* api-change:``lakeformation``: [``botocore``] Add support for calling Update Table Objects without a TransactionId.
+
+
 1.20.48
 =======
 
