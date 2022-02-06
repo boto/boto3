@@ -85,6 +85,8 @@ Then, from a Python interpreter:
     >>> for bucket in s3.buckets.all():
             print(bucket.name)
 
+Press  ``Shift+Enter`` to end the for loop. The new line should print the output, i.e., names of all the s3 buckets available.  
+
 Running Tests
 ~~~~~~~~~~~~~
 You can run tests in all supported Python versions using ``tox``. By default,
