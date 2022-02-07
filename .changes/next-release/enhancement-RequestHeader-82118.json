@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Lambda Request Header",
+  "description": "[``botocore``] Adding request header for Lambda recursion detection."
+}
