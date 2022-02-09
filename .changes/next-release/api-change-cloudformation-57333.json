@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] This SDK release is for the feature launch of AWS CloudFormation Hooks."
-}
