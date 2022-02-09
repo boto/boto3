@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.52
+=======
+
+* api-change:``cloudformation``: [``botocore``] This SDK release is for the feature launch of AWS CloudFormation Hooks.
+
+
 1.20.51
 =======
 
