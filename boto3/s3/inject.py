@@ -116,7 +116,8 @@ def upload_file(self, Filename, Bucket, Key, ExtraArgs=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed upload arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -157,7 +158,8 @@ def download_file(self, Bucket, Key, Filename, ExtraArgs=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -195,7 +197,8 @@ def bucket_upload_file(self, Filename, Key,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed upload arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -232,7 +235,8 @@ def bucket_download_file(self, Key, Filename,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -266,7 +270,8 @@ def object_upload_file(self, Filename,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed upload arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -300,7 +305,8 @@ def object_download_file(self, Filename,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -347,7 +353,8 @@ def copy(self, CopySource, Bucket, Key, ExtraArgs=None, Callback=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -410,7 +417,8 @@ def bucket_copy(self, CopySource, Key, ExtraArgs=None, Callback=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -460,7 +468,8 @@ def object_copy(self, CopySource, ExtraArgs=None, Callback=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -512,7 +521,8 @@ def upload_fileobj(self, Fileobj, Bucket, Key, ExtraArgs=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed upload arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -567,7 +577,8 @@ def bucket_upload_fileobj(self, Fileobj, Key, ExtraArgs=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed upload arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -607,7 +618,8 @@ def object_upload_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed upload arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -651,7 +663,8 @@ def download_fileobj(self, Bucket, Key, Fileobj, ExtraArgs=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -706,7 +719,8 @@ def bucket_download_fileobj(self, Key, Fileobj, ExtraArgs=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -746,7 +760,8 @@ def object_download_fileobj(self, Fileobj, ExtraArgs=None, Callback=None,
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation.
+        client operation. For allowed download arguments see
+        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
