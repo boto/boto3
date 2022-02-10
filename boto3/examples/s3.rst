@@ -147,7 +147,7 @@ Boto3 will automatically compute this value for us.
 
 
 Downloading a specific version of an S3 object
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This example shows how to download a specific version of an
 S3 object.
