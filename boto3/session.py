@@ -174,7 +174,7 @@ class Session(object):
 
     def get_credentials(self):
         """
-        Return the :class:`botocore.credential.Credential` object
+        Return the :class:`botocore.credentials.Credentials` object
         associated with this session.  If the credentials have not
         yet been loaded, this will attempt to load them.  If they
         have already been loaded, this will return the cached
