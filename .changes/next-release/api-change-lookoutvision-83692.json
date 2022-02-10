@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lookoutvision``",
+  "description": "[``botocore``] This release makes CompilerOptions in Lookout for Vision's StartModelPackagingJob's Configuration object optional."
+}
