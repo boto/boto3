@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] This SDK release adds AWS CloudFormation Hooks HandlerErrorCodes"
-}

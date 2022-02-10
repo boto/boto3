@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pinpoint``",
-  "description": "[``botocore``] This SDK release adds a new paramater creation date for GetApp and GetApps Api call"
-}
