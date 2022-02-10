@@ -20,6 +20,12 @@ class Boto3ClientDocumenter(ClientDocumenter):
         section.write('import boto3')
         section.style.new_line()
         section.style.new_line()
+        if self._service_name == 'apigatewaymanagementapi':
+            section.write(
+                'client = boto3.client(\'apigatewaymanagementapi\', endpoint_url=\'https://{api_id}.execute-api.{region}.amazonaws.com/{stage}\')'
+            )
+            section.style.end_codeblock()
+            return
         section.write(
             'client = boto3.client(\'{service}\')'.format(
                 service=self._service_name)
