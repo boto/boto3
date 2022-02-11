@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.20.54
+=======
+
+* api-change:``ssm``: [``botocore``] Documentation updates for AWS Systems Manager.
+
+
 1.20.53
 =======
 
