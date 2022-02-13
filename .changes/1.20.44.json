@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``frauddetector``",
+    "description": "[``botocore``] Added new APIs for viewing past predictions and obtaining prediction metadata including prediction explanations: ListEventPredictions and GetEventPredictionMetadata",
+    "type": "api-change"
+  },
+  {
+    "category": "``ebs``",
+    "description": "[``botocore``] Documentation updates for Amazon EBS Direct APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeguru-reviewer``",
+    "description": "[``botocore``] Added failure state and adjusted timeout in waiter",
+    "type": "api-change"
+  },
+  {
+    "category": "``securityhub``",
+    "description": "[``botocore``] Adding top level Sample boolean field",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] API changes relating to Fail steps in model building pipeline and add PipelineExecutionFailureReason in PipelineExecutionSummary.",
+    "type": "api-change"
+  }
+]
