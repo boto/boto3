@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appflow``",
-  "description": "[``botocore``] Launching Amazon AppFlow SAP as a destination connector SDK."
-}

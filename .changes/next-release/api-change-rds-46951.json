@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Adds support for determining which Aurora PostgreSQL versions support Babelfish."
-}

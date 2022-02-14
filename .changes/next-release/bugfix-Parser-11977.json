@@ -1,5 +1,0 @@
-{
-  "type": "feature",
-  "category": "Parser",
-  "description": "[``botocore``] Adding support for parsing int/long types in rest-json response headers."
-}
