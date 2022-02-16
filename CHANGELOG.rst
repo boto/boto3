@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.21.1
+======
+
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2.
+* api-change:``budgets``: [``botocore``] Adds support for auto-adjusting budgets, a new budget method alongside fixed and planned. Auto-adjusting budgets introduces new metadata to configure a budget limit baseline using a historical lookback average or current period forecast.
+* api-change:``ce``: [``botocore``] AWS Cost Anomaly Detection now supports SNS FIFO topic subscribers.
+* api-change:``glue``: [``botocore``] Support for optimistic locking in UpdateTable
+* api-change:``ssm``: [``botocore``] Assorted ticket fixes and updates for AWS Systems Manager.
+
+
 1.21.0
 ======
 
