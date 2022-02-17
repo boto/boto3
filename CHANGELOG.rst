@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.21.2
+======
+
+* api-change:``iam``: [``botocore``] Documentation updates for AWS Identity and Access Management (IAM).
+* api-change:``redshift``: [``botocore``] SDK release for Cross region datasharing and cost-control for cross region datasharing
+* api-change:``evidently``: [``botocore``] Add support for filtering list of experiments and launches by status
+* api-change:``backup``: [``botocore``] AWS Backup add new S3_BACKUP_OBJECT_FAILED and S3_RESTORE_OBJECT_FAILED event types in BackupVaultNotifications events list.
+
+
 1.21.1
 ======
 
