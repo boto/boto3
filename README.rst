@@ -84,13 +84,18 @@ Then, from a Python interpreter:
     >>> for bucket in s3.buckets.all():
             print(bucket.name)
 
-You can also upload and download binary data. For example, the following uploads a new file to S3, assuming that the bucket my-bucket already exists:
+You can also upload and download binary data. 
+For example, the following uploads a new file to S3, assuming that the bucket my-bucket already exists:
+
 .. code-block:: python
+
     # Upload a new file
     data = open('test.jpg', 'rb')
     s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
-
-`Resources <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html#guide-resources>` and `Collections <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/collections.html#guide-collections>` are covered in more detail in the following sections.
+    
+`Resources <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html#guide-resources>`__ and
+`Collections <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/collections.html#guide-collections>`__
+are covered in more detail in the following sections.
 
 
 Running Tests
