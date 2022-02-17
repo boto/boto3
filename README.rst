@@ -84,7 +84,8 @@ Then, from a Python interpreter:
     >>> for bucket in s3.buckets.all():
             print(bucket.name)
 
-You can also upload and download binary data. 
+You can also upload and download binary data.
+
 For example, the following uploads a new file to S3, assuming that the bucket my-bucket already exists:
 
 .. code-block:: python
