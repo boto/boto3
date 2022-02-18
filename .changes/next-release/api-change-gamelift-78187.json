@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``gamelift``",
+  "description": "[``botocore``] Increase string list limit from 10 to 100."
+}
