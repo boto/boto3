@@ -49,7 +49,7 @@ In order to create a new table, use the
     )
 
     # Wait until the table exists.
-    table.meta.client.get_waiter('table_exists').wait(TableName='users')
+    table.wait_until_exists()
 
     # Print out some data about the table.
     print(table.item_count)

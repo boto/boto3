@@ -144,3 +144,20 @@ Boto3 will automatically compute this value for us.
                              SSECustomerAlgorithm='AES256')
     print("Done, response body:")
     print(response['Body'].read())
+
+
+Downloading a specific version of an S3 object
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This example shows how to download a specific version of an
+S3 object.
+
+.. code-block:: python
+
+    import boto3
+    s3 = boto3.client('s3')
+
+    s3.download_file(
+        "bucket-name", "key-name", "tmp.txt",
+        ExtraArgs={"VersionId": "my-version-id"}
+    )

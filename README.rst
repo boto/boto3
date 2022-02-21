@@ -2,7 +2,7 @@
 Boto3 - The AWS SDK for Python
 ===============================
 
-|Version| |Gitter|
+|Version| |Python| |License|
 
 Boto3 is the Amazon Web Services (AWS) Software Development Kit (SDK) for
 Python, which allows Python developers to write software that makes use
@@ -10,23 +10,27 @@ of services like Amazon S3 and Amazon EC2. You can find the latest, most
 up to date, documentation at our `doc site`_, including a list of
 services that are supported.
 
+Boto3 is maintained and published by `Amazon Web Services`_.
+
+Notices
+-------
+
 On 01/15/2021 deprecation for Python 2.7 was announced and support was dropped
 on 07/15/2021. To avoid disruption, customers using Boto3 on Python 2.7 may
 need to upgrade their version of Python or pin the version of Boto3. For
 more information, see this `blog post <https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-python-2-7-in-aws-sdk-for-python-and-aws-cli-v1/>`__.
 
+Starting in May 2022, we will be dropping support for Python 3.6. This follows the Python Software Foundation `end of support <https://www.python.org/dev/peps/pep-0494/#lifespan>`__ for the runtime which occurred on 2021-12-23.
 
 .. _boto: https://docs.pythonboto.org/
 .. _`doc site`: https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
-.. |Gitter| image:: https://badges.gitter.im/boto/boto3.svg
-   :target: https://gitter.im/boto/boto3
-   :alt: Gitter
-.. |Downloads| image:: http://img.shields.io/pypi/dm/boto3.svg?style=flat
+.. _`Amazon Web Services`: https://aws.amazon.com/what-is-aws/
+.. |Python| image:: https://img.shields.io/pypi/pyversions/boto3.svg?style=flat
     :target: https://pypi.python.org/pypi/boto3/
-    :alt: Downloads
+    :alt: Python Versions
 .. |Version| image:: http://img.shields.io/pypi/v/boto3.svg?style=flat
     :target: https://pypi.python.org/pypi/boto3/
-    :alt: Version
+    :alt: Package Version
 .. |License| image:: http://img.shields.io/pypi/l/boto3.svg?style=flat
     :target: https://github.com/boto/boto3/blob/develop/LICENSE
     :alt: License
@@ -109,7 +113,6 @@ bandwidth to address them. Please use these community resources for getting
 help:
 
 * Ask a question on `Stack Overflow <https://stackoverflow.com/>`__ and tag it with `boto3 <https://stackoverflow.com/questions/tagged/boto3>`__
-* Come join the AWS Python community chat on `gitter <https://gitter.im/boto/boto3>`__
 * Open a support ticket with `AWS Support <https://console.aws.amazon.com/support/home#/>`__
 * If it turns out that you may have found a bug, please `open an issue <https://github.com/boto/boto3/issues/new>`__
 

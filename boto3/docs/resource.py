@@ -148,7 +148,7 @@ class ResourceDocumenter(BaseDocumenter):
                 resource_type='Identifiers',
                 description=(
                     'Identifiers are properties of a resource that are '
-                    'set upon instantation of the resource.'
+                    'set upon instantiation of the resource.'
                 ),
                 intro_link='identifiers_attributes_intro',
             )
