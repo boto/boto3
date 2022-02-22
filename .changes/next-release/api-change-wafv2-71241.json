@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wafv2``",
-  "description": "[``botocore``] Updated descriptions for logging configuration."
-}
