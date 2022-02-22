@@ -19,8 +19,15 @@ class ResourceShapeDocumenter(ResponseParamsDocumenter):
     EVENT_NAME = 'resource-shape'
 
 
-def document_attribute(section, service_name, resource_name, attr_name,
-                       event_emitter, attr_model, include_signature=True):
+def document_attribute(
+    section,
+    service_name,
+    resource_name,
+    attr_name,
+    event_emitter,
+    attr_model,
+    include_signature=True,
+):
     if include_signature:
         section.style.start_sphinx_py_attr(attr_name)
     # Note that an attribute may have one, may have many, or may have no
@@ -28,18 +35,20 @@ def document_attribute(section, service_name, resource_name, attr_name,
     # operation_name to the resource name if we ever to hook in and modify
     # a particular attribute.
     ResourceShapeDocumenter(
-        service_name=service_name, operation_name=resource_name,
-        event_emitter=event_emitter).document_params(
-            section=section,
-            shape=attr_model)
+        service_name=service_name,
+        operation_name=resource_name,
+        event_emitter=event_emitter,
+    ).document_params(section=section, shape=attr_model)
 
 
-def document_identifier(section, resource_name, identifier_model,
-                        include_signature=True):
+def document_identifier(
+    section, resource_name, identifier_model, include_signature=True
+):
     if include_signature:
         section.style.start_sphinx_py_attr(identifier_model.name)
     description = get_identifier_description(
-        resource_name, identifier_model.name)
+        resource_name, identifier_model.name
+    )
     description = '*(string)* ' + description
     section.write(description)
 

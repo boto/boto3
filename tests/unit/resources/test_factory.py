@@ -11,25 +11,29 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
 from botocore.model import DenormalizedStructureBuilder, ServiceModel
-from tests import BaseTestCase, mock
 
 from boto3.exceptions import ResourceLoadException
-from boto3.utils import ServiceContext
 from boto3.resources.base import ServiceResource
 from boto3.resources.collection import CollectionManager
 from boto3.resources.factory import ResourceFactory
+from boto3.utils import ServiceContext
+from tests import BaseTestCase, mock
 
 
 class BaseTestResourceFactory(BaseTestCase):
     def setUp(self):
-        super(BaseTestResourceFactory, self).setUp()
+        super().setUp()
         self.emitter = mock.Mock()
         self.factory = ResourceFactory(self.emitter)
 
-    def load(self, resource_name, resource_json_definition=None,
-             resource_json_definitions=None, service_model=None):
+    def load(
+        self,
+        resource_name,
+        resource_json_definition=None,
+        resource_json_definitions=None,
+        service_model=None,
+    ):
         if resource_json_definition is None:
             resource_json_definition = {}
         if resource_json_definitions is None:
@@ -38,13 +42,13 @@ class BaseTestResourceFactory(BaseTestCase):
             service_name='test',
             resource_json_definitions=resource_json_definitions,
             service_model=service_model,
-            service_waiter_model=None
+            service_waiter_model=None,
         )
 
         return self.factory.load_from_definition(
             resource_name=resource_name,
             single_resource_json_definition=resource_json_definition,
-            service_context=service_context
+            service_context=service_context,
         )
 
 
@@ -81,9 +85,7 @@ class TestResourceFactory(BaseTestResourceFactory):
                 {'name': 'ReceiptHandle'},
             ],
         }
-        defs = {
-            'Message': model
-        }
+        defs = {'Message': model}
 
         resource = self.load('Message', model, defs)('url', 'handle')
 
@@ -102,9 +104,7 @@ class TestResourceFactory(BaseTestResourceFactory):
                 'Queue': {
                     'resource': {
                         'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
+                        'identifiers': [{'target': 'Url', 'source': 'input'}],
                     }
                 },
                 'Message': {
@@ -112,16 +112,13 @@ class TestResourceFactory(BaseTestResourceFactory):
                         'type': 'Message',
                         'identifiers': [
                             {'target': 'QueueUrl', 'source': 'input'},
-                            {'target': 'Handle', 'source': 'input'}
-                        ]
+                            {'target': 'Handle', 'source': 'input'},
+                        ],
                     }
-                }
+                },
             }
         }
-        defs = {
-            'Queue': {},
-            'Message': {}
-        }
+        defs = {'Queue': {}, 'Message': {}}
 
         TestResource = self.load('test', model, defs)
 
@@ -135,16 +132,20 @@ class TestResourceFactory(BaseTestResourceFactory):
                 'request': {
                     'operation': 'DescribeTest',
                 }
-            }
-        }
-        shape = DenormalizedStructureBuilder().with_members({
-            'ETag': {
-                'type': 'string',
             },
-            'LastModified': {
-                'type': 'string'
-            }
-        }).build_model()
+        }
+        shape = (
+            DenormalizedStructureBuilder()
+            .with_members(
+                {
+                    'ETag': {
+                        'type': 'string',
+                    },
+                    'LastModified': {'type': 'string'},
+                }
+            )
+            .build_model()
+        )
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -154,11 +155,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         assert hasattr(TestResource, 'last_modified')
 
     def test_factory_renames_on_clobber_identifier(self):
-        model = {
-            'identifiers': [
-                {'name': 'Meta'}
-            ]
-        }
+        model = {'identifiers': [{'name': 'Meta'}]}
 
         # Each resource has a ``meta`` defined, so this identifier
         # must be renamed.
@@ -168,17 +165,8 @@ class TestResourceFactory(BaseTestResourceFactory):
 
     def test_factory_fails_on_clobber_action(self):
         model = {
-            'identifiers': [
-                {'name': 'Test'},
-                {'name': 'TestAction'}
-            ],
-            'actions': {
-                'Test': {
-                    'request': {
-                        'operation': 'GetTest'
-                    }
-                }
-            }
+            'identifiers': [{'name': 'Test'}, {'name': 'TestAction'}],
+            'actions': {'Test': {'request': {'operation': 'GetTest'}}},
         }
 
         # This fails because the resource has an identifier
@@ -198,17 +186,13 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_non_service_resource_missing_defs(self):
         # Only services should get dangling defs
         defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            },
+            'Queue': {'identifiers': [{'name': 'Url'}]},
             'Message': {
                 'identifiers': [
                     {'name': 'QueueUrl'},
-                    {'name': 'ReceiptHandle'}
+                    {'name': 'ReceiptHandle'},
                 ]
-            }
+            },
         }
 
         model = defs['Queue']
@@ -221,28 +205,29 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_subresource_requires_only_identifier(self):
         defs = {
             'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ],
+                'identifiers': [{'name': 'Url'}],
                 'has': {
                     'Message': {
                         'resource': {
                             'type': 'Message',
                             'identifiers': [
-                                {'target': 'QueueUrl', 'source': 'identifier',
-                                 'name': 'Url'},
-                                {'target': 'ReceiptHandle', 'source': 'input'}
-                            ]
+                                {
+                                    'target': 'QueueUrl',
+                                    'source': 'identifier',
+                                    'name': 'Url',
+                                },
+                                {'target': 'ReceiptHandle', 'source': 'input'},
+                            ],
                         }
                     }
-                }
+                },
             },
             'Message': {
                 'identifiers': [
                     {'name': 'QueueUrl'},
-                    {'name': 'ReceiptHandle'}
+                    {'name': 'ReceiptHandle'},
                 ]
-            }
+            },
         }
 
         model = defs['Queue']
@@ -282,9 +267,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         model = {
             'actions': {
                 'GetMessageStatus': {
-                    'request': {
-                        'operation': 'DescribeMessageStatus'
-                    }
+                    'request': {'operation': 'DescribeMessageStatus'}
                 }
             }
         }
@@ -299,18 +282,12 @@ class TestResourceFactory(BaseTestResourceFactory):
     @mock.patch('boto3.resources.factory.ServiceAction')
     def test_resource_action_clears_data(self, action_cls):
         model = {
-            'load': {
-                'request': {
-                    'operation': 'DescribeQueue'
-                }
-            },
+            'load': {'request': {'operation': 'DescribeQueue'}},
             'actions': {
                 'GetMessageStatus': {
-                    'request': {
-                        'operation': 'DescribeMessageStatus'
-                    }
+                    'request': {'operation': 'DescribeMessageStatus'}
                 }
-            }
+            },
         }
 
         queue = self.load('Queue', model)()
@@ -331,9 +308,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         model = {
             'actions': {
                 'GetMessageStatus': {
-                    'request': {
-                        'operation': 'DescribeMessageStatus'
-                    }
+                    'request': {'operation': 'DescribeMessageStatus'}
                 }
             }
         }
@@ -353,37 +328,34 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_resource_lazy_loads_properties(self, action_cls):
         model = {
             'shape': 'TestShape',
-            'identifiers': [
-                {'name': 'Url'}
-            ],
+            'identifiers': [{'name': 'Url'}],
             'load': {
                 'request': {
                     'operation': 'DescribeTest',
                 }
-            }
+            },
         }
-        shape = DenormalizedStructureBuilder().with_members({
-            'ETag': {
-                'type': 'string',
-                'shape_name': 'ETag'
-            },
-            'LastModified': {
-                'type': 'string',
-                'shape_name': 'LastModified'
-            },
-            'Url': {
-                'type': 'string',
-                'shape_name': 'Url'
-            }
-        }).build_model()
+        shape = (
+            DenormalizedStructureBuilder()
+            .with_members(
+                {
+                    'ETag': {'type': 'string', 'shape_name': 'ETag'},
+                    'LastModified': {
+                        'type': 'string',
+                        'shape_name': 'LastModified',
+                    },
+                    'Url': {'type': 'string', 'shape_name': 'Url'},
+                }
+            )
+            .build_model()
+        )
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
         action = action_cls.return_value
         action.return_value = {'ETag': 'tag', 'LastModified': 'never'}
 
-        resource = self.load(
-            'test', model, service_model=service_model)('url')
+        resource = self.load('test', model, service_model=service_model)('url')
 
         # Accessing an identifier should not call load, even if it's in
         # the shape members.
@@ -407,31 +379,30 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_resource_lazy_properties_missing_load(self, action_cls):
         model = {
             'shape': 'TestShape',
-            'identifiers': [
-                {'name': 'Url'}
-            ]
+            'identifiers': [{'name': 'Url'}]
             # Note the lack of a `load` method. These resources
             # are usually loaded via a call on a parent resource.
         }
-        shape = DenormalizedStructureBuilder().with_members({
-            'ETag': {
-                'type': 'string',
-            },
-            'LastModified': {
-                'type': 'string'
-            },
-            'Url': {
-                'type': 'string'
-            }
-        }).build_model()
+        shape = (
+            DenormalizedStructureBuilder()
+            .with_members(
+                {
+                    'ETag': {
+                        'type': 'string',
+                    },
+                    'LastModified': {'type': 'string'},
+                    'Url': {'type': 'string'},
+                }
+            )
+            .build_model()
+        )
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
         action = action_cls.return_value
         action.return_value = {'ETag': 'tag', 'LastModified': 'never'}
 
-        resource = self.load(
-            'test', model, service_model=service_model)('url')
+        resource = self.load('test', model, service_model=service_model)('url')
 
         with pytest.raises(ResourceLoadException):
             resource.last_modified
@@ -440,24 +411,27 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_resource_aliases_identifiers(self, action_cls):
         model = {
             'shape': 'TestShape',
-            'identifiers': [
-                {'name': 'id', 'memberName': 'foo_id'}
-            ]
+            'identifiers': [{'name': 'id', 'memberName': 'foo_id'}],
         }
-        shape = DenormalizedStructureBuilder().with_members({
-            'foo_id': {
-                'type': 'string',
-            },
-            'bar': {
-                'type': 'string'
-            },
-        }).build_model()
+        shape = (
+            DenormalizedStructureBuilder()
+            .with_members(
+                {
+                    'foo_id': {
+                        'type': 'string',
+                    },
+                    'bar': {'type': 'string'},
+                }
+            )
+            .build_model()
+        )
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
         shape_id = 'baz'
-        resource = self.load(
-            'test', model, service_model=service_model)(shape_id)
+        resource = self.load('test', model, service_model=service_model)(
+            shape_id
+        )
 
         try:
             assert resource.id == shape_id
@@ -474,48 +448,47 @@ class TestResourceFactory(BaseTestResourceFactory):
                     'resource': {
                         'type': 'Subnet',
                         'identifiers': [
-                            {'target': 'Id', 'source': 'data',
-                             'path': 'SubnetId'}
-                        ]
+                            {
+                                'target': 'Id',
+                                'source': 'data',
+                                'path': 'SubnetId',
+                            }
+                        ],
                     }
                 },
                 'Vpcs': {
                     'resource': {
                         'type': 'Vpc',
                         'identifiers': [
-                            {'target': 'Id', 'source': 'data',
-                             'path': 'Vpcs[].Id'}
-                        ]
-                    }
-                }
-            }
-        }
-        defs = {
-            'Subnet': {
-                'identifiers': [{'name': 'Id'}]
-            },
-            'Vpc': {
-                'identifiers': [{'name': 'Id'}]
-            }
-        }
-        service_model = ServiceModel({
-            'shapes': {
-                'InstanceShape': {
-                    'type': 'structure',
-                    'members': {
-                        'SubnetId': {
-                            'shape': 'String'
-                        }
+                            {
+                                'target': 'Id',
+                                'source': 'data',
+                                'path': 'Vpcs[].Id',
+                            }
+                        ],
                     }
                 },
-                'String': {
-                    'type': 'string'
+            },
+        }
+        defs = {
+            'Subnet': {'identifiers': [{'name': 'Id'}]},
+            'Vpc': {'identifiers': [{'name': 'Id'}]},
+        }
+        service_model = ServiceModel(
+            {
+                'shapes': {
+                    'InstanceShape': {
+                        'type': 'structure',
+                        'members': {'SubnetId': {'shape': 'String'}},
+                    },
+                    'String': {'type': 'string'},
                 }
             }
-        })
+        )
 
-        resource = self.load('Instance', model, defs,
-                             service_model)('group-id')
+        resource = self.load('Instance', model, defs, service_model)(
+            'group-id'
+        )
 
         # Load the resource with no data
         resource.meta.data = {}
@@ -527,10 +500,7 @@ class TestResourceFactory(BaseTestResourceFactory):
         # Load the resource with data to instantiate a reference
         resource.meta.data = {
             'SubnetId': 'abc123',
-            'Vpcs': [
-                {'Id': 'vpc1'},
-                {'Id': 'vpc2'}
-            ]
+            'Vpcs': [{'Id': 'vpc1'}, {'Id': 'vpc2'}],
         }
 
         assert isinstance(resource.subnet, ServiceResource)
@@ -546,19 +516,13 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_resource_loads_collections(self, mock_model):
         model = {
             'hasMany': {
-                u'Queues': {
-                    'request': {
-                        'operation': 'ListQueues'
-                    },
-                    'resource': {
-                        'type': 'Queue'
-                    }
+                'Queues': {
+                    'request': {'operation': 'ListQueues'},
+                    'resource': {'type': 'Queue'},
                 }
             }
         }
-        defs = {
-            'Queue': {}
-        }
+        defs = {'Queue': {}}
         service_model = ServiceModel({})
         mock_model.return_value.name = 'queues'
 
@@ -577,16 +541,14 @@ class TestResourceFactory(BaseTestResourceFactory):
                         {
                             "target": "Bucket",
                             "source": "identifier",
-                            "name": "Name"
+                            "name": "Name",
                         }
-                    ]
+                    ],
                 }
             }
         }
 
-        defs = {
-            'Bucket': {}
-        }
+        defs = {'Bucket': {}}
         service_model = ServiceModel({})
 
         resource = self.load('test', model, defs, service_model)()
@@ -603,16 +565,14 @@ class TestResourceFactory(BaseTestResourceFactory):
                         {
                             "target": "Bucket",
                             "source": "identifier",
-                            "name": "Name"
+                            "name": "Name",
                         }
-                    ]
+                    ],
                 }
             }
         }
 
-        defs = {
-            'Bucket': {}
-        }
+        defs = {'Bucket': {}}
         service_model = ServiceModel({})
 
         waiter_action = waiter_action_cls.return_value
@@ -624,28 +584,20 @@ class TestResourceFactory(BaseTestResourceFactory):
 
 class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
     def setUp(self):
-        super(TestResourceFactoryDanglingResource, self).setUp()
+        super().setUp()
 
         self.model = {
             'has': {
                 'Queue': {
                     'resource': {
                         'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
+                        'identifiers': [{'target': 'Url', 'source': 'input'}],
                     }
                 }
             }
         }
 
-        self.defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            }
-        }
+        self.defs = {'Queue': {'identifiers': [{'name': 'Url'}]}}
 
     def test_dangling_resources_create_resource_instance(self):
         resource = self.load('test', self.model, self.defs)()
@@ -717,17 +669,20 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
                         'resource': {
                             'type': 'Message',
                             'identifiers': [
-                                {'target': 'QueueUrl', 'source': 'identifier',
-                                 'name': 'Url'},
-                                {'target': 'Handle', 'source': 'input'}
-                            ]
+                                {
+                                    'target': 'QueueUrl',
+                                    'source': 'identifier',
+                                    'name': 'Url',
+                                },
+                                {'target': 'Handle', 'source': 'input'},
+                            ],
                         }
                     }
-                }
+                },
             },
             'Message': {
                 'identifiers': [{'name': 'QueueUrl'}, {'name': 'Handle'}]
-            }
+            },
         }
 
         resource = self.load('test', self.model, self.defs)()
@@ -755,28 +710,35 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
                         'resource': {
                             'type': 'NetworkInterface',
                             'identifiers': [
-                                {'target': 'Id', 'source': 'data',
-                                 'path': 'NetworkInterface.Id'}
+                                {
+                                    'target': 'Id',
+                                    'source': 'data',
+                                    'path': 'NetworkInterface.Id',
+                                }
                             ],
-                            'path': 'NetworkInterface'
+                            'path': 'NetworkInterface',
                         }
                     }
-                }
+                },
             },
             'NetworkInterface': {
                 'identifiers': [{'name': 'Id'}],
-                'shape': 'NetworkInterfaceShape'
-            }
+                'shape': 'NetworkInterfaceShape',
+            },
         }
         self.model = self.defs['Instance']
-        shape = DenormalizedStructureBuilder().with_members({
-            'Id': {
-                'type': 'string',
-            },
-            'PublicIp': {
-                'type': 'string'
-            }
-        }).build_model()
+        shape = (
+            DenormalizedStructureBuilder()
+            .with_members(
+                {
+                    'Id': {
+                        'type': 'string',
+                    },
+                    'PublicIp': {'type': 'string'},
+                }
+            )
+            .build_model()
+        )
         service_model = mock.Mock()
         service_model.shape_for.return_value = shape
 
@@ -788,9 +750,10 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
             instance.meta.data = {
                 'NetworkInterface': {
                     'Id': 'network-interface-id',
-                    'PublicIp': '127.0.0.1'
+                    'PublicIp': '127.0.0.1',
                 }
             }
+
         instance.load = mock.Mock(side_effect=set_meta_data)
 
         # Now, get the reference and make sure it has its data
@@ -802,41 +765,33 @@ class TestResourceFactoryDanglingResource(BaseTestResourceFactory):
 
 class TestServiceResourceSubresources(BaseTestResourceFactory):
     def setUp(self):
-        super(TestServiceResourceSubresources, self).setUp()
+        super().setUp()
 
         self.model = {
             'has': {
                 'QueueObject': {
                     'resource': {
                         'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
+                        'identifiers': [{'target': 'Url', 'source': 'input'}],
                     }
                 },
                 'PriorityQueue': {
                     'resource': {
                         'type': 'Queue',
-                        'identifiers': [
-                            {'target': 'Url', 'source': 'input'}
-                        ]
+                        'identifiers': [{'target': 'Url', 'source': 'input'}],
                     }
-                }
+                },
             }
         }
 
         self.defs = {
-            'Queue': {
-                'identifiers': [
-                    {'name': 'Url'}
-                ]
-            },
+            'Queue': {'identifiers': [{'name': 'Url'}]},
             'Message': {
                 'identifiers': [
                     {'name': 'QueueUrl'},
-                    {'name': 'ReceiptHandle'}
+                    {'name': 'ReceiptHandle'},
                 ]
-            }
+            },
         }
 
     def test_subresource_custom_name(self):
@@ -872,13 +827,19 @@ class TestServiceResourceSubresources(BaseTestResourceFactory):
         assert self.emitter.emit.called
         call_args = self.emitter.emit.call_args
         # Verify the correct event name emitted.
-        assert call_args[0][0] == 'creating-resource-class.test.ServiceResource'
+        assert (
+            call_args[0][0] == 'creating-resource-class.test.ServiceResource'
+        )
 
         # Verify we send out the class attributes dict.
         actual_class_attrs = sorted(call_args[1]['class_attributes'])
         assert actual_class_attrs == [
-            'Message', 'PriorityQueue', 'QueueObject',
-            'get_available_subresources', 'meta']
+            'Message',
+            'PriorityQueue',
+            'QueueObject',
+            'get_available_subresources',
+            'meta',
+        ]
 
         base_classes = sorted(call_args[1]['base_classes'])
         assert base_classes == [ServiceResource]

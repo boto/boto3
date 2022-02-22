@@ -1,0 +1,14 @@
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow",
+]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+honor_noqa = true
+src_paths = ["boto3", "tests"]
+
+[tool.black]
+line-length = 79
+skip_string_normalization = true

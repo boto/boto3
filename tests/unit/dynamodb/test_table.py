@@ -10,9 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest, mock
-
 from boto3.dynamodb.table import BatchWriter
+from tests import mock, unittest
 
 
 class BaseTransformationTest(unittest.TestCase):
@@ -24,14 +23,16 @@ class BaseTransformationTest(unittest.TestCase):
         self.client.batch_write_item.return_value = {'UnprocessedItems': {}}
         self.table_name = 'tablename'
         self.flush_amount = 2
-        self.batch_writer = BatchWriter(self.table_name, self.client,
-                                        self.flush_amount)
+        self.batch_writer = BatchWriter(
+            self.table_name, self.client, self.flush_amount
+        )
 
     def assert_batch_write_calls_are(self, expected_batch_writes):
-        assert self.client.batch_write_item.call_count == len(expected_batch_writes)
+        assert self.client.batch_write_item.call_count == len(
+            expected_batch_writes
+        )
         batch_write_calls = [
-            args[1] for args in
-            self.client.batch_write_item.call_args_list
+            args[1] for args in self.client.batch_write_item.call_args_list
         ]
         assert batch_write_calls == expected_batch_writes
 
@@ -123,7 +124,7 @@ class BaseTransformationTest(unittest.TestCase):
                 },
             },
             # Then the last response shows that everything went through
-            {'UnprocessedItems': {}}
+            {'UnprocessedItems': {}},
         ]
         self.batch_writer.put_item(Item={'Hash': 'foo1'})
         self.batch_writer.put_item(Item={'Hash': 'foo2'})
@@ -155,15 +156,17 @@ class BaseTransformationTest(unittest.TestCase):
     def test_all_items_flushed_on_exit(self):
         with self.batch_writer as b:
             b.put_item(Item={'Hash': 'foo1'})
-        self.assert_batch_write_calls_are([
-            {
-                'RequestItems': {
-                    self.table_name: [
-                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
-                    ]
+        self.assert_batch_write_calls_are(
+            [
+                {
+                    'RequestItems': {
+                        self.table_name: [
+                            {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                        ]
+                    },
                 },
-            },
-        ])
+            ]
+        )
 
     def test_never_send_more_than_max_batch_size(self):
         # Suppose the server sends backs a response that indicates that
@@ -184,9 +187,7 @@ class BaseTransformationTest(unittest.TestCase):
                     ],
                 },
             },
-            {
-                'UnprocessedItems': {}
-            },
+            {'UnprocessedItems': {}},
         ]
         with BatchWriter(self.table_name, self.client, flush_amount=2) as b:
             b.put_item(Item={'Hash': 'foo1'})
@@ -222,8 +223,9 @@ class BaseTransformationTest(unittest.TestCase):
                 ]
             }
         }
-        self.assert_batch_write_calls_are([first_batch, second_batch,
-                                           third_batch])
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch]
+        )
 
     def test_repeated_flushing_on_exit(self):
         # We're going to simulate unprocessed_items
@@ -244,9 +246,7 @@ class BaseTransformationTest(unittest.TestCase):
                     ],
                 },
             },
-            {
-                'UnprocessedItems': {}
-            },
+            {'UnprocessedItems': {}},
         ]
         with BatchWriter(self.table_name, self.client, flush_amount=4) as b:
             b.put_item(Item={'Hash': 'foo1'})
@@ -281,68 +281,71 @@ class BaseTransformationTest(unittest.TestCase):
                 ]
             }
         }
-        self.assert_batch_write_calls_are([first_batch, second_batch,
-                                           third_batch])
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch]
+        )
 
     def test_auto_dedup_for_dup_requests(self):
-        with BatchWriter(self.table_name, self.client,
-                         flush_amount=5, overwrite_by_pkeys=["pkey", "skey"]) as b:
+        with BatchWriter(
+            self.table_name,
+            self.client,
+            flush_amount=5,
+            overwrite_by_pkeys=["pkey", "skey"],
+        ) as b:
             # dup 1
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other1'
-            })
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other2'
-            })
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other1'}
+            )
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other2'}
+            )
             # dup 2
-            b.delete_item(Key={
-                'pkey': 'foo1',
-                'skey': 'bar2',
-            })
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar2',
-                'other': 'other3'
-            })
+            b.delete_item(
+                Key={
+                    'pkey': 'foo1',
+                    'skey': 'bar2',
+                }
+            )
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar2', 'other': 'other3'}
+            )
             # dup 3
-            b.put_item(Item={
-                'pkey': 'foo2',
-                'skey': 'bar2',
-                'other': 'other3'
-            })
-            b.delete_item(Key={
-                'pkey': 'foo2',
-                'skey': 'bar2',
-            })
+            b.put_item(
+                Item={'pkey': 'foo2', 'skey': 'bar2', 'other': 'other3'}
+            )
+            b.delete_item(
+                Key={
+                    'pkey': 'foo2',
+                    'skey': 'bar2',
+                }
+            )
             # dup 4
-            b.delete_item(Key={
-                'pkey': 'foo2',
-                'skey': 'bar3',
-            })
-            b.delete_item(Key={
-                'pkey': 'foo2',
-                'skey': 'bar3',
-            })
+            b.delete_item(
+                Key={
+                    'pkey': 'foo2',
+                    'skey': 'bar3',
+                }
+            )
+            b.delete_item(
+                Key={
+                    'pkey': 'foo2',
+                    'skey': 'bar3',
+                }
+            )
             # 5
-            b.delete_item(Key={
-                'pkey': 'foo3',
-                'skey': 'bar3',
-            })
+            b.delete_item(
+                Key={
+                    'pkey': 'foo3',
+                    'skey': 'bar3',
+                }
+            )
             # 2nd batch
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other1'
-            })
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other2'
-            })
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other1'}
+            )
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other2'}
+            )
 
         first_batch = {
             'RequestItems': {
@@ -352,7 +355,7 @@ class BaseTransformationTest(unittest.TestCase):
                             'Item': {
                                 'pkey': 'foo1',
                                 'skey': 'bar1',
-                                'other': 'other2'
+                                'other': 'other2',
                             }
                         }
                     },
@@ -361,7 +364,7 @@ class BaseTransformationTest(unittest.TestCase):
                             'Item': {
                                 'pkey': 'foo1',
                                 'skey': 'bar2',
-                                'other': 'other3'
+                                'other': 'other3',
                             }
                         }
                     },
@@ -400,7 +403,7 @@ class BaseTransformationTest(unittest.TestCase):
                             'Item': {
                                 'pkey': 'foo1',
                                 'skey': 'bar1',
-                                'other': 'other2'
+                                'other': 'other2',
                             }
                         }
                     },
