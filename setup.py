@@ -13,7 +13,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.24.4,<1.25.0',
+    'botocore>=1.24.5,<1.25.0',
     'jmespath>=0.7.1,<1.0.0',
     's3transfer>=0.5.0,<0.6.0'
 ]
