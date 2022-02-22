@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.21.5
+======
+
+* api-change:``translate``: [``botocore``] This release enables customers to use translation settings for formality customization in their synchronous translation output.
+* api-change:``wafv2``: [``botocore``] Updated descriptions for logging configuration.
+* api-change:``apprunner``: [``botocore``] AWS App Runner adds a Java platform (Corretto 8, Corretto 11 runtimes) and a Node.js 14 runtime.
+
+
 1.21.4
 ======
 
