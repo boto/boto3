@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.21.6
+======
+
+* api-change:``transfer``: [``botocore``] The file input selection feature provides the ability to use either the originally uploaded file or the output file from the previous workflow step, enabling customers to make multiple copies of the original file while keeping the source file intact for file archival.
+* api-change:``lambda``: [``botocore``] Lambda releases .NET 6 managed runtime to be available in all commercial regions.
+* api-change:``textract``: [``botocore``] Added support for merged cells and column header for table response.
+
+
 1.21.5
 ======
 
