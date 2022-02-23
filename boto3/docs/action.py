@@ -150,10 +150,9 @@ def document_load_reload_action(
         It is useful for generating docstrings.
     """
     description = (
-        'Calls  :py:meth:`%s.Client.%s` to update the attributes of the'
-        ' %s resource. Note that the load and reload methods are '
-        'the same method and can be used interchangeably.'
-        % (
+        'Calls :py:meth:`{}.Client.{}` to update the attributes of the '
+        '{} resource. Note that the load and reload methods are '
+        'the same method and can be used interchangeably.'.format(
             get_service_module_name(service_model),
             xform_name(load_model.request.operation),
             resource_name,

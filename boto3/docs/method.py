@@ -56,17 +56,17 @@ def document_model_driven_resource_method(
             operation_model.service_model.service_name, resource_type
         )
 
-        return_type = ':py:class:`%s`' % return_resource_type
-        return_description = '%s resource' % (resource_type)
+        return_type = f':py:class:`{return_resource_type}`'
+        return_description = f'{resource_type} resource'
 
         if _method_returns_resource_list(resource_action_model.resource):
-            return_type = 'list(%s)' % return_type
-            return_description = 'A list of %s resources' % (resource_type)
+            return_type = f'list({return_type})'
+            return_description = f'A list of {resource_type} resources'
 
         new_return_section.style.new_line()
-        new_return_section.write(':rtype: %s' % return_type)
+        new_return_section.write(f':rtype: {return_type}')
         new_return_section.style.new_line()
-        new_return_section.write(':returns: %s' % return_description)
+        new_return_section.write(f':returns: {return_description}')
         new_return_section.style.new_line()
 
 

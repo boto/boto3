@@ -150,7 +150,7 @@ class ResourceFactory:
         base_classes = [ServiceResource]
         if self._emitter is not None:
             self._emitter.emit(
-                'creating-resource-class.%s' % cls_name,
+                f'creating-resource-class.{cls_name}',
                 class_attributes=attrs,
                 base_classes=base_classes,
                 service_context=service_context,
