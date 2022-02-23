@@ -214,7 +214,7 @@ class TestCopy(BaseTransferTest):
         assert response is None
 
     def test_copy_progress(self):
-        chunksize = 8 * (1024 ** 2)
+        chunksize = 8 * (1024**2)
         self.stub_multipart_copy(chunksize, 3)
         transfer_config = TransferConfig(
             multipart_chunksize=chunksize,
@@ -329,7 +329,7 @@ class TestUploadFileobj(BaseTransferTest):
         self.stubber.assert_no_pending_responses()
 
     def test_multipart_upload(self):
-        chunksize = 8 * (1024 ** 2)
+        chunksize = 8 * (1024**2)
         contents = six.BytesIO(b'0' * (chunksize * 3))
         self.stub_multipart_upload(num_parts=3)
         transfer_config = TransferConfig(

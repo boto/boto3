@@ -350,7 +350,7 @@ class TestS3Transfers(unittest.TestCase):
         # This has to be an integration test because the fileobj will never
         # actually be read from when using the stubber and therefore the
         # progress callbacks will not be invoked.
-        chunksize = 5 * (1024 ** 2)
+        chunksize = 5 * (1024**2)
         config = boto3.s3.transfer.TransferConfig(
             multipart_chunksize=chunksize,
             multipart_threshold=chunksize,

@@ -198,14 +198,11 @@ class TestDeserializer(unittest.TestCase):
         ) == [Decimal('1'), 'foo', [Decimal('1.25')]]
 
     def test_deserialize_map(self):
-        assert (
-            self.deserializer.deserialize(
-                {
-                    'M': {
-                        'foo': {'S': 'mystring'},
-                        'bar': {'M': {'baz': {'N': '1'}}},
-                    }
+        assert self.deserializer.deserialize(
+            {
+                'M': {
+                    'foo': {'S': 'mystring'},
+                    'bar': {'M': {'baz': {'N': '1'}}},
                 }
-            )
-            == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}
-        )
+            }
+        ) == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}
