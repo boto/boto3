@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lambda``",
+  "description": "[``botocore``] Lambda releases .NET 6 managed runtime to be available in all commercial regions."
+}
