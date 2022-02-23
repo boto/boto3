@@ -10,9 +10,8 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import mock, unittest
-
 from boto3.ec2.deletetags import delete_tags
+from tests import mock, unittest
 
 
 class TestDeleteTags(unittest.TestCase):
@@ -28,7 +27,7 @@ class TestDeleteTags(unittest.TestCase):
             'Tags': [
                 {'Key': 'key1', 'Value': 'value1'},
                 {'Key': 'key2', 'Value': 'value2'},
-                {'Key': 'key3', 'Value': 'value3'}
+                {'Key': 'key3', 'Value': 'value3'},
             ]
         }
 

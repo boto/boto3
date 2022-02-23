@@ -10,18 +10,16 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import pytest
-
-from tests import unittest
-
 import botocore
 import botocore.stub
+import pytest
+from botocore.compat import six
 from botocore.config import Config
 from botocore.stub import Stubber
-from botocore.compat import six
 
 import boto3.session
 from boto3.s3.transfer import TransferConfig
+from tests import unittest
 
 
 class TestS3MethodInjection(unittest.TestCase):
@@ -53,8 +51,10 @@ class TestS3MethodInjection(unittest.TestCase):
 class BaseTransferTest(unittest.TestCase):
     def setUp(self):
         self.session = boto3.session.Session(
-            aws_access_key_id='foo', aws_secret_access_key='bar',
-            region_name='us-west-2')
+            aws_access_key_id='foo',
+            aws_secret_access_key='bar',
+            region_name='us-west-2',
+        )
         self.s3 = self.session.resource('s3')
         self.stubber = Stubber(self.s3.meta.client)
         self.bucket = 'mybucket'
@@ -73,25 +73,24 @@ class BaseTransferTest(unittest.TestCase):
             'Metadata': {},
             'ResponseMetadata': {
                 'HTTPStatusCode': 200,
-            }
+            },
         }
 
         if expected_params is None:
-            expected_params = {
-                'Bucket': self.bucket,
-                'Key': self.key
-            }
+            expected_params = {'Bucket': self.bucket, 'Key': self.key}
 
         self.stubber.add_response(
-            method='head_object', service_response=head_response,
-            expected_params=expected_params)
+            method='head_object',
+            service_response=head_response,
+            expected_params=expected_params,
+        )
 
     def stub_create_multipart_upload(self):
         # Add the response and assert params for CreateMultipartUpload
         create_upload_response = {
             "Bucket": self.bucket,
             "Key": self.key,
-            "UploadId": self.upload_id
+            "UploadId": self.upload_id,
         }
         expected_params = {
             "Bucket": self.bucket,
@@ -100,33 +99,33 @@ class BaseTransferTest(unittest.TestCase):
         self.stubber.add_response(
             method='create_multipart_upload',
             service_response=create_upload_response,
-            expected_params=expected_params)
+            expected_params=expected_params,
+        )
 
     def stub_complete_multipart_upload(self, parts):
         complete_upload_response = {
             "Location": "us-west-2",
             "Bucket": self.bucket,
             "Key": self.key,
-            "ETag": self.etag
+            "ETag": self.etag,
         }
         expected_params = {
             "Bucket": self.bucket,
             "Key": self.key,
-            "MultipartUpload": {
-                "Parts": parts
-            },
-            "UploadId": self.upload_id
+            "MultipartUpload": {"Parts": parts},
+            "UploadId": self.upload_id,
         }
 
         self.stubber.add_response(
             method='complete_multipart_upload',
             service_response=complete_upload_response,
-            expected_params=expected_params)
+            expected_params=expected_params,
+        )
 
 
 class TestCopy(BaseTransferTest):
     def setUp(self):
-        super(TestCopy, self).setUp()
+        super().setUp()
         self.copy_source = {'Bucket': 'foo', 'Key': 'bar'}
 
     def stub_single_part_copy(self):
@@ -137,7 +136,8 @@ class TestCopy(BaseTransferTest):
         # Set the HEAD to return the total size
         total_size = part_size * num_parts
         self.stub_head(
-            content_length=total_size, expected_params=self.copy_source)
+            content_length=total_size, expected_params=self.copy_source
+        )
 
         self.stub_create_multipart_upload()
 
@@ -146,9 +146,8 @@ class TestCopy(BaseTransferTest):
         for i in range(num_parts):
             # Fill in the parts
             part_number = i + 1
-            copy_range = "bytes=%s-%s" % (
-                i * part_size,
-                i * part_size + (part_size - 1)
+            copy_range = "bytes={}-{}".format(
+                i * part_size, i * part_size + (part_size - 1)
             )
             self.stub_copy_part(part_number=part_number, copy_range=copy_range)
             parts.append({'ETag': self.etag, 'PartNumber': part_number})
@@ -157,30 +156,24 @@ class TestCopy(BaseTransferTest):
 
     def stub_copy_object(self):
         copy_response = {
-            'CopyObjectResult': {
-                'ETag': self.etag
-            },
-            'ResponseMetadata': {
-                'HTTPStatusCode': 200
-            }
+            'CopyObjectResult': {'ETag': self.etag},
+            'ResponseMetadata': {'HTTPStatusCode': 200},
         }
         expected_params = {
             "Bucket": self.bucket,
             "Key": self.key,
-            "CopySource": self.copy_source
+            "CopySource": self.copy_source,
         }
         self.stubber.add_response(
-            method='copy_object', service_response=copy_response,
-            expected_params=expected_params)
+            method='copy_object',
+            service_response=copy_response,
+            expected_params=expected_params,
+        )
 
     def stub_copy_part(self, part_number, copy_range):
         copy_part_response = {
-            "CopyPartResult": {
-                "ETag": self.etag
-            },
-            'ResponseMetadata': {
-                'HTTPStatusCode': 200
-            }
+            "CopyPartResult": {"ETag": self.etag},
+            'ResponseMetadata': {'HTTPStatusCode': 200},
         }
         expected_params = {
             "Bucket": self.bucket,
@@ -188,17 +181,20 @@ class TestCopy(BaseTransferTest):
             "CopySource": self.copy_source,
             "UploadId": self.upload_id,
             "PartNumber": part_number,
-            "CopySourceRange": copy_range
+            "CopySourceRange": copy_range,
         }
         self.stubber.add_response(
-            method='upload_part_copy', service_response=copy_part_response,
-            expected_params=expected_params)
+            method='upload_part_copy',
+            service_response=copy_part_response,
+            expected_params=expected_params,
+        )
 
     def test_client_copy(self):
         self.stub_single_part_copy()
         with self.stubber:
             response = self.s3.meta.client.copy(
-                self.copy_source, self.bucket, self.key)
+                self.copy_source, self.bucket, self.key
+            )
         # The response will be none on a successful transfer.
         assert response is None
 
@@ -218,11 +214,13 @@ class TestCopy(BaseTransferTest):
         assert response is None
 
     def test_copy_progress(self):
-        chunksize = 8 * (1024 ** 2)
+        chunksize = 8 * (1024**2)
         self.stub_multipart_copy(chunksize, 3)
         transfer_config = TransferConfig(
-            multipart_chunksize=chunksize, multipart_threshold=1,
-            max_concurrency=1)
+            multipart_chunksize=chunksize,
+            multipart_threshold=1,
+            max_concurrency=1,
+        )
 
         def progress_callback(amount):
             self.progress += amount
@@ -230,8 +228,12 @@ class TestCopy(BaseTransferTest):
 
         with self.stubber:
             self.s3.meta.client.copy(
-                Bucket=self.bucket, Key=self.key, CopySource=self.copy_source,
-                Config=transfer_config, Callback=progress_callback)
+                Bucket=self.bucket,
+                Key=self.key,
+                CopySource=self.copy_source,
+                Config=transfer_config,
+                Callback=progress_callback,
+            )
 
         # Assert that the progress callback was called the correct number of
         # times with the correct amounts.
@@ -241,42 +243,42 @@ class TestCopy(BaseTransferTest):
 
 class TestUploadFileobj(BaseTransferTest):
     def setUp(self):
-        super(TestUploadFileobj, self).setUp()
+        super().setUp()
         self.contents = six.BytesIO(b'foo\n')
 
     def stub_put_object(self):
         put_object_response = {
             "ETag": self.etag,
-            "ResponseMetadata": {
-                "HTTPStatusCode": 200
-            }
+            "ResponseMetadata": {"HTTPStatusCode": 200},
         }
         expected_params = {
             "Bucket": self.bucket,
             "Key": self.key,
-            "Body": botocore.stub.ANY
+            "Body": botocore.stub.ANY,
         }
         self.stubber.add_response(
-            method='put_object', service_response=put_object_response,
-            expected_params=expected_params)
+            method='put_object',
+            service_response=put_object_response,
+            expected_params=expected_params,
+        )
 
     def stub_upload_part(self, part_number):
         upload_part_response = {
             'ETag': self.etag,
-            'ResponseMetadata': {
-                'HTTPStatusCode': 200
-            }
+            'ResponseMetadata': {'HTTPStatusCode': 200},
         }
         expected_params = {
             "Bucket": self.bucket,
             "Key": self.key,
             "Body": botocore.stub.ANY,
             "PartNumber": part_number,
-            "UploadId": self.upload_id
+            "UploadId": self.upload_id,
         }
         self.stubber.add_response(
-            method='upload_part', service_response=upload_part_response,
-            expected_params=expected_params)
+            method='upload_part',
+            service_response=upload_part_response,
+            expected_params=expected_params,
+        )
 
     def stub_multipart_upload(self, num_parts):
         self.stub_create_multipart_upload()
@@ -296,7 +298,8 @@ class TestUploadFileobj(BaseTransferTest):
         with self.stubber:
             # The stubber will assert that all the right parameters are called.
             self.s3.meta.client.upload_fileobj(
-                Fileobj=self.contents, Bucket=self.bucket, Key=self.key)
+                Fileobj=self.contents, Bucket=self.bucket, Key=self.key
+            )
 
         self.stubber.assert_no_pending_responses()
 
@@ -304,7 +307,8 @@ class TestUploadFileobj(BaseTransferTest):
         with self.stubber:
             with pytest.raises(ValueError):
                 self.s3.meta.client.upload_fileobj(
-                    Fileobj='foo', Bucket=self.bucket, Key=self.key)
+                    Fileobj='foo', Bucket=self.bucket, Key=self.key
+                )
 
     def test_bucket_upload(self):
         self.stub_put_object()
@@ -325,25 +329,30 @@ class TestUploadFileobj(BaseTransferTest):
         self.stubber.assert_no_pending_responses()
 
     def test_multipart_upload(self):
-        chunksize = 8 * (1024 ** 2)
+        chunksize = 8 * (1024**2)
         contents = six.BytesIO(b'0' * (chunksize * 3))
         self.stub_multipart_upload(num_parts=3)
         transfer_config = TransferConfig(
-            multipart_chunksize=chunksize, multipart_threshold=1,
-            max_concurrency=1)
+            multipart_chunksize=chunksize,
+            multipart_threshold=1,
+            max_concurrency=1,
+        )
 
         with self.stubber:
             # The stubber will assert that all the right parameters are called.
             self.s3.meta.client.upload_fileobj(
-                Fileobj=contents, Bucket=self.bucket, Key=self.key,
-                Config=transfer_config)
+                Fileobj=contents,
+                Bucket=self.bucket,
+                Key=self.key,
+                Config=transfer_config,
+            )
 
         self.stubber.assert_no_pending_responses()
 
 
 class TestDownloadFileobj(BaseTransferTest):
     def setUp(self):
-        super(TestDownloadFileobj, self).setUp()
+        super().setUp()
         self.contents = b'foo'
         self.fileobj = six.BytesIO()
 
@@ -377,31 +386,31 @@ class TestDownloadFileobj(BaseTransferTest):
         # If this is a ranged get, ContentRange needs to be returned,
         # contents needs to be pruned, and Range needs to be an expected param.
         if end_byte is not None:
-            contents = full_contents[start_byte:end_byte + 1]
-            part_range = 'bytes=%s-%s' % (start_byte, end_byte_range)
-            content_range = 'bytes=%s-%s/%s' % (
-                start_byte, end_byte, len(full_contents))
+            contents = full_contents[start_byte : end_byte + 1]
+            part_range = f'bytes={start_byte}-{end_byte_range}'
+            content_range = 'bytes={}-{}/{}'.format(
+                start_byte, end_byte, len(full_contents)
+            )
             get_object_response['ContentRange'] = content_range
             expected_params['Range'] = part_range
 
-        get_object_response.update({
-            "AcceptRanges": "bytes",
-            "ETag": self.etag,
-            "ContentLength": len(contents),
-            "ContentType": "binary/octet-stream",
-            "Body": six.BytesIO(contents),
-            "ResponseMetadata": {
-                "HTTPStatusCode": 200
+        get_object_response.update(
+            {
+                "AcceptRanges": "bytes",
+                "ETag": self.etag,
+                "ContentLength": len(contents),
+                "ContentType": "binary/octet-stream",
+                "Body": six.BytesIO(contents),
+                "ResponseMetadata": {"HTTPStatusCode": 200},
             }
-        })
-        expected_params.update({
-            "Bucket": self.bucket,
-            "Key": self.key
-        })
+        )
+        expected_params.update({"Bucket": self.bucket, "Key": self.key})
 
         self.stubber.add_response(
-            method='get_object', service_response=get_object_response,
-            expected_params=expected_params)
+            method='get_object',
+            service_response=get_object_response,
+            expected_params=expected_params,
+        )
 
     def stub_multipart_download(self, contents, part_size, num_parts):
         self.stub_head(content_length=len(contents))
@@ -410,14 +419,17 @@ class TestDownloadFileobj(BaseTransferTest):
             start_byte = i * part_size
             end_byte = (i + 1) * part_size - 1
             self.stub_get_object(
-                full_contents=contents, start_byte=start_byte,
-                end_byte=end_byte)
+                full_contents=contents,
+                start_byte=start_byte,
+                end_byte=end_byte,
+            )
 
     def test_client_download(self):
         self.stub_single_part_download()
         with self.stubber:
             self.s3.meta.client.download_fileobj(
-                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj)
+                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj
+            )
 
         assert self.fileobj.getvalue() == self.contents
         self.stubber.assert_no_pending_responses()
@@ -426,7 +438,8 @@ class TestDownloadFileobj(BaseTransferTest):
         with self.stubber:
             with pytest.raises(ValueError):
                 self.s3.meta.client.download_fileobj(
-                    Bucket=self.bucket, Key=self.key, Fileobj='foo')
+                    Bucket=self.bucket, Key=self.key, Fileobj='foo'
+                )
 
     def test_bucket_download(self):
         self.stub_single_part_download()
@@ -449,15 +462,19 @@ class TestDownloadFileobj(BaseTransferTest):
     def test_multipart_download(self):
         self.contents = b'A' * 55
         self.stub_multipart_download(
-            contents=self.contents, part_size=5, num_parts=11)
+            contents=self.contents, part_size=5, num_parts=11
+        )
         transfer_config = TransferConfig(
-            multipart_chunksize=5, multipart_threshold=1,
-            max_concurrency=1)
+            multipart_chunksize=5, multipart_threshold=1, max_concurrency=1
+        )
 
         with self.stubber:
             self.s3.meta.client.download_fileobj(
-                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj,
-                Config=transfer_config)
+                Bucket=self.bucket,
+                Key=self.key,
+                Fileobj=self.fileobj,
+                Config=transfer_config,
+            )
 
         assert self.fileobj.getvalue() == self.contents
         self.stubber.assert_no_pending_responses()
@@ -465,10 +482,11 @@ class TestDownloadFileobj(BaseTransferTest):
     def test_download_progress(self):
         self.contents = b'A' * 55
         self.stub_multipart_download(
-            contents=self.contents, part_size=5, num_parts=11)
+            contents=self.contents, part_size=5, num_parts=11
+        )
         transfer_config = TransferConfig(
-            multipart_chunksize=5, multipart_threshold=1,
-            max_concurrency=1)
+            multipart_chunksize=5, multipart_threshold=1, max_concurrency=1
+        )
 
         def progress_callback(amount):
             self.progress += amount
@@ -476,8 +494,12 @@ class TestDownloadFileobj(BaseTransferTest):
 
         with self.stubber:
             self.s3.meta.client.download_fileobj(
-                Bucket=self.bucket, Key=self.key, Fileobj=self.fileobj,
-                Config=transfer_config, Callback=progress_callback)
+                Bucket=self.bucket,
+                Key=self.key,
+                Fileobj=self.fileobj,
+                Config=transfer_config,
+                Callback=progress_callback,
+            )
 
         # Assert that the progress callback was called the correct number of
         # times with the correct amounts.
@@ -489,8 +511,10 @@ class TestDownloadFileobj(BaseTransferTest):
 class TestS3ObjectSummary(unittest.TestCase):
     def setUp(self):
         self.session = boto3.session.Session(
-            aws_access_key_id='foo', aws_secret_access_key='bar',
-            region_name='us-west-2')
+            aws_access_key_id='foo',
+            aws_secret_access_key='bar',
+            region_name='us-west-2',
+        )
         self.s3 = self.session.resource('s3')
         self.obj_summary = self.s3.ObjectSummary('my_bucket', 'my_key')
         self.obj_summary_size = 12
@@ -499,13 +523,11 @@ class TestS3ObjectSummary(unittest.TestCase):
         self.stubber.add_response(
             method='head_object',
             service_response={
-                'ContentLength': self.obj_summary_size, 'ETag': 'my-etag',
-                'ContentType': 'binary'
+                'ContentLength': self.obj_summary_size,
+                'ETag': 'my-etag',
+                'ContentType': 'binary',
             },
-            expected_params={
-                'Bucket': 'my_bucket',
-                'Key': 'my_key'
-            }
+            expected_params={'Bucket': 'my_bucket', 'Key': 'my_key'},
         )
 
     def tearDown(self):

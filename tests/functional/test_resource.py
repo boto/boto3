@@ -10,12 +10,11 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import botocore.session
 import pytest
 
 import boto3
 from boto3.exceptions import ResourceNotExistsError
-
-import botocore.session
 from tests import unittest
 
 
@@ -30,12 +29,14 @@ class TestResourceCustomization(unittest.TestCase):
     def add_new_method(self, name):
         def handler(class_attributes, **kwargs):
             class_attributes[name] = identity
+
         return handler
 
     def test_can_inject_method_onto_resource(self):
         session = boto3.Session(botocore_session=self.botocore_session)
-        self.botocore_session.register('creating-resource-class.s3',
-                                       self.add_new_method(name='my_method'))
+        self.botocore_session.register(
+            'creating-resource-class.s3', self.add_new_method(name='my_method')
+        )
         resource = session.resource('s3')
         assert hasattr(resource, 'my_method')
         assert resource.my_method('anything') == 'anything'

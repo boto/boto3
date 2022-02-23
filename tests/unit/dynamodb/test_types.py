@@ -14,9 +14,8 @@ from decimal import Decimal
 
 import pytest
 
+from boto3.dynamodb.types import Binary, TypeDeserializer, TypeSerializer
 from tests import unittest
-
-from boto3.dynamodb.types import Binary, TypeSerializer, TypeDeserializer
 
 
 class TestBinary(unittest.TestCase):
@@ -38,7 +37,7 @@ class TestBinary(unittest.TestCase):
 
     def test_unicode_throws_error(self):
         with pytest.raises(TypeError):
-            Binary(u'\u00e9')
+            Binary('\u00e9')
 
     def test_integer_throws_error(self):
         with pytest.raises(TypeError):
@@ -99,20 +98,21 @@ class TestSerializer(unittest.TestCase):
         assert self.serializer.serialize(b'\x01') == {'B': b'\x01'}
 
     def test_serialize_number_set(self):
-        serialized_value = self.serializer.serialize(set([1, 2, 3]))
+        serialized_value = self.serializer.serialize({1, 2, 3})
         assert len(serialized_value) == 1
         assert 'NS' in serialized_value
         self.assertCountEqual(serialized_value['NS'], ['1', '2', '3'])
 
     def test_serialize_string_set(self):
-        serialized_value = self.serializer.serialize(set(['foo', 'bar']))
+        serialized_value = self.serializer.serialize({'foo', 'bar'})
         assert len(serialized_value) == 1
         assert 'SS' in serialized_value
         self.assertCountEqual(serialized_value['SS'], ['foo', 'bar'])
 
     def test_serialize_binary_set(self):
         serialized_value = self.serializer.serialize(
-            set([Binary(b'\x01'), Binary(b'\x02')]))
+            {Binary(b'\x01'), Binary(b'\x02')}
+        )
         assert len(serialized_value) == 1
         assert 'BS' in serialized_value
         self.assertCountEqual(serialized_value['BS'], [b'\x01', b'\x02'])
@@ -123,7 +123,7 @@ class TestSerializer(unittest.TestCase):
         assert 'L' in serialized_value
         self.assertCountEqual(
             serialized_value['L'],
-            [{'S': 'foo'}, {'N': '1'}, {'L': [{'N': '1'}]}]
+            [{'S': 'foo'}, {'N': '1'}, {'L': [{'N': '1'}]}],
         )
 
     def test_serialize_tuple(self):
@@ -132,7 +132,7 @@ class TestSerializer(unittest.TestCase):
         self.assertIn('L', serialized_value)
         self.assertCountEqual(
             serialized_value['L'],
-            [{'S': 'foo'}, {'N': '1'}, {'L': [{'N': '1'}]}]
+            [{'S': 'foo'}, {'N': '1'}, {'L': [{'N': '1'}]}],
         )
 
     def test_serialize_map(self):
@@ -140,10 +140,7 @@ class TestSerializer(unittest.TestCase):
             {'foo': 'bar', 'baz': {'biz': 1}}
         )
         assert serialized_value == {
-            'M': {
-                'foo': {'S': 'bar'},
-                'baz': {'M': {'biz': {'N': '1'}}}
-            }
+            'M': {'foo': {'S': 'bar'}, 'baz': {'M': {'biz': {'N': '1'}}}}
         }
 
 
@@ -178,16 +175,22 @@ class TestDeserializer(unittest.TestCase):
         assert self.deserializer.deserialize({'B': b'\x00'}) == Binary(b'\x00')
 
     def test_deserialize_number_set(self):
-        assert self.deserializer.deserialize(
-            {'NS': ['1', '1.25']}) == set([Decimal('1'), Decimal('1.25')])
+        assert self.deserializer.deserialize({'NS': ['1', '1.25']}) == {
+            Decimal('1'),
+            Decimal('1.25'),
+        }
 
     def test_deserialize_string_set(self):
-        assert self.deserializer.deserialize(
-            {'SS': ['foo', 'bar']}) == set(['foo', 'bar'])
+        assert self.deserializer.deserialize({'SS': ['foo', 'bar']}) == {
+            'foo',
+            'bar',
+        }
 
     def test_deserialize_binary_set(self):
-        assert self.deserializer.deserialize(
-            {'BS': [b'\x00', b'\x01']}) == set([Binary(b'\x00'), Binary(b'\x01')])
+        assert self.deserializer.deserialize({'BS': [b'\x00', b'\x01']}) == {
+            Binary(b'\x00'),
+            Binary(b'\x01'),
+        }
 
     def test_deserialize_list(self):
         assert self.deserializer.deserialize(
@@ -196,5 +199,10 @@ class TestDeserializer(unittest.TestCase):
 
     def test_deserialize_map(self):
         assert self.deserializer.deserialize(
-            {'M': {'foo': {'S': 'mystring'}, 'bar': {'M': {'baz': {'N': '1'}}}}}
+            {
+                'M': {
+                    'foo': {'S': 'mystring'},
+                    'bar': {'M': {'baz': {'N': '1'}}},
+                }
+            }
         ) == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}

@@ -123,17 +123,16 @@ transfer.  For example:
 
 """
 from botocore.exceptions import ClientError
-from botocore.compat import six
-from s3transfer.exceptions import RetriesExceededError as \
-    S3TransferRetriesExceededError
+from s3transfer.exceptions import (
+    RetriesExceededError as S3TransferRetriesExceededError,
+)
+from s3transfer.futures import NonThreadedExecutor
 from s3transfer.manager import TransferConfig as S3TransferConfig
 from s3transfer.manager import TransferManager
-from s3transfer.futures import NonThreadedExecutor
 from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import OSUtils
 
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
-
 
 KB = 1024
 MB = KB * KB
@@ -163,7 +162,7 @@ def create_transfer_manager(client, config, osutil=None):
 class TransferConfig(S3TransferConfig):
     ALIAS = {
         'max_concurrency': 'max_request_concurrency',
-        'max_io_queue': 'max_io_queue_size'
+        'max_io_queue': 'max_io_queue_size',
     }
 
     def __init__(
@@ -217,7 +216,7 @@ class TransferConfig(S3TransferConfig):
             in uploading and downloading file content. The value is an integer
             in terms of bytes per second.
         """
-        super(TransferConfig, self).__init__(
+        super().__init__(
             multipart_threshold=multipart_threshold,
             max_request_concurrency=max_concurrency,
             multipart_chunksize=multipart_chunksize,
@@ -237,12 +236,12 @@ class TransferConfig(S3TransferConfig):
         # If the alias name is used, make sure we set the name that it points
         # to as that is what actually is used in governing the TransferManager.
         if name in self.ALIAS:
-            super(TransferConfig, self).__setattr__(self.ALIAS[name], value)
+            super().__setattr__(self.ALIAS[name], value)
         # Always set the value of the actual name provided.
-        super(TransferConfig, self).__setattr__(name, value)
+        super().__setattr__(name, value)
 
 
-class S3Transfer(object):
+class S3Transfer:
     ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
     ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
 
@@ -266,8 +265,9 @@ class S3Transfer(object):
         else:
             self._manager = create_transfer_manager(client, config, osutil)
 
-    def upload_file(self, filename, bucket, key,
-                    callback=None, extra_args=None):
+    def upload_file(
+        self, filename, bucket, key, callback=None, extra_args=None
+    ):
         """Upload a file to an S3 object.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -277,12 +277,13 @@ class S3Transfer(object):
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
-        if not isinstance(filename, six.string_types):
+        if not isinstance(filename, str):
             raise ValueError('Filename must be a string')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
-            filename, bucket, key, extra_args, subscribers)
+            filename, bucket, key, extra_args, subscribers
+        )
         try:
             future.result()
         # If a client error was raised, add the backwards compatibility layer
@@ -291,11 +292,14 @@ class S3Transfer(object):
         # client error.
         except ClientError as e:
             raise S3UploadFailedError(
-                "Failed to upload %s to %s: %s" % (
-                    filename, '/'.join([bucket, key]), e))
+                "Failed to upload {} to {}: {}".format(
+                    filename, '/'.join([bucket, key]), e
+                )
+            )
 
-    def download_file(self, bucket, key, filename, extra_args=None,
-                      callback=None):
+    def download_file(
+        self, bucket, key, filename, extra_args=None, callback=None
+    ):
         """Download an S3 object to a file.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -305,12 +309,13 @@ class S3Transfer(object):
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
-        if not isinstance(filename, six.string_types):
+        if not isinstance(filename, str):
             raise ValueError('Filename must be a string')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
-            bucket, key, filename, extra_args, subscribers)
+            bucket, key, filename, extra_args, subscribers
+        )
         try:
             future.result()
         # This is for backwards compatibility where when retries are
@@ -339,6 +344,7 @@ class ProgressCallbackInvoker(BaseSubscriber):
     :param callback: A callable that takes a single positional argument for
         how many bytes were transferred.
     """
+
     def __init__(self, callback):
         self._callback = callback
 

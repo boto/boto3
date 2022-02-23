@@ -13,9 +13,9 @@
 import os
 
 import boto3
+from boto3.docs.service import ServiceDocumenter
 from tests import mock
 from tests.unit.docs import BaseDocsTest
-from boto3.docs.service import ServiceDocumenter
 
 
 class TestServiceDocumenter(BaseDocsTest):
@@ -119,8 +119,9 @@ class TestServiceDocumenter(BaseDocsTest):
         assert 'Waiters' not in contents
 
     def test_creates_correct_path_to_examples_based_on_service_name(self):
-        path = os.sep.join([os.path.dirname(boto3.__file__),
-                            'examples', 'myservice.rst'])
+        path = os.sep.join(
+            [os.path.dirname(boto3.__file__), 'examples', 'myservice.rst']
+        )
         path = os.path.realpath(path)
         with mock.patch('os.path.isfile') as isfile:
             isfile.return_value = False
@@ -129,10 +130,10 @@ class TestServiceDocumenter(BaseDocsTest):
             assert isfile.call_args_list[-1] == mock.call(path)
 
     def test_injects_examples_when_found(self):
-        examples_path = os.sep.join([os.path.dirname(__file__), '..', 'data',
-                                     'examples'])
-        service_documenter = ServiceDocumenter(
-            'myservice', self.session)
+        examples_path = os.sep.join(
+            [os.path.dirname(__file__), '..', 'data', 'examples']
+        )
+        service_documenter = ServiceDocumenter('myservice', self.session)
         service_documenter.EXAMPLE_PATH = examples_path
         contents = service_documenter.document_service().decode('utf-8')
         assert 'This is an example' in contents

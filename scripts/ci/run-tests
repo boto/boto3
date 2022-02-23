@@ -33,9 +33,7 @@ def process_args(args):
     runner = args.test_runner
     test_args = ""
     if args.with_cov:
-        test_args += (
-            f"--cov={PACKAGE} --cov-report xml -v "
-        )
+        test_args += f"--cov={PACKAGE} --cov-report xml -v "
     dirs = " ".join(args.test_dirs)
 
     return runner, test_args, dirs

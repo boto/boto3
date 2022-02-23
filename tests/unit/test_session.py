@@ -11,19 +11,17 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pytest
-
 from botocore import loaders
-from botocore.exceptions import UnknownServiceError
 from botocore.client import Config
+from botocore.exceptions import UnknownServiceError
 
 from boto3 import __version__
 from boto3.exceptions import ResourceNotExistsError
 from boto3.session import Session
-from tests import mock, BaseTestCase
+from tests import BaseTestCase, mock
 
 
 class TestSession(BaseTestCase):
-
     def test_repr(self):
         bc_session = self.bc_session_cls.return_value
         bc_session.get_credentials.return_value.access_key = 'abc123'
@@ -49,8 +47,9 @@ class TestSession(BaseTestCase):
         bc_session = self.bc_session_cls.return_value
         bc_session.get_config_variable.return_value = 'us-west-2'
         session = Session('abc123', region_name='us-west-2')
-        bc_session.set_config_variable.assert_called_with('region',
-                                                          'us-west-2')
+        bc_session.set_config_variable.assert_called_with(
+            'region', 'us-west-2'
+        )
 
         assert session.region_name == 'us-west-2'
 
@@ -63,14 +62,15 @@ class TestSession(BaseTestCase):
         bc_session = self.bc_session_cls.return_value
 
         # Set values in constructor
-        Session(aws_access_key_id='key',
-                aws_secret_access_key='secret',
-                aws_session_token='token')
+        Session(
+            aws_access_key_id='key',
+            aws_secret_access_key='secret',
+            aws_session_token='token',
+        )
 
         assert self.bc_session_cls.called
         assert bc_session.set_credentials.called
-        bc_session.set_credentials.assert_called_with(
-            'key', 'secret', 'token')
+        bc_session.set_credentials.assert_called_with('key', 'secret', 'token')
 
     def test_can_get_credentials(self):
         access_key = 'foo'
@@ -88,7 +88,8 @@ class TestSession(BaseTestCase):
         session = Session(
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
-            aws_session_token=token)
+            aws_session_token=token,
+        )
 
         credentials = session.get_credentials()
         assert credentials.access_key == access_key
@@ -100,8 +101,7 @@ class TestSession(BaseTestCase):
 
         session = Session(profile_name='foo')
 
-        bc_session.set_config_variable.assert_called_with(
-            'profile', 'foo')
+        bc_session.set_config_variable.assert_called_with('profile', 'foo')
         bc_session.profile = 'foo'
 
         # We should also be able to read the value
@@ -202,8 +202,9 @@ class TestSession(BaseTestCase):
 
         partitions = session.get_available_regions('myservice')
         bc_session.get_available_regions.assert_called_with(
-            service_name='myservice', partition_name='aws',
-            allow_non_regional=False
+            service_name='myservice',
+            partition_name='aws',
+            allow_non_regional=False,
         )
         assert partitions == ['foo']
 
@@ -213,9 +214,7 @@ class TestSession(BaseTestCase):
         session = Session(botocore_session=bc_session)
 
         partition = session.get_partition_for_region('foo-bar-1')
-        bc_session.get_partition_for_region.assert_called_with(
-            'foo-bar-1'
-        )
+        bc_session.get_partition_for_region.assert_called_with('foo-bar-1')
         assert partition == 'baz'
 
     def test_create_client(self):
@@ -231,17 +230,26 @@ class TestSession(BaseTestCase):
         session.client('sqs', region_name='us-west-2')
 
         bc_session.create_client.assert_called_with(
-            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
-            endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=None, region_name='us-west-2', api_version=None,
-            config=None)
+            'sqs',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name='us-west-2',
+            api_version=None,
+            config=None,
+        )
 
     def test_create_resource_with_args(self):
         mock_bc_session = mock.Mock()
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
         loader.load_service_model.return_value = {
-            'resources': [], 'service': []}
+            'resources': [],
+            'service': [],
+        }
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -250,10 +258,17 @@ class TestSession(BaseTestCase):
         session.resource('sqs', verify=False)
 
         session.client.assert_called_with(
-            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
-            endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=False, region_name=None, api_version='2014-11-02',
-            config=mock.ANY)
+            'sqs',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=False,
+            region_name=None,
+            api_version='2014-11-02',
+            config=mock.ANY,
+        )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
         assert client_config.signature_version is None
@@ -263,7 +278,9 @@ class TestSession(BaseTestCase):
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
         loader.load_service_model.return_value = {
-            'resources': [], 'service': []}
+            'resources': [],
+            'service': [],
+        }
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -273,10 +290,17 @@ class TestSession(BaseTestCase):
         session.resource('sqs', config=config)
 
         session.client.assert_called_with(
-            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
-            endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=None, region_name=None, api_version='2014-11-02',
-            config=mock.ANY)
+            'sqs',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name=None,
+            api_version='2014-11-02',
+            config=mock.ANY,
+        )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
         assert client_config.signature_version == 'v4'
@@ -286,7 +310,9 @@ class TestSession(BaseTestCase):
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
         loader.load_service_model.return_value = {
-            'resources': [], 'service': []}
+            'resources': [],
+            'service': [],
+        }
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -296,10 +322,17 @@ class TestSession(BaseTestCase):
         session.resource('sqs', config=config)
 
         session.client.assert_called_with(
-            'sqs', aws_secret_access_key=None, aws_access_key_id=None,
-            endpoint_url=None, use_ssl=True, aws_session_token=None,
-            verify=None, region_name=None, api_version='2014-11-02',
-            config=mock.ANY)
+            'sqs',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name=None,
+            api_version='2014-11-02',
+            config=mock.ANY,
+        )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'foo'
         assert client_config.signature_version == 'v4'
@@ -309,7 +342,9 @@ class TestSession(BaseTestCase):
         loader = mock.Mock(spec=loaders.Loader)
         loader.determine_latest_version.return_value = '2014-11-02'
         loader.load_service_model.return_value = {
-            'resources': [], 'service': []}
+            'resources': [],
+            'service': [],
+        }
         mock_bc_session.get_component.return_value = loader
         session = Session(botocore_session=mock_bc_session)
         session.resource_factory.load_from_definition = mock.Mock()
@@ -317,7 +352,8 @@ class TestSession(BaseTestCase):
         session.resource('sqs')
 
         loader.load_service_model.assert_called_with(
-            'sqs', 'resources-1', None)
+            'sqs', 'resources-1', None
+        )
 
     def test_bad_resource_name(self):
         mock_bc_session = mock.Mock()

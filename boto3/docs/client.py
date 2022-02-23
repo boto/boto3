@@ -22,6 +22,7 @@ class Boto3ClientDocumenter(ClientDocumenter):
         section.style.new_line()
         section.write(
             'client = boto3.client(\'{service}\')'.format(
-                service=self._service_name)
+                service=self._service_name
+            )
         )
         section.style.end_codeblock()

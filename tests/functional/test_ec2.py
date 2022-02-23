@@ -12,8 +12,9 @@
 # language governing permissions and limitations under the License.
 import unittest
 
-import boto3.session
 from botocore.stub import Stubber
+
+import boto3.session
 
 
 class TestInstanceDeleteTags(unittest.TestCase):
@@ -50,15 +51,12 @@ class TestInstanceDeleteTags(unittest.TestCase):
 
         stubber.add_response(
             method='describe_instances',
-            service_response={
-                'Reservations': []
-            },
+            service_response={'Reservations': []},
             expected_params={
-                'Filters': [{
-                    'Name': 'instance-state-name',
-                    'Values': ['running']
-                }]
-            }
+                'Filters': [
+                    {'Name': 'instance-state-name', 'Values': ['running']}
+                ]
+            },
         )
 
         with stubber:

@@ -10,10 +10,9 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest
-
-from boto3.resources.model import Parameter
 from boto3.docs.utils import get_resource_ignore_params
+from boto3.resources.model import Parameter
+from tests import unittest
 
 
 class TestGetResourceIgnoreParams(unittest.TestCase):

@@ -13,7 +13,6 @@
 
 import random
 import time
-
 import unittest
 from unittest import mock
 
@@ -25,8 +24,7 @@ def unique_id(name):
     integration tests in parallel that must create remote
     resources.
     """
-    return '{0}-{1}-{2}'.format(name, int(time.time()),
-                                random.randint(0, 10000))
+    return f'{name}-{int(time.time())}-{random.randint(0, 10000)}'
 
 
 class BaseTestCase(unittest.TestCase):
@@ -34,6 +32,7 @@ class BaseTestCase(unittest.TestCase):
     A base test case which mocks out the low-level session to prevent
     any actual calls to Botocore.
     """
+
     def setUp(self):
         self.bc_session_patch = mock.patch('botocore.session.Session')
         self.bc_session_cls = self.bc_session_patch.start()
