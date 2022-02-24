@@ -69,12 +69,11 @@ def document_resource_waiter(
     ignore_params = get_resource_ignore_params(resource_waiter_model.params)
     service_module_name = get_service_module_name(service_model)
     description = (
-        'Waits until this %s is %s. This method calls '
-        ':py:meth:`%s.Waiter.%s.wait` which polls. '
-        ':py:meth:`%s.Client.%s` every %s seconds until '
+        'Waits until this {} is {}. This method calls '
+        ':py:meth:`{}.Waiter.{}.wait` which polls. '
+        ':py:meth:`{}.Client.{}` every {} seconds until '
         'a successful state is reached. An error is returned '
-        'after %s failed checks.'
-        % (
+        'after {} failed checks.'.format(
             resource_name,
             ' '.join(resource_waiter_model.name.split('_')[2:]),
             service_module_name,

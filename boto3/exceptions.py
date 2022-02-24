@@ -40,9 +40,8 @@ class UnknownAPIVersionError(
 ):
     def __init__(self, service_name, bad_api_version, available_api_versions):
         msg = (
-            "The '%s' resource does not an API version of: %s\n"
-            "Valid API versions are: %s"
-            % (service_name, bad_api_version, available_api_versions)
+            f"The '{service_name}' resource does not an API version of: {bad_api_version}\n"
+            f"Valid API versions are: {available_api_versions}"
         )
         # Not using super because we don't want the DataNotFoundError
         # to be called, it has a different __init__ signature.
@@ -56,14 +55,16 @@ class ResourceNotExistsError(
 
     def __init__(self, service_name, available_services, has_low_level_client):
         msg = (
-            "The '%s' resource does not exist.\n"
+            "The '{}' resource does not exist.\n"
             "The available resources are:\n"
-            "   - %s\n" % (service_name, '\n   - '.join(available_services))
+            "   - {}\n".format(
+                service_name, '\n   - '.join(available_services)
+            )
         )
         if has_low_level_client:
-            msg += (
-                "\nConsider using a boto3.client('%s') instead "
-                "of a resource for '%s'" % (service_name, service_name)
+            msg = (
+                f"{msg}\nConsider using a boto3.client('{service_name}') "
+                f"instead of a resource for '{service_name}'"
             )
         # Not using super because we don't want the DataNotFoundError
         # to be called, it has a different __init__ signature.
@@ -89,10 +90,9 @@ class DynamoDBOperationNotSupportedError(Boto3Error):
 
     def __init__(self, operation, value):
         msg = (
-            '%s operation cannot be applied to value %s of type %s directly. '
-            'Must use AttributeBase object methods (i.e. Attr().eq()). to '
-            'generate ConditionBase instances first.'
-            % (operation, value, type(value))
+            f'{operation} operation cannot be applied to value {value} of type '
+            f'{type(value)} directly. Must use AttributeBase object methods '
+            f'(i.e. Attr().eq()). to generate ConditionBase instances first.'
         )
         Exception.__init__(self, msg)
 
@@ -106,9 +106,9 @@ class DynamoDBNeedsConditionError(Boto3Error):
 
     def __init__(self, value):
         msg = (
-            'Expecting a ConditionBase object. Got %s of type %s. '
-            'Use AttributeBase object methods (i.e. Attr().eq()). to '
-            'generate ConditionBase instances.' % (value, type(value))
+            f'Expecting a ConditionBase object. Got {value} of type {type(value)}. '
+            f'Use AttributeBase object methods (i.e. Attr().eq()). to '
+            f'generate ConditionBase instances.'
         )
         Exception.__init__(self, msg)
 

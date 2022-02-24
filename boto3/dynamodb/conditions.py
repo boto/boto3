@@ -406,9 +406,9 @@ class ConditionExpressionBuilder:
         elif isinstance(value, AttributeBase):
             if is_key_condition and not isinstance(value, Key):
                 raise DynamoDBNeedsKeyConditionError(
-                    'Attribute object %s is of type %s. '
-                    'KeyConditionExpression only supports Attribute objects '
-                    'of type Key' % (value.name, type(value))
+                    f'Attribute object {value.name} is of type {type(value)}. '
+                    f'KeyConditionExpression only supports Attribute objects '
+                    f'of type Key'
                 )
             return self._build_name_placeholder(
                 value, attribute_name_placeholders

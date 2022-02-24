@@ -53,8 +53,7 @@ def get_resource_public_actions(resource_class):
 
 
 def get_identifier_values_for_example(identifier_names):
-    example_values = ['\'%s\'' % identifier for identifier in identifier_names]
-    return ','.join(example_values)
+    return ','.join([f'\'{identifier}\'' for identifier in identifier_names])
 
 
 def get_identifier_args_for_signature(identifier_names):
@@ -62,8 +61,9 @@ def get_identifier_args_for_signature(identifier_names):
 
 
 def get_identifier_description(resource_name, identifier_name):
-    return "The {}'s {} identifier. This **must** be set.".format(
-        resource_name, identifier_name
+    return (
+        f"The {resource_name}'s {identifier_name} identifier. "
+        f"This **must** be set."
     )
 
 
@@ -81,9 +81,8 @@ def add_resource_type_overview(
     section.style.new_line()
     if intro_link is not None:
         section.write(
-            'For more information about %s refer to the '
-            ':ref:`Resources Introduction Guide<%s>`.'
-            % (resource_type.lower(), intro_link)
+            f'For more information about {resource_type.lower()} refer to the '
+            f':ref:`Resources Introduction Guide<{intro_link}>`.'
         )
         section.style.new_line()
 
@@ -122,16 +121,17 @@ class DocumentModifiedShape:
         if event_name.startswith(
             'docs.request-params'
         ) or event_name.startswith('docs.response-params'):
+            allowed_sections = (
+                'param-name',
+                'param-documentation',
+                'end-structure',
+                'param-type',
+                'end-param',
+            )
             for section_name in section.available_sections:
                 # Delete any extra members as a new shape is being
                 # used.
-                if section_name not in [
-                    'param-name',
-                    'param-documentation',
-                    'end-structure',
-                    'param-type',
-                    'end-param',
-                ]:
+                if section_name not in allowed_sections:
                     section.delete_section(section_name)
 
             # Update the documentation
@@ -146,4 +146,4 @@ class DocumentModifiedShape:
                 type_section.write(f':type {section.name}: {self._new_type}')
             else:
                 type_section.clear_text()
-                type_section.style.italics('(%s) -- ' % self._new_type)
+                type_section.style.italics(f'({self._new_type}) -- ')
