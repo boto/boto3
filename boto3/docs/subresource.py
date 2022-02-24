@@ -83,7 +83,7 @@ def document_sub_resource(
         )
 
     method_intro_section = section.add_new_section('method-intro')
-    description = 'Creates a %s resource.' % sub_resource_model.resource.type
+    description = f'Creates a {sub_resource_model.resource.type} resource.'
     method_intro_section.include_doc_string(description)
     example_section = section.add_new_section('example')
     example_values = get_identifier_values_for_example(identifiers_needed)
@@ -105,7 +105,7 @@ def document_sub_resource(
         description = get_identifier_description(
             sub_resource_model.name, identifier
         )
-        param_section.write(':type %s: string' % identifier)
+        param_section.write(f':type {identifier}: string')
         param_section.style.new_line()
         param_section.write(f':param {identifier}: {description}')
         param_section.style.new_line()
@@ -120,6 +120,6 @@ def document_sub_resource(
     )
     return_section.style.new_line()
     return_section.write(
-        ':returns: A %s resource' % sub_resource_model.resource.type
+        f':returns: A {sub_resource_model.resource.type} resource'
     )
     return_section.style.new_line()
