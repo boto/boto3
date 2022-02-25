@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.21.8
+======
+
+* api-change:``elasticache``: [``botocore``] Doc only update for ElastiCache
+* api-change:``panorama``: [``botocore``] Added NTP server configuration parameter to ProvisionDevice operation. Added alternate software fields to DescribeDevice response
+
+
 1.21.7
 ======
 
