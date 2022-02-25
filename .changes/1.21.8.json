@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Doc only update for ElastiCache",
+    "type": "api-change"
+  },
+  {
+    "category": "``panorama``",
+    "description": "[``botocore``] Added NTP server configuration parameter to ProvisionDevice operation. Added alternate software fields to DescribeDevice response",
+    "type": "api-change"
+  }
+]
