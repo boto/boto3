@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] Documentation updates for Multi-AZ DB clusters."
+}
