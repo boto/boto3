@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.21.10
+=======
+
+* api-change:``mediapackage``: [``botocore``] This release adds Hybridcast as an available profile option for Dash Origin Endpoints.
+* api-change:``rds``: [``botocore``] Documentation updates for Multi-AZ DB clusters.
+* api-change:``mgn``: [``botocore``] Add support for GP3 and IO2 volume types. Add bootMode to LaunchConfiguration object (and as a parameter to UpdateLaunchConfigurationRequest).
+* api-change:``kafkaconnect``: [``botocore``] Adds operation for custom plugin deletion (DeleteCustomPlugin) and adds new StateDescription field to DescribeCustomPlugin and DescribeConnector responses to return errors from asynchronous resource creation.
+
+
 1.21.9
 ======
 
