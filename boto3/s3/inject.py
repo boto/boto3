@@ -406,7 +406,7 @@ def copy(
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
-        client operation. For allowed download arguments see
+        client operation. For allowed copy arguments see
         boto3.s3.transfer.S3Transfer.ALLOWED_COPY_ARGS.
 
     :type Callback: function
