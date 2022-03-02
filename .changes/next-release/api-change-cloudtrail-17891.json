@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudtrail``",
-  "description": "[``botocore``] Add bytesScanned field into responses of DescribeQuery and GetQueryResults."
-}
