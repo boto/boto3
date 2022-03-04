@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sts``",
+  "description": "[``botocore``] Documentation updates for AWS Security Token Service."
+}
