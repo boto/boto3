@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.21.14
+=======
+
+* api-change:``chime-sdk-meetings``: [``botocore``] Adds support for Transcribe language identification feature to the StartMeetingTranscription API.
+* api-change:``ecs``: [``botocore``] Amazon ECS UpdateService API now supports additional parameters: loadBalancers, propagateTags, enableECSManagedTags, and serviceRegistries
+* api-change:``migration-hub-refactor-spaces``: [``botocore``] AWS Migration Hub Refactor Spaces documentation update.
+
+
 1.21.13
 =======
 
