@@ -163,10 +163,10 @@ S3 object.
     )
 
 
-List objects by last modified time using JMESPath
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Filter objects by last modified time using JMESPath
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This example shows how to list objects by last modified time
+This example shows how to filter objects by last modified time
 using JMESPath.
 
 .. code-block:: python
