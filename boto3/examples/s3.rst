@@ -171,7 +171,7 @@ using JMESPath.
 
 .. code-block:: python
 
-    import boto3 
+    import boto3
     s3 = boto3.client("s3")
 
     s3_paginator = s3.get_paginator('list_objects_v2')
