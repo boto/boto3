@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.21.16
+=======
+
+* api-change:``comprehend``: [``botocore``] Amazon Comprehend now supports extracting the sentiment associated with entities such as brands, products and services from text documents.
+
+
 1.21.15
 =======
 
