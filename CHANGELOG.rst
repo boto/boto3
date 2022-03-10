@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.21.17
+=======
+
+* api-change:``transcribe``: [``botocore``] Documentation fix for API `StartMedicalTranscriptionJobRequest`, now showing min sample rate as 16khz
+* api-change:``transfer``: [``botocore``] Adding more descriptive error types for managed workflows
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+
+
 1.21.16
 =======
 
