@@ -166,6 +166,11 @@ class Session:
     ):
         """Lists the region and endpoint names of a particular partition.
 
+        The list of regions returned by this method are regions that are
+        explicitly known by the client to exist and is not comprehensive. A
+        region not returned in this list may still be available for the
+        provided service.
+
         :type service_name: string
         :param service_name: Name of a service to list endpoint for (e.g., s3).
 
