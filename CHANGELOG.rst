@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.21.18
+=======
+
+* api-change:``outposts``: [``botocore``] This release adds address filters for listSites
+* api-change:``lambda``: [``botocore``] Adds PrincipalOrgID support to AddPermission API. Customers can use it to manage permissions to lambda functions at AWS Organizations level.
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager.
+* api-change:``connect``: [``botocore``] This release adds support for enabling Rich Messaging when starting a new chat session via the StartChatContact API. Rich Messaging enables the following formatting options: bold, italics, hyperlinks, bulleted lists, and numbered lists.
+* api-change:``chime``: [``botocore``] Chime VoiceConnector Logging APIs will now support MediaMetricLogs. Also CreateMeetingDialOut now returns AccessDeniedException.
+
+
 1.21.17
 =======
 
