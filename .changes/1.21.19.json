@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``kendra``",
+    "description": "[``botocore``] Amazon Kendra now provides a data source connector for Slack. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-slack.html",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-query``",
+    "description": "[``botocore``] Amazon Timestream Scheduled Queries now support Timestamp datatype in a multi-measure record.",
+    "type": "api-change"
+  },
+  {
+    "category": "Stubber",
+    "description": "[``botocore``] Added support for modeled exception fields when adding errors to a client stub. Implements boto/boto3`#3178 <https://github.com/boto/botocore/issues/3178>`__.",
+    "type": "enhancement"
+  },
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Doc only update for ElastiCache",
+    "type": "api-change"
+  },
+  {
+    "category": "``config``",
+    "description": "[``botocore``] Add resourceType enums for AWS::ECR::PublicRepository and AWS::EC2::LaunchTemplate",
+    "type": "api-change"
+  }
+]
