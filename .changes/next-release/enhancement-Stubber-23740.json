@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Stubber",
+  "description": "[``botocore``] Added support for modeled exception fields when adding errors to a client stub. Implements boto/boto3`#3178 <https://github.com/boto/botocore/issues/3178>`__."
+}

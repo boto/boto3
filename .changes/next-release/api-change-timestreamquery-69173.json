@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``timestream-query``",
+  "description": "[``botocore``] Amazon Timestream Scheduled Queries now support Timestamp datatype in a multi-measure record."
+}
