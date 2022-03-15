@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "AWSCRT",
+  "description": "[``botocore``] Upgrade awscrt extra to 0.13.5"
+}
