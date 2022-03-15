@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``keyspaces``",
-  "description": "[``botocore``] Fixing formatting issues in CLI and SDK documentation"
-}

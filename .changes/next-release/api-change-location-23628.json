@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``location``",
-  "description": "[``botocore``] New HERE style \"VectorHereExplore\" and \"VectorHereExploreTruck\"."
-}
