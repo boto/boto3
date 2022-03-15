@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.21.20
+=======
+
+* api-change:``robomaker``: [``botocore``] This release deprecates ROS, Ubuntu and Gazbeo from RoboMaker Simulation Service Software Suites in favor of user-supplied containers and Relaxed Software Suites.
+* api-change:``dataexchange``: [``botocore``] This feature enables data providers to use the RevokeRevision operation to revoke subscriber access to a given revision. Subscribers are unable to interact with assets within a revoked revision.
+* api-change:``ec2``: [``botocore``] Adds the Cascade parameter to the DeleteIpam API. Customers can use this parameter to automatically delete their IPAM, including non-default scopes, pools, cidrs, and allocations. There mustn't be any pools provisioned in the default public scope to use this parameter.
+* api-change:``cognito-idp``: [``botocore``] Updated EmailConfigurationType and SmsConfigurationType to reflect that you can now choose Amazon SES and Amazon SNS resources in the same Region.
+* enhancement:AWSCRT: [``botocore``] Upgrade awscrt extra to 0.13.5
+* api-change:``location``: [``botocore``] New HERE style "VectorHereExplore" and "VectorHereExploreTruck".
+* api-change:``ecs``: [``botocore``] Documentation only update to address tickets
+* api-change:``keyspaces``: [``botocore``] Fixing formatting issues in CLI and SDK documentation
+* api-change:``rds``: [``botocore``] Various documentation improvements
+
+
 1.21.19
 =======
 
