@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Dependency",
+  "description": "Added support for jmespath 1.0"
+}
