@@ -10,21 +10,22 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests.unit.docs import BaseDocsTest
-
 from boto3.docs.subresource import SubResourceDocumenter
+from tests.unit.docs import BaseDocsTest
 
 
 class TestSubResourceDocumenter(BaseDocsTest):
     def test_document_sub_resources(self):
         sub_resource_documentor = SubResourceDocumenter(self.resource)
         sub_resource_documentor.document_sub_resources(self.doc_structure)
-        self.assert_contains_lines_in_order([
-            '.. py:method:: Sample(name)',
-            '  Creates a Sample resource.::',
-            "    sample = myservice.Sample('name')",
-            '  :type name: string',
-            "  :param name: The Sample's name identifier.",
-            '  :rtype: :py:class:`MyService.Sample`',
-            '  :returns: A Sample resource',
-        ])
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:method:: Sample(name)',
+                '  Creates a Sample resource.::',
+                "    sample = myservice.Sample('name')",
+                '  :type name: string',
+                "  :param name: The Sample's name identifier.",
+                '  :rtype: :py:class:`MyService.Sample`',
+                '  :returns: A Sample resource',
+            ]
+        )

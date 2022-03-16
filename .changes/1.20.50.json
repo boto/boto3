@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``auditmanager``",
+    "description": "[``botocore``] This release updates 3 API parameters. UpdateAssessmentFrameworkControlSet now requires the controls attribute, and CreateAssessmentFrameworkControl requires the id attribute. Additionally, UpdateAssessmentFramework now has a minimum length constraint for the controlSets attribute.",
+    "type": "api-change"
+  },
+  {
+    "category": "``synthetics``",
+    "description": "[``botocore``] Adding names parameters to the Describe APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm-incidents``",
+    "description": "[``botocore``] Update RelatedItem enum to support SSM Automation",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Update events client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "Lambda Request Header",
+    "description": "[``botocore``] Adding request header for Lambda recursion detection.",
+    "type": "enhancement"
+  }
+]

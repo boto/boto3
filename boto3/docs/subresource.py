@@ -14,10 +14,12 @@ from botocore import xform_name
 from botocore.utils import get_service_module_name
 
 from boto3.docs.base import BaseDocumenter
-from boto3.docs.utils import get_identifier_args_for_signature
-from boto3.docs.utils import get_identifier_values_for_example
-from boto3.docs.utils import get_identifier_description
-from boto3.docs.utils import add_resource_type_overview
+from boto3.docs.utils import (
+    add_resource_type_overview,
+    get_identifier_args_for_signature,
+    get_identifier_description,
+    get_identifier_values_for_example,
+)
 
 
 class SubResourceDocumenter(BaseDocumenter):
@@ -28,11 +30,13 @@ class SubResourceDocumenter(BaseDocumenter):
             description=(
                 'Sub-resources are methods that create a new instance of a'
                 ' child resource. This resource\'s identifiers get passed'
-                ' along to the child.'),
-            intro_link='subresources_intro')
+                ' along to the child.'
+            ),
+            intro_link='subresources_intro',
+        )
         sub_resources = sorted(
             self._resource.meta.resource_model.subresources,
-            key=lambda sub_resource: sub_resource.name
+            key=lambda sub_resource: sub_resource.name,
         )
         sub_resources_list = []
         self.member_map['sub-resources'] = sub_resources_list
@@ -43,12 +47,17 @@ class SubResourceDocumenter(BaseDocumenter):
                 section=sub_resource_section,
                 resource_name=self._resource_name,
                 sub_resource_model=sub_resource,
-                service_model=self._service_model
+                service_model=self._service_model,
             )
 
 
-def document_sub_resource(section, resource_name, sub_resource_model,
-                          service_model, include_signature=True):
+def document_sub_resource(
+    section,
+    resource_name,
+    sub_resource_model,
+    service_model,
+    include_signature=True,
+):
     """Documents a resource action
 
     :param section: The section to write to
@@ -70,21 +79,22 @@ def document_sub_resource(section, resource_name, sub_resource_model,
     if include_signature:
         signature_args = get_identifier_args_for_signature(identifiers_needed)
         section.style.start_sphinx_py_method(
-            sub_resource_model.name, signature_args)
+            sub_resource_model.name, signature_args
+        )
 
-    method_intro_section = section.add_new_section(
-        'method-intro')
-    description = 'Creates a %s resource.' % sub_resource_model.resource.type
+    method_intro_section = section.add_new_section('method-intro')
+    description = f'Creates a {sub_resource_model.resource.type} resource.'
     method_intro_section.include_doc_string(description)
     example_section = section.add_new_section('example')
     example_values = get_identifier_values_for_example(identifiers_needed)
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example = '%s = %s.%s(%s)' % (
+    example = '{} = {}.{}({})'.format(
         xform_name(sub_resource_model.resource.type),
         example_resource_name,
-        sub_resource_model.name, example_values
+        sub_resource_model.name,
+        example_values,
     )
     example_section.style.start_codeblock()
     example_section.write(example)
@@ -93,20 +103,23 @@ def document_sub_resource(section, resource_name, sub_resource_model,
     param_section = section.add_new_section('params')
     for identifier in identifiers_needed:
         description = get_identifier_description(
-            sub_resource_model.name, identifier)
-        param_section.write(':type %s: string' % identifier)
+            sub_resource_model.name, identifier
+        )
+        param_section.write(f':type {identifier}: string')
         param_section.style.new_line()
-        param_section.write(':param %s: %s' % (
-            identifier, description))
+        param_section.write(f':param {identifier}: {description}')
         param_section.style.new_line()
 
     return_section = section.add_new_section('return')
     return_section.style.new_line()
     return_section.write(
-        ':rtype: :py:class:`%s.%s`' % (
+        ':rtype: :py:class:`{}.{}`'.format(
             get_service_module_name(service_model),
-            sub_resource_model.resource.type))
+            sub_resource_model.resource.type,
+        )
+    )
     return_section.style.new_line()
     return_section.write(
-        ':returns: A %s resource' % sub_resource_model.resource.type)
+        f':returns: A {sub_resource_model.resource.type} resource'
+    )
     return_section.style.new_line()

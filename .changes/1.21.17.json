@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``transcribe``",
+    "description": "[``botocore``] Documentation fix for API `StartMedicalTranscriptionJobRequest`, now showing min sample rate as 16khz",
+    "type": "api-change"
+  },
+  {
+    "category": "``transfer``",
+    "description": "[``botocore``] Adding more descriptive error types for managed workflows",
+    "type": "api-change"
+  },
+  {
+    "category": "``lexv2-models``",
+    "description": "[``botocore``] Update lexv2-models client to latest version",
+    "type": "api-change"
+  }
+]

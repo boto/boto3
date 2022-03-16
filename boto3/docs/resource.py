@@ -13,23 +13,27 @@
 from botocore import xform_name
 from botocore.docs.utils import get_official_service_name
 
-from boto3.docs.base import BaseDocumenter
 from boto3.docs.action import ActionDocumenter
-from boto3.docs.waiter import WaiterResourceDocumenter
+from boto3.docs.attr import (
+    document_attribute,
+    document_identifier,
+    document_reference,
+)
+from boto3.docs.base import BaseDocumenter
 from boto3.docs.collection import CollectionDocumenter
 from boto3.docs.subresource import SubResourceDocumenter
-from boto3.docs.attr import document_attribute
-from boto3.docs.attr import document_identifier
-from boto3.docs.attr import document_reference
-from boto3.docs.utils import get_identifier_args_for_signature
-from boto3.docs.utils import get_identifier_values_for_example
-from boto3.docs.utils import get_identifier_description
-from boto3.docs.utils import add_resource_type_overview
+from boto3.docs.utils import (
+    add_resource_type_overview,
+    get_identifier_args_for_signature,
+    get_identifier_description,
+    get_identifier_values_for_example,
+)
+from boto3.docs.waiter import WaiterResourceDocumenter
 
 
 class ResourceDocumenter(BaseDocumenter):
     def __init__(self, resource, botocore_session):
-        super(ResourceDocumenter, self).__init__(resource)
+        super().__init__(resource)
         self._botocore_session = botocore_session
 
     def document_resource(self, section):
@@ -57,7 +61,8 @@ class ResourceDocumenter(BaseDocumenter):
         # Write out the class signature.
         class_args = get_identifier_args_for_signature(identifier_names)
         section.style.start_sphinx_py_class(
-            class_name='%s(%s)' % (self.class_name, class_args))
+            class_name=f'{self.class_name}({class_args})'
+        )
 
         # Add as short description about the resource
         description_section = section.add_new_section('description')
@@ -73,11 +78,12 @@ class ResourceDocumenter(BaseDocumenter):
         self._add_params_description(param_section, identifier_names)
 
     def _add_description(self, section):
-        official_service_name = get_official_service_name(
-            self._service_model)
+        official_service_name = get_official_service_name(self._service_model)
         section.write(
-            'A resource representing an %s %s' % (
-                official_service_name, self._resource_name))
+            'A resource representing an {} {}'.format(
+                official_service_name, self._resource_name
+            )
+        )
 
     def _add_example(self, section, identifier_names):
         section.style.start_codeblock()
@@ -86,39 +92,49 @@ class ResourceDocumenter(BaseDocumenter):
         section.style.new_line()
         section.style.new_line()
         section.write(
-            '%s = boto3.resource(\'%s\')' % (
-                self._service_name, self._service_name)
+            '{} = boto3.resource(\'{}\')'.format(
+                self._service_name, self._service_name
+            )
         )
         section.style.new_line()
         example_values = get_identifier_values_for_example(identifier_names)
         section.write(
-            '%s = %s.%s(%s)' % (
-                xform_name(self._resource_name), self._service_name,
-                self._resource_name, example_values))
+            '{} = {}.{}({})'.format(
+                xform_name(self._resource_name),
+                self._service_name,
+                self._resource_name,
+                example_values,
+            )
+        )
         section.style.end_codeblock()
 
     def _add_params_description(self, section, identifier_names):
         for identifier_name in identifier_names:
             description = get_identifier_description(
-                self._resource_name, identifier_name)
-            section.write(':type %s: string' % identifier_name)
+                self._resource_name, identifier_name
+            )
+            section.write(f':type {identifier_name}: string')
             section.style.new_line()
-            section.write(':param %s: %s' % (
-                identifier_name, description))
+            section.write(f':param {identifier_name}: {description}')
             section.style.new_line()
 
     def _add_overview_of_members(self, section):
         for resource_member_type in self.member_map:
             section.style.new_line()
-            section.write('These are the resource\'s available %s:' % (
-                resource_member_type))
+            section.write(
+                f'These are the resource\'s available {resource_member_type}:'
+            )
             section.style.new_line()
             for member in self.member_map[resource_member_type]:
-                if resource_member_type in ['identifiers', 'attributes',
-                                            'references', 'collections']:
-                    section.style.li(':py:attr:`%s`' % member)
+                if resource_member_type in (
+                    'attributes',
+                    'collections',
+                    'identifiers',
+                    'references',
+                ):
+                    section.style.li(f':py:attr:`{member}`')
                 else:
-                    section.style.li(':py:meth:`%s()`' % member)
+                    section.style.li(f':py:meth:`{member}()`')
 
     def _add_identifiers(self, section):
         identifiers = self._resource.meta.resource_model.identifiers
@@ -131,15 +147,17 @@ class ResourceDocumenter(BaseDocumenter):
                 resource_type='Identifiers',
                 description=(
                     'Identifiers are properties of a resource that are '
-                    'set upon instantiation of the resource.'),
-                intro_link='identifiers_attributes_intro')
+                    'set upon instantiation of the resource.'
+                ),
+                intro_link='identifiers_attributes_intro',
+            )
         for identifier in identifiers:
             identifier_section = section.add_new_section(identifier.name)
             member_list.append(identifier.name)
             document_identifier(
                 section=identifier_section,
                 resource_name=self._resource_name,
-                identifier_model=identifier
+                identifier_model=identifier,
             )
 
     def _add_attributes(self, section):
@@ -147,9 +165,11 @@ class ResourceDocumenter(BaseDocumenter):
         attributes = {}
         if self._resource.meta.resource_model.shape:
             shape = service_model.shape_for(
-                self._resource.meta.resource_model.shape)
+                self._resource.meta.resource_model.shape
+            )
             attributes = self._resource.meta.resource_model.get_attributes(
-                shape)
+                shape
+            )
         section = section.add_new_section('attributes')
         attribute_list = []
         if attributes:
@@ -160,8 +180,10 @@ class ResourceDocumenter(BaseDocumenter):
                     'Attributes provide access'
                     ' to the properties of a resource. Attributes are lazy-'
                     'loaded the first time one is accessed via the'
-                    ' :py:meth:`load` method.'),
-                intro_link='identifiers_attributes_intro')
+                    ' :py:meth:`load` method.'
+                ),
+                intro_link='identifiers_attributes_intro',
+            )
             self.member_map['attributes'] = attribute_list
         for attr_name in sorted(attributes):
             _, attr_shape = attributes[attr_name]
@@ -173,7 +195,7 @@ class ResourceDocumenter(BaseDocumenter):
                 resource_name=self._resource_name,
                 attr_name=attr_name,
                 event_emitter=self._resource.meta.client.meta.events,
-                attr_model=attr_shape
+                attr_model=attr_shape,
             )
 
     def _add_references(self, section):
@@ -186,15 +208,16 @@ class ResourceDocumenter(BaseDocumenter):
                 resource_type='References',
                 description=(
                     'References are related resource instances that have '
-                    'a belongs-to relationship.'),
-                intro_link='references_intro')
+                    'a belongs-to relationship.'
+                ),
+                intro_link='references_intro',
+            )
             self.member_map['references'] = reference_list
         for reference in references:
             reference_section = section.add_new_section(reference.name)
             reference_list.append(reference.name)
             document_reference(
-                section=reference_section,
-                reference_model=reference
+                section=reference_section, reference_model=reference
             )
 
     def _add_actions(self, section):
@@ -226,9 +249,11 @@ class ResourceDocumenter(BaseDocumenter):
         waiters = self._resource.meta.resource_model.waiters
         if waiters:
             service_waiter_model = self._botocore_session.get_waiter_model(
-                self._service_name)
+                self._service_name
+            )
             documenter = WaiterResourceDocumenter(
-                self._resource, service_waiter_model)
+                self._resource, service_waiter_model
+            )
             documenter.member_map = self.member_map
             documenter.document_resource_waiters(section)
 
@@ -236,16 +261,14 @@ class ResourceDocumenter(BaseDocumenter):
 class ServiceResourceDocumenter(ResourceDocumenter):
     @property
     def class_name(self):
-        return '%s.ServiceResource' % self._service_docs_name
+        return f'{self._service_docs_name}.ServiceResource'
 
     def _add_title(self, section):
         section.style.h2('Service Resource')
 
     def _add_description(self, section):
-        official_service_name = get_official_service_name(
-            self._service_model)
-        section.write(
-            'A resource representing %s' % official_service_name)
+        official_service_name = get_official_service_name(self._service_model)
+        section.write(f'A resource representing {official_service_name}')
 
     def _add_example(self, section, identifier_names):
         section.style.start_codeblock()
@@ -254,6 +277,6 @@ class ServiceResourceDocumenter(ResourceDocumenter):
         section.style.new_line()
         section.style.new_line()
         section.write(
-            '%s = boto3.resource(\'%s\')' % (
-                self._service_name, self._service_name))
+            f'{self._service_name} = boto3.resource(\'{self._service_name}\')'
+        )
         section.style.end_codeblock()
