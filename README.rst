@@ -40,21 +40,21 @@ For more information, see this `blog post <https://aws.amazon.com/blogs/develope
 
 Getting Started
 ---------------
-Assuming that you have Python and ``virtualenv`` installed and that you set up your environment with:       
+Assuming that you have a supported version of Python installed, you can first
+set up your environment with:
 
-.. code-block:: sh
-    
-    $ virtualenv venv
+..code-block:: sh
+    $ python -m venv .venv
     ...
-    $ . venv/bin/activate
+    $ . .venv/bin/activate
 
-you can install boto3 with:
+Then, you can install boto3 from PyPI with:
 
 .. code-block:: sh
 
     $ python -m pip install boto3
 
-or with:
+or install from source with:
 
 .. code-block:: sh
 
