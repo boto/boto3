@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.21.22
+=======
+
+* enhancement:jmespath: [``botocore``] Add env markers to get working version of jmespath for python 3.6
+* api-change:``glue``: [``botocore``] Added 9 new APIs for AWS Glue Interactive Sessions: ListSessions, StopSession, CreateSession, GetSession, DeleteSession, RunStatement, GetStatement, ListStatements, CancelStatement
+
+
 1.21.21
 =======
 

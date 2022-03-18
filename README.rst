@@ -40,21 +40,28 @@ For more information, see this `blog post <https://aws.amazon.com/blogs/develope
 
 Getting Started
 ---------------
-Assuming that you have Python and ``virtualenv`` installed, set up your environment and install the required dependencies like this or you can install the library using ``pip``:
+Assuming that you have a supported version of Python installed, you can first
+set up your environment with:
+
+..code-block:: sh
+    $ python -m venv .venv
+    ...
+    $ . .venv/bin/activate
+
+Then, you can install boto3 from PyPI with:
+
+.. code-block:: sh
+
+    $ python -m pip install boto3
+
+or install from source with:
 
 .. code-block:: sh
 
     $ git clone https://github.com/boto/boto3.git
     $ cd boto3
-    $ virtualenv venv
-    ...
-    $ . venv/bin/activate
     $ python -m pip install -r requirements.txt
     $ python -m pip install -e .
-
-.. code-block:: sh
-
-    $ python -m pip install boto3
 
 
 Using Boto3
