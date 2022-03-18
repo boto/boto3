@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "jmespath",
-  "description": "[``botocore``] Add env markers to get working version of jmespath for python 3.6"
-}
