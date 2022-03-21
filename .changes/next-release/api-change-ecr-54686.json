@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ecr``",
+  "description": "[``botocore``] This release includes a fix in the DescribeImageScanFindings paginated output."
+}
