@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.21.25
+=======
+
+* api-change:``redshift``: [``botocore``] This release adds a new [--encrypted | --no-encrypted] field in restore-from-cluster-snapshot API. Customers can now restore an unencrypted snapshot to a cluster encrypted with AWS Managed Key or their own KMS key.
+* api-change:``ebs``: [``botocore``] Increased the maximum supported value for the Timeout parameter of the StartSnapshot API from 60 minutes to 4320 minutes.  Changed the HTTP error code for ConflictException from 503 to 409.
+* api-change:``gamesparks``: [``botocore``] Released the preview of Amazon GameSparks, a fully managed AWS service that provides a multi-service backend for game developers.
+* api-change:``elasticache``: [``botocore``] Doc only update for ElastiCache
+* api-change:``transfer``: [``botocore``] Documentation updates for AWS Transfer Family to describe how to remove an associated workflow from a server.
+* api-change:``auditmanager``: [``botocore``] This release updates 1 API parameter, the SnsArn attribute. The character length and regex pattern for the SnsArn attribute have been updated, which enables you to deselect an SNS topic when using the UpdateSettings operation.
+* api-change:``ssm``: [``botocore``] Update AddTagsToResource, ListTagsForResource, and RemoveTagsFromResource APIs to reflect the support for tagging Automation resources. Includes other minor documentation updates.
+
+
 1.21.24
 =======
 
