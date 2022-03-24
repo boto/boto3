@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.21.26
+=======
+
+* api-change:``lambda``: [``botocore``] Adds support for increased ephemeral storage (/tmp) up to 10GB for Lambda functions. Customers can now provision up to 10 GB of ephemeral storage per function instance, a 20x increase over the previous limit of 512 MB.
+* api-change:``config``: [``botocore``] Added new APIs GetCustomRulePolicy and GetOrganizationCustomRulePolicy, and updated existing APIs PutConfigRule, DescribeConfigRule, DescribeConfigRuleEvaluationStatus, PutOrganizationConfigRule, DescribeConfigRule to support a new feature for building AWS Config rules with AWS CloudFormation Guard
+* api-change:``transcribe``: [``botocore``] This release adds an additional parameter for subtitling with Amazon Transcribe batch jobs: outputStartIndex.
+
+
 1.21.25
 =======
 
