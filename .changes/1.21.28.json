@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``medialive``",
+    "description": "[``botocore``] This release adds support for selecting a maintenance window.",
+    "type": "api-change"
+  },
+  {
+    "category": "``acm-pca``",
+    "description": "[``botocore``] Updating service name entities",
+    "type": "api-change"
+  }
+]

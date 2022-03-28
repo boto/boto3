@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.21.28
+=======
+
+* api-change:``medialive``: [``botocore``] This release adds support for selecting a maintenance window.
+* api-change:``acm-pca``: [``botocore``] Updating service name entities
+
+
 1.21.27
 =======
 
