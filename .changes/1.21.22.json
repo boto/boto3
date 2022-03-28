@@ -1,0 +1,12 @@
+[
+  {
+    "category": "jmespath",
+    "description": "[``botocore``] Add env markers to get working version of jmespath for python 3.6",
+    "type": "enhancement"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Added 9 new APIs for AWS Glue Interactive Sessions: ListSessions, StopSession, CreateSession, GetSession, DeleteSession, RunStatement, GetStatement, ListStatements, CancelStatement",
+    "type": "api-change"
+  }
+]

@@ -2,6 +2,80 @@
 CHANGELOG
 =========
 
+1.21.28
+=======
+
+* api-change:``medialive``: [``botocore``] This release adds support for selecting a maintenance window.
+* api-change:``acm-pca``: [``botocore``] Updating service name entities
+
+
+1.21.27
+=======
+
+* api-change:``ec2``: [``botocore``] This is release adds support for Amazon VPC Reachability Analyzer to analyze path through a Transit Gateway.
+* api-change:``ssm``: [``botocore``] This Patch Manager release supports creating, updating, and deleting Patch Baselines for Rocky Linux OS.
+* api-change:``batch``: [``botocore``] Bug Fix: Fixed a bug where shapes were marked as unboxed and were not serialized and sent over the wire, causing an API error from the service.
+
+
+1.21.26
+=======
+
+* api-change:``lambda``: [``botocore``] Adds support for increased ephemeral storage (/tmp) up to 10GB for Lambda functions. Customers can now provision up to 10 GB of ephemeral storage per function instance, a 20x increase over the previous limit of 512 MB.
+* api-change:``config``: [``botocore``] Added new APIs GetCustomRulePolicy and GetOrganizationCustomRulePolicy, and updated existing APIs PutConfigRule, DescribeConfigRule, DescribeConfigRuleEvaluationStatus, PutOrganizationConfigRule, DescribeConfigRule to support a new feature for building AWS Config rules with AWS CloudFormation Guard
+* api-change:``transcribe``: [``botocore``] This release adds an additional parameter for subtitling with Amazon Transcribe batch jobs: outputStartIndex.
+
+
+1.21.25
+=======
+
+* api-change:``redshift``: [``botocore``] This release adds a new [--encrypted | --no-encrypted] field in restore-from-cluster-snapshot API. Customers can now restore an unencrypted snapshot to a cluster encrypted with AWS Managed Key or their own KMS key.
+* api-change:``ebs``: [``botocore``] Increased the maximum supported value for the Timeout parameter of the StartSnapshot API from 60 minutes to 4320 minutes.  Changed the HTTP error code for ConflictException from 503 to 409.
+* api-change:``gamesparks``: [``botocore``] Released the preview of Amazon GameSparks, a fully managed AWS service that provides a multi-service backend for game developers.
+* api-change:``elasticache``: [``botocore``] Doc only update for ElastiCache
+* api-change:``transfer``: [``botocore``] Documentation updates for AWS Transfer Family to describe how to remove an associated workflow from a server.
+* api-change:``auditmanager``: [``botocore``] This release updates 1 API parameter, the SnsArn attribute. The character length and regex pattern for the SnsArn attribute have been updated, which enables you to deselect an SNS topic when using the UpdateSettings operation.
+* api-change:``ssm``: [``botocore``] Update AddTagsToResource, ListTagsForResource, and RemoveTagsFromResource APIs to reflect the support for tagging Automation resources. Includes other minor documentation updates.
+
+
+1.21.24
+=======
+
+* api-change:``location``: [``botocore``] Amazon Location Service now includes a MaxResults parameter for GetDevicePositionHistory requests.
+* api-change:``polly``: [``botocore``] Amazon Polly adds new Catalan voice - Arlet. Arlet is available as Neural voice only.
+* api-change:``lakeformation``: [``botocore``] The release fixes the incorrect permissions called out in the documentation - DESCRIBE_TAG, ASSOCIATE_TAG, DELETE_TAG, ALTER_TAG. This trebuchet release fixes the corresponding SDK and documentation.
+* api-change:``ecs``: [``botocore``] Documentation only update to address tickets
+* api-change:``ce``: [``botocore``] Added three new APIs to support tagging and resource-level authorization on Cost Explorer resources: TagResource, UntagResource, ListTagsForResource.  Added optional parameters to CreateCostCategoryDefinition, CreateAnomalySubscription and CreateAnomalyMonitor APIs to support Tag On Create.
+
+
+1.21.23
+=======
+
+* api-change:``ram``: [``botocore``] Document improvements to the RAM API operations and parameter descriptions.
+* api-change:``ecr``: [``botocore``] This release includes a fix in the DescribeImageScanFindings paginated output.
+* api-change:``quicksight``: [``botocore``] AWS QuickSight Service Features - Expand public API support for group management.
+* api-change:``chime-sdk-meetings``: [``botocore``] Add support for media replication to link multiple WebRTC media sessions together to reach larger and global audiences. Participants connected to a replica session can be granted access to join the primary session and can switch sessions with their existing WebRTC connection
+* api-change:``mediaconnect``: [``botocore``] This release adds support for selecting a maintenance window.
+
+
+1.21.22
+=======
+
+* enhancement:jmespath: [``botocore``] Add env markers to get working version of jmespath for python 3.6
+* api-change:``glue``: [``botocore``] Added 9 new APIs for AWS Glue Interactive Sessions: ListSessions, StopSession, CreateSession, GetSession, DeleteSession, RunStatement, GetStatement, ListStatements, CancelStatement
+
+
+1.21.21
+=======
+
+* enhancement:Dependency: [``botocore``] Added support for jmespath 1.0
+* api-change:``amplifybackend``: [``botocore``] Adding the ability to customize Cognito verification messages for email and SMS in CreateBackendAuth and UpdateBackendAuth. Adding deprecation documentation for ForgotPassword in CreateBackendAuth and UpdateBackendAuth
+* api-change:``acm-pca``: [``botocore``] AWS Certificate Manager (ACM) Private Certificate Authority (CA) now supports customizable certificate subject names and extensions.
+* api-change:``ssm-incidents``: [``botocore``] Removed incorrect validation pattern for IncidentRecordSource.invokedBy
+* enhancement:Dependency: Added support for jmespath 1.0
+* api-change:``billingconductor``: [``botocore``] This is the initial SDK release for AWS Billing Conductor. The AWS Billing Conductor is a customizable billing service, allowing you to customize your billing data to match your desired business structure.
+* api-change:``s3outposts``: [``botocore``] S3 on Outposts is releasing a new API, ListSharedEndpoints, that lists all endpoints associated with S3 on Outpost, that has been shared by Resource Access Manager (RAM).
+
+
 1.21.20
 =======
 
