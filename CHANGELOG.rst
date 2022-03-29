@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.21.29
+=======
+
+* api-change:``organizations``: [``botocore``] This release provides the new CloseAccount API that enables principals in the management account to close any member account within an organization.
+
+
 1.21.28
 =======
 
