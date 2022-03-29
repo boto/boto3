@@ -43,7 +43,8 @@ Getting Started
 Assuming that you have a supported version of Python installed, you can first
 set up your environment with:
 
-..code-block:: sh
+.. code-block:: sh
+
     $ python -m venv .venv
     ...
     $ . .venv/bin/activate
