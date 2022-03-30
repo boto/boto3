@@ -230,6 +230,11 @@ To confirm this new version of Python does not negotiate a version earlier than 
 Enforcing TLS 1.3
 ------------------
 
+.. note::
+    Some AWS Services do not yet support TLS 1.3, configuring this as your minimum version may affect SDK interoperability.
+    We recommend testing this change with each service prior to production deployment.
+
+
 The process of ensuring the AWS SDK for Python uses no TLS version earlier than TLS 1.3 is the same as the instructions in the `Enforcing TLS 1.2`_ section with some minor modifications, primarily adding the ``no-tls1_2`` flag to the openssl build configuration.
 
 The following are the modified build instructions::
