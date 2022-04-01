@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.21.32
+=======
+
+* api-change:``connect``: [``botocore``] This release updates these APIs: UpdateInstanceAttribute, DescribeInstanceAttribute and ListInstanceAttributes. You can use it to programmatically enable/disable multi-party conferencing using attribute type MULTI_PARTY_CONFERENCING on the specified Amazon Connect instance.
+
+
 1.21.31
 =======
 

@@ -161,3 +161,25 @@ S3 object.
         "bucket-name", "key-name", "tmp.txt",
         ExtraArgs={"VersionId": "my-version-id"}
     )
+
+
+Filter objects by last modified time using JMESPath
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This example shows how to filter objects by last modified time
+using JMESPath.
+
+.. code-block:: python
+
+    import boto3
+    s3 = boto3.client("s3")
+
+    s3_paginator = s3.get_paginator('list_objects_v2')
+    s3_iterator = s3_paginator.paginate(Bucket='your-bucket-name')
+
+    filtered_iterator = s3_iterator.search(
+        "Contents[?to_string(LastModified)>='\"2022-01-05 08:05:37+00:00\"'].Key"
+    )
+
+    for key_data in filtered_iterator:
+        print(key_data)
