@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datasync``",
-  "description": "[``botocore``] AWS DataSync now supports Amazon FSx for OpenZFS locations."
-}
