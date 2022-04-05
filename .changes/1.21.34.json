@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``securityhub``",
+    "description": "[``botocore``] Added additional ASFF details for RdsSecurityGroup AutoScalingGroup, ElbLoadBalancer, CodeBuildProject and RedshiftCluster.",
+    "type": "api-change"
+  },
+  {
+    "category": "``fsx``",
+    "description": "[``botocore``] Provide customers more visibility into file system status by adding new \"Misconfigured Unavailable\" status for Amazon FSx for Windows File Server.",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3control``",
+    "description": "[``botocore``] Documentation-only update for doc bug fixes for the S3 Control API docs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``datasync``",
+    "description": "[``botocore``] AWS DataSync now supports Amazon FSx for OpenZFS locations.",
+    "type": "api-change"
+  }
+]
