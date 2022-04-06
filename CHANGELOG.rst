@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.21.35
+=======
+
+* bugfix:Proxy: [``botocore``] Fix failure case for IP proxy addresses using TLS-in-TLS. `boto/botocore#2652 <https://github.com/boto/botocore/pull/2652>`__
+* api-change:``config``: [``botocore``] Add resourceType enums for AWS::EMR::SecurityConfiguration and AWS::SageMaker::CodeRepository
+* api-change:``panorama``: [``botocore``] Added Brand field to device listings.
+* api-change:``lambda``: [``botocore``] This release adds new APIs for creating and managing Lambda Function URLs and adds a new FunctionUrlAuthType parameter to the AddPermission API. Customers can use Function URLs to create built-in HTTPS endpoints on their functions.
+* api-change:``kendra``: [``botocore``] Amazon Kendra now provides a data source connector for Box. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-box.html
+
+
 1.21.34
 =======
 
