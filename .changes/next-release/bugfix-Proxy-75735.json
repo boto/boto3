@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "Proxy",
+  "description": "[``botocore``] Fix failure case for IP proxy addresses using TLS-in-TLS. `boto/botocore#2652 <https://github.com/boto/botocore/pull/2652>`__"
+}
