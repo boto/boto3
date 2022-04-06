@@ -131,6 +131,8 @@ Maintenance and Support for SDK Major Versions
 
 Boto3 was made generally available on 06/22/2015 and is currently in the full support phase of the availability life cycle.
 
+Boto (pronounced boh-toh) was named after the fresh water dolphin native to the Amazon river.
+
 For information about maintenance and support for SDK major versions and their underlying dependencies, see the following in the AWS SDKs and Tools Shared Configuration and Credentials Reference Guide:
 
 * `AWS SDKs and Tools Maintenance Policy <https://docs.aws.amazon.com/credref/latest/refdocs/maint-policy.html>`__
