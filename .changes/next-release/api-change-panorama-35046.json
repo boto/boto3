@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``panorama``",
-  "description": "[``botocore``] Added Brand field to device listings."
-}
