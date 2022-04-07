@@ -68,13 +68,13 @@ and throughput optimizations across AWS SDKs.
 When the AWS CRT is included, Boto3 uses it to incorporate features not otherwise
 available in the AWS SDK for Python.
 
-At this time, Boto3 uses the AWS CRT's authentication package (`aws-c-auth
-<https://github.com/awslabs/aws-c-auth>`_) to add support for the `AWS Signature Version 4
-<https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html>`_ (sigv4) signer, which
-adds authentication to your AWS requests using your security credentials (your AWS access key and
-secret access key).
+You'll find it used in features like:
 
-Boto3 doesn't use the AWS CRT by default but you can opt into using it by specifying the
+-  `Amazon S3 Multi-Region Access Points <https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPoints.html>`_
+-  `Amazon S3 Object Integrity <https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html>`_
+-  Amazon EventBridge Global Endpoints
+
+However, Boto3 doesn't use the AWS CRT by default but you can opt into using it by specifying the
 :code:`crt` `extra feature <https://www.python.org/dev/peps/pep-0508/#extras>`_ when installing Boto3::
 
     pip install boto3[crt]
