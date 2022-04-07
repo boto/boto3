@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``docdb``",
+  "description": "[``botocore``] Added support to enable/disable performance insights when creating or modifying db instances"
+}

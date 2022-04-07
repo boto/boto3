@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``personalize``",
+  "description": "[``botocore``] This release provides tagging support in AWS Personalize."
+}
