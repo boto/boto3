@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``apigateway``",
+    "description": "[``botocore``] ApiGateway CLI command get-usage now includes usagePlanId, startDate, and endDate fields in the output to match documentation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize``",
+    "description": "[``botocore``] This release provides tagging support in AWS Personalize.",
+    "type": "api-change"
+  },
+  {
+    "category": "``pi``",
+    "description": "[``botocore``] Adds support for DocumentDB to the Performance Insights API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Update events client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``docdb``",
+    "description": "[``botocore``] Added support to enable/disable performance insights when creating or modifying db instances",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Amazon Sagemaker Notebook Instances now supports G5 instance types",
+    "type": "api-change"
+  }
+]
