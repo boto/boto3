@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pi``",
-  "description": "[``botocore``] Adds support for DocumentDB to the Performance Insights API."
-}
