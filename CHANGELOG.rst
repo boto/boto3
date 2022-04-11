@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.21.38
+=======
+
+* api-change:``amplifyuibuilder``: [``botocore``] In this release, we have added the ability to bind events to component level actions.
+* api-change:``apprunner``: [``botocore``] This release adds tracing for App Runner services with X-Ray using AWS Distro for OpenTelemetry. New APIs: CreateObservabilityConfiguration, DescribeObservabilityConfiguration, ListObservabilityConfigurations, and DeleteObservabilityConfiguration. Updated APIs: CreateService and UpdateService.
+* api-change:``workspaces``: [``botocore``] Added API support that allows customers to create GPU-enabled WorkSpaces using EC2 G4dn instances.
+
+
 1.21.37
 =======
 
