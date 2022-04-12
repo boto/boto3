@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.21.39
+=======
+
+* api-change:``ec2``: [``botocore``] X2idn and X2iedn instances are powered by 3rd generation Intel Xeon Scalable processors with an all-core turbo frequency up to 3.5 GHzAmazon EC2. C6a instances are powered by 3rd generation AMD EPYC processors.
+* api-change:``devops-guru``: [``botocore``] This release adds new APIs DeleteInsight to deletes the insight along with the associated anomalies, events and recommendations.
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``iottwinmaker``: [``botocore``] This release adds the following new features: 1) ListEntities API now supports search using ExternalId. 2) BatchPutPropertyValue and GetPropertyValueHistory API now allows users to represent time in sub-second level precisions.
+
+
 1.21.38
 =======
 
