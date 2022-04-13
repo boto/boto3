@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.21.40
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``fsx``: [``botocore``] This release adds support for deploying FSx for ONTAP file systems in a single Availability Zone.
+
+
 1.21.39
 =======
 
