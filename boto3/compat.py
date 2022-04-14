@@ -64,18 +64,16 @@ def filter_python_deprecation_warnings():
 
 
 def _warn_deprecated_python():
-    """Python 2.7 is deprecated so this code will no longer run.
-
-    Use this template for future deprecation campaigns as needed.
-    """
-    py_27_params = {
-        'date': 'July 15, 2021',
-        'blog_link': 'https://aws.amazon.com/blogs/developer/announcing-end-'
-                     'of-support-for-python-2-7-in-aws-sdk-for-python-and-'
-                     'aws-cli-v1/'
+    """Use this template for future deprecation campaigns as needed."""
+    py_36_params = {
+        'date': 'May 30, 2022',
+        'blog_link': (
+            'https://aws.amazon.com/blogs/developer/'
+            'python-support-policy-updates-for-aws-sdks-and-tools/'
+        )
     }
     deprecated_versions = {
-        (2, 7): py_27_params,
+        (3, 6): py_36_params,
     }
     py_version = sys.version_info[:2]
 
@@ -84,7 +82,7 @@ def _warn_deprecated_python():
         warning = (
             "Boto3 will no longer support Python {}.{} "
             "starting {}. To continue receiving service updates, "
-            "bug fixes, and security updates please upgrade to Python 3.6 or "
+            "bug fixes, and security updates please upgrade to Python 3.7 or "
             "later. More information can be found here: {}"
         ).format(py_version[0], py_version[1], params['date'], params['blog_link'])
         warnings.warn(warning, PythonDeprecationWarning)
