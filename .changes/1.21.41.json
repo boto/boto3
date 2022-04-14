@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Enables configuration updates for compute environments with BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED allocation strategies.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Documentation updates for Amazon EC2.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Update cloudwatch client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``appstream``",
+    "description": "[``botocore``] Includes updates for create and update fleet APIs to manage the session scripts locations for Elastic fleets.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Auto Scaling for Glue version 3.0 and later jobs to dynamically scale compute resources. This SDK change provides customers with the auto-scaled DPU usage",
+    "type": "api-change"
+  },
+  {
+    "category": "``appflow``",
+    "description": "[``botocore``] Enables users to pass custom token URL parameters for Oauth2 authentication during create connector profile",
+    "type": "api-change"
+  }
+]
