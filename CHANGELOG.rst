@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.21.43
+=======
+
+* api-change:``textract``: [``botocore``] This release adds support for specifying and extracting information from documents using the Queries feature within Analyze Document API
+* api-change:``worklink``: [``botocore``] Amazon WorkLink is no longer supported. This will be removed in a future version of the SDK.
+* api-change:``ssm``: [``botocore``] Added offset support for specifying the number of days to wait after the date and time specified by a CRON expression when creating SSM association.
+* api-change:``autoscaling``: [``botocore``] EC2 Auto Scaling now adds default instance warm-up times for all scaling activities, health check replacements, and other replacement events in the Auto Scaling instance lifecycle.
+* api-change:``personalize``: [``botocore``] Adding StartRecommender and StopRecommender APIs for Personalize.
+* api-change:``kendra``: [``botocore``] Amazon Kendra now provides a data source connector for Quip. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-quip.html
+* api-change:``polly``: [``botocore``] Amazon Polly adds new Austrian German voice - Hannah. Hannah is available as Neural voice only.
+* api-change:``transfer``: [``botocore``] This release contains corrected HomeDirectoryMappings examples for several API functions: CreateAccess, UpdateAccess, CreateUser, and UpdateUser,.
+* api-change:``kms``: [``botocore``] Adds support for KMS keys and APIs that generate and verify HMAC codes
+* api-change:``redshift``: [``botocore``] Introduces new fields for LogDestinationType and LogExports on EnableLogging requests and Enable/Disable/DescribeLogging responses. Customers can now select CloudWatch Logs as a destination for their Audit Logs.
+
+
 1.21.42
 =======
 
