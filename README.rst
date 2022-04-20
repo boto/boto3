@@ -12,6 +12,8 @@ services that are supported.
 
 Boto3 is maintained and published by `Amazon Web Services`_.
 
+Boto (pronounced boh-toh) was named after the fresh water dolphin native to the Amazon river. The name was chosen by the author of the original Boto library, Mitch Garnaat, as a reference to the company.
+
 Notices
 -------
 
@@ -130,8 +132,6 @@ Maintenance and Support for SDK Major Versions
 ----------------------------------------------
 
 Boto3 was made generally available on 06/22/2015 and is currently in the full support phase of the availability life cycle.
-
-Boto (pronounced boh-toh) was named after the fresh water dolphin native to the Amazon river.
 
 For information about maintenance and support for SDK major versions and their underlying dependencies, see the following in the AWS SDKs and Tools Shared Configuration and Credentials Reference Guide:
 
