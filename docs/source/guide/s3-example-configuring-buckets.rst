@@ -68,7 +68,7 @@ method.
             'AllowedHeaders': ['Authorization'],
             'AllowedMethods': ['GET', 'PUT'],
             'AllowedOrigins': ['*'],
-            'ExposeHeaders': ['GET', 'PUT'],
+            'ExposeHeaders': ['ETag', 'x-amz-request-id'],
             'MaxAgeSeconds': 3000
         }]
     }
