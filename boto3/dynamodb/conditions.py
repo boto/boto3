@@ -20,6 +20,7 @@ from boto3.exceptions import (
 )
 
 ATTR_NAME_REGEX = re.compile(r'[^.\[\]]+(?![^\[]*\])')
+EXPR_STR_FORMAT_REGEX = re.compile(r"\{(\d+)\}")
 
 
 class ConditionBase:
@@ -59,6 +60,14 @@ class ConditionBase:
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __str__(self) -> str:
+        format_str = EXPR_STR_FORMAT_REGEX.sub(
+            r"{values[\1]}", self.expression_format
+        )
+        return format_str.format(
+            values=self._values, operator=self.expression_operator
+        )
 
 
 class AttributeBase:
@@ -132,6 +141,9 @@ class AttributeBase:
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __str__(self) -> str:
+        return self.name
 
 
 class ConditionAttributeBase(ConditionBase, AttributeBase):
