@@ -56,7 +56,7 @@ Prerequisite tasks
 To set up and run this example, you must first configure your AWS credentials, as described in :doc:`quickstart`.
 
 Describe security groups
-=======================
+========================
 Describe one or more of your security groups.
 
 A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. 
@@ -64,6 +64,11 @@ For more information, see `Amazon EC2 Security Groups <http://docs.aws.amazon.co
 in the *Amazon Elastic Compute Cloud User Guide* and 
 `Security Groups for Your VPC <http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html>`_ 
 in the *Amazon Virtual Private Cloud User Guide*.
+
+.. warning:: 
+    We are retiring EC2-Classic on August 15, 2022. We recommend that you
+    migrate from EC2-Classic to a VPC. For more information, see *Migrate from
+    EC2-Classic to a VPC* in the `Amazon EC2 User Guide for Linux Instances <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html>`_ or the `Amazon EC2 User Guide for Windows Users <http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/vpc-migrate.html>`_. Also see the blog post `EC2-Classic Networking is Retiring – Here's How to Prepare <https://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/>`_.
 
 The example below shows how to:
  
@@ -146,6 +151,11 @@ Delete a security group
 If you attempt to delete a security group that is associated with an instance, or is referenced by 
 another security group, the operation fails with :code:`InvalidGroup.InUse` in EC2-Classic or :code:`DependencyViolation` 
 in EC2-VPC.
+
+.. warning:: 
+    We are retiring EC2-Classic on August 15, 2022. We recommend that you
+    migrate from EC2-Classic to a VPC. For more information, see *Migrate from
+    EC2-Classic to a VPC* in the `Amazon EC2 User Guide for Linux Instances <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html>`_ or the `Amazon EC2 User Guide for Windows Users <http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/vpc-migrate.html>`_. Also see the blog post `EC2-Classic Networking is Retiring – Here's How to Prepare <https://aws.amazon.com/blogs/aws/ec2-classic-is-retiring-heres-how-to-prepare/>`_.
 
 The example below shows how to:
  
