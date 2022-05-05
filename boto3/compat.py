@@ -73,7 +73,8 @@ def _warn_deprecated_python():
         )
     }
     deprecated_versions = {
-        (3, 6): py_36_params,
+        # Example template for future deprecations
+        # (3, 6): py_36_params,
     }
     py_version = sys.version_info[:2]
 
