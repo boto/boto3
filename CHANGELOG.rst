@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.22.10
+=======
+
+* api-change:``evidently``: [``botocore``] Add detail message inside GetExperimentResults API response to indicate experiment result availability
+* api-change:``ssm-contacts``: [``botocore``] Fixed an error in the DescribeEngagement example for AWS Incident Manager.
+* api-change:``cloudcontrol``: [``botocore``] SDK release for Cloud Control API to include paginators for Python SDK.
+
+
 1.22.9
 ======
 

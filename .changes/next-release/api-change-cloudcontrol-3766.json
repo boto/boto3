@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudcontrol``",
-  "description": "[``botocore``] SDK release for Cloud Control API to include paginators for Python SDK."
-}
