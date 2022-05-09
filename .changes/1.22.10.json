@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``evidently``",
+    "description": "[``botocore``] Add detail message inside GetExperimentResults API response to indicate experiment result availability",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm-contacts``",
+    "description": "[``botocore``] Fixed an error in the DescribeEngagement example for AWS Incident Manager.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudcontrol``",
+    "description": "[``botocore``] SDK release for Cloud Control API to include paginators for Python SDK.",
+    "type": "api-change"
+  }
+]
