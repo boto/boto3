@@ -1,19 +1,19 @@
 exclude: ^(.github|.changes|docs/|boto3/compat.py|boto3/data|CHANGELOG.rst)
 repos:
   - repo: 'https://github.com/pre-commit/pre-commit-hooks'
-    rev: v2.3.0
+    rev: v4.2.0
     hooks:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: 'https://github.com/asottile/pyupgrade'
-    rev: v2.29.0
+    rev: v2.32.1
     hooks:
       - id: pyupgrade
         args:
           - '--py36-plus'
   - repo: 'https://github.com/PyCQA/isort'
-    rev: 5.9.3
+    rev: 5.10.1
     hooks:
       - id: isort
   - repo: 'https://github.com/psf/black'
@@ -21,6 +21,6 @@ repos:
     hooks:
       - id: black
   - repo: 'https://github.com/pycqa/flake8'
-    rev: 3.9.2
+    rev: 4.0.1
     hooks:
       - id: flake8
