@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.22.13
+=======
+
+* api-change:``ivschat``: [``botocore``] Documentation-only updates for IVS Chat API Reference.
+* api-change:``lambda``: [``botocore``] Lambda releases NodeJs 16 managed runtime to be available in all commercial regions.
+* api-change:``kendra``: [``botocore``] Amazon Kendra now provides a data source connector for Jira. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-jira.html
+* api-change:``transfer``: [``botocore``] AWS Transfer Family now accepts ECDSA keys for server host keys
+* api-change:``iot``: [``botocore``] Documentation update for China region ListMetricValues for IoT
+* api-change:``workspaces``: [``botocore``] Increased the character limit of the login message from 600 to 850 characters.
+* api-change:``finspace-data``: [``botocore``] We've now deprecated CreateSnapshot permission for creating a data view, instead use CreateDataView permission.
+* api-change:``lightsail``: [``botocore``] This release adds support to include inactive database bundles in the response of the GetRelationalDatabaseBundles request.
+* api-change:``outposts``: [``botocore``] Documentation updates for AWS Outposts.
+* api-change:``ec2``: [``botocore``] This release introduces a target type Gateway Load Balancer Endpoint for mirrored traffic. Customers can now specify GatewayLoadBalancerEndpoint option during the creation of a traffic mirror target.
+* api-change:``ssm-incidents``: [``botocore``] Adding support for dynamic SSM Runbook parameter values. Updating validation pattern for engagements. Adding ConflictException to UpdateReplicationSet API contract.
+
+
 1.22.12
 =======
 
