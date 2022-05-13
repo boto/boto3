@@ -1,0 +1,5 @@
+{
+  "type": "feature",
+  "category": "Loaders",
+  "description": "[``botocore``] Support for loading gzip compressed model files."
+}
