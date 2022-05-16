@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.23.1
+======
+
+* api-change:``resiliencehub``: [``botocore``] In this release, we are introducing support for Amazon Elastic Container Service, Amazon Route 53, AWS Elastic Disaster Recovery, AWS Backup in addition to the existing supported Services.  This release also supports Terraform file input from S3 and scheduling daily assessments
+* api-change:``servicecatalog``: [``botocore``] Updated the descriptions for the ListAcceptedPortfolioShares API description and the PortfolioShareType parameters.
+* api-change:``discovery``: [``botocore``] Add Migration Evaluator Collector details to the GetDiscoverySummary API response
+* api-change:``sts``: [``botocore``] Documentation updates for AWS Security Token Service.
+* api-change:``workspaces-web``: [``botocore``] Amazon WorkSpaces Web now supports Administrator timeout control
+* api-change:``rekognition``: [``botocore``] Documentation updates for Amazon Rekognition.
+* api-change:``cloudfront``: [``botocore``] Introduced a new error (TooLongCSPInResponseHeadersPolicy) that is returned when the value of the Content-Security-Policy header in a response headers policy exceeds the maximum allowed length.
+
+
 1.23.0
 ======
 
