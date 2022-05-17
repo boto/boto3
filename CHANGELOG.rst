@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.23.2
+======
+
+* api-change:``kms``: [``botocore``] Add HMAC best practice tip, annual rotation of AWS managed keys.
+* api-change:``glue``: [``botocore``] This release adds a new optional parameter called codeGenNodeConfiguration to CRUD job APIs that allows users to manage visual jobs via APIs. The updated CreateJob and UpdateJob will create jobs that can be viewed in Glue Studio as a visual graph. GetJob can be used to get codeGenNodeConfiguration.
+
+
 1.23.1
 ======
 
