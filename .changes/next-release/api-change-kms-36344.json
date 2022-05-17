@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kms``",
-  "description": "[``botocore``] Add HMAC best practice tip, annual rotation of AWS managed keys."
-}
