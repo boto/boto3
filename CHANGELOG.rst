@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.23.4
+======
+
+* api-change:``gamesparks``: [``botocore``] This release adds an optional DeploymentResult field in the responses of GetStageDeploymentIntegrationTests and ListStageDeploymentIntegrationTests APIs.
+* enhancement:StreamingBody: [``botocore``] Allow StreamingBody to be used as a context manager
+* api-change:``lookoutmetrics``: [``botocore``] In this release we added SnsFormat to SNSConfiguration to support human readable alert.
+
+
 1.23.3
 ======
 
