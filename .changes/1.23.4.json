@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``gamesparks``",
+    "description": "[``botocore``] This release adds an optional DeploymentResult field in the responses of GetStageDeploymentIntegrationTests and ListStageDeploymentIntegrationTests APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "StreamingBody",
+    "description": "[``botocore``] Allow StreamingBody to be used as a context manager",
+    "type": "enhancement"
+  },
+  {
+    "category": "``lookoutmetrics``",
+    "description": "[``botocore``] In this release we added SnsFormat to SNSConfiguration to support human readable alert.",
+    "type": "api-change"
+  }
+]
