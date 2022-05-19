@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "StreamingBody",
+  "description": "[``botocore``] Allow StreamingBody to be used as a context manager"
+}
