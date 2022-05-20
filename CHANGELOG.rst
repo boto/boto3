@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.23.5
+======
+
+* api-change:``comprehend``: [``botocore``] Comprehend releases 14 new entity types for DetectPiiEntities and ContainsPiiEntities APIs.
+* api-change:``logs``: [``botocore``] Doc-only update to publish the new valid values for log retention
+
+
 1.23.4
 ======
 
