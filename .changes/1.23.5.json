@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``comprehend``",
+    "description": "[``botocore``] Comprehend releases 14 new entity types for DetectPiiEntities and ContainsPiiEntities APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``logs``",
+    "description": "[``botocore``] Doc-only update to publish the new valid values for log retention",
+    "type": "api-change"
+  }
+]
