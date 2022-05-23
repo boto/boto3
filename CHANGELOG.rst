@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.23.6
+======
+
+* api-change:``elasticache``: [``botocore``] Added support for encryption in transit for Memcached clusters. Customers can now launch Memcached cluster with encryption in transit enabled when using Memcached version 1.6.12 or later.
+* api-change:``forecast``: [``botocore``] New APIs for Monitor that help you understand how your predictors perform over time.
+* api-change:``personalize``: [``botocore``] Adding modelMetrics as part of DescribeRecommender API response for Personalize.
+
+
 1.23.5
 ======
 

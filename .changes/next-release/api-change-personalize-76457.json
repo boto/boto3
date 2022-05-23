@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``personalize``",
-  "description": "[``botocore``] Adding modelMetrics as part of DescribeRecommender API response for Personalize."
-}
