@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.23.7
+======
+
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK has added support for rules that constrain Automatic-ABR rendition selection when generating ABR package ladders.
+* api-change:``cognito-idp``: [``botocore``] Amazon Cognito now supports requiring attribute verification (ex. email and phone number) before update.
+* api-change:``networkmanager``: [``botocore``] This release adds Multi Account API support for a TGW Global Network, to enable and disable AWSServiceAccess with AwsOrganizations for Network Manager service and dependency CloudFormation StackSets service.
+* api-change:``ivschat``: [``botocore``] Doc-only update. For MessageReviewHandler structure, added timeout period in the description of the fallbackResult field
+* api-change:``ec2``: [``botocore``] Stop Protection feature enables customers to protect their instances from accidental stop actions.
+
+
 1.23.6
 ======
 
