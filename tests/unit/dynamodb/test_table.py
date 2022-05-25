@@ -413,9 +413,11 @@ class BaseTransformationTest(unittest.TestCase):
         self.assert_batch_write_calls_are([first_batch, second_batch])
 
     def test_added_unsent_request_not_flushed_put(self):
-        # if all requests that get sent fail to process and another gets
-        # created that is not sent, it previously was dropped from the
-        # _item_buffer if all requests were successful on the next run
+        # If n requests that get sent fail to process where n = flush_amount
+        # and at least one more request gets created before the second attempt,
+        # then previously if n requests were successful on the next run and
+        # returned an empty dict, _item_buffer would be emptied before sending
+        # the next batch of n requests
         self.client.batch_write_item.side_effect = [
             {
                 'UnprocessedItems': {
@@ -449,9 +451,11 @@ class BaseTransformationTest(unittest.TestCase):
         self.assert_batch_write_calls_are([batch, batch])
 
     def test_added_unsent_request_not_flushed_delete(self):
-        # if all requests that get sent fail to process and another gets
-        # created that is not sent, it previously was dropped from the
-        # _item_buffer if all requests were successful on the next run
+        # If n requests that get sent fail to process where n = flush_amount
+        # and at least one more request gets created before the second attempt,
+        # then previously if n requests were successful on the next run and
+        # returned an empty dict, _item_buffer would be emptied before sending
+        # the next batch of n requests
         self.client.batch_write_item.side_effect = [
             {
                 'UnprocessedItems': {
