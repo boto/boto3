@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] Add a new parameter statusReason to DescribeStackSetOperation output for additional details"
-}
