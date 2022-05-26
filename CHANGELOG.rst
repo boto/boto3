@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.23.9
+======
+
+* api-change:``lightsail``: [``botocore``] Amazon Lightsail now supports the ability to configure a Lightsail Container Service to pull images from Amazon ECR private repositories in your account.
+* api-change:``emr-serverless``: [``botocore``] This release adds support for Amazon EMR Serverless, a serverless runtime environment that simplifies running analytics applications using the latest open source frameworks such as Apache Spark and Apache Hive.
+* api-change:``ec2``: [``botocore``] C7g instances, powered by the latest generation AWS Graviton3 processors, provide the best price performance in Amazon EC2 for compute-intensive workloads.
+* api-change:``forecast``: [``botocore``] Introduced a new field in Auto Predictor as Time Alignment Boundary. It helps in aligning the timestamps generated during Forecast exports
+
+
 1.23.8
 ======
 
