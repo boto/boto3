@@ -1,4 +1,3 @@
 -e git+https://github.com/boto/botocore.git@develop#egg=botocore
--e 'git+https://github.com/boto/jmespath.git@develop#egg=jmespath; python_version > "3.6"'
-jmespath<1.0; python_version <= '3.6'
+-e git+https://github.com/boto/jmespath.git@develop#egg=jmespath
 -e git+https://github.com/boto/s3transfer.git@develop#egg=s3transfer
