@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.24.0
+======
+
+* api-change:``iotsitewise``: [``botocore``] This release adds the following new optional field to the IoT SiteWise asset resource: assetDescription.
+* api-change:``lookoutmetrics``: [``botocore``] Adding backtest mode to detectors using the Cloudwatch data source.
+* api-change:``transcribe``: [``botocore``] Amazon Transcribe now supports automatic language identification for multi-lingual audio in batch mode.
+* feature:Python: Dropped support for Python 3.6
+* feature:Python: [``botocore``] Dropped support for Python 3.6
+* api-change:``cognito-idp``: [``botocore``] Amazon Cognito now supports IP Address propagation for all unauthenticated APIs (e.g. SignUp, ForgotPassword).
+* api-change:``drs``: [``botocore``] Changed existing APIs and added new APIs to accommodate using multiple AWS accounts with AWS Elastic Disaster Recovery.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Notebook Instances now support Jupyter Lab 3.
+
+
 1.23.10
 =======
 

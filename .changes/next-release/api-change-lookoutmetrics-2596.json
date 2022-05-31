@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lookoutmetrics``",
-  "description": "[``botocore``] Adding backtest mode to detectors using the Cloudwatch data source."
-}

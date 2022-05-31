@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``iotsitewise``",
+    "description": "[``botocore``] This release adds the following new optional field to the IoT SiteWise asset resource: assetDescription.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lookoutmetrics``",
+    "description": "[``botocore``] Adding backtest mode to detectors using the Cloudwatch data source.",
+    "type": "api-change"
+  },
+  {
+    "category": "``transcribe``",
+    "description": "[``botocore``] Amazon Transcribe now supports automatic language identification for multi-lingual audio in batch mode.",
+    "type": "api-change"
+  },
+  {
+    "category": "Python",
+    "description": "Dropped support for Python 3.6",
+    "type": "feature"
+  },
+  {
+    "category": "Python",
+    "description": "[``botocore``] Dropped support for Python 3.6",
+    "type": "feature"
+  },
+  {
+    "category": "``cognito-idp``",
+    "description": "[``botocore``] Amazon Cognito now supports IP Address propagation for all unauthenticated APIs (e.g. SignUp, ForgotPassword).",
+    "type": "api-change"
+  },
+  {
+    "category": "``drs``",
+    "description": "[``botocore``] Changed existing APIs and added new APIs to accommodate using multiple AWS accounts with AWS Elastic Disaster Recovery.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Amazon SageMaker Notebook Instances now support Jupyter Lab 3.",
+    "type": "api-change"
+  }
+]
