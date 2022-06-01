@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.1
+======
+
+* api-change:``backup-gateway``: [``botocore``] Adds GetGateway and UpdateGatewaySoftwareNow API and adds hypervisor name to UpdateHypervisor API
+* api-change:``forecast``: [``botocore``] Added Format field to Import and Export APIs in Amazon Forecast. Added TimeSeriesSelector to Create Forecast API.
+* api-change:``chime-sdk-meetings``: [``botocore``] Adds support for centrally controlling each participant's ability to send and receive audio, video and screen share within a WebRTC session.  Attendee capabilities can be specified when the attendee is created and updated during the session with the new BatchUpdateAttendeeCapabilitiesExcept API.
+* api-change:``route53``: [``botocore``] Add new APIs to support Route 53 IP Based Routing
+
+
 1.24.0
 ======
 
