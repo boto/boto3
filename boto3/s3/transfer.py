@@ -210,7 +210,7 @@ class TransferConfig(S3TransferConfig):
 
         :param use_threads: If True, threads will be used when performing
             S3 transfers. If False, no threads will be used in
-            performing transfers: all logic will be ran in the main thread.
+            performing transfers; all logic will be run in the main thread.
 
         :param max_bandwidth: The maximum bandwidth that will be consumed
             in uploading and downloading file content. The value is an integer
