@@ -145,10 +145,9 @@ class BatchWriter:
             RequestItems={self._table_name: items_to_send}
         )
         unprocessed_items = response['UnprocessedItems']
-        if unprocessed_items is None:
-            unprocessed_items = []
-        else:
-            unprocessed_items = unprocessed_items.get(self._table_name, [])
+        if not unprocessed_items:
+            unprocessed_items = {}
+        unprocessed_items = unprocessed_items.get(self._table_name, [])
         # Any unprocessed_items are immediately added to the
         # next batch we send.
         self._items_buffer.extend(unprocessed_items)
