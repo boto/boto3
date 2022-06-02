@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``voice-id``",
+  "description": "[``botocore``] Added a new attribute ServerSideEncryptionUpdateDetails to Domain and DomainSummary."
+}
