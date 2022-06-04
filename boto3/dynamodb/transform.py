@@ -24,8 +24,9 @@ def register_high_level_interface(base_classes, **kwargs):
 
 def copy_dynamodb_params(params, **kwargs):
     copied_params = copy.deepcopy(params)
-    
+
     reference_type_ids = []
+
     def make_unique(params):
         nonlocal reference_type_ids
         if type(params) is dict:
@@ -43,7 +44,6 @@ def copy_dynamodb_params(params, **kwargs):
         return params
 
     return make_unique(copied_params)
-
 
 
 class DynamoDBHighLevelResource:
@@ -222,7 +222,6 @@ class TransformationInjector:
             if generated_values:
                 params[expr_attr_values_input] = generated_values
 
-
     def inject_attribute_value_input(self, params, model, **kwargs):
         """Injects DynamoDB serialization into parameter input"""
         self._transformer.transform(
@@ -297,19 +296,19 @@ class ParameterTransformer:
         :param target_shape: The name of the shape to apply the
             transformation to
         """
-        
+
         self._transform_parameters(model, params, transformation, target_shape)
 
     def _transform_parameters(
         self, model, params, transformation, target_shape
     ):
- 
+
         type_name = model.type_name
         if type_name in ('structure', 'map', 'list'):
             getattr(self, f'_transform_{type_name}')(
                 model, params, transformation, target_shape
             )
-        
+
     def _transform_structure(
         self, model, params, transformation, target_shape
     ):
