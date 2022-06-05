@@ -298,11 +298,13 @@ class ParameterTransformer:
         :param target_shape: The name of the shape to apply the
             transformation to
         """
+
         self._transform_parameters(model, params, transformation, target_shape)
 
     def _transform_parameters(
         self, model, params, transformation, target_shape
     ):
+
         type_name = model.type_name
         if type_name in ('structure', 'map', 'list'):
             getattr(self, f'_transform_{type_name}')(
