@@ -23,7 +23,29 @@ def register_high_level_interface(base_classes, **kwargs):
 
 
 def copy_dynamodb_params(params, **kwargs):
-    return copy.deepcopy(params)
+    copied_params = copy.deepcopy(params)
+
+    # Recursively check if params has multiple references to the same
+    #  list or dict, and replace with copies if so.
+    reference_type_ids = []
+
+    def make_unique(params):
+        nonlocal reference_type_ids
+        if type(params) is dict:
+            if id(params) in reference_type_ids:
+                params = copy.deepcopy(params)
+            reference_type_ids.append(id(params))
+            for key, value in params.items():
+                params[key] = make_unique(value)
+        elif type(params) is list:
+            if id(params) in reference_type_ids:
+                params = copy.deepcopy(params)
+            reference_type_ids.append(id(params))
+            for i, value in enumerate(params):
+                params[i] = make_unique(value)
+        return params
+
+    return make_unique(copied_params)
 
 
 class DynamoDBHighLevelResource:
