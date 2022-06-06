@@ -411,3 +411,111 @@ class BaseTransformationTest(unittest.TestCase):
             }
         }
         self.assert_batch_write_calls_are([first_batch, second_batch])
+
+    def test_added_unsent_request_not_flushed_put(self):
+        # If n requests that get sent fail to process where n = flush_amount
+        # and at least one more request gets created before the second attempt,
+        # then previously if n requests were successful on the next run and
+        # returned an empty dict, _item_buffer would be emptied before sending
+        # the next batch of n requests
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                        {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {},
+            },
+            {
+                'UnprocessedItems': {},
+            },
+        ]
+        self.batch_writer.put_item({'Hash': 'foo1'})
+        self.batch_writer.put_item({'Hash': 'foo2'})
+        self.batch_writer.put_item({'Hash': 'foo3'})
+        self.assertIn(
+            {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+            self.batch_writer._items_buffer,
+        )
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        final_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                ]
+            }
+        }
+        # same batch sent twice since all failed on first try
+        # and flush_items = 2
+        self.assert_batch_write_calls_are([batch, batch])
+        # test that the next two items get sent
+        self.batch_writer.put_item({'Hash': 'foo4'})
+        self.assert_batch_write_calls_are([batch, batch, final_batch])
+        # the buffer should be empty now
+        self.assertEqual(self.batch_writer._items_buffer, [])
+
+    def test_added_unsent_request_not_flushed_delete(self):
+        # If n requests that get sent fail to process where n = flush_amount
+        # and at least one more request gets created before the second attempt,
+        # then previously if n requests were successful on the next run and
+        # returned an empty dict, _item_buffer would be emptied before sending
+        # the next batch of n requests
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'DeleteRequest': {'Key': {'Hash': 'foo1'}}},
+                        {'DeleteRequest': {'Key': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {},
+            },
+            {
+                'UnprocessedItems': {},
+            },
+        ]
+        self.batch_writer.delete_item({'Hash': 'foo1'})
+        self.batch_writer.delete_item({'Hash': 'foo2'})
+        self.batch_writer.delete_item({'Hash': 'foo3'})
+        self.assertIn(
+            {'DeleteRequest': {'Key': {'Hash': 'foo3'}}},
+            self.batch_writer._items_buffer,
+        )
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'DeleteRequest': {'Key': {'Hash': 'foo1'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        final_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'DeleteRequest': {'Key': {'Hash': 'foo3'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo4'}}},
+                ]
+            }
+        }
+        # same batch sent twice since all failed on first try
+        # and flush_items = 2
+        self.assert_batch_write_calls_are([batch, batch])
+        # test that the next two items get sent
+        self.batch_writer.delete_item({'Hash': 'foo4'})
+        self.assert_batch_write_calls_are([batch, batch, final_batch])
+        # the buffer should be empty now
+        self.assertEqual(self.batch_writer._items_buffer, [])
