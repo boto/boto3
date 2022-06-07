@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.24.4
+======
+
+* api-change:``auditmanager``: [``botocore``] This release introduces 2 updates to the Audit Manager API. The roleType and roleArn attributes are now required when you use the CreateAssessment or UpdateAssessment operation. We also added a throttling exception to the RegisterAccount API operation.
+* api-change:``ce``: [``botocore``] Added two new APIs to support cost allocation tags operations: ListCostAllocationTags, UpdateCostAllocationTagsStatus.
+
+
 1.24.3
 ======
 
