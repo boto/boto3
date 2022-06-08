@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift``",
-  "description": "[``botocore``] Adds new API GetClusterCredentialsWithIAM to return temporary credentials."
-}
