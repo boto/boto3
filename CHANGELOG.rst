@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.6
+======
+
+* api-change:``chime-sdk-meetings``: [``botocore``] Adds support for live transcription in AWS GovCloud (US) Regions.
+
+
 1.24.5
 ======
 
