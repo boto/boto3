@@ -4,8 +4,13 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: read
+
 jobs:
   fail:
+    permissions:
+      contents: none
     runs-on: ubuntu-latest
     steps:
       - name: Fail PRs against master
