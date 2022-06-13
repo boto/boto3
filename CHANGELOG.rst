@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.8
+======
+
+* api-change:``outposts``: [``botocore``] This release adds API operations AWS uses to install Outpost servers.
+
+
 1.24.7
 ======
 
