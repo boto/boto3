@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.9
+======
+
+* api-change:``budgets``: [``botocore``] Add a budgets ThrottlingException. Update the CostFilters value pattern.
+* api-change:``lookoutmetrics``: [``botocore``] Adding filters to Alert and adding new UpdateAlert API.
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK has added support for rules that constrain Automatic-ABR rendition selection when generating ABR package ladders.
+
+
 1.24.8
 ======
 
