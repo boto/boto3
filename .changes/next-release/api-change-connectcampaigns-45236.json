@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connectcampaigns``",
-  "description": "[``botocore``] Added Amazon Connect high volume outbound communications SDK."
-}
