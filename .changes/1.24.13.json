@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``ds``",
+    "description": "[``botocore``] This release adds support for describing and updating AWS Managed Microsoft AD settings",
+    "type": "api-change"
+  },
+  {
+    "category": "``kafka``",
+    "description": "[``botocore``] Documentation updates to use Az Id during cluster creation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``outposts``",
+    "description": "[``botocore``] This release adds the AssetLocation structure to the ListAssets response. AssetLocation includes the RackElevation for an Asset.",
+    "type": "api-change"
+  }
+]
