@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.14
+=======
+
+* api-change:``ec2``: [``botocore``] This release adds support for Private IP VPNs, a new feature allowing S2S VPN connections to use private ip addresses as the tunnel outside ip address over Direct Connect as transport.
+* api-change:``ecs``: [``botocore``] Amazon ECS UpdateService now supports the following parameters: PlacementStrategies, PlacementConstraints and CapacityProviderStrategy.
+* api-change:``wellarchitected``: [``botocore``] Adds support for lens tagging, Adds support for multiple helpful-resource urls and multiple improvement-plan urls.
+
+
 1.24.13
 =======
 
