@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.15
+=======
+
+* api-change:``apigateway``: [``botocore``] Documentation updates for Amazon API Gateway
+* api-change:``pricing``: [``botocore``] This release introduces 1 update to the GetProducts API. The serviceCode attribute is now required when you use the GetProductsRequest.
+* api-change:``transfer``: [``botocore``] Until today, the service supported only RSA host keys and user keys. Now with this launch, Transfer Family has expanded the support for ECDSA and ED25519 host keys and user keys, enabling customers to support a broader set of clients by choosing RSA, ECDSA, and ED25519 host and user keys.
+
+
 1.24.14
 =======
 
