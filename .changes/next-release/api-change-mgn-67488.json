@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mgn``",
+  "description": "[``botocore``] New and modified APIs for the Post-Migration Framework"
+}
