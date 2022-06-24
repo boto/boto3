@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds-data``",
+  "description": "[``botocore``] Documentation updates for RDS Data API"
+}
