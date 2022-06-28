@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``finspace-data``",
-  "description": "[``botocore``] Release new API GetExternalDataViewAccessDetails"
-}
