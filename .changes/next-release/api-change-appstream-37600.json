@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appstream``",
-  "description": "[``botocore``] Includes support for StreamingExperienceSettings in CreateStack and UpdateStack APIs"
-}
