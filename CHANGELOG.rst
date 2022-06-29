@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.24.20
+=======
+
+* api-change:``appstream``: [``botocore``] Includes support for StreamingExperienceSettings in CreateStack and UpdateStack APIs
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``medialive``: [``botocore``] This release adds support for automatic renewal of MediaLive reservations at the end of each reservation term. Automatic renewal is optional. This release also adds support for labelling accessibility-focused audio and caption tracks in HLS outputs.
+* api-change:``redshift-serverless``: [``botocore``] Add new API operations for Amazon Redshift Serverless, a new way of using Amazon Redshift without needing to manually manage provisioned clusters. The new operations let you interact with Redshift Serverless resources, such as create snapshots, list VPC endpoints, delete resource policies, and more.
+* api-change:``sagemaker``: [``botocore``] This release adds: UpdateFeatureGroup, UpdateFeatureMetadata, DescribeFeatureMetadata APIs; FeatureMetadata type in Search API; LastModifiedTime, LastUpdateStatus, OnlineStoreTotalSizeBytes in DescribeFeatureGroup API.
+* api-change:``translate``: [``botocore``] Added ListLanguages API which can be used to list the languages supported by Translate.
+
+
 1.24.19
 =======
 
