@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.24.21
+=======
+
+* api-change:``athena``: [``botocore``] This feature introduces the API support for Athena's parameterized query and BatchGetPreparedStatement API.
+* api-change:``customer-profiles``: [``botocore``] This release adds the optional MinAllowedConfidenceScoreForMerging parameter to the CreateDomain, UpdateDomain, and GetAutoMergingPreview APIs in Customer Profiles. This parameter is used as a threshold to influence the profile auto-merging step of the Identity Resolution process.
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``glue``: [``botocore``] This release adds tag as an input of CreateDatabase
+* api-change:``kendra``: [``botocore``] Amazon Kendra now provides a data source connector for alfresco
+* api-change:``mwaa``: [``botocore``] Documentation updates for Amazon Managed Workflows for Apache Airflow.
+* api-change:``pricing``: [``botocore``] Documentation update for GetProducts Response.
+* api-change:``wellarchitected``: [``botocore``] Added support for UpdateGlobalSettings API. Added status filter to ListWorkloadShares and ListLensShares.
+* api-change:``workmail``: [``botocore``] This release adds support for managing user availability configurations in Amazon WorkMail.
+
+
 1.24.20
 =======
 
