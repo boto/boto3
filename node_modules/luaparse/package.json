@@ -1,0 +1,52 @@
+{
+  "name": "luaparse",
+  "version": "0.3.1",
+  "description": "A Lua parser in JavaScript",
+  "keywords": [
+    "ast",
+    "lua",
+    "parser",
+    "parsing"
+  ],
+  "homepage": "https://fstirlitz.github.io/luaparse/",
+  "bugs": "https://github.com/fstirlitz/luaparse/issues",
+  "license": "MIT",
+  "author": "Oskar Schöldström <public@oxy.fi> (http://www.oxy.fi/)",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "luaparse.js",
+    "bin/luaparse"
+  ],
+  "main": "luaparse.js",
+  "bin": {
+    "luaparse": "bin/luaparse"
+  },
+  "man": "./docs/luaparse.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fstirlitz/luaparse.git"
+  },
+  "scripts": {
+    "test": "make qa",
+    "version": "make version-bump"
+  },
+  "devDependencies": {
+    "benchmark": "~1.0.0",
+    "complexity-report": "~0.10.5",
+    "gulp": "^4.0.0",
+    "gulp-add-src": "^1.0.0",
+    "gulp-filelog": "^0.4.1",
+    "gulp-header": "^2.0.9",
+    "gulp-jshint": "^2.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^3.0.2",
+    "jshint": "^2.11.1",
+    "marked": "^0.8.2",
+    "nyc": "^15.1.0",
+    "plugin-error": "^1.0.1",
+    "spec": "1.0.1",
+    "testem": "^3.4.1",
+    "through2": "^4.0.2"
+  }
+}

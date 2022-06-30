@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "luaparse": "^0.3.1"
+  }
+}

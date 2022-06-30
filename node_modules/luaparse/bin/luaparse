@@ -1,0 +1,128 @@
+#!/usr/bin/env node
+/*jshint node:true*/
+/*globals console:true */
+'use strict';
+
+var fs = require('fs')
+  , util = require('util')
+  , luaparse = require('../luaparse')
+  , args = process.argv.splice(2)
+  , stdin = process.stdin
+  , isTTY = stdin.isTTY
+  , beautify = false
+  , quiet = false
+  , verbose = false
+  , input = ''
+  , options = {}
+  , snippets = [];
+
+function usage() {
+  console.log([
+      "Usage: luaparse [option]... [file|code]..."
+    , "\nOptions:"
+    , "  -c|--code [code]   parse code snippet"
+    , "  -f|--file [file]   parse from file"
+    , "  -b|--beautify      output an indenteted AST"
+    , "  --[no]-comments    store comments. defaults to true"
+    , "  --[no]-scope       store variable scope. defaults to false"
+    , "  --[no]-locations   store location data on syntax nodes. defaults to false"
+    , "  --[no]-ranges      store start and end character locations. defaults to false"
+    , "  -q|--quiet         suppress output"
+    , "  -h|--help"
+    , "  -v|--version"
+    , "  --verbose"
+    , "\nExamples:"
+    , "  luaparse --no-comments -c \"locale foo = \\\"bar\\\"\""
+    , "  luaparse foo.lua bar.lua"
+  ].join("\n"));
+}
+
+if (isTTY && !args.length) {
+  usage();
+  process.exit(0);
+}
+
+for (var i = 0, l = args.length; i < l; i++) {
+  var arg = args[i], match, flag, bool, snippet;
+  if (match = /^(?:-|--)(?:(no)-)?(\w+)$/.exec(arg)) {
+    bool = 'no' !== match[1];
+    flag = match[2];
+
+    switch (flag) {
+      case 'b': case 'beautify':
+        beautify = true;
+        continue;
+      case 'q': case 'quiet':
+        quiet = true;
+        continue;
+      case 'verbose':
+        verbose = true;
+        continue;
+      case 'c': case 'code':
+        snippets.push({ name: args[++i], code: args[i] });
+        continue;
+      case 'f': case 'file':
+        snippets.push({ name: args[++i], code: fs.readFileSync(args[i], 'utf-8') });
+        continue;
+      case 'comments': case 'scope': case 'locations': case 'ranges':
+        options[flag] = bool;
+        continue;
+      case 'L': case 'luaversion':
+        options.luaVersion = args[++i];
+        continue;
+      case 'X': case 'extendedidentifiers':
+        options.extendedIdentifiers = bool;
+        continue;
+      case 'v': case 'version':
+        console.log("luaparse v%s", luaparse.version);
+        process.exit(0);
+        break;
+      case 'h': case 'help':
+        usage();
+        process.exit(0);
+        break;
+      default:
+        if (!quiet) console.log("Unknown option: %s", match[0]);
+        process.exit(2);
+    }
+  }
+  // Default to autodetecting code or file.
+  snippet = fs.existsSync(arg) ?
+    { name: arg, code: fs.readFileSync(arg, 'utf-8') } :
+    { name: arg, code: arg };
+
+  snippets.push(snippet);
+}
+
+function done() {
+  var success = true;
+  snippets.forEach(function(snippet) {
+    var message, ast;
+    try {
+      ast = luaparse.parse(snippet.code, options);
+      message = beautify ? JSON.stringify(ast, null, '  ')
+        : JSON.stringify(ast);
+    } catch(e) {
+      if (!(e instanceof luaparse.SyntaxError))
+        throw e;
+      message = util.format("%s: %s", snippet.name, e.message);
+      if (verbose) console.log(e.stack);
+      success = false;
+    }
+
+    if (!quiet) console.log(message);
+  });
+
+  if (!success) process.exit(1);
+}
+
+if (stdin.isTTY) done();
+else {
+  // @TODO doesn't work in node 0.9.4-0.9.11 because `end` is never emitted.
+  stdin.setEncoding('utf8');
+  stdin.on('data', function(chunk) { input += chunk; });
+  stdin.on('end', function() { snippets.unshift({ code: input }); done(); });
+  stdin.resume();
+}
+
+/* vim: set sw=2 ts=2 et tw=80 ft=javascript : */
