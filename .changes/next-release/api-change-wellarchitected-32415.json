@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``wellarchitected``",
+  "description": "[``botocore``] Added support for UpdateGlobalSettings API. Added status filter to ListWorkloadShares and ListLensShares."
+}
