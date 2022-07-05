@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.24.23
+=======
+
+* api-change:``config``: [``botocore``] Updating documentation service limits
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``quicksight``: [``botocore``] This release allows customers to programmatically create QuickSight accounts with Enterprise and Enterprise + Q editions. It also releases allowlisting domains for embedding QuickSight dashboards at runtime through the embedding APIs.
+* api-change:``rds``: [``botocore``] Adds waiters support for DBCluster.
+* api-change:``rolesanywhere``: [``botocore``] IAM Roles Anywhere allows your workloads such as servers, containers, and applications to obtain temporary AWS credentials and use the same IAM roles and policies that you have configured for your AWS workloads to access AWS resources.
+* api-change:``ssm-incidents``: [``botocore``] Adds support for tagging incident-record on creation by providing incident tags in the template within a response-plan.
+
+
 1.24.22
 =======
 
