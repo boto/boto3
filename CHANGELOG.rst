@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.24.24
+=======
+
+* api-change:``cloudformation``: [``botocore``] My AWS Service (placeholder) - Add a new feature Account-level Targeting for StackSet operation
+* api-change:``synthetics``: [``botocore``] This release introduces Group feature, which enables users to group cross-region canaries.
+
+
 1.24.23
 =======
 
