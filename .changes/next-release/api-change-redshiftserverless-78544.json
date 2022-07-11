@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift-serverless``",
-  "description": "[``botocore``] Removed prerelease language for GA launch."
-}
