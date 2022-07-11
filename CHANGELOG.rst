@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.27
+=======
+
+* api-change:``ec2``: [``botocore``] Build, manage, and monitor a unified global network that connects resources running across your cloud and on-premises environments using the AWS Cloud WAN APIs.
+* api-change:``redshift-serverless``: [``botocore``] Removed prerelease language for GA launch.
+* api-change:``redshift``: [``botocore``] This release adds a new --snapshot-arn field for describe-cluster-snapshots, describe-node-configuration-options, restore-from-cluster-snapshot, authorize-snapshot-acsess, and revoke-snapshot-acsess APIs. It allows customers to give a Redshift snapshot ARN or a Redshift Serverless ARN as input.
+
+
 1.24.26
 =======
 
