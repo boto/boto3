@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.28
+=======
+
+* api-change:``networkmanager``: [``botocore``] This release adds general availability API support for AWS Cloud WAN.
+
+
 1.24.27
 =======
 
