@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.29
+=======
+
+* api-change:``appconfig``: [``botocore``] Adding Create, Get, Update, Delete, and List APIs for new two new resources: Extensions and ExtensionAssociations.
+
+
 1.24.28
 =======
 
