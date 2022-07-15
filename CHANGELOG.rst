@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.31
+=======
+
+* api-change:``datasync``: [``botocore``] Documentation updates for AWS DataSync regarding configuring Amazon FSx for ONTAP location security groups and SMB user permissions.
+* api-change:``drs``: [``botocore``] Changed existing APIs to allow choosing a dynamic volume type for replicating volumes, to reduce costs for customers.
+* api-change:``evidently``: [``botocore``] This release adds support for the new segmentation feature.
+* api-change:``wafv2``: [``botocore``] This SDK release provide customers ability to add sensitivity level for WAF SQLI Match Statements.
+
+
 1.24.30
 =======
 
