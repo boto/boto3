@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``discovery``",
-  "description": "[``botocore``] Add AWS Agentless Collector details to the GetDiscoverySummary API response"
-}
