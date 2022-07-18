@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``elasticache``",
+  "description": "[``botocore``] Adding AutoMinorVersionUpgrade in the DescribeReplicationGroups API"
+}
