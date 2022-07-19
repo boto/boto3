@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``devops-guru``",
-  "description": "[``botocore``] Added new APIs for log anomaly detection feature."
-}
