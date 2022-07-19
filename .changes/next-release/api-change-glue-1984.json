@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``glue``",
+  "description": "[``botocore``] Documentation updates for AWS Glue Job Timeout and Autoscaling"
+}
