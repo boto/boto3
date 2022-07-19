@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.24.33
+=======
+
+* api-change:``devops-guru``: [``botocore``] Added new APIs for log anomaly detection feature.
+* api-change:``glue``: [``botocore``] Documentation updates for AWS Glue Job Timeout and Autoscaling
+* api-change:``sagemaker-edge``: [``botocore``] Amazon SageMaker Edge Manager provides lightweight model deployment feature to deploy machine learning models on requested devices.
+* api-change:``sagemaker``: [``botocore``] Fixed an issue with cross account QueryLineage
+* api-change:``workspaces``: [``botocore``] Increased the character limit of the login message from 850 to 2000 characters.
+
+
 1.24.32
 =======
 
