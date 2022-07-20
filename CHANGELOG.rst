@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.24.34
+=======
+
+* api-change:``acm-pca``: [``botocore``] AWS Certificate Manager (ACM) Private Certificate Authority (PCA) documentation updates
+* api-change:``iot``: [``botocore``] GA release the ability to enable/disable IoT Fleet Indexing for Device Defender and Named Shadow information, and search them through IoT Fleet Indexing APIs. This includes Named Shadow Selection as a part of the UpdateIndexingConfiguration API.
+
+
 1.24.33
 =======
 
