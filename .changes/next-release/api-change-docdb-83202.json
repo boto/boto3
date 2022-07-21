@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``docdb``",
-  "description": "[``botocore``] Enable copy-on-write restore type"
-}
