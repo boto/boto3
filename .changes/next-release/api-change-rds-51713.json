@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] This release adds the \"ModifyActivityStream\" API with support for audit policy state locking and unlocking."
-}
