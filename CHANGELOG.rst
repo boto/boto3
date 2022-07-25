@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.37
+=======
+
+* api-change:``autoscaling``: [``botocore``] Documentation update for Amazon EC2 Auto Scaling.
+
+
 1.24.36
 =======
 
