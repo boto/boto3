@@ -1,16 +1,16 @@
 .. _guide_credentials:
 
 Credentials
-============
+===========
 
 Overview
----------
+--------
 
 Boto3 credentials can be configured in multiple ways. Regardless of the source or sources that you choose, you *must* have both AWS credentials and an AWS Region set in order to make requests.
 
 
 Interactive configuration
---------------------------
+-------------------------
 
 If you have the `AWS CLI <http://aws.amazon.com/cli/>`_, then you can use its interactive ``configure`` command to set up your credentials and default region:
 
@@ -22,7 +22,7 @@ Follow the prompts and it will generate configuration files in the correct locat
 
 
 Configuring credentials
-------------------------
+-----------------------
 
 There are two types of configuration data in Boto3: credentials and non-credentials. Credentials include items such as ``aws_access_key_id``, ``aws_secret_access_key``, and ``aws_session_token``. Non-credential configuration includes items such as which region to use or which addressing style to use for Amazon S3. For more information on how to configure non-credential configurations, see the :ref:`guide_configuration` guide.
 
@@ -41,7 +41,7 @@ Each of those locations is discussed in more detail below.
 
 
 Passing credentials as parameters
-----------------------------------
+---------------------------------
 
 There are valid use cases for providing credentials to the ``client()`` method and ``Session`` object, these include:
 
@@ -92,7 +92,7 @@ Boto3 will check these environment variables for credentials:
 
 
 Shared credentials file
----------------------------
+-----------------------
 
 The shared credentials file has a default location of ``~/.aws/credentials``. You can change the location of the shared credentials file by setting the ``AWS_SHARED_CREDENTIALS_FILE`` environment variable.
 
@@ -136,7 +136,7 @@ You can then specify a profile name via the ``AWS_PROFILE`` environment variable
 
 
 AWS config file
-----------------
+---------------
 
 Boto3 can also load credentials from ``~/.aws/config``. You can change this default location by setting the ``AWS_CONFIG_FILE`` environment variable. The config file is an INI format, with the same keys supported by the shared credentials file. The only difference is that profile sections *must* have the format of ``[profile profile-name]``, except for the default profile:
 
@@ -158,7 +158,7 @@ The reason that section names must start with profile in the ``~/.aws/config`` f
 
 
 Assume role provider
----------------------
+--------------------
 
 .. note::
 
@@ -203,7 +203,7 @@ See Using `IAM Roles <http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_u
 
 
 Assume Role With Web Identity Provider
------------------------------------------
+--------------------------------------
 
 Within the ``~/.aws/config`` file, you can also configure a profile to indicate that Boto3 should assume a role. When you do this, Boto3 will automatically make the corresponding ``AssumeRoleWithWebIdentity`` calls to AWS STS on your behalf. It will handle in-memory caching as well as refreshing credentials, as needed.
 
@@ -232,12 +232,14 @@ This provider can also be configured via environment variables:
 
     These environment variables currently only apply to the assume role with web identity provider and do not apply to the general assume role provider configuration.
 
-AWS Single Sign-On Provider (SSO)
------------------------------------
+AWS IAM Identity Center
+-----------------------
 
-Support for the AWS Single Sign-On (SSO) credential provider was added in 1.14.0.
+Support for the AWS IAM Identity Center (successor to AWS Single Sign-On)
+credential provider was added in 1.14.0. The IAM Identity Center provides
+support for single sign-on (SSO) credentials.
 
-To begin using the SSO credential provider, start by using the AWS CLI V2 to configure and manage your SSO profiles and login sessions.
+To begin using the IAM Identity Center credential provider, start by using the AWS CLI (v2) to configure and manage your SSO profiles and login sessions.
 For detailed instructions on the configuration and login process see the `AWS CLI User Guide for SSO <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html>`_.
 Once completed you will have one or many profiles in the shared configuration file with the following settings:
 
@@ -250,8 +252,8 @@ Once completed you will have one or many profiles in the shared configuration fi
     sso_account_id = 123456789011
     sso_role_name = readOnly
 
-* ``sso_start_url`` - The URL that points to the organization's AWS SSO user portal.
-* ``sso_region`` - The AWS Region that contains the AWS SSO portal host. This is separate from, and can be a different region than the default CLI region parameter.
+* ``sso_start_url`` - The URL that points to the organization's IAM Identity Center user portal.
+* ``sso_region`` - The AWS Region that contains the IAM Identity Center portal host. This is separate from the default AWS CLI Region parameter, and can also be a different Region.
 * ``sso_account_id`` - The AWS account ID that contains the IAM role that you want to use with this profile.
 * ``sso_role_name`` - The name of the IAM role that defines the user's permissions when using this profile.
 
@@ -265,8 +267,8 @@ For example, we can create a Session using the ``my-sso-profile`` profile and an
     session = boto3.Session(profile_name='my-sso-profile')
     s3_client = session.client('s3')
 
-Boto 2 config
----------------
+Boto2 configuration file support
+--------------------------------
 
 Boto3 will attempt to load credentials from the Boto2 config file. It first checks the file pointed to by ``BOTO_CONFIG`` if set, otherwise it will check ``/etc/boto.cfg`` and ``~/.boto``. Note that only the ``[Credentials]`` section of the boto config file is used. All other configuration data in the boto config file is ignored.
 
@@ -283,7 +285,7 @@ Boto3 will attempt to load credentials from the Boto2 config file. It first chec
 
 
 IAM roles
------------
+---------
 
 If you are running on Amazon EC2 and no credentials have been found by any of the providers above, Boto3 will try to load credentials from the instance metadata service. In order to take advantage of this feature, you must have specified an IAM role to use when you launched your EC2 instance. 
 
@@ -293,8 +295,8 @@ Note that if you've launched an EC2 instance with an IAM role configured, there'
 
 
 Best practices for configuring credentials
---------------------------------------------
+------------------------------------------
 
 If you're running on an EC2 instance, use AWS IAM roles. See the `IAM Roles for Amazon EC2 <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ guide for more information on how to set this up.
 
-If you want to interoperate with multiple AWS SDKs (e.g Java, Javascript, Ruby, PHP, .NET, AWS CLI, Go, C++), use the shared credentials file (``~/.aws/credentials``). By using the shared credentials file, you can use a single file for credentials that will work in all AWS SDKs.
+If you want to interoperate with multiple AWS SDKs (e.g Java, JavaScript, Ruby, PHP, .NET, AWS CLI, Go, C++), use the shared credentials file (``~/.aws/credentials``). By using the shared credentials file, you can use a single file for credentials that will work in all AWS SDKs.
