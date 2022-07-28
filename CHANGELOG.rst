@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.40
+=======
+
+* api-change:``ec2``: [``botocore``] Documentation updates for VM Import/Export.
+* api-change:``es``: [``botocore``] This release adds support for gp3 EBS (Elastic Block Store) storage.
+* api-change:``lookoutvision``: [``botocore``] This release introduces support for image segmentation models and updates CPU accelerator options for models hosted on edge devices.
+* api-change:``opensearch``: [``botocore``] This release adds support for gp3 EBS (Elastic Block Store) storage.
+
+
 1.24.39
 =======
 
