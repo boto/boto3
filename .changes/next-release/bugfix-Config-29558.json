@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Config",
-  "description": "[``botocore``] Obey _X_AMZN_TRACE_ID environment variable instead of _X_AMZ_TRACE_ID"
-}
