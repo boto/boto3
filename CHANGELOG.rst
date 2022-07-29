@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.41
+=======
+
+* bugfix:Config: [``botocore``] Obey _X_AMZN_TRACE_ID environment variable instead of _X_AMZ_TRACE_ID
+* api-change:``ec2``: [``botocore``] Documentation updates for Amazon EC2.
+* api-change:``fsx``: [``botocore``] Documentation updates for Amazon FSx
+* api-change:``shield``: [``botocore``] AWS Shield Advanced now supports filtering for ListProtections and ListProtectionGroups.
+
+
 1.24.40
 =======
 
