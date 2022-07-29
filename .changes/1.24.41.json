@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Config",
+    "description": "[``botocore``] Obey _X_AMZN_TRACE_ID environment variable instead of _X_AMZ_TRACE_ID",
+    "type": "bugfix"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Documentation updates for Amazon EC2.",
+    "type": "api-change"
+  },
+  {
+    "category": "``fsx``",
+    "description": "[``botocore``] Documentation updates for Amazon FSx",
+    "type": "api-change"
+  },
+  {
+    "category": "``shield``",
+    "description": "[``botocore``] AWS Shield Advanced now supports filtering for ListProtections and ListProtectionGroups.",
+    "type": "api-change"
+  }
+]
