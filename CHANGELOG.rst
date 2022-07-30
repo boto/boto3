@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.42
+=======
+
+* bugfix:TraceId: [``botocore``] Rollback bugfix for obeying _X_AMZN_TRACE_ID env var
+
+
 1.24.41
 =======
 
