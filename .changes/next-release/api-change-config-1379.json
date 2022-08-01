@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``config``",
-  "description": "[``botocore``] Documentation update for PutConfigRule and PutOrganizationConfigRule"
-}
