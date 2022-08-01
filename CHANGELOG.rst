@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.24.43
+=======
+
+* api-change:``config``: [``botocore``] Documentation update for PutConfigRule and PutOrganizationConfigRule
+* api-change:``workspaces``: [``botocore``] This release introduces ModifySamlProperties, a new API that allows control of SAML properties associated with a WorkSpaces directory. The DescribeWorkspaceDirectories API will now additionally return SAML properties in its responses.
+
+
 1.24.42
 =======
 
