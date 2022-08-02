@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``license-manager-user-subscriptions``",
+    "description": "[``botocore``] This release supports user based subscription for Microsoft Visual Studio Professional and Enterprise on EC2.",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize``",
+    "description": "[``botocore``] This release adds support for incremental bulk ingestion for the Personalize CreateDatasetImportJob API.",
+    "type": "api-change"
+  }
+]
