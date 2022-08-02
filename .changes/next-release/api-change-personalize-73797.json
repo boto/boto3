@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``personalize``",
+  "description": "[``botocore``] This release adds support for incremental bulk ingestion for the Personalize CreateDatasetImportJob API."
+}
