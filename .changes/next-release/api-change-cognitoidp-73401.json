@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cognito-idp``",
+  "description": "[``botocore``] Add a new exception type, ForbiddenException, that is returned when request is not allowed"
+}
