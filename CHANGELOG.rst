@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.24.46
+=======
+
+* enhancement:Lambda: [``botocore``] Add support for Trace ID in Lambda environments
+* api-change:``chime-sdk-meetings``: [``botocore``] Adds support for Tags on Amazon Chime SDK WebRTC sessions
+* api-change:``config``: [``botocore``] Add resourceType enums for Athena, GlobalAccelerator, Detective and EC2 types
+* api-change:``dms``: [``botocore``] Documentation updates for Database Migration Service (DMS).
+* api-change:``iot``: [``botocore``] The release is to support attach a provisioning template to CACert for JITP function,  Customer now doesn't have to hardcode a roleArn and templateBody during register a CACert to enable JITP.
+
+
 1.24.45
 =======
 

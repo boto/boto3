@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Lambda",
-  "description": "[``botocore``] Add support for Trace ID in Lambda environments"
-}
