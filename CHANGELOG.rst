@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.24.47
+=======
+
+* api-change:``glue``: [``botocore``] Add an option to run non-urgent or non-time sensitive Glue Jobs on spare capacity
+* api-change:``identitystore``: [``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)
+* api-change:``iotwireless``: [``botocore``] AWS IoT Wireless release support for sidewalk data reliability.
+* api-change:``pinpoint``: [``botocore``] Adds support for Advance Quiet Time in Journeys. Adds RefreshOnSegmentUpdate and WaitForQuietTime to JourneyResponse.
+* api-change:``quicksight``: [``botocore``] A series of documentation updates to the QuickSight API reference.
+* api-change:``sso-admin``: [``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)
+* api-change:``sso-oidc``: [``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)
+* api-change:``sso``: [``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)
+
+
 1.24.46
 =======
 
