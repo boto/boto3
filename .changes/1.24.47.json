@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Add an option to run non-urgent or non-time sensitive Glue Jobs on spare capacity",
+    "type": "api-change"
+  },
+  {
+    "category": "``identitystore``",
+    "description": "[``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotwireless``",
+    "description": "[``botocore``] AWS IoT Wireless release support for sidewalk data reliability.",
+    "type": "api-change"
+  },
+  {
+    "category": "``pinpoint``",
+    "description": "[``botocore``] Adds support for Advance Quiet Time in Journeys. Adds RefreshOnSegmentUpdate and WaitForQuietTime to JourneyResponse.",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] A series of documentation updates to the QuickSight API reference.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso-admin``",
+    "description": "[``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso-oidc``",
+    "description": "[``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso``",
+    "description": "[``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)",
+    "type": "api-change"
+  }
+]
