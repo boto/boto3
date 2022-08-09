@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.48
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``location``: [``botocore``] Amazon Location Service now allows circular geofences in BatchPutGeofence, PutGeofence, and GetGeofence  APIs.
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Fix bug with parsing ISO-8601 CreationTime in Java SDK in DescribeHumanLoop
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Automatic Model Tuning now supports specifying multiple alternate EC2 instance types to make tuning jobs more robust when the preferred instance type is not available due to insufficient capacity.
+
+
 1.24.47
 =======
 
