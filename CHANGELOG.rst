@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.50
+=======
+
+* api-change:``backupstorage``: [``botocore``] This is the first public release of AWS Backup Storage. We are exposing some previously-internal APIs for use by external services. These APIs are not meant to be used directly by customers.
+* api-change:``glue``: [``botocore``] Add support for Python 3.9 AWS Glue Python Shell jobs
+* api-change:``privatenetworks``: [``botocore``] This is the initial SDK release for AWS Private 5G. AWS Private 5G is a managed service that makes it easy to deploy, operate, and scale your own private mobile network at your on-premises location.
+
+
 1.24.49
 =======
 
