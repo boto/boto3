@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``personalize-runtime``",
-  "description": "[``botocore``] This release provides support for promotions in AWS Personalize runtime."
-}
