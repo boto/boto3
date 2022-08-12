@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.24.51
+=======
+
+* api-change:``amp``: [``botocore``] This release adds log APIs that allow customers to manage logging for their Amazon Managed Service for Prometheus workspaces.
+* api-change:``chime-sdk-messaging``: [``botocore``] The Amazon Chime SDK now supports channels with up to one million participants with elastic channels.
+* api-change:``ivs``: [``botocore``] Updates various list api MaxResults ranges
+* api-change:``personalize-runtime``: [``botocore``] This release provides support for promotions in AWS Personalize runtime.
+* api-change:``rds``: [``botocore``] Adds support for RDS Custom to DBInstanceClass in ModifyDBInstance
+
+
 1.24.50
 =======
 
