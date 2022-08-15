@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudfront``",
+  "description": "[``botocore``] Adds Http 3 support to distributions"
+}
