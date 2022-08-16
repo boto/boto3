@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.24.53
+=======
+
+* api-change:``rekognition``: [``botocore``] This release adds APIs which support copying an Amazon Rekognition Custom Labels model and managing project policies across AWS account.
+* api-change:``servicecatalog``: [``botocore``] Documentation updates for Service Catalog
+
+
 1.24.52
 =======
 
