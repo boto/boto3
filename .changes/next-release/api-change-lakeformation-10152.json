@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lakeformation``",
-  "description": "[``botocore``] This release adds a new API support \"AssumeDecoratedRoleWithSAML\" and also release updates the corresponding documentation."
-}
