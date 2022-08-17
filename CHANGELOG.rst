@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.24.54
+=======
+
+* api-change:``appmesh``: [``botocore``] AWS App Mesh release to support Multiple Listener and Access Log Format feature
+* api-change:``connectcampaigns``: [``botocore``] Updated exceptions for Amazon Connect Outbound Campaign api's.
+* api-change:``kendra``: [``botocore``] This release adds Zendesk connector (which allows you to specify Zendesk SAAS platform as data source), Proxy Support for Sharepoint and Confluence Server (which allows you to specify the proxy configuration if proxy is required to connect to your Sharepoint/Confluence Server as data source).
+* api-change:``lakeformation``: [``botocore``] This release adds a new API support "AssumeDecoratedRoleWithSAML" and also release updates the corresponding documentation.
+* api-change:``lambda``: [``botocore``] Added support for customization of Consumer Group ID for MSK and Kafka Event Source Mappings.
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``rds``: [``botocore``] Adds support for Internet Protocol Version 6 (IPv6) for RDS Aurora database clusters.
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager.
+
+
 1.24.53
 =======
 
