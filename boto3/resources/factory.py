@@ -564,7 +564,7 @@ class ResourceFactory:
                 response = action(self, *args, **kwargs)
                 self.meta.data = response
 
-            # Create the docstring for the load/reload mehtods.
+            # Create the docstring for the load/reload methods.
             lazy_docstring = docstring.LoadReloadDocstring(
                 action_name=action_model.name,
                 resource_name=resource_name,
