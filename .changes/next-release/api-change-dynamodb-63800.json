@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dynamodb``",
-  "description": "[``botocore``] This release adds support for importing data from S3 into a new DynamoDB table"
-}
