@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.56
+=======
+
+* api-change:``connect``: [``botocore``] This release adds SearchSecurityProfiles API which can be used to search for Security Profile resources within a Connect Instance.
+* api-change:``ivschat``: [``botocore``] Documentation Change for IVS Chat API Reference - Doc-only update to change text/description for tags field.
+* api-change:``kendra``: [``botocore``] This release adds support for a new authentication type - Personal Access Token (PAT) for confluence server.
+* api-change:``lookoutmetrics``: [``botocore``] This release is to make GetDataQualityMetrics API publicly available.
+
+
 1.24.55
 =======
 
