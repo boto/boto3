@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lookoutmetrics``",
-  "description": "[``botocore``] This release is to make GetDataQualityMetrics API publicly available."
-}
