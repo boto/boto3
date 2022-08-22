@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.24.57
+=======
+
+* api-change:``docdb``: [``botocore``] Update document for volume clone
+* api-change:``ec2``: [``botocore``] R6a instances are powered by 3rd generation AMD EPYC (Milan) processors delivering all-core turbo frequency of 3.6 GHz. C6id, M6id, and R6id instances are powered by 3rd generation Intel Xeon Scalable processor (Ice Lake) delivering all-core turbo frequency of 3.5 GHz.
+* api-change:``forecast``: [``botocore``] releasing What-If Analysis APIs and update ARN regex pattern to be more strict in accordance with security recommendation
+* api-change:``forecastquery``: [``botocore``] releasing What-If Analysis APIs
+* api-change:``iotsitewise``: [``botocore``] Enable non-unique asset names under different hierarchies
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``securityhub``: [``botocore``] Added new resource details objects to ASFF, including resources for AwsBackupBackupVault, AwsBackupBackupPlan and AwsBackupRecoveryPoint. Added FixAvailable, FixedInVersion and Remediation  to Vulnerability.
+* api-change:``support-app``: [``botocore``] This is the initial SDK release for the AWS Support App in Slack.
+
+
 1.24.56
 =======
 
