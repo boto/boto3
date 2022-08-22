@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``forecastquery``",
+  "description": "[``botocore``] releasing What-If Analysis APIs"
+}

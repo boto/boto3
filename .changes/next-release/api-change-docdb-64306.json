@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``docdb``",
+  "description": "[``botocore``] Update document for volume clone"
+}
