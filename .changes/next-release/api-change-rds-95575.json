@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] RDS for Oracle supports Oracle Data Guard switchover and read replica backups."
+}
