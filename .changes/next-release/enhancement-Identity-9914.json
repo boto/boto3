@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Identity",
+  "description": "[``botocore``] TokenProvider added for bearer auth support"
+}
