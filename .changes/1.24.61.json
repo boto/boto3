@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``mediapackage``",
+    "description": "[``botocore``] This release adds Ads AdTriggers and AdsOnDeliveryRestrictions to describe calls for CMAF endpoints on MediaPackage.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Removes support for RDS Custom from DBInstanceClass in ModifyDBInstance",
+    "type": "api-change"
+  }
+]
