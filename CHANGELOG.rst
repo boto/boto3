@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.24.63
+=======
+
+* enhancement:Endpoints: [``botocore``] Deprecate SSL common name
+* api-change:``greengrassv2``: [``botocore``] Adds topologyFilter to ListInstalledComponentsRequest which allows filtration of components by ROOT or ALL (including root and dependency components). Adds lastStatusChangeTimestamp to ListInstalledComponents response to show the last time a component changed state on a device.
+* api-change:``identitystore``: [``botocore``] Documentation updates for the Identity Store CLI Reference.
+* api-change:``lookoutequipment``: [``botocore``] This release adds new apis for providing labels.
+* api-change:``macie2``: [``botocore``] This release of the Amazon Macie API adds support for using allow lists to define specific text and text patterns to ignore when inspecting data sources for sensitive data.
+* api-change:``sso-admin``: [``botocore``] Documentation updates for the AWS IAM Identity Center CLI Reference.
+* api-change:``sso``: [``botocore``] Documentation updates for the AWS IAM Identity Center Portal CLI Reference.
+
+
 1.24.62
 =======
 

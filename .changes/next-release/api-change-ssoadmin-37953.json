@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sso-admin``",
-  "description": "[``botocore``] Documentation updates for the AWS IAM Identity Center CLI Reference."
-}

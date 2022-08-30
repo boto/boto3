@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lookoutequipment``",
-  "description": "[``botocore``] This release adds new apis for providing labels."
-}
