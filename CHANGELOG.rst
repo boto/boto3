@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.24.64
+=======
+
+* api-change:``cloudfront``: [``botocore``] Update API documentation for CloudFront origin access control (OAC)
+* api-change:``identitystore``: [``botocore``] Expand IdentityStore API to support Create, Read, Update, Delete and Get operations for User, Group and GroupMembership resources.
+* api-change:``iotthingsgraph``: [``botocore``] This release deprecates all APIs of the ThingsGraph service
+* api-change:``ivs``: [``botocore``] IVS Merge Fragmented Streams. This release adds support for recordingReconnectWindow field in IVS recordingConfigurations. For more information see https://docs.aws.amazon.com/ivs/latest/APIReference/Welcome.html
+* api-change:``rds-data``: [``botocore``] Documentation updates for RDS Data API
+* api-change:``sagemaker``: [``botocore``] SageMaker Inference Recommender now accepts Inference Recommender fields: Domain, Task, Framework, SamplePayloadUrl, SupportedContentTypes, SupportedInstanceTypes, directly in our CreateInferenceRecommendationsJob API through ContainerConfig
+
+
 1.24.63
 =======
 
