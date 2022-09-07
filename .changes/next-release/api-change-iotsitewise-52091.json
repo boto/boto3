@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotsitewise``",
-  "description": "[``botocore``] Allow specifying units in Asset Properties"
-}
