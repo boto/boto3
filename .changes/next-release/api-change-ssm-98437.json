@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ssm``",
+  "description": "[``botocore``] This release adds support for Systems Manager State Manager Association tagging."
+}
