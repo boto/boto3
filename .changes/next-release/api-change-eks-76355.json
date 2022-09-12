@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``eks``",
+  "description": "[``botocore``] Adding support for local Amazon EKS clusters on Outposts"
+}
