@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.71
+=======
+
+* api-change:``eks``: [``botocore``] Adding support for local Amazon EKS clusters on Outposts
+
+
 1.24.70
 =======
 
