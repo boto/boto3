@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.24.72
+=======
+
+* api-change:``customer-profiles``: [``botocore``] Added isUnstructured in response for Customer Profiles Integration APIs
+* api-change:``drs``: [``botocore``] Fixed the data type of lagDuration that is returned in Describe Source Server API
+* api-change:``ec2``: [``botocore``] Two new features for local gateway route tables: support for static routes targeting Elastic Network Interfaces and direct VPC routing.
+* api-change:``evidently``: [``botocore``] This release adds support for the client-side evaluation - powered by AWS AppConfig feature.
+* api-change:``kendra``: [``botocore``] This release enables our customer to choose the option of Sharepoint 2019 for the on-premise Sharepoint connector.
+* api-change:``transfer``: [``botocore``] This release introduces the ability to have multiple server host keys for any of your Transfer Family servers that use the SFTP protocol.
+
+
 1.24.71
 =======
 
