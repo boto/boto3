@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.74
+=======
+
+* api-change:``dynamodb``: [``botocore``] Increased DynamoDB transaction limit from 25 to 100.
+* api-change:``ec2``: [``botocore``] This feature allows customers to create tags for vpc-endpoint-connections and vpc-endpoint-service-permissions.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Automatic Model Tuning now supports specifying Hyperband strategy for tuning jobs, which uses a multi-fidelity based tuning strategy to stop underperforming hyperparameter configurations early.
+
+
 1.24.73
 =======
 
