@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.24.75
+=======
+
+* api-change:``codestar-notifications``: [``botocore``] This release adds tag based access control for the UntagResource API.
+* api-change:``ecs``: [``botocore``] This release supports new task definition sizes.
+
+
 1.24.74
 =======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecs``",
-  "description": "[``botocore``] This release supports new task definition sizes."
-}
