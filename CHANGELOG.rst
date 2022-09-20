@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.77
+=======
+
+* api-change:``ec2``: [``botocore``] This release adds support for blocked paths to Amazon VPC Reachability Analyzer.
+
+
 1.24.76
 =======
 
