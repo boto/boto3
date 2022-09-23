@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.24.80
+=======
+
+* api-change:``apprunner``: [``botocore``] AWS App Runner adds a Node.js 16 runtime.
+* api-change:``ec2``: [``botocore``] Letting external AWS customers provide ImageId as a Launch Template override in FleetLaunchTemplateOverridesRequest
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``lightsail``: [``botocore``] This release adds Instance Metadata Service (IMDS) support for Lightsail instances.
+* api-change:``nimble``: [``botocore``] Amazon Nimble Studio adds support for on-demand Amazon Elastic Compute Cloud (EC2) G3 and G5 instances, allowing customers to utilize additional GPU instance types for their creative projects.
+* api-change:``ssm``: [``botocore``] This release adds new SSM document types ConformancePackTemplate and CloudFormation
+* api-change:``wafv2``: [``botocore``] Add the default specification for ResourceType in ListResourcesForWebACL.
+
+
 1.24.79
 =======
 

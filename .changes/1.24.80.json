@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``apprunner``",
+    "description": "[``botocore``] AWS App Runner adds a Node.js 16 runtime.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Letting external AWS customers provide ImageId as a Launch Template override in FleetLaunchTemplateOverridesRequest",
+    "type": "api-change"
+  },
+  {
+    "category": "``lexv2-models``",
+    "description": "[``botocore``] Update lexv2-models client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``lightsail``",
+    "description": "[``botocore``] This release adds Instance Metadata Service (IMDS) support for Lightsail instances.",
+    "type": "api-change"
+  },
+  {
+    "category": "``nimble``",
+    "description": "[``botocore``] Amazon Nimble Studio adds support for on-demand Amazon Elastic Compute Cloud (EC2) G3 and G5 instances, allowing customers to utilize additional GPU instance types for their creative projects.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm``",
+    "description": "[``botocore``] This release adds new SSM document types ConformancePackTemplate and CloudFormation",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] Add the default specification for ResourceType in ListResourcesForWebACL.",
+    "type": "api-change"
+  }
+]
