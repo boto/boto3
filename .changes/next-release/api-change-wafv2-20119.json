@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``wafv2``",
+  "description": "[``botocore``] Add the default specification for ResourceType in ListResourcesForWebACL."
+}
