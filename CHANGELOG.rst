@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.24.81
+=======
+
+* api-change:``cur``: [``botocore``] This release adds two new support regions(me-central-1/eu-south-2) for OSG.
+* api-change:``iotfleetwise``: [``botocore``] General availability (GA) for AWS IoT Fleetwise. It adds AWS IoT Fleetwise to AWS SDK. For more information, see https://docs.aws.amazon.com/iot-fleetwise/latest/APIReference/Welcome.html.
+* api-change:``ssm``: [``botocore``] This release includes support for applying a CloudWatch alarm to Systems Manager capabilities like Automation, Run Command, State Manager, and Maintenance Windows.
+
+
 1.24.80
 =======
 
