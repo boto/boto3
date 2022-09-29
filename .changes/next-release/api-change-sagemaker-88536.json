@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker``",
+  "description": "[``botocore``] SageMaker Training Managed Warm Pools let you retain provisioned infrastructure to reduce latency for repetitive training workloads."
+}
