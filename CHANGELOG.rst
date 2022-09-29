@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.24.83
+=======
+
+* api-change:``acm``: [``botocore``] This update returns additional certificate details such as certificate SANs and allows sorting in the ListCertificates API.
+* api-change:``ec2``: [``botocore``] u-3tb1 instances are powered by Intel Xeon Platinum 8176M (Skylake) processors and are purpose-built to run large in-memory databases.
+* api-change:``emr-serverless``: [``botocore``] This release adds API support to debug Amazon EMR Serverless jobs in real-time with live application UIs
+* api-change:``fsx``: [``botocore``] This release adds support for Amazon File Cache.
+* api-change:``migrationhuborchestrator``: [``botocore``] Introducing AWS MigrationHubOrchestrator. This is the first public release of AWS MigrationHubOrchestrator.
+* api-change:``polly``: [``botocore``] Added support for the new Cantonese voice - Hiujin. Hiujin is available as a Neural voice only.
+* api-change:``proton``: [``botocore``] This release adds an option to delete pipeline provisioning repositories using the UpdateAccountSettings API
+* api-change:``sagemaker``: [``botocore``] SageMaker Training Managed Warm Pools let you retain provisioned infrastructure to reduce latency for repetitive training workloads.
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+* api-change:``translate``: [``botocore``] This release enables customers to access control rights on Translate resources like Parallel Data and Custom Terminology using Tag Based Authorization.
+* api-change:``workspaces``: [``botocore``] This release includes diagnostic log uploading feature. If it is enabled, the log files of WorkSpaces Windows client will be sent to Amazon WorkSpaces automatically for troubleshooting. You can use modifyClientProperty api to enable/disable this feature.
+
+
 1.24.82
 =======
 
