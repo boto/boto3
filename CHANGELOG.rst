@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.24.84
+=======
+
+* api-change:``codedeploy``: [``botocore``] This release allows you to override the alarm configurations when creating a deployment.
+* api-change:``devops-guru``: [``botocore``] This release adds filter feature on AddNotificationChannel API, enable customer to configure the SNS notification messages by Severity or MessageTypes
+* api-change:``dlm``: [``botocore``] This release adds support for archival of single-volume snapshots created by Amazon Data Lifecycle Manager policies
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``sagemaker``: [``botocore``] A new parameter called ExplainerConfig is added to CreateEndpointConfig API to enable SageMaker Clarify online explainability feature.
+* api-change:``sso-oidc``: [``botocore``] Documentation updates for the IAM Identity Center OIDC CLI Reference.
+
+
 1.24.83
 =======
 
