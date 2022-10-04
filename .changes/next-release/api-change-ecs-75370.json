@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecs``",
-  "description": "[``botocore``] Documentation updates to address various Amazon ECS tickets."
-}
