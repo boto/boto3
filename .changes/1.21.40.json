@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Update cloudwatch client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``fsx``",
+    "description": "[``botocore``] This release adds support for deploying FSx for ONTAP file systems in a single Availability Zone.",
+    "type": "api-change"
+  }
+]

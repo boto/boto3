@@ -37,22 +37,22 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
             expected_params=dict(
                 TableName='mytable',
                 KeyConditionExpression=key_expr,
-                FilterExpression=filter_expr
-            )
+                FilterExpression=filter_expr,
+            ),
         )
 
         with stubber:
-            response = table.query(KeyConditionExpression=key_expr,
-                                   FilterExpression=filter_expr)
+            response = table.query(
+                KeyConditionExpression=key_expr, FilterExpression=filter_expr
+            )
 
         assert response['Items'] == []
         stubber.assert_no_pending_responses()
 
     def test_table_scan_can_be_stubbed_with_expressions(self):
         table = self.resource.Table('mytable')
-        filter_expr = (
-            Attr('myattr').eq('foo') &
-            (Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz'))
+        filter_expr = Attr('myattr').eq('foo') & (
+            Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')
         )
 
         stubber = Stubber(table.meta.client)
@@ -60,9 +60,8 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
             'scan',
             dict(Items=list()),
             expected_params=dict(
-                TableName='mytable',
-                FilterExpression=filter_expr
-            )
+                TableName='mytable', FilterExpression=filter_expr
+            ),
         )
 
         with stubber:

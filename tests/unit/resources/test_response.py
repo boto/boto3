@@ -12,30 +12,28 @@
 # language governing permissions and limitations under the License.
 import pytest
 
-from tests import BaseTestCase, mock
-from boto3.utils import ServiceContext
 from boto3.resources.base import ResourceMeta, ServiceResource
-from boto3.resources.model import ResponseResource, Parameter
 from boto3.resources.factory import ResourceFactory
+from boto3.resources.model import Parameter, ResponseResource
 from boto3.resources.response import (
-    build_identifiers, build_empty_response, RawHandler, ResourceHandler
+    RawHandler,
+    ResourceHandler,
+    build_empty_response,
+    build_identifiers,
 )
+from boto3.utils import ServiceContext
+from tests import BaseTestCase, mock
 
 
 class TestBuildIdentifiers(BaseTestCase):
     def test_build_identifier_from_res_path_scalar(self):
-        identifiers = [Parameter(target='Id', source='response',
-                                 path='Container.Frob.Id')]
+        identifiers = [
+            Parameter(target='Id', source='response', path='Container.Frob.Id')
+        ]
 
         parent = mock.Mock()
         params = {}
-        response = {
-            'Container': {
-                'Frob': {
-                    'Id': 'response-path'
-                }
-            }
-        }
+        response = {'Container': {'Frob': {'Id': 'response-path'}}}
 
         values = build_identifiers(identifiers, parent, params, response)
 
@@ -43,20 +41,15 @@ class TestBuildIdentifiers(BaseTestCase):
         assert values[0][1] == 'response-path'
 
     def test_build_identifier_from_res_path_list(self):
-        identifiers = [Parameter(target='Id', source='response',
-                       path='Container.Frobs[].Id')]
+        identifiers = [
+            Parameter(
+                target='Id', source='response', path='Container.Frobs[].Id'
+            )
+        ]
 
         parent = mock.Mock()
         params = {}
-        response = {
-            'Container': {
-                'Frobs': [
-                    {
-                        'Id': 'response-path'
-                    }
-                ]
-            }
-        }
+        response = {'Container': {'Frobs': [{'Id': 'response-path'}]}}
 
         values = build_identifiers(identifiers, parent, params, response)
 
@@ -64,17 +57,12 @@ class TestBuildIdentifiers(BaseTestCase):
         assert values[0][1] == ['response-path']
 
     def test_build_identifier_from_parent_identifier(self):
-        identifiers = [Parameter(target='Id', source='identifier',
-                       name='Id')]
+        identifiers = [Parameter(target='Id', source='identifier', name='Id')]
 
         parent = mock.Mock()
         parent.id = 'identifier'
         params = {}
-        response = {
-            'Container': {
-                'Frobs': []
-            }
-        }
+        response = {'Container': {'Frobs': []}}
 
         values = build_identifiers(identifiers, parent, params, response)
 
@@ -82,19 +70,12 @@ class TestBuildIdentifiers(BaseTestCase):
         assert values[0][1] == 'identifier'
 
     def test_build_identifier_from_parent_data_member(self):
-        identifiers = [Parameter(target='Id', source='data',
-                       path='Member')]
+        identifiers = [Parameter(target='Id', source='data', path='Member')]
 
         parent = mock.Mock()
-        parent.meta = ResourceMeta('test', data={
-            'Member': 'data-member'
-        })
+        parent.meta = ResourceMeta('test', data={'Member': 'data-member'})
         params = {}
-        response = {
-            'Container': {
-                'Frobs': []
-            }
-        }
+        response = {'Container': {'Frobs': []}}
 
         values = build_identifiers(identifiers, parent, params, response)
 
@@ -102,18 +83,13 @@ class TestBuildIdentifiers(BaseTestCase):
         assert values[0][1] == 'data-member'
 
     def test_build_identifier_from_req_param(self):
-        identifiers = [Parameter(target='Id', source='requestParameter',
-                       path='Param')]
+        identifiers = [
+            Parameter(target='Id', source='requestParameter', path='Param')
+        ]
 
         parent = mock.Mock()
-        params = {
-            'Param': 'request-param'
-        }
-        response = {
-            'Container': {
-                'Frobs': []
-            }
-        }
+        params = {'Param': 'request-param'}
+        response = {'Container': {'Frobs': []}}
 
         values = build_identifiers(identifiers, parent, params, response)
 
@@ -125,11 +101,7 @@ class TestBuildIdentifiers(BaseTestCase):
 
         parent = mock.Mock()
         params = {}
-        response = {
-            'Container': {
-                'Frobs': []
-            }
-        }
+        response = {'Container': {'Frobs': []}}
 
         with pytest.raises(NotImplementedError):
             build_identifiers(identifiers, parent, params, response)
@@ -137,7 +109,7 @@ class TestBuildIdentifiers(BaseTestCase):
 
 class TestBuildEmptyResponse(BaseTestCase):
     def setUp(self):
-        super(TestBuildEmptyResponse, self).setUp()
+        super().setUp()
 
         self.search_path = ''
         self.operation_name = 'GetFrobs'
@@ -151,8 +123,9 @@ class TestBuildEmptyResponse(BaseTestCase):
         self.service_model.operation_model.return_value = operation_model
 
     def get_response(self):
-        return build_empty_response(self.search_path, self.operation_name,
-                                    self.service_model)
+        return build_empty_response(
+            self.search_path, self.operation_name, self.service_model
+        )
 
     def test_empty_structure(self):
         self.output_shape.type_name = 'structure'
@@ -205,14 +178,10 @@ class TestBuildEmptyResponse(BaseTestCase):
 
         container = mock.Mock()
         container.type_name = 'structure'
-        container.members = {
-            'Frob': frob
-        }
+        container.members = {'Frob': frob}
 
         self.output_shape.type_name = 'structure'
-        self.output_shape.members = {
-            'Container': container
-        }
+        self.output_shape.members = {'Container': container}
 
         response = self.get_response()
         assert response is None
@@ -228,9 +197,7 @@ class TestBuildEmptyResponse(BaseTestCase):
         container.member = frob
 
         self.output_shape.type_name = 'structure'
-        self.output_shape.members = {
-            'Container': container
-        }
+        self.output_shape.members = {'Container': container}
 
         response = self.get_response()
         assert response is None
@@ -242,9 +209,7 @@ class TestBuildEmptyResponse(BaseTestCase):
         container.type_name = 'invalid'
 
         self.output_shape.type_name = 'structure'
-        self.output_shape.members = {
-            'Container': container
-        }
+        self.output_shape.members = {'Container': container}
 
         with pytest.raises(NotImplementedError):
             self.get_response()
@@ -254,9 +219,7 @@ class TestRawHandler(BaseTestCase):
     def test_raw_handler_response(self):
         parent = mock.Mock()
         params = {}
-        response = {
-            'Id': 'foo'
-        }
+        response = {'Id': 'foo'}
 
         handler = RawHandler(search_path=None)
         parsed_response = handler(parent, params, response)
@@ -267,14 +230,8 @@ class TestRawHandler(BaseTestCase):
     def test_raw_handler_response_path(self):
         parent = mock.Mock()
         params = {}
-        frob = {
-            'Id': 'foo'
-        }
-        response = {
-            'Container': {
-                'Frob': frob
-            }
-        }
+        frob = {'Id': 'foo'}
+        response = {'Container': {'Frob': frob}}
 
         handler = RawHandler(search_path='Container.Frob')
         parsed_response = handler(parent, params, response)
@@ -284,16 +241,11 @@ class TestRawHandler(BaseTestCase):
 
 class TestResourceHandler(BaseTestCase):
     def setUp(self):
-        super(TestResourceHandler, self).setUp()
+        super().setUp()
         self.identifier_path = ''
         self.factory = ResourceFactory(mock.Mock())
         self.resource_defs = {
-            'Frob': {
-                'shape': 'Frob',
-                'identifiers': [
-                    {'name': 'Id'}
-                ]
-            }
+            'Frob': {'shape': 'Frob', 'identifiers': [{'name': 'Id'}]}
         }
         self.service_model = mock.Mock()
         shape = mock.Mock()
@@ -304,14 +256,10 @@ class TestResourceHandler(BaseTestCase):
         frobs.type_name = 'list'
         container = mock.Mock()
         container.type_name = 'structure'
-        container.members = {
-            'Frobs': frobs
-        }
+        container.members = {'Frobs': frobs}
         self.output_shape = mock.Mock()
         self.output_shape.type_name = 'structure'
-        self.output_shape.members = {
-            'Container': container
-        }
+        self.output_shape.members = {'Container': container}
         operation_model = mock.Mock()
         operation_model.output_shape = self.output_shape
         self.service_model.operation_model.return_value = operation_model
@@ -324,23 +272,28 @@ class TestResourceHandler(BaseTestCase):
         request_resource_def = {
             'type': 'Frob',
             'identifiers': [
-                {'target': 'Id', 'source': 'response',
-                 'path': self.identifier_path},
-            ]
+                {
+                    'target': 'Id',
+                    'source': 'response',
+                    'path': self.identifier_path,
+                },
+            ],
         }
         resource_model = ResponseResource(
-            request_resource_def, self.resource_defs)
+            request_resource_def, self.resource_defs
+        )
 
         handler = ResourceHandler(
-            search_path=search_path, factory=self.factory,
+            search_path=search_path,
+            factory=self.factory,
             resource_model=resource_model,
             service_context=ServiceContext(
                 service_name='myservice',
                 resource_json_definitions=self.resource_defs,
                 service_model=self.service_model,
-                service_waiter_model=None
+                service_waiter_model=None,
             ),
-            operation_name='GetFrobs'
+            operation_name='GetFrobs',
         )
         return handler(self.parent, self.params, response)
 
@@ -361,9 +314,7 @@ class TestResourceHandler(BaseTestCase):
     def test_missing_data_scalar_builds_empty_response(self, build_mock):
         self.identifier_path = 'Container.Id'
         search_path = 'Container'
-        response = {
-            'something': 'irrelevant'
-        }
+        response = {'something': 'irrelevant'}
 
         resources = self.get_resource(search_path, response)
 
@@ -383,7 +334,7 @@ class TestResourceHandler(BaseTestCase):
                     {
                         'Id': 'another-frob',
                         'OtherValue': 'foo',
-                    }
+                    },
                 ]
             }
         }
@@ -397,12 +348,7 @@ class TestResourceHandler(BaseTestCase):
     def test_create_resource_list_no_search_path(self):
         self.identifier_path = '[].Id'
         search_path = ''
-        response = [
-            {
-                'Id': 'a-frob',
-                'OtherValue': 'other'
-            }
-        ]
+        response = [{'Id': 'a-frob', 'OtherValue': 'other'}]
 
         resources = self.get_resource(search_path, response)
 
@@ -414,9 +360,7 @@ class TestResourceHandler(BaseTestCase):
     def test_missing_data_list_builds_empty_response(self, build_mock):
         self.identifier_path = 'Container.Frobs[].Id'
         search_path = 'Container.Frobs[]'
-        response = {
-            'something': 'irrelevant'
-        }
+        response = {'something': 'irrelevant'}
 
         resources = self.get_resource(search_path, response)
 

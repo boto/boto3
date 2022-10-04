@@ -7,6 +7,10 @@ on:
 
 jobs:
   issue-cleanup:
+    permissions:
+      issues: write
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     name: Stale issue job
     steps:

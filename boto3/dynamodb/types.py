@@ -10,13 +10,16 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from decimal import Decimal, Context, Clamped
-from decimal import Overflow, Inexact, Underflow, Rounded
-
-from boto3.compat import collections_abc
-
-from botocore.compat import six
-
+import collections.abc
+from decimal import (
+    Clamped,
+    Context,
+    Decimal,
+    Inexact,
+    Overflow,
+    Rounded,
+    Underflow,
+)
 
 STRING = 'S'
 NUMBER = 'N'
@@ -31,24 +34,28 @@ LIST = 'L'
 
 
 DYNAMODB_CONTEXT = Context(
-    Emin=-128, Emax=126, prec=38,
-    traps=[Clamped, Overflow, Inexact, Rounded, Underflow])
+    Emin=-128,
+    Emax=126,
+    prec=38,
+    traps=[Clamped, Overflow, Inexact, Rounded, Underflow],
+)
 
 
-BINARY_TYPES = (bytearray, six.binary_type)
+BINARY_TYPES = (bytearray, bytes)
 
 
-class Binary(object):
+class Binary:
     """A class for representing Binary in dynamodb
 
     Especially for Python 2, use this class to explicitly specify
     binary data for item in DynamoDB. It is essentially a wrapper around
     binary. Unicode and Python 3 string types are not allowed.
     """
+
     def __init__(self, value):
         if not isinstance(value, BINARY_TYPES):
-            raise TypeError('Value must be of the following types: %s.' %
-                            ', '.join([str(t) for t in BINARY_TYPES]))
+            types = ', '.join([str(t) for t in BINARY_TYPES])
+            raise TypeError(f'Value must be of the following types: {types}')
         self.value = value
 
     def __eq__(self, other):
@@ -60,7 +67,7 @@ class Binary(object):
         return not self.__eq__(other)
 
     def __repr__(self):
-        return 'Binary(%r)' % self.value
+        return f'Binary({self.value!r})'
 
     def __str__(self):
         return self.value
@@ -72,8 +79,9 @@ class Binary(object):
         return hash(self.value)
 
 
-class TypeSerializer(object):
+class TypeSerializer:
     """This class serializes Python data types to DynamoDB types."""
+
     def serialize(self, value):
         """The method to serialize the Python data types.
 
@@ -103,7 +111,7 @@ class TypeSerializer(object):
             dictionaries can be directly passed to botocore methods.
         """
         dynamodb_type = self._get_dynamodb_type(value)
-        serializer = getattr(self, '_serialize_%s' % dynamodb_type.lower())
+        serializer = getattr(self, f'_serialize_{dynamodb_type}'.lower())
         return {dynamodb_type: serializer(value)}
 
     def _get_dynamodb_type(self, value):
@@ -140,7 +148,7 @@ class TypeSerializer(object):
             dynamodb_type = LIST
 
         else:
-            msg = 'Unsupported type "%s" for value "%s"' % (type(value), value)
+            msg = f'Unsupported type "{type(value)}" for value "{value}"'
             raise TypeError(msg)
 
         return dynamodb_type
@@ -156,29 +164,26 @@ class TypeSerializer(object):
         return False
 
     def _is_number(self, value):
-        if isinstance(value, (six.integer_types, Decimal)):
+        if isinstance(value, (int, Decimal)):
             return True
         elif isinstance(value, float):
             raise TypeError(
-                'Float types are not supported. Use Decimal types instead.')
+                'Float types are not supported. Use Decimal types instead.'
+            )
         return False
 
     def _is_string(self, value):
-        if isinstance(value, six.string_types):
+        if isinstance(value, str):
             return True
         return False
 
     def _is_binary(self, value):
-        if isinstance(value, Binary):
-            return True
-        elif isinstance(value, bytearray):
-            return True
-        elif six.PY3 and isinstance(value, six.binary_type):
+        if isinstance(value, (Binary, bytearray, bytes)):
             return True
         return False
 
     def _is_set(self, value):
-        if isinstance(value, collections_abc.Set):
+        if isinstance(value, collections.abc.Set):
             return True
         return False
 
@@ -189,7 +194,7 @@ class TypeSerializer(object):
         return False
 
     def _is_map(self, value):
-        if isinstance(value, collections_abc.Mapping):
+        if isinstance(value, collections.abc.Mapping):
             return True
         return False
 
@@ -231,11 +236,12 @@ class TypeSerializer(object):
         return [self.serialize(v) for v in value]
 
     def _serialize_m(self, value):
-        return dict([(k, self.serialize(v)) for k, v in value.items()])
+        return {k: self.serialize(v) for k, v in value.items()}
 
 
-class TypeDeserializer(object):
+class TypeDeserializer:
     """This class deserializes DynamoDB types to Python types."""
+
     def deserialize(self, value):
         """The method to deserialize the DynamoDB data types.
 
@@ -259,15 +265,17 @@ class TypeDeserializer(object):
         """
 
         if not value:
-            raise TypeError('Value must be a nonempty dictionary whose key '
-                            'is a valid dynamodb type.')
+            raise TypeError(
+                'Value must be a nonempty dictionary whose key '
+                'is a valid dynamodb type.'
+            )
         dynamodb_type = list(value.keys())[0]
         try:
             deserializer = getattr(
-                self, '_deserialize_%s' % dynamodb_type.lower())
+                self, f'_deserialize_{dynamodb_type}'.lower()
+            )
         except AttributeError:
-            raise TypeError(
-                'Dynamodb type %s is not supported' % dynamodb_type)
+            raise TypeError(f'Dynamodb type {dynamodb_type} is not supported')
         return deserializer(value[dynamodb_type])
 
     def _deserialize_null(self, value):
@@ -298,4 +306,4 @@ class TypeDeserializer(object):
         return [self.deserialize(v) for v in value]
 
     def _deserialize_m(self, value):
-        return dict([(k, self.deserialize(v)) for k, v in value.items()])
+        return {k: self.deserialize(v) for k, v in value.items()}

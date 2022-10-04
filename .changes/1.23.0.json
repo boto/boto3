@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Loaders",
+    "description": "[``botocore``] Support for loading gzip compressed model files.",
+    "type": "feature"
+  },
+  {
+    "category": "``grafana``",
+    "description": "[``botocore``] This release adds APIs for creating and deleting API keys in an Amazon Managed Grafana workspace.",
+    "type": "api-change"
+  }
+]

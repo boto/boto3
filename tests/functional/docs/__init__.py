@@ -18,15 +18,14 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         for line in lines:
             assert line in contents
             beginning = contents.find(line)
-            contents = contents[(beginning + len(line)):]
+            contents = contents[(beginning + len(line)) :]
 
     def get_class_document_block(self, class_name, contents):
         start_class_document = '.. py:class:: %s' % class_name
         start_index = contents.find(start_class_document)
         assert start_index != -1, 'Class is not found in contents'
         contents = contents[start_index:]
-        end_index = contents.find(
-            '  .. py:class::', len(start_class_document))
+        end_index = contents.find('  .. py:class::', len(start_class_document))
         return contents[:end_index]
 
     def get_method_document_block(self, method_name, contents):
@@ -35,7 +34,8 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         assert start_index != -1, 'Method is not found in contents'
         contents = contents[start_index:]
         end_index = contents.find(
-            '  .. py:method::', len(start_method_document))
+            '  .. py:method::', len(start_method_document)
+        )
         return contents[:end_index]
 
     def get_request_syntax_document_block(self, contents):
@@ -43,8 +43,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         start_index = contents.find(start_marker)
         assert start_index != -1, 'There is no request syntax section'
         contents = contents[start_index:]
-        end_index = contents.find(
-            ':type', len(start_marker))
+        end_index = contents.find(':type', len(start_marker))
         return contents[:end_index]
 
     def get_response_syntax_document_block(self, contents):
@@ -52,8 +51,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         start_index = contents.find(start_marker)
         assert start_index != -1, 'There is no response syntax section'
         contents = contents[start_index:]
-        end_index = contents.find(
-            '**Response Structure**', len(start_marker))
+        end_index = contents.find('**Response Structure**', len(start_marker))
         return contents[:end_index]
 
     def get_request_parameter_document_block(self, param_name, contents):
