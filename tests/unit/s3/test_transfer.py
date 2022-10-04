@@ -33,6 +33,7 @@ from tests import mock, unittest
 
 PY36 = sys.version_info[0:2] >= (3, 6)
 
+
 class TestCreateTransferManager(unittest.TestCase):
     def test_create_transfer_manager(self):
         client = object()
@@ -156,8 +157,9 @@ class TestS3Transfer(unittest.TestCase):
         if PY36:
             from pathlib import Path
             extra_args = {'ACL': 'public-read'}
-            self.transfer.upload_file(Path('smallfile'), 'bucket', 'key',
-                                      extra_args=extra_args)
+            self.transfer.upload_file(
+                Path('smallfile'), 'bucket', 'key', extra_args=extra_args
+            )
             self.manager.upload.assert_called_with(
                 'smallfile', 'bucket', 'key', extra_args, None)
         else:
@@ -178,17 +180,25 @@ class TestS3Transfer(unittest.TestCase):
     def test_download_file_via_path(self):
         if PY36:
             from pathlib import Path
+
             extra_args = {
                 'SSECustomerKey': 'foo',
                 'SSECustomerAlgorithm': 'AES256',
             }
-            self.transfer.download_file('bucket', 'key', Path('/tmp/smallfile'),
-                                        extra_args=extra_args)
+            self.transfer.download_file(
+                'bucket', 'key', Path('/tmp/smallfile'), extra_args=extra_args
+            )
             self.manager.download.assert_called_with(
-                'bucket', 'key', os.path.normpath('/tmp/smallfile'), extra_args, None)
+                'bucket',
+                'key',
+                os.path.normpath('/tmp/smallfile'),
+                extra_args,
+                None
+            )
         else:
             self.skipTest("Python version is irrelevant for this test")
-        
+
+
     def test_upload_wraps_callback(self):
         self.transfer.upload_file(
             'smallfile', 'bucket', 'key', callback=self.callback
