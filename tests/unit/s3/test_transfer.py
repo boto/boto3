@@ -166,7 +166,7 @@ class TestS3Transfer(unittest.TestCase):
             )
         else:
             self.skipTest("Python version is irrelevant for this test")
-        
+
     def test_download_file(self):
         extra_args = {
             'SSECustomerKey': 'foo',
