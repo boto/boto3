@@ -144,6 +144,7 @@ if PY36:
     from os import fspath
     from pathlib import Path
 
+
 def create_transfer_manager(client, config, osutil=None):
     """Creates a transfer manager based on configuration
 
@@ -284,8 +285,8 @@ class S3Transfer:
             :py:meth:`S3.Client.upload_fileobj`
         """
         if PY36:
-          if isinstance(filename, Path):
-              filename = fspath(filename)
+            if isinstance(filename, Path):
+                filename = fspath(filename)
         if not isinstance(filename, str):
             raise ValueError('Filename must be a string or a path-like object')
 
@@ -319,8 +320,8 @@ class S3Transfer:
             :py:meth:`S3.Client.download_fileobj`
         """
         if PY36:
-          if isinstance(filename, Path):
-              filename = fspath(filename)
+            if isinstance(filename, Path):
+                filename = fspath(filename)
         if not isinstance(filename, str):
             raise ValueError('Filename must be a string or a path-like object')
 
