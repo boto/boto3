@@ -156,12 +156,14 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_path(self):
         if PY36:
             from pathlib import Path
+
             extra_args = {'ACL': 'public-read'}
             self.transfer.upload_file(
                 Path('smallfile'), 'bucket', 'key', extra_args=extra_args
             )
             self.manager.upload.assert_called_with(
-                'smallfile', 'bucket', 'key', extra_args, None)
+                'smallfile', 'bucket', 'key', extra_args, None
+            )
         else:
             self.skipTest("Python version is irrelevant for this test")
         
@@ -193,11 +195,10 @@ class TestS3Transfer(unittest.TestCase):
                 'key',
                 os.path.normpath('/tmp/smallfile'),
                 extra_args,
-                None
+                None,
             )
         else:
             self.skipTest("Python version is irrelevant for this test")
-
 
     def test_upload_wraps_callback(self):
         self.transfer.upload_file(
