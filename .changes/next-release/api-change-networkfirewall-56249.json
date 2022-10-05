@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``network-firewall``",
-  "description": "[``botocore``] StreamExceptionPolicy configures how AWS Network Firewall processes traffic when a network connection breaks midstream"
-}
