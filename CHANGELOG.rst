@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.88
+=======
+
+* api-change:``resiliencehub``: [``botocore``] Documentation change for AWS Resilience Hub. Doc-only update to fix Documentation layout
+
+
 1.24.87
 =======
 
