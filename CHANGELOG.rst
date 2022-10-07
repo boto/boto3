@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.89
+=======
+
+* api-change:``codeguru-reviewer``: [``botocore``] Documentation update to replace broken link.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``greengrassv2``: [``botocore``] This release adds error status details for deployments and components that failed on a device and adds features to improve visibility into component installation.
+* api-change:``quicksight``: [``botocore``] Amazon QuickSight now supports SecretsManager Secret ARN in place of CredentialPair for DataSource creation and update. This release also has some minor documentation updates and removes CountryCode as a required parameter in GeoSpatialColumnGroup
+
+
 1.24.88
 =======
 
