@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iotfleetwise``",
+  "description": "[``botocore``] Documentation update for AWS IoT FleetWise"
+}

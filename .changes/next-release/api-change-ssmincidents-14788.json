@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ssm-incidents``",
+  "description": "[``botocore``] Update RelatedItem enum to support Tasks"
+}
