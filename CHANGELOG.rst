@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.24.91
+=======
+
+* api-change:``mediaconvert``: [``botocore``] MediaConvert now supports specifying the minimum percentage of the HRD buffer available at the end of each encoded video segment.
+
+
 1.24.90
 =======
 
