@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.93
+=======
+
+* api-change:``frauddetector``: [``botocore``] Documentation Updates for Amazon Fraud Detector
+* api-change:``sagemaker``: [``botocore``] This change allows customers to enable data capturing while running a batch transform job, and configure monitoring schedule to monitoring the captured data.
+* api-change:``servicediscovery``: [``botocore``] Updated the ListNamespaces API to support the NAME and HTTP_NAME filters, and the BEGINS_WITH filter condition.
+* api-change:``sesv2``: [``botocore``] This release allows subscribers to enable Dedicated IPs (managed) to send email via a fully managed dedicated IP experience. It also adds identities' VerificationStatus in the response of GetEmailIdentity and ListEmailIdentities APIs, and ImportJobs counts in the response of ListImportJobs API.
+
+
 1.24.92
 =======
 
