@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``events``",
+  "description": "[``botocore``] Update events client to latest version"
+}
