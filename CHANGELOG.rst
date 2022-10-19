@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.24.94
+=======
+
+* api-change:``chime-sdk-messaging``: [``botocore``] Documentation updates for Chime Messaging SDK
+* api-change:``cloudtrail``: [``botocore``] This release includes support for exporting CloudTrail Lake query results to an Amazon S3 bucket.
+* api-change:``config``: [``botocore``] This release adds resourceType enums for AppConfig, AppSync, DataSync, EC2, EKS, Glue, GuardDuty, SageMaker, ServiceDiscovery, SES, Route53 types.
+* api-change:``connect``: [``botocore``] This release adds API support for managing phone numbers that can be used across multiple AWS regions through telephony traffic distribution.
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``managedblockchain``: [``botocore``] Adding new Accessor APIs for Amazon Managed Blockchain
+* api-change:``s3``: [``botocore``] Updates internal logic for constructing API endpoints. We have added rule-based endpoints and internal model parameters.
+* api-change:``s3control``: [``botocore``] Updates internal logic for constructing API endpoints. We have added rule-based endpoints and internal model parameters.
+* api-change:``support-app``: [``botocore``] This release adds the RegisterSlackWorkspaceForOrganization API. You can use the API to register a Slack workspace for an AWS account that is part of an organization.
+* api-change:``workspaces-web``: [``botocore``] WorkSpaces Web now supports user access logging for recording session start, stop, and URL navigation.
+
+
 1.24.93
 =======
 
