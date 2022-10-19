@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``chime-sdk-messaging``",
+    "description": "[``botocore``] Documentation updates for Chime Messaging SDK",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudtrail``",
+    "description": "[``botocore``] This release includes support for exporting CloudTrail Lake query results to an Amazon S3 bucket.",
+    "type": "api-change"
+  },
+  {
+    "category": "``config``",
+    "description": "[``botocore``] This release adds resourceType enums for AppConfig, AppSync, DataSync, EC2, EKS, Glue, GuardDuty, SageMaker, ServiceDiscovery, SES, Route53 types.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release adds API support for managing phone numbers that can be used across multiple AWS regions through telephony traffic distribution.",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Update events client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``managedblockchain``",
+    "description": "[``botocore``] Adding new Accessor APIs for Amazon Managed Blockchain",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3``",
+    "description": "[``botocore``] Updates internal logic for constructing API endpoints. We have added rule-based endpoints and internal model parameters.",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3control``",
+    "description": "[``botocore``] Updates internal logic for constructing API endpoints. We have added rule-based endpoints and internal model parameters.",
+    "type": "api-change"
+  },
+  {
+    "category": "``support-app``",
+    "description": "[``botocore``] This release adds the RegisterSlackWorkspaceForOrganization API. You can use the API to register a Slack workspace for an AWS account that is part of an organization.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces-web``",
+    "description": "[``botocore``] WorkSpaces Web now supports user access logging for recording session start, stop, and URL navigation.",
+    "type": "api-change"
+  }
+]
