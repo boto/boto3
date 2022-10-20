@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.24.95
+=======
+
+* api-change:``devops-guru``: [``botocore``] This release adds information about the resources DevOps Guru is analyzing.
+* api-change:``globalaccelerator``: [``botocore``] Global Accelerator now supports AddEndpoints and RemoveEndpoints operations for standard endpoint groups.
+* api-change:``resiliencehub``: [``botocore``] In this release, we are introducing support for regional optimization for AWS Resilience Hub applications. It also includes a few documentation updates to improve clarity.
+* api-change:``rum``: [``botocore``] CloudWatch RUM now supports Extended CloudWatch Metrics with Additional Dimensions
+
+
 1.24.94
 =======
 
