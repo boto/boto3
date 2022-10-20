@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``devops-guru``",
+  "description": "[``botocore``] This release adds information about the resources DevOps Guru is analyzing."
+}
