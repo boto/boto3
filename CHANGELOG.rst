@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.25.0
+======
+
+* feature:Endpoints: [``botocore``] Implemented new endpoint ruleset system to dynamically derive endpoints and settings for services
+* api-change:``acm-pca``: [``botocore``] AWS Private Certificate Authority (AWS Private CA) now offers usage modes which are combination of features to address specific use cases.
+* api-change:``batch``: [``botocore``] This release adds support for AWS Batch on Amazon EKS.
+* api-change:``datasync``: [``botocore``] Added support for self-signed certificates when using object storage locations; added BytesCompressed to the TaskExecution response.
+* api-change:``sagemaker``: [``botocore``] SageMaker Inference Recommender now supports a new API ListInferenceRecommendationJobSteps to return the details of all the benchmark we create for an inference recommendation job.
+
+
 1.24.96
 =======
 
