@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iam``",
-  "description": "[``botocore``] Doc only update that corrects instances of CLI not using an entity."
-}
