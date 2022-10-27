@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift``",
-  "description": "[``botocore``] This release clarifies use for the ElasticIp parameter of the CreateCluster and RestoreFromClusterSnapshot APIs."
-}
