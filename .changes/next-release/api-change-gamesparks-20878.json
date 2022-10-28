@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``gamesparks``",
-  "description": "[``botocore``] Add LATEST as a possible GameSDK Version on snapshot"
-}
