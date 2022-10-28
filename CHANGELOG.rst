@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.25.4
+======
+
+* api-change:``apprunner``: [``botocore``] AWS App Runner adds .NET 6, Go 1, PHP 8.1 and Ruby 3.1 runtimes.
+* api-change:``appstream``: [``botocore``] This release includes CertificateBasedAuthProperties in CreateDirectoryConfig and UpdateDirectoryConfig.
+* api-change:``cloud9``: [``botocore``] Update to the documentation section of the Cloud9 API Reference guide.
+* api-change:``cloudformation``: [``botocore``] This release adds more fields to improves visibility of AWS CloudFormation StackSets information in following APIs: ListStackInstances, DescribeStackInstance, ListStackSetOperationResults, ListStackSetOperations, DescribeStackSetOperation.
+* api-change:``gamesparks``: [``botocore``] Add LATEST as a possible GameSDK Version on snapshot
+* api-change:``mediatailor``: [``botocore``] This release introduces support for SCTE-35 segmentation descriptor messages which can be sent within time signal messages.
+
+
 1.25.3
 ======
 
