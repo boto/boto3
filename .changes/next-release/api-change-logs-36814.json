@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``logs``",
-  "description": "[``botocore``] SDK release to support tagging for destinations and log groups with TagResource. Also supports tag on create with PutDestination."
-}
