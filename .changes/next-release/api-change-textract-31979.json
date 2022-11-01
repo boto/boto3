@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``textract``",
-  "description": "[``botocore``] Add ocr results in AnalyzeIDResponse as blocks"
-}

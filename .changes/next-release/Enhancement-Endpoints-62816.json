@@ -1,5 +1,0 @@
-{
-  "type": "Enhancement",
-  "category": "Endpoints",
-  "description": "[``botocore``] Discontinued use of `sslCommonName` hosts as detailed in 1.27.0 (see `#2705 <https://github.com/boto/botocore/issues/2705>`__ for more info)"
-}
