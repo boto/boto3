@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Endpoints",
+    "description": "[``botocore``] Migrate all services to use new AWS Endpoint Resolution framework",
+    "type": "feature"
+  },
+  {
+    "category": "Endpoints",
+    "description": "[``botocore``] Discontinued use of `sslCommonName` hosts as detailed in 1.27.0 (see `#2705 <https://github.com/boto/botocore/issues/2705>`__ for more info)",
+    "type": "Enhancement"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Relational Database Service - This release adds support for configuring Storage Throughput on RDS database instances.",
+    "type": "api-change"
+  },
+  {
+    "category": "``textract``",
+    "description": "[``botocore``] Add ocr results in AnalyzeIDResponse as blocks",
+    "type": "api-change"
+  }
+]
