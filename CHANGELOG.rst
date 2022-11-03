@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.2
+======
+
+* api-change:``memorydb``: [``botocore``] Adding support for r6gd instances for MemoryDB Redis with data tiering. In a cluster with data tiering enabled, when available memory capacity is exhausted, the least recently used data is automatically tiered to solid state drives for cost-effective capacity scaling with minimal performance impact.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker now supports running training jobs on ml.trn1 instance types.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.26.1
 ======
 
