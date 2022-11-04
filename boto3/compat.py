@@ -16,22 +16,15 @@ import errno
 import socket
 import warnings
 
-from botocore.vendored import six
 from boto3.exceptions import PythonDeprecationWarning
 
-if six.PY3:
-    # In python3, socket.error is OSError, which is too general
-    # for what we want (i.e FileNotFoundError is a subclass of OSError).
-    # In py3 all the socket related errors are in a newly created
-    # ConnectionError
-    SOCKET_ERROR = ConnectionError
-else:
-    SOCKET_ERROR = socket.error
+# In python3, socket.error is OSError, which is too general
+# for what we want (i.e FileNotFoundError is a subclass of OSError).
+# In py3 all the socket related errors are in a newly created
+# ConnectionError
+SOCKET_ERROR = ConnectionError
 
-if six.PY3:
-    import collections.abc as collections_abc
-else:
-    import collections as collections_abc
+import collections.abc as collections_abc
 
 
 if sys.platform.startswith('win'):
