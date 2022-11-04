@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.3
+======
+
+* api-change:``ec2``: [``botocore``] This release adds API support for the recipient of an AMI account share to remove shared AMI launch permissions.
+* api-change:``emr-containers``: [``botocore``] Adding support for Job templates. Job templates allow you to create and store templates to configure Spark applications parameters. This helps you ensure consistent settings across applications by reusing and enforcing configuration overrides in data pipelines.
+* api-change:``logs``: [``botocore``] Doc-only update for bug fixes and support of export to buckets encrypted with SSE-KMS
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.26.2
 ======
 
