@@ -24,6 +24,8 @@ from boto3.exceptions import PythonDeprecationWarning
 # ConnectionError
 SOCKET_ERROR = ConnectionError
 
+import collections.abc as collections_abc
+
 
 if sys.platform.startswith('win'):
     def rename_file(current_filename, new_filename):

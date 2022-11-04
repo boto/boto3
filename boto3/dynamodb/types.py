@@ -10,7 +10,6 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import collections.abc
 from decimal import (
     Clamped,
     Context,
@@ -20,6 +19,8 @@ from decimal import (
     Rounded,
     Underflow,
 )
+
+from boto3.compat import collections_abc
 
 STRING = 'S'
 NUMBER = 'N'
@@ -183,7 +184,7 @@ class TypeSerializer:
         return False
 
     def _is_set(self, value):
-        if isinstance(value, collections.abc.Set):
+        if isinstance(value, collections_abc.Set):
             return True
         return False
 
@@ -194,7 +195,7 @@ class TypeSerializer:
         return False
 
     def _is_map(self, value):
-        if isinstance(value, collections.abc.Mapping):
+        if isinstance(value, collections_abc.Mapping):
             return True
         return False
 
