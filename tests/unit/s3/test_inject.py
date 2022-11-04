@@ -10,8 +10,9 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import io
+
 import pytest
-from botocore.compat import six
 from botocore.exceptions import ClientError
 
 from boto3.s3 import inject
@@ -158,7 +159,7 @@ class TestBucketTransferMethods(unittest.TestCase):
         )
 
     def test_upload_fileobj(self):
-        fileobj = six.BytesIO(b'foo')
+        fileobj = io.BytesIO(b'foo')
         inject.bucket_upload_fileobj(self.bucket, Key='key', Fileobj=fileobj)
         self.bucket.meta.client.upload_fileobj.assert_called_with(
             Bucket=self.bucket.name,
@@ -170,7 +171,7 @@ class TestBucketTransferMethods(unittest.TestCase):
         )
 
     def test_download_fileobj(self):
-        obj = six.BytesIO()
+        obj = io.BytesIO()
         inject.bucket_download_fileobj(self.bucket, Key='key', Fileobj=obj)
         self.bucket.meta.client.download_fileobj.assert_called_with(
             Bucket=self.bucket.name,
@@ -222,7 +223,7 @@ class TestObjectTransferMethods(unittest.TestCase):
         )
 
     def test_upload_fileobj(self):
-        fileobj = six.BytesIO(b'foo')
+        fileobj = io.BytesIO(b'foo')
         inject.object_upload_fileobj(self.obj, Fileobj=fileobj)
         self.obj.meta.client.upload_fileobj.assert_called_with(
             Bucket=self.obj.bucket_name,
@@ -234,7 +235,7 @@ class TestObjectTransferMethods(unittest.TestCase):
         )
 
     def test_download_fileobj(self):
-        fileobj = six.BytesIO()
+        fileobj = io.BytesIO()
         inject.object_download_fileobj(self.obj, Fileobj=fileobj)
         self.obj.meta.client.download_fileobj.assert_called_with(
             Bucket=self.obj.bucket_name,
