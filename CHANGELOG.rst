@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.26.4
+======
+
+* api-change:``athena``: [``botocore``] Adds support for using Query Result Reuse
+* api-change:``autoscaling``: [``botocore``] This release adds support for two new attributes for attribute-based instance type selection - NetworkBandwidthGbps and AllowedInstanceTypes.
+* api-change:``cloudtrail``: [``botocore``] This release includes support for configuring a delegated administrator to manage an AWS Organizations organization CloudTrail trails and event data stores, and AWS Key Management Service encryption of CloudTrail Lake event data stores.
+* api-change:``ec2``: [``botocore``] This release adds support for two new attributes for attribute-based instance type selection - NetworkBandwidthGbps and AllowedInstanceTypes.
+* api-change:``elasticache``: [``botocore``] Added support for IPv6 and dual stack for Memcached and Redis clusters. Customers can now launch new Redis and Memcached clusters with IPv6 and dual stack networking support.
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``mediaconvert``: [``botocore``] The AWS Elemental MediaConvert SDK has added support for setting the SDR reference white point for HDR conversions and conversion of HDR10 to DolbyVision without mastering metadata.
+* api-change:``ssm``: [``botocore``] This release includes support for applying a CloudWatch alarm to multi account multi region Systems Manager Automation
+* api-change:``wafv2``: [``botocore``] The geo match statement now adds labels for country and region. You can match requests at the region level by combining a geo match statement with label match statements.
+* api-change:``wellarchitected``: [``botocore``] This release adds support for integrations with AWS Trusted Advisor and AWS Service Catalog AppRegistry to improve workload discovery and speed up your workload reviews.
+* api-change:``workspaces``: [``botocore``] This release adds protocols attribute to workspaces properties data type. This enables customers to migrate workspaces from PC over IP (PCoIP) to WorkSpaces Streaming Protocol (WSP) using create and modify workspaces public APIs.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.26.3
 ======
 
