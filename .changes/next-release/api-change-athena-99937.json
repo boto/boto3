@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``athena``",
-  "description": "[``botocore``] Adds support for using Query Result Reuse"
-}
