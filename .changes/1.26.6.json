@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release adds new fields SignInUrl, UserArn, and UserId to GetFederationToken response payload.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connectcases``",
+    "description": "[``botocore``] This release adds the ability to disable templates through the UpdateTemplate API. Disabling templates prevents customers from creating cases using the template. For more information see https://docs.aws.amazon.com/cases/latest/APIReference/Welcome.html",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Amazon EC2 Trn1 instances, powered by AWS Trainium chips, are purpose built for high-performance deep learning training. u-24tb1.112xlarge and u-18tb1.112xlarge High Memory instances are purpose-built to run large in-memory databases.",
+    "type": "api-change"
+  },
+  {
+    "category": "``groundstation``",
+    "description": "[``botocore``] This release adds the preview of customer-provided ephemeris support for AWS Ground Station, allowing space vehicle owners to provide their own position and trajectory information for a satellite.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediapackage-vod``",
+    "description": "[``botocore``] This release adds \"IncludeIframeOnlyStream\" for Dash endpoints.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  }
+]
