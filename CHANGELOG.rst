@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.8
+======
+
+* api-change:``glue``: [``botocore``] Added links related to enabling job bookmarks.
+* api-change:``iot``: [``botocore``] This release add new api listRelatedResourcesForAuditFinding and new member type IssuerCertificates for Iot device device defender Audit.
+* api-change:``license-manager``: [``botocore``] AWS License Manager now supports onboarded Management Accounts or Delegated Admins to view granted licenses aggregated from all accounts in the organization.
+* api-change:``marketplace-catalog``: [``botocore``] Added three new APIs to support tagging and tag-based authorization: TagResource, UntagResource, and ListTagsForResource. Added optional parameters to the StartChangeSet API to support tagging a resource while making a request to create it.
+* api-change:``rekognition``: [``botocore``] Adding support for ImageProperties feature to detect dominant colors and image brightness, sharpness, and contrast, inclusion and exclusion filters for labels and label categories, new fields to the API response, "aliases" and "categories"
+* api-change:``securityhub``: [``botocore``] Documentation updates for Security Hub
+* api-change:``ssm-incidents``: [``botocore``] RelatedItems now have an ID field which can be used for referencing them else where. Introducing event references in TimelineEvent API and increasing maximum length of "eventData" to 12K characters.
+
+
 1.26.7
 ======
 
