@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "s3",
+  "description": "[``botocore``] fixes missing x-amz-content-sha256 header for s3 on outpost"
+}
