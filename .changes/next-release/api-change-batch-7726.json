@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``batch``",
-  "description": "[``botocore``] Documentation updates related to Batch on EKS"
-}
