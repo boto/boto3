@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``securityhub``",
-  "description": "[``botocore``] Added SourceLayerArn and SourceLayerHash field for security findings.  Updated AwsLambdaFunction Resource detail"
-}

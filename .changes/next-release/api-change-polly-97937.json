@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``polly``",
-  "description": "[``botocore``] Add two new neural voices - Ola (pl-PL) and Hala (ar-AE)."
-}
