@@ -2,6 +2,30 @@
 CHANGELOG
 =========
 
+1.26.12
+=======
+
+* api-change:``amplify``: [``botocore``] Adds a new value (WEB_COMPUTE) to the Platform enum that allows customers to create Amplify Apps with Server-Side Rendering support.
+* api-change:``appflow``: [``botocore``] AppFlow simplifies the preparation and cataloging of SaaS data into the AWS Glue Data Catalog where your data can be discovered and accessed by AWS analytics and ML services. AppFlow now also supports data field partitioning and file size optimization to improve query performance and reduce cost.
+* api-change:``appsync``: [``botocore``] This release introduces the APPSYNC_JS runtime, and adds support for JavaScript in AppSync functions and AppSync pipeline resolvers.
+* api-change:``dms``: [``botocore``] Adds support for Internet Protocol Version 6 (IPv6) on DMS Replication Instances
+* api-change:``ec2``: [``botocore``] This release adds a new optional parameter "privateIpAddress" for the CreateNatGateway API. PrivateIPAddress will allow customers to select a custom Private IPv4 address instead of having it be auto-assigned.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``emr-serverless``: [``botocore``] Adds support for AWS Graviton2 based applications. You can now select CPU architecture when creating new applications or updating existing ones.
+* api-change:``ivschat``: [``botocore``] Adds LoggingConfiguration APIs for IVS Chat - a feature that allows customers to store and record sent messages in a chat room to S3 buckets, CloudWatch logs, or Kinesis firehose.
+* api-change:``lambda``: [``botocore``] Add Node 18 (nodejs18.x) support to AWS Lambda.
+* api-change:``personalize``: [``botocore``] This release provides support for creation and use of metric attributions in AWS Personalize
+* api-change:``polly``: [``botocore``] Add two new neural voices - Ola (pl-PL) and Hala (ar-AE).
+* api-change:``rum``: [``botocore``] CloudWatch RUM now supports custom events. To use custom events, create an app monitor or update an app monitor with CustomEvent Status as ENABLED.
+* api-change:``s3control``: [``botocore``] Added 34 new S3 Storage Lens metrics to support additional customer use cases.
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager.
+* api-change:``securityhub``: [``botocore``] Added SourceLayerArn and SourceLayerHash field for security findings.  Updated AwsLambdaFunction Resource detail
+* api-change:``servicecatalog-appregistry``: [``botocore``] This release adds support for tagged resource associations, which allows you to associate a group of resources with a defined resource tag key and value to the application.
+* api-change:``sts``: [``botocore``] Documentation updates for AWS Security Token Service.
+* api-change:``textract``: [``botocore``] This release adds support for specifying and extracting information from documents using the Signatures feature within Analyze Document API
+* api-change:``workspaces``: [``botocore``] The release introduces CreateStandbyWorkspaces, an API that allows you to create standby WorkSpaces associated with a primary WorkSpace in another Region. DescribeWorkspaces now includes related WorkSpaces properties. DescribeWorkspaceBundles and CreateWorkspaceBundle now return more bundle details.
+
+
 1.26.11
 =======
 
