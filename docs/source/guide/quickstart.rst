@@ -107,7 +107,7 @@ If you have the `AWS CLI <http://aws.amazon.com/cli/>`_ installed, then you can 
 
 Alternatively, you can create the credentials file yourself. By default, its location is
 ``~/.aws/credentials``. At a minimum, the credentials file should specify the access key and secret
-access key. In this example, the key and secret key for the account are specified the ``default`` profile::
+access key. In this example, the key and secret key for the account are specified in the ``default`` profile::
 
     [default]
     aws_access_key_id = YOUR_ACCESS_KEY
