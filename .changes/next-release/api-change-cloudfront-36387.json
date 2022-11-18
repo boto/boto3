@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudfront``",
-  "description": "[``botocore``] CloudFront API support for staging distributions and associated traffic management policies."
-}
