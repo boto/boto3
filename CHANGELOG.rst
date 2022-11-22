@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.15
+=======
+
+* bugfix:Endpoints: [``botocore``] Resolve endpoint with default partition when no region is set
+* bugfix:s3: [``botocore``] fixes missing x-amz-content-sha256 header for s3 object lambda
+* api-change:``appflow``: [``botocore``] Adding support for Amazon AppFlow to transfer the data to Amazon Redshift databases through Amazon Redshift Data API service. This feature will support the Redshift destination connector on both public and private accessible Amazon Redshift Clusters and Amazon Redshift Serverless.
+* api-change:``kinesisanalyticsv2``: [``botocore``] Support for Apache Flink 1.15 in Kinesis Data Analytics.
+
+
 1.26.14
 =======
 
