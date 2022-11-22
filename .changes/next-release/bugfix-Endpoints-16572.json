@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Endpoints",
-  "description": "[``botocore``] Resolve endpoint with default partition when no region is set"
-}
