@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``logs``",
-  "description": "[``botocore``] Updates to support CloudWatch Logs data protection and CloudWatch cross-account observability"
-}

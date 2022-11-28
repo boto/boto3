@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "dynamodb",
-  "description": "Fixes duplicate serialization issue in DynamoDB BatchWriter"
-}
