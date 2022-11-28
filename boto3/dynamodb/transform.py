@@ -22,8 +22,18 @@ def register_high_level_interface(base_classes, **kwargs):
     base_classes.insert(0, DynamoDBHighLevelResource)
 
 
+class _ForgetfulDict(dict):
+    """A dictionary that discards any items set on it. For use as `memo` in
+    `copy.deepcopy()` when every instance of a repeated object in the deepcopied
+    data structure should result in a separate copy.
+    """
+
+    def __setitem__(self, key, value):
+        pass
+
+
 def copy_dynamodb_params(params, **kwargs):
-    return copy.deepcopy(params)
+    return copy.deepcopy(params, memo=_ForgetfulDict())
 
 
 class DynamoDBHighLevelResource:
