@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``securityhub``",
+  "description": "[``botocore``] Adding StandardsManagedBy field to DescribeStandards API response"
+}
