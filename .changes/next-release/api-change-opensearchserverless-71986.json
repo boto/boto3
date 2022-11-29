@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearchserverless``",
-  "description": "[``botocore``] Publish SDK for Amazon OpenSearch Serverless"
-}
