@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks``",
-  "description": "[``botocore``] Adds support for additional EKS add-ons metadata and filtering fields"
-}
