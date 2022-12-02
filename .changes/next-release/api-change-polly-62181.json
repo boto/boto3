@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``polly``",
+  "description": "[``botocore``] Add language code for Finnish (fi-FI)"
+}
