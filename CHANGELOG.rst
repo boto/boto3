@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.26.22
+=======
+
+* api-change:``appsync``: [``botocore``] Fixes the URI for the evaluatecode endpoint to include the /v1 prefix (ie. "/v1/dataplane-evaluatecode").
+* api-change:``ecs``: [``botocore``] Documentation updates for Amazon ECS
+* api-change:``fms``: [``botocore``] AWS Firewall Manager now supports Fortigate Cloud Native Firewall as a Service as a third-party policy type.
+* api-change:``mediaconvert``: [``botocore``] The AWS Elemental MediaConvert SDK has added support for configurable ID3 eMSG box attributes and the ability to signal them with InbandEventStream tags in DASH and CMAF outputs.
+* api-change:``medialive``: [``botocore``] Updates to Event Signaling and Management (ESAM) API and documentation.
+* api-change:``polly``: [``botocore``] Add language code for Finnish (fi-FI)
+* api-change:``proton``: [``botocore``] CreateEnvironmentAccountConnection RoleArn input is now optional
+* api-change:``redshift-serverless``: [``botocore``] Add Table Level Restore operations for Amazon Redshift Serverless. Add multi-port support for Amazon Redshift Serverless endpoints. Add Tagging support to Snapshots and Recovery Points in Amazon Redshift Serverless.
+* api-change:``sns``: [``botocore``] This release adds the message payload-filtering feature to the SNS Subscribe, SetSubscriptionAttributes, and GetSubscriptionAttributes API actions
+
+
 1.26.21
 =======
 
