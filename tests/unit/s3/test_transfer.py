@@ -172,6 +172,7 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_download_file_via_path(self):
+        import os
         from pathlib import Path
 
         extra_args = {
