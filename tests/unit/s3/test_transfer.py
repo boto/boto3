@@ -10,9 +10,6 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import os
-import sys
-
 import pytest
 from s3transfer.futures import NonThreadedExecutor
 from s3transfer.manager import TransferManager
@@ -30,8 +27,6 @@ from boto3.s3.transfer import (
     create_transfer_manager,
 )
 from tests import mock, unittest
-
-PY36 = sys.version_info[0:2] >= (3, 6)
 
 
 class TestCreateTransferManager(unittest.TestCase):
@@ -154,18 +149,15 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_upload_file_via_path(self):
-        if PY36:
-            from pathlib import Path
+        from pathlib import Path
 
-            extra_args = {'ACL': 'public-read'}
-            self.transfer.upload_file(
-                Path('smallfile'), 'bucket', 'key', extra_args=extra_args
-            )
-            self.manager.upload.assert_called_with(
-                'smallfile', 'bucket', 'key', extra_args, None
-            )
-        else:
-            self.skipTest("Python version is irrelevant for this test")
+        extra_args = {'ACL': 'public-read'}
+        self.transfer.upload_file(
+            Path('smallfile'), 'bucket', 'key', extra_args=extra_args
+        )
+        self.manager.upload.assert_called_with(
+            'smallfile', 'bucket', 'key', extra_args, None
+        )
 
     def test_download_file(self):
         extra_args = {
@@ -180,25 +172,22 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_download_file_via_path(self):
-        if PY36:
-            from pathlib import Path
+        from pathlib import Path
 
-            extra_args = {
-                'SSECustomerKey': 'foo',
-                'SSECustomerAlgorithm': 'AES256',
-            }
-            self.transfer.download_file(
-                'bucket', 'key', Path('/tmp/smallfile'), extra_args=extra_args
-            )
-            self.manager.download.assert_called_with(
-                'bucket',
-                'key',
-                os.path.normpath('/tmp/smallfile'),
-                extra_args,
-                None,
-            )
-        else:
-            self.skipTest("Python version is irrelevant for this test")
+        extra_args = {
+            'SSECustomerKey': 'foo',
+            'SSECustomerAlgorithm': 'AES256',
+        }
+        self.transfer.download_file(
+            'bucket', 'key', Path('/tmp/smallfile'), extra_args=extra_args
+        )
+        self.manager.download.assert_called_with(
+            'bucket',
+            'key',
+            os.path.normpath('/tmp/smallfile'),
+            extra_args,
+            None,
+        )
 
     def test_upload_wraps_callback(self):
         self.transfer.upload_file(

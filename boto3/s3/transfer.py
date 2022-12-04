@@ -122,7 +122,8 @@ transfer.  For example:
 
 
 """
-import sys
+from os import fspath
+from pathlib import Path
 
 from botocore.exceptions import ClientError
 from s3transfer.exceptions import (
@@ -138,11 +139,6 @@ from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
 KB = 1024
 MB = KB * KB
-PY36 = sys.version_info[0:2] >= (3, 6)
-
-if PY36:
-    from os import fspath
-    from pathlib import Path
 
 
 def create_transfer_manager(client, config, osutil=None):
@@ -284,9 +280,8 @@ class S3Transfer:
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
-        if PY36:
-            if isinstance(filename, Path):
-                filename = fspath(filename)
+        if isinstance(filename, Path):
+            filename = fspath(filename)
         if not isinstance(filename, str):
             raise ValueError('Filename must be a string or a path-like object')
 
@@ -319,9 +314,8 @@ class S3Transfer:
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
-        if PY36:
-            if isinstance(filename, Path):
-                filename = fspath(filename)
+        if isinstance(filename, Path):
+            filename = fspath(filename)
         if not isinstance(filename, str):
             raise ValueError('Filename must be a string or a path-like object')
 
