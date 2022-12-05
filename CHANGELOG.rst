@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.26.23
+=======
+
+* api-change:``ce``: [``botocore``] This release introduces two new APIs that offer a 1-click experience to refresh Savings Plans recommendations. The two APIs are StartSavingsPlansPurchaseRecommendationGeneration and ListSavingsPlansPurchaseRecommendationGeneration.
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2.
+* api-change:``ivschat``: [``botocore``] Adds PendingVerification error type to messaging APIs to block the resource usage for accounts identified as being fraudulent.
+* api-change:``rds``: [``botocore``] This release adds the InvalidDBInstanceStateFault to the RestoreDBClusterFromSnapshot operation.
+* api-change:``transcribe``: [``botocore``] Amazon Transcribe now supports creating custom language models in the following languages: Japanese (ja-JP) and German (de-DE).
+
+
 1.26.22
 =======
 
