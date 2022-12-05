@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``transcribe``",
+  "description": "[``botocore``] Amazon Transcribe now supports creating custom language models in the following languages: Japanese (ja-JP) and German (de-DE)."
+}
