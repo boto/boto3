@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.25
+=======
+
+* api-change:``ce``: [``botocore``] This release adds the LinkedAccountName field to the GetAnomalies API response under RootCause
+* api-change:``cloudfront``: [``botocore``] Introducing UpdateDistributionWithStagingConfig that can be used to promote the staging configuration to the production.
+* api-change:``eks``: [``botocore``] Adds support for EKS add-ons configurationValues fields and DescribeAddonConfiguration function
+* api-change:``kms``: [``botocore``] Updated examples and exceptions for External Key Store (XKS).
+
+
 1.26.24
 =======
 
