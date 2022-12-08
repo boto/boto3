@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.26
+=======
+
+* enhancement:Endpoint Provider Standard Library: [``botocore``] Correct spelling of 'library' in ``StandardLibrary`` class
+* api-change:``autoscaling``: [``botocore``] Adds support for metric math for target tracking scaling policies, saving you the cost and effort of publishing a custom metric to CloudWatch. Also adds support for VPC Lattice by adding the Attach/Detach/DescribeTrafficSources APIs and a new health check type to the CreateAutoScalingGroup API.
+* api-change:``iottwinmaker``: [``botocore``] This release adds the following new features: 1) New APIs for managing a continuous sync of assets and asset models from AWS IoT SiteWise. 2) Support user friendly names for component types (ComponentTypeName) and properties (DisplayName).
+* api-change:``migrationhubstrategy``: [``botocore``] This release adds known application filtering, server selection for assessments, support for potential recommendations, and indications for configuration and assessment status. For more information, see the AWS Migration Hub documentation at https://docs.aws.amazon.com/migrationhub/index.html
+
+
 1.26.25
 =======
 
