@@ -389,9 +389,7 @@ class TestS3Transfers(unittest.TestCase):
 
     def test_upload_via_path(self):
         transfer = self.create_s3_transfer()
-        filename = self.files.create_file_with_size(
-            'foo.txt', filesize=1024
-        )
+        filename = self.files.create_file_with_size('foo.txt', filesize=1024)
         transfer.upload_file(filename, self.bucket_name, 'foo.txt')
         self.addCleanup(self.delete_object, 'foo.txt')
 

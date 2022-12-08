@@ -163,7 +163,10 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_purepath(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
-            pathlib.PurePath('smallfile'), 'bucket', 'key', extra_args=extra_args
+            pathlib.PurePath('smallfile'),
+            'bucket',
+            'key',
+            extra_args=extra_args
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -172,7 +175,10 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_pureposixpath(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
-            pathlib.PurePosixPath('smallfile'), 'bucket', 'key', extra_args=extra_args
+            pathlib.PurePosixPath('smallfile'),
+            'bucket',
+            'key',
+            extra_args=extra_args
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -181,7 +187,10 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_posixpath(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
-            pathlib.PosixPath('smallfile'), 'bucket', 'key', extra_args=extra_args
+            pathlib.PosixPath('smallfile'),
+            'bucket',
+            'key',
+            extra_args=extra_args
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -190,7 +199,10 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_purewindowpath(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
-            pathlib.PureWindowsPath('smallfile'), 'bucket', 'key', extra_args=extra_args
+            pathlib.PureWindowsPath('smallfile'),
+            'bucket',
+            'key',
+            extra_args=extra_args
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -199,7 +211,10 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_windowpath(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
-            pathlib.WindowsPath('smallfile'), 'bucket', 'key', extra_args=extra_args
+            pathlib.WindowsPath('smallfile'),
+            'bucket',
+            'key',
+            extra_args=extra_args
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None

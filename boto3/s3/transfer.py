@@ -122,8 +122,7 @@ transfer.  For example:
 
 
 """
-from os import fspath
-from os import PathLike
+from os import PathLike, fspath
 
 from botocore.exceptions import ClientError
 from s3transfer.exceptions import (
