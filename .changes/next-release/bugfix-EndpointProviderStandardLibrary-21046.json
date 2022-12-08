@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Endpoint Provider Standard Library",
-  "description": "[``botocore``] Correct spelling of 'library' in ``StandardLibrary`` class"
-}
