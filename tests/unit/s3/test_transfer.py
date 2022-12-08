@@ -166,7 +166,7 @@ class TestS3Transfer(unittest.TestCase):
             pathlib.PurePath('smallfile'),
             'bucket',
             'key',
-            extra_args=extra_args
+            extra_args=extra_args,
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -178,7 +178,7 @@ class TestS3Transfer(unittest.TestCase):
             pathlib.PurePosixPath('smallfile'),
             'bucket',
             'key',
-            extra_args=extra_args
+            extra_args=extra_args,
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -190,7 +190,7 @@ class TestS3Transfer(unittest.TestCase):
             pathlib.PosixPath('smallfile'),
             'bucket',
             'key',
-            extra_args=extra_args
+            extra_args=extra_args,
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -202,7 +202,7 @@ class TestS3Transfer(unittest.TestCase):
             pathlib.PureWindowsPath('smallfile'),
             'bucket',
             'key',
-            extra_args=extra_args
+            extra_args=extra_args,
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
@@ -214,7 +214,7 @@ class TestS3Transfer(unittest.TestCase):
             pathlib.WindowsPath('smallfile'),
             'bucket',
             'key',
-            extra_args=extra_args
+            extra_args=extra_args,
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
