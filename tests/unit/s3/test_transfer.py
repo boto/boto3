@@ -169,7 +169,7 @@ class TestS3Transfer(unittest.TestCase):
             'smallfile', 'bucket', 'key', extra_args, None
         )
 
-    def test_upload_file_via_path(self):
+    def test_upload_file_via_pureposixpath(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
             pathlib.PurePosixPath('smallfile'), 'bucket', 'key', extra_args=extra_args
