@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediapackage-vod``",
-  "description": "[``botocore``] This release provides the approximate number of assets in a packaging group."
-}
