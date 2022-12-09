@@ -173,6 +173,8 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_upload_file_via_pureposixpath(self):
+        if os.name != 'posix':
+            pytest.skip("Unsupported system for method tested")
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
             pathlib.PurePosixPath('smallfile'),
@@ -185,6 +187,8 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_upload_file_via_posixpath(self):
+        if os.name != 'posix':
+            pytest.skip("Unsupported system for method tested")
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
             pathlib.PosixPath('smallfile'),
@@ -197,6 +201,8 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_upload_file_via_purewindowpath(self):
+        if os.name != 'nt':
+            pytest.skip("Unsupported system for method tested")
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
             pathlib.PureWindowsPath('smallfile'),
@@ -209,6 +215,8 @@ class TestS3Transfer(unittest.TestCase):
         )
 
     def test_upload_file_via_windowpath(self):
+        if os.name != 'nt':
+            pytest.skip("Unsupported system for method tested")
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
             pathlib.WindowsPath('smallfile'),
@@ -238,7 +246,10 @@ class TestS3Transfer(unittest.TestCase):
             'SSECustomerAlgorithm': 'AES256',
         }
         self.transfer.download_file(
-            'bucket', 'key', pathlib.Path('/tmp/smallfile'), extra_args=extra_args
+            'bucket',
+            'key',
+            pathlib.Path('/tmp/smallfile'),
+            extra_args=extra_args,
         )
         self.manager.download.assert_called_with(
             'bucket',
