@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.26.28
+=======
+
+* bugfix:Endpoint provider: [``botocore``] Updates ARN parsing ``resourceId`` delimiters
+* api-change:``customer-profiles``: [``botocore``] This release allows custom strings in PartyType and Gender through 2 new attributes in the CreateProfile and UpdateProfile APIs: PartyTypeString and GenderString.
+* api-change:``ec2``: [``botocore``] This release updates DescribeFpgaImages to show supported instance types of AFIs in its response.
+* api-change:``kinesisvideo``: [``botocore``] This release adds support for public preview of Kinesis Video Stream at Edge enabling customers to provide configuration for the Kinesis Video Stream EdgeAgent running on an on-premise IoT device. Customers can now locally record from cameras and stream videos to the cloud on configured schedule.
+* api-change:``lookoutvision``: [``botocore``] This documentation update adds kms:GenerateDataKey as a required permission to StartModelPackagingJob.
+* api-change:``migration-hub-refactor-spaces``: [``botocore``] This release adds support for Lambda alias service endpoints. Lambda alias ARNs can now be passed into CreateService.
+* api-change:``rds``: [``botocore``] Update the RDS API model to support copying option groups during the CopyDBSnapshot operation
+* api-change:``rekognition``: [``botocore``] Adds support for "aliases" and "categories", inclusion and exclusion filters for labels and label categories, and aggregating labels by video segment timestamps for Stored Video Label Detection APIs.
+* api-change:``sagemaker-metrics``: [``botocore``] This release introduces support SageMaker Metrics APIs.
+* api-change:``wafv2``: [``botocore``] Documents the naming requirement for logging destinations that you use with web ACLs.
+
+
 1.26.27
 =======
 
