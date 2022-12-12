@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "Endpoint provider",
+  "description": "[``botocore``] Updates ARN parsing ``resourceId`` delimiters"
+}

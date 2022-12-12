@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] Update the RDS API model to support copying option groups during the CopyDBSnapshot operation"
+}

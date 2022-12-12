@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``wafv2``",
+  "description": "[``botocore``] Documents the naming requirement for logging destinations that you use with web ACLs."
+}
