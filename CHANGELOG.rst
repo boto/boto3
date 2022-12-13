@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.29
+=======
+
+* api-change:``cloudtrail``: [``botocore``] Merging mainline branch for service model into mainline release branch. There are no new APIs.
+* api-change:``rds``: [``botocore``] This deployment adds ClientPasswordAuthType field to the Auth structure of the DBProxy.
+
+
 1.26.28
 =======
 
