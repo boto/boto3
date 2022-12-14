@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``networkmanager``",
+  "description": "[``botocore``] Appliance Mode support for AWS Cloud WAN."
+}
