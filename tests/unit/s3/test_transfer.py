@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import pathlib
+from tempfile import NamedTemporaryFile
 
 import pytest
 from s3transfer.futures import NonThreadedExecutor
@@ -128,6 +129,11 @@ class TestS3Transfer(unittest.TestCase):
         self.manager = mock.Mock(TransferManager(self.client))
         self.transfer = S3Transfer(manager=self.manager)
         self.callback = mock.Mock()
+        # Use NamedTempFile as source of a path string that is valid and
+        # realistic for the system the tests are run on. The file gets deleted
+        # immediately and will not actually exist while the tests are run.
+        with NamedTemporaryFile("w") as tmp_file:
+            self.file_path_str = tmp_file.name
 
     def assert_callback_wrapped_in_subscriber(self, call_args):
         subscribers = call_args[0][4]
@@ -153,22 +159,25 @@ class TestS3Transfer(unittest.TestCase):
     def test_upload_file_via_path(self):
         extra_args = {'ACL': 'public-read'}
         self.transfer.upload_file(
-            pathlib.Path('smallfile'), 'bucket', 'key', extra_args=extra_args
-        )
-        self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key', extra_args, None
-        )
-
-    def test_upload_file_via_purepath(self):
-        extra_args = {'ACL': 'public-read'}
-        self.transfer.upload_file(
-            pathlib.PurePath('smallfile'),
+            pathlib.Path(self.file_path_str),
             'bucket',
             'key',
             extra_args=extra_args,
         )
         self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key', extra_args, None
+            self.file_path_str, 'bucket', 'key', extra_args, None
+        )
+
+    def test_upload_file_via_purepath(self):
+        extra_args = {'ACL': 'public-read'}
+        self.transfer.upload_file(
+            pathlib.PurePath(self.file_path_str),
+            'bucket',
+            'key',
+            extra_args=extra_args,
+        )
+        self.manager.upload.assert_called_with(
+            self.file_path_str, 'bucket', 'key', extra_args, None
         )
 
     def test_download_file(self):
@@ -177,10 +186,10 @@ class TestS3Transfer(unittest.TestCase):
             'SSECustomerAlgorithm': 'AES256',
         }
         self.transfer.download_file(
-            'bucket', 'key', '/tmp/smallfile', extra_args=extra_args
+            'bucket', 'key', self.file_path_str, extra_args=extra_args
         )
         self.manager.download.assert_called_with(
-            'bucket', 'key', '/tmp/smallfile', extra_args, None
+            'bucket', 'key', self.file_path_str, extra_args, None
         )
 
     def test_download_file_via_path(self):
@@ -191,13 +200,13 @@ class TestS3Transfer(unittest.TestCase):
         self.transfer.download_file(
             'bucket',
             'key',
-            pathlib.Path('/tmp/smallfile'),
+            pathlib.Path(self.file_path_str),
             extra_args=extra_args,
         )
         self.manager.download.assert_called_with(
             'bucket',
             'key',
-            '/tmp/smallfile',
+            self.file_path_str,
             extra_args,
             None,
         )
