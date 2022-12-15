@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.26.31
+=======
+
+* api-change:``backup-gateway``: [``botocore``] This release adds support for VMware vSphere tags, enabling customer to protect VMware virtual machines using tag-based policies for AWS tags mapped from vSphere tags. This release also adds support for customer-accessible gateway-hypervisor interaction log and upload bandwidth rate limit schedule.
+* api-change:``connect``: [``botocore``] Added support for "English - New Zealand" and "English - South African" to be used with Amazon Connect Custom Vocabulary APIs.
+* api-change:``ecs``: [``botocore``] This release adds support for container port ranges in ECS, a new capability that allows customers to provide container port ranges to simplify use cases where multiple ports are in use in a container. This release updates TaskDefinition mutation APIs and the Task description APIs.
+* api-change:``eks``: [``botocore``] Add support for Windows managed nodes groups.
+* api-change:``glue``: [``botocore``] This release adds support for AWS Glue Crawler with native DeltaLake tables, allowing Crawlers to classify Delta Lake format tables and catalog them for query engines to query against.
+* api-change:``kinesis``: [``botocore``] Added StreamARN parameter for Kinesis Data Streams APIs. Added a new opaque pagination token for ListStreams. SDKs will auto-generate Account Endpoint when accessing Kinesis Data Streams.
+* api-change:``location``: [``botocore``] This release adds support for a new style, "VectorOpenDataStandardLight" which can be used with the new data source, "Open Data Maps (Preview)".
+* api-change:``m2``: [``botocore``] Adds an optional create-only `KmsKeyId` property to Environment and Application resources.
+* api-change:``sagemaker``: [``botocore``] SageMaker Inference Recommender now allows customers to load tests their models on various instance types using private VPC.
+* api-change:``securityhub``: [``botocore``] Added new resource details objects to ASFF, including resources for AwsEc2LaunchTemplate, AwsSageMakerNotebookInstance, AwsWafv2WebAcl and AwsWafv2RuleGroup.
+* api-change:``translate``: [``botocore``] Raised the input byte size limit of the Text field in the TranslateText API to 10000 bytes.
+
+
 1.26.30
 =======
 
