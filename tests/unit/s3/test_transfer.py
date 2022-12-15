@@ -172,62 +172,6 @@ class TestS3Transfer(unittest.TestCase):
             'smallfile', 'bucket', 'key', extra_args, None
         )
 
-    def test_upload_file_via_pureposixpath(self):
-        if os.name != 'posix':
-            pytest.skip("Unsupported system for method tested")
-        extra_args = {'ACL': 'public-read'}
-        self.transfer.upload_file(
-            pathlib.PurePosixPath('smallfile'),
-            'bucket',
-            'key',
-            extra_args=extra_args,
-        )
-        self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key', extra_args, None
-        )
-
-    def test_upload_file_via_posixpath(self):
-        if os.name != 'posix':
-            pytest.skip("Unsupported system for method tested")
-        extra_args = {'ACL': 'public-read'}
-        self.transfer.upload_file(
-            pathlib.PosixPath('smallfile'),
-            'bucket',
-            'key',
-            extra_args=extra_args,
-        )
-        self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key', extra_args, None
-        )
-
-    def test_upload_file_via_purewindowpath(self):
-        if os.name != 'nt':
-            pytest.skip("Unsupported system for method tested")
-        extra_args = {'ACL': 'public-read'}
-        self.transfer.upload_file(
-            pathlib.PureWindowsPath('smallfile'),
-            'bucket',
-            'key',
-            extra_args=extra_args,
-        )
-        self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key', extra_args, None
-        )
-
-    def test_upload_file_via_windowpath(self):
-        if os.name != 'nt':
-            pytest.skip("Unsupported system for method tested")
-        extra_args = {'ACL': 'public-read'}
-        self.transfer.upload_file(
-            pathlib.WindowsPath('smallfile'),
-            'bucket',
-            'key',
-            extra_args=extra_args,
-        )
-        self.manager.upload.assert_called_with(
-            'smallfile', 'bucket', 'key', extra_args, None
-        )
-
     def test_download_file(self):
         extra_args = {
             'SSECustomerKey': 'foo',
@@ -254,7 +198,7 @@ class TestS3Transfer(unittest.TestCase):
         self.manager.download.assert_called_with(
             'bucket',
             'key',
-            os.path.normpath('/tmp/smallfile'),
+            '/tmp/smallfile',
             extra_args,
             None,
         )
