@@ -141,24 +141,26 @@ class TestS3Transfer(unittest.TestCase):
 
     def test_upload_file(self):
         extra_args = {'ACL': 'public-read'}
-        self.transfer.upload_file(
+        upload_metadata = self.transfer.upload_file(
             'smallfile', 'bucket', 'key', extra_args=extra_args
         )
         self.manager.upload.assert_called_with(
             'smallfile', 'bucket', 'key', extra_args, None
         )
+        self.assertIsNotNone(upload_metadata)
 
     def test_download_file(self):
         extra_args = {
             'SSECustomerKey': 'foo',
             'SSECustomerAlgorithm': 'AES256',
         }
-        self.transfer.download_file(
+        download_metadata = self.transfer.download_file(
             'bucket', 'key', '/tmp/smallfile', extra_args=extra_args
         )
         self.manager.download.assert_called_with(
             'bucket', 'key', '/tmp/smallfile', extra_args, None
         )
+        self.assertIsNotNone(download_metadata)
 
     def test_upload_wraps_callback(self):
         self.transfer.upload_file(

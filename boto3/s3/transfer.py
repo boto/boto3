@@ -276,6 +276,8 @@ class S3Transfer:
         .. seealso::
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
+
+        :returns: The result of the specific manager's upload function.
         """
         if not isinstance(filename, str):
             raise ValueError('Filename must be a string')
@@ -285,7 +287,7 @@ class S3Transfer:
             filename, bucket, key, extra_args, subscribers
         )
         try:
-            future.result()
+            return future.result()
         # If a client error was raised, add the backwards compatibility layer
         # that raises a S3UploadFailedError. These specific errors were only
         # ever thrown for upload_parts but now can be thrown for any related
@@ -308,6 +310,8 @@ class S3Transfer:
         .. seealso::
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
+
+        :returns: The result of the specific manager's download function.
         """
         if not isinstance(filename, str):
             raise ValueError('Filename must be a string')
@@ -317,7 +321,7 @@ class S3Transfer:
             bucket, key, filename, extra_args, subscribers
         )
         try:
-            future.result()
+            return future.result()
         # This is for backwards compatibility where when retries are
         # exceeded we need to throw the same error from boto3 instead of
         # s3transfer's built in RetriesExceededError as current users are
