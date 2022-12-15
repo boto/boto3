@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``m2``",
+  "description": "[``botocore``] Adds an optional create-only `KmsKeyId` property to Environment and Application resources."
+}
