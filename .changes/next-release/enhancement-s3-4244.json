@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "s3",
-  "description": "s3.transfer methods accept path-like objects as input"
-}

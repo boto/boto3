@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudfront``",
-  "description": "[``botocore``] Updated documentation for CloudFront"
-}
