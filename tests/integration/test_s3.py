@@ -19,6 +19,7 @@ import shutil
 import string
 import tempfile
 import threading
+from pathlib import Path
 
 from botocore.client import Config
 from botocore.compat import six
@@ -389,11 +390,10 @@ class TestS3Transfers(unittest.TestCase):
 
     def test_upload_via_path(self):
         transfer = self.create_s3_transfer()
-        filename = self.files.create_file_with_size('foo.txt', filesize=1024)
-        transfer.upload_file(filename, self.bucket_name, 'foo.txt')
-        self.addCleanup(self.delete_object, 'foo.txt')
-
-        self.assertTrue(self.object_exists('foo.txt'))
+        filename = self.files.create_file_with_size('path.txt', filesize=1024)
+        transfer.upload_file(Path(filename), self.bucket_name, 'path.txt')
+        self.addCleanup(self.delete_object, 'path.txt')
+        self.assertTrue(self.object_exists('path.txt'))
 
     def test_upload_below_threshold(self):
         config = boto3.s3.transfer.TransferConfig(
@@ -405,7 +405,6 @@ class TestS3Transfers(unittest.TestCase):
         )
         transfer.upload_file(filename, self.bucket_name, 'foo.txt')
         self.addCleanup(self.delete_object, 'foo.txt')
-
         self.assertTrue(self.object_exists('foo.txt'))
 
     def test_upload_above_threshold(self):
