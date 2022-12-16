@@ -122,6 +122,8 @@ transfer.  For example:
 
 
 """
+from os import PathLike, fspath
+
 from botocore.exceptions import ClientError
 from s3transfer.exceptions import (
     RetriesExceededError as S3TransferRetriesExceededError,
@@ -277,8 +279,10 @@ class S3Transfer:
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
+        if isinstance(filename, PathLike):
+            filename = fspath(filename)
         if not isinstance(filename, str):
-            raise ValueError('Filename must be a string')
+            raise ValueError('Filename must be a string or a path-like object')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
@@ -309,8 +313,10 @@ class S3Transfer:
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
+        if isinstance(filename, PathLike):
+            filename = fspath(filename)
         if not isinstance(filename, str):
-            raise ValueError('Filename must be a string')
+            raise ValueError('Filename must be a string or a path-like object')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
