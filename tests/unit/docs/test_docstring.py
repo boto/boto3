@@ -10,7 +10,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from botocore.compat import six
+import io
 
 from tests import mock
 from tests.unit.docs import BaseDocsTest
@@ -18,7 +18,7 @@ from tests.unit.docs import BaseDocsTest
 
 class TestResourceDocstrings(BaseDocsTest):
     def test_action_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.sample_operation)
         action_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -51,7 +51,7 @@ class TestResourceDocstrings(BaseDocsTest):
 
     def test_load_help(self):
         sub_resource = self.resource.Sample('Id')
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(sub_resource.load)
         load_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -69,7 +69,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_sub_resource_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.Sample)
         sub_resource_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -85,7 +85,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_attribute_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.Sample('id').__class__.foo)
         attribute_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -93,7 +93,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_identifier_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.Sample('id').__class__.name)
         identifier_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -106,7 +106,7 @@ class TestResourceDocstrings(BaseDocsTest):
 
     def test_reference_help(self):
         sample_resource = self.resource.Sample('id')
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(sample_resource.__class__.related_sample)
         reference_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -118,7 +118,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_collection_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.__class__.samples)
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -127,7 +127,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_collection_all_method_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.samples.all)
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -146,7 +146,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_collection_filter_method_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.samples.filter)
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -168,7 +168,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_collection_limit_method_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.samples.limit)
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -190,7 +190,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_collection_page_size_method_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.samples.page_size)
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -213,7 +213,7 @@ class TestResourceDocstrings(BaseDocsTest):
 
     def test_collection_chaining_help(self):
         collection = self.resource.samples.all()
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(collection.all)
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -232,7 +232,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_batch_action_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.samples.operate)
         batch_action_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
@@ -264,7 +264,7 @@ class TestResourceDocstrings(BaseDocsTest):
         )
 
     def test_resource_waiter_help(self):
-        with mock.patch('sys.stdout', six.StringIO()) as mock_stdout:
+        with mock.patch('sys.stdout', io.StringIO()) as mock_stdout:
             help(self.resource.Sample('id').wait_until_complete)
         resource_waiter_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
