@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``batch``",
-  "description": "[``botocore``] Adds isCancelled and isTerminated to DescribeJobs response."
-}
