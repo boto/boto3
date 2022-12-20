@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.26.34
+=======
+
+* api-change:``batch``: [``botocore``] Adds isCancelled and isTerminated to DescribeJobs response.
+* api-change:``ec2``: [``botocore``] Adds support for pagination in the EC2 DescribeImages API.
+* api-change:``lookoutequipment``: [``botocore``] This release adds support for listing inference schedulers by status.
+* api-change:``medialive``: [``botocore``] This release adds support for two new features to AWS Elemental MediaLive. First, you can now burn-in timecodes to your MediaLive outputs. Second, we now now support the ability to decode Dolby E audio when it comes in on an input.
+* api-change:``nimble``: [``botocore``] Amazon Nimble Studio now supports configuring session storage volumes and persistence, as well as backup and restore sessions through launch profiles.
+* api-change:``resource-explorer-2``: [``botocore``] Documentation updates for AWS Resource Explorer.
+* api-change:``route53domains``: [``botocore``] Use Route 53 domain APIs to change owner, create/delete DS record, modify IPS tag, resend authorization. New: AssociateDelegationSignerToDomain, DisassociateDelegationSignerFromDomain, PushDomain, ResendOperationAuthorization. Updated: UpdateDomainContact, ListOperations, CheckDomainTransferability.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Autopilot adds support for new objective metrics in CreateAutoMLJob API.
+* api-change:``transcribe``: [``botocore``] Enable our batch transcription jobs for Swedish and Vietnamese.
+
+
 1.26.33
 =======
 
