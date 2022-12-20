@@ -5,6 +5,16 @@ Resources
 
 Overview
 --------
+
+.. warning::
+   The AWS Python SDK team is no longer planning to support the resources
+   interface in boto3. Requests for new changes involving resource models
+   will no longer be considered, and the resources interface won't be supported
+   in the next major version of the AWS SDK for Python. The AWS SDK teams are
+   striving to achieve more consistent functionality among SDKs, and implementing
+   customized abstractions in individual SDKs is not a sustainable solution going
+   forward. Future feature requests will need to be considered at the cross-SDK level.
+
 Resources represent an object-oriented interface to Amazon Web Services (AWS).
 They provide a higher-level abstraction than the raw, low-level calls made by
 service clients. To use resources, you invoke the
