@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ssm``",
+  "description": "[``botocore``] Doc-only updates for December 2022."
+}
