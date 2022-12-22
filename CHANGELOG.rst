@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.36
+=======
+
+* api-change:``compute-optimizer``: [``botocore``] This release enables AWS Compute Optimizer to analyze and generate optimization recommendations for ecs services running on Fargate.
+* api-change:``connect``: [``botocore``] Amazon Connect Chat introduces the Idle Participant/Autodisconnect feature, which allows users to set timeouts relating to the activity of chat participants, using the new UpdateParticipantRoleConfig API.
+* api-change:``iotdeviceadvisor``: [``botocore``] This release adds the following new features: 1) Documentation updates for IoT Device Advisor APIs. 2) Updated required request parameters for IoT Device Advisor APIs. 3) Added new service feature: ability to provide the test endpoint when customer executing the StartSuiteRun API.
+* api-change:``kinesis-video-webrtc-storage``: [``botocore``] Amazon Kinesis Video Streams offers capabilities to stream video and audio in real-time via WebRTC to the cloud for storage, playback, and analytical processing. Customers can use our enhanced WebRTC SDK and cloud APIs to enable real-time streaming, as well as media ingestion to the cloud.
+* api-change:``rds``: [``botocore``] Add support for managing master user password in AWS Secrets Manager for the DBInstance and DBCluster.
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+
+
 1.26.35
 =======
 
