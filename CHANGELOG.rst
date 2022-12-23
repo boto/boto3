@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.26.37
+=======
+
+* api-change:``connect``: [``botocore``] Support for Routing Profile filter, SortCriteria, and grouping by Routing Profiles for GetCurrentMetricData API. Support for RoutingProfiles, UserHierarchyGroups, and Agents as filters, NextStatus and AgentStatusName for GetCurrentUserData. Adds ApproximateTotalCount to both APIs.
+* api-change:``connectparticipant``: [``botocore``] Amazon Connect Chat introduces the Message Receipts feature. This feature allows agents and customers to receive message delivered and read receipts after they send a chat message.
+* api-change:``detective``: [``botocore``] This release adds a missed AccessDeniedException type to several endpoints.
+* api-change:``fsx``: [``botocore``] Fix a bug where a recent release might break certain existing SDKs.
+* api-change:``inspector2``: [``botocore``] Amazon Inspector adds support for scanning NodeJS 18.x and Go 1.x AWS Lambda function runtimes.
+
+
 1.26.36
 =======
 
