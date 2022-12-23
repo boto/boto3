@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``detective``",
-  "description": "[``botocore``] This release adds a missed AccessDeniedException type to several endpoints."
-}
