@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.39
+=======
+
+* api-change:``elasticache``: [``botocore``] This release allows you to modify the encryption in transit setting, for existing Redis clusters. You can now change the TLS configuration of your Redis clusters without the need to re-build or re-provision the clusters or impact application availability.
+* api-change:``network-firewall``: [``botocore``] AWS Network Firewall now provides status messages for firewalls to help you troubleshoot when your endpoint fails.
+* api-change:``rds``: [``botocore``] This release adds support for Custom Engine Version (CEV) on RDS Custom SQL Server.
+* api-change:``route53-recovery-control-config``: [``botocore``] Added support for Python paginators in the route53-recovery-control-config List* APIs.
+
+
 1.26.38
 =======
 
