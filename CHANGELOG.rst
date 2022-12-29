@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.40
+=======
+
+* api-change:``apigateway``: [``botocore``] Documentation updates for Amazon API Gateway
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``secretsmanager``: [``botocore``] Added owning service filter, include planned deletion flag, and next rotation date response parameter in ListSecrets.
+* api-change:``wisdom``: [``botocore``] This release extends Wisdom CreateContent and StartContentUpload APIs to support PDF and MicrosoftWord docx document uploading.
+
+
 1.26.39
 =======
 
