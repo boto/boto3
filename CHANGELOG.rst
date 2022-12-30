@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.41
+=======
+
+* api-change:``cloudfront``: [``botocore``] Extend response headers policy to support removing headers from viewer responses
+* api-change:``iotfleetwise``: [``botocore``] Update documentation - correct the epoch constant value of default value for expiryTime field in CreateCampaign request.
+
+
 1.26.40
 =======
 
