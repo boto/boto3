@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``amplifybackend``",
+  "description": "[``botocore``] Updated GetBackendAPIModels response to include ModelIntrospectionSchema json string"
+}
