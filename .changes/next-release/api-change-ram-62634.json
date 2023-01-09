@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ram``",
-  "description": "[``botocore``] Enabled FIPS aws-us-gov endpoints in SDK."
-}
