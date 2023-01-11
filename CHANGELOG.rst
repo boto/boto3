@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.26.48
+=======
+
+* api-change:``kendra``: [``botocore``] This release adds support to new document types - RTF, XML, XSLT, MS_EXCEL, CSV, JSON, MD
+
+
 1.26.47
 =======
 
