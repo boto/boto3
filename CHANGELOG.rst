@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.50
+=======
+
+* api-change:``connect``: [``botocore``] This release updates the responses of UpdateContactFlowContent, UpdateContactFlowMetadata, UpdateContactFlowName and DeleteContactFlow API with empty responses.
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2.
+* api-change:``outposts``: [``botocore``] This release adds POWER_30_KVA as an option for PowerDrawKva. PowerDrawKva is part of the RackPhysicalProperties structure in the CreateSite request.
+* api-change:``resource-groups``: [``botocore``] AWS Resource Groups customers can now turn on Group Lifecycle Events in their AWS account. When you turn this on, Resource Groups monitors your groups for changes to group state or membership. Those changes are sent to Amazon EventBridge as events that you can respond to using rules you create.
+
+
 1.26.49
 =======
 
