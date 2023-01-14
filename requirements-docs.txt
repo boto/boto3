@@ -6,4 +6,11 @@ jinja2>=2.3,<3.0
 Sphinx>=1.1.3,<=1.3.2
 docutils>=0.10,<0.17
 guzzle_sphinx_theme>=0.7.10,<0.8
+# Recent release of alabaster requires Sphinx >=1.6, which requires a pin.
+alabaster>0.7,<0.7.13
 -rrequirements.txt
+# Dependencies for Sphinx==1.3.2 (TODO: Remove with Sphinx upgrade)
+babel<=2.11.0 # via sphinx
+pygments<=2.14.0 # via sphinx
+pytz<=2022.7 # via babel
+snowballstemmer<=2.2.0 # via sphinx
