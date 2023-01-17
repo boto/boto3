@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloud9``",
-  "description": "[``botocore``] Added minimum value to AutomaticStopTimeMinutes parameter."
-}
