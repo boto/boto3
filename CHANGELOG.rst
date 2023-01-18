@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.52
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``ivschat``: [``botocore``] Updates the range for a Chat Room's maximumMessageRatePerSecond field.
+* api-change:``wafv2``: [``botocore``] Improved the visibility of the guidance for updating AWS WAF resources, such as web ACLs and rule groups.
+
+
 1.26.51
 =======
 
