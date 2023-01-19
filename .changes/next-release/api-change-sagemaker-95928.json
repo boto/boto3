@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] HyperParameterTuningJobs now allow passing environment variables into the corresponding TrainingJobs"
-}
