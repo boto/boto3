@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.55
+=======
+
+* api-change:``lambda``: [``botocore``] Release Lambda RuntimeManagementConfig, enabling customers to better manage runtime updates to their Lambda functions. This release adds two new APIs, GetRuntimeManagementConfig and PutRuntimeManagementConfig, as well as support on existing Create/Get/Update function APIs.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Inference now supports P4de instance types.
+
+
 1.26.54
 =======
 
