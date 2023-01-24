@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.56
+=======
+
+* api-change:``databrew``: [``botocore``] Enabled FIPS us-gov-west-1 endpoints in SDK.
+* api-change:``route53``: [``botocore``] Amazon Route 53 now supports the Asia Pacific (Melbourne) Region (ap-southeast-4) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* api-change:``ssm-sap``: [``botocore``] This release provides updates to documentation and support for listing operations performed by AWS Systems Manager for SAP.
+
+
 1.26.55
 =======
 
