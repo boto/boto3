@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] Enabled FIPS aws-us-gov endpoints in SDK."
-}
