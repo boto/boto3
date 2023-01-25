@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.26.57
+=======
+
+* api-change:``cloudformation``: [``botocore``] Enabled FIPS aws-us-gov endpoints in SDK.
+* api-change:``ec2``: [``botocore``] This release adds new functionality that allows customers to provision IPv6 CIDR blocks through Amazon VPC IP Address Manager (IPAM) as well as allowing customers to utilize IPAM Resource Discovery APIs.
+* api-change:``m2``: [``botocore``] Add returnCode, batchJobIdentifier in GetBatchJobExecution response, for user to view the batch job execution result & unique identifier from engine. Also removed unused headers from REST APIs
+* api-change:``polly``: [``botocore``] Add 5 new neural voices - Sergio (es-ES), Andres (es-MX), Remi (fr-FR), Adriano (it-IT) and Thiago (pt-BR).
+* api-change:``redshift-serverless``: [``botocore``] Added query monitoring rules as possible parameters for create and update workgroup operations.
+* api-change:``s3control``: [``botocore``] Add additional endpoint tests for S3 Control. Fix missing endpoint parameters for PutBucketVersioning and GetBucketVersioning. Prior to this fix, those operations may have resulted in an invalid endpoint being resolved.
+* api-change:``sagemaker``: [``botocore``] SageMaker Inference Recommender now decouples from Model Registry and could accept Model Name to invoke inference recommendations job; Inference Recommender now provides CPU/Memory Utilization metrics data in recommendation output.
+* api-change:``sts``: [``botocore``] Doc only change to update wording in a key topic
+
+
 1.26.56
 =======
 
