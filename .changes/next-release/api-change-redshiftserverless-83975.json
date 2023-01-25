@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``redshift-serverless``",
+  "description": "[``botocore``] Added query monitoring rules as possible parameters for create and update workgroup operations."
+}
