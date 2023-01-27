@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.26.59
+=======
+
+* api-change:``application-autoscaling``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``appstream``: [``botocore``] Fixing the issue where Appstream waiters hang for fleet_started and fleet_stopped.
+* api-change:``elasticbeanstalk``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``fis``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``glacier``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``greengrass``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``greengrassv2``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) in SDK.
+* api-change:``mediatailor``: [``botocore``] This release introduces the As Run logging type, along with API and documentation updates.
+* api-change:``outposts``: [``botocore``] Adding support for payment term in GetOrder, CreateOrder responses.
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+* api-change:``sagemaker``: [``botocore``] This release supports running SageMaker Training jobs with container images that are in a private Docker registry.
+* api-change:``serverlessrepo``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+
+
 1.26.58
 =======
 

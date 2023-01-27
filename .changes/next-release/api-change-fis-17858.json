@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``fis``",
-  "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK."
-}
