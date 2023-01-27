@@ -1,0 +1,62 @@
+[
+  {
+    "category": "``application-autoscaling``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``appstream``",
+    "description": "[``botocore``] Fixing the issue where Appstream waiters hang for fleet_started and fleet_stopped.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticbeanstalk``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``fis``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glacier``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``greengrass``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``greengrassv2``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) in SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediatailor``",
+    "description": "[``botocore``] This release introduces the As Run logging type, along with API and documentation updates.",
+    "type": "api-change"
+  },
+  {
+    "category": "``outposts``",
+    "description": "[``botocore``] Adding support for payment term in GetOrder, CreateOrder responses.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-runtime``",
+    "description": "[``botocore``] Update sagemaker-runtime client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] This release supports running SageMaker Training jobs with container images that are in a private Docker registry.",
+    "type": "api-change"
+  },
+  {
+    "category": "``serverlessrepo``",
+    "description": "[``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.",
+    "type": "api-change"
+  }
+]
