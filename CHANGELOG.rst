@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.26.60
+=======
+
+* api-change:``clouddirectory``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``cloudformation``: [``botocore``] This feature provides a method of obtaining which regions a stackset has stack instances deployed in.
+* api-change:``discovery``: [``botocore``] Update ImportName validation to 255 from the current length of 100
+* api-change:``dlm``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``ec2``: [``botocore``] We add Prefix Lists as a new route destination option for LocalGatewayRoutes. This will allow customers to create routes to Prefix Lists. Prefix List routes will allow customers to group individual CIDR routes with the same target into a single route.
+* api-change:``imagebuilder``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``kafka``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``mediaconvert``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``swf``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+
+
 1.26.59
 =======
 
