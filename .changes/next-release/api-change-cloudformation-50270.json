@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudformation``",
+  "description": "[``botocore``] This feature provides a method of obtaining which regions a stackset has stack instances deployed in."
+}
