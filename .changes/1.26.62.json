@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``s3``",
+    "description": "[``botocore``] boto3 no longer overwrites user supplied `Content-Encoding` with `aws-chunked` when user also supplies `ChecksumAlgorithm`.",
+    "type": "bugfix"
+  },
+  {
+    "category": "``devops-guru``",
+    "description": "[``botocore``] This release adds filter support ListAnomalyForInsight API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``forecast``",
+    "description": "[``botocore``] This release will enable customer select INCREMENTAL as ImportModel in Forecast's CreateDatasetImportJob API. Verified latest SDK containing required attribute, following https://w.amazon.com/bin/view/AWS-Seer/Launch/Trebuchet/",
+    "type": "api-change"
+  },
+  {
+    "category": "``iam``",
+    "description": "[``botocore``] Documentation updates for AWS Identity and Access Management (IAM).",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediatailor``",
+    "description": "[``botocore``] The AWS Elemental MediaTailor SDK for Channel Assembly has added support for program updates, and the ability to clip the end of VOD sources in programs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sns``",
+    "description": "[``botocore``] Additional attributes added for set-topic-attributes.",
+    "type": "api-change"
+  }
+]

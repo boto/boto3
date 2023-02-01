@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sns``",
-  "description": "[``botocore``] Additional attributes added for set-topic-attributes."
-}
