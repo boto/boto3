@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.26.63
+=======
+
+* api-change:``appconfig``: [``botocore``] AWS AppConfig introduces KMS customer-managed key (CMK) encryption of configuration data, along with AWS Secrets Manager as a new configuration data source. S3 objects using SSE-KMS encryption and SSM Parameter Store SecureStrings are also now supported.
+* api-change:``connect``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``keyspaces``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``quicksight``: [``botocore``] QuickSight support for Radar Chart and Dashboard Publish Options
+* api-change:``redshift``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``sso-admin``: [``botocore``] Enabled FIPS endpoints for GovCloud (US) regions in SDK.
+
+
 1.26.62
 =======
 
