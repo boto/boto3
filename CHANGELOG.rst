@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.64
+=======
+
+* enhancement:AWSCRT: [``botocore``] Upgrade awscrt version to 0.16.9
+* api-change:``proton``: [``botocore``] Add new GetResourcesSummary API
+* api-change:``redshift``: [``botocore``] Corrects descriptions of the parameters for the API operations RestoreFromClusterSnapshot, RestoreTableFromClusterSnapshot, and CreateCluster.
+
+
 1.26.63
 =======
 
