@@ -1,0 +1,17 @@
+[
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Upgrade awscrt version to 0.16.9",
+    "type": "enhancement"
+  },
+  {
+    "category": "``proton``",
+    "description": "[``botocore``] Add new GetResourcesSummary API",
+    "type": "api-change"
+  },
+  {
+    "category": "``redshift``",
+    "description": "[``botocore``] Corrects descriptions of the parameters for the API operations RestoreFromClusterSnapshot, RestoreTableFromClusterSnapshot, and CreateCluster.",
+    "type": "api-change"
+  }
+]
