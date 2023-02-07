@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.26.66
+=======
+
+* api-change:``transfer``: [``botocore``] Updated the documentation for the ImportCertificate API call, and added examples.
+
+
 1.26.65
 =======
 
