@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``glue``",
+  "description": "[``botocore``] DirectJDBCSource + Glue 4.0 streaming options"
+}
