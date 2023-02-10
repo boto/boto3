@@ -54,6 +54,11 @@ class ActionDocumenter(NestedDocumenter):
         for action_name in sorted(resource_actions):
             # Create a new DocumentStructure for each action and add contents.
             action_doc = DocumentStructure(action_name, target='html')
+            breadcrumb_section = action_doc.add_new_section('breadcrumb')
+            breadcrumb_section.style.ref(
+                self._resource_class_name, f'index'
+            )
+            breadcrumb_section.write(f' / Action / {action_name}')
             action_doc.add_title_section(action_name)
             action_section = action_doc.add_new_section(
                 action_name,

@@ -11,7 +11,7 @@
 .. _user_guides:
 
 +++++++++++++++
-Developer guide
+Developer Guide
 +++++++++++++++
 
 

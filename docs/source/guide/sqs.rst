@@ -1,9 +1,9 @@
 .. _sample_tutorial:
 
-A sample tutorial
+A Sample Tutorial
 =================
 This tutorial will show you how to use Boto3 with an AWS service. In this
-sample tutorial, you will learn how to use Boto3 with 
+sample tutorial, you will learn how to use Boto3 with
 `Amazon Simple Queue Service (SQS) <http://aws.amazon.com/documentation/sqs/>`_
 
 SQS
