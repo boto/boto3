@@ -10,10 +10,23 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import os
+import shutil
+import tempfile
+
 from tests import unittest
 
 
 class BaseDocsFunctionalTests(unittest.TestCase):
+    def setUp(self):
+        self.docs_root_dir = tempfile.mkdtemp()
+        self.root_services_path = os.path.join(
+            self.docs_root_dir, 'reference', 'services'
+        )
+
+    def tearDown(self):
+        shutil.rmtree(self.docs_root_dir)
+
     def assert_contains_lines_in_order(self, lines, contents):
         for line in lines:
             assert line in contents
@@ -73,3 +86,13 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         contents = contents[start_index:]
         end_index = contents.find('- **', len(start_param_document))
         return contents[:end_index]
+
+    def get_nested_file_contents(self, service_name, sub_folder, file_name):
+        service_file_path = os.path.join(
+            self.root_services_path,
+            service_name,
+            sub_folder,
+            f'{file_name}.rst',
+        )
+        with open(service_file_path, 'rb') as f:
+            return f.read().decode('utf-8')

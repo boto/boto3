@@ -71,10 +71,7 @@ def add_resource_type_overview(
     section, resource_type, description, intro_link=None
 ):
     section.style.new_line()
-    section.write('.. rst-class:: admonition-title')
-    section.style.new_line()
-    section.style.new_line()
-    section.write(resource_type)
+    section.style.h3(resource_type)
     section.style.new_line()
     section.style.new_line()
     section.write(description)

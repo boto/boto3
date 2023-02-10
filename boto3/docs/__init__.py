@@ -32,7 +32,9 @@ def generate_docs(root_dir, session):
         os.makedirs(services_doc_path)
 
     for service_name in session.get_available_services():
-        docs = ServiceDocumenter(service_name, session).document_service()
+        docs = ServiceDocumenter(
+            service_name, session, services_doc_path
+        ).document_service()
         service_doc_path = os.path.join(
             services_doc_path, service_name + '.rst'
         )

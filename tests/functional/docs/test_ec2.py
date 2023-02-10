@@ -17,24 +17,30 @@ from tests.functional.docs import BaseDocsFunctionalTests
 
 class TestInstanceDeleteTags(BaseDocsFunctionalTests):
     def setUp(self):
+        super().setUp()
         self.documenter = ServiceDocumenter(
-            'ec2', session=Session(region_name='us-east-1')
+            'ec2',
+            session=Session(region_name='us-east-1'),
+            root_docs_path=self.root_services_path,
         )
         self.generated_contents = self.documenter.document_service()
         self.generated_contents = self.generated_contents.decode('utf-8')
 
     def test_delete_tags_method_is_documented(self):
-        contents = self.get_class_document_block(
-            'EC2.Instance', self.generated_contents
-        )
-        method_contents = self.get_method_document_block(
-            'delete_tags', contents
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:class:: EC2.Instance',
+                '  ec2/Instance/delete_tags',
+            ],
+            self.generated_contents,
         )
         self.assert_contains_lines_in_order(
             [
+                'delete_tags',
+                '.. py:method:: delete_tags(**kwargs)',
                 'response = instance.delete_tags(',
                 'DryRun=True|False,',
                 'Tags=[',
             ],
-            method_contents,
+            self.get_nested_file_contents('ec2', 'Instance', 'delete_tags'),
         )

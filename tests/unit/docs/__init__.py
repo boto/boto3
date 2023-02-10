@@ -45,6 +45,10 @@ class BaseDocsTest(unittest.TestCase):
         self.example_model_file = os.path.join(
             self.version_dirs, 'examples-1.json'
         )
+        self.docs_root_dir = tempfile.mkdtemp()
+        self.root_services_path = os.path.join(
+            self.docs_root_dir, 'reference', 'services'
+        )
 
         self.json_model = {}
         self.waiter_json_model = {}
@@ -53,12 +57,13 @@ class BaseDocsTest(unittest.TestCase):
         self._setup_models()
 
         self.doc_name = 'MyDoc'
-        self.doc_structure = DocumentStructure(self.doc_name)
+        self.doc_structure = DocumentStructure(self.doc_name, target='html')
 
         self.setup_client_and_resource()
 
     def tearDown(self):
         shutil.rmtree(self.root_dir)
+        shutil.rmtree(self.docs_root_dir)
 
     def setup_client_and_resource(self):
         self._write_models()
@@ -70,6 +75,13 @@ class BaseDocsTest(unittest.TestCase):
         )
         self.client = self.session.client('myservice', 'us-east-1')
         self.resource = self.session.resource('myservice', 'us-east-1')
+
+    def get_nested_service_contents(self, service, type, name):
+        service_file_path = os.path.join(
+            self.root_services_path, service, type, f'{name}.rst'
+        )
+        with open(service_file_path, 'rb') as f:
+            return f.read().decode('utf-8')
 
     def _setup_models(self):
         self.json_model = {

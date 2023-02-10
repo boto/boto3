@@ -26,12 +26,13 @@ class ServiceDocumenter(BaseServiceDocumenter):
     # The path used to find examples
     EXAMPLE_PATH = os.path.join(os.path.dirname(boto3.__file__), 'examples')
 
-    def __init__(self, service_name, session):
+    def __init__(self, service_name, session, root_docs_path):
         super().__init__(
             service_name=service_name,
             # I know that this is an internal attribute, but the botocore session
             # is needed to load the paginator and waiter models.
             session=session._session,
+            root_docs_path=root_docs_path,
         )
         self._boto3_session = session
         self._client = self._boto3_session.client(service_name)
@@ -48,6 +49,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
             'resources',
             'examples',
         ]
+        self._root_docs_path = root_docs_path
 
     def document_service(self):
         """Documents an entire service.
@@ -78,11 +80,13 @@ class ServiceDocumenter(BaseServiceDocumenter):
         except DataNotFoundError:
             pass
 
-        Boto3ClientDocumenter(self._client, examples).document_client(section)
+        Boto3ClientDocumenter(
+            self._client, self._root_docs_path, examples
+        ).document_client(section)
 
     def _document_service_resource(self, section):
         ServiceResourceDocumenter(
-            self._service_resource, self._session
+            self._service_resource, self._session, self._root_docs_path
         ).document_resource(section)
 
     def _document_resources(self, section):
@@ -113,7 +117,9 @@ class ServiceDocumenter(BaseServiceDocumenter):
             for _ in identifiers:
                 args.append(temp_identifier_value)
             resource = resource_cls(*args, client=self._client)
-            ResourceDocumenter(resource, self._session).document_resource(
+            ResourceDocumenter(
+                resource, self._session, self._root_docs_path
+            ).document_resource(
                 section.add_new_section(resource.meta.resource_model.name)
             )
 

@@ -17,7 +17,9 @@ from tests.unit.docs import BaseDocsTest
 class TestBoto3ClientDocumenter(BaseDocsTest):
     def setUp(self):
         super().setUp()
-        self.client_documenter = Boto3ClientDocumenter(self.client)
+        self.client_documenter = Boto3ClientDocumenter(
+            self.client, self.root_services_path
+        )
 
     def test_document_client(self):
         self.client_documenter.document_client(self.doc_structure)
@@ -31,36 +33,71 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '  ::',
                 '    import boto3',
                 '    client = boto3.client(\'myservice\')',
-                '  These are the available methods:',
-                '  *   :py:meth:`~MyService.Client.can_paginate`',
-                '  *   :py:meth:`~MyService.Client.get_paginator`',
-                '  *   :py:meth:`~MyService.Client.get_waiter`',
-                '  *   :py:meth:`~MyService.Client.sample_operation`',
-                '  .. py:method:: can_paginate(operation_name)',
-                '  .. py:method:: get_paginator(operation_name)',
-                '  .. py:method:: get_waiter(waiter_name)',
-                '  .. py:method:: sample_operation(**kwargs)',
-                '    **Request Syntax**',
-                '    ::',
-                '      response = client.sample_operation(',
-                '          Foo=\'string\'',
-                '          Bar=\'string\'',
-                '      )',
-                '    :type Foo: string',
-                '    :param Foo: Documents Foo',
-                '    :type Bar: string',
-                '    :param Bar: Documents Bar',
-                '    :rtype: dict',
-                '    :returns:',
-                '      **Response Syntax**',
-                '      ::',
-                '        {',
-                '            \'Foo\': \'string\'',
-                '            \'Bar\': \'string\'',
-                '        }',
-                '      **Response Structure**',
-                '      - *(dict) --*',
-                '        - **Foo** *(string) --*',
-                '        - **Bar** *(string) --*',
+                'These are the available methods:',
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  myservice/Client/can_paginate',
+                '  myservice/Client/get_paginator',
+                '  myservice/Client/get_waiter',
+                '  myservice/Client/sample_operation',
             ]
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'can_paginate',
+                '.. py:method:: can_paginate(operation_name)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'Client', 'can_paginate'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'get_paginator',
+                '.. py:method:: get_paginator(operation_name)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'Client', 'get_paginator'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'get_waiter',
+                '.. py:method:: get_waiter(waiter_name)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'Client', 'get_waiter'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'sample_operation',
+                '.. py:method:: sample_operation(**kwargs)',
+                '  **Request Syntax**',
+                '  ::',
+                '    response = client.sample_operation(',
+                '        Foo=\'string\'',
+                '        Bar=\'string\'',
+                '    )',
+                '  :type Foo: string',
+                '  :param Foo: Documents Foo',
+                '  :type Bar: string',
+                '  :param Bar: Documents Bar',
+                '  :rtype: dict',
+                '  :returns:',
+                '    **Response Syntax**',
+                '    ::',
+                '      {',
+                '          \'Foo\': \'string\'',
+                '          \'Bar\': \'string\'',
+                '      }',
+                '    **Response Structure**',
+                '    - *(dict) --*',
+                '      - **Foo** *(string) --*',
+                '      - **Bar** *(string) --*',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'Client', 'sample_operation'
+            ),
         )
