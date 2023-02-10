@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.69
+=======
+
+* api-change:``autoscaling``: [``botocore``] You can now either terminate/replace, ignore, or wait for EC2 Auto Scaling instances on standby or protected from scale in. Also, you can also roll back changes from a failed instance refresh.
+* api-change:``connect``: [``botocore``] This update provides the Wisdom session ARN for contacts enabled for Wisdom in the chat channel.
+* api-change:``ec2``: [``botocore``] Adds support for waiters that automatically poll for an imported snapshot until it reaches the completed state.
+* api-change:``polly``: [``botocore``] Amazon Polly adds two new neural Japanese voices - Kazuha, Tomoko
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Autopilot adds support for selecting algorithms in CreateAutoMLJob API.
+* api-change:``sns``: [``botocore``] This release adds support for SNS X-Ray active tracing as well as other updates.
+
+
 1.26.68
 =======
 
