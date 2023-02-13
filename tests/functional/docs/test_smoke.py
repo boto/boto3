@@ -21,7 +21,6 @@ from botocore.exceptions import DataNotFoundError
 
 import boto3
 from boto3.docs.service import ServiceDocumenter
-from tests.functional.docs import BaseDocsFunctionalTests
 
 DOCS_ROOT_DIR = None
 ROOT_SERVICES_PATH = None
