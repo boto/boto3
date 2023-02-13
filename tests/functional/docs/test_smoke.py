@@ -149,9 +149,7 @@ def _assert_has_paginator_documentation(
         'The available paginators are:',
     ]
     for paginator_name in paginator_names:
-        ref_lines.append(
-            '  {}/Paginator/{}'.format(service_name, paginator_name)
-        )
+        ref_lines.append(f'  {service_name}/Paginator/{paginator_name}')
 
     for paginator_name in paginator_names:
         _assert_contains_lines_in_order(
@@ -174,7 +172,7 @@ def _assert_has_waiter_documentation(
 ):
     ref_lines = ['=======', 'Waiters', '=======', 'The available waiters are:']
     for waiter_name in waiter_model.waiter_names:
-        ref_lines.append('  {}/Waiter/{}'.format(service_name, waiter_name))
+        ref_lines.append(f'  {service_name}/Waiter/{waiter_name}')
 
     for waiter_name in waiter_model.waiter_names:
         _assert_contains_lines_in_order(
