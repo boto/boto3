@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.72
+=======
+
+* api-change:``cloudtrail``: [``botocore``] This release adds an InsufficientEncryptionPolicyException type to the StartImport endpoint
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``frauddetector``: [``botocore``] This release introduces Lists feature which allows customers to reference a set of values in Fraud Detector's rules. With Lists, customers can dynamically manage these attributes in real time. Lists can be created/deleted and its contents can be modified using the Fraud Detector API.
+* api-change:``glue``: [``botocore``] Fix DirectJDBCSource not showing up in CLI code gen
+* api-change:``privatenetworks``: [``botocore``] This release introduces a new StartNetworkResourceUpdate API, which enables return/replacement of hardware from a NetworkSite.
+* api-change:``rds``: [``botocore``] Database Activity Stream support for RDS for SQL Server.
+* api-change:``wafv2``: [``botocore``] For protected CloudFront distributions, you can now use the AWS WAF Fraud Control account takeover prevention (ATP) managed rule group to block new login attempts from clients that have recently submitted too many failed login attempts.
+
+
 1.26.71
 =======
 
