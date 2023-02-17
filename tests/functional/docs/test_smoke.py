@@ -190,7 +190,12 @@ def _assert_has_waiter_documentation(
 
 
 def _assert_has_resource_documentation(generated_docs, service_name, resource):
-    ref_lines = ['=======', 'Resources', '=======', 'The available resources are:']
+    ref_lines = [
+        '=======',
+        'Resources',
+        '=======',
+        'The available resources are:',
+    ]
     ref_lines.append(f'  {service_name}/service-resource/index')
     _assert_contains_lines_in_order(ref_lines, generated_docs)
 
@@ -206,7 +211,7 @@ def _assert_has_resource_documentation(generated_docs, service_name, resource):
     ]
     _assert_contains_lines_in_order(
         service_resource_ref_lines,
-        get_nested_file_contents(service_name, 'service-resource', 'index')
+        get_nested_file_contents(service_name, 'service-resource', 'index'),
     )
 
 

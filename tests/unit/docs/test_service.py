@@ -116,9 +116,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '  :titlesonly:',
                 '  wait_until_complete',
             ],
-            self.get_nested_service_contents(
-                'myservice', 'sample', 'index'
-            ),
+            self.get_nested_service_contents('myservice', 'sample', 'index'),
         )
         self.assert_contains_lines_in_order(
             [

@@ -136,9 +136,7 @@ class ResourceDocumenter(BaseDocumenter):
         section.style.new_line()
         section.style.toctree()
         for member in self.member_map[resource_member_type]:
-            section.style.tocitem(
-                f'{member}'
-            )
+            section.style.tocitem(f'{member}')
 
     def _add_identifiers(self, section):
         identifiers = self._resource.meta.resource_model.identifiers
@@ -316,10 +314,10 @@ class ResourceDocumenter(BaseDocumenter):
         section = section.add_new_section('feature-freeze')
         section.style.start_note()
         section.write(
-            ("The AWS Python SDK team does not intend to add new features to the resources "
+            "The AWS Python SDK team does not intend to add new features to the resources "
             "interface in boto3. Existing interfaces will continue to operate during "
             "boto3's lifecycle. Customers can find access to newer service features through "
-            f"the :doc:`client interface <../../{self._service_name}>`.")
+            f"the :doc:`client interface <../../{self._service_name}>`."
         )
         section.style.end_note()
 

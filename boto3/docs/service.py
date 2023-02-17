@@ -83,19 +83,17 @@ class ServiceDocumenter(BaseServiceDocumenter):
     def resource_section(self, section):
         section.style.h2('Resources')
         section.style.new_line()
-        section.write(
-            f'The available resources are:'
-        )
+        section.write(f'The available resources are:')
         section.style.new_line()
         section.style.toctree()
-        self._document_service_resource(
-            section
-        )
+        self._document_service_resource(section)
         self._document_resources(section)
 
     def _document_service_resource(self, section):
         # Create a new DocumentStructure for each Service Resource and add contents.
-        service_resource_doc = DocumentStructure('ServiceResource', target='html')
+        service_resource_doc = DocumentStructure(
+            'ServiceResource', target='html'
+        )
         ServiceResourceDocumenter(
             self._service_resource, self._session, self._root_docs_path
         ).document_resource(service_resource_doc)
@@ -110,9 +108,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
             f'{resource_name.lower()}',
         )
         service_resource_doc.write_to_file(service_resource_dir_path, 'index')
-        section.style.tocitem(
-            f'{self._service_name}/{resource_name}/index'
-        )
+        section.style.tocitem(f'{self._service_name}/{resource_name}/index')
 
     def _document_resources(self, section):
         temp_identifier_value = 'foo'
