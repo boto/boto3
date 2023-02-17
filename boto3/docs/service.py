@@ -83,7 +83,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
     def resource_section(self, section):
         section.style.h2('Resources')
         section.style.new_line()
-        section.write(f'The available resources are:')
+        section.write('The available resources are:')
         section.style.new_line()
         section.style.toctree()
         self._document_service_resource(section)
