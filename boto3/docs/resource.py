@@ -39,12 +39,13 @@ class ResourceDocumenter(BaseDocumenter):
         super().__init__(resource)
         self._botocore_session = botocore_session
         self._root_docs_path = root_docs_path
-        self._resource_sub_path = self._resource_name
+        self._resource_sub_path = self._resource_name.lower()
         if self._resource_name == self._service_name:
-            self._resource_sub_path = 'ServiceResource'
+            self._resource_sub_path = 'service-resource'
 
     def document_resource(self, section):
         self._add_title(section)
+        self._add_feature_freeze_note(section)
         self._add_intro(section)
         self._add_identifiers(section)
         self._add_attributes(section)
@@ -136,7 +137,7 @@ class ResourceDocumenter(BaseDocumenter):
         section.style.toctree()
         for member in self.member_map[resource_member_type]:
             section.style.tocitem(
-                f'{self._service_name}/{self._resource_sub_path}/{member}'
+                f'{member}'
             )
 
     def _add_identifiers(self, section):
@@ -154,7 +155,6 @@ class ResourceDocumenter(BaseDocumenter):
                 ),
                 intro_link='identifiers_attributes_intro',
             )
-            self._add_overview_of_member_type(section, 'identifiers')
         for identifier in identifiers:
             member_list.append(identifier.name)
             # Create a new DocumentStructure for each identifier and add contents.
@@ -311,6 +311,17 @@ class ResourceDocumenter(BaseDocumenter):
             documenter.member_map = self.member_map
             documenter.document_resource_waiters(section)
             self._add_overview_of_member_type(section, 'waiters')
+
+    def _add_feature_freeze_note(self, section):
+        section = section.add_new_section('feature-freeze')
+        section.style.start_note()
+        section.write(
+            ("The AWS Python SDK team does not intend to add new features to the resources "
+            "interface in boto3. Existing interfaces will continue to operate during "
+            "boto3's lifecycle. Customers can find access to newer service features through "
+            f"the :doc:`client interface <../../{self._service_name}>`.")
+        )
+        section.style.end_note()
 
 
 class ServiceResourceDocumenter(ResourceDocumenter):

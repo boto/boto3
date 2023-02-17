@@ -35,71 +35,91 @@ class TestServiceDocumenter(BaseDocsTest):
             '======',
             '.. py:class:: MyService.Client',
             'These are the available methods:',
-            '  myservice/Client/sample_operation',
+            '  myservice/client/sample_operation',
             '==========',
             'Paginators',
             '==========',
             'The available paginators are:',
-            '  myservice/Paginator/SampleOperation',
+            '  myservice/paginator/SampleOperation',
             '=======',
             'Waiters',
             '=======',
             'The available waiters are:',
-            '  myservice/Waiter/SampleOperationComplete',
-            '================',
-            'Service Resource',
-            '================',
-            '.. py:class:: MyService.ServiceResource()',
-            '  A resource representing AWS MyService::',
-            '    import boto3',
-            "    myservice = boto3.resource('myservice')",
-            'Actions',
-            "These are the resource's available actions:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/ServiceResource/sample_operation',
-            'Sub-resources',
-            "These are the resource's available sub-resources:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/ServiceResource/Sample',
-            'Collections',
-            "These are the resource's available collections:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/ServiceResource/samples',
-            '======',
-            'Sample',
-            '======',
-            '.. py:class:: MyService.Sample(name)',
-            "These are the resource's available identifiers:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/Sample/name',
-            "These are the resource's available attributes:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/Sample/bar',
-            '  myservice/Sample/foo',
-            "These are the resource's available actions:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/Sample/load',
-            '  myservice/Sample/operate',
-            '  myservice/Sample/reload',
-            "These are the resource's available waiters:",
-            '.. toctree::',
-            '  :maxdepth: 1',
-            '  :titlesonly:',
-            '  myservice/Sample/wait_until_complete',
+            '  myservice/waiter/SampleOperationComplete',
+            '=========',
+            'Resources',
+            '=========',
+            'The available resources are:',
+            '  myservice/service-resource/index',
+            '  myservice/sample/index',
         ]
         self.assert_contains_lines_in_order(lines, contents)
+        self.assert_contains_lines_in_order(
+            [
+                '================',
+                'Service Resource',
+                '================',
+                '.. py:class:: MyService.ServiceResource()',
+                '  A resource representing AWS MyService::',
+                '    import boto3',
+                "    myservice = boto3.resource('myservice')",
+                'Actions',
+                "These are the resource's available actions:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  sample_operation',
+                'Sub-resources',
+                "These are the resource's available sub-resources:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  Sample',
+                'Collections',
+                "These are the resource's available collections:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  samples',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'service-resource', 'index'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '======',
+                'Sample',
+                '======',
+                '.. py:class:: MyService.Sample(name)',
+                "These are the resource's available identifiers:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  name',
+                "These are the resource's available attributes:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  bar',
+                '  foo',
+                "These are the resource's available actions:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  load',
+                '  operate',
+                '  reload',
+                "These are the resource's available waiters:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  wait_until_complete',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'sample', 'index'
+            ),
+        )
         self.assert_contains_lines_in_order(
             [
                 'sample_operation',
@@ -110,7 +130,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '    response = client.sample_operation(',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Client', 'sample_operation'
+                'myservice', 'client', 'sample_operation'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -120,7 +140,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '  .. py:method:: paginate(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Paginator', 'SampleOperation'
+                'myservice', 'paginator', 'SampleOperation'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -130,7 +150,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '  .. py:method:: wait(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Waiter', 'SampleOperationComplete'
+                'myservice', 'waiter', 'SampleOperationComplete'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -139,7 +159,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '.. py:method:: sample_operation(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'sample_operation'
+                'myservice', 'service-resource', 'sample_operation'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -148,7 +168,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '.. py:method:: Sample(name)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'Sample'
+                'myservice', 'service-resource', 'Sample'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -161,7 +181,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '  .. py:method:: page_size(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'samples'
+                'myservice', 'service-resource', 'samples'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -169,28 +189,28 @@ class TestServiceDocumenter(BaseDocsTest):
                 'name',
                 '.. py:attribute:: name',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'name'),
+            self.get_nested_service_contents('myservice', 'sample', 'name'),
         )
         self.assert_contains_lines_in_order(
             [
                 'name',
                 '.. py:attribute:: name',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'name'),
+            self.get_nested_service_contents('myservice', 'sample', 'name'),
         )
         self.assert_contains_lines_in_order(
             [
                 'bar',
                 '.. py:attribute:: bar',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'bar'),
+            self.get_nested_service_contents('myservice', 'sample', 'bar'),
         )
         self.assert_contains_lines_in_order(
             [
                 'load',
                 '.. py:method:: load()',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'load'),
+            self.get_nested_service_contents('myservice', 'sample', 'load'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -198,7 +218,7 @@ class TestServiceDocumenter(BaseDocsTest):
                 '.. py:method:: wait_until_complete(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Sample', 'wait_until_complete'
+                'myservice', 'sample', 'wait_until_complete'
             ),
         )
 

@@ -29,10 +29,20 @@ class TestInstanceDeleteTags(BaseDocsFunctionalTests):
     def test_delete_tags_method_is_documented(self):
         self.assert_contains_lines_in_order(
             [
-                '.. py:class:: EC2.Instance',
-                '  ec2/Instance/delete_tags',
+                '=========',
+                'Resources',
+                '=========',
+                'The available resources are:',
+                '  ec2/instance/index',
             ],
             self.generated_contents,
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:class:: EC2.Instance',
+                '  delete_tags',
+            ],
+            self.get_nested_file_contents('ec2', 'instance', 'index'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -42,5 +52,5 @@ class TestInstanceDeleteTags(BaseDocsFunctionalTests):
                 'DryRun=True|False,',
                 'Tags=[',
             ],
-            self.get_nested_file_contents('ec2', 'Instance', 'delete_tags'),
+            self.get_nested_file_contents('ec2', 'instance', 'delete_tags'),
         )

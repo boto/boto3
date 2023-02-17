@@ -124,8 +124,8 @@ def _assert_has_client_documentation(generated_docs, service_name, client):
         '    import boto3',
         '    client = boto3.client(\'%s\')' % service_name,
         'These are the available methods:',
-        '  %s/Client/get_paginator' % service_name,
-        '  %s/Client/get_waiter' % service_name,
+        '  %s/client/get_paginator' % service_name,
+        '  %s/client/get_waiter' % service_name,
     ]
     _assert_contains_lines_in_order(ref_lines, generated_docs)
     for method_name in ['get_paginator', 'get_waiter']:
@@ -134,7 +134,7 @@ def _assert_has_client_documentation(generated_docs, service_name, client):
                 f'{method_name}',
                 f'.. py:method:: {method_name}(',
             ],
-            get_nested_file_contents(service_name, 'Client', method_name),
+            get_nested_file_contents(service_name, 'client', method_name),
         )
 
 
@@ -148,7 +148,7 @@ def _assert_has_paginator_documentation(
         'The available paginators are:',
     ]
     for paginator_name in paginator_names:
-        ref_lines.append(f'  {service_name}/Paginator/{paginator_name}')
+        ref_lines.append(f'  {service_name}/paginator/{paginator_name}')
 
     for paginator_name in paginator_names:
         _assert_contains_lines_in_order(
@@ -159,7 +159,7 @@ def _assert_has_paginator_documentation(
                 '  .. py:method:: paginate(',
             ],
             get_nested_file_contents(
-                service_name, 'Paginator', paginator_name
+                service_name, 'paginator', paginator_name
             ),
         )
 
@@ -171,7 +171,7 @@ def _assert_has_waiter_documentation(
 ):
     ref_lines = ['=======', 'Waiters', '=======', 'The available waiters are:']
     for waiter_name in waiter_model.waiter_names:
-        ref_lines.append(f'  {service_name}/Waiter/{waiter_name}')
+        ref_lines.append(f'  {service_name}/waiter/{waiter_name}')
 
     for waiter_name in waiter_model.waiter_names:
         _assert_contains_lines_in_order(
@@ -183,14 +183,18 @@ def _assert_has_waiter_documentation(
                 % xform_name(waiter_name),
                 '  .. py:method:: wait(',
             ],
-            get_nested_file_contents(service_name, 'Waiter', waiter_name),
+            get_nested_file_contents(service_name, 'waiter', waiter_name),
         )
 
     _assert_contains_lines_in_order(ref_lines, generated_docs)
 
 
 def _assert_has_resource_documentation(generated_docs, service_name, resource):
-    ref_lines = [
+    ref_lines = ['=======', 'Resources', '=======', 'The available resources are:']
+    ref_lines.append(f'  {service_name}/service-resource/index')
+    _assert_contains_lines_in_order(ref_lines, generated_docs)
+
+    service_resource_ref_lines = [
         '================',
         'Service Resource',
         '================',
@@ -200,7 +204,10 @@ def _assert_has_resource_documentation(generated_docs, service_name, resource):
         '    import boto3',
         f'    {service_name} = boto3.resource(\'{service_name}\')',
     ]
-    _assert_contains_lines_in_order(ref_lines, generated_docs)
+    _assert_contains_lines_in_order(
+        service_resource_ref_lines,
+        get_nested_file_contents(service_name, 'service-resource', 'index')
+    )
 
 
 def get_nested_file_contents(service_name, sub_folder, file_name):

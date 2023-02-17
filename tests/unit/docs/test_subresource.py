@@ -41,6 +41,6 @@ class TestSubResourceDocumenter(BaseDocsTest):
                 '  :returns: A Sample resource',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'Sample'
+                'myservice', 'service-resource', 'Sample'
             ),
         )

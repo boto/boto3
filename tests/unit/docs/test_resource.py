@@ -36,28 +36,28 @@ class TestResourceDocumenter(BaseDocsTest):
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/Sample/name',
+                '  name',
                 'Attributes',
                 "These are the resource's available attributes:",
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/Sample/bar',
-                '  myservice/Sample/foo',
+                '  bar',
+                '  foo',
                 'Actions',
                 "These are the resource's available actions:",
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/Sample/load',
-                '  myservice/Sample/operate',
-                '  myservice/Sample/reload',
+                '  load',
+                '  operate',
+                '  reload',
                 'Waiters',
                 "These are the resource's available waiters:",
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/Sample/wait_until_complete',
+                '  wait_until_complete',
             ]
         )
         self.assert_contains_lines_in_order(
@@ -65,7 +65,7 @@ class TestResourceDocumenter(BaseDocsTest):
                 'name',
                 '.. py:attribute:: name',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'name'),
+            self.get_nested_service_contents('myservice', 'sample', 'name'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -73,14 +73,14 @@ class TestResourceDocumenter(BaseDocsTest):
                 '.. py:attribute:: bar',
                 '  - *(string) --* Documents Bar',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'bar'),
+            self.get_nested_service_contents('myservice', 'sample', 'bar'),
         )
         self.assert_contains_lines_in_order(
             [
                 'load',
                 '.. py:method:: load()',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'load'),
+            self.get_nested_service_contents('myservice', 'sample', 'load'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -88,7 +88,7 @@ class TestResourceDocumenter(BaseDocsTest):
                 '.. py:method:: wait_until_complete(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Sample', 'wait_until_complete'
+                'myservice', 'sample', 'wait_until_complete'
             ),
         )
 
@@ -113,19 +113,19 @@ class TestServiceResourceDocumenter(BaseDocsTest):
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/ServiceResource/sample_operation',
+                '  sample_operation',
                 'Sub-resources',
                 "These are the resource's available sub-resources:",
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/ServiceResource/Sample',
+                '  Sample',
                 'Collections',
                 "These are the resource's available collections:",
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/ServiceResource/samples',
+                '  samples',
             ]
         )
         self.assert_contains_lines_in_order(
@@ -134,7 +134,7 @@ class TestServiceResourceDocumenter(BaseDocsTest):
                 '.. py:method:: sample_operation(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'sample_operation'
+                'myservice', 'service-resource', 'sample_operation'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -143,7 +143,7 @@ class TestServiceResourceDocumenter(BaseDocsTest):
                 '.. py:method:: Sample(name)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'Sample'
+                'myservice', 'service-resource', 'Sample'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -156,6 +156,6 @@ class TestServiceResourceDocumenter(BaseDocsTest):
                 '  .. py:method:: page_size(**kwargs)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'samples'
+                'myservice', 'service-resource', 'samples'
             ),
         )

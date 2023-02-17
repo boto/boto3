@@ -127,6 +127,6 @@ class TestCollectionDocumenter(BaseDocsTest):
                 '    ',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'samples'
+                'myservice', 'service-resource', 'samples'
             ),
         )

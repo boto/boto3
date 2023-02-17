@@ -29,9 +29,19 @@ class TestS3Customizations(BaseDocsFunctionalTests):
     def test_file_transfer_methods_are_documented(self):
         self.assert_contains_lines_in_order(
             [
+                '=========',
+                'Resources',
+                '=========',
+                'The available resources are:',
+                '  s3/service-resource/index',
+            ],
+            self.generated_contents,
+        )
+        self.assert_contains_lines_in_order(
+            [
                 '.. py:class:: S3.Client',
-                '  s3/Client/download_file',
-                '  s3/Client/upload_file',
+                '  s3/client/download_file',
+                '  s3/client/upload_file',
             ],
             self.generated_contents,
         )
@@ -40,12 +50,12 @@ class TestS3Customizations(BaseDocsFunctionalTests):
                 'download_file',
                 '.. py:method:: download_file(',
             ],
-            self.get_nested_file_contents('s3', 'Client', 'download_file'),
+            self.get_nested_file_contents('s3', 'client', 'download_file'),
         )
         self.assert_contains_lines_in_order(
             [
                 'upload_file',
                 '.. py:method:: upload_file(',
             ],
-            self.get_nested_file_contents('s3', 'Client', 'upload_file'),
+            self.get_nested_file_contents('s3', 'client', 'upload_file'),
         )

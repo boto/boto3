@@ -53,6 +53,6 @@ class TestWaiterResourceDocumenter(BaseDocsTest):
                 '  :returns: None',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Sample', 'wait_until_complete'
+                'myservice', 'sample', 'wait_until_complete'
             ),
         )

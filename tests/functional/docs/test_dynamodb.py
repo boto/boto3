@@ -29,22 +29,32 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
     def test_batch_writer_is_documented(self):
         self.assert_contains_lines_in_order(
             [
-                '.. py:class:: DynamoDB.Table(name)',
-                '  dynamodb/Table/batch_writer',
+                '=========',
+                'Resources',
+                '=========',
+                'The available resources are:',
+                '  dynamodb/table/index',
             ],
             self.generated_contents,
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:class:: DynamoDB.Table(name)',
+                '  batch_writer',
+            ],
+            self.get_nested_file_contents('dynamodb', 'table', 'index'),
         )
         self.assert_contains_lines_in_order(
             [
                 '************\nbatch_writer\n************',
                 '.. py:method:: batch_writer(overwrite_by_pkeys=None)',
             ],
-            self.get_nested_file_contents('dynamodb', 'Table', 'batch_writer'),
+            self.get_nested_file_contents('dynamodb', 'table', 'batch_writer'),
         )
 
     def test_document_interface_is_documented(self):
         put_item_content = self.get_nested_file_contents(
-            'dynamodb', 'Table', 'put_item'
+            'dynamodb', 'table', 'put_item'
         )
         self.assert_contains_lines_in_order(
             [
@@ -106,7 +116,7 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
 
     def test_conditions_is_documented(self):
         query_contents = self.get_nested_file_contents(
-            'dynamodb', 'Table', 'query'
+            'dynamodb', 'table', 'query'
         )
         self.assert_contains_lines_in_order(
             [

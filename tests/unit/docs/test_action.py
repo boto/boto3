@@ -57,7 +57,7 @@ class TestActionDocumenter(BaseDocsTest):
                 '      - **Bar** *(string) --* Documents Bar',
             ],
             self.get_nested_service_contents(
-                'myservice', 'ServiceResource', 'sample_operation'
+                'myservice', 'service-resource', 'sample_operation'
             ),
         )
 
@@ -89,7 +89,7 @@ class TestActionDocumenter(BaseDocsTest):
                 '    sample.load()',
                 '  :returns: None',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'load'),
+            self.get_nested_service_contents('myservice', 'sample', 'load'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -116,7 +116,7 @@ class TestActionDocumenter(BaseDocsTest):
                 '      - **Foo** *(string) --* Documents Foo',
                 '      - **Bar** *(string) --* Documents Bar',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'operate'),
+            self.get_nested_service_contents('myservice', 'sample', 'operate'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -131,7 +131,7 @@ class TestActionDocumenter(BaseDocsTest):
                 '    sample.reload()',
                 '  :returns: None',
             ],
-            self.get_nested_service_contents('myservice', 'Sample', 'reload'),
+            self.get_nested_service_contents('myservice', 'sample', 'reload'),
         )
         self.assert_contains_lines_in_order(
             [
@@ -142,6 +142,6 @@ class TestActionDocumenter(BaseDocsTest):
                 ':rtype: list of str',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Sample', 'get_available_subresources'
+                'myservice', 'sample', 'get_available_subresources'
             ),
         )

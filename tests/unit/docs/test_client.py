@@ -37,10 +37,10 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '.. toctree::',
                 '  :maxdepth: 1',
                 '  :titlesonly:',
-                '  myservice/Client/can_paginate',
-                '  myservice/Client/get_paginator',
-                '  myservice/Client/get_waiter',
-                '  myservice/Client/sample_operation',
+                '  myservice/client/can_paginate',
+                '  myservice/client/get_paginator',
+                '  myservice/client/get_waiter',
+                '  myservice/client/sample_operation',
             ]
         )
         self.assert_contains_lines_in_order(
@@ -49,7 +49,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '.. py:method:: can_paginate(operation_name)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Client', 'can_paginate'
+                'myservice', 'client', 'can_paginate'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -58,7 +58,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '.. py:method:: get_paginator(operation_name)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Client', 'get_paginator'
+                'myservice', 'client', 'get_paginator'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -67,7 +67,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '.. py:method:: get_waiter(waiter_name)',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Client', 'get_waiter'
+                'myservice', 'client', 'get_waiter'
             ),
         )
         self.assert_contains_lines_in_order(
@@ -98,6 +98,6 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '      - **Bar** *(string) --*',
             ],
             self.get_nested_service_contents(
-                'myservice', 'Client', 'sample_operation'
+                'myservice', 'client', 'sample_operation'
             ),
         )
