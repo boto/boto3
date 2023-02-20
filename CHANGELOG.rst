@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.75
+=======
+
+* bugfix:SSO: [``botocore``] Fixes aws/aws-cli`#7496 <https://github.com/aws/aws-cli/issues/7496>`__ by using the correct profile name rather than the one set in the session.
+* api-change:``auditmanager``: [``botocore``] This release introduces a ServiceQuotaExceededException to the UpdateAssessmentFrameworkShare API operation.
+* api-change:``connect``: [``botocore``] Reasons for failed diff has been approved by SDK Reviewer
+
+
 1.26.74
 =======
 
