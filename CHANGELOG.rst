@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.76
+=======
+
+* api-change:``quicksight``: [``botocore``] S3 data sources now accept a custom IAM role.
+* api-change:``resiliencehub``: [``botocore``] In this release we improved resilience hub application creation and maintenance by introducing new resource and app component crud APIs, improving visibility and maintenance of application input sources and added support for additional information attributes to be provided by customers.
+* api-change:``securityhub``: [``botocore``] Documentation updates for AWS Security Hub
+* api-change:``tnb``: [``botocore``] This is the initial SDK release for AWS Telco Network Builder (TNB). AWS Telco Network Builder is a network automation service that helps you deploy and manage telecom networks.
+
+
 1.26.75
 =======
 
