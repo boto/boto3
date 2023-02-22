@@ -45,7 +45,7 @@ class ResourceDocumenter(BaseDocumenter):
 
     def document_resource(self, section):
         self._add_title(section)
-        self._add_feature_freeze_note(section)
+        self._add_resource_note(section)
         self._add_intro(section)
         self._add_identifiers(section)
         self._add_attributes(section)
@@ -310,14 +310,13 @@ class ResourceDocumenter(BaseDocumenter):
             documenter.document_resource_waiters(section)
             self._add_overview_of_member_type(section, 'waiters')
 
-    def _add_feature_freeze_note(self, section):
+    def _add_resource_note(self, section):
         section = section.add_new_section('feature-freeze')
         section.style.start_note()
         section.write(
-            "The AWS Python SDK team does not intend to add new features to the resources "
-            "interface in boto3. Existing interfaces will continue to operate during "
-            "boto3's lifecycle. Customers can find access to newer service features through "
-            f"the :doc:`client interface <../../{self._service_name}>`."
+            "Before using anything on this page, please refer to the resources "
+            f":doc:`user guide <../../../../guide/resources>` for the most recent "
+            "guidance on using resources."
         )
         section.style.end_note()
 

@@ -83,12 +83,13 @@ def test_documentation(
     # If the client can paginate, make sure the paginators are documented.
     try:
         paginator_model = botocore_session.get_paginator_model(service_name)
-        _assert_has_paginator_documentation(
-            generated_docs,
-            service_name,
-            client,
-            sorted(paginator_model._paginator_config),
-        )
+        if paginator_model._paginator_config:
+            _assert_has_paginator_documentation(
+                generated_docs,
+                service_name,
+                client,
+                sorted(paginator_model._paginator_config),
+            )
     except DataNotFoundError:
         pass
 

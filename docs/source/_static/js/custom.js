@@ -1,8 +1,3 @@
-// Reroutes previously existing links to the new path.
-// Old: <root_url>/reference/services/s3.html#S3.Client.delete_bucket
-// New: <root_url>/reference/services/s3/client/delete_bucket.html
-// This must be done client side since the fragment (#S3.Client.delete_bucket) is never
-// passed to the server.
 const nonResourceSubHeadings = [
 	'client',
 	'waiters',
@@ -10,33 +5,58 @@ const nonResourceSubHeadings = [
 	'resources',
 	'examples'
 ];
-function isValidResource(name, serviceName) {
-	return name.replace('-', '') != serviceName && !nonResourceSubHeadings.includes(name) ? true : false;
+
+// Checks if an html doc name matches a service class name.
+function isValidServiceName(docName, serviceClassName){
+	const newDocName = docName.replaceAll('-', '').toLowerCase();
+	return newDocName === serviceClassName
 }
+
+// Checks if all elements of the split fragment are valid.
+// Fragment items should only contain alphanumerics, hyphens, & underscores.
+// A fragment should also only be redirected if it contain 3-5 items.
+function isValidFragment(splitFragment){
+	const regex = /^[a-z0-9-_]+$/i;
+	for(index in splitFragment){
+		if (!regex.test(splitFragment[index])){
+			return false
+		}
+	}
+	return splitFragment.length >= 1 && splitFragment.length < 5;
+}
+
+// Checks if a name is a possible resource name.
+function isValidResource(name, serviceDocName) {
+	return name.replaceAll('-', '') !== serviceDocName && !nonResourceSubHeadings.includes(name);
+}
+
+// Reroutes previously existing links to the new path.
+// Old: <root_url>/reference/services/s3.html#S3.Client.delete_bucket
+// New: <root_url>/reference/services/s3/client/delete_bucket.html
+// This must be done client side since the fragment (#S3.Client.delete_bucket) is never
+// passed to the server.
 (function () {
 	const currentPath = window.location.pathname.split('/');
 	const fragment = window.location.hash.substring(1);
+	const splitFragment = fragment.split('.').map(part => part.replace(/serviceresource/i, 'service-resource'));
 	// Only redirect when viewing a top-level service page.
-	if (fragment && currentPath[currentPath.length - 2] === 'services') {
-		const serviceName = currentPath[currentPath.length - 1].replace('.html', '');
-		const splitFragment = fragment.split('.').map(part => part.replace(/serviceresource/i, 'service-resource'));
-		splitFragment[0] = splitFragment[0].toLowerCase();
-		let newPath = `${ splitFragment.slice(0, 3).join('/') }.html`;
-		if (splitFragment.length >= 3) {
+	if (isValidFragment(splitFragment) && currentPath[currentPath.length - 2] === 'services') {
+		const serviceDocName = currentPath[currentPath.length - 1].replace('.html', '');
+		if (splitFragment.length > 1) {
+			splitFragment[0] = splitFragment[0].toLowerCase();
 			splitFragment[1] = splitFragment[1].toLowerCase();
-			newPath = splitFragment.length === 3 ? newPath : `${ newPath }#${ fragment }`;
-		} else if (splitFragment.length == 2 && isValidResource(splitFragment[1].toLowerCase(), serviceName)) {
-			splitFragment[1] = splitFragment[1].toLowerCase();
-			newPath = splitFragment.join('/') + '/index.html#' + fragment;
-		} else if (splitFragment.length == 1 && isValidResource(splitFragment[0], serviceName)) {
-			newPath = [
-				serviceName,
-				...splitFragment,
-				'index.html'
-			].join('/');
+		}
+		let newPath;
+		if (splitFragment.length >= 3 && isValidServiceName(serviceDocName, splitFragment[0])) {
+			splitFragment[0] = serviceDocName;
+			newPath = `${ splitFragment.slice(0, 3).join('/') }.html#${ splitFragment.length > 3 ? fragment : '' }`;
+		} else if (splitFragment.length == 2 && isValidResource(splitFragment[1].toLowerCase(), serviceDocName)) {
+			newPath = `${ splitFragment.join('/') }/index.html#${ fragment }`
+		} else if (splitFragment.length == 1 && isValidResource(splitFragment[0], serviceDocName)) {
+			newPath = `${ serviceDocName }/${ splitFragment.join('/') }/index.html`;
 		} else {
 			return;
 		}
-		window.location.replace(newPath);
+		window.location.assign(newPath);
 	}
 }());

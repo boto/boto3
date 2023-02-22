@@ -12,6 +12,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import datetime
 import os
 
 import boto3
@@ -51,7 +52,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Boto3 Docs'
-copyright = '2022, Amazon Web Services, Inc'
+current_year = datetime.date.today().year
+copyright = f'{current_year}, Amazon Web Services, Inc'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

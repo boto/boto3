@@ -49,6 +49,10 @@ class ServiceDocumenter(BaseServiceDocumenter):
             'examples',
         ]
         self._root_docs_path = root_docs_path
+        self._USER_GUIDE_LINK = (
+            'https://boto3.amazonaws.com/'
+            'v1/documentation/api/latest/guide/resources.html'
+        )
 
     def document_service(self):
         """Documents an entire service.
@@ -83,6 +87,19 @@ class ServiceDocumenter(BaseServiceDocumenter):
     def resource_section(self, section):
         section.style.h2('Resources')
         section.style.new_line()
+        section.write(
+            'Resources are available in boto3 via the '
+            '``resource`` method. For more detailed instructions '
+            'and examples on the usage of resources, see the '
+            'resources '
+        )
+        section.style.external_link(
+            title='user guide',
+            link=self._USER_GUIDE_LINK,
+        )
+        section.write('.')
+        section.style.new_line()
+        section.style.new_line()
         section.write('The available resources are:')
         section.style.new_line()
         section.style.toctree()
@@ -92,7 +109,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
     def _document_service_resource(self, section):
         # Create a new DocumentStructure for each Service Resource and add contents.
         service_resource_doc = DocumentStructure(
-            'ServiceResource', target='html'
+            'service-resource', target='html'
         )
         ServiceResourceDocumenter(
             self._service_resource, self._session, self._root_docs_path
