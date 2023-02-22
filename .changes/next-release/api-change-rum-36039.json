@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rum``",
-  "description": "[``botocore``] CloudWatch RUM now supports CloudWatch Custom Metrics"
-}
