@@ -315,7 +315,7 @@ class ResourceDocumenter(BaseDocumenter):
         section.style.start_note()
         section.write(
             "Before using anything on this page, please refer to the resources "
-            f":doc:`user guide <../../../../guide/resources>` for the most recent "
+            ":doc:`user guide <../../../../guide/resources>` for the most recent "
             "guidance on using resources."
         )
         section.style.end_note()
