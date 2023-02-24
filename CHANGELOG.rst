@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.26.79
+=======
+
+* api-change:``connect``: [``botocore``] StartTaskContact API now supports linked task creation with a new optional RelatedContactId parameter
+* api-change:``connectcases``: [``botocore``] This release adds the ability to delete domains through the DeleteDomain API. For more information see https://docs.aws.amazon.com/cases/latest/APIReference/Welcome.html
+* api-change:``redshift``: [``botocore``] Documentation updates for Redshift API bringing it in line with IAM best practices.
+* api-change:``securityhub``: [``botocore``] New Security Hub APIs and updates to existing APIs that help you consolidate control findings and enable and disable controls across all supported standards
+* api-change:``servicecatalog``: [``botocore``] Documentation updates for Service Catalog
+
+
 1.26.78
 =======
 
