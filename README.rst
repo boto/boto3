@@ -1,5 +1,5 @@
 ===============================
-Boto3 - The AWS SDK for Python
+|| Boto3 - The AWS SDK for Python ||
 ===============================
 
 |Version| |Python| |License|
