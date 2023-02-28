@@ -26,12 +26,13 @@ class ServiceDocumenter(BaseServiceDocumenter):
     # The path used to find examples
     EXAMPLE_PATH = os.path.join(os.path.dirname(boto3.__file__), 'examples')
 
-    def __init__(self, service_name, session):
+    def __init__(self, service_name, session, root_docs_path):
         super().__init__(
             service_name=service_name,
             # I know that this is an internal attribute, but the botocore session
             # is needed to load the paginator and waiter models.
             session=session._session,
+            root_docs_path=root_docs_path,
         )
         self._boto3_session = session
         self._client = self._boto3_session.client(service_name)
@@ -44,10 +45,14 @@ class ServiceDocumenter(BaseServiceDocumenter):
             'client',
             'paginators',
             'waiters',
-            'service-resource',
             'resources',
             'examples',
         ]
+        self._root_docs_path = root_docs_path
+        self._USER_GUIDE_LINK = (
+            'https://boto3.amazonaws.com/'
+            'v1/documentation/api/latest/guide/resources.html'
+        )
 
     def document_service(self):
         """Documents an entire service.
@@ -64,10 +69,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
         self.paginator_api(doc_structure.get_section('paginators'))
         self.waiter_api(doc_structure.get_section('waiters'))
         if self._service_resource:
-            self._document_service_resource(
-                doc_structure.get_section('service-resource')
-            )
-            self._document_resources(doc_structure.get_section('resources'))
+            self.resource_section(doc_structure.get_section('resources'))
         self._document_examples(doc_structure.get_section('examples'))
         return doc_structure.flush_structure()
 
@@ -78,12 +80,52 @@ class ServiceDocumenter(BaseServiceDocumenter):
         except DataNotFoundError:
             pass
 
-        Boto3ClientDocumenter(self._client, examples).document_client(section)
+        Boto3ClientDocumenter(
+            self._client, self._root_docs_path, examples
+        ).document_client(section)
+
+    def resource_section(self, section):
+        section.style.h2('Resources')
+        section.style.new_line()
+        section.write(
+            'Resources are available in boto3 via the '
+            '``resource`` method. For more detailed instructions '
+            'and examples on the usage of resources, see the '
+            'resources '
+        )
+        section.style.external_link(
+            title='user guide',
+            link=self._USER_GUIDE_LINK,
+        )
+        section.write('.')
+        section.style.new_line()
+        section.style.new_line()
+        section.write('The available resources are:')
+        section.style.new_line()
+        section.style.toctree()
+        self._document_service_resource(section)
+        self._document_resources(section)
 
     def _document_service_resource(self, section):
+        # Create a new DocumentStructure for each Service Resource and add contents.
+        service_resource_doc = DocumentStructure(
+            'service-resource', target='html'
+        )
         ServiceResourceDocumenter(
-            self._service_resource, self._session
-        ).document_resource(section)
+            self._service_resource, self._session, self._root_docs_path
+        ).document_resource(service_resource_doc)
+        # Write collections in individual/nested files.
+        # Path: <root>/reference/services/<service>/<resource_name>/<collection_name>.rst
+        resource_name = self._service_resource.meta.resource_model.name
+        if resource_name == self._service_name:
+            resource_name = 'service-resource'
+        service_resource_dir_path = os.path.join(
+            self._root_docs_path,
+            f'{self._service_name}',
+            f'{resource_name.lower()}',
+        )
+        service_resource_doc.write_to_file(service_resource_dir_path, 'index')
+        section.style.tocitem(f'{self._service_name}/{resource_name}/index')
 
     def _document_resources(self, section):
         temp_identifier_value = 'foo'
@@ -113,8 +155,24 @@ class ServiceDocumenter(BaseServiceDocumenter):
             for _ in identifiers:
                 args.append(temp_identifier_value)
             resource = resource_cls(*args, client=self._client)
-            ResourceDocumenter(resource, self._session).document_resource(
-                section.add_new_section(resource.meta.resource_model.name)
+            # Create a new DocumentStructure for each Resource and add contents.
+            resource_name = resource.meta.resource_model.name.lower()
+            resource_doc = DocumentStructure(resource_name, target='html')
+            ResourceDocumenter(
+                resource, self._session, self._root_docs_path
+            ).document_resource(
+                resource_doc.add_new_section(resource.meta.resource_model.name)
+            )
+            # Write collections in individual/nested files.
+            # Path: <root>/reference/services/<service>/<resource_name>/<index>.rst
+            service_resource_dir_path = os.path.join(
+                self._root_docs_path,
+                f'{self._service_name}',
+                f'{resource_name}',
+            )
+            resource_doc.write_to_file(service_resource_dir_path, 'index')
+            section.style.tocitem(
+                f'{self._service_name}/{resource_name}/index'
             )
 
     def _get_example_file(self):

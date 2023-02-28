@@ -20,7 +20,9 @@ from tests.unit.docs import BaseDocsTest
 
 class TestServiceDocumenter(BaseDocsTest):
     def test_document_service(self):
-        service_documenter = ServiceDocumenter('myservice', self.session)
+        service_documenter = ServiceDocumenter(
+            'myservice', self.session, self.root_services_path
+        )
         contents = service_documenter.document_service().decode('utf-8')
         lines = [
             '*********',
@@ -32,71 +34,201 @@ class TestServiceDocumenter(BaseDocsTest):
             'Client',
             '======',
             '.. py:class:: MyService.Client',
-            '  These are the available methods:',
-            '  *   :py:meth:`~MyService.Client.sample_operation`',
-            '    **Examples** ',
-            '    Sample Description.',
-            '    ::',
-            '      response = client.sample_operation(',
+            'These are the available methods:',
+            '  myservice/client/sample_operation',
             '==========',
             'Paginators',
             '==========',
             'The available paginators are:',
-            '* :py:class:`MyService.Paginator.SampleOperation`',
-            '.. py:class:: MyService.Paginator.SampleOperation',
-            '  .. py:method:: paginate(**kwargs)',
+            '  myservice/paginator/SampleOperation',
             '=======',
             'Waiters',
             '=======',
             'The available waiters are:',
-            '* :py:class:`MyService.Waiter.SampleOperationComplete`',
-            '.. py:class:: MyService.Waiter.SampleOperationComplete',
-            '  .. py:method:: wait(**kwargs)',
-            '================',
-            'Service Resource',
-            '================',
-            '.. py:class:: MyService.ServiceResource()',
-            "  These are the resource's available actions:",
-            '  *   :py:meth:`sample_operation()`',
-            "  These are the resource's available sub-resources:",
-            '  *   :py:meth:`Sample()`',
-            "  These are the resource's available collections:",
-            '  *   :py:attr:`samples`',
-            '  .. py:method:: sample_operation(**kwargs)',
-            '  .. py:method:: Sample(name)',
-            '  .. py:attribute:: samples',
-            '    .. py:method:: all()',
-            '    .. py:method:: filter(**kwargs)',
-            '    .. py:method:: limit(**kwargs)',
-            '    .. py:method:: page_size(**kwargs)',
-            '======',
-            'Sample',
-            '======',
-            '.. py:class:: MyService.Sample(name)',
-            "  These are the resource's available identifiers:",
-            '  *   :py:attr:`name`',
-            "  These are the resource's available attributes:",
-            '  *   :py:attr:`bar`',
-            '  *   :py:attr:`foo`',
-            "  These are the resource's available actions:",
-            '  *   :py:meth:`load()`',
-            '  *   :py:meth:`operate()`',
-            '  *   :py:meth:`reload()`',
-            "  These are the resource's available waiters:",
-            '  *   :py:meth:`wait_until_complete()`',
-            '  .. py:attribute:: name',
-            '  .. py:attribute:: bar',
-            '  .. py:attribute:: foo',
-            '  .. py:method:: load()',
-            '  .. py:method:: operate(**kwargs)',
-            '  .. py:method:: reload()',
-            '  .. py:method:: wait_until_complete(**kwargs)',
+            '  myservice/waiter/SampleOperationComplete',
+            '=========',
+            'Resources',
+            '=========',
+            'Resources are available in boto3 via the ',
+            '``resource`` method. For more detailed instructions ',
+            'and examples on the usage of resources, see the ',
+            'resources ',
+            'The available resources are:',
+            '  myservice/service-resource/index',
+            '  myservice/sample/index',
         ]
         self.assert_contains_lines_in_order(lines, contents)
+        self.assert_contains_lines_in_order(
+            [
+                '================',
+                'Service Resource',
+                '================',
+                '.. py:class:: MyService.ServiceResource()',
+                '  A resource representing AWS MyService::',
+                '    import boto3',
+                "    myservice = boto3.resource('myservice')",
+                'Actions',
+                "These are the resource's available actions:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  sample_operation',
+                'Sub-resources',
+                "These are the resource's available sub-resources:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  Sample',
+                'Collections',
+                "These are the resource's available collections:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  samples',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'service-resource', 'index'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '======',
+                'Sample',
+                '======',
+                '.. py:class:: MyService.Sample(name)',
+                "These are the resource's available identifiers:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  name',
+                "These are the resource's available attributes:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  bar',
+                '  foo',
+                "These are the resource's available actions:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  load',
+                '  operate',
+                '  reload',
+                "These are the resource's available waiters:",
+                '.. toctree::',
+                '  :maxdepth: 1',
+                '  :titlesonly:',
+                '  wait_until_complete',
+            ],
+            self.get_nested_service_contents('myservice', 'sample', 'index'),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'sample_operation',
+                '.. py:method:: sample_operation(**kwargs)',
+                '  **Examples** ',
+                '  Sample Description.',
+                '  ::',
+                '    response = client.sample_operation(',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'client', 'sample_operation'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'SampleOperation',
+                '.. py:class:: MyService.Paginator.SampleOperation',
+                '  .. py:method:: paginate(**kwargs)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'paginator', 'SampleOperation'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'SampleOperationComplete',
+                '.. py:class:: MyService.Waiter.SampleOperationComplete',
+                '  .. py:method:: wait(**kwargs)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'waiter', 'SampleOperationComplete'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'sample_operation',
+                '.. py:method:: sample_operation(**kwargs)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'service-resource', 'sample_operation'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'Sample',
+                '.. py:method:: Sample(name)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'service-resource', 'Sample'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'samples',
+                '.. py:attribute:: samples',
+                '  .. py:method:: all()',
+                '  .. py:method:: filter(**kwargs)',
+                '  .. py:method:: limit(**kwargs)',
+                '  .. py:method:: page_size(**kwargs)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'service-resource', 'samples'
+            ),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'name',
+                '.. py:attribute:: name',
+            ],
+            self.get_nested_service_contents('myservice', 'sample', 'name'),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'name',
+                '.. py:attribute:: name',
+            ],
+            self.get_nested_service_contents('myservice', 'sample', 'name'),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'bar',
+                '.. py:attribute:: bar',
+            ],
+            self.get_nested_service_contents('myservice', 'sample', 'bar'),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'load',
+                '.. py:method:: load()',
+            ],
+            self.get_nested_service_contents('myservice', 'sample', 'load'),
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'wait_until_complete',
+                '.. py:method:: wait_until_complete(**kwargs)',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'sample', 'wait_until_complete'
+            ),
+        )
 
     def test_document_service_no_resource(self):
         os.remove(self.resource_model_file)
-        service_documenter = ServiceDocumenter('myservice', self.session)
+        service_documenter = ServiceDocumenter(
+            'myservice', self.session, self.root_services_path
+        )
         contents = service_documenter.document_service().decode('utf-8')
         assert 'Service Resource' not in contents
 
@@ -105,7 +237,9 @@ class TestServiceDocumenter(BaseDocsTest):
         # as it may try to look at the paginator model during documentation.
         os.remove(self.resource_model_file)
         os.remove(self.paginator_model_file)
-        service_documenter = ServiceDocumenter('myservice', self.session)
+        service_documenter = ServiceDocumenter(
+            'myservice', self.session, self.root_services_path
+        )
         contents = service_documenter.document_service().decode('utf-8')
         assert 'Paginators' not in contents
 
@@ -114,7 +248,9 @@ class TestServiceDocumenter(BaseDocsTest):
         # as it may try to look at the waiter model during documentation.
         os.remove(self.resource_model_file)
         os.remove(self.waiter_model_file)
-        service_documenter = ServiceDocumenter('myservice', self.session)
+        service_documenter = ServiceDocumenter(
+            'myservice', self.session, self.root_services_path
+        )
         contents = service_documenter.document_service().decode('utf-8')
         assert 'Waiters' not in contents
 
@@ -125,7 +261,9 @@ class TestServiceDocumenter(BaseDocsTest):
         path = os.path.realpath(path)
         with mock.patch('os.path.isfile') as isfile:
             isfile.return_value = False
-            s = ServiceDocumenter('myservice', self.session)
+            s = ServiceDocumenter(
+                'myservice', self.session, self.root_services_path
+            )
             s.document_service()
             assert isfile.call_args_list[-1] == mock.call(path)
 
@@ -133,7 +271,9 @@ class TestServiceDocumenter(BaseDocsTest):
         examples_path = os.sep.join(
             [os.path.dirname(__file__), '..', 'data', 'examples']
         )
-        service_documenter = ServiceDocumenter('myservice', self.session)
+        service_documenter = ServiceDocumenter(
+            'myservice', self.session, self.root_services_path
+        )
         service_documenter.EXAMPLE_PATH = examples_path
         contents = service_documenter.document_service().decode('utf-8')
         assert 'This is an example' in contents

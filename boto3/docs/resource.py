@@ -10,7 +10,10 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import os
+
 from botocore import xform_name
+from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.utils import get_official_service_name
 
 from boto3.docs.action import ActionDocumenter
@@ -32,14 +35,18 @@ from boto3.docs.waiter import WaiterResourceDocumenter
 
 
 class ResourceDocumenter(BaseDocumenter):
-    def __init__(self, resource, botocore_session):
+    def __init__(self, resource, botocore_session, root_docs_path):
         super().__init__(resource)
         self._botocore_session = botocore_session
+        self._root_docs_path = root_docs_path
+        self._resource_sub_path = self._resource_name.lower()
+        if self._resource_name == self._service_name:
+            self._resource_sub_path = 'service-resource'
 
     def document_resource(self, section):
         self._add_title(section)
+        self._add_resource_note(section)
         self._add_intro(section)
-        overview_section = section.add_new_section('member-overview')
         self._add_identifiers(section)
         self._add_attributes(section)
         self._add_references(section)
@@ -47,7 +54,6 @@ class ResourceDocumenter(BaseDocumenter):
         self._add_sub_resources(section)
         self._add_collections(section)
         self._add_waiters(section)
-        self._add_overview_of_members(overview_section)
 
     def _add_title(self, section):
         section.style.h2(self._resource_name)
@@ -60,22 +66,26 @@ class ResourceDocumenter(BaseDocumenter):
 
         # Write out the class signature.
         class_args = get_identifier_args_for_signature(identifier_names)
-        section.style.start_sphinx_py_class(
+        start_class = section.add_new_section('start_class')
+        start_class.style.start_sphinx_py_class(
             class_name=f'{self.class_name}({class_args})'
         )
 
         # Add as short description about the resource
-        description_section = section.add_new_section('description')
+        description_section = start_class.add_new_section('description')
         self._add_description(description_section)
 
         # Add an example of how to instantiate the resource
-        example_section = section.add_new_section('example')
+        example_section = start_class.add_new_section('example')
         self._add_example(example_section, identifier_names)
 
         # Add the description for the parameters to instantiate the
         # resource.
-        param_section = section.add_new_section('params')
+        param_section = start_class.add_new_section('params')
         self._add_params_description(param_section, identifier_names)
+
+        end_class = section.add_new_section('end_class')
+        end_class.style.end_sphinx_py_class()
 
     def _add_description(self, section):
         official_service_name = get_official_service_name(self._service_model)
@@ -118,23 +128,15 @@ class ResourceDocumenter(BaseDocumenter):
             section.write(f':param {identifier_name}: {description}')
             section.style.new_line()
 
-    def _add_overview_of_members(self, section):
-        for resource_member_type in self.member_map:
-            section.style.new_line()
-            section.write(
-                f'These are the resource\'s available {resource_member_type}:'
-            )
-            section.style.new_line()
-            for member in self.member_map[resource_member_type]:
-                if resource_member_type in (
-                    'attributes',
-                    'collections',
-                    'identifiers',
-                    'references',
-                ):
-                    section.style.li(f':py:attr:`{member}`')
-                else:
-                    section.style.li(f':py:meth:`{member}()`')
+    def _add_overview_of_member_type(self, section, resource_member_type):
+        section.style.new_line()
+        section.write(
+            f'These are the resource\'s available {resource_member_type}:'
+        )
+        section.style.new_line()
+        section.style.toctree()
+        for member in self.member_map[resource_member_type]:
+            section.style.tocitem(f'{member}')
 
     def _add_identifiers(self, section):
         identifiers = self._resource.meta.resource_model.identifiers
@@ -152,13 +154,29 @@ class ResourceDocumenter(BaseDocumenter):
                 intro_link='identifiers_attributes_intro',
             )
         for identifier in identifiers:
-            identifier_section = section.add_new_section(identifier.name)
             member_list.append(identifier.name)
+            # Create a new DocumentStructure for each identifier and add contents.
+            identifier_doc = DocumentStructure(identifier.name, target='html')
+            identifier_doc.add_title_section(identifier.name)
+            identifier_section = identifier_doc.add_new_section(
+                identifier.name
+            )
             document_identifier(
                 section=identifier_section,
                 resource_name=self._resource_name,
                 identifier_model=identifier,
             )
+            # Write identifiers in individual/nested files.
+            # Path: <root>/reference/services/<service>/<resource_name>/<identifier_name>.rst
+            identifiers_dir_path = os.path.join(
+                self._root_docs_path,
+                f'{self._service_name}',
+                f'{self._resource_sub_path}',
+            )
+            identifier_doc.write_to_file(identifiers_dir_path, identifier.name)
+
+        if identifiers:
+            self._add_overview_of_member_type(section, 'identifiers')
 
     def _add_attributes(self, section):
         service_model = self._resource.meta.client.meta.service_model
@@ -187,8 +205,11 @@ class ResourceDocumenter(BaseDocumenter):
             self.member_map['attributes'] = attribute_list
         for attr_name in sorted(attributes):
             _, attr_shape = attributes[attr_name]
-            attribute_section = section.add_new_section(attr_name)
             attribute_list.append(attr_name)
+            # Create a new DocumentStructure for each attribute and add contents.
+            attribute_doc = DocumentStructure(attr_name, target='html')
+            attribute_doc.add_title_section(attr_name)
+            attribute_section = attribute_doc.add_new_section(attr_name)
             document_attribute(
                 section=attribute_section,
                 service_name=self._service_name,
@@ -197,6 +218,16 @@ class ResourceDocumenter(BaseDocumenter):
                 event_emitter=self._resource.meta.client.meta.events,
                 attr_model=attr_shape,
             )
+            # Write attributes in individual/nested files.
+            # Path: <root>/reference/services/<service>/<resource_name>/<attribute_name>.rst
+            attributes_dir_path = os.path.join(
+                self._root_docs_path,
+                f'{self._service_name}',
+                f'{self._resource_sub_path}',
+            )
+            attribute_doc.write_to_file(attributes_dir_path, attr_name)
+        if attributes:
+            self._add_overview_of_member_type(section, 'attributes')
 
     def _add_references(self, section):
         section = section.add_new_section('references')
@@ -213,36 +244,57 @@ class ResourceDocumenter(BaseDocumenter):
                 intro_link='references_intro',
             )
             self.member_map['references'] = reference_list
+            self._add_overview_of_member_type(section, 'references')
         for reference in references:
-            reference_section = section.add_new_section(reference.name)
             reference_list.append(reference.name)
+            # Create a new DocumentStructure for each reference and add contents.
+            reference_doc = DocumentStructure(reference.name, target='html')
+            reference_doc.add_title_section(reference.name)
+            reference_section = reference_doc.add_new_section(reference.name)
             document_reference(
                 section=reference_section, reference_model=reference
             )
+            # Write references in individual/nested files.
+            # Path: <root>/reference/services/<service>/<resource_name>/<reference_name>.rst
+            references_dir_path = os.path.join(
+                self._root_docs_path,
+                f'{self._service_name}',
+                f'{self._resource_sub_path}',
+            )
+            reference_doc.write_to_file(references_dir_path, reference.name)
+        if references:
+            self._add_overview_of_member_type(section, 'references')
 
     def _add_actions(self, section):
         section = section.add_new_section('actions')
         actions = self._resource.meta.resource_model.actions
         if actions:
-            documenter = ActionDocumenter(self._resource)
+            documenter = ActionDocumenter(self._resource, self._root_docs_path)
             documenter.member_map = self.member_map
             documenter.document_actions(section)
+            self._add_overview_of_member_type(section, 'actions')
 
     def _add_sub_resources(self, section):
         section = section.add_new_section('sub-resources')
         sub_resources = self._resource.meta.resource_model.subresources
         if sub_resources:
-            documenter = SubResourceDocumenter(self._resource)
+            documenter = SubResourceDocumenter(
+                self._resource, self._root_docs_path
+            )
             documenter.member_map = self.member_map
             documenter.document_sub_resources(section)
+            self._add_overview_of_member_type(section, 'sub-resources')
 
     def _add_collections(self, section):
         section = section.add_new_section('collections')
         collections = self._resource.meta.resource_model.collections
         if collections:
-            documenter = CollectionDocumenter(self._resource)
+            documenter = CollectionDocumenter(
+                self._resource, self._root_docs_path
+            )
             documenter.member_map = self.member_map
             documenter.document_collections(section)
+            self._add_overview_of_member_type(section, 'collections')
 
     def _add_waiters(self, section):
         section = section.add_new_section('waiters')
@@ -252,10 +304,21 @@ class ResourceDocumenter(BaseDocumenter):
                 self._service_name
             )
             documenter = WaiterResourceDocumenter(
-                self._resource, service_waiter_model
+                self._resource, service_waiter_model, self._root_docs_path
             )
             documenter.member_map = self.member_map
             documenter.document_resource_waiters(section)
+            self._add_overview_of_member_type(section, 'waiters')
+
+    def _add_resource_note(self, section):
+        section = section.add_new_section('feature-freeze')
+        section.style.start_note()
+        section.write(
+            "Before using anything on this page, please refer to the resources "
+            ":doc:`user guide <../../../../guide/resources>` for the most recent "
+            "guidance on using resources."
+        )
+        section.style.end_note()
 
 
 class ServiceResourceDocumenter(ResourceDocumenter):

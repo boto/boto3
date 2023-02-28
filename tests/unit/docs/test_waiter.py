@@ -21,11 +21,20 @@ class TestWaiterResourceDocumenter(BaseDocsTest):
         )
         subresource = self.resource.Sample('mysample')
         waiter_documenter = WaiterResourceDocumenter(
-            subresource, service_waiter_model
+            subresource, service_waiter_model, self.root_services_path
         )
         waiter_documenter.document_resource_waiters(self.doc_structure)
         self.assert_contains_lines_in_order(
             [
+                '-------\nWaiters\n-------',
+                'Waiters provide an interface to wait for a resource',
+                ' to reach a specific state.',
+                'For more information about waiters refer to the',
+            ]
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'wait_until_complete',
                 '.. py:method:: wait_until_complete(**kwargs)',
                 (
                     '  Waits until this Sample is complete. This method calls '
@@ -42,5 +51,8 @@ class TestWaiterResourceDocumenter(BaseDocsTest):
                 '  :type Bar: string',
                 '  :param Bar: Documents Bar',
                 '  :returns: None',
-            ]
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'sample', 'wait_until_complete'
+            ),
         )
