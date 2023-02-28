@@ -10,11 +10,14 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import os
+
 from botocore import xform_name
+from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.method import get_instance_public_methods
 from botocore.docs.utils import DocumentedShape
 
-from boto3.docs.base import BaseDocumenter
+from boto3.docs.base import NestedDocumenter
 from boto3.docs.method import document_model_driven_resource_method
 from boto3.docs.utils import (
     add_resource_type_overview,
@@ -22,7 +25,7 @@ from boto3.docs.utils import (
 )
 
 
-class CollectionDocumenter(BaseDocumenter):
+class CollectionDocumenter(NestedDocumenter):
     def document_collections(self, section):
         collections = self._resource.meta.resource_model.collections
         collections_list = []
@@ -37,9 +40,23 @@ class CollectionDocumenter(BaseDocumenter):
         )
         self.member_map['collections'] = collections_list
         for collection in collections:
-            collection_section = section.add_new_section(collection.name)
             collections_list.append(collection.name)
+            # Create a new DocumentStructure for each collection and add contents.
+            collection_doc = DocumentStructure(collection.name, target='html')
+            collection_doc.add_title_section(collection.name)
+            collection_section = collection_doc.add_new_section(
+                collection.name
+            )
             self._document_collection(collection_section, collection)
+
+            # Write collections in individual/nested files.
+            # Path: <root>/reference/services/<service>/<resource_name>/<collection_name>.rst
+            collections_dir_path = os.path.join(
+                self._root_docs_path,
+                f'{self._service_name}',
+                f'{self._resource_sub_path}',
+            )
+            collection_doc.write_to_file(collections_dir_path, collection.name)
 
     def _document_collection(self, section, collection):
         methods = get_instance_public_methods(

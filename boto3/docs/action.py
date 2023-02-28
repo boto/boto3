@@ -10,7 +10,10 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import os
+
 from botocore import xform_name
+from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.method import (
     document_custom_method,
     document_model_driven_method,
@@ -18,7 +21,7 @@ from botocore.docs.method import (
 from botocore.model import OperationModel
 from botocore.utils import get_service_module_name
 
-from boto3.docs.base import BaseDocumenter
+from boto3.docs.base import NestedDocumenter
 from boto3.docs.method import document_model_driven_resource_method
 from boto3.docs.utils import (
     add_resource_type_overview,
@@ -27,7 +30,7 @@ from boto3.docs.utils import (
 )
 
 
-class ActionDocumenter(BaseDocumenter):
+class ActionDocumenter(NestedDocumenter):
     def document_actions(self, section):
         modeled_actions_list = self._resource_model.actions
         modeled_actions = {}
@@ -49,7 +52,10 @@ class ActionDocumenter(BaseDocumenter):
         )
 
         for action_name in sorted(resource_actions):
-            action_section = section.add_new_section(action_name)
+            # Create a new DocumentStructure for each action and add contents.
+            action_doc = DocumentStructure(action_name, target='html')
+            action_doc.add_title_section(action_name)
+            action_section = action_doc.add_new_section(action_name)
             if action_name in ['load', 'reload'] and self._resource_model.load:
                 document_load_reload_action(
                     section=action_section,
@@ -71,6 +77,14 @@ class ActionDocumenter(BaseDocumenter):
                 document_custom_method(
                     action_section, action_name, resource_actions[action_name]
                 )
+            # Write actions in individual/nested files.
+            # Path: <root>/reference/services/<service>/<resource_name>/<action_name>.rst
+            actions_dir_path = os.path.join(
+                self._root_docs_path,
+                f'{self._service_name}',
+                f'{self._resource_sub_path}',
+            )
+            action_doc.write_to_file(actions_dir_path, action_name)
 
 
 def document_action(

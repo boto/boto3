@@ -16,10 +16,21 @@ from tests.unit.docs import BaseDocsTest
 
 class TestCollectionDocumenter(BaseDocsTest):
     def test_document_collections(self):
-        collection_documenter = CollectionDocumenter(self.resource)
+        collection_documenter = CollectionDocumenter(
+            self.resource, self.root_services_path
+        )
         collection_documenter.document_collections(self.doc_structure)
         self.assert_contains_lines_in_order(
             [
+                '-----------\nCollections\n-----------',
+                'Collections provide an interface to iterate over and ',
+                'manipulate groups of resources. ',
+                'For more information about collections refer to the ',
+            ]
+        )
+        self.assert_contains_lines_in_order(
+            [
+                'samples',
                 '.. py:attribute:: samples',
                 '  A collection of Sample resources.'
                 'A Sample Collection will include all resources by default, '
@@ -114,5 +125,8 @@ class TestCollectionDocumenter(BaseDocsTest):
                 '    :rtype: list(:py:class:`myservice.Sample`)',
                 '    :returns: A list of Sample resources',
                 '    ',
-            ]
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'service-resource', 'samples'
+            ),
         )
