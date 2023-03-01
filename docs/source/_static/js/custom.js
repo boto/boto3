@@ -21,9 +21,10 @@ const nonResourceSubHeadings = [
 	'examples'
 ];
 // Checks if an html doc name matches a service class name.
-function isValidServiceName(docName, serviceClassName) {
-	const newDocName = docName.replaceAll('-', '').toLowerCase();
-	return newDocName === serviceClassName;
+function isValidServiceName(serviceClassName) {
+	const pageTitle = document.getElementsByTagName('h1')[0];
+	const newDocName = pageTitle.getElementsByTagName('a')[0].innerHTML;
+	return newDocName.toLowerCase() === serviceClassName;
 }
 // Checks if all elements of the split fragment are valid.
 // Fragment items should only contain alphanumerics, hyphens, & underscores.
@@ -58,7 +59,7 @@ function isValidResource(name, serviceDocName) {
 			splitFragment[1] = splitFragment[1].toLowerCase();
 		}
 		let newPath;
-		if (splitFragment.length >= 3 && isValidServiceName(serviceDocName, splitFragment[0])) {
+		if (splitFragment.length >= 3 && isValidServiceName(splitFragment[0])) {
 			splitFragment[0] = serviceDocName;
 			newPath = `${ splitFragment.slice(0, 3).join('/') }.html#${ splitFragment.length > 3 ? fragment : '' }`;
 		} else if (splitFragment.length == 2 && isValidResource(splitFragment[1].toLowerCase(), serviceDocName)) {
