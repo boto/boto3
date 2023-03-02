@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.83
+=======
+
+* api-change:``iot``: [``botocore``] A recurring maintenance window is an optional configuration used for rolling out the job document to all devices in the target group observing a predetermined start time, duration, and frequency that the maintenance window occurs.
+* api-change:``migrationhubstrategy``: [``botocore``] This release updates the File Import API to allow importing servers already discovered by customers with reduced pre-requisites.
+* api-change:``organizations``: [``botocore``] This release introduces a new reason code, ACCOUNT_CREATION_NOT_COMPLETE, to ConstraintViolationException in CreateOrganization API.
+* api-change:``pi``: [``botocore``] This release adds a new field PeriodAlignment to allow the customer specifying the returned timestamp of time periods to be either the start or end time.
+* api-change:``pipes``: [``botocore``] This release fixes some input parameter range and patterns.
+* api-change:``sagemaker``: [``botocore``] Add a new field "EndpointMetrics" in SageMaker Inference Recommender "ListInferenceRecommendationsJobSteps" API response.
+
+
 1.26.82
 =======
 
