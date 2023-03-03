@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediaconvert``",
-  "description": "[``botocore``] The AWS Elemental MediaConvert SDK has improved handling for different input and output color space combinations."
-}
