@@ -35,7 +35,7 @@ class TestWaiterResourceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'wait_until_complete',
-                '.. py:method:: wait_until_complete(**kwargs)',
+                '.. py:method:: MyService.Sample.wait_until_complete(**kwargs)',
                 (
                     '  Waits until this Sample is complete. This method calls '
                     ':py:meth:`MyService.Waiter.sample_operation_complete.wait` '

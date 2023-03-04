@@ -62,7 +62,10 @@ class CollectionDocumenter(NestedDocumenter):
         methods = get_instance_public_methods(
             getattr(self._resource, collection.name)
         )
-        document_collection_object(section, collection)
+        full_collection_name = f'{self.class_name}.{collection.name}'
+        document_collection_object(
+            section, collection, full_collection_name=full_collection_name
+        )
         batch_actions = {}
         for batch_action in collection.batch_actions:
             batch_actions[batch_action.name] = batch_action
@@ -90,7 +93,10 @@ class CollectionDocumenter(NestedDocumenter):
 
 
 def document_collection_object(
-    section, collection_model, include_signature=True
+    section,
+    collection_model,
+    include_signature=True,
+    full_collection_name=None,
 ):
     """Documents a collection resource object
 
@@ -102,7 +108,9 @@ def document_collection_object(
         It is useful for generating docstrings.
     """
     if include_signature:
-        section.style.start_sphinx_py_attr(collection_model.name)
+        if full_collection_name is None:
+            full_collection_name = collection_model.name
+        section.style.start_sphinx_py_attr(full_collection_name)
     section.include_doc_string(
         f'A collection of {collection_model.resource.type} resources.'
     )

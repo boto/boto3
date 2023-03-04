@@ -53,11 +53,13 @@ class SubResourceDocumenter(NestedDocumenter):
             sub_resource_section = sub_resource_doc.add_new_section(
                 sub_resource.name
             )
+            full_sub_resource_name = f'{self.class_name}.{sub_resource.name}'
             document_sub_resource(
                 section=sub_resource_section,
                 resource_name=self._resource_name,
                 sub_resource_model=sub_resource,
                 service_model=self._service_model,
+                full_sub_resource_name=full_sub_resource_name,
             )
 
             # Write sub_resources in individual/nested files.
@@ -78,6 +80,7 @@ def document_sub_resource(
     sub_resource_model,
     service_model,
     include_signature=True,
+    full_sub_resource_name=None,
 ):
     """Documents a resource action
 
@@ -99,8 +102,10 @@ def document_sub_resource(
 
     if include_signature:
         signature_args = get_identifier_args_for_signature(identifiers_needed)
+        if full_sub_resource_name is None:
+            full_sub_resource_name = sub_resource_model.name
         section.style.start_sphinx_py_method(
-            sub_resource_model.name, signature_args
+            full_sub_resource_name, signature_args
         )
 
     method_intro_section = section.add_new_section('method-intro')

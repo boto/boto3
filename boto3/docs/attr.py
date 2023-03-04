@@ -27,9 +27,12 @@ def document_attribute(
     event_emitter,
     attr_model,
     include_signature=True,
+    full_attr_name=None,
 ):
     if include_signature:
-        section.style.start_sphinx_py_attr(attr_name)
+        if full_attr_name is None:
+            full_attr_name = attr_name
+        section.style.start_sphinx_py_attr(full_attr_name)
     # Note that an attribute may have one, may have many, or may have no
     # operations that back the resource's shape. So we just set the
     # operation_name to the resource name if we ever to hook in and modify
@@ -42,19 +45,29 @@ def document_attribute(
 
 
 def document_identifier(
-    section, resource_name, identifier_model, include_signature=True
+    section,
+    resource_name,
+    identifier_model,
+    include_signature=True,
+    full_identifier_name=None,
 ):
     if include_signature:
-        section.style.start_sphinx_py_attr(identifier_model.name)
+        if full_identifier_name is None:
+            full_identifier_name = identifier_model.name
+        section.style.start_sphinx_py_attr(full_identifier_name)
     description = get_identifier_description(
         resource_name, identifier_model.name
     )
     section.write(f'*(string)* {description}')
 
 
-def document_reference(section, reference_model, include_signature=True):
+def document_reference(
+    section, reference_model, include_signature=True, full_reference_name=None
+):
     if include_signature:
-        section.style.start_sphinx_py_attr(reference_model.name)
+        if full_reference_name is None:
+            full_reference_name = reference_model.name
+        section.style.start_sphinx_py_attr(full_reference_name)
     reference_type = f'(:py:class:`{reference_model.resource.type}`) '
     section.write(reference_type)
     section.include_doc_string(

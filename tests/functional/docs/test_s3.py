@@ -48,14 +48,14 @@ class TestS3Customizations(BaseDocsFunctionalTests):
         self.assert_contains_lines_in_order(
             [
                 'download_file',
-                '.. py:method:: download_file(',
+                '.. py:method:: S3.Client.download_file(',
             ],
             self.get_nested_file_contents('s3', 'client', 'download_file'),
         )
         self.assert_contains_lines_in_order(
             [
                 'upload_file',
-                '.. py:method:: upload_file(',
+                '.. py:method:: S3.Client.upload_file(',
             ],
             self.get_nested_file_contents('s3', 'client', 'upload_file'),
         )

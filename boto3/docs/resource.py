@@ -161,10 +161,12 @@ class ResourceDocumenter(BaseDocumenter):
             identifier_section = identifier_doc.add_new_section(
                 identifier.name
             )
+            full_identifier_name = f'{self.class_name}.{identifier.name}'
             document_identifier(
                 section=identifier_section,
                 resource_name=self._resource_name,
                 identifier_model=identifier,
+                full_identifier_name=full_identifier_name,
             )
             # Write identifiers in individual/nested files.
             # Path: <root>/reference/services/<service>/<resource_name>/<identifier_name>.rst
@@ -210,6 +212,7 @@ class ResourceDocumenter(BaseDocumenter):
             attribute_doc = DocumentStructure(attr_name, target='html')
             attribute_doc.add_title_section(attr_name)
             attribute_section = attribute_doc.add_new_section(attr_name)
+            full_attr_name = f'{self.class_name}.{attr_name}'
             document_attribute(
                 section=attribute_section,
                 service_name=self._service_name,
@@ -217,6 +220,7 @@ class ResourceDocumenter(BaseDocumenter):
                 attr_name=attr_name,
                 event_emitter=self._resource.meta.client.meta.events,
                 attr_model=attr_shape,
+                full_attr_name=full_attr_name,
             )
             # Write attributes in individual/nested files.
             # Path: <root>/reference/services/<service>/<resource_name>/<attribute_name>.rst
@@ -251,8 +255,11 @@ class ResourceDocumenter(BaseDocumenter):
             reference_doc = DocumentStructure(reference.name, target='html')
             reference_doc.add_title_section(reference.name)
             reference_section = reference_doc.add_new_section(reference.name)
+            full_reference_name = f'{self.class_name}.{reference.name}'
             document_reference(
-                section=reference_section, reference_model=reference
+                section=reference_section,
+                reference_model=reference,
+                full_reference_name=full_reference_name,
             )
             # Write references in individual/nested files.
             # Path: <root>/reference/services/<service>/<resource_name>/<reference_name>.rst
