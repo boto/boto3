@@ -284,6 +284,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_eq_repr(self):
+        actual_repr = str(Equals(self.value, self.value2))
+        assert actual_repr == 'mykey = foo'
+
     def test_ne(self):
         self.build_and_assert_expression(
             NotEquals(self.value, self.value2),
@@ -294,6 +298,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_ne_repr(self):
+        actual_repr = str(NotEquals(self.value, self.value2))
+        assert actual_repr == 'mykey <> foo'
+
     def test_lt(self):
         self.build_and_assert_expression(
             LessThan(self.value, self.value2),
@@ -303,6 +311,10 @@ class TestConditions(unittest.TestCase):
                 'values': (self.value, self.value2),
             },
         )
+
+    def test_lt_repr(self):
+        actual_repr = str(LessThan(self.value, self.value2))
+        assert actual_repr == 'mykey < foo'
 
     def test_lte(self):
         self.build_and_assert_expression(
