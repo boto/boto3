@@ -326,6 +326,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_lte_repr(self):
+        actual_repr = str(LessThanEquals(self.value, self.value2))
+        assert actual_repr == 'mykey <= foo'
+
     def test_gt(self):
         self.build_and_assert_expression(
             GreaterThan(self.value, self.value2),
@@ -336,6 +340,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_gt_repr(self):
+        actual_repr = str(GreaterThan(self.value, self.value2))
+        assert actual_repr == 'mykey > foo'
+
     def test_gte(self):
         self.build_and_assert_expression(
             GreaterThanEquals(self.value, self.value2),
@@ -345,6 +353,10 @@ class TestConditions(unittest.TestCase):
                 'values': (self.value, self.value2),
             },
         )
+
+    def test_gte_repr(self):
+        actual_repr = str(GreaterThanEquals(self.value, self.value2))
+        assert actual_repr == 'mykey >= foo'
 
     def test_in(self):
         cond = In(self.value, (self.value2))
@@ -358,6 +370,10 @@ class TestConditions(unittest.TestCase):
         )
         assert cond.has_grouped_values
 
+    def test_in_repr(self):
+        actual_repr = str(In(self.value, self.value2))
+        assert actual_repr == 'mykey IN foo'
+
     def test_bet(self):
         self.build_and_assert_expression(
             Between(self.value, self.value2, 'foo2'),
@@ -367,6 +383,10 @@ class TestConditions(unittest.TestCase):
                 'values': (self.value, self.value2, 'foo2'),
             },
         )
+
+    def test_bet_repr(self):
+        actual_repr = str(Between(self.value, self.value2, 'foo2'))
+        assert actual_repr == 'mykey BETWEEN foo AND foo2'
 
     def test_beg(self):
         self.build_and_assert_expression(
@@ -378,6 +398,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_beg_repr(self):
+        actual_repr = str(BeginsWith(self.value, self.value2))
+        assert actual_repr == 'begins_with(mykey, foo)'
+
     def test_cont(self):
         self.build_and_assert_expression(
             Contains(self.value, self.value2),
@@ -387,6 +411,10 @@ class TestConditions(unittest.TestCase):
                 'values': (self.value, self.value2),
             },
         )
+
+    def test_cont_repr(self):
+        actual_repr = str(Contains(self.value, self.value2))
+        assert actual_repr == 'contains(mykey, foo)'
 
     def test_ae(self):
         self.build_and_assert_expression(
@@ -398,6 +426,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_ae_repr(self):
+        actual_repr = str(AttributeExists(self.value))
+        assert actual_repr == 'attribute_exists(mykey)'
+
     def test_ane(self):
         self.build_and_assert_expression(
             AttributeNotExists(self.value),
@@ -407,6 +439,10 @@ class TestConditions(unittest.TestCase):
                 'values': (self.value,),
             },
         )
+
+    def test_ane_repr(self):
+        actual_repr = str(AttributeNotExists(self.value))
+        assert actual_repr == 'attribute_not_exists(mykey)'
 
     def test_size(self):
         self.build_and_assert_expression(
@@ -418,6 +454,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_size_repr(self):
+        actual_repr = str(Size(self.value))
+        assert actual_repr == 'size(mykey)'
+
     def test_size_can_use_attr_methods(self):
         size = Size(self.value)
         self.build_and_assert_expression(
@@ -428,6 +468,10 @@ class TestConditions(unittest.TestCase):
                 'values': (size, self.value),
             },
         )
+
+    def test_size_eq_repr(self):
+        actual_repr = str(Size(self.value).eq(self.value2))
+        assert actual_repr == 'size(mykey) = foo'
 
     def test_size_can_use_and(self):
         size = Size(self.value)
@@ -441,6 +485,10 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_size_and_ae_repr(self):
+        actual_repr = str(Size(self.value) & AttributeExists(self.value))
+        assert actual_repr == '(size(mykey) AND attribute_exists(mykey))'
+
     def test_attribute_type(self):
         self.build_and_assert_expression(
             AttributeType(self.value, self.value2),
@@ -450,6 +498,10 @@ class TestConditions(unittest.TestCase):
                 'values': (self.value, self.value2),
             },
         )
+
+    def test_attribute_type_repr(self):
+        actual_repr = str(AttributeType(self.value, self.value2))
+        assert actual_repr == 'attribute_type(mykey, foo)'
 
     def test_and(self):
         cond1 = Equals(self.value, self.value2)
@@ -464,6 +516,12 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_and_repr(self):
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
+        actual_repr = str(And(cond1, cond2))
+        assert actual_repr == '(mykey = foo AND mykey = foo)'
+
     def test_or(self):
         cond1 = Equals(self.value, self.value2)
         cond2 = Equals(self.value, self.value2)
@@ -477,6 +535,12 @@ class TestConditions(unittest.TestCase):
             },
         )
 
+    def test_or_repr(self):
+        cond1 = Equals(self.value, self.value2)
+        cond2 = Equals(self.value, self.value2)
+        actual_repr = str(Or(cond1, cond2))
+        assert actual_repr == '(mykey = foo OR mykey = foo)'
+
     def test_not(self):
         cond = Equals(self.value, self.value2)
         not_cond = Not(cond)
@@ -488,6 +552,11 @@ class TestConditions(unittest.TestCase):
                 'values': (cond,),
             },
         )
+
+    def test_not_repr(self):
+        cond = Equals(self.value, self.value2)
+        actual_repr = str(Not(cond))
+        assert actual_repr == '(NOT mykey = foo)'
 
 
 class TestConditionExpressionBuilder(unittest.TestCase):
