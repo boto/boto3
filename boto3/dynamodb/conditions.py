@@ -61,7 +61,7 @@ class ConditionBase:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         format_str = EXPR_STR_FORMAT_REGEX.sub(
             r"{values[\1]}", self.expression_format
         )
@@ -142,7 +142,7 @@ class AttributeBase:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         return self.name
 
 
