@@ -42,10 +42,12 @@ class CollectionDocumenter(NestedDocumenter):
         for collection in collections:
             collections_list.append(collection.name)
             # Create a new DocumentStructure for each collection and add contents.
+            full_collection_name = f'{self.class_name}.{collection.name}'
             collection_doc = DocumentStructure(collection.name, target='html')
             collection_doc.add_title_section(collection.name)
             collection_section = collection_doc.add_new_section(
-                collection.name
+                collection.name,
+                context={'full_collection_name': full_collection_name},
             )
             self._document_collection(collection_section, collection)
 
@@ -62,10 +64,7 @@ class CollectionDocumenter(NestedDocumenter):
         methods = get_instance_public_methods(
             getattr(self._resource, collection.name)
         )
-        full_collection_name = f'{self.class_name}.{collection.name}'
-        document_collection_object(
-            section, collection, full_collection_name=full_collection_name
-        )
+        document_collection_object(section, collection)
         batch_actions = {}
         for batch_action in collection.batch_actions:
             batch_actions[batch_action.name] = batch_action
@@ -96,7 +95,6 @@ def document_collection_object(
     section,
     collection_model,
     include_signature=True,
-    full_collection_name=None,
 ):
     """Documents a collection resource object
 
@@ -108,8 +106,9 @@ def document_collection_object(
         It is useful for generating docstrings.
     """
     if include_signature:
-        if full_collection_name is None:
-            full_collection_name = collection_model.name
+        full_collection_name = section.context.get(
+            'full_collection_name', collection_model.name
+        )
         section.style.start_sphinx_py_attr(full_collection_name)
     section.include_doc_string(
         f'A collection of {collection_model.resource.type} resources.'

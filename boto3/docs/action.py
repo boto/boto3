@@ -53,10 +53,13 @@ class ActionDocumenter(NestedDocumenter):
 
         for action_name in sorted(resource_actions):
             # Create a new DocumentStructure for each action and add contents.
+            full_action_name = f'{self.class_name}.{action_name}'
             action_doc = DocumentStructure(action_name, target='html')
             action_doc.add_title_section(action_name)
-            action_section = action_doc.add_new_section(action_name)
-            full_action_name = f'{self.class_name}.{action_name}'
+            action_section = action_doc.add_new_section(
+                action_name,
+                context={'full_action_name': full_action_name},
+            )
             if action_name in ['load', 'reload'] and self._resource_model.load:
                 document_load_reload_action(
                     section=action_section,
@@ -65,7 +68,6 @@ class ActionDocumenter(NestedDocumenter):
                     event_emitter=self._resource.meta.client.meta.events,
                     load_model=self._resource_model.load,
                     service_model=self._service_model,
-                    full_action_name=full_action_name,
                 )
             elif action_name in modeled_actions:
                 document_action(
@@ -74,14 +76,12 @@ class ActionDocumenter(NestedDocumenter):
                     event_emitter=self._resource.meta.client.meta.events,
                     action_model=modeled_actions[action_name],
                     service_model=self._service_model,
-                    full_action_name=full_action_name,
                 )
             else:
                 document_custom_method(
                     action_section,
-                    action_name,
+                    full_action_name,
                     resource_actions[action_name],
-                    full_method_name=full_action_name,
                 )
             # Write actions in individual/nested files.
             # Path: <root>/reference/services/<service>/<resource_name>/<action_name>.rst
@@ -100,7 +100,6 @@ def document_action(
     action_model,
     service_model,
     include_signature=True,
-    full_action_name=None,
 ):
     """Documents a resource action
 
@@ -131,8 +130,9 @@ def document_action(
     example_prefix = '{} = {}.{}'.format(
         example_return_value, example_resource_name, action_model.name
     )
-    if full_action_name is None:
-        full_action_name = action_model.name
+    full_action_name = section.context.get(
+        'full_action_name', action_model.name
+    )
     document_model_driven_resource_method(
         section=section,
         method_name=full_action_name,
@@ -154,7 +154,6 @@ def document_load_reload_action(
     load_model,
     service_model,
     include_signature=True,
-    full_action_name=None,
 ):
     """Documents the resource load action
 
@@ -186,8 +185,7 @@ def document_load_reload_action(
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
     example_prefix = f'{example_resource_name}.{action_name}'
-    if full_action_name is None:
-        full_action_name = action_name
+    full_action_name = section.context.get('full_action_name', action_name)
     document_model_driven_method(
         section=section,
         method_name=full_action_name,

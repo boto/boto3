@@ -45,10 +45,13 @@ class WaiterResourceDocumenter(NestedDocumenter):
         for waiter in waiters:
             waiter_list.append(waiter.name)
             # Create a new DocumentStructure for each waiter and add contents.
+            full_waiter_name = f'{self.class_name}.{waiter.name}'
             waiter_doc = DocumentStructure(waiter.name, target='html')
             waiter_doc.add_title_section(waiter.name)
-            waiter_section = waiter_doc.add_new_section(waiter.name)
-            full_waiter_name = f'{self.class_name}.{waiter.name}'
+            waiter_section = waiter_doc.add_new_section(
+                waiter.name,
+                context={'full_waiter_name': full_waiter_name},
+            )
             document_resource_waiter(
                 section=waiter_section,
                 resource_name=self._resource_name,
@@ -56,7 +59,6 @@ class WaiterResourceDocumenter(NestedDocumenter):
                 service_model=self._service_model,
                 resource_waiter_model=waiter,
                 service_waiter_model=self._service_waiter_model,
-                full_waiter_name=full_waiter_name,
             )
             # Write waiters in individual/nested files.
             # Path: <root>/reference/services/<service>/<resource_name>/<waiter_name>.rst
@@ -76,7 +78,6 @@ def document_resource_waiter(
     resource_waiter_model,
     service_waiter_model,
     include_signature=True,
-    full_waiter_name=None,
 ):
     waiter_model = service_waiter_model.get_waiter(
         resource_waiter_model.waiter_name
@@ -104,8 +105,9 @@ def document_resource_waiter(
     example_prefix = '{}.{}'.format(
         xform_name(resource_name), resource_waiter_model.name
     )
-    if full_waiter_name is None:
-        full_waiter_name = resource_waiter_model.name
+    full_waiter_name = section.context.get(
+        'full_waiter_name', resource_waiter_model.name
+    )
     document_model_driven_method(
         section=section,
         method_name=full_waiter_name,
