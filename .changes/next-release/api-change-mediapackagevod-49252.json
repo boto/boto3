@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediapackage-vod``",
-  "description": "[``botocore``] This release provides the date and time VOD resources were created."
-}
