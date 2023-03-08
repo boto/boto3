@@ -29,7 +29,7 @@ def document_attribute(
     include_signature=True,
 ):
     if include_signature:
-        full_attr_name = section.context.get('full_attr_name', attr_name)
+        full_attr_name = f"{section.context.get('qualifier', '')}{attr_name}"
         section.style.start_sphinx_py_attr(full_attr_name)
     # Note that an attribute may have one, may have many, or may have no
     # operations that back the resource's shape. So we just set the
@@ -49,8 +49,8 @@ def document_identifier(
     include_signature=True,
 ):
     if include_signature:
-        full_identifier_name = section.context.get(
-            'full_identifier_name', identifier_model.name
+        full_identifier_name = (
+            f"{section.context.get('qualifier', '')}{identifier_model.name}"
         )
         section.style.start_sphinx_py_attr(full_identifier_name)
     description = get_identifier_description(
@@ -61,8 +61,8 @@ def document_identifier(
 
 def document_reference(section, reference_model, include_signature=True):
     if include_signature:
-        full_reference_name = section.context.get(
-            'full_reference_name', reference_model.name
+        full_reference_name = (
+            f"{section.context.get('qualifier', '')}{reference_model.name}"
         )
         section.style.start_sphinx_py_attr(full_reference_name)
     reference_type = f'(:py:class:`{reference_model.resource.type}`) '

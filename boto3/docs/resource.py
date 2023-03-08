@@ -156,12 +156,11 @@ class ResourceDocumenter(BaseDocumenter):
         for identifier in identifiers:
             member_list.append(identifier.name)
             # Create a new DocumentStructure for each identifier and add contents.
-            full_identifier_name = f'{self.class_name}.{identifier.name}'
             identifier_doc = DocumentStructure(identifier.name, target='html')
             identifier_doc.add_title_section(identifier.name)
             identifier_section = identifier_doc.add_new_section(
                 identifier.name,
-                context={'full_identifier_name': full_identifier_name},
+                context={'qualifier': f'{self.class_name}.'},
             )
             document_identifier(
                 section=identifier_section,
@@ -209,12 +208,11 @@ class ResourceDocumenter(BaseDocumenter):
             _, attr_shape = attributes[attr_name]
             attribute_list.append(attr_name)
             # Create a new DocumentStructure for each attribute and add contents.
-            full_attr_name = f'{self.class_name}.{attr_name}'
             attribute_doc = DocumentStructure(attr_name, target='html')
             attribute_doc.add_title_section(attr_name)
             attribute_section = attribute_doc.add_new_section(
                 attr_name,
-                context={'full_attr_name': full_attr_name},
+                context={'qualifier': f'{self.class_name}.'},
             )
             document_attribute(
                 section=attribute_section,
@@ -254,12 +252,11 @@ class ResourceDocumenter(BaseDocumenter):
         for reference in references:
             reference_list.append(reference.name)
             # Create a new DocumentStructure for each reference and add contents.
-            full_reference_name = f'{self.class_name}.{reference.name}'
             reference_doc = DocumentStructure(reference.name, target='html')
             reference_doc.add_title_section(reference.name)
             reference_section = reference_doc.add_new_section(
                 reference.name,
-                context={'full_reference_name': full_reference_name},
+                context={'qualifier': f'{self.class_name}.'},
             )
             document_reference(
                 section=reference_section,

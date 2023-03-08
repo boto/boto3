@@ -46,14 +46,13 @@ class SubResourceDocumenter(NestedDocumenter):
         for sub_resource in sub_resources:
             sub_resources_list.append(sub_resource.name)
             # Create a new DocumentStructure for each sub_resource and add contents.
-            full_sub_resource_name = f'{self.class_name}.{sub_resource.name}'
             sub_resource_doc = DocumentStructure(
                 sub_resource.name, target='html'
             )
             sub_resource_doc.add_title_section(sub_resource.name)
             sub_resource_section = sub_resource_doc.add_new_section(
                 sub_resource.name,
-                context={'full_sub_resource_name': full_sub_resource_name},
+                context={'qualifier': f'{self.class_name}.'},
             )
             document_sub_resource(
                 section=sub_resource_section,
@@ -101,8 +100,8 @@ def document_sub_resource(
 
     if include_signature:
         signature_args = get_identifier_args_for_signature(identifiers_needed)
-        full_sub_resource_name = section.context.get(
-            'full_sub_resource_name', sub_resource_model.name
+        full_sub_resource_name = (
+            f"{section.context.get('qualifier', '')}{sub_resource_model.name}"
         )
         section.style.start_sphinx_py_method(
             full_sub_resource_name, signature_args

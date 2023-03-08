@@ -42,12 +42,11 @@ class CollectionDocumenter(NestedDocumenter):
         for collection in collections:
             collections_list.append(collection.name)
             # Create a new DocumentStructure for each collection and add contents.
-            full_collection_name = f'{self.class_name}.{collection.name}'
             collection_doc = DocumentStructure(collection.name, target='html')
             collection_doc.add_title_section(collection.name)
             collection_section = collection_doc.add_new_section(
                 collection.name,
-                context={'full_collection_name': full_collection_name},
+                context={'qualifier': f'{self.class_name}.'},
             )
             self._document_collection(collection_section, collection)
 
@@ -106,8 +105,8 @@ def document_collection_object(
         It is useful for generating docstrings.
     """
     if include_signature:
-        full_collection_name = section.context.get(
-            'full_collection_name', collection_model.name
+        full_collection_name = (
+            f"{section.context.get('qualifier', '')}{collection_model.name}"
         )
         section.style.start_sphinx_py_attr(full_collection_name)
     section.include_doc_string(
