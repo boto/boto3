@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``evidently``",
+  "description": "[``botocore``] Updated entity override documentation"
+}
