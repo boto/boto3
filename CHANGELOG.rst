@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.89
+=======
+
+* api-change:``ivschat``: [``botocore``] This release adds a new exception returned when calling AWS IVS chat UpdateLoggingConfiguration. Now UpdateLoggingConfiguration can return ConflictException when invalid updates are made in sequence to Logging Configurations.
+* api-change:``secretsmanager``: [``botocore``] The type definitions of SecretString and SecretBinary now have a minimum length of 1 in the model to match the exception thrown when you pass in empty values.
+
+
 1.26.88
 =======
 
