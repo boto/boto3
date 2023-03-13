@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.26.90
+=======
+
+* api-change:``appintegrations``: [``botocore``] Adds FileConfiguration to Amazon AppIntegrations CreateDataIntegration supporting scheduled downloading of third party files into Amazon Connect from sources such as Microsoft SharePoint.
+* api-change:``lakeformation``: [``botocore``] This release updates the documentation regarding Get/Update DataCellsFilter
+* api-change:``s3control``: [``botocore``] Added support for cross-account Multi-Region Access Points. Added support for S3 Replication for S3 on Outposts.
+* api-change:``tnb``: [``botocore``] This release adds tagging support to the following Network Instance APIs : Instantiate, Update, Terminate.
+* api-change:``wisdom``: [``botocore``] This release extends Wisdom CreateKnowledgeBase API to support SharePoint connector type by removing the @required trait for objectField
+
+
 1.26.89
 =======
 
