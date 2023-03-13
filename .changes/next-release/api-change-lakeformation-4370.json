@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lakeformation``",
-  "description": "[``botocore``] This release updates the documentation regarding Get/Update DataCellsFilter"
-}
