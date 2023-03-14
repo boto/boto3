@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.91
+=======
+
+* api-change:``application-autoscaling``: [``botocore``] Application Auto Scaling customers can now use mathematical functions to customize the metric used with Target Tracking policies within the policy configuration itself, saving the cost and effort of publishing the customizations as a separate metric.
+* api-change:``dataexchange``: [``botocore``] This release enables data providers to license direct access to S3 objects encrypted with Customer Managed Keys (CMK) in AWS KMS through AWS Data Exchange. Subscribers can use these keys to decrypt, then use the encrypted S3 objects shared with them, without creating or managing copies.
+* api-change:``directconnect``: [``botocore``] describe-direct-connect-gateway-associations includes a new status, updating, indicating that the association is currently in-process of updating.
+* api-change:``ec2``: [``botocore``] This release adds a new DnsOptions key (PrivateDnsOnlyForInboundResolverEndpoint) to CreateVpcEndpoint and ModifyVpcEndpoint APIs.
+* api-change:``iam``: [``botocore``] Documentation only updates to correct customer-reported issues
+* api-change:``keyspaces``: [``botocore``] Adding support for client-side timestamps
+
+
 1.26.90
 =======
 
