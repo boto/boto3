@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.92
+=======
+
+* api-change:``migrationhubstrategy``: [``botocore``] This release adds the binary analysis that analyzes IIS application DLLs on Windows and Java applications on Linux to provide anti-pattern report without configuring access to the source code.
+* api-change:``s3control``: [``botocore``] Added support for S3 Object Lambda aliases.
+* api-change:``securitylake``: [``botocore``] Make Create/Get/ListSubscribers APIs return resource share ARN and name so they can be used to validate the RAM resource share to accept. GetDatalake can be used to track status of UpdateDatalake and DeleteDatalake requests.
+
+
 1.26.91
 =======
 
