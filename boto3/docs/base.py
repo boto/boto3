@@ -39,3 +39,10 @@ class NestedDocumenter(BaseDocumenter):
         self._resource_sub_path = self._resource_name.lower()
         if self._resource_name == self._service_name:
             self._resource_sub_path = 'service-resource'
+
+    @property
+    def class_name(self):
+        resource_class_name = self._resource_name
+        if self._resource_name == self._service_name:
+            resource_class_name = 'ServiceResource'
+        return f'{self._service_docs_name}.{resource_class_name}'

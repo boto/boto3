@@ -159,7 +159,8 @@ class ResourceDocumenter(BaseDocumenter):
             identifier_doc = DocumentStructure(identifier.name, target='html')
             identifier_doc.add_title_section(identifier.name)
             identifier_section = identifier_doc.add_new_section(
-                identifier.name
+                identifier.name,
+                context={'qualifier': f'{self.class_name}.'},
             )
             document_identifier(
                 section=identifier_section,
@@ -209,7 +210,10 @@ class ResourceDocumenter(BaseDocumenter):
             # Create a new DocumentStructure for each attribute and add contents.
             attribute_doc = DocumentStructure(attr_name, target='html')
             attribute_doc.add_title_section(attr_name)
-            attribute_section = attribute_doc.add_new_section(attr_name)
+            attribute_section = attribute_doc.add_new_section(
+                attr_name,
+                context={'qualifier': f'{self.class_name}.'},
+            )
             document_attribute(
                 section=attribute_section,
                 service_name=self._service_name,
@@ -250,9 +254,13 @@ class ResourceDocumenter(BaseDocumenter):
             # Create a new DocumentStructure for each reference and add contents.
             reference_doc = DocumentStructure(reference.name, target='html')
             reference_doc.add_title_section(reference.name)
-            reference_section = reference_doc.add_new_section(reference.name)
+            reference_section = reference_doc.add_new_section(
+                reference.name,
+                context={'qualifier': f'{self.class_name}.'},
+            )
             document_reference(
-                section=reference_section, reference_model=reference
+                section=reference_section,
+                reference_model=reference,
             )
             # Write references in individual/nested files.
             # Path: <root>/reference/services/<service>/<resource_name>/<reference_name>.rst

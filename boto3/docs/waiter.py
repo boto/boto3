@@ -47,7 +47,10 @@ class WaiterResourceDocumenter(NestedDocumenter):
             # Create a new DocumentStructure for each waiter and add contents.
             waiter_doc = DocumentStructure(waiter.name, target='html')
             waiter_doc.add_title_section(waiter.name)
-            waiter_section = waiter_doc.add_new_section(waiter.name)
+            waiter_section = waiter_doc.add_new_section(
+                waiter.name,
+                context={'qualifier': f'{self.class_name}.'},
+            )
             document_resource_waiter(
                 section=waiter_section,
                 resource_name=self._resource_name,
@@ -101,9 +104,12 @@ def document_resource_waiter(
     example_prefix = '{}.{}'.format(
         xform_name(resource_name), resource_waiter_model.name
     )
+    full_waiter_name = (
+        f"{section.context.get('qualifier', '')}{resource_waiter_model.name}"
+    )
     document_model_driven_method(
         section=section,
-        method_name=resource_waiter_model.name,
+        method_name=full_waiter_name,
         operation_model=operation_model,
         event_emitter=event_emitter,
         example_prefix=example_prefix,

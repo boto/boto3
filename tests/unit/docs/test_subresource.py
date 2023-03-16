@@ -32,7 +32,7 @@ class TestSubResourceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'Sample',
-                '.. py:method:: Sample(name)',
+                '.. py:method:: MyService.ServiceResource.Sample(name)',
                 '  Creates a Sample resource.::',
                 "    sample = myservice.Sample('name')",
                 '  :type name: string',

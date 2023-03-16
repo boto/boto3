@@ -47,7 +47,7 @@ class TestInstanceDeleteTags(BaseDocsFunctionalTests):
         self.assert_contains_lines_in_order(
             [
                 'delete_tags',
-                '.. py:method:: delete_tags(**kwargs)',
+                '.. py:method:: EC2.Instance.delete_tags(**kwargs)',
                 'response = instance.delete_tags(',
                 'DryRun=True|False,',
                 'Tags=[',

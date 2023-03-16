@@ -32,7 +32,7 @@ class TestActionDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'sample_operation',
-                '.. py:method:: sample_operation(**kwargs)',
+                '.. py:method:: MyService.ServiceResource.sample_operation(**kwargs)',
                 '  **Request Syntax**',
                 '  ::',
                 '    response = myservice.sample_operation(',
@@ -79,7 +79,7 @@ class TestActionDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'load',
-                '.. py:method:: load()',
+                '.. py:method:: MyService.Sample.load()',
                 (
                     '  Calls :py:meth:`MyService.Client.sample_operation` to update '
                     'the attributes of the Sample resource'
@@ -94,7 +94,7 @@ class TestActionDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'operate',
-                '.. py:method:: operate(**kwargs)',
+                '.. py:method:: MyService.Sample.operate(**kwargs)',
                 '  **Request Syntax** ',
                 '  ::',
                 '    response = sample.operate(',
@@ -121,7 +121,7 @@ class TestActionDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'reload',
-                '.. py:method:: reload()',
+                '.. py:method:: MyService.Sample.reload()',
                 (
                     '  Calls :py:meth:`MyService.Client.sample_operation` to update '
                     'the attributes of the Sample resource'
@@ -136,7 +136,7 @@ class TestActionDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'get_available_subresources',
-                '.. py:method:: get_available_subresources()',
+                '.. py:method:: MyService.Sample.get_available_subresources()',
                 'Returns a list of all the available sub-resources for this',
                 ':returns: A list containing the name of each sub-resource for this',
                 ':rtype: list of str',

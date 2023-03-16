@@ -45,7 +45,8 @@ class CollectionDocumenter(NestedDocumenter):
             collection_doc = DocumentStructure(collection.name, target='html')
             collection_doc.add_title_section(collection.name)
             collection_section = collection_doc.add_new_section(
-                collection.name
+                collection.name,
+                context={'qualifier': f'{self.class_name}.'},
             )
             self._document_collection(collection_section, collection)
 
@@ -90,7 +91,9 @@ class CollectionDocumenter(NestedDocumenter):
 
 
 def document_collection_object(
-    section, collection_model, include_signature=True
+    section,
+    collection_model,
+    include_signature=True,
 ):
     """Documents a collection resource object
 
@@ -102,7 +105,10 @@ def document_collection_object(
         It is useful for generating docstrings.
     """
     if include_signature:
-        section.style.start_sphinx_py_attr(collection_model.name)
+        full_collection_name = (
+            f"{section.context.get('qualifier', '')}{collection_model.name}"
+        )
+        section.style.start_sphinx_py_attr(full_collection_name)
     section.include_doc_string(
         f'A collection of {collection_model.resource.type} resources.'
     )
