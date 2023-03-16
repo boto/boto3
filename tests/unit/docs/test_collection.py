@@ -31,7 +31,7 @@ class TestCollectionDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'samples',
-                '.. py:attribute:: samples',
+                '.. py:attribute:: MyService.ServiceResource.samples',
                 '  A collection of Sample resources.'
                 'A Sample Collection will include all resources by default, '
                 'and extreme caution should be taken when performing actions '

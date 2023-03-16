@@ -46,7 +46,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'can_paginate',
-                '.. py:method:: can_paginate(operation_name)',
+                '.. py:method:: MyService.Client.can_paginate(operation_name)',
             ],
             self.get_nested_service_contents(
                 'myservice', 'client', 'can_paginate'
@@ -55,7 +55,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'get_paginator',
-                '.. py:method:: get_paginator(operation_name)',
+                '.. py:method:: MyService.Client.get_paginator(operation_name)',
             ],
             self.get_nested_service_contents(
                 'myservice', 'client', 'get_paginator'
@@ -64,7 +64,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'get_waiter',
-                '.. py:method:: get_waiter(waiter_name)',
+                '.. py:method:: MyService.Client.get_waiter(waiter_name)',
             ],
             self.get_nested_service_contents(
                 'myservice', 'client', 'get_waiter'
@@ -73,7 +73,7 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'sample_operation',
-                '.. py:method:: sample_operation(**kwargs)',
+                '.. py:method:: MyService.Client.sample_operation(**kwargs)',
                 '  **Request Syntax**',
                 '  ::',
                 '    response = client.sample_operation(',

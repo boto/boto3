@@ -133,7 +133,7 @@ def _assert_has_client_documentation(generated_docs, service_name, client):
         _assert_contains_lines_in_order(
             [
                 f'{method_name}',
-                f'.. py:method:: {method_name}(',
+                f'.. py:method:: {client.__class__.__name__}.Client.{method_name}(',
             ],
             get_nested_file_contents(service_name, 'client', method_name),
         )

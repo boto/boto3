@@ -51,7 +51,8 @@ class SubResourceDocumenter(NestedDocumenter):
             )
             sub_resource_doc.add_title_section(sub_resource.name)
             sub_resource_section = sub_resource_doc.add_new_section(
-                sub_resource.name
+                sub_resource.name,
+                context={'qualifier': f'{self.class_name}.'},
             )
             document_sub_resource(
                 section=sub_resource_section,
@@ -99,8 +100,11 @@ def document_sub_resource(
 
     if include_signature:
         signature_args = get_identifier_args_for_signature(identifiers_needed)
+        full_sub_resource_name = (
+            f"{section.context.get('qualifier', '')}{sub_resource_model.name}"
+        )
         section.style.start_sphinx_py_method(
-            sub_resource_model.name, signature_args
+            full_sub_resource_name, signature_args
         )
 
     method_intro_section = section.add_new_section('method-intro')

@@ -125,7 +125,7 @@ class TestServiceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'sample_operation',
-                '.. py:method:: sample_operation(**kwargs)',
+                '.. py:method:: MyService.Client.sample_operation(**kwargs)',
                 '  **Examples** ',
                 '  Sample Description.',
                 '  ::',
@@ -158,7 +158,7 @@ class TestServiceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'sample_operation',
-                '.. py:method:: sample_operation(**kwargs)',
+                '.. py:method:: MyService.ServiceResource.sample_operation(**kwargs)',
             ],
             self.get_nested_service_contents(
                 'myservice', 'service-resource', 'sample_operation'
@@ -167,7 +167,7 @@ class TestServiceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'Sample',
-                '.. py:method:: Sample(name)',
+                '.. py:method:: MyService.ServiceResource.Sample(name)',
             ],
             self.get_nested_service_contents(
                 'myservice', 'service-resource', 'Sample'
@@ -176,7 +176,7 @@ class TestServiceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'samples',
-                '.. py:attribute:: samples',
+                '.. py:attribute:: MyService.ServiceResource.samples',
                 '  .. py:method:: all()',
                 '  .. py:method:: filter(**kwargs)',
                 '  .. py:method:: limit(**kwargs)',
@@ -189,35 +189,35 @@ class TestServiceDocumenter(BaseDocsTest):
         self.assert_contains_lines_in_order(
             [
                 'name',
-                '.. py:attribute:: name',
+                '.. py:attribute:: MyService.Sample.name',
             ],
             self.get_nested_service_contents('myservice', 'sample', 'name'),
         )
         self.assert_contains_lines_in_order(
             [
                 'name',
-                '.. py:attribute:: name',
+                '.. py:attribute:: MyService.Sample.name',
             ],
             self.get_nested_service_contents('myservice', 'sample', 'name'),
         )
         self.assert_contains_lines_in_order(
             [
                 'bar',
-                '.. py:attribute:: bar',
+                '.. py:attribute:: MyService.Sample.bar',
             ],
             self.get_nested_service_contents('myservice', 'sample', 'bar'),
         )
         self.assert_contains_lines_in_order(
             [
                 'load',
-                '.. py:method:: load()',
+                '.. py:method:: MyService.Sample.load()',
             ],
             self.get_nested_service_contents('myservice', 'sample', 'load'),
         )
         self.assert_contains_lines_in_order(
             [
                 'wait_until_complete',
-                '.. py:method:: wait_until_complete(**kwargs)',
+                '.. py:method:: MyService.Sample.wait_until_complete(**kwargs)',
             ],
             self.get_nested_service_contents(
                 'myservice', 'sample', 'wait_until_complete'
