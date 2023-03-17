@@ -50,9 +50,7 @@ class SubResourceDocumenter(NestedDocumenter):
                 sub_resource.name, target='html'
             )
             breadcrumb_section = sub_resource_doc.add_new_section('breadcrumb')
-            breadcrumb_section.style.ref(
-                self._resource_class_name, f'index'
-            )
+            breadcrumb_section.style.ref(self._resource_class_name, 'index')
             breadcrumb_section.write(f' / Sub-Resource / {sub_resource.name}')
             sub_resource_doc.add_title_section(sub_resource.name)
             sub_resource_section = sub_resource_doc.add_new_section(

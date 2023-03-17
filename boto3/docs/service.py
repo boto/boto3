@@ -113,7 +113,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
         breadcrumb_section.style.ref(
             self._client.__class__.__name__, f'../../{self._service_name}'
         )
-        breadcrumb_section.write(f' / Resource / ServiceResource')
+        breadcrumb_section.write(' / Resource / ServiceResource')
         ServiceResourceDocumenter(
             self._service_resource, self._session, self._root_docs_path
         ).document_resource(service_resource_doc)
@@ -165,7 +165,9 @@ class ServiceDocumenter(BaseServiceDocumenter):
             breadcrumb_section.style.ref(
                 self._client.__class__.__name__, f'../../{self._service_name}'
             )
-            breadcrumb_section.write(f' / Resource / {resource.meta.resource_model.name}')
+            breadcrumb_section.write(
+                f' / Resource / {resource.meta.resource_model.name}'
+            )
             ResourceDocumenter(
                 resource, self._session, self._root_docs_path
             ).document_resource(

@@ -159,9 +159,7 @@ class ResourceDocumenter(BaseDocumenter):
             # Create a new DocumentStructure for each identifier and add contents.
             identifier_doc = DocumentStructure(identifier.name, target='html')
             breadcrumb_section = identifier_doc.add_new_section('breadcrumb')
-            breadcrumb_section.style.ref(
-                self._resource_class_name, f'index'
-            )
+            breadcrumb_section.style.ref(self._resource_class_name, 'index')
             breadcrumb_section.write(f' / Identifier / {identifier.name}')
             identifier_doc.add_title_section(identifier.name)
             identifier_section = identifier_doc.add_new_section(
@@ -216,9 +214,7 @@ class ResourceDocumenter(BaseDocumenter):
             # Create a new DocumentStructure for each attribute and add contents.
             attribute_doc = DocumentStructure(attr_name, target='html')
             breadcrumb_section = attribute_doc.add_new_section('breadcrumb')
-            breadcrumb_section.style.ref(
-                self._resource_class_name, f'index'
-            )
+            breadcrumb_section.style.ref(self._resource_class_name, 'index')
             breadcrumb_section.write(f' / Attribute / {attr_name}')
             attribute_doc.add_title_section(attr_name)
             attribute_section = attribute_doc.add_new_section(
@@ -265,9 +261,7 @@ class ResourceDocumenter(BaseDocumenter):
             # Create a new DocumentStructure for each reference and add contents.
             reference_doc = DocumentStructure(reference.name, target='html')
             breadcrumb_section = reference_doc.add_new_section('breadcrumb')
-            breadcrumb_section.style.ref(
-                self._resource_class_name, f'index'
-            )
+            breadcrumb_section.style.ref(self._resource_class_name, 'index')
             breadcrumb_section.write(f' / Reference / {reference.name}')
             reference_doc.add_title_section(reference.name)
             reference_section = reference_doc.add_new_section(
