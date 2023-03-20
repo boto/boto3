@@ -28,8 +28,6 @@ class TestServiceDocumenter(BaseDocsTest):
             '*********',
             'MyService',
             '*********',
-            '.. contents:: Table of Contents',
-            '   :depth: 2',
             '======',
             'Client',
             '======',
