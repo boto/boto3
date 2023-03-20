@@ -1,0 +1,33 @@
+/* Prevents two-dimensional scrolling and content loss. */
+h1, code, li {
+    overflow-wrap: break-word;
+}
+/* Provides padding to push down the "breadcrumb" navigation in nested pages. */
+.content{
+    padding: 1em 3em;
+}
+/* Improves spacing around custom sidebar section*/
+.sidebar-div{
+    margin: var(--sidebar-caption-space-above) 0 0 0;
+    padding: var(--sidebar-item-spacing-vertical) var(--sidebar-item-spacing-horizontal);
+}
+/* Custom sidebar heading text. Example: Feedback Section heading. */
+.sidebar-heading{
+    color: var(--color-sidebar-caption-text);
+    font-size: var(--font-size--normal);
+    font-weight: 700;
+}
+/* Improves text used in custom sidebar section. Example: Feedback section content.*/
+.sidebar-text{
+    color: var(--color-sidebar-caption-text);
+    font-size: var(--sidebar-item-font-size);
+    line-height: 1.4;
+}
+/* Removes empty space above the sidebar-tree (under "Feedback" section) */
+.sidebar-tree{
+    margin-top: 0px;
+}
+/* Adds padding around AWS Logo in the left sidebar. */
+.sidebar-logo{
+    padding: 20% 15%;
+}

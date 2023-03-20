@@ -46,6 +46,9 @@ class WaiterResourceDocumenter(NestedDocumenter):
             waiter_list.append(waiter.name)
             # Create a new DocumentStructure for each waiter and add contents.
             waiter_doc = DocumentStructure(waiter.name, target='html')
+            breadcrumb_section = waiter_doc.add_new_section('breadcrumb')
+            breadcrumb_section.style.ref(self._resource_class_name, 'index')
+            breadcrumb_section.write(f' / Waiter / {waiter.name}')
             waiter_doc.add_title_section(waiter.name)
             waiter_section = waiter_doc.add_new_section(
                 waiter.name,

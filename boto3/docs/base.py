@@ -26,6 +26,9 @@ class BaseDocumenter:
         self.represents_service_resource = (
             self._service_name == self._resource_name
         )
+        self._resource_class_name = self._resource_name
+        if self._resource_name == self._service_name:
+            self._resource_class_name = 'ServiceResource'
 
     @property
     def class_name(self):

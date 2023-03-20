@@ -43,6 +43,9 @@ class CollectionDocumenter(NestedDocumenter):
             collections_list.append(collection.name)
             # Create a new DocumentStructure for each collection and add contents.
             collection_doc = DocumentStructure(collection.name, target='html')
+            breadcrumb_section = collection_doc.add_new_section('breadcrumb')
+            breadcrumb_section.style.ref(self._resource_class_name, 'index')
+            breadcrumb_section.write(f' / Collection / {collection.name}')
             collection_doc.add_title_section(collection.name)
             collection_section = collection_doc.add_new_section(
                 collection.name,
