@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``chime-sdk-messaging``",
+    "description": "[``botocore``] Amazon Chime SDK messaging customers can now manage streaming configuration for messaging data for archival and analysis.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] GA Release of AWS Clean Rooms, Added Tagging Functionality",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] This release adds support for AWS Network Firewall, AWS PrivateLink, and Gateway Load Balancers to Amazon VPC Reachability Analyzer, and it makes the path destination optional as long as a destination address in the filter at source is provided.",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotsitewise``",
+    "description": "[``botocore``] Provide support for tagging of data streams and enabling tag based authorization for property alias",
+    "type": "api-change"
+  },
+  {
+    "category": "``mgn``",
+    "description": "[``botocore``] This release introduces the Import and export feature and expansion of the post-launch actions",
+    "type": "api-change"
+  }
+]
