@@ -42,7 +42,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 	# Clears out the source directory (excluding 'index.rst').
-	find $(SERVICESDIR) -depth 1 ! -name 'index.rst' -exec rm -rf '{}' \+ -print
+	find $(SERVICESDIR) -depth 1 ! -name 'index.rst' -exec rm -rf '{}' \+
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
