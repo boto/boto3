@@ -84,7 +84,7 @@ class TestActionDocumenter(BaseDocsTest):
                     '  Calls :py:meth:`MyService.Client.sample_operation` to update '
                     'the attributes of the Sample resource'
                 ),
-                '  **Request Syntax** ',
+                '  **Request Syntax**',
                 '  ::',
                 '    sample.load()',
                 '  :returns: None',
@@ -95,7 +95,7 @@ class TestActionDocumenter(BaseDocsTest):
             [
                 'operate',
                 '.. py:method:: MyService.Sample.operate(**kwargs)',
-                '  **Request Syntax** ',
+                '  **Request Syntax**',
                 '  ::',
                 '    response = sample.operate(',
                 "        Bar='string'",
@@ -105,13 +105,13 @@ class TestActionDocumenter(BaseDocsTest):
                 '  :rtype: dict',
                 '  :returns: ',
                 '    ',
-                '    **Response Syntax** ',
+                '    **Response Syntax**',
                 '    ::',
                 '      {',
                 "          'Foo': 'string',",
                 "          'Bar': 'string'",
                 '      }',
-                '    **Response Structure** ',
+                '    **Response Structure**',
                 '    - *(dict) --* ',
                 '      - **Foo** *(string) --* Documents Foo',
                 '      - **Bar** *(string) --* Documents Bar',
@@ -126,7 +126,7 @@ class TestActionDocumenter(BaseDocsTest):
                     '  Calls :py:meth:`MyService.Client.sample_operation` to update '
                     'the attributes of the Sample resource'
                 ),
-                '  **Request Syntax** ',
+                '  **Request Syntax**',
                 '  ::',
                 '    sample.reload()',
                 '  :returns: None',
