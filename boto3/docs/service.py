@@ -195,8 +195,5 @@ class ServiceDocumenter(BaseServiceDocumenter):
         if os.path.isfile(examples_file):
             section.style.h2('Examples')
             section.style.new_line()
-            section.write(".. contents::\n    :local:\n    :depth: 1")
-            section.style.new_line()
-            section.style.new_line()
             with open(examples_file) as f:
                 section.write(f.read())

@@ -89,7 +89,7 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
                 ':param Item: **[REQUIRED]**',
                 '- *(string) --*',
                 (
-                    '- *(valid DynamoDB type) --* - The value of the '
+                    '- *(valid DynamoDB type) -- *- The value of the '
                     'attribute. The valid value types are listed in the '
                     ':ref:`DynamoDB Reference Guide<ref_valid_dynamodb_types>`.'
                 ),
@@ -106,7 +106,7 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
                 '- **Attributes** *(dict) --*',
                 '- *(string) --*',
                 (
-                    '- *(valid DynamoDB type) --* - The value of '
+                    '- *(valid DynamoDB type) -- *- The value of '
                     'the attribute. The valid value types are listed in the '
                     ':ref:`DynamoDB Reference Guide<ref_valid_dynamodb_types>`.'
                 ),
