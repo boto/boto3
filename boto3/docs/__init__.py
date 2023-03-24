@@ -12,6 +12,8 @@
 # language governing permissions and limitations under the License.
 import os
 
+from botocore.docs import DEPRECATED_SERVICE_NAMES
+
 from boto3.docs.service import ServiceDocumenter
 
 
@@ -31,7 +33,14 @@ def generate_docs(root_dir, session):
     if not os.path.exists(services_doc_path):
         os.makedirs(services_doc_path)
 
-    for service_name in session.get_available_services():
+    # Filters out service names that are deprecated from being generated in docs.
+    available_services = [
+        service
+        for service in session.get_available_services()
+        if service not in DEPRECATED_SERVICE_NAMES
+    ]
+
+    for service_name in available_services:
         docs = ServiceDocumenter(
             service_name, session, services_doc_path
         ).document_service()
