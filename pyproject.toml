@@ -12,3 +12,37 @@ src_paths = ["boto3", "tests"]
 [tool.black]
 line-length = 79
 skip_string_normalization = true
+
+[tool.ruff]  # https://beta.ruff.rs/docs/rules
+extend-select = [
+    "C4",
+    "C9",
+    "I",
+    "PL",
+    "S",
+    "UP",
+]
+extend-ignore = [
+    "PLR2004",
+    "PLW0603",
+    "PLW2901",
+]
+line-length = 95
+target-version = "py37"
+
+[tool.ruff.mccabe]
+max-complexity = 12
+
+[tool.ruff.pylint]
+max-args = 13
+max-branches = 14
+
+[tool.ruff.per-file-ignores]
+"boto3/compat.py" = ["E402", "F401", "F841", "I001"]
+"boto3/dynamodb/transform.py" = ["PLR5501"]
+"docs/source/conf.py" = ["E501", "I001", "UP009"]
+"scripts/new-change" = ["S311"]
+"tests/*" = ["S"]
+"tests/functional/dynamodb/test_stubber_conditions.py" = ["C408"]
+"tests/unit/resources/test_action.py" = ["UP031"]
+"tests/unit/test_session.py" = ["PLC1901"]
