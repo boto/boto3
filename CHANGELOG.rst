@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.101
+========
+
+* api-change:``iot-data``: [``botocore``] Add endpoint ruleset support for cn-north-1.
+* api-change:``ssm-contacts``: [``botocore``] This release adds 12 new APIs as part of Oncall Schedule feature release, adds support for a new contact type: ONCALL_SCHEDULE. Check public documentation for AWS ssm-contacts for more information
+* api-change:``ssm-incidents``: [``botocore``] Increased maximum length of "TriggerDetails.rawData" to 10K characters and "IncidentSummary" to 8K characters.
+
+
 1.26.100
 ========
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iot-data``",
-  "description": "[``botocore``] Add endpoint ruleset support for cn-north-1."
-}
