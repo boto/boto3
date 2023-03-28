@@ -110,11 +110,11 @@ def upload_file(
     Usage::
 
         import boto3
-        s3 = boto3.resource('s3')
-        s3.meta.client.upload_file('/tmp/hello.txt', 'mybucket', 'hello.txt')
+        s3 = boto3.client('s3')
+        s3.upload_file('/tmp/hello.txt', 'mybucket', 'hello.txt')
 
-    Similar behavior as S3Transfer's upload_file() method,
-    except that parameters are capitalized. Detailed examples can be found at
+    Similar behavior as S3Transfer's upload_file() method, except that
+    argument names are capitalized. Detailed examples can be found at
     :ref:`S3Transfer's Usage <ref_s3transfer_usage>`.
 
     :type Filename: str
