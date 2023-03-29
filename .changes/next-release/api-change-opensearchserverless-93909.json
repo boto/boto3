@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearchserverless``",
-  "description": "[``botocore``] This release includes two new exception types \"ServiceQuotaExceededException\" and \"OcuLimitExceededException\"."
-}

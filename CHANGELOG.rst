@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.102
+========
+
+* api-change:``opensearchserverless``: [``botocore``] This release includes two new exception types "ServiceQuotaExceededException" and "OcuLimitExceededException".
+* api-change:``rds``: [``botocore``] Add support for creating a read replica DB instance from a Multi-AZ DB cluster.
+
+
 1.26.101
 ========
 
