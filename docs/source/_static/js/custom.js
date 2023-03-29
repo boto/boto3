@@ -138,6 +138,7 @@ function runAfterDOMLoads() {
 // Run a function after the DOM loads.
 function ready(fn) {
 	if (document.readyState !== 'loading') {
+		fn();
 	} else {
 		document.addEventListener('DOMContentLoaded', fn);
 	}
