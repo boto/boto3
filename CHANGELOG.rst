@@ -2,6 +2,27 @@
 CHANGELOG
 =========
 
+1.26.103
+========
+
+* api-change:``athena``: [``botocore``] Make DefaultExecutorDpuSize and CoordinatorDpuSize  fields optional  in StartSession
+* api-change:``autoscaling``: [``botocore``] Amazon EC2 Auto Scaling now supports Elastic Load Balancing traffic sources with the AttachTrafficSources, DetachTrafficSources, and DescribeTrafficSources APIs. This release also introduces a new activity status, "WaitingForConnectionDraining", for VPC Lattice to the DescribeScalingActivities API.
+* api-change:``batch``: [``botocore``] This feature allows Batch on EKS to support configuration of Pod Labels through Metadata for Batch on EKS Jobs.
+* api-change:``compute-optimizer``: [``botocore``] This release adds support for HDD EBS volume types and io2 Block Express. We are also adding support for 61 new instance types and instances that have non consecutive runtime.
+* api-change:``drs``: [``botocore``] Adding a field to the replication configuration APIs to support the auto replicate new disks feature. We also deprecated RetryDataReplication.
+* api-change:``ec2``: [``botocore``] This release adds support for Tunnel Endpoint Lifecycle control, a new feature that provides Site-to-Site VPN customers with better visibility and control of their VPN tunnel maintenance updates.
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``glue``: [``botocore``] This release adds support for AWS Glue Data Quality, which helps you evaluate and monitor the quality of your data and includes the API for creating, deleting, or updating data quality rulesets, runs and evaluations.
+* api-change:``guardduty``: [``botocore``] Added EKS Runtime Monitoring feature support to existing detector, finding APIs and introducing new Coverage APIs
+* api-change:``imagebuilder``: [``botocore``] Adds support for new image workflow details and image vulnerability detection.
+* api-change:``ivs``: [``botocore``] Amazon Interactive Video Service (IVS) now offers customers the ability to configure IVS channels to allow insecure RTMP ingest.
+* api-change:``kendra``: [``botocore``] AWS Kendra now supports featured results for a query.
+* api-change:``network-firewall``: [``botocore``] AWS Network Firewall added TLS inspection configurations to allow TLS traffic inspection.
+* api-change:``sagemaker-geospatial``: [``botocore``] Amazon SageMaker geospatial capabilities now supports server-side encryption with customer managed KMS key and SageMaker notebooks with a SageMaker geospatial image in a Amazon SageMaker Domain with VPC only mode.
+* api-change:``vpc-lattice``: [``botocore``] General Availability (GA) release of Amazon VPC Lattice
+* api-change:``wellarchitected``: [``botocore``] AWS Well-Architected SDK now supports getting consolidated report metrics and generating a consolidated report PDF.
+
+
 1.26.102
 ========
 
