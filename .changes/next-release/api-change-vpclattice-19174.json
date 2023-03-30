@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``vpc-lattice``",
-  "description": "[``botocore``] General Availability (GA) release of Amazon VPC Lattice"
-}

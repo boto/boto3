@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kendra``",
-  "description": "[``botocore``] AWS Kendra now supports featured results for a query."
-}
