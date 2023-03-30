@@ -76,10 +76,12 @@ function isValidResource(name, serviceDocName) {
 // Before: <li class="toctree-l2"><a class="reference internal" href="../../acm.html">ACM</a></li>
 // After: <li class="toctree-l2 current current-page"><a class="reference internal" href="../../acm.html">ACM</a></li>
 function makeServiceLinkCurrent(serviceName) {
-	const servicesSection = $("a:contains('Available Services')")[0].parentElement;
+	const servicesSection = [...document.querySelectorAll('a')].find(
+		e => e.innerHTML.includes('Available Services')
+	).parentElement;
 	var linkElement = servicesSection.querySelectorAll(`a[href*="../${ serviceName }.html"]`);
 	if (linkElement.length === 0) {
-		linkElement = sideBarElement.querySelectorAll(`a[href="#"]`)[0];
+		linkElement = servicesSection.querySelectorAll(`a[href="#"]`)[0];
 	} else {
 		linkElement = linkElement[0];
 	}
@@ -87,14 +89,58 @@ function makeServiceLinkCurrent(serviceName) {
 	linkParent.classList.add('current');
 	linkParent.classList.add('current-page');
 }
+const currentPagePath = window.location.pathname.split('/');
+const codeBlockSelector = 'div.highlight pre';
+const boldTextSelector = 'strong';
+const boldElements = document.querySelectorAll(boldTextSelector);
+const headings = [
+	'Example',
+	'Examples',
+	'Exceptions',
+	'Request Syntax',
+	'Response Structure',
+	'Response Syntax',
+	'Structure',
+	'Syntax'
+];
 // Expands the "Available Services" sub-menu in the side-bar when viewing
 // nested doc pages and highlights the corresponding service list item.
-const currentPagePath = window.location.pathname.split('/');
-const currentPagePathLength = currentPagePath.length;
-if (currentPagePath.includes('services')) {
-	document.getElementById('toctree-checkbox-11').checked = true;
-	// Example Nested Path: /reference/services/<service_name>/client/<operation_name>.html
-	const serviceNameIndex = currentPagePath.indexOf('services') + 1;
-	const serviceName = currentPagePath[serviceNameIndex];
-	makeServiceLinkCurrent(serviceName);
+function expandSubMenu() {
+	if (currentPagePath.includes('services')) {
+		document.getElementById('toctree-checkbox-11').checked = true;
+		// Example Nested Path: /reference/services/<service_name>/client/<operation_name>.html
+		const serviceNameIndex = currentPagePath.indexOf('services') + 1;
+		const serviceName = currentPagePath[serviceNameIndex];
+		makeServiceLinkCurrent(serviceName);
+	}
 }
+// Allows code blocks to be scrollable by keyboard only users.
+function makeCodeBlocksScrollable() {
+	const codeCells = document.querySelectorAll(codeBlockSelector);
+	codeCells.forEach(codeCell => {
+		codeCell.tabIndex = 0;
+	});
+}
+// Converts implicit bold headings into actual headings with h3 tags.
+function convertImplicitHeadings() {
+	boldElements.forEach(boldElement => {
+		if (headings.includes(boldElement.innerHTML)) {
+			boldElement.parentElement.outerHTML = `<h3>${ boldElement.innerHTML }</h3>`;
+		}
+	});
+}
+// Functions to run after the DOM loads.
+function runAfterDOMLoads() {
+	expandSubMenu();
+	convertImplicitHeadings();
+	makeCodeBlocksScrollable();
+}
+// Run a function after the DOM loads.
+function ready(fn) {
+	if (document.readyState !== 'loading') {
+		fn();
+	} else {
+		document.addEventListener('DOMContentLoaded', fn);
+	}
+}
+ready(runAfterDOMLoads);
