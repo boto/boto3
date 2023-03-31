@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.104
+========
+
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2 On Demand Capacity Reservations
+* api-change:``internetmonitor``: [``botocore``] This release adds a new feature for Amazon CloudWatch Internet Monitor that enables customers to deliver internet measurements to Amazon S3 buckets as well as CloudWatch Logs.
+* api-change:``resiliencehub``: [``botocore``] Adding EKS related documentation for appTemplateBody
+* api-change:``s3``: [``botocore``] Documentation updates for Amazon S3
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] In this release, you can now chose between soft delete and hard delete when calling the DeleteRecord API, so you have more flexibility when it comes to managing online store data.
+* api-change:``sms``: [``botocore``] Deprecating AWS Server Migration Service.
+
+
 1.26.103
 ========
 
