@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lakeformation``",
-  "description": "[``botocore``] Add support for database-level federation"
-}
