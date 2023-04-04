@@ -41,7 +41,7 @@ To set these configuration options, create a ``Config`` object with the options 
 
     my_config = Config(
         region_name = 'us-west-2',
-        signature_version = 'v4',
+        signature_version = 's3v4',
         retries = {
             'max_attempts': 10,
             'mode': 'standard'
@@ -77,7 +77,7 @@ In the following example, a proxy list is set up to use ``proxy.amazon.com``, po
 
     my_config = Config(
         region_name='us-east-2',
-        signature_version='v4',
+        signature_version='s3v4',
         proxies=proxy_definitions
     )
 
@@ -103,7 +103,7 @@ You can configure how Boto3 uses proxies by specifying the ``proxies_config`` op
 
     my_config = Config(
         region_name='us-east-2',
-        signature_version='v4',
+        signature_version='s3v4',
         proxies=proxy_definitions,
         proxies_config={
             'proxy_client_cert': '/path/of/certificate'
