@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.26.107
+========
+
+* api-change:``apprunner``: [``botocore``] App Runner adds support for seven new vCPU and memory configurations.
+* api-change:``config``: [``botocore``] This release adds resourceType enums for types released in March 2023.
+* api-change:``ecs``: [``botocore``] This is a document only updated to add information about Amazon Elastic Inference (EI).
+* api-change:``identitystore``: [``botocore``] Documentation updates for Identity Store CLI command reference.
+* api-change:``ivs-realtime``: [``botocore``] Fix ParticipantToken ExpirationTime format
+* api-change:``network-firewall``: [``botocore``] AWS Network Firewall now supports IPv6-only subnets.
+* api-change:``servicecatalog``: [``botocore``] removed incorrect product type value
+* api-change:``vpc-lattice``: [``botocore``] This release removes the entities in the API doc model package for auth policies.
+
+
 1.26.106
 ========
 
