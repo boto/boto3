@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ivs-realtime``",
-  "description": "[``botocore``] Fix ParticipantToken ExpirationTime format"
-}
