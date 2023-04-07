@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.109
+========
+
+* api-change:``dlm``: [``botocore``] Updated timestamp format for GetLifecyclePolicy API
+* api-change:``docdb``: [``botocore``] This release adds a new parameter 'DBClusterParameterGroupName' to 'RestoreDBClusterFromSnapshot' API to associate the name of the DB cluster parameter group while performing restore.
+* api-change:``fsx``: [``botocore``] Amazon FSx for Lustre now supports creating data repository associations on Persistent_1 and Scratch_2 file systems.
+* api-change:``lambda``: [``botocore``] This release adds a new Lambda InvokeWithResponseStream API to support streaming Lambda function responses. The release also adds a new InvokeMode parameter to Function Url APIs to control whether the response will be streamed or buffered.
+* api-change:``quicksight``: [``botocore``] This release has two changes: adding the OR condition to tag-based RLS rules in CreateDataSet and UpdateDataSet; adding RefreshSchedule and Incremental RefreshProperties operations for users to programmatically configure SPICE dataset ingestions.
+* api-change:``redshift-data``: [``botocore``] Update documentation of API descriptions as needed in support of temporary credentials with IAM identity.
+* api-change:``servicecatalog``: [``botocore``] Updates description for property
+
+
 1.26.108
 ========
 
