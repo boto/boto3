@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.110
+========
+
+* api-change:``connect``: [``botocore``] This release adds the ability to configure an agent's routing profile to receive contacts from multiple channels at the same time via extending the UpdateRoutingProfileConcurrency, CreateRoutingProfile and DescribeRoutingProfile APIs.
+* api-change:``ecs``: [``botocore``] This release adds support for enabling FIPS compliance on Amazon ECS Fargate tasks
+* api-change:``marketplace-catalog``: [``botocore``] Added three new APIs to support resource sharing: GetResourcePolicy, PutResourcePolicy, and DeleteResourcePolicy. Added new OwnershipType field to ListEntities request to let users filter on entities that are shared with them. Increased max page size of ListEntities response from 20 to 50 results.
+* api-change:``mediaconvert``: [``botocore``] AWS Elemental MediaConvert SDK now supports conversion of 608 paint-on captions to pop-on captions for SCC sources.
+* api-change:``omics``: [``botocore``] Remove unexpected API changes.
+* api-change:``rekognition``: [``botocore``] This release adds support for Face Liveness APIs in Amazon Rekognition. Updates UpdateStreamProcessor to return ResourceInUseException Exception. Minor updates to API documentation.
+
+
 1.26.109
 ========
 
