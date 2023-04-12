@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``groundstation``",
+  "description": "[``botocore``] AWS Ground Station Wideband DigIF GA Release"
+}
