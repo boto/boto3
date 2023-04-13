@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.113
+========
+
+* api-change:``chime-sdk-voice``: [``botocore``] This release adds tagging support for Voice Connectors and SIP Media Applications
+* api-change:``mediaconnect``: [``botocore``] Gateway is a new feature of AWS Elemental MediaConnect. Gateway allows the deployment of on-premises resources for the purpose of transporting live video to and from the AWS Cloud.
+
+
 1.26.112
 ========
 
