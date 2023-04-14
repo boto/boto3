@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.114
+========
+
+* api-change:``ecs``: [``botocore``] This release supports  ephemeral storage for AWS Fargate Windows containers.
+* api-change:``lambda``: [``botocore``] This release adds SnapStart related exceptions to InvokeWithResponseStream API. IAM access related documentation is also added for this API.
+* api-change:``migration-hub-refactor-spaces``: [``botocore``] Doc only update for Refactor Spaces environments without network bridge feature.
+* api-change:``rds``: [``botocore``] This release adds support of modifying the engine mode of database clusters.
+
+
 1.26.113
 ========
 
