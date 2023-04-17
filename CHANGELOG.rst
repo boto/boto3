@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.115
+========
+
+* api-change:``appflow``: [``botocore``] This release adds a Client Token parameter to the following AppFlow APIs: Create/Update Connector Profile, Create/Update Flow, Start Flow, Register Connector, Update Connector Registration. The Client Token parameter allows idempotent operations for these APIs.
+* api-change:``drs``: [``botocore``] Changed existing APIs and added new APIs to support using an account-level launch configuration template with AWS Elastic Disaster Recovery.
+* api-change:``dynamodb``: [``botocore``] Documentation updates for DynamoDB API
+* api-change:``emr-serverless``: [``botocore``] The GetJobRun API has been updated to include the job's billed resource utilization. This utilization shows the aggregate vCPU, memory and storage that AWS has billed for the job run. The billed resources include a 1-minute minimum usage for workers, plus additional storage over 20 GB per worker.
+* api-change:``internetmonitor``: [``botocore``] This release includes a new configurable value, TrafficPercentageToMonitor, which allows users to adjust the amount of traffic monitored by percentage
+* api-change:``iotwireless``: [``botocore``] Supports the new feature of LoRaWAN roaming, allows to configure MaxEirp for LoRaWAN gateway, and allows to configure PingSlotPeriod for LoRaWAN multicast group
+* api-change:``lambda``: [``botocore``] Add Python 3.10 (python3.10) support to AWS Lambda
+
+
 1.26.114
 ========
 
