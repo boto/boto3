@@ -29,6 +29,32 @@ from boto3.docs.utils import (
     get_resource_public_actions,
 )
 
+WARNING_MESSAGE_TEMPLATE = """
+    .. warning::
+        Please note that this method does not function as expected. It is
+        recommended to use the :py:meth:`{suggested_py_method_name}`
+        :doc:`client method <{suggested_py_method_docs_relative_path}>` instead.
+        If you would still like to use this method, please make sure that
+        {instruction_string}.
+"""
+DOCUMENT_ACTION_OVERRIDES = {
+    "Metric": {
+        "put_data": {
+            "ignore_params": ["Namespace"],
+            "warning": WARNING_MESSAGE_TEMPLATE.format(
+                suggested_py_method_name="put_metric_data",
+                suggested_py_method_docs_relative_path=(
+                    "../../cloudwatch/client/put_metric_data"
+                ),
+                instruction_string=(
+                    "`MetricData[].MetricName` is equal to the metric resource's "
+                    "`name` attribute"
+                ),
+            ),
+        }
+    }
+}
+
 
 class ActionDocumenter(NestedDocumenter):
     def document_actions(self, section):
@@ -52,12 +78,18 @@ class ActionDocumenter(NestedDocumenter):
         )
 
         for action_name in sorted(resource_actions):
+            overrides = DOCUMENT_ACTION_OVERRIDES.get(
+                self._resource_name, {}
+            ).get(action_name, {})
             # Create a new DocumentStructure for each action and add contents.
             action_doc = DocumentStructure(action_name, target='html')
             breadcrumb_section = action_doc.add_new_section('breadcrumb')
             breadcrumb_section.style.ref(self._resource_class_name, 'index')
             breadcrumb_section.write(f' / Action / {action_name}')
             action_doc.add_title_section(action_name)
+            warning = overrides.get("warning")
+            if warning:
+                action_doc.add_new_section("warning").write(warning)
             action_section = action_doc.add_new_section(
                 action_name,
                 context={'qualifier': f'{self.class_name}.'},
@@ -78,6 +110,7 @@ class ActionDocumenter(NestedDocumenter):
                     event_emitter=self._resource.meta.client.meta.events,
                     action_model=modeled_actions[action_name],
                     service_model=self._service_model,
+                    ignore_params=overrides.get("ignore_params"),
                 )
             else:
                 document_custom_method(
@@ -100,6 +133,7 @@ def document_action(
     action_model,
     service_model,
     include_signature=True,
+    ignore_params=None,
 ):
     """Documents a resource action
 
@@ -119,7 +153,8 @@ def document_action(
     operation_model = service_model.operation_model(
         action_model.request.operation
     )
-    ignore_params = get_resource_ignore_params(action_model.request.params)
+    if ignore_params is None:
+        ignore_params = get_resource_ignore_params(action_model.request.params)
 
     example_return_value = 'response'
     if action_model.resource:
