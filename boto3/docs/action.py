@@ -33,9 +33,8 @@ WARNING_MESSAGE_TEMPLATE = """
     .. warning::
         Please note that this method does not function as expected. It is
         recommended to use the :py:meth:`{suggested_py_method_name}`
-        :doc:`client method <{suggested_py_method_docs_relative_path}>` instead.
-        If you would still like to use this method, please make sure that
-        {instruction_string}.
+        :doc:`client method <{suggested_py_method_rel_path}>` instead.
+        {extra}
 """
 DOCUMENT_ACTION_OVERRIDES = {
     "Metric": {
@@ -43,11 +42,12 @@ DOCUMENT_ACTION_OVERRIDES = {
             "ignore_params": ["Namespace"],
             "warning": WARNING_MESSAGE_TEMPLATE.format(
                 suggested_py_method_name="put_metric_data",
-                suggested_py_method_docs_relative_path=(
+                suggested_py_method_rel_path=(
                     "../../cloudwatch/client/put_metric_data"
                 ),
-                instruction_string=(
-                    "`MetricData[].MetricName` is equal to the metric resource's "
+                extra=(
+                    "If you would still like to use this method, please make sure "
+                    "that `MetricData[].MetricName` is equal to the metric resource's "
                     "`name` attribute"
                 ),
             ),
