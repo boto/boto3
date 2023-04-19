@@ -70,6 +70,7 @@ def setup_module():
         'CreateBucketConfiguration': {
             'LocationConstraint': _DEFAULT_REGION,
         },
+        'ObjectOwnership': 'ObjectWriter',
     }
     try:
         s3.create_bucket(**params)
@@ -79,6 +80,7 @@ def setup_module():
         # final call as to whether or not the bucket exists.
         LOG.debug("create_bucket() raised an exception: %s", e, exc_info=True)
     waiter.wait(Bucket=_SHARED_BUCKET)
+    s3.delete_public_access_block(Bucket=_SHARED_BUCKET)
 
 
 def clear_out_bucket(bucket, region, delete_bucket=False):
