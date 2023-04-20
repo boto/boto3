@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] This release adds support for the new Lambda Protection feature."
-}

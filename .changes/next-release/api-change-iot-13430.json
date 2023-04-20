@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iot``",
-  "description": "[``botocore``] Support additional OTA states in GetOTAUpdate API"
-}
