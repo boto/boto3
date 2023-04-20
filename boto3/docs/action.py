@@ -47,8 +47,8 @@ DOCUMENT_ACTION_OVERRIDES = {
                 ),
                 extra=(
                     "If you would still like to use this method, please make sure "
-                    "that `MetricData[].MetricName` is equal to the metric resource's "
-                    "`name` attribute."
+                    "that ``MetricData[].MetricName`` is equal to the metric resource's "
+                    "``name`` attribute."
                 ),
             ),
         }
