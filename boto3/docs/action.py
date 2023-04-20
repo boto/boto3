@@ -30,11 +30,11 @@ from boto3.docs.utils import (
 )
 
 WARNING_MESSAGE_TEMPLATE = """
-    .. warning::
-        Please note that this method does not function as expected. It is
-        recommended to use the :py:meth:`{suggested_py_method_name}`
-        :doc:`client method <{suggested_py_method_rel_path}>` instead.
-        {extra}
+.. warning::
+    Please note that this method does not function as expected. It is
+    recommended to use the :py:meth:`{suggested_py_method_name}`
+    :doc:`client method <{suggested_py_method_rel_path}>` instead.
+    {extra}
 """
 DOCUMENT_ACTION_OVERRIDES = {
     "Metric": {
