@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.118
+========
+
+* api-change:``connect``: [``botocore``] This release adds a new API CreateParticipant. For Amazon Connect Chat, you can use this new API to customize chat flow experiences.
+* api-change:``ecs``: [``botocore``] Documentation update to address various Amazon ECS tickets.
+* api-change:``fms``: [``botocore``] AWS Firewall Manager adds support for multiple administrators. You can now delegate more than one administrator per organization.
+
+
 1.26.117
 ========
 
