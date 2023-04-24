@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.26.119
+========
+
+* api-change:``appflow``: [``botocore``] Increased the max length for RefreshToken and AuthCode from 2048 to 4096.
+* api-change:``codecatalyst``: [``botocore``] Documentation updates for Amazon CodeCatalyst.
+* api-change:``ec2``: [``botocore``] API changes to AWS Verified Access related to identity providers' information.
+* api-change:``mediaconvert``: [``botocore``] This release introduces a noise reduction pre-filter, linear interpolation deinterlace mode, video pass-through, updated default job settings, and expanded LC-AAC Stereo audio bitrate ranges.
+* api-change:``rekognition``: [``botocore``] Added new status result to Liveness session status.
+
+
 1.26.118
 ========
 
