@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rekognition``",
+  "description": "[``botocore``] Added new status result to Liveness session status."
+}
