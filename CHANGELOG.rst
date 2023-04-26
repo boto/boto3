@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.26.121
+========
+
+* api-change:``osis``: [``botocore``] Initial release for OpenSearch Ingestion
+
+
 1.26.120
 ========
 
