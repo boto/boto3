@@ -31,7 +31,7 @@ from boto3.docs.utils import (
 
 WARNING_MESSAGE_TEMPLATE = """
 .. warning::
-    Please note that it is recommended to use the :py:meth:`{suggested_py_method_name}`
+    It is recommended to use the :py:meth:`{suggested_py_method_name}`
     :doc:`client method <{suggested_py_method_rel_path}>` instead. {extra}
 """
 DOCUMENT_ACTION_OVERRIDES = {
@@ -44,9 +44,9 @@ DOCUMENT_ACTION_OVERRIDES = {
                     "../../cloudwatch/client/put_metric_data"
                 ),
                 extra=(
-                    "If you would still like to use this method, please make sure "
-                    "that ``MetricData[].MetricName`` is equal to the metric resource's "
-                    "``name`` attribute."
+                    "If you would still like to use this resource method, please "
+                    "make sure that ``MetricData[].MetricName`` is equal to the "
+                    "metric resource's ``name`` attribute."
                 ),
             ),
         }
