@@ -47,23 +47,13 @@ class TestCloudWatchMetricPutActionOverrides(BaseDocsFunctionalTests):
         put_alarm_contents = self.get_nested_file_contents(
             "cloudwatch", "metric", "put_alarm"
         )
-        try:
-            self.assert_contains_lines_in_order(
-                [
-                    ".. warning::",
-                    "Please note that this method does not function as expected. It is",
-                    "recommended to use the :py:meth:`put_metric_data`",
-                    ":doc:`client method <../../cloudwatch/client/put_metric_data>` instead.",
-                    "If you would still like to use this method, please make sure that",
-                    "``MetricData[].MetricName`` is equal to the metric resource's ``name`` attribute.",
-                ],
-                put_alarm_contents,
-            )
-        except AssertionError:
-            # We expect this to fail because the put_alarms action does not have
-            # the same override as the put_data action.
-            pass
-        else:
-            self.fail(
-                "The put_alarms action should not have the put_data override."
-            )
+        lines = [
+            ".. warning::",
+            "Please note that this method does not function as expected. It is",
+            "recommended to use the :py:meth:`put_metric_data`",
+            ":doc:`client method <../../cloudwatch/client/put_metric_data>` instead.",
+            "If you would still like to use this method, please make sure that",
+            "``MetricData[].MetricName`` is equal to the metric resource's ``name`` attribute.",
+        ]
+        for line in lines:
+            self.assertNotIn(line, put_alarm_contents)
