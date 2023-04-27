@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``xray``",
-  "description": "[``botocore``] Updated X-Ray documentation with Resource Policy API descriptions."
-}
