@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wafv2``",
-  "description": "[``botocore``] You can now associate a web ACL with a Verified Access instance."
-}
