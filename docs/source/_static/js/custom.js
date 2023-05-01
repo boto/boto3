@@ -121,18 +121,41 @@ function makeCodeBlocksScrollable() {
 		codeCell.tabIndex = 0;
 	});
 }
+// Replaces an HTML element in the DOM with a new element of a different tag
+// type while preserving the original element's attributes and content.
+function replaceElementWithNewTagType(originalElement, newTag) {
+	// Create a new element with the requested tag.
+	const newElement = document.createElement(newTag);
+	// Copy over the attributes of the original element.
+	for (const attribute of originalElement.attributes) {
+		newElement.setAttribute(attribute.name, attribute.value);
+	}
+	// Copy over the content of the original title element
+	newElement.innerHTML = originalElement.innerHTML;
+	// Replace the original element with the new element in the DOM
+	originalElement.parentNode.replaceChild(newElement, originalElement);
+}
 // Converts implicit bold headings into actual headings with h3 tags.
 function convertImplicitHeadings() {
 	boldElements.forEach(boldElement => {
 		if (headings.includes(boldElement.innerHTML)) {
-			boldElement.parentElement.outerHTML = `<h3>${ boldElement.innerHTML }</h3>`;
+			replaceElementWithNewTagType(boldElement, 'h3');
 		}
+	});
+}
+// Converts admonition titles from p tags to h2 tags.
+function convertAdmonitionTitlesToHeadings() {
+	const admonitionTitleSelector = '.admonition-title';
+	const admonitionTitleElements = document.querySelectorAll(admonitionTitleSelector);
+	admonitionTitleElements.forEach(originalElement => {
+		replaceElementWithNewTagType(originalElement, 'h2');
 	});
 }
 // Functions to run after the DOM loads.
 function runAfterDOMLoads() {
 	expandSubMenu();
 	convertImplicitHeadings();
+	convertAdmonitionTitlesToHeadings();
 	makeCodeBlocksScrollable();
 }
 // Run a function after the DOM loads.
