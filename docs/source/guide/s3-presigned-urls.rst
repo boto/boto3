@@ -58,6 +58,9 @@ The user can download the S3 object by entering the presigned URL in a browser.
 A program or HTML page can download the S3 object by using the presigned URL 
 as part of an HTTP GET request.
 
+If your bucket requires Sigv4 or you are using an S3 Access Point, you can explicitly specify Sigv4 when initializing the client as follows
+`s3_client = boto3.client('s3', config=Config(signature_version='s3v4'))`
+
 The following code demonstrates using the Python ``requests`` package to 
 perform a GET request.
 
