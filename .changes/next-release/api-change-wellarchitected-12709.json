@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wellarchitected``",
-  "description": "[``botocore``] This release deepens integration with AWS Service Catalog AppRegistry to improve workload resource discovery."
-}

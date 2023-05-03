@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ec2``",
-  "description": "[``botocore``] Adds an SDK paginator for GetNetworkInsightsAccessScopeAnalysisFindings"
-}
