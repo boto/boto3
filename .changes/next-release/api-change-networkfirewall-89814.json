@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``network-firewall``",
+  "description": "[``botocore``] AWS Network Firewall now supports policy level HOME_NET variable overrides."
+}
