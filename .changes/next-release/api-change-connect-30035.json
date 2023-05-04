@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect``",
-  "description": "[``botocore``] Remove unused InvalidParameterException from CreateParticipant API"
-}
