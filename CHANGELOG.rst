@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.26.127
+========
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``config``: [``botocore``] Updated ResourceType enum with new resource types onboarded by AWS Config in April 2023.
+* api-change:``connect``: [``botocore``] Remove unused InvalidParameterException from CreateParticipant API
+* api-change:``ecs``: [``botocore``] Documentation update for new error type NamespaceNotFoundException for CreateCluster and UpdateCluster
+* api-change:``network-firewall``: [``botocore``] This release adds support for the Suricata REJECT option in midstream exception configurations.
+* api-change:``opensearch``: [``botocore``] DescribeDomainNodes: A new API that provides configuration information for nodes part of the domain
+* api-change:``quicksight``: [``botocore``] Add support for Topic, Dataset parameters and VPC
+* api-change:``rekognition``: [``botocore``] This release adds a new attribute FaceOccluded. Additionally, you can now select attributes individually (e.g. ["DEFAULT", "FACE_OCCLUDED", "AGE_RANGE"] instead of ["ALL"]), which can reduce response time.
+* api-change:``s3``: [``botocore``] Documentation updates for Amazon S3
+* api-change:``sagemaker``: [``botocore``] We added support for ml.inf2 and ml.trn1 family of instances on Amazon SageMaker for deploying machine learning (ML) models for Real-time and Asynchronous inference. You can use these instances to achieve high performance at a low cost for generative artificial intelligence (AI) models.
+* api-change:``securityhub``: [``botocore``] Add support for Finding History.
+* api-change:``sqs``: [``botocore``] This release enables customers to call SQS using AWS JSON-1.0 protocol.
+
+
 1.26.126
 ========
 
