@@ -32,31 +32,31 @@ h1, code, li {
     padding: 20% 15%;
 }
 
-/* Supporting style for replacing admonition titles from <p> to <h2>. */
-h2.admonition-title {
-  position: relative;
-  margin: 0 -0.5rem 0.5rem;
-  padding-left: 2.75rem;
-  padding-right: .5rem;
-  padding-top: .4rem;
-  padding-bottom: .4rem;
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 1.25;
-  border-radius: unset;
-}
-h2.admonition-title::before {
-    content: "";
-    position: absolute;
-    left: 0.5rem;
-    width: 1.75rem;
-    height: 1.75rem;
-}
-h2.admonition-title {
-    background-color: var(--color-admonition-title-background);
-}
-h2.admonition-title::before {
-    background-color: var(--color-admonition-title);
-    mask-image: var(--icon-admonition-default);
-    mask-repeat: no-repeat;
-}
+/* Supporting style for replacing admonition titles from <p> to <h3>. */
+h3.admonition-title {
+    position: relative;
+    margin: 0 -0.5rem 0.5rem;
+    padding-left: 2.5rem;
+    padding-right: .5rem;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+    font-weight: 700;
+    font-size: 1.5em;
+    line-height: 1.25;
+    border-radius: unset;
+  }
+  h3.admonition-title::before {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+  }
+  h3.admonition-title {
+      background-color: var(--color-admonition-title-background);
+  }
+  h3.admonition-title::before {
+      background-color: var(--color-admonition-title);
+      mask-image: var(--icon-admonition-default);
+      mask-repeat: no-repeat;
+  }

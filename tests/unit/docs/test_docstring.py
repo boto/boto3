@@ -23,7 +23,8 @@ class TestResourceDocstrings(BaseDocsTest):
         action_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
             [
-                '  **Request Syntax**',
+                '  .. raw:: html',
+                '    <h3>Request Syntax</h3>',
                 '  ::',
                 '    response = myservice.sample_operation(',
                 '        Foo=\'string\',',
@@ -35,13 +36,15 @@ class TestResourceDocstrings(BaseDocsTest):
                 '  :param Bar: Documents Bar',
                 '  :rtype: dict',
                 '  :returns:',
-                '    **Response Syntax**',
+                '    .. raw:: html',
+                '      <h3>Response Syntax</h3>',
                 '    ::',
                 '      {',
                 '          \'Foo\': \'string\',',
                 '          \'Bar\': \'string\'',
                 '      }',
-                '    **Response Structure**',
+                '    .. raw:: html',
+                '      <h3>Response Structure</h3>',
                 '    - *(dict) --*',
                 '      - **Foo** *(string) --* Documents Foo',
                 '      - **Bar** *(string) --* Documents Bar',
@@ -60,7 +63,8 @@ class TestResourceDocstrings(BaseDocsTest):
                     '  Calls :py:meth:`MyService.Client.sample_operation` to update '
                     'the attributes of the Sample resource'
                 ),
-                '  **Request Syntax**',
+                '  .. raw:: html',
+                '    <h3>Request Syntax</h3>',
                 '  ::',
                 '    sample.load()',
                 '  :returns: None',
@@ -136,7 +140,8 @@ class TestResourceDocstrings(BaseDocsTest):
                     '    Creates an iterable of all Sample resources in the '
                     'collection.'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.all()',
                 '    :rtype: list(:py:class:`myservice.Sample`)',
@@ -151,7 +156,8 @@ class TestResourceDocstrings(BaseDocsTest):
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
             [
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.filter(',
                 "          Foo='string',",
@@ -173,7 +179,8 @@ class TestResourceDocstrings(BaseDocsTest):
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
             [
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.limit(',
                 '          count=123',
@@ -195,7 +202,8 @@ class TestResourceDocstrings(BaseDocsTest):
         collection_method_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
             [
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.page_size(',
                 '          count=123',
@@ -222,7 +230,8 @@ class TestResourceDocstrings(BaseDocsTest):
                     '    Creates an iterable of all Sample resources in the '
                     'collection.'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.all()',
                 '    :rtype: list(:py:class:`myservice.Sample`)',
@@ -237,7 +246,8 @@ class TestResourceDocstrings(BaseDocsTest):
         batch_action_docstring = mock_stdout.getvalue()
         self.assert_contains_lines_in_order(
             [
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      response = myservice.samples.operate(',
                 "          Foo='string',",
@@ -249,13 +259,15 @@ class TestResourceDocstrings(BaseDocsTest):
                 '    :param Bar: Documents Bar',
                 '    :rtype: dict',
                 '    :returns: ',
-                '      **Response Syntax**',
+                '    .. raw:: html',
+                '      <h3>Response Syntax</h3>',
                 '      ::',
                 '        {',
                 "            'Foo': 'string',",
                 "            'Bar': 'string'",
                 '        }',
-                '      **Response Structure**',
+                '    .. raw:: html',
+                '      <h3>Response Structure</h3>',
                 '      - *(dict) --* ',
                 '        - **Foo** *(string) --* Documents Foo',
                 '        - **Bar** *(string) --* Documents Bar',
@@ -276,7 +288,8 @@ class TestResourceDocstrings(BaseDocsTest):
                     '15 seconds until a successful state is reached. An error '
                     'is returned after 40 failed checks.'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample.wait_until_complete(',
                 "          Bar='string'",

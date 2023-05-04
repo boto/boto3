@@ -43,7 +43,8 @@ class TestWaiterResourceDocumenter(BaseDocsTest):
                     'every 15 seconds until a successful state is reached. An '
                     'error is returned after 40 failed checks.'
                 ),
-                '  **Request Syntax**',
+                '  .. raw:: html',
+                '    <h3>Request Syntax</h3>',
                 '  ::',
                 '    sample.wait_until_complete(',
                 "        Bar='string'",

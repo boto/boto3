@@ -41,7 +41,8 @@ class TestCollectionDocumenter(BaseDocsTest):
                     '    Creates an iterable of all Sample resources in the '
                     'collection.'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.all()',
                 '    :rtype: list(:py:class:`myservice.Sample`)',
@@ -54,7 +55,8 @@ class TestCollectionDocumenter(BaseDocsTest):
                     'if no filters are provided, and extreme caution should be '
                     'taken when performing actions on all resources'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.filter(',
                 "          Foo='string',",
@@ -71,7 +73,8 @@ class TestCollectionDocumenter(BaseDocsTest):
                     '    Creates an iterable up to a specified amount of '
                     'Sample resources in the collection.'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '      sample_iterator = myservice.samples.limit(',
                 '          count=123',
@@ -84,7 +87,8 @@ class TestCollectionDocumenter(BaseDocsTest):
                 '    :rtype: list(:py:class:`myservice.Sample`)',
                 '    :returns: A list of Sample resources',
                 '  .. py:method:: operate(**kwargs)',
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '      response = myservice.samples.operate(',
                 "          Foo='string',",
                 "          Bar='string'",
@@ -95,13 +99,15 @@ class TestCollectionDocumenter(BaseDocsTest):
                 '    :param Bar: Documents Bar',
                 '    :rtype: dict',
                 '    :returns: ',
-                '      **Response Syntax**',
+                '      .. raw:: html',
+                '        <h3>Response Syntax</h3>',
                 '      ::',
                 '        {',
                 "            'Foo': 'string',",
                 "            'Bar': 'string'",
                 '        }',
-                '      **Response Structure**',
+                '      .. raw:: html',
+                '        <h3>Response Structure</h3>',
                 '      - *(dict) --* ',
                 '        - **Foo** *(string) --* Documents Foo',
                 '        - **Bar** *(string) --* Documents Bar',
@@ -111,7 +117,8 @@ class TestCollectionDocumenter(BaseDocsTest):
                     'collection, but limits the number of items returned by '
                     'each service call by the specified amount.'
                 ),
-                '    **Request Syntax**',
+                '    .. raw:: html',
+                '      <h3>Request Syntax</h3>',
                 '    ::',
                 '',
                 '      sample_iterator = myservice.samples.page_size(',
