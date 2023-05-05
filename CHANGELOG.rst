@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.26.128
+========
+
+* bugfix:``sqs``: [``botocore``] Rolled back recent change to wire format protocol
+
+
 1.26.127
 ========
 
