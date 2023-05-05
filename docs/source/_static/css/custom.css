@@ -32,7 +32,7 @@ h1, code, li {
     padding: 20% 15%;
 }
 
-/* Supporting style for replacing admonition titles from <p> to <h3>. */
+/* Apply furo styled admonition titles for <h3>. */
 h3.admonition-title {
     position: relative;
     margin: 0 -0.5rem 0.5rem;
@@ -44,18 +44,15 @@ h3.admonition-title {
     font-size: 1.5em;
     line-height: 1.25;
     border-radius: unset;
+    background-color: var(--color-admonition-title-background);
   }
+  /* Apply furo styled admonition icons before <h3>. */
   h3.admonition-title::before {
       content: "";
       position: absolute;
       left: 0.5rem;
       width: 1.5rem;
       height: 1.5rem;
-  }
-  h3.admonition-title {
-      background-color: var(--color-admonition-title-background);
-  }
-  h3.admonition-title::before {
       background-color: var(--color-admonition-title);
       mask-image: var(--icon-admonition-default);
       mask-repeat: no-repeat;
