@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "endpoints",
+  "description": "[``botocore``] Fix cache implementation to reduce memory consumption."
+}
