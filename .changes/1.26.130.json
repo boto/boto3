@@ -1,7 +1,7 @@
 [
   {
     "category": "``glue``",
-    "description": "[``botocore``] We don't do release notes https://w.amazon.com/bin/view/AWSDocs/common-tasks/release-notes",
+    "description": "[``botocore``] Support large worker types G.4x and G.8x for Glue Spark",
     "type": "api-change"
   },
   {
