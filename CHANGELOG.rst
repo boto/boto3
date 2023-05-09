@@ -2,10 +2,19 @@
 CHANGELOG
 =========
 
+1.26.131
+========
+
+* enhancement:endpoints: [``botocore``] Fix cache implementation to reduce memory consumption.
+* api-change:``application-autoscaling``: [``botocore``] With this release, Amazon SageMaker Serverless Inference customers can use Application Auto Scaling to auto scale the provisioned concurrency of their serverless endpoints.
+* api-change:``glue``: [``botocore``] This release adds AmazonRedshift Source and Target nodes in addition to DynamicTransform OutputSchemas
+* api-change:``sagemaker``: [``botocore``] This release includes support for (1) Provisioned Concurrency for Amazon SageMaker Serverless Inference and (2) UpdateEndpointWeightsAndCapacities API for Serverless endpoints.
+
+
 1.26.130
 ========
 
-* api-change:``glue``: [``botocore``] We don't do release notes https://w.amazon.com/bin/view/AWSDocs/common-tasks/release-notes
+* api-change:``glue``: [``botocore``] Support large worker types G.4x and G.8x for Glue Spark
 * api-change:``guardduty``: [``botocore``] Add AccessDeniedException 403 Error message code to support 3 Tagging related APIs
 * api-change:``iotsitewise``: [``botocore``] Provide support for 20,000 max results for GetAssetPropertyValueHistory/BatchGetAssetPropertyValueHistory and 15 minute aggregate resolution for GetAssetPropertyAggregates/BatchGetAssetPropertyAggregates
 * api-change:``sts``: [``botocore``] Documentation updates for AWS Security Token Service.
