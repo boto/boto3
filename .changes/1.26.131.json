@@ -1,0 +1,22 @@
+[
+  {
+    "category": "endpoints",
+    "description": "[``botocore``] Fix cache implementation to reduce memory consumption.",
+    "type": "enhancement"
+  },
+  {
+    "category": "``application-autoscaling``",
+    "description": "[``botocore``] With this release, Amazon SageMaker Serverless Inference customers can use Application Auto Scaling to auto scale the provisioned concurrency of their serverless endpoints.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] This release adds AmazonRedshift Source and Target nodes in addition to DynamicTransform OutputSchemas",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] This release includes support for (1) Provisioned Concurrency for Amazon SageMaker Serverless Inference and (2) UpdateEndpointWeightsAndCapacities API for Serverless endpoints.",
+    "type": "api-change"
+  }
+]
