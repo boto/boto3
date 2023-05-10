@@ -20,7 +20,7 @@ import boto3.session
 from boto3.docs import generate_docs
 
 try:
-    from botocore.docs import BotoHTML5Translator
+    from botocore.docs.translator import BotoHTML5Translator
     CUSTOM_HTML_TRANSLATOR = BotoHTML5Translator
 except ImportError:
     CUSTOM_HTML_TRANSLATOR = None
