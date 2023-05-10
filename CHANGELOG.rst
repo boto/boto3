@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.132
+========
+
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``rds``: [``botocore``] Amazon Relational Database Service (RDS) updates for the new Aurora I/O-Optimized storage type for Amazon Aurora DB clusters
+* api-change:``swf``: [``botocore``] This release adds a new API parameter to exclude old history events from decision tasks.
+
+
 1.26.131
 ========
 
