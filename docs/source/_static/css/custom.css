@@ -45,15 +45,15 @@ h3.admonition-title {
     line-height: 1.25;
     border-radius: unset;
     background-color: var(--color-admonition-title-background);
-  }
-  /* Apply furo styled admonition icons before <h3>. */
-  h3.admonition-title::before {
-      content: "";
-      position: absolute;
-      left: 0.5rem;
-      width: 1.5rem;
-      height: 1.5rem;
-      background-color: var(--color-admonition-title);
-      mask-image: var(--icon-admonition-default);
-      mask-repeat: no-repeat;
-  }
+}
+/* Apply furo styled admonition icons before <h3>. */
+h3.admonition-title::before {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--color-admonition-title);
+    mask-image: var(--icon-admonition-default);
+    mask-repeat: no-repeat;
+}

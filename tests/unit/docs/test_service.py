@@ -124,8 +124,7 @@ class TestServiceDocumenter(BaseDocsTest):
             [
                 'sample_operation',
                 '.. py:method:: MyService.Client.sample_operation(**kwargs)',
-                '  .. raw:: html',
-                '    <h3>Examples</h3>',
+                '  **Examples**',
                 '  Sample Description.',
                 '  ::',
                 '    response = client.sample_operation(',
