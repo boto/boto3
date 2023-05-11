@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53resolver``",
-  "description": "[``botocore``] Update FIPS endpoints for GovCloud (US) regions in SDK."
-}

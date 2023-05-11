@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.26.133
+========
+
+* bugfix:endpoints: [``botocore``] Include params set in provide-client-param event handlers in dynamic context params for endpoint resolution.
+* api-change:``connect``: [``botocore``] This release updates GetMetricDataV2 API, to support metric data up-to last 35 days
+* api-change:``elasticache``: [``botocore``] Added support to modify the cluster mode configuration for the existing ElastiCache ReplicationGroups. Customers can now modify the configuration from cluster mode disabled to cluster mode enabled.
+* api-change:``es``: [``botocore``] This release fixes DescribePackages API error with null filter value parameter.
+* api-change:``health``: [``botocore``] Add support for regional endpoints
+* api-change:``ivs-realtime``: [``botocore``] Add methods for inspecting and debugging stages: ListStageSessions, GetStageSession, ListParticipants, GetParticipant, and ListParticipantEvents.
+* api-change:``omics``: [``botocore``] This release provides support for Ready2Run and GPU workflows, an improved read set filter, the direct upload of read sets into Omics Storage, and annotation parsing for analytics stores.
+* api-change:``opensearch``: [``botocore``] This release fixes DescribePackages API error with null filter value parameter.
+* api-change:``route53resolver``: [``botocore``] Update FIPS endpoints for GovCloud (US) regions in SDK.
+* api-change:``support``: [``botocore``] This release adds 2 new Support APIs, DescribeCreateCaseOptions and DescribeSupportedLanguages. You can use these new APIs to get available support languages.
+
+
 1.26.132
 ========
 
