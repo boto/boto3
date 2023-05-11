@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``health``",
+  "description": "[``botocore``] Add support for regional endpoints"
+}
