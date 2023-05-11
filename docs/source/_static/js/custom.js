@@ -91,18 +91,6 @@ function makeServiceLinkCurrent(serviceName) {
 }
 const currentPagePath = window.location.pathname.split('/');
 const codeBlockSelector = 'div.highlight pre';
-const boldTextSelector = 'strong';
-const boldElements = document.querySelectorAll(boldTextSelector);
-const headings = [
-	'Example',
-	'Examples',
-	'Exceptions',
-	'Request Syntax',
-	'Response Structure',
-	'Response Syntax',
-	'Structure',
-	'Syntax'
-];
 // Expands the "Available Services" sub-menu in the side-bar when viewing
 // nested doc pages and highlights the corresponding service list item.
 function expandSubMenu() {
@@ -121,18 +109,9 @@ function makeCodeBlocksScrollable() {
 		codeCell.tabIndex = 0;
 	});
 }
-// Converts implicit bold headings into actual headings with h3 tags.
-function convertImplicitHeadings() {
-	boldElements.forEach(boldElement => {
-		if (headings.includes(boldElement.innerHTML)) {
-			boldElement.parentElement.outerHTML = `<h3>${ boldElement.innerHTML }</h3>`;
-		}
-	});
-}
 // Functions to run after the DOM loads.
 function runAfterDOMLoads() {
 	expandSubMenu();
-	convertImplicitHeadings();
 	makeCodeBlocksScrollable();
 }
 // Run a function after the DOM loads.

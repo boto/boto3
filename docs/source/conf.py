@@ -19,6 +19,12 @@ import boto3
 import boto3.session
 from boto3.docs import generate_docs
 
+try:
+    from botocore.docs.translator import BotoHTML5Translator
+    CUSTOM_HTML_TRANSLATOR = BotoHTML5Translator
+except ImportError:
+    CUSTOM_HTML_TRANSLATOR = None
+
 
 session = boto3.session.Session(region_name='us-east-1')
 generate_docs(os.path.dirname(os.path.abspath(__file__)), session)
@@ -296,3 +302,9 @@ texinfo_documents = [
 #texinfo_show_urls = 'footnote'
 
 autoclass_content = 'both'
+
+
+def setup(app):
+    # Register our custom HTML translator.
+    if CUSTOM_HTML_TRANSLATOR:
+        app.set_translator("html", CUSTOM_HTML_TRANSLATOR)
