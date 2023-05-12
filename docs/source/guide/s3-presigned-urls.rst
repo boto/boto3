@@ -24,6 +24,12 @@ used by the presigned URL are those of the AWS user who generated the URL.
 A presigned URL remains valid for a limited period of time which is specified 
 when the URL is generated.
 
+..  note::
+    Buckets which require the ``X-Amzn-Payer: Requestor`` header must use the (default) Signature V2 used in S3 for presigned URLs.
+    You will receive a ``SignatureDoesNotMatch`` exception if you attempt to use the non-default ``v4`` or ``s3v4`` signature methods
+    when performing the action. 
+    
+
 .. code-block:: python
 
     import logging
