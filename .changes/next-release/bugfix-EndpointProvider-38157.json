@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "EndpointProvider",
+  "description": "[``botocore``] Fixed bug in virtual addressing for S3 Buckets `#2938 <https://github.com/boto/botocore/issues/2938>`__"
+}
