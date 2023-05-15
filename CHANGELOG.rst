@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.134
+========
+
+* bugfix:EndpointProvider: [``botocore``] Fixed bug in virtual addressing for S3 Buckets `#2938 <https://github.com/boto/botocore/issues/2938>`__
+* api-change:``athena``: [``botocore``] You can now define custom spark properties at start of the session for use cases like cluster encryption, table formats, and general Spark tuning.
+* api-change:``codecatalyst``: [``botocore``] With this release, the users can list the active sessions connected to their Dev Environment on AWS CodeCatalyst
+* api-change:``kafka``: [``botocore``] Added a fix to make clusterarn a required field in ListClientVpcConnections and RejectClientVpcConnection APIs
+* api-change:``rekognition``: [``botocore``] This release adds a new EyeDirection attribute in Amazon Rekognition DetectFaces and IndexFaces APIs which predicts the yaw and pitch angles of a person's eye gaze direction for each face detected in the image.
+* api-change:``rolesanywhere``: [``botocore``] Adds support for custom notification settings in a trust anchor. Introduces PutNotificationSettings and ResetNotificationSettings API's. Updates DurationSeconds max value to 3600.
+* api-change:``transfer``: [``botocore``] This release introduces the ability to require both password and SSH key when users authenticate to your Transfer Family servers that use the SFTP protocol.
+
+
 1.26.133
 ========
 
