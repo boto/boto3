@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``detective``",
+  "description": "[``botocore``] Added and updated API operations in Detective to support the integration of ASFF Security Hub findings."
+}
