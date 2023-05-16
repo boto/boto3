@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.26.135
+========
+
+* api-change:``detective``: [``botocore``] Added and updated API operations in Detective to support the integration of ASFF Security Hub findings.
+* api-change:``directconnect``: [``botocore``] This release includes an update to the mtu value for CreateTransitVirtualInterface from 9001 mtu to 8500 mtu.
+* api-change:``glue``: [``botocore``] Add Support for Tags for Custom Entity Types
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+* api-change:``wafv2``: [``botocore``] My AWS Service (placeholder) - You can now rate limit web requests based on aggregation keys other than IP addresses, and you can aggregate using combinations of keys. You can also rate limit all requests that match a scope-down statement, without further aggregation.
+
+
 1.26.134
 ========
 
