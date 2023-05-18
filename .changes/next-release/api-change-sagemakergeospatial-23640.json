@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker-geospatial``",
-  "description": "[``botocore``] This release makes ExecutionRoleArn a required field in the StartEarthObservationJob API."
-}
