@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.137
+========
+
+* api-change:``backup``: [``botocore``] Add  ResourceArn, ResourceType, and BackupVaultName to ListRecoveryPointsByLegalHold API response.
+* api-change:``connectcases``: [``botocore``] This release adds the ability to create fields with type Url through the CreateField API. For more information see https://docs.aws.amazon.com/cases/latest/APIReference/Welcome.html
+* api-change:``mediapackagev2``: [``botocore``] Adds support for the MediaPackage Live v2 API
+* api-change:``sesv2``: [``botocore``] This release allows customers to update scaling mode property of dedicated IP pools with PutDedicatedIpPoolScalingAttributes call.
+
+
 1.26.136
 ========
 
