@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``backup``",
+  "description": "[``botocore``] Add  ResourceArn, ResourceType, and BackupVaultName to ListRecoveryPointsByLegalHold API response."
+}
