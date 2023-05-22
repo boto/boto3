@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Add support for Asset Bundle, Geospatial Heatmaps."
-}
