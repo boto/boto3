@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.26.139
+========
+
+* api-change:``fms``: [``botocore``] Fixes issue that could cause calls to GetAdminScope and ListAdminAccountsForOrganization to return a 500 Internal Server error.
+* api-change:``sagemaker``: [``botocore``] Added ModelNameEquals, ModelPackageVersionArnEquals in request and ModelName, SamplePayloadUrl, ModelPackageVersionArn in response of ListInferenceRecommendationsJobs API. Added Invocation timestamps in response of DescribeInferenceRecommendationsJob API & ListInferenceRecommendationsJobSteps API.
+* api-change:``translate``: [``botocore``] Added support for calling TranslateDocument API.
+
+
 1.26.138
 ========
 
