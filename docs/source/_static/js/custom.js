@@ -109,10 +109,82 @@ function makeCodeBlocksScrollable() {
 		codeCell.tabIndex = 0;
 	});
 }
+// Determines which of the two table-of-contents menu labels is visible.
+function determineVisibleTocOpenMenu() {
+  const mediaQuery = window.matchMedia('(max-width: 67em)');
+  return mediaQuery.matches ? 'toc-menu-open-sm' : 'toc-menu-open-md';
+}
+
+// A mapping of current to next focus id's. For example, We want a corresponsing
+// menu's close button to be highlighted after a menu is opened with a keyboard.
+const NEXT_FOCUS_ID_MAP = {
+  'nav-menu-open': 'nav-menu-close',
+  'nav-menu-close': 'nav-menu-open',
+  'toc-menu-open-sm': 'toc-menu-close',
+  'toc-menu-open-md': 'toc-menu-close',
+  'toc-menu-close': determineVisibleTocOpenMenu(),
+};
+
+// Toggles the visibility of a sidebar menu to prevent keyboard focus on hidden elements.
+function toggleSidebarMenuVisibility(elementQuery, inputQuery) {
+  const sidebarElement = document.querySelector(elementQuery);
+  const sidebarInput = document.querySelector(inputQuery);
+  sidebarInput.addEventListener('change', () => {
+    setTimeout(
+      () => {
+        sidebarElement.classList.toggle('hide-sidebar', !sidebarInput.checked);
+      },
+      sidebarInput.checked ? 0 : 250,
+    );
+  });
+  window.matchMedia('(max-width: 67em)').addEventListener('change', (event) => {
+    NEXT_FOCUS_ID_MAP['toc-menu-close'] = determineVisibleTocOpenMenu();
+    if (!event.matches) {
+      document
+        .querySelector('.sidebar-drawer')
+        .classList.remove('hide-sidebar');
+    }
+  });
+  window.matchMedia('(max-width: 82em)').addEventListener('change', (event) => {
+    if (!event.matches) {
+      document.querySelector('.toc-drawer').classList.remove('hide-sidebar');
+    }
+  });
+}
+
+// Activates labels when a user focuses on them and clicks "Enter".
+// Also highlights the next appropriate input label.
+function activateLabelOnEnter() {
+  const labels = document.querySelectorAll('label');
+  labels.forEach((element) => {
+	element.setAttribute('tabindex', '0');
+    element.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        const targetId = element.getAttribute('for');
+        document.getElementById(targetId).click();
+        const nextFocusId = NEXT_FOCUS_ID_MAP[element.id];
+        if (nextFocusId) {
+          // Timeout is needed to let the label become visible.
+          setTimeout(() => {
+            document.getElementById(nextFocusId).focus();
+          }, 250);
+        }
+      }
+    });
+  });
+}
+
+// Improves accessibility for keyboard-only users.
+function setupKeyboardFriendlyNavigation() {
+  activateLabelOnEnter();
+  toggleSidebarMenuVisibility('.toc-drawer', '#__toc');
+  toggleSidebarMenuVisibility('.sidebar-drawer', '#__navigation');
+}
 // Functions to run after the DOM loads.
 function runAfterDOMLoads() {
 	expandSubMenu();
 	makeCodeBlocksScrollable();
+	setupKeyboardFriendlyNavigation();
 }
 // Run a function after the DOM loads.
 function ready(fn) {

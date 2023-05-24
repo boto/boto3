@@ -184,6 +184,7 @@ html_js_files = [
 html_show_sourcelink = False
 html_sidebars = {
     "**": [
+        "sidebar/close-icon.html",
         "sidebar/brand.html",
         "sidebar/search.html",
         "sidebar/scroll-start.html",
