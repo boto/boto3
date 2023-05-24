@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.140
+========
+
+* api-change:``appsync``: [``botocore``] This release introduces AppSync Merged APIs, which provide the ability to compose multiple source APIs into a single federated/merged API.
+* api-change:``connect``: [``botocore``] Amazon Connect Evaluation Capabilities: validation improvements
+* api-change:``cur``: [``botocore``] Add support for split cost allocation data on a report.
+* api-change:``sagemaker``: [``botocore``] SageMaker now provides an instantaneous deployment recommendation through the DescribeModel API
+
+
 1.26.139
 ========
 
