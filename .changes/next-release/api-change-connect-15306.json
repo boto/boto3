@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect``",
-  "description": "[``botocore``] Amazon Connect Evaluation Capabilities: validation improvements"
-}
