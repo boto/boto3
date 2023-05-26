@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.142
+========
+
+* bugfix:``Polly``: [``botocore``] Remove `Content-Type` header from ``synthesize_speech`` URL presigning.
+* api-change:``connect``: [``botocore``] Documentation update for a new Initiation Method value in DescribeContact API
+* api-change:``iotwireless``: [``botocore``] Add Multicast Group support in Network Analyzer Configuration.
+* api-change:``sagemaker``: [``botocore``] Added ml.p4d and ml.inf1 as supported instance type families for SageMaker Notebook Instances.
+
+
 1.26.141
 ========
 

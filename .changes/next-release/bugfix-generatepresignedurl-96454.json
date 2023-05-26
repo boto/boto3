@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "``Polly``",
-  "description": "[``botocore``] Remove `Content-Type` header from ``synthesize_speech`` URL presigning."
-}

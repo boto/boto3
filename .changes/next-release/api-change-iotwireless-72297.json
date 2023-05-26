@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotwireless``",
-  "description": "[``botocore``] Add Multicast Group support in Network Analyzer Configuration."
-}

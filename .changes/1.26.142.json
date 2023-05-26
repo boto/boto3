@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``Polly``",
+    "description": "[``botocore``] Remove `Content-Type` header from ``synthesize_speech`` URL presigning.",
+    "type": "bugfix"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Documentation update for a new Initiation Method value in DescribeContact API",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotwireless``",
+    "description": "[``botocore``] Add Multicast Group support in Network Analyzer Configuration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Added ml.p4d and ml.inf1 as supported instance type families for SageMaker Notebook Instances.",
+    "type": "api-change"
+  }
+]
