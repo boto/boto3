@@ -23,7 +23,7 @@ To propose a new code example for the AWS documentation team to consider produci
 The team is looking to produce code examples that cover broader scenarios and use cases,
 versus simple code snippets that cover only individual API calls. For instructions, see
 the "Proposing new code examples" section in the
-`Readme on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/README.rst>`_.
+`Readme on GitHub <https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/README.md>`_.
 
 Before running an example, your AWS credentials must be configured as
 described in :doc:`quickstart`.
