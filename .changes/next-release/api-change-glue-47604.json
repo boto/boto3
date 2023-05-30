@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Added Runtime parameter to allow selection of Ray Runtime"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``chime-sdk-voice``",
-  "description": "[``botocore``] Added optional CallLeg field to StartSpeakerSearchTask API request"
-}
