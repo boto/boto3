@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.144
+========
+
+* api-change:``config``: [``botocore``] Resource Types Exclusion feature launch by AWS Config
+* api-change:``frauddetector``: [``botocore``] This release enables publishing event predictions from Amazon Fraud Detector (AFD) to Amazon EventBridge. For example, after getting predictions from AFD, Amazon EventBridge rules can be configured to trigger notification through an SNS topic, send a message with SES, or trigger Lambda workflows.
+* api-change:``healthlake``: [``botocore``] This release adds a new request parameter to the CreateFHIRDatastore API operation. IdentityProviderConfiguration specifies how you want to authenticate incoming requests to your Healthlake Data Store.
+* api-change:``m2``: [``botocore``] Adds an optional create-only 'roleArn' property to Application resources.  Enables PS and PO data set org types.
+* api-change:``rds``: [``botocore``] This release adds support for changing the engine for Oracle using the ModifyDbInstance API
+* api-change:``servicecatalog``: [``botocore``] Documentation updates for ServiceCatalog.
+* api-change:``workspaces-web``: [``botocore``] WorkSpaces Web now allows you to control which IP addresses your WorkSpaces Web portal may be accessed from.
+
+
 1.26.143
 ========
 
