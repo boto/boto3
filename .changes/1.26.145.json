@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``alexaforbusiness``",
+    "description": "[``botocore``] Alexa for Business has been deprecated and is no longer supported.",
+    "type": "api-change"
+  },
+  {
+    "category": "``appflow``",
+    "description": "[``botocore``] Added ability to select DataTransferApiType for DescribeConnector and CreateFlow requests when using Async supported connectors. Added supportedDataTransferType to DescribeConnector/DescribeConnectors/ListConnector response.",
+    "type": "api-change"
+  },
+  {
+    "category": "``customer-profiles``",
+    "description": "[``botocore``] This release introduces calculated attribute related APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivs``",
+    "description": "[``botocore``] API Update for IVS Advanced Channel type",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Amazon Sagemaker Autopilot adds support for Parquet file input to NLP text classification jobs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] Corrected the information for the header order FieldToMatch setting",
+    "type": "api-change"
+  }
+]
