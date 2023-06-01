@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ivs``",
+  "description": "[``botocore``] API Update for IVS Advanced Channel type"
+}
