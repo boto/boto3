@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``athena``",
-  "description": "[``botocore``] This release introduces the DeleteCapacityReservation API and the ability to manage capacity reservations using CloudFormation"
-}
