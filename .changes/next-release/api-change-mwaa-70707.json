@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mwaa``",
+  "description": "[``botocore``] This release adds ROLLING_BACK and CREATING_SNAPSHOT environment statuses for Amazon MWAA environments."
+}
