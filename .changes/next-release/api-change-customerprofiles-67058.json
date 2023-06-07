@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``customer-profiles``",
-  "description": "[``botocore``] This release introduces event stream related APIs."
-}
