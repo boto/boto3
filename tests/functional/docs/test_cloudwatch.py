@@ -35,9 +35,10 @@ class TestCloudWatchMetricPutActionOverrides(BaseDocsFunctionalTests):
             [
                 ".. warning::",
                 "It is recommended to use the :py:meth:`put_metric_data`",
-                ":doc:`client method <../../cloudwatch/client/put_metric_data>` instead.",
-                "If you would still like to use this resource method, please make sure that",
-                "``MetricData[].MetricName`` is equal to the metric resource's ``name`` attribute.",
+                ":doc:`client method <../../cloudwatch/client/put_metric_data>`",
+                "instead. If you would still like to use this resource method,",
+                "please make sure that ``MetricData[].MetricName`` is equal to",
+                "the metric resource's ``name`` attribute.",
             ],
             put_action_contents,
         )
