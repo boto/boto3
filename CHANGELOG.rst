@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.26.150
+========
+
+* api-change:``athena``: [``botocore``] You can now define custom spark properties at start of the session for use cases like cluster encryption, table formats, and general Spark tuning.
+* api-change:``comprehendmedical``: [``botocore``] This release supports a new set of entities and traits.
+* api-change:``payment-cryptography-data``: [``botocore``] Initial release of AWS Payment Cryptography DataPlane Plane service for performing cryptographic operations typically used during card payment processing.
+* api-change:``payment-cryptography``: [``botocore``] Initial release of AWS Payment Cryptography Control Plane service for creating and managing cryptographic keys used during card payment processing.
+* api-change:``servicecatalog``: [``botocore``] New parameter added in ServiceCatalog DescribeProvisioningArtifact api - IncludeProvisioningArtifactParameters. This parameter can be used to return information about the parameters used to provision the product
+* api-change:``timestream-write``: [``botocore``] This release adds the capability for customers to define how their data should be partitioned, optimizing for certain access patterns. This definition will take place as a part of the table creation.
+
+
 1.26.149
 ========
 
