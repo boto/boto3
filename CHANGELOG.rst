@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.26.151
+========
+
+* api-change:``acm-pca``: [``botocore``] Document-only update to refresh CLI  documentation for AWS Private CA. No change to the service.
+* api-change:``connect``: [``botocore``] This release adds search APIs for Prompts, Quick Connects and Hours of Operations, which can be used to search for those resources within a Connect Instance.
+
+
 1.26.150
 ========
 
