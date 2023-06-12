@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dynamodbstreams``",
-  "description": "[``botocore``] Update dynamodbstreams client to latest version"
-}
