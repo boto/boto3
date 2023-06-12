@@ -38,6 +38,12 @@ PUT_DATA_WARNING_MESSAGE = """
     the metric resource's ``name`` attribute.
 """
 
+WARNING_MESSAGES = {
+    "Metric": {"put_data": PUT_DATA_WARNING_MESSAGE},
+}
+
+IGNORE_PARAMS = {"Metric": {"put_data": ["Namespace"]}}
+
 
 class ActionDocumenter(NestedDocumenter):
     def document_actions(self, section):
@@ -59,7 +65,7 @@ class ActionDocumenter(NestedDocumenter):
             ),
             intro_link='actions_intro',
         )
-
+        resource_warnings = WARNING_MESSAGES.get(self._resource_name, {})
         for action_name in sorted(resource_actions):
             # Create a new DocumentStructure for each action and add contents.
             action_doc = DocumentStructure(action_name, target='html')
@@ -67,10 +73,9 @@ class ActionDocumenter(NestedDocumenter):
             breadcrumb_section.style.ref(self._resource_class_name, 'index')
             breadcrumb_section.write(f' / Action / {action_name}')
             action_doc.add_title_section(action_name)
-            if self._resource_name == "Metric" and action_name == "put_data":
-                action_doc.add_new_section("warning").write(
-                    PUT_DATA_WARNING_MESSAGE
-                )
+            warning_message = resource_warnings.get(action_name)
+            if warning_message is not None:
+                action_doc.add_new_section("warning").write(warning_message)
             action_section = action_doc.add_new_section(
                 action_name,
                 context={'qualifier': f'{self.class_name}.'},
@@ -132,10 +137,10 @@ def document_action(
     operation_model = service_model.operation_model(
         action_model.request.operation
     )
-    if resource_name == "Metric" and action_model.name == "put_data":
-        ignore_params = ["Namespace"]
-    else:
-        ignore_params = get_resource_ignore_params(action_model.request.params)
+    ignore_params = IGNORE_PARAMS.get(resource_name, {}).get(
+        action_model.name,
+        get_resource_ignore_params(action_model.request.params),
+    )
     example_return_value = 'response'
     if action_model.resource:
         example_return_value = xform_name(action_model.resource.type)
