@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``s3``",
-  "description": "[``botocore``] Integrate double encryption feature to SDKs."
-}

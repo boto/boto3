@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codeguru-security``",
-  "description": "[``botocore``] Initial release of Amazon CodeGuru Security APIs"
-}

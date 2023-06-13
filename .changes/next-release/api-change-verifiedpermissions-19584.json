@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``verifiedpermissions``",
-  "description": "[``botocore``] GA release of Amazon Verified Permissions."
-}

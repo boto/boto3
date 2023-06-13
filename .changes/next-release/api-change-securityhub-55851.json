@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``securityhub``",
-  "description": "[``botocore``] Add support for Security Hub Automation Rules"
-}

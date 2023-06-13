@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``drs``",
-  "description": "[``botocore``] Added APIs to support network replication and recovery using AWS Elastic Disaster Recovery."
-}
