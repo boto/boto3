@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.26.153
+========
+
+* api-change:``cloudtrail``: [``botocore``] This feature allows users to view dashboards for CloudTrail Lake event data stores.
+* api-change:``codeguru-security``: [``botocore``] Initial release of Amazon CodeGuru Security APIs
+* api-change:``drs``: [``botocore``] Added APIs to support network replication and recovery using AWS Elastic Disaster Recovery.
+* api-change:``ec2``: [``botocore``] This release introduces a new feature, EC2 Instance Connect Endpoint, that enables you to connect to a resource over TCP, without requiring the resource to have a public IPv4 address.
+* api-change:``imagebuilder``: [``botocore``] Change the Image Builder ImagePipeline dateNextRun field to more accurately describe the data.
+* api-change:``lightsail``: [``botocore``] This release adds pagination for the Get Certificates API operation.
+* api-change:``s3``: [``botocore``] Integrate double encryption feature to SDKs.
+* api-change:``securityhub``: [``botocore``] Add support for Security Hub Automation Rules
+* api-change:``simspaceweaver``: [``botocore``] This release fixes using aws-us-gov ARNs in API calls and adds documentation for snapshot APIs.
+* api-change:``verifiedpermissions``: [``botocore``] GA release of Amazon Verified Permissions.
+* api-change:``wafv2``: [``botocore``] You can now detect and block fraudulent account creation attempts with the new AWS WAF Fraud Control account creation fraud prevention (ACFP) managed rule group AWSManagedRulesACFPRuleSet.
+* api-change:``wellarchitected``: [``botocore``] AWS Well-Architected now supports Profiles that help customers prioritize which questions to focus on first by providing a list of prioritized questions that are better aligned with their business goals and outcomes.
+
+
 1.26.152
 ========
 
