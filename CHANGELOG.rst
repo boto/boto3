@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.154
+========
+
+* api-change:``auditmanager``: [``botocore``] This release introduces 2 Audit Manager features: CSV exports and new manual evidence options. You can now export your evidence finder results in CSV format. In addition, you can now add manual evidence to a control by entering free-form text or uploading a file from your browser.
+* api-change:``efs``: [``botocore``] Update efs client to latest version
+* api-change:``guardduty``: [``botocore``] Updated descriptions for some APIs.
+* api-change:``location``: [``botocore``] Amazon Location Service adds categories to places, including filtering on those categories in searches. Also, you can now add metadata properties to your geofences.
+
+
 1.26.153
 ========
 
