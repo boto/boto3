@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.156
+========
+
+* api-change:``cloudformation``: [``botocore``] Specify desired CloudFormation behavior in the event of ChangeSet execution failure using the CreateChangeSet OnStackFailure parameter
+* api-change:``ec2``: [``botocore``] API changes to AWS Verified Access to include data from trust providers in logs
+* api-change:``ecs``: [``botocore``] Documentation only update to address various tickets.
+* api-change:``glue``: [``botocore``] This release adds support for creating cross region table/database resource links
+* api-change:``pricing``: [``botocore``] This release updates the PriceListArn regex pattern.
+* api-change:``route53domains``: [``botocore``] Update MaxItems upper bound to 1000 for ListPricesRequest
+* api-change:``sagemaker``: [``botocore``] Amazon Sagemaker Autopilot releases CreateAutoMLJobV2 and DescribeAutoMLJobV2 for Autopilot customers with ImageClassification, TextClassification and Tabular problem type config support.
+
+
 1.26.155
 ========
 
