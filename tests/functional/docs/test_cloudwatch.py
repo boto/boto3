@@ -11,6 +11,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
+from boto3.docs.action import PUT_DATA_WARNING_MESSAGE
 from boto3.docs.service import ServiceDocumenter
 from boto3.session import Session
 from tests.functional.docs import BaseDocsFunctionalTests
@@ -31,15 +32,9 @@ class TestCloudWatchMetricPutActionOverrides(BaseDocsFunctionalTests):
         put_action_contents = self.get_nested_file_contents(
             "cloudwatch", "metric", "put_data"
         )
+        # first line is an empty string
         self.assert_contains_lines_in_order(
-            [
-                ".. warning::",
-                "It is recommended to use the :py:meth:`put_metric_data`",
-                ":doc:`client method <../../cloudwatch/client/put_metric_data>`",
-                "instead. If you would still like to use this resource method,",
-                "please make sure that ``MetricData[].MetricName`` is equal to",
-                "the metric resource's ``name`` attribute.",
-            ],
+            PUT_DATA_WARNING_MESSAGE.splitlines()[1:],
             put_action_contents,
         )
 
@@ -47,12 +42,5 @@ class TestCloudWatchMetricPutActionOverrides(BaseDocsFunctionalTests):
         put_alarm_contents = self.get_nested_file_contents(
             "cloudwatch", "metric", "put_alarm"
         )
-        lines = [
-            ".. warning::",
-            "It is recommended to use the :py:meth:`put_metric_data`",
-            ":doc:`client method <../../cloudwatch/client/put_metric_data>` instead.",
-            "If you would still like to use this resource method, please make sure that",
-            "``MetricData[].MetricName`` is equal to the metric resource's ``name`` attribute.",
-        ]
-        for line in lines:
+        for line in PUT_DATA_WARNING_MESSAGE.splitlines()[1:]:
             self.assertNotIn(line, put_alarm_contents)
