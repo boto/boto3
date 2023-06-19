@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pricing``",
-  "description": "[``botocore``] This release updates the PriceListArn regex pattern."
-}
