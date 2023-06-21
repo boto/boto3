@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.158
+========
+
+* api-change:``dynamodb``: [``botocore``] Documentation updates for DynamoDB
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``inspector2``: [``botocore``] This release adds support for Software Bill of Materials (SBOM) export and the general availability of code scanning for AWS Lambda functions.
+* api-change:``mediaconvert``: [``botocore``] This release introduces the bandwidth reduction filter for the HEVC encoder, increases the limits of outputs per job, and updates support for the Nagra SDK to version 1.14.7.
+* api-change:``mq``: [``botocore``] The Cross Region Disaster Recovery feature allows to replicate a brokers state from one region to another in order to provide customers with multi-region resiliency in the event of a regional outage.
+* api-change:``sagemaker``: [``botocore``] This release provides support in SageMaker for output files in training jobs to be uploaded without compression and enable customer to deploy uncompressed model from S3 to real-time inference Endpoints. In addition, ml.trn1n.32xlarge is added to supported instance type list in training job.
+* api-change:``transfer``: [``botocore``] This release adds a new parameter StructuredLogDestinations to CreateServer, UpdateServer APIs.
+
+
 1.26.157
 ========
 
