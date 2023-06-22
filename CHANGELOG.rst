@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.159
+========
+
+* api-change:``chime-sdk-identity``: [``botocore``] AppInstanceBots can be configured to be invoked or not using the Target or the CHIME.mentions attribute for ChannelMessages
+* api-change:``chime-sdk-messaging``: [``botocore``] ChannelMessages can be made visible to sender and intended recipient rather than all channel members with the target attribute. For example, a user can send messages to a bot and receive messages back in a group channel without other members seeing them.
+* api-change:``kendra``: [``botocore``] Introducing Amazon Kendra Retrieve API that can be used to retrieve relevant passages or text excerpts given an input query.
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+
+
 1.26.158
 ========
 
