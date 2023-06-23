@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Documentation improvements for create, describe, and modify DB clusters and DB instances."
-}
