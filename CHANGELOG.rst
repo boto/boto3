@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.26.160
+========
+
+* api-change:``devops-guru``: [``botocore``] This release adds support for encryption via customer managed keys.
+* api-change:``fsx``: [``botocore``] Update to Amazon FSx documentation.
+* api-change:``rds``: [``botocore``] Documentation improvements for create, describe, and modify DB clusters and DB instances.
+* api-change:``verifiedpermissions``: [``botocore``] Added improved descriptions and new code samples to SDK documentation.
+
+
 1.26.159
 ========
 
