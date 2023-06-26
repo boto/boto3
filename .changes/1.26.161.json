@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release provides a way to search for existing tags within an instance. Before tagging a resource, ensure consistency by searching for pre-existing key:value pairs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Timestamp Starting Position For Kinesis and Kafka Data Sources in a Glue Streaming Job",
+    "type": "api-change"
+  },
+  {
+    "category": "``guardduty``",
+    "description": "[``botocore``] Add support for user.extra.sessionName in Kubernetes Audit Logs Findings.",
+    "type": "api-change"
+  },
+  {
+    "category": "``iam``",
+    "description": "[``botocore``] Support for a new API \"GetMFADevice\" to present MFA device metadata such as device certifications",
+    "type": "api-change"
+  },
+  {
+    "category": "``pinpoint``",
+    "description": "[``botocore``] Added time zone estimation support for journeys",
+    "type": "api-change"
+  }
+]
