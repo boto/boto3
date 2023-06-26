@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iam``",
+  "description": "[``botocore``] Support for a new API \"GetMFADevice\" to present MFA device metadata such as device certifications"
+}
