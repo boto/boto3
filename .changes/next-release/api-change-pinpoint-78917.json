@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pinpoint``",
-  "description": "[``botocore``] Added time zone estimation support for journeys"
-}
