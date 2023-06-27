@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Parsers",
-  "description": "[``botocore``] Fixes datetime parse error handling for out-of-range and negative timestamps (`#2564 <https://github.com/boto/botocore/issues/2564>`__)."
-}
