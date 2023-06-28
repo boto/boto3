@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lambda``",
-  "description": "[``botocore``] Surface ResourceConflictException in DeleteEventSourceMapping"
-}
