@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.164
+========
+
+* api-change:``appstream``: [``botocore``] This release introduces app block builder, allowing customers to provision a resource to package applications into an app block
+* api-change:``chime``: [``botocore``] The Amazon Chime SDK APIs in the Chime namespace are no longer supported.  Customers should use APIs in the dedicated Amazon Chime SDK namespaces: ChimeSDKIdentity, ChimeSDKMediaPipelines, ChimeSDKMeetings, ChimeSDKMessaging, and ChimeSDKVoice.
+* api-change:``cleanrooms``: [``botocore``] This release adds support for the OR operator in RSQL join match conditions and the ability to control which operators (AND, OR) are allowed in a join match condition.
+* api-change:``dynamodb``: [``botocore``] This release adds ReturnValuesOnConditionCheckFailure parameter to PutItem, UpdateItem, DeleteItem, ExecuteStatement, BatchExecuteStatement and ExecuteTransaction APIs. When set to ALL_OLD,  API returns a copy of the item as it was when a conditional write failed
+* api-change:``gamelift``: [``botocore``] Amazon GameLift now supports game builds that use the Amazon Linux 2023 (AL2023) operating system.
+* api-change:``glue``: [``botocore``] This release adds support for AWS Glue Crawler with Iceberg Tables, allowing Crawlers to discover Iceberg Tables in S3 and register them in Glue Data Catalog for query engines to query against.
+* api-change:``sagemaker``: [``botocore``] Adding support for timeseries forecasting in the CreateAutoMLJobV2 API.
+
+
 1.26.163
 ========
 
