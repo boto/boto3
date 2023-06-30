@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``amp``",
+    "description": "[``botocore``] AWS SDK service model  generation tool version upgrade.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Added new field  \"credentialspecs\" to the ecs task definition to support gMSA of windows/linux in both domainless and domain-joined mode",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivs``",
+    "description": "[``botocore``] Corrects the HTTP response code in the generated docs for PutMetadata and DeleteRecordingConfiguration APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconvert``",
+    "description": "[``botocore``] This release includes improved color handling of overlays and general updates to user documentation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] This release adds support for rolling deployment in SageMaker Inference.",
+    "type": "api-change"
+  },
+  {
+    "category": "``transfer``",
+    "description": "[``botocore``] Add outbound Basic authentication support to AS2 connectors",
+    "type": "api-change"
+  },
+  {
+    "category": "``verifiedpermissions``",
+    "description": "[``botocore``] This release corrects several broken links in the documentation.",
+    "type": "api-change"
+  }
+]
