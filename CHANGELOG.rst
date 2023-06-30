@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.26.165
+========
+
+* api-change:``amp``: [``botocore``] AWS SDK service model  generation tool version upgrade.
+* api-change:``ecs``: [``botocore``] Added new field  "credentialspecs" to the ecs task definition to support gMSA of windows/linux in both domainless and domain-joined mode
+* api-change:``ivs``: [``botocore``] Corrects the HTTP response code in the generated docs for PutMetadata and DeleteRecordingConfiguration APIs.
+* api-change:``mediaconvert``: [``botocore``] This release includes improved color handling of overlays and general updates to user documentation.
+* api-change:``sagemaker``: [``botocore``] This release adds support for rolling deployment in SageMaker Inference.
+* api-change:``transfer``: [``botocore``] Add outbound Basic authentication support to AS2 connectors
+* api-change:``verifiedpermissions``: [``botocore``] This release corrects several broken links in the documentation.
+
+
 1.26.164
 ========
 
