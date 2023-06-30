@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``verifiedpermissions``",
-  "description": "[``botocore``] This release corrects several broken links in the documentation."
-}
