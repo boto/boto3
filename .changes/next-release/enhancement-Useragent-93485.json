@@ -1,0 +1,5 @@
+{
+  "type": "feature",
+  "category": "Useragent",
+  "description": "[``botocore``] Update User-Agent header format"
+}
