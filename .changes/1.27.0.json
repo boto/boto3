@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Useragent",
+    "description": "[``botocore``] Update User-Agent header format",
+    "type": "feature"
+  },
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] This feature allows customers to use AWS Batch with Linux with ARM64 CPU Architecture and X86_64 CPU Architecture with Windows OS on Fargate Platform.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] SageMaker Inference Recommender now accepts new fields SupportedEndpointType and ServerlessConfiguration to support serverless endpoints.",
+    "type": "api-change"
+  }
+]
