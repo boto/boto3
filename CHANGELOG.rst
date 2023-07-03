@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.27.0
+======
+
+* feature:Useragent: [``botocore``] Update User-Agent header format
+* api-change:``batch``: [``botocore``] This feature allows customers to use AWS Batch with Linux with ARM64 CPU Architecture and X86_64 CPU Architecture with Windows OS on Fargate Platform.
+* api-change:``sagemaker``: [``botocore``] SageMaker Inference Recommender now accepts new fields SupportedEndpointType and ServerlessConfiguration to support serverless endpoints.
+
+
 1.26.165
 ========
 
