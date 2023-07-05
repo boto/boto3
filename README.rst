@@ -17,14 +17,9 @@ Boto (pronounced boh-toh) was named after the fresh water dolphin native to the 
 Notices
 -------
 
-On 2021-01-15, deprecation for Python 2.7 was announced and support was dropped
-on 2021-07-15. To avoid disruption, customers using Boto3 on Python 2.7 may
-need to upgrade their version of Python or pin the version of Boto3. For
-more information, see this `blog post <https://aws.amazon.com/blogs/developer/announcing-end-of-support-for-python-2-7-in-aws-sdk-for-python-and-aws-cli-v1/>`__.
-
-On 2022-05-30, support for Python 3.6 was ended. This follows the
-Python Software Foundation `end of support <https://www.python.org/dev/peps/pep-0494/#lifespan>`__
-for the runtime which occurred on 2021-12-23.
+On 2023-12-13, support for Python 3.7 will end for Boto3. This follows the
+Python Software Foundation `end of support <https://peps.python.org/pep-0537/#lifespan>`__
+for the runtime which occurred on 2023-06-27.
 For more information, see this `blog post <https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/>`__.
 
 .. _boto: https://docs.pythonboto.org/
