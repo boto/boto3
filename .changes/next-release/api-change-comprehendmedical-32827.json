@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``comprehendmedical``",
+  "description": "[``botocore``] Update to Amazon Comprehend Medical documentation."
+}
