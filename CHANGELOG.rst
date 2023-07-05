@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.27.1
+======
+
+* api-change:``comprehendmedical``: [``botocore``] Update to Amazon Comprehend Medical documentation.
+* api-change:``connect``: [``botocore``] GetMetricDataV2 API: Channels filters do not count towards overall limitation of 100 filter values.
+* api-change:``kms``: [``botocore``] Added Dry Run Feature to cryptographic and cross-account mutating KMS APIs (14 in all). This feature allows users to test their permissions and parameters before making the actual API call.
+* api-change:``mgn``: [``botocore``] This release introduces the Global view feature and new Replication state APIs.
+* api-change:``securityhub``: [``botocore``] Documentation updates for AWS Security Hub
+
+
 1.27.0
 ======
 

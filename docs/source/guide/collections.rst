@@ -7,7 +7,7 @@ Overview
 --------
 A collection provides an iterable interface to a group of resources.
 Collections behave similarly to
-`Django QuerySets <https://docs.djangoproject.com/en/1.7/ref/models/querysets/>`_
+`Django QuerySets <https://docs.djangoproject.com/en/4.2/ref/models/querysets/>`_
 and expose a similar API. A collection seamlessly handles pagination for
 you, making it possible to easily iterate over all items from all pages of
 data. Example of a collection::
