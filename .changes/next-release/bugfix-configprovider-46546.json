@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "configprovider",
+  "description": "[``botocore``] Fix bug when deep copying config value store where overrides were not preserved"
+}

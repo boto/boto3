@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "configprovider",
+  "description": "[``botocore``] Always use shallow copy of session config value store for clients"
+}
