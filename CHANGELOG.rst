@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.0
+======
+
+* enhancement:configprovider: [``botocore``] Always use shallow copy of session config value store for clients
+* feature:configuration: [``botocore``] Configure the endpoint URL in the shared configuration file or via an environment variable for a specific AWS service or all AWS services.
+* bugfix:configprovider: [``botocore``] Fix bug when deep copying config value store where overrides were not preserved
+* api-change:``ec2``: [``botocore``] Add Nitro Enclaves support on DescribeInstanceTypes
+* api-change:``location``: [``botocore``] This release adds support for authenticating with Amazon Location Service's Places & Routes APIs with an API Key. Also, with this release developers can publish tracked device position updates to Amazon EventBridge.
+* api-change:``outposts``: [``botocore``] Added paginator support to several APIs. Added the ISOLATED enum value to AssetState.
+* api-change:``quicksight``: [``botocore``] This release includes below three changes: small multiples axes improvement, field based coloring, removed required trait from Aggregation function for TopBottomFilter.
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation for creating DB instances and creating Aurora global clusters.
+
+
 1.27.1
 ======
 
