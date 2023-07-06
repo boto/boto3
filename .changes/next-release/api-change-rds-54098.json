@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Updates Amazon RDS documentation for creating DB instances and creating Aurora global clusters."
-}
