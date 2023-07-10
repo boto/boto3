@@ -653,25 +653,25 @@ about each event can be found in the corresponding sections below:
 :Example:
   Here is an example of how to add custom retry behavior::
 
-  import boto3
+    import boto3
 
-  s3 = boto3.client('s3')
+    s3 = boto3.client('s3')
 
-  # Access the event system on the S3 client
-  event_system = s3.meta.events
+    # Access the event system on the S3 client
+    event_system = s3.meta.events
 
-  # Create a handler that determines retry behavior.
-  def needs_retry_handler(**kwargs):
-      # Implement custom retry logic
-      if some_condition:
-          return None
-      else:
-          return some_delay
+    # Create a handler that determines retry behavior.
+    def needs_retry_handler(**kwargs):
+        # Implement custom retry logic
+        if some_condition:
+            return None
+        else:
+            return some_delay
 
-  # Register the function to an event
-  event_system.register('needs-retry', needs_retry_handler)
+    # Register the function to an event
+    event_system.register('needs-retry', needs_retry_handler)
 
-  s3.list_buckets()
+    s3.list_buckets()
 
 
 `after-call`
