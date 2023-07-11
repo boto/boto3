@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "s3",
+  "description": "[``botocore``] Fix s3 presigned URLs for operations with query components (`#2962 <https://github.com/boto/botocore/issues/2962>`__)"
+}
