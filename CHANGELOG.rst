@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.28.3
+======
+
+* api-change:``cognito-idp``: [``botocore``] API model updated in Amazon Cognito
+* api-change:``connect``: [``botocore``] Add support for deleting Queues and Routing Profiles.
+* api-change:``datasync``: [``botocore``] Added LunCount to the response object of DescribeStorageSystemResourcesResponse, LunCount represents the number of LUNs on a storage system resource.
+* api-change:``dms``: [``botocore``] Enhanced PostgreSQL target endpoint settings for providing Babelfish support.
+* api-change:``ec2``: [``botocore``] This release adds support for the C7gn and Hpc7g instances. C7gn instances are powered by AWS Graviton3 processors and the fifth-generation AWS Nitro Cards. Hpc7g instances are powered by AWS Graviton 3E processors and provide up to 200 Gbps network bandwidth.
+* api-change:``fsx``: [``botocore``] Amazon FSx for NetApp ONTAP now supports SnapLock, an ONTAP feature that enables you to protect your files in a volume by transitioning them to a write once, read many (WORM) state.
+* api-change:``iam``: [``botocore``] Documentation updates for AWS Identity and Access Management (IAM).
+* api-change:``mediatailor``: [``botocore``] Adds categories to MediaTailor channel assembly alerts
+* api-change:``personalize``: [``botocore``] This release provides ability to customers to change schema associated with their datasets in Amazon Personalize
+* api-change:``proton``: [``botocore``] This release adds support for deployment history for Proton provisioned resources
+* api-change:``s3``: [``botocore``] S3 Inventory now supports Object Access Control List and Object Owner as available object metadata fields in inventory reports.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Canvas adds WorkspeceSettings support for CanvasAppSettings
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+
+
 1.28.2
 ======
 

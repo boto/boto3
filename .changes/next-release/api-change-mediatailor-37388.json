@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediatailor``",
-  "description": "[``botocore``] Adds categories to MediaTailor channel assembly alerts"
-}
