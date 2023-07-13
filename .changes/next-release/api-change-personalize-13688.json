@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``personalize``",
+  "description": "[``botocore``] This release provides ability to customers to change schema associated with their datasets in Amazon Personalize"
+}
