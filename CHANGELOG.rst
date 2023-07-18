@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.28.5
+======
+
+* api-change:``codeguru-security``: [``botocore``] Documentation updates for CodeGuru Security.
+* api-change:``connect``: [``botocore``] GetMetricDataV2 API: Update to include Contact Lens Conversational Analytics Metrics
+* api-change:``es``: [``botocore``] Regex Validation on the ElasticSearch Engine Version attribute
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+* api-change:``m2``: [``botocore``] Allows UpdateEnvironment to update the environment to 0 host capacity. New GetSignedBluinsightsUrl API
+* api-change:``snowball``: [``botocore``] Adds support for RACK_5U_C. This is the first AWS Snow Family device designed to meet U.S. Military Ruggedization Standards (MIL-STD-810H) with 208 vCPU device in a portable, compact 5U, half-rack width form-factor.
+* api-change:``translate``: [``botocore``] Added DOCX word document support to TranslateDocument API
+
+
 1.28.4
 ======
 
