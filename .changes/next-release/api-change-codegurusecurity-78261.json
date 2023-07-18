@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codeguru-security``",
+  "description": "[``botocore``] Documentation updates for CodeGuru Security."
+}
