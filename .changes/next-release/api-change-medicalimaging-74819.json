@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``medical-imaging``",
+  "description": "[``botocore``] General Availability (GA) release of AWS Health Imaging, enabling customers to store, transform, and analyze medical imaging data at petabyte-scale."
+}
