@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``securitylake``",
+  "description": "[``botocore``] Adding support for Tags on Create and Resource Tagging API."
+}
