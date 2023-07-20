@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.28.7
+======
+
+* enhancement:AWSCRT: [``botocore``] Upgrade awscrt version to 0.16.26
+* api-change:``savingsplans``: [``botocore``] Savings Plans endpoints update
+
+
 1.28.6
 ======
 
