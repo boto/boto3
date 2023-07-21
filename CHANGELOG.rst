@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.9
+======
+
+* api-change:``glue``: [``botocore``] This release adds support for AWS Glue Crawler with Apache Hudi Tables, allowing Crawlers to discover Hudi Tables in S3 and register them in Glue Data Catalog for query engines to query against.
+* api-change:``mediaconvert``: [``botocore``] This release includes improvements to Preserve 444 handling, compatibility of HEVC sources without frame rates, and general improvements to MP4 outputs.
+* api-change:``rds``: [``botocore``] Adds support for the DBSystemID parameter of CreateDBInstance to RDS Custom for Oracle.
+* api-change:``workspaces``: [``botocore``] Fixed VolumeEncryptionKey descriptions
+
+
 1.28.8
 ======
 
