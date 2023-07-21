@@ -3,7 +3,7 @@ name: "Close stale issues"
 # Controls when the action will run.
 on:
   schedule:
-  - cron: "0 * * * *"
+  - cron: "0 0 * * *"
 
 permissions:
   contents: read
