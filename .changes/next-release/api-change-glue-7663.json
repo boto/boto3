@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Added support for Data Preparation Recipe node in Glue Studio jobs"
-}
