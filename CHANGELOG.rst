@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.28.10
+=======
+
+* api-change:``apigatewayv2``: [``botocore``] Documentation updates for Amazon API Gateway.
+* api-change:``ce``: [``botocore``] This release introduces the new API 'GetSavingsPlanPurchaseRecommendationDetails', which retrieves the details for a Savings Plan recommendation. It also updates the existing API 'GetSavingsPlansPurchaseRecommendation' to include the recommendation detail ID.
+* api-change:``chime-sdk-media-pipelines``: [``botocore``] AWS Media Pipeline compositing enhancement and Media Insights Pipeline auto language identification.
+* api-change:``cloudformation``: [``botocore``] This release supports filtering by DRIFT_STATUS for existing API ListStackInstances and adds support for a new API ListStackInstanceResourceDrifts. Customers can now view resource drift information from their StackSet management accounts.
+* api-change:``ec2``: [``botocore``] Add "disabled" enum value to SpotInstanceState.
+* api-change:``glue``: [``botocore``] Added support for Data Preparation Recipe node in Glue Studio jobs
+* api-change:``quicksight``: [``botocore``] This release launches new Snapshot APIs for CSV and PDF exports, adds support for info icon for filters and parameters in Exploration APIs, adds modeled exception to the DeleteAccountCustomization API, and introduces AttributeAggregationFunction's ability to add UNIQUE_VALUE aggregation in tooltips.
+
+
 1.28.9
 ======
 
