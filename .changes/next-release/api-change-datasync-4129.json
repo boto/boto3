@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datasync``",
-  "description": "[``botocore``] AWS DataSync now supports Microsoft Azure Blob Storage locations."
-}

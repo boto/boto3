@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr-serverless``",
-  "description": "[``botocore``] This release adds support for publishing application logs to CloudWatch."
-}
