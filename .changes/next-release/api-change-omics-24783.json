@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``omics``",
+  "description": "[``botocore``] The service is renaming as a part of AWS Health."
+}
