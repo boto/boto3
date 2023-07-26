@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Release Glue Studio Snowflake Connector Node for SDK/CLI"
-}
