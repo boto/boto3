@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.28.13
+=======
+
+* api-change:``autoscaling``: [``botocore``] This release updates validation for instance types used in the AllowedInstanceTypes and ExcludedInstanceTypes parameters of the InstanceRequirements property of a MixedInstancesPolicy.
+* api-change:``ebs``: [``botocore``] SDK and documentation updates for Amazon Elastic Block Store API
+* api-change:``ec2``: [``botocore``] SDK and documentation updates for Amazon Elastic Block Store APIs
+* api-change:``eks``: [``botocore``] Add multiple customer error code to handle customer caused failure when managing EKS node groups
+* api-change:``sagemaker``: [``botocore``] Expose ProfilerConfig attribute in SageMaker Search API response.
+
+
 1.28.12
 =======
 
