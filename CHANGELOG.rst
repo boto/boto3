@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.28.15
+=======
+
+* enhancement:HTTP: [``botocore``] Move 100-continue behavior to use `HTTPConnections` request interface.
+* api-change:``application-insights``: [``botocore``] This release enable customer to add/remove/update more than one workload for a component
+* api-change:``cloudformation``: [``botocore``] This SDK release is for the feature launch of AWS CloudFormation RetainExceptOnCreate. It adds a new parameter retainExceptOnCreate in the following APIs: CreateStack, UpdateStack, RollbackStack, ExecuteChangeSet.
+* api-change:``cloudfront``: [``botocore``] Add a new JavaScript runtime version for CloudFront Functions.
+* api-change:``connect``: [``botocore``] This release adds support for new number types.
+* api-change:``kafka``: [``botocore``] Amazon MSK has introduced new versions of ListClusterOperations and DescribeClusterOperation APIs. These v2 APIs provide information and insights into the ongoing operations of both MSK Provisioned and MSK Serverless clusters.
+* api-change:``pinpoint``: [``botocore``] Added support for sending push notifications using the FCM v1 API with json credentials. Amazon Pinpoint customers can now deliver messages to Android devices using both FCM v1 API and the legacy FCM/GCM API
+
+
 1.28.14
 =======
 
