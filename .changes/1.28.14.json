@@ -1,0 +1,12 @@
+[
+  {
+    "category": "compression",
+    "description": "[``botocore``] Adds support for the ``requestcompression`` operation trait.",
+    "type": "enhancement"
+  },
+  {
+    "category": "``sqs``",
+    "description": "[``botocore``] Documentation changes related to SQS APIs.",
+    "type": "api-change"
+  }
+]
