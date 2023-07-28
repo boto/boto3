@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.28.14
+=======
+
+* enhancement:compression: [``botocore``] Adds support for the ``requestcompression`` operation trait.
+* api-change:``sqs``: [``botocore``] Documentation changes related to SQS APIs.
+
+
 1.28.13
 =======
 
