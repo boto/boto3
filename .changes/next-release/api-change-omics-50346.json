@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``omics``",
+  "description": "[``botocore``] Add CreationType filter for ListReadSets"
+}
