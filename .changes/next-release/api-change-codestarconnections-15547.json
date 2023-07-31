@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codestar-connections``",
-  "description": "[``botocore``] New integration with the Gitlab provider type."
-}

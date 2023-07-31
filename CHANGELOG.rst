@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.28.16
+=======
+
+* api-change:``amplifyuibuilder``: [``botocore``] Amplify Studio releases GraphQL support for codegen job action.
+* api-change:``autoscaling``: [``botocore``] You can now configure an instance refresh to set its status to 'failed' when it detects that a specified CloudWatch alarm has gone into the ALARM state. You can also choose to roll back the instance refresh automatically when the alarm threshold is met.
+* api-change:``cleanrooms``: [``botocore``] This release introduces custom SQL queries - an expanded set of SQL you can run. This release adds analysis templates, a new resource for storing pre-defined custom SQL queries ahead of time. This release also adds the Custom analysis rule, which lets you approve analysis templates for querying.
+* api-change:``codestar-connections``: [``botocore``] New integration with the Gitlab provider type.
+* api-change:``drs``: [``botocore``] Add support for in-aws right sizing
+* api-change:``inspector2``: [``botocore``] This release adds 1 new API: BatchGetFindingDetails to retrieve enhanced vulnerability intelligence details for findings.
+* api-change:``lookoutequipment``: [``botocore``] This release includes new import resource, model versioning and resource policy features.
+* api-change:``omics``: [``botocore``] Add CreationType filter for ListReadSets
+* api-change:``rds``: [``botocore``] This release adds support for Aurora MySQL local write forwarding, which allows for forwarding of write operations from reader DB instances to the writer DB instance.
+* api-change:``route53``: [``botocore``] Amazon Route 53 now supports the Israel (Tel Aviv) Region (il-central-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+* api-change:``scheduler``: [``botocore``] This release introduces automatic deletion of schedules in EventBridge Scheduler. If configured, EventBridge Scheduler automatically deletes a schedule after the schedule has completed its last invocation.
+
+
 1.28.15
 =======
 

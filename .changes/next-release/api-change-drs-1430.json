@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``drs``",
-  "description": "[``botocore``] Add support for in-aws right sizing"
-}
