@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.28.17
+=======
+
+* api-change:``batch``: [``botocore``] This release adds support for price capacity optimized allocation strategy for Spot Instances.
+* api-change:``dms``: [``botocore``] Adding new API describe-engine-versions which provides information about the lifecycle of a replication instance's version.
+* api-change:``internetmonitor``: [``botocore``] This release adds a new feature for Amazon CloudWatch Internet Monitor that enables customers to set custom thresholds, for performance and availability drops, for impact limited to a single city-network to trigger creation of a health event.
+* api-change:``medialive``: [``botocore``] AWS Elemental Link devices now report their Availability Zone. Link devices now support the ability to change their Availability Zone.
+* api-change:``polly``: [``botocore``] Amazon Polly adds new French Belgian voice - Isabelle. Isabelle is available as Neural voice only.
+* api-change:``rds``: [``botocore``] Added support for deleted clusters PiTR.
+* api-change:``sagemaker``: [``botocore``] Add Stairs TrafficPattern and FlatInvocations to RecommendationJobStoppingConditions
+
+
 1.28.16
 =======
 
