@@ -186,7 +186,7 @@ If you are able to make a connection, you need to recompile OpenSSL and Python t
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure the SDK or CLI doesn't not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
+To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
 
 
     #!/usr/bin/env bash
