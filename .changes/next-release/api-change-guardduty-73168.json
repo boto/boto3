@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``guardduty``",
+  "description": "[``botocore``] Added autoEnable ALL to UpdateOrganizationConfiguration and DescribeOrganizationConfiguration APIs."
+}
