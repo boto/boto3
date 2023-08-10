@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.28.24
+=======
+
+* api-change:``cloudtrail``: [``botocore``] Documentation updates for CloudTrail.
+* api-change:``connect``: [``botocore``] This release adds APIs to provision agents that are global / available in multiple AWS regions and distribute them across these regions by percentage.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``omics``: [``botocore``] This release adds instanceType to GetRunTask & ListRunTasks responses.
+* api-change:``secretsmanager``: [``botocore``] Add additional InvalidRequestException to list of possible exceptions for ListSecret.
+* api-change:``transfer``: [``botocore``] Documentation updates for AW Transfer Family
+
+
 1.28.23
 =======
 
