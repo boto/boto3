@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``omics``",
-  "description": "[``botocore``] This release adds instanceType to GetRunTask & ListRunTasks responses."
-}
