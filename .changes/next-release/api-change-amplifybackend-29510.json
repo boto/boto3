@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``amplifybackend``",
-  "description": "[``botocore``] Adds sensitive trait to required input shapes."
-}
