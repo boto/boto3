@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.28.26
+=======
+
+* api-change:``mediapackage``: [``botocore``] Fix SDK logging of certain fields.
+* api-change:``omics``: [``botocore``] This release provides support for annotation store versioning and cross account sharing for Omics Analytics
+* api-change:``transfer``: [``botocore``] Documentation updates for AWS Transfer Family
+
+
 1.28.25
 =======
 
