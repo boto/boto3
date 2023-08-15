@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Python",
+  "description": "[``botocore``] Added provisional Python 3.12 support to Botocore"
+}

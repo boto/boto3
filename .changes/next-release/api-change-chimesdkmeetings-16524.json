@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``chime-sdk-meetings``",
+  "description": "[``botocore``] Updated API documentation to include additional exceptions."
+}
