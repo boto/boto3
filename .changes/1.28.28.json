@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Update cloudwatch client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``lexv2-models``",
+    "description": "[``botocore``] Update lexv2-models client to latest version",
+    "type": "api-change"
+  }
+]
