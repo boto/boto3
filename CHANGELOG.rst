@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.28.28
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``lexv2-models``: [``botocore``] Update lexv2-models client to latest version
+
+
 1.28.27
 =======
 
