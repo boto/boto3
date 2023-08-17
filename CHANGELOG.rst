@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.28.29
+=======
+
+* api-change:``ec2``: [``botocore``] Adds support for SubnetConfigurations to allow users to select their own IPv4 and IPv6 addresses for Interface VPC endpoints
+* api-change:``gamelift``: [``botocore``] Amazon GameLift updates its instance types support.
+
+
 1.28.28
 =======
 
