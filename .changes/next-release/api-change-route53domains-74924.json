@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53domains``",
-  "description": "[``botocore``] Fixed typos in description fields"
-}
