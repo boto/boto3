@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``ce``",
+    "description": "[``botocore``] This release adds the LastUpdatedDate and LastUsedDate timestamps to help you manage your cost allocation tags.",
+    "type": "api-change"
+  },
+  {
+    "category": "``globalaccelerator``",
+    "description": "[``botocore``] Global Accelerator now supports Client Ip Preservation for Network Load Balancer endpoints.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Adding parameters to CreateCustomDbEngineVersion reserved for future use.",
+    "type": "api-change"
+  },
+  {
+    "category": "``verifiedpermissions``",
+    "description": "[``botocore``] Documentation updates for Amazon Verified Permissions. Increases max results per page for ListPolicyStores, ListPolicies, and ListPolicyTemplates APIs from 20 to 50.",
+    "type": "api-change"
+  }
+]
