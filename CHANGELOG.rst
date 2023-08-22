@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.32
+=======
+
+* api-change:``ce``: [``botocore``] This release adds the LastUpdatedDate and LastUsedDate timestamps to help you manage your cost allocation tags.
+* api-change:``globalaccelerator``: [``botocore``] Global Accelerator now supports Client Ip Preservation for Network Load Balancer endpoints.
+* api-change:``rds``: [``botocore``] Adding parameters to CreateCustomDbEngineVersion reserved for future use.
+* api-change:``verifiedpermissions``: [``botocore``] Documentation updates for Amazon Verified Permissions. Increases max results per page for ListPolicyStores, ListPolicies, and ListPolicyTemplates APIs from 20 to 50.
+
+
 1.28.31
 =======
 
