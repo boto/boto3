@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] This release updates the supported versions for Percona XtraBackup in Aurora MySQL."
+}
