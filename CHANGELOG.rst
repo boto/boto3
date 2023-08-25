@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.28.35
+=======
+
+* api-change:``cloudtrail``: [``botocore``] Add ThrottlingException with error code 429 to handle CloudTrail Delegated Admin request rate exceeded on organization resources.
+* api-change:``cloudwatch``: [``botocore``] Update cloudwatch client to latest version
+* api-change:``detective``: [``botocore``] Added protections to interacting with fields containing customer information.
+
+
 1.28.34
 =======
 
