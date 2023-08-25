@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``detective``",
+  "description": "[``botocore``] Added protections to interacting with fields containing customer information."
+}
