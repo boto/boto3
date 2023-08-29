@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cognito-idp``",
+    "description": "[``botocore``] Added API example requests and responses for several operations. Fixed the validation regex for user pools Identity Provider name.",
+    "type": "api-change"
+  },
+  {
+    "category": "``fsx``",
+    "description": "[``botocore``] Documentation updates for project quotas.",
+    "type": "api-change"
+  },
+  {
+    "category": "``omics``",
+    "description": "[``botocore``] Add RetentionMode support for Runs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sesv2``",
+    "description": "[``botocore``] Adds support for the new Export and Message Insights features: create, get, list and cancel export jobs; get message insights.",
+    "type": "api-change"
+  }
+]
