@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appflow``",
-  "description": "[``botocore``] Add SAP source connector parallel and pagination feature"
-}
