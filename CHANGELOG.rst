@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.28.38
+=======
+
+* api-change:``appflow``: [``botocore``] Add SAP source connector parallel and pagination feature
+* api-change:``apprunner``: [``botocore``] App Runner adds support for Bitbucket. You can now create App Runner connection that connects to your Bitbucket repositories and deploy App Runner service with the source code stored in a Bitbucket repository.
+* api-change:``auditmanager``: [``botocore``] This release marks some assessment metadata as sensitive. We added a sensitive trait to the following attributes: assessmentName, emailAddress, scope, createdBy, lastUpdatedBy, and userName.
+* api-change:``cleanrooms``: [``botocore``] This release decouples member abilities in a collaboration. With this change, the member who can run queries no longer needs to be the same as the member who can receive results.
+* api-change:``datasync``: [``botocore``] AWS DataSync introduces Task Reports, a new feature that provides detailed reports of data transfer operations for each task execution.
+* api-change:``neptunedata``: [``botocore``] Allows customers to execute data plane actions like bulk loading graphs, issuing graph queries using Gremlin and openCypher directly from the SDK.
+* api-change:``network-firewall``: [``botocore``] Network Firewall increasing pagination token string length
+* api-change:``pca-connector-ad``: [``botocore``] The Connector for AD allows you to use a fully-managed AWS Private CA as a drop-in replacement for your self-managed enterprise CAs without local agents or proxy servers. Enterprises that use AD to manage Windows environments can reduce their private certificate authority (CA) costs and complexity.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Canvas adds IdentityProviderOAuthSettings support for CanvasAppSettings
+
+
 1.28.37
 =======
 
