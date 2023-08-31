@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.28.39
+=======
+
+* api-change:``chime-sdk-media-pipelines``: [``botocore``] This release adds support for feature Voice Enhancement for Call Recording as part of Amazon Chime SDK call analytics.
+* api-change:``cloudhsm``: [``botocore``] Deprecating CloudHSM Classic API Service.
+* api-change:``connectcampaigns``: [``botocore``] Amazon Connect outbound campaigns has launched agentless dialing mode which enables customers to make automated outbound calls without agent engagement. This release updates three of the campaign management API's to support the new agentless dialing mode and the new dialing capacity field.
+* api-change:``connectparticipant``: [``botocore``] Amazon Connect Participant Service adds the ability to get a view resource using a view token, which is provided in a participant message, with the release of the DescribeView API.
+* api-change:``customer-profiles``: [``botocore``] Adds sensitive trait to various shapes in Customer Profiles API model.
+* api-change:``ecs``: [``botocore``] This release adds support for an account-level setting that you can use to configure the number of days for AWS Fargate task retirement.
+* api-change:``grafana``: [``botocore``] Marking SAML RoleValues attribute as sensitive and updating VpcConfiguration attributes to match documentation.
+* api-change:``health``: [``botocore``] Adds new API DescribeEntityAggregatesForOrganization that retrieves entity aggregates across your organization. Also adds support for resource status filtering in DescribeAffectedEntitiesForOrganization, resource status aggregates in the DescribeEntityAggregates response, and new resource statuses.
+* api-change:``ivs``: [``botocore``] Updated "type" description for CreateChannel, UpdateChannel, Channel, and ChannelSummary.
+* api-change:``kafkaconnect``: [``botocore``] Minor model changes for Kafka Connect as well as endpoint updates.
+* api-change:``payment-cryptography-data``: [``botocore``] Make KeyCheckValue field optional when using asymmetric keys as Key Check Values typically only apply to symmetric keys
+* api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
+
+
 1.28.38
 =======
 
