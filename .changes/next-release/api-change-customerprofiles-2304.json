@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``customer-profiles``",
+  "description": "[``botocore``] Adds sensitive trait to various shapes in Customer Profiles API model."
+}

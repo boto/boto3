@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ivs``",
+  "description": "[``botocore``] Updated \"type\" description for CreateChannel, UpdateChannel, Channel, and ChannelSummary."
+}
