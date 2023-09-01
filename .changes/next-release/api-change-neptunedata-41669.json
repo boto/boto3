@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``neptunedata``",
+  "description": "[``botocore``] Removed the descriptive text in the introduction."
+}
