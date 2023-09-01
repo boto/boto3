@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.40
+=======
+
+* api-change:``chime-sdk-media-pipelines``: [``botocore``] This release adds support for the Voice Analytics feature for customer-owned KVS streams as part of the Amazon Chime SDK call analytics.
+* api-change:``connect``: [``botocore``] Amazon Connect adds the ability to read, create, update, delete, and list view resources, and adds the ability to read, create, delete, and list view versions.
+* api-change:``identitystore``: [``botocore``] New Identity Store content for China Region launch
+* api-change:``neptunedata``: [``botocore``] Removed the descriptive text in the introduction.
+
+
 1.28.39
 =======
 
