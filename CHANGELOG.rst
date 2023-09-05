@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.28.41
+=======
+
+* api-change:``billingconductor``: [``botocore``] This release adds support for line item filtering in for the custom line item resource.
+* api-change:``cloud9``: [``botocore``] Added support for Ubuntu 22.04 that was not picked up in a previous Trebuchet request. Doc-only update.
+* api-change:``compute-optimizer``: [``botocore``] This release adds support to provide recommendations for G4dn and P3 instances that use NVIDIA GPUs.
+* api-change:``ec2``: [``botocore``] Introducing Amazon EC2 C7gd, M7gd, and R7gd Instances with up to 3.8 TB of local NVMe-based SSD block-level storage. These instances are powered by AWS Graviton3 processors, delivering up to 25% better performance over Graviton2-based instances.
+* api-change:``ecs``: [``botocore``] Documentation only update for Amazon ECS.
+* api-change:``events``: [``botocore``] Update events client to latest version
+* api-change:``rds``: [``botocore``] Add support for feature integration with AWS Backup.
+* api-change:``sagemaker``: [``botocore``] SageMaker Neo now supports data input shape derivation for Pytorch 2.0  and XGBoost compilation job for cloud instance targets. You can skip DataInputConfig field during compilation job creation. You can also access derived information from model in DescribeCompilationJob response.
+* api-change:``vpc-lattice``: [``botocore``] This release adds Lambda event structure version config support for LAMBDA target groups. It also adds newline support for auth policies.
+
+
 1.28.40
 =======
 
