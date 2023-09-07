@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``neptunedata``",
+  "description": "[``botocore``] Minor changes to send unsigned requests to Neptune clusters"
+}
