@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.44
+=======
+
+* api-change:``fsx``: [``botocore``] Amazon FSx documentation fixes
+* api-change:``sagemaker``: [``botocore``] Autopilot APIs will now support holiday featurization for Timeseries models. The models will now hold holiday metadata and should be able to accommodate holiday effect during inference.
+* api-change:``sso-admin``: [``botocore``] Content updates to IAM Identity Center API for China Regions.
+* api-change:``workspaces``: [``botocore``] A new field "ErrorDetails" will be added to the output of "DescribeWorkspaceImages" API call. This field provides in-depth details about the error occurred during image import process. These details include the possible causes of the errors and troubleshooting information.
+
+
 1.28.43
 =======
 
