@@ -71,8 +71,8 @@ Next, set up credentials (in e.g. ``~/.aws/credentials``):
 .. code-block:: ini
 
     [default]
-    aws_access_key_id = YOUR_KEY
-    aws_secret_access_key = YOUR_SECRET
+    AWS_ACCESS_KEY_ID = YOUR_KEY
+    AWS_SECRET_ACCESS_KEY = YOUR_SECRET
 
 Then, set up a default region (in e.g. ``~/.aws/config``):
 
