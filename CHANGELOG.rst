@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.28.45
+=======
+
+* api-change:``ecr``: [``botocore``] This release will have ValidationException be thrown from ECR LifecyclePolicy APIs in regions LifecyclePolicy is not supported, this includes existing Amazon Dedicated Cloud (ADC) regions. This release will also change Tag: TagValue and Tag: TagKey to required.
+* api-change:``medialive``: [``botocore``] AWS Elemental Link now supports attaching a Link UHD device to a MediaConnect flow.
+* api-change:``quicksight``: [``botocore``] This release launches new updates to QuickSight KPI visuals - support for sparklines, new templated layout and new targets for conditional formatting rules.
+
+
 1.28.44
 =======
 
