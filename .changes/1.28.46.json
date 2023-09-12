@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] This release adds support for restricting public sharing of AMIs through AMI Block Public Access",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Update events client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``kendra``",
+    "description": "[``botocore``] Amazon Kendra now supports confidence score buckets for retrieved passage results using the Retrieve API.",
+    "type": "api-change"
+  }
+]
