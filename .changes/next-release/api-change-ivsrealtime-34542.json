@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ivs-realtime``",
-  "description": "[``botocore``] Doc only update that changes description for ParticipantToken."
-}
