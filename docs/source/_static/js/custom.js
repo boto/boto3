@@ -40,7 +40,7 @@ function isValidFragment(splitFragment) {
 }
 // Checks if a name is a possible resource name.
 function isValidResource(name, serviceDocName) {
-	return name.replaceAll('-', '') !== serviceDocName && !nonResourceSubHeadings.includes(name);
+	return name !== serviceDocName.replaceAll('-', '') && !nonResourceSubHeadings.includes(name);
 }
 // Reroutes previously existing links to the new path.
 // Old: <root_url>/reference/services/s3.html#S3.Client.delete_bucket
