@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.47
+=======
+
+* api-change:``cloud9``: [``botocore``] Update to include information on Ubuntu 18 deprecation.
+* api-change:``drs``: [``botocore``] Updated existing APIs and added new ones to support using AWS Elastic Disaster Recovery post-launch actions. Added support for new regions.
+* api-change:``firehose``: [``botocore``] DocumentIdOptions has been added for the Amazon OpenSearch destination.
+* api-change:``guardduty``: [``botocore``] Add `managementType` field to ListCoverage API response.
+* api-change:``internetmonitor``: [``botocore``] This release updates the Amazon CloudWatch Internet Monitor API domain name.
+* api-change:``ivs-realtime``: [``botocore``] Doc only update that changes description for ParticipantToken.
+* api-change:``simspaceweaver``: [``botocore``] Edited the introductory text for the API reference.
+* api-change:``xray``: [``botocore``] Add StartTime field in GetTraceSummaries API response for each TraceSummary.
+
+
 1.28.46
 =======
 
