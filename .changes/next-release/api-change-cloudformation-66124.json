@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] Documentation updates for AWS CloudFormation"
-}
