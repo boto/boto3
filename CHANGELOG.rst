@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.48
+=======
+
+* api-change:``appstream``: [``botocore``] This release introduces multi-session fleets, allowing customers to provision more than one user session on a single fleet instance.
+* api-change:``cloudformation``: [``botocore``] Documentation updates for AWS CloudFormation
+* api-change:``entityresolution``: [``botocore``] Changed "ResolutionTechniques" and "MappedInputFields" in workflow and schema mapping operations to be required fields.
+* api-change:``lookoutequipment``: [``botocore``] This release adds APIs for the new scheduled retraining feature.
+
+
 1.28.47
 =======
 
