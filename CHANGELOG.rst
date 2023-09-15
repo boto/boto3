@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.49
+=======
+
+* api-change:``appstream``: [``botocore``] This release introduces app block builder, allowing customers to provision a resource to package applications into an app block
+* api-change:``connect``: [``botocore``] New rule type (OnMetricDataUpdate) has been added
+* api-change:``datasync``: [``botocore``] Documentation-only updates for AWS DataSync.
+* api-change:``sagemaker``: [``botocore``] This release introduces Skip Model Validation for Model Packages
+
+
 1.28.48
 =======
 
