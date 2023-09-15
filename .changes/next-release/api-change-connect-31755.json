@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect``",
-  "description": "[``botocore``] New rule type (OnMetricDataUpdate) has been added"
-}
