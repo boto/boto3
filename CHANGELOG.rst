@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.28.50
+=======
+
+* api-change:``discovery``: [``botocore``] Add sensitive protection for customer information
+* api-change:``macie2``: [``botocore``] This release changes the default managedDataIdentifierSelector setting for new classification jobs to RECOMMENDED. By default, new classification jobs now use the recommended set of managed data identifiers.
+* api-change:``workmail``: [``botocore``] This release includes four new APIs UpdateUser, UpdateGroup, ListGroupsForEntity and DescribeEntity, along with RemoteUsers and some enhancements to existing APIs.
+
+
 1.28.49
 =======
 
