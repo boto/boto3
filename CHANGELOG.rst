@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.52
+=======
+
+* api-change:``appconfig``: [``botocore``] Enabling boto3 paginators for list APIs and adding documentation around ServiceQuotaExceededException errors
+* api-change:``apprunner``: [``botocore``] This release adds improvements for managing App Runner auto scaling configuration resources. New APIs: UpdateDefaultAutoScalingConfiguration and ListServicesForAutoScalingConfiguration. Updated API: DeleteAutoScalingConfiguration.
+* api-change:``codeartifact``: [``botocore``] Add support for the Swift package format.
+* api-change:``kinesisvideo``: [``botocore``] Updated DescribeMediaStorageConfiguration, StartEdgeConfigurationUpdate, ImageGenerationConfiguration$SamplingInterval, and UpdateMediaStorageConfiguration to match AWS Docs.
+* api-change:``logs``: [``botocore``] Add ClientToken to QueryDefinition CFN Handler in CWL
+* api-change:``s3``: [``botocore``] Fix an issue where the SDK can fail to unmarshall response due to NumberFormatException
+* api-change:``servicediscovery``: [``botocore``] Adds a new DiscoverInstancesRevision API and also adds InstanceRevision field to the DiscoverInstances API response.
+* api-change:``sso-oidc``: [``botocore``] Update FIPS endpoints in aws-us-gov.
+
+
 1.28.51
 =======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``logs``",
-  "description": "[``botocore``] Add ClientToken to QueryDefinition CFN Handler in CWL"
-}

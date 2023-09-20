@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sso-oidc``",
-  "description": "[``botocore``] Update FIPS endpoints in aws-us-gov."
-}
