@@ -144,8 +144,8 @@ You can also upload and download binary data. For example, the following uploads
 assuming that the bucket ``my-bucket`` already exists::
 
     # Upload a new file
-    data = open('test.jpg', 'rb')
-    s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
+    with open('test.jpg', 'rb') as data:
+        s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
 
 :ref:`guide_resources` and :ref:`guide_collections` are covered in more detail in the following
 sections.
