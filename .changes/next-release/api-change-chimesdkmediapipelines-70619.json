@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``chime-sdk-media-pipelines``",
-  "description": "[``botocore``] Adds support for sending WebRTC audio to Amazon Kineses Video Streams."
-}

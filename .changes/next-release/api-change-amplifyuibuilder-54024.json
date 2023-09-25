@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``amplifyuibuilder``",
-  "description": "[``botocore``] Support for generating code that is compatible with future versions of amplify project dependencies."
-}
