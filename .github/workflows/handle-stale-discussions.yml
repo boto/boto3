@@ -5,6 +5,9 @@ on:
   discussion_comment:
     types: [created]
 
+permissions:
+  contents: read
+
 jobs:
   handle-stale-discussions:
     name: Handle stale discussions
@@ -13,7 +16,7 @@ jobs:
       discussions: write
     steps:
       - name: Stale discussions action
-        uses: aws-github-ops/handle-stale-discussions@v1
+        uses: aws-github-ops/handle-stale-discussions@a98e47e10f9a5d4ed08ffb27b7a19454302f9a43
         with:
           # This will close stale-discussions as outdated instead of answered
           close-stale-as-answered: false
