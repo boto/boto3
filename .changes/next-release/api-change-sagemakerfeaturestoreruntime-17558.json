@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker-featurestore-runtime``",
+  "description": "[``botocore``] Feature Store supports read/write of records with collection type features."
+}
