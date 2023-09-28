@@ -2,11 +2,17 @@ name: Closed Issue Message
 on:
     issues:
        types: [closed]
+
+permissions:
+  contents: read
+
 jobs:
     auto_comment:
         runs-on: ubuntu-latest
+        permissions:
+            issues: write
         steps:
-        - uses: aws-actions/closed-issue-message@v1
+        - uses: aws-actions/closed-issue-message@8b6324312193476beecf11f8e8539d73a3553bf4
           with:
             # These inputs are both required
             repo-token: "${{ secrets.GITHUB_TOKEN }}"
