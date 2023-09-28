@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.57
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Run Inference: Added support to run the inference on models.  Includes set of APIs for running inference in streaming and non-streaming mode.
+* api-change:``bedrock``: [``botocore``] Model Invocation logging added to enable or disable logs in customer account. Model listing and description support added. Provisioned Throughput feature added. Custom model support added for creating custom models. Also includes list, and delete functions for custom model.
+* api-change:``budgets``: [``botocore``] Update DescribeBudgets and DescribeBudgetNotificationsForAccount MaxResults limit to 1000.
+* api-change:``ec2``: [``botocore``] Adds support for Customer Managed Key encryption for Amazon Verified Access resources
+* api-change:``iotfleetwise``: [``botocore``] AWS IoT FleetWise now supports encryption through a customer managed AWS KMS key. The PutEncryptionConfiguration and GetEncryptionConfiguration APIs were added.
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] Feature Store supports read/write of records with collection type features.
+* api-change:``sagemaker``: [``botocore``] Online store feature groups supports Standard and InMemory tier storage types for low latency storage for real-time data retrieval. The InMemory tier supports collection types List, Set, and Vector.
+* api-change:``wafv2``: [``botocore``] Correct and improve the documentation for the FieldToMatch option JA3 fingerprint.
+
+
 1.28.56
 =======
 
