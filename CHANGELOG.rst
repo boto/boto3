@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.58
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Add model timeout exception for InvokeModelWithResponseStream API and update validator for invoke model identifier.
+* api-change:``bedrock``: [``botocore``] Provisioned throughput feature with Amazon and third-party base models, and update validators for model identifier and taggable resource ARNs.
+* api-change:``ec2``: [``botocore``] Introducing Amazon EC2 R7iz instances with 3.9 GHz sustained all-core turbo frequency and deliver up to 20% better performance than previous generation z1d instances.
+* api-change:``managedblockchain``: [``botocore``] Remove Rinkeby as option from Ethereum APIs
+* api-change:``rds``: [``botocore``] Adds DefaultCertificateForNewLaunches field in the DescribeCertificates API response.
+* api-change:``sso``: [``botocore``] Fix FIPS Endpoints in aws-us-gov.
+* api-change:``sts``: [``botocore``] STS API updates for assumeRole
+* api-change:``transfer``: [``botocore``] Documentation updates for AWS Transfer Family
+
+
 1.28.57
 =======
 
