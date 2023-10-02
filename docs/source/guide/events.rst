@@ -218,37 +218,38 @@ about each event can be found in the corresponding sections below:
 .. note::
 
   Events with a ``*`` in their order number are conditionally emitted while all others are always emitted.
-  An explanation of all 4 conditional events is provided below.
+  An explanation of all 3 conditional events is provided below.
 
   ``2 *`` - ``creating-resource-class`` is emitted ONLY when using a service resource.
 
-  ``8 *`` - ``after-call`` is emitted when a successful API response is received
-  and ``after-call-error`` is emitted when an error is received.
+  ``8 *`` - ``after-call`` is emitted when a successful API response is received.
 
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| Event Name                  | Order | Emit Location                                                                                                                                 |
-+=============================+=======+===============================================================================================================================================+
-| ``creating-client-class``   | 1     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+creating-client-class+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`_   |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``creating-resource-class`` | 2 *   | `Location <https://github.com/boto/boto3/blob/f5d2face1e314388f9dcada7fa13e2326bf54f5a/boto3/resources/factory.py#LL152C1-L157C14>`_          |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``provide-client-params``   | 3     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+provide-client-params+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`_   |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``before-call``             | 4     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+before-call+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`_             |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``request-created``         | 5     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+request-created+path%3A%2F%5Ebotocore%5C%2Fendpoint%5C.py%2F&type=code>`_       |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``before-send``             | 6     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+before-send+path%3A%2F%5Ebotocore%5C%2Fendpoint%5C.py%2F&type=code>`_           |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``needs-retry``             | 7     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+needs-retry+path%3A%2F%5Ebotocore%5C%2Fendpoint%5C.py%2F&type=code>`_           |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``after-call``              | 8 *   | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+after-call.+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`_             |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
-| ``after-call-error``        | 8 *   | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+after-call-error+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`_        |
-+-----------------------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+  ``9 *`` - ``after-call-error`` is emitted when an unsuccessful API response is received.
+
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Event Name                  | Order | Emit Location                                                                                                                                            |
++=============================+=======+==========================================================================================================================================================+
+| ``creating-client-class``   | 1     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+creating-client-class+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`__             |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``creating-resource-class`` | 2 *   | `Location <https://github.com/search?q=repo%3Aboto%2Fboto3+creating-resource-class+path%3A%2F%5Eboto3%5C%2Fresources%5C%2Ffactory%5C.py%2F&type=code>`__ |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``provide-client-params``   | 3     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+provide-client-params+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`__             |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``before-call``             | 4     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+before-call+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`__                       |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``request-created``         | 5     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+request-created+path%3A%2F%5Ebotocore%5C%2Fendpoint%5C.py%2F&type=code>`__                 |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``before-send``             | 6     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+before-send+path%3A%2F%5Ebotocore%5C%2Fendpoint%5C.py%2F&type=code>`__                     |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``needs-retry``             | 7     | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+needs-retry+path%3A%2F%5Ebotocore%5C%2Fendpoint%5C.py%2F&type=code>`__                     |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``after-call``              | 8 *   | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+after-call.+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`__                       |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``after-call-error``        | 9 *   | `Location <https://github.com/search?q=repo%3Aboto%2Fbotocore+after-call-error+path%3A%2F%5Ebotocore%5C%2Fclient%5C.py%2F&type=code>`__                  |
++-----------------------------+-------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. note::
-  If any of the following keywords are included in an event's Full Event Name, you'll need
+  If any of the following keywords are included in an event's full name, you'll need
   to replace it with the corresponding value:
 
   * ``service-name`` - The value used to instantiate a client as in ``boto3.client('service-name')``.
@@ -260,7 +261,7 @@ about each event can be found in the corresponding sections below:
 
 
 `creating-client-class`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'creating-client-class.service-name'``
@@ -273,14 +274,14 @@ about each event can be found in the corresponding sections below:
 
 :Keyword Arguments Emitted:
 
-  :type class_attributes: dict
+  :type class_attributes: ``dict``
   :param class_attributes: A dictionary where the keys are the names of the
-     attributes of the class and the values are the actual attributes of
-     the class.
+    attributes of the class and the values are the actual attributes of
+    the class.
 
-  :type base_classes: list
+  :type base_classes: ``list``
   :param base_classes: A list of classes that the client class will inherit
-     from where the order of inheritance is the same as the order of the list.
+    from where the order of inheritance is the same as the order of the list.
 
 :Expected Return Value: ``None``
 
@@ -330,7 +331,7 @@ about each event can be found in the corresponding sections below:
 
 
 `creating-resource-class`
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'creating-resource-class.service-name.resource-name'``
@@ -343,14 +344,14 @@ about each event can be found in the corresponding sections below:
 
 :Keyword Arguments Emitted:
 
-  :type class_attributes: dict
+  :type class_attributes: ``dict``
   :param class_attributes: A dictionary where the keys are the names of the
-     attributes of the class and the values are the actual attributes of
-     the class.
+    attributes of the class and the values are the actual attributes of
+    the class.
 
-  :type base_classes: list
+  :type base_classes: ``list``
   :param base_classes: A list of classes that the resource class will inherit
-     from where the order of inheritance is the same as the order of the list.
+    from where the order of inheritance is the same as the order of the list.
 
 :Expected Return Value: ``None``
 
@@ -402,7 +403,7 @@ about each event can be found in the corresponding sections below:
 
 
 `provide-client-params`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'provide-client-params.service-name.operation-name'``
@@ -414,7 +415,7 @@ about each event can be found in the corresponding sections below:
 
 :Keyword Arguments Emitted:
 
-  :type params: dict
+  :type params: ``dict``
   :param params: A dictionary containing key value pairs consisting of the parameters 
     passed through to the client method.
 
@@ -422,7 +423,7 @@ about each event can be found in the corresponding sections below:
   :param model: A model representing the underlying API operation of the
     client method.
 
-:Expected Return Value: ``None`` or return a new dictionary of
+:Expected Return Value: ``None`` or return a ``dict`` containing
   parameters to use when making the request.
 
 :Example:
@@ -448,7 +449,7 @@ about each event can be found in the corresponding sections below:
 
 
 `before-call`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'before-call.service-name.operation-name'``
@@ -467,10 +468,10 @@ about each event can be found in the corresponding sections below:
   :param model: A model representing the underlying API operation of the
     client method.
 
-  :type params: dict
+  :type params: ``dict``
   :param params: A dictionary containing key value pairs for various components of 
-  an HTTP request such as ``url_path``, ``host_prefix``, ``query_string``, ``headers``, 
-  ``body``, and ``method``.
+    an HTTP request such as ``url_path``, ``host_prefix``, ``query_string``, ``headers``, 
+    ``body``, and ``method``.
 
   :type request_signer: ``botocore.signers.RequestSigner``
   :param request_signer: An object to sign requests before they are sent over
@@ -506,7 +507,7 @@ about each event can be found in the corresponding sections below:
 
 
 `request-created`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'request-created.service-name.operation-name'``
@@ -520,7 +521,7 @@ about each event can be found in the corresponding sections below:
   :param request: An AWSRequest object which represents the request that was
     created given some params and an operation model.
 
-  :type operation_name: str
+  :type operation_name: ``str``
   :param operation_name: The name of the service operation model i.e. ``ListObjectsV2``.
 
 :Expected Return Value: ``None``
@@ -566,7 +567,7 @@ about each event can be found in the corresponding sections below:
 
 
 `before-send`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'before-send.service-name.operation-name'``
@@ -611,7 +612,7 @@ about each event can be found in the corresponding sections below:
 
 
 `needs-retry`
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'needs-retry.service-name.operation-name'``
@@ -624,7 +625,7 @@ about each event can be found in the corresponding sections below:
 
 :Keyword Arguments Emitted:
 
-  :type response: tuple
+  :type response: ``tuple``
   :param response: A tuple that includes both the ``botocore.awsrequest.AWSResponse``
     and a ``dict`` that represents the parsed response described by the model.
 
@@ -635,14 +636,14 @@ about each event can be found in the corresponding sections below:
   :param operation: A model representing the underlying API operation of the
     client method.
 
-  :type attempts: int
+  :type attempts: ``int``
   :param attempts: A number representing the amount of retries that have been attempted.
 
-  :type caught_exception: ``Exception`` | ``None```
+  :type caught_exception: ``Exception`` | ``None``
   :param caught_exception: The exception raised after making an api call. If there was no
     exception, this will be None.
 
-  :type request_dict: dict
+  :type request_dict: ``dict``
   :param request_dict: A dictionary containing key value pairs for various components of 
     an HTTP request such as ``url_path``, ``host_prefix``, ``query_string``, ``headers``, 
     ``body``, and ``method``.
@@ -675,7 +676,7 @@ about each event can be found in the corresponding sections below:
 
 
 `after-call`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
 :Full Event Name:
   ``'after-call.service-name.operation-name'``
@@ -690,7 +691,7 @@ about each event can be found in the corresponding sections below:
   :type http_response: ``botocore.awsrequest.AWSResponse``
   :param http_response: A data class representing an HTTP response received from the server.
 
-  :type parsed: dict
+  :type parsed: ``dict``
   :param params: A parsed version of the AWSResponse in the form of
     a python dictionary.
 
@@ -729,7 +730,7 @@ about each event can be found in the corresponding sections below:
 
 
 `after-call-error`
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 :Full Event Name:
   ``'after-call-error.service-name.operation-name'``
