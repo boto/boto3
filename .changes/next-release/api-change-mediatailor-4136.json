@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediatailor``",
-  "description": "[``botocore``] Updates DescribeVodSource to include a list of ad break opportunities in the response"
-}
