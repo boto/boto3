@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.28.62
+=======
+
+* enhancement:Dependencies: [``botocore``] Add support for urllib3 2.0 for Python 3.10+
+* api-change:``ec2``: [``botocore``] Documentation updates for Elastic Compute Cloud (EC2).
+* api-change:``fsx``: [``botocore``] After performing steps to repair the Active Directory configuration of a file system, use this action to initiate the process of attempting to recover to the file system.
+* api-change:``marketplace-catalog``: [``botocore``] This release adds support for Document type as an alternative for stringified JSON for StartChangeSet, DescribeChangeSet and DescribeEntity APIs
+* api-change:``quicksight``: [``botocore``] NullOption in FilterListConfiguration; Dataset schema/table max length increased; Support total placement for pivot table visual; Lenient mode relaxes the validation to create resources with definition; Data sources can be added to folders; Redshift data sources support IAM Role-based authentication
+* api-change:``transfer``: [``botocore``] This release updates the max character limit of PreAuthenticationLoginBanner and PostAuthenticationLoginBanner to 4096 characters
+
+
 1.28.61
 =======
 
