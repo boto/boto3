@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Dependencies",
-  "description": "[``botocore``] Add support for urllib3 2.0 for Python 3.10+"
-}
