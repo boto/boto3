@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``inspector2``",
+  "description": "[``botocore``] Add MacOs ec2 platform support"
+}

@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker``",
+  "description": "[``botocore``] Amazon SageMaker Canvas adds KendraSettings and DirectDeploySettings support for CanvasAppSettings"
+}
