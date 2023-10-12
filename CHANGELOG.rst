@@ -2,6 +2,31 @@
 CHANGELOG
 =========
 
+1.28.63
+=======
+
+* api-change:``auditmanager``: [``botocore``] This release introduces a new limit to the awsAccounts parameter. When you create or update an assessment, there is now a limit of 200 AWS accounts that can be specified in the assessment scope.
+* api-change:``autoscaling``: [``botocore``] Update the NotificationMetadata field to only allow visible ascii characters. Add paginators to DescribeInstanceRefreshes, DescribeLoadBalancers, and DescribeLoadBalancerTargetGroups
+* api-change:``config``: [``botocore``] Add enums for resource types supported by Config
+* api-change:``controltower``: [``botocore``] Added new EnabledControl resource details to ListEnabledControls API and added new GetEnabledControl API.
+* api-change:``customer-profiles``: [``botocore``] Adds sensitive trait to various shapes in Customer Profiles Calculated Attribute API model.
+* api-change:``ec2``: [``botocore``] This release adds Ubuntu Pro as a supported platform for On-Demand Capacity Reservations and adds support for setting an Amazon Machine Image (AMI) to disabled state. Disabling the AMI makes it private if it was previously shared, and prevents new EC2 instance launches from it.
+* api-change:``elbv2``: [``botocore``] Update elbv2 client to latest version
+* api-change:``glue``: [``botocore``] Extending version control support to GitLab and Bitbucket from AWSGlue
+* api-change:``inspector2``: [``botocore``] Add MacOs ec2 platform support
+* api-change:``ivs-realtime``: [``botocore``] Update GetParticipant to return additional metadata.
+* api-change:``lambda``: [``botocore``] Adds support for Lambda functions to access Dual-Stack subnets over IPv6, via an opt-in flag in CreateFunction and UpdateFunctionConfiguration APIs
+* api-change:``location``: [``botocore``] This release adds endpoint updates for all AWS Location resource operations.
+* api-change:``machinelearning``: [``botocore``] This release marks Password field as sensitive
+* api-change:``pricing``: [``botocore``] Documentation updates for Price List
+* api-change:``rds``: [``botocore``] This release adds support for adding a dedicated log volume to open-source RDS instances.
+* api-change:``rekognition``: [``botocore``] Amazon Rekognition introduces support for Custom Moderation. This allows the enhancement of accuracy for detect moderation labels operations by creating custom adapters tuned on customer data.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Canvas adds KendraSettings and DirectDeploySettings support for CanvasAppSettings
+* api-change:``textract``: [``botocore``] This release adds 9 new APIs for adapter and adapter version management, 3 new APIs for tagging, and updates AnalyzeDocument and StartDocumentAnalysis API parameters for using adapters.
+* api-change:``transcribe``: [``botocore``] This release is to enable m4a format to customers
+* api-change:``workspaces``: [``botocore``] Updated the CreateWorkspaces action documentation to clarify that the PCoIP protocol is only available for Windows bundles.
+
+
 1.28.62
 =======
 
