@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``xray``",
-  "description": "[``botocore``] This releases enhances GetTraceSummaries API to support new TimeRangeType Service to query trace summaries by segment end time."
-}

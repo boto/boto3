@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] SDK and documentation updates for UpdateReplacePolicy"
-}
