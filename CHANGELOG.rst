@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.65
+=======
+
+* api-change:``codepipeline``: [``botocore``] Add retryMode ALL_ACTIONS to RetryStageExecution API that retries a failed stage starting from first action in the stage
+* api-change:``discovery``: [``botocore``] This release introduces three new APIs: StartBatchDeleteConfigurationTask, DescribeBatchDeleteConfigurationTask, and BatchDeleteAgents.
+* api-change:``ecs``: [``botocore``] Documentation only updates to address Amazon ECS tickets.
+* api-change:``globalaccelerator``: [``botocore``] Fixed error where ListCustomRoutingEndpointGroups did not have a paginator
+* api-change:``guardduty``: [``botocore``] Add domainWithSuffix finding field to dnsRequestAction
+* api-change:``kafka``: [``botocore``] AWS Managed Streaming for Kafka is launching MSK Replicator, a new feature that enables customers to reliably replicate data across Amazon MSK clusters in same or different AWS regions. You can now use SDK to create, list, describe, delete, update, and manage tags of MSK Replicators.
+* api-change:``route53-recovery-cluster``: [``botocore``] Adds Owner field to ListRoutingControls API.
+* api-change:``route53-recovery-control-config``: [``botocore``] Adds permissions for GetResourcePolicy to support returning details about AWS Resource Access Manager resource policies for shared resources.
+
+
 1.28.64
 =======
 

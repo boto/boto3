@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Add domainWithSuffix finding field to dnsRequestAction"
-}

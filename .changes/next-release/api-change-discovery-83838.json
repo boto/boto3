@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``discovery``",
-  "description": "[``botocore``] This release introduces three new APIs: StartBatchDeleteConfigurationTask, DescribeBatchDeleteConfigurationTask, and BatchDeleteAgents."
-}
