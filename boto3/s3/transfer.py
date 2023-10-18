@@ -122,8 +122,11 @@ transfer.  For example:
 
 
 """
-from os import PathLike, fspath
+import logging
+import threading
+from os import PathLike, fspath, getpid
 
+from botocore.compat import HAS_CRT
 from botocore.exceptions import ClientError
 from s3transfer.exceptions import (
     RetriesExceededError as S3TransferRetriesExceededError,
@@ -134,10 +137,18 @@ from s3transfer.manager import TransferManager
 from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import OSUtils
 
+import boto3.s3.constants as constants
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
+
+if HAS_CRT:
+    import awscrt.s3
+
+    from boto3.crt import create_crt_transfer_manager
 
 KB = 1024
 MB = KB * KB
+
+logger = logging.getLogger(__name__)
 
 
 def create_transfer_manager(client, config, osutil=None):
@@ -155,6 +166,50 @@ def create_transfer_manager(client, config, osutil=None):
     :rtype: s3transfer.manager.TransferManager
     :returns: A transfer manager based on parameters provided
     """
+    if _should_use_crt(config):
+        crt_transfer_manager = create_crt_transfer_manager(client, config)
+        if crt_transfer_manager is not None:
+            logger.debug(
+                f"Using CRT client. pid: {getpid()}, thread: {threading.get_ident()}"
+            )
+            return crt_transfer_manager
+
+    # If we don't resolve something above, fallback to the default.
+    logger.debug(
+        f"Using default client. pid: {getpid()}, thread: {threading.get_ident()}"
+    )
+    return _create_default_transfer_manager(client, config, osutil)
+
+
+def _should_use_crt(config):
+    if HAS_CRT:
+        is_optimized_instance = awscrt.s3.is_optimized_for_system()
+    else:
+        is_optimized_instance = False
+    pref_transfer_client = config.preferred_transfer_client.lower()
+
+    if (
+        is_optimized_instance
+        and pref_transfer_client == constants.AUTO_RESOLVE_TRANSFER_CLIENT
+    ):
+        logger.debug(
+            "Attempting to use CRTTransferManager. Config settings may be ignored."
+        )
+        return True
+
+    logger.debug(
+        "Opting out of CRT Transfer Manager. Preferred client: "
+        "{pref_transfer_client}, CRT available: {HAS_CRT}, "
+        "Instance Optimized: {is_optimized_instance}.",
+        pref_transfer_client,
+        HAS_CRT,
+        is_optimized_instance,
+    )
+    return False
+
+
+def _create_default_transfer_manager(client, config, osutil):
+    """Create the default TransferManager implementation for s3transfer."""
     executor_cls = None
     if not config.use_threads:
         executor_cls = NonThreadedExecutor
@@ -177,6 +232,7 @@ class TransferConfig(S3TransferConfig):
         io_chunksize=256 * KB,
         use_threads=True,
         max_bandwidth=None,
+        preferred_transfer_client="auto",
     ):
         """Configuration object for managed S3 transfers
 
@@ -217,6 +273,15 @@ class TransferConfig(S3TransferConfig):
         :param max_bandwidth: The maximum bandwidth that will be consumed
             in uploading and downloading file content. The value is an integer
             in terms of bytes per second.
+
+        :param preferred_transfer_client: String specifying preferred transfer
+            client for transfer operations.
+
+            Current supported settings are:
+              * auto (default) - Use the CRTTransferManager when calls
+                  are made with supported environment and settings.
+              * classic - Only use the origin S3TransferManager with
+                  requests. Disables possible CRT upgrade on requests.
         """
         super().__init__(
             multipart_threshold=multipart_threshold,
@@ -233,6 +298,7 @@ class TransferConfig(S3TransferConfig):
         for alias in self.ALIAS:
             setattr(self, alias, getattr(self, self.ALIAS[alias]))
         self.use_threads = use_threads
+        self.preferred_transfer_client = preferred_transfer_client
 
     def __setattr__(self, name, value):
         # If the alias name is used, make sure we set the name that it points
