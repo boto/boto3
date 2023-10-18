@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wisdom``",
-  "description": "[``botocore``] This release adds an max limit of 25 recommendation ids for NotifyRecommendationsReceived API."
-}
