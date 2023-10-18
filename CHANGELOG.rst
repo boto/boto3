@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.28.66
+=======
+
+* api-change:``cloud9``: [``botocore``] Update to imageId parameter behavior and dates updated.
+* api-change:``dynamodb``: [``botocore``] Updating descriptions for several APIs.
+* api-change:``kendra``: [``botocore``] Changes for a new feature in Amazon Kendra's Query API to Collapse/Expand query results
+* api-change:``rds``: [``botocore``] This release adds support for upgrading the storage file system configuration on the DB instance using a blue/green deployment or a read replica.
+* api-change:``wisdom``: [``botocore``] This release adds an max limit of 25 recommendation ids for NotifyRecommendationsReceived API.
+
+
 1.28.65
 =======
 
