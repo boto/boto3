@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``verifiedpermissions``",
+  "description": "[``botocore``] Improving Amazon Verified Permissions Create experience"
+}
