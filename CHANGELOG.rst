@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.28.67
+=======
+
+* api-change:``gamesparks``: [``botocore``] The gamesparks client has been removed following the deprecation of the service.
+* api-change:``ec2``: [``botocore``] Amazon EC2 C7a instances, powered by 4th generation AMD EPYC processors, are ideal for high performance, compute-intensive workloads such as high performance computing. Amazon EC2 R7i instances are next-generation memory optimized and powered by custom 4th Generation Intel Xeon Scalable processors.
+* api-change:``managedblockchain-query``: [``botocore``] This release adds support for Ethereum Sepolia network
+* api-change:``neptunedata``: [``botocore``] Doc changes to add IAM action mappings for the data actions.
+* api-change:``omics``: [``botocore``] This change enables customers to retrieve failure reasons with detailed status messages for their failed runs
+* api-change:``opensearch``: [``botocore``] Added Cluster Administrative options for node restart, opensearch process restart and opensearch dashboard restart for Multi-AZ without standby domains
+* api-change:``quicksight``: [``botocore``] This release adds the following: 1) Trino and Starburst Database Connectors 2) Custom total for tables and pivot tables 3) Enable restricted folders 4) Add rolling dates for time equality filters 5) Refine DataPathValue and introduce DataPathType 6) Add SeriesType to ReferenceLineDataConfiguration
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+* api-change:``servicecatalog``: [``botocore``] Introduce support for EXTERNAL product and provisioning artifact type in CreateProduct and CreateProvisioningArtifact APIs.
+* api-change:``verifiedpermissions``: [``botocore``] Improving Amazon Verified Permissions Create experience
+* api-change:``workspaces``: [``botocore``] Documentation updates for WorkSpaces
+
+
 1.28.66
 =======
 
