@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.28.68
+=======
+
+* api-change:``appconfig``: [``botocore``] Update KmsKeyIdentifier constraints to support AWS KMS multi-Region keys.
+* api-change:``appintegrations``: [``botocore``] Updated ScheduleConfig to be an optional input to CreateDataIntegration to support event driven downloading of files from sources such as Amazon s3 using Amazon Connect AppIntegrations.
+* api-change:``connect``: [``botocore``] This release adds support for updating phone number metadata, such as phone number description.
+* api-change:``discovery``: [``botocore``] This release introduces three new APIs: StartBatchDeleteConfigurationTask, DescribeBatchDeleteConfigurationTask, and BatchDeleteAgents.
+* api-change:``medical-imaging``: [``botocore``] Updates on documentation links
+* api-change:``ssm``: [``botocore``] This release introduces a new API: DeleteOpsItem. This allows deletion of an OpsItem.
+
+
 1.28.67
 =======
 
