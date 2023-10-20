@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ssm``",
+  "description": "[``botocore``] This release introduces a new API: DeleteOpsItem. This allows deletion of an OpsItem."
+}
