@@ -46,6 +46,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
             'waiters',
             'resources',
             'examples',
+            'context-params',
         ]
         self._root_docs_path = root_docs_path
         self._USER_GUIDE_LINK = (
@@ -69,6 +70,8 @@ class ServiceDocumenter(BaseServiceDocumenter):
         if self._service_resource:
             self.resource_section(doc_structure.get_section('resources'))
         self._document_examples(doc_structure.get_section('examples'))
+        context_params_section = doc_structure.get_section('context-params')
+        self.client_context_params(context_params_section)
         return doc_structure.flush_structure()
 
     def client_api(self, section):
