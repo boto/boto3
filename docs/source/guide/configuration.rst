@@ -116,13 +116,13 @@ With the addition of the ``proxies_config`` option shown here, the proxy will us
 
 Using client context parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Some services have configuration settings that are specific to their clients. These settings are called client context parameters. Please refer to the ``Client Context Parameters`` section of a service's client homepage for a list of available parameters and information on how to use them.
+Some services have configuration settings that are specific to their clients. These settings are called client context parameters. Please refer to the ``Client Context Parameters`` section of a service client's documentation for a list of available parameters and information on how to use them.
 
 .. _configure_client_context:
 
 Configuring client context parameters
 '''''''''''''''''''''''''''''''''''''
-You can configure client context parameters by passing a dictionary of key-value pairs to the ``client_context_params`` option. Invalid parameter values or parameters that are not modeled by the service will be ignored.
+You can configure client context parameters by passing a dictionary of key-value pairs to the ``client_context_params`` parameter in your ``Config``. Invalid parameter values or parameters that are not modeled by the service will be ignored.
 
 .. code-block:: python
 
@@ -131,7 +131,6 @@ You can configure client context parameters by passing a dictionary of key-value
 
     my_config = Config(
         region_name='us-east-2',
-        signature_version='v4',
         client_context_params={
             'my_great_context_param': 'foo'
         }
@@ -139,8 +138,7 @@ You can configure client context parameters by passing a dictionary of key-value
 
     client = boto3.client('kinesis', config=my_config)
 
-If you require different settings per call, you will need to create a new client. Boto3 does not support differing configurations per call.
-
+Boto3 does not support setting ``client_context_params`` per request. Differing configurations will require creation of a new client.
 
 Using environment variables 
 ---------------------------
