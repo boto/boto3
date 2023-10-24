@@ -90,7 +90,7 @@ def document_resource_waiter(
     service_module_name = get_service_module_name(service_model)
     description = (
         'Waits until this {} is {}. This method calls '
-        ':py:meth:`{}.Waiter.{}.wait` which polls. '
+        ':py:meth:`{}.Waiter.{}.wait` which polls '
         ':py:meth:`{}.Client.{}` every {} seconds until '
         'a successful state is reached. An error is returned '
         'after {} failed checks.'.format(
