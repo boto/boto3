@@ -276,3 +276,23 @@ class TestServiceDocumenter(BaseDocsTest):
         contents = service_documenter.document_service().decode('utf-8')
         assert 'This is an example' in contents
         assert 'This is for another service' not in contents
+
+    def test_service_with_context_params(self):
+        self.json_model['clientContextParams'] = {
+            'MyContextParam': {
+                'documentation': 'This is my context param',
+                'type': 'boolean',
+            }
+        }
+        self.setup_client_and_resource()
+        service_documenter = ServiceDocumenter(
+            'myservice', self.session, self.root_services_path
+        )
+        contents = service_documenter.document_service().decode('utf-8')
+        lines = [
+            "=========================",
+            "Client Context Parameters",
+            "=========================",
+            "* ``my_context_param`` (boolean) - This is my context param",
+        ]
+        self.assert_contains_lines_in_order(lines, contents)

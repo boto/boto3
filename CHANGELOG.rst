@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.71
+=======
+
+* enhancement:Configuration: [``botocore``] Adds client context params support to ``Config``.
+* api-change:``connectcases``: [``botocore``] Increase maximum length of CommentBody to 3000, and increase maximum length of StringValue to 1500
+* api-change:``groundstation``: [``botocore``] This release will allow KMS alias names to be used when creating Mission Profiles
+* api-change:``iam``: [``botocore``] Updates to GetAccessKeyLastUsed action to replace NoSuchEntity error with AccessDeniedException error.
+
+
 1.28.70
 =======
 
