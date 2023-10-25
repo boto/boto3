@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iam``",
+  "description": "[``botocore``] Updates to GetAccessKeyLastUsed action to replace NoSuchEntity error with AccessDeniedException error."
+}
