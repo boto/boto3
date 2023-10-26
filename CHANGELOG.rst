@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.28.72
+=======
+
+* api-change:``appstream``: [``botocore``] This release introduces multi-session fleets, allowing customers to provision more than one user session on a single fleet instance.
+* api-change:``ec2``: [``botocore``] Launching GetSecurityGroupsForVpc API. This API gets security groups that can be associated by the AWS account making the request with network interfaces in the specified VPC.
+* api-change:``network-firewall``: [``botocore``] Network Firewall now supports inspection of outbound SSL/TLS traffic.
+* api-change:``opensearch``: [``botocore``] You can specify ipv4 or dualstack IPAddressType for cluster endpoints. If you specify IPAddressType as dualstack, the new endpoint will be visible under the 'EndpointV2' parameter and will support IPv4 and IPv6 requests. Whereas, the 'Endpoint' will continue to serve IPv4 requests.
+* api-change:``redshift``: [``botocore``] Add Redshift APIs GetResourcePolicy, DeleteResourcePolicy, PutResourcePolicy and DescribeInboundIntegrations for the new Amazon Redshift Zero-ETL integration feature, which can be used to control data ingress into Redshift namespace, and view inbound integrations.
+* api-change:``sagemaker``: [``botocore``] Amazon Sagemaker Autopilot now supports Text Generation jobs.
+* api-change:``sns``: [``botocore``] Message Archiving and Replay is now supported in Amazon SNS for FIFO topics.
+* api-change:``ssm-sap``: [``botocore``] AWS Systems Manager for SAP added support for registration and discovery of SAP ABAP applications
+* api-change:``transfer``: [``botocore``] No API changes from previous release. This release migrated the model to Smithy keeping all features unchanged.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.28.71
 =======
 

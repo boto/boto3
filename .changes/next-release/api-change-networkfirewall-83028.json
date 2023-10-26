@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``network-firewall``",
-  "description": "[``botocore``] Network Firewall now supports inspection of outbound SSL/TLS traffic."
-}
