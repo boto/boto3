@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.28.73
+=======
+
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``neptune``: [``botocore``] Update TdeCredentialPassword type to SensitiveString
+* api-change:``pinpoint``: [``botocore``] Updated documentation to describe the case insensitivity for EndpointIds.
+* api-change:``redshift``: [``botocore``] added support to create a dual stack cluster
+* api-change:``wafv2``: [``botocore``] Updates the descriptions for the calls that manage web ACL associations, to provide information for customer-managed IAM policies.
+
+
 1.28.72
 =======
 
