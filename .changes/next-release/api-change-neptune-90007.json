@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``neptune``",
-  "description": "[``botocore``] Update TdeCredentialPassword type to SensitiveString"
-}
