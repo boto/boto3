@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.28.74
+=======
+
+* api-change:``connect``: [``botocore``] This release adds InstanceId field for phone number APIs.
+* api-change:``dataexchange``: [``botocore``] We added a new API action: SendDataSetNotification.
+* api-change:``datasync``: [``botocore``] Platform version changes to support AL1 deprecation initiative.
+* api-change:``finspace``: [``botocore``] Introducing new API UpdateKxClusterCodeConfiguration, introducing new cache types for clusters and introducing new deployment modes for updating clusters.
+* api-change:``mediapackagev2``: [``botocore``] This feature allows customers to create a combination of manifest filtering, startover and time delay configuration that applies to all egress requests by default.
+* api-change:``rds``: [``botocore``] This release launches the CreateIntegration, DeleteIntegration, and DescribeIntegrations APIs to manage zero-ETL Integrations.
+* api-change:``redshift-serverless``: [``botocore``] Added support for custom domain names for Amazon Redshift Serverless workgroups. This feature enables customers to create a custom domain name and use ACM to generate fully secure connections to it.
+* api-change:``resiliencehub``: [``botocore``] Introduced the ability to filter applications by their last assessment date and time and have included metrics for the application's estimated workload Recovery Time Objective (RTO) and estimated workload Recovery Point Objective (RPO).
+* api-change:``s3outposts``: [``botocore``] Updated ListOutpostsWithS3 API response to include S3OutpostArn for use with AWS RAM.
+* api-change:``wisdom``: [``botocore``] This release added necessary API documents on creating a Wisdom knowledge base to integrate with S3.
+
+
 1.28.73
 =======
 
