@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``neptunedata``",
-  "description": "[``botocore``] Minor change to not retry CancelledByUserException"
-}
