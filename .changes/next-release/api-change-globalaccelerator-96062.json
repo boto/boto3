@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``globalaccelerator``",
-  "description": "[``botocore``] Global Accelerator now support accelerators with cross account endpoints."
-}
