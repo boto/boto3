@@ -10,7 +10,7 @@ CHANGELOG
 * api-change:``gamelift``: [``botocore``] Amazon GameLift adds support for shared credentials, which allows applications that are deployed on managed EC2 fleets to interact with other AWS resources.
 * api-change:``glue``: [``botocore``] This release introduces Google BigQuery Source and Target in AWS Glue CodeGenConfigurationNode.
 * api-change:``network-firewall``: [``botocore``] This release introduces the stateless rule analyzer, which enables you to analyze your stateless rules for asymmetric routing.
-* api-change:``quicksight``: [``botocore``] Got confirmed from qmeixua@ about custom week features, and tested locally with aws cli and java sdk that the subtypes are showing up.
+* api-change:``quicksight``: [``botocore``] This release introduces Float Decimal Type as SubType in QuickSight SPICE datasets and Custom week start and Custom timezone options in Analysis and Dashboard
 * api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
 
 
