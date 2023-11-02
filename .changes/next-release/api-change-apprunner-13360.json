@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``apprunner``",
-  "description": "[``botocore``] AWS App Runner now supports using dual-stack address type for the public endpoint of your incoming traffic."
-}

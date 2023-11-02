@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.28.77
+=======
+
+* api-change:``apprunner``: [``botocore``] AWS App Runner now supports using dual-stack address type for the public endpoint of your incoming traffic.
+* api-change:``connect``: [``botocore``] GetMetricDataV2 API: Update to include new metrics PERCENT_NON_TALK_TIME, PERCENT_TALK_TIME, PERCENT_TALK_TIME_AGENT, PERCENT_TALK_TIME_CUSTOMER
+* api-change:``gamelift``: [``botocore``] Amazon GameLift adds support for shared credentials, which allows applications that are deployed on managed EC2 fleets to interact with other AWS resources.
+* api-change:``glue``: [``botocore``] This release introduces Google BigQuery Source and Target in AWS Glue CodeGenConfigurationNode.
+* api-change:``network-firewall``: [``botocore``] This release introduces the stateless rule analyzer, which enables you to analyze your stateless rules for asymmetric routing.
+* api-change:``quicksight``: [``botocore``] Got confirmed from qmeixua@ about custom week features, and tested locally with aws cli and java sdk that the subtypes are showing up.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.28.76
 =======
 
