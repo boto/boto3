@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iotwireless``",
+  "description": "[``botocore``] Added LoRaWAN version 1.0.4 support"
+}
