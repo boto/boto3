@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iam``",
+  "description": "[``botocore``] Add partitional endpoint for iso-e."
+}
