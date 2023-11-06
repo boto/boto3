@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.28.79
+=======
+
+* api-change:``ce``: [``botocore``] This release extends the GetReservationPurchaseRecommendation API to support recommendations for Amazon MemoryDB reservations.
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports AWS Lambda compute.
+* api-change:``connect``: [``botocore``] Added new API that allows Amazon Connect Outbound Campaigns to create contacts in Amazon Connect when ingesting your dial requests.
+* api-change:``docdb``: [``botocore``] Update the input of CreateDBInstance and ModifyDBInstance to support setting CA Certificates. Update the output of DescribeDBInstance and DescribeDBEngineVersions to show current and supported CA certificates.
+* api-change:``iam``: [``botocore``] Add partitional endpoint for iso-e.
+* api-change:``mwaa``: [``botocore``] This release adds support for Apache Airflow version 2.7.2. This version release includes support for deferrable operators and triggers.
+* api-change:``polly``: [``botocore``] Amazon Polly adds new US English voices - Danielle and Gregory. Danielle and Gregory are available as Neural voices only.
+* api-change:``route53``: [``botocore``] Add partitional endpoints for iso-e and iso-f.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.28.78
 =======
 
