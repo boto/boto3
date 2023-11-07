@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.28.80
+=======
+
+* api-change:``dataexchange``: [``botocore``] Updated SendDataSetNotificationRequest Comment to be maximum length 4096.
+* api-change:``dlm``: [``botocore``] Added support for pre and post scripts in Amazon Data Lifecycle Manager EBS snapshot lifecycle policies.
+* api-change:``rds``: [``botocore``] This Amazon RDS release adds support for the multi-tenant configuration. In this configuration, an RDS DB instance can contain multiple tenant databases. In RDS for Oracle, a tenant database is a pluggable database (PDB).
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.28.79
 =======
 
