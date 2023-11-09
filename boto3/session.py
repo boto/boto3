@@ -46,6 +46,8 @@ class Session:
                          the default profile is used.
     :type aws_account_id: string
     :param aws_account_id: AWS account ID
+    :type aws_credential_scope: string
+    :param aws_credential_scope: AWS credential scope
     """
 
     def __init__(
@@ -57,6 +59,7 @@ class Session:
         botocore_session=None,
         profile_name=None,
         aws_account_id=None,
+        aws_credential_scope=None,
     ):
         if botocore_session is not None:
             self._session = botocore_session
@@ -85,6 +88,7 @@ class Session:
                 aws_secret_access_key,
                 aws_session_token,
                 aws_account_id,
+                aws_credential_scope,
             )
 
         if region_name is not None:
@@ -233,6 +237,7 @@ class Session:
         aws_session_token=None,
         config=None,
         aws_account_id=None,
+        aws_credential_scope=None,
     ):
         """
         Create a low-level service client by name.
@@ -304,6 +309,10 @@ class Session:
         :param aws_account_id: The AWS account ID to use when creating the
             client. Same semantics as aws_access_key_id above.
 
+        :type aws_credential_scope: string
+        :param aws_credential_scope: The AWS credential scope to use when
+            creating the client. Same semantics as aws_access_key_id above.
+
         :return: Service client instance
 
         """
@@ -319,6 +328,7 @@ class Session:
             aws_session_token=aws_session_token,
             config=config,
             aws_account_id=aws_account_id,
+            aws_credential_scope=aws_credential_scope,
         )
 
     def resource(
@@ -334,6 +344,7 @@ class Session:
         aws_session_token=None,
         config=None,
         aws_account_id=None,
+        aws_credential_scope=None,
     ):
         """
         Create a resource service client by name.
@@ -407,6 +418,10 @@ class Session:
         :param aws_account_id: The AWS account ID to use when creating the
             client. Same semantics as aws_access_key_id above.
 
+        :type aws_credential_scope: string
+        :param aws_credential_scope: The AWS credential scope to use when
+            creating the client. Same semantics as aws_access_key_id above.
+
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
         try:
@@ -472,6 +487,7 @@ class Session:
             aws_session_token=aws_session_token,
             config=config,
             aws_account_id=aws_account_id,
+            aws_credential_scope=aws_credential_scope,
         )
         service_model = client.meta.service_model
 

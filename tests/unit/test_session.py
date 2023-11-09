@@ -67,12 +67,13 @@ class TestSession(BaseTestCase):
             aws_secret_access_key='secret',
             aws_session_token='token',
             aws_account_id='account_id',
+            aws_credential_scope='scope',
         )
 
         assert self.bc_session_cls.called
         assert bc_session.set_credentials.called
         bc_session.set_credentials.assert_called_with(
-            'key', 'secret', 'token', 'account_id'
+            'key', 'secret', 'token', 'account_id', 'scope'
         )
 
     def test_can_get_credentials(self):
@@ -80,12 +81,14 @@ class TestSession(BaseTestCase):
         secret_key = 'bar'
         token = 'baz'
         account_id = 'account_id'
+        scope = 'scope'
 
         creds = mock.Mock()
         creds.access_key = access_key
         creds.secret_key = secret_key
         creds.token = token
         creds.account_id = account_id
+        creds.scope = scope
 
         bc_session = self.bc_session_cls.return_value
         bc_session.get_credentials.return_value = creds
@@ -95,6 +98,7 @@ class TestSession(BaseTestCase):
             aws_secret_access_key=secret_key,
             aws_session_token=token,
             aws_account_id=account_id,
+            aws_credential_scope=scope,
         )
 
         credentials = session.get_credentials()
@@ -102,6 +106,7 @@ class TestSession(BaseTestCase):
         assert credentials.secret_key == secret_key
         assert credentials.token == token
         assert credentials.account_id == account_id
+        assert credentials.scope == scope
 
     def test_profile_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
@@ -248,6 +253,7 @@ class TestSession(BaseTestCase):
             api_version=None,
             config=None,
             aws_account_id=None,
+            aws_credential_scope=None,
         )
 
     def test_create_resource_with_args(self):
@@ -277,6 +283,7 @@ class TestSession(BaseTestCase):
             api_version='2014-11-02',
             config=mock.ANY,
             aws_account_id=None,
+            aws_credential_scope=None,
         )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
@@ -310,6 +317,7 @@ class TestSession(BaseTestCase):
             api_version='2014-11-02',
             config=mock.ANY,
             aws_account_id=None,
+            aws_credential_scope=None,
         )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
@@ -343,6 +351,7 @@ class TestSession(BaseTestCase):
             api_version='2014-11-02',
             config=mock.ANY,
             aws_account_id=None,
+            aws_credential_scope=None,
         )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'foo'
