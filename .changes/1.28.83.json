@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``cloudformation``",
+    "description": "[``botocore``] Added new ConcurrencyMode feature for AWS CloudFormation StackSets for faster deployments to target accounts.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudtrail``",
+    "description": "[``botocore``] The Insights in Lake feature lets customers enable CloudTrail Insights on a source CloudTrail Lake event data store and create a destination event data store to collect Insights events based on unusual management event activity in the source event data store.",
+    "type": "api-change"
+  },
+  {
+    "category": "``comprehend``",
+    "description": "[``botocore``] This release adds support for toxicity detection and prompt safety classification.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release adds the ability to integrate customer lambda functions with Connect attachments for scanning and updates the ListIntegrationAssociations API to support filtering on IntegrationArn.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] AWS EBS now supports Block Public Access for EBS Snapshots. This release introduces the EnableSnapshotBlockPublicAccess, DisableSnapshotBlockPublicAccess and GetSnapshotBlockPublicAccessState APIs to manage account-level public access settings for EBS Snapshots in an AWS Region.",
+    "type": "api-change"
+  },
+  {
+    "category": "``eks``",
+    "description": "[``botocore``] Adding EKS Anywhere subscription related operations.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lambda``",
+    "description": "[``botocore``] Add Custom runtime on Amazon Linux 2023 (provided.al2023) support to AWS Lambda.",
+    "type": "api-change"
+  },
+  {
+    "category": "``logs``",
+    "description": "[``botocore``] Update to support new APIs for delivery of logs from AWS services.",
+    "type": "api-change"
+  },
+  {
+    "category": "``omics``",
+    "description": "[``botocore``] Support UBAM filetype for Omics Storage and make referenceArn optional",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  }
+]
