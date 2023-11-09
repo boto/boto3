@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``omics``",
+  "description": "[``botocore``] Support UBAM filetype for Omics Storage and make referenceArn optional"
+}
