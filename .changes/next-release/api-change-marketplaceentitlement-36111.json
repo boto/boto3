@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``marketplace-entitlement``",
+  "description": "[``botocore``] Update marketplace-entitlement client to latest version"
+}
