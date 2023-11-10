@@ -1,0 +1,47 @@
+[
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Update awscrt version to 0.19.10",
+    "type": "enhancement"
+  },
+  {
+    "category": "``controltower``",
+    "description": "[``botocore``] AWS Control Tower supports tagging for enabled controls. This release introduces TagResource, UntagResource and ListTagsForResource APIs to manage tags in existing enabled controls. It updates EnabledControl API to tag resources at creation time.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cur``",
+    "description": "[``botocore``] This release adds support for tagging and customers can now tag report definitions. Additionally, ReportStatus is now added to report definition to show when the last delivered time stamp and if it succeeded or not.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] EC2 adds API updates to enable ENA Express at instance launch time.",
+    "type": "api-change"
+  },
+  {
+    "category": "``fms``",
+    "description": "[``botocore``] Adds optimizeUnassociatedWebACL flag to ManagedServiceData, updates third-party firewall examples, and other minor documentation updates.",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-entitlement``",
+    "description": "[``botocore``] Update marketplace-entitlement client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconvert``",
+    "description": "[``botocore``] This release includes the ability to specify any input source as the primary input for corresponding follow modes, and allows users to specify fit and fill behaviors without resizing content.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Updates Amazon RDS documentation for zero-ETL integrations.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  }
+]
