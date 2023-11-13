@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dataexchange``",
+  "description": "[``botocore``] Removed Required trait for DataSet.OriginDetails.ProductId."
+}
