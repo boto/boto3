@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.28.85
+=======
+
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.19.12
+* api-change:``dataexchange``: [``botocore``] Removed Required trait for DataSet.OriginDetails.ProductId.
+* api-change:``dms``: [``botocore``] Added new Db2 LUW Target endpoint with related endpoint settings. New executeTimeout endpoint setting for mysql endpoint. New ReplicationDeprovisionTime field for serverless describe-replications.
+* api-change:``ec2``: [``botocore``] Adds the new EC2 DescribeInstanceTopology API, which you can use to retrieve the network topology of your running instances on select platform types to determine their relative proximity to each other.
+* api-change:``ecs``: [``botocore``] Adds a Client Token parameter to the ECS RunTask API. The Client Token parameter allows for idempotent RunTask requests.
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+* api-change:``servicecatalog-appregistry``: [``botocore``] When the customer associates a resource collection to their application with this new feature, then a new application tag will be applied to all supported resources that are part of that collection. This allows customers to more easily find the application that is associated with those resources.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.28.84
 =======
 
