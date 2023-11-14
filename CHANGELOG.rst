@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.29.0
+======
+
+* feature:ContainerProvider: [``botocore``] Added Support for EKS container credentials
+* api-change:``backup``: [``botocore``] AWS Backup - Features: Provide Job Summary for your backup activity.
+* api-change:``cleanrooms``: [``botocore``] This feature provides the ability for the collaboration creator to configure either the member who can run queries or a different member in the collaboration to be billed for query compute costs.
+* api-change:``connect``: [``botocore``] Introducing SegmentAttributes parameter for StartChatContact API
+* api-change:``glue``: [``botocore``] Introduces new storage optimization APIs to support automatic compaction of Apache Iceberg tables.
+* api-change:``iot``: [``botocore``] This release introduces new attributes in API CreateSecurityProfile, UpdateSecurityProfile and DescribeSecurityProfile to support management of Metrics Export for AWS IoT Device Defender Detect.
+* api-change:``lambda``: [``botocore``] Add Python 3.12 (python3.12) support to AWS Lambda
+* api-change:``mediatailor``: [``botocore``] Removed unnecessary default values.
+* api-change:``pipes``: [``botocore``] Added support (via new LogConfiguration field in CreatePipe and UpdatePipe APIs) for logging to Amazon CloudWatch Logs, Amazon Simple Storage Service (Amazon S3), and Amazon Kinesis Data Firehose
+* api-change:``resource-explorer-2``: [``botocore``] Resource Explorer supports multi-account search. You can now use Resource Explorer to search and discover resources across AWS accounts within your organization or organizational unit.
+* api-change:``sagemaker``: [``botocore``] This release makes Model Registry Inference Specification fields as not required.
+* api-change:``signer``: [``botocore``] Documentation updates for AWS Signer
+* api-change:``stepfunctions``: [``botocore``] Update stepfunctions client to latest version
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.28.85
 =======
 

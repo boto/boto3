@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediatailor``",
-  "description": "[``botocore``] Removed unnecessary default values."
-}
