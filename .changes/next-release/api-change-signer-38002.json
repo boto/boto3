@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``signer``",
+  "description": "[``botocore``] Documentation updates for AWS Signer"
+}
