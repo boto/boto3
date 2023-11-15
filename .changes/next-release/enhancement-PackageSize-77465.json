@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Package Size",
+  "description": "[``botocore``] The botocore .whl file distributed on PyPI now provides compressed service models to improve total size on disk."
+}
