@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``finspace``",
-  "description": "[``botocore``] Adding deprecated trait on Dataset Browser Environment APIs"
-}
