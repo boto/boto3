@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mgn``",
-  "description": "[``botocore``] Removed invalid and unnecessary default values."
-}

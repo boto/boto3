@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``internetmonitor``",
-  "description": "[``botocore``] Adds new querying capabilities for running data queries on a monitor"
-}
