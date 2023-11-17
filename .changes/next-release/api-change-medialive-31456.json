@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``medialive``",
+  "description": "[``botocore``] MediaLive has now added support for per-output static image overlay."
+}

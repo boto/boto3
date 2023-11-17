@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``verifiedpermissions``",
+  "description": "[``botocore``] Adding BatchIsAuthorized API which supports multiple authorization requests against a PolicyStore"
+}

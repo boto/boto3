@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``athena``",
+  "description": "[``botocore``] Adding SerivicePreProcessing time metric"
+}

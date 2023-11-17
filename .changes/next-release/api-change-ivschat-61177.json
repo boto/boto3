@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ivschat``",
+  "description": "[``botocore``] type & defaulting refinement to various range properties"
+}
