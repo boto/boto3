@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "sqs",
-  "description": "[``botocore``] Rolled back recent change to wire format protocol"
-}

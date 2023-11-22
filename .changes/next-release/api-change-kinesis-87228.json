@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kinesis``",
-  "description": "[``botocore``] This release adds support for resource based policies on streams and consumers."
-}
