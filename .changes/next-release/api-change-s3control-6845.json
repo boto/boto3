@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``s3control``",
+  "description": "[``botocore``] Amazon S3 Batch Operations now manages buckets or prefixes in a single step."
+}
