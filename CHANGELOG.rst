@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.29.6
+======
+
+* bugfix:sqs: [``botocore``] Rolled back recent change to wire format protocol
+* api-change:``kinesis``: [``botocore``] This release adds support for resource based policies on streams and consumers.
+* api-change:``s3control``: [``botocore``] Amazon S3 Batch Operations now manages buckets or prefixes in a single step.
+* api-change:``sagemaker``: [``botocore``] This feature adds the end user license agreement status as a model access configuration parameter.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.29.5
 ======
 
