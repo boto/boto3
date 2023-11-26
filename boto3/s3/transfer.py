@@ -232,7 +232,7 @@ class TransferConfig(S3TransferConfig):
         io_chunksize=256 * KB,
         use_threads=True,
         max_bandwidth=None,
-        preferred_transfer_client="auto",
+        preferred_transfer_client=constants.AUTO_RESOLVE_TRANSFER_CLIENT,
     ):
         """Configuration object for managed S3 transfers
 

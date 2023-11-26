@@ -10,10 +10,12 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import copy
 import pathlib
 from tempfile import NamedTemporaryFile
 
 import pytest
+from botocore.credentials import Credentials
 from s3transfer.futures import NonThreadedExecutor
 from s3transfer.manager import TransferManager
 
@@ -32,24 +34,47 @@ from boto3.s3.transfer import (
 from tests import mock, unittest
 
 
+def create_mock_client(region_name='us-west-2'):
+    client = mock.Mock()
+    client.meta.region_name = region_name
+    client._get_credentials.return_value = Credentials(
+        'access', 'secret', 'token'
+    )
+    return client
+
+
 class TestCreateTransferManager(unittest.TestCase):
     def test_create_transfer_manager(self):
-        client = object()
-        config = TransferConfig()
+        client = create_mock_client()
+        config = TransferConfig(preferred_transfer_client="classic")
         osutil = OSUtils()
         with mock.patch('boto3.s3.transfer.TransferManager') as manager:
             create_transfer_manager(client, config, osutil)
             assert manager.call_args == mock.call(client, config, osutil, None)
 
     def test_create_transfer_manager_with_no_threads(self):
-        client = object()
-        config = TransferConfig()
+        client = create_mock_client()
+        config = TransferConfig(preferred_transfer_client="classic")
         config.use_threads = False
         with mock.patch('boto3.s3.transfer.TransferManager') as manager:
             create_transfer_manager(client, config)
             assert manager.call_args == mock.call(
                 client, config, None, NonThreadedExecutor
             )
+
+    def test_create_transfer_manager_with_default_config(self):
+        """Ensure we still default to classic transfer manager when CRT
+        is disabled.
+        """
+        with mock.patch('boto3.s3.transfer.HAS_CRT', False):
+            client = create_mock_client()
+            config = TransferConfig()
+            assert config.preferred_transfer_client == "auto"
+            with mock.patch('boto3.s3.transfer.TransferManager') as manager:
+                create_transfer_manager(client, config)
+                assert manager.call_args == mock.call(
+                    client, config, None, None
+                )
 
 
 class TestTransferConfig(unittest.TestCase):
@@ -104,6 +129,7 @@ class TestTransferConfig(unittest.TestCase):
             io_chunksize=256 * KB,
             use_threads=True,
             max_bandwidth=1024 * KB,
+            preferred_transfer_client="classic",
         )
         assert config.multipart_threshold == 8 * MB
         assert config.multipart_chunksize == 8 * MB
@@ -113,6 +139,40 @@ class TestTransferConfig(unittest.TestCase):
         assert config.io_chunksize == 256 * KB
         assert config.use_threads is True
         assert config.max_bandwidth == 1024 * KB
+        assert config.preferred_transfer_client == "classic"
+
+    def test_transferconfig_copy(self):
+        config = TransferConfig(
+            multipart_threshold=8 * MB,
+            max_concurrency=10,
+            multipart_chunksize=8 * MB,
+            num_download_attempts=5,
+            max_io_queue=100,
+            io_chunksize=256 * KB,
+            use_threads=True,
+            max_bandwidth=1024 * KB,
+            preferred_transfer_client="classic",
+        )
+        copied_config = copy.copy(config)
+
+        assert config is not copied_config
+        assert config.multipart_threshold == copied_config.multipart_threshold
+        assert config.multipart_chunksize == copied_config.multipart_chunksize
+        assert (
+            config.max_request_concurrency
+            == copied_config.max_request_concurrency
+        )
+        assert (
+            config.num_download_attempts == copied_config.num_download_attempts
+        )
+        assert config.max_io_queue_size == copied_config.max_io_queue_size
+        assert config.io_chunksize == copied_config.io_chunksize
+        assert config.use_threads == copied_config.use_threads
+        assert config.max_bandwidth == copied_config.max_bandwidth
+        assert (
+            config.preferred_transfer_client
+            == copied_config.preferred_transfer_client
+        )
 
 
 class TestProgressCallbackInvoker(unittest.TestCase):
@@ -125,7 +185,7 @@ class TestProgressCallbackInvoker(unittest.TestCase):
 
 class TestS3Transfer(unittest.TestCase):
     def setUp(self):
-        self.client = mock.Mock()
+        self.client = create_mock_client()
         self.manager = mock.Mock(TransferManager(self.client))
         self.transfer = S3Transfer(manager=self.manager)
         self.callback = mock.Mock()
@@ -242,12 +302,14 @@ class TestS3Transfer(unittest.TestCase):
             self.transfer.upload_file('smallfile', 'bucket', 'key')
 
     def test_can_create_with_just_client(self):
-        transfer = S3Transfer(client=mock.Mock())
+        transfer = S3Transfer(client=create_mock_client())
         assert isinstance(transfer, S3Transfer)
 
     def test_can_create_with_extra_configurations(self):
         transfer = S3Transfer(
-            client=mock.Mock(), config=TransferConfig(), osutil=OSUtils()
+            client=create_mock_client(),
+            config=TransferConfig(),
+            osutil=OSUtils(),
         )
         assert isinstance(transfer, S3Transfer)
 
@@ -268,12 +330,12 @@ class TestS3Transfer(unittest.TestCase):
             S3Transfer(osutil=mock.Mock(), manager=self.manager)
 
     def test_upload_requires_string_filename(self):
-        transfer = S3Transfer(client=mock.Mock())
+        transfer = S3Transfer(client=create_mock_client())
         with pytest.raises(ValueError):
             transfer.upload_file(filename=object(), bucket='foo', key='bar')
 
     def test_download_requires_string_filename(self):
-        transfer = S3Transfer(client=mock.Mock())
+        transfer = S3Transfer(client=create_mock_client())
         with pytest.raises(ValueError):
             transfer.download_file(bucket='foo', key='bar', filename=object())
 
