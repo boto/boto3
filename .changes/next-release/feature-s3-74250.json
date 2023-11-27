@@ -1,0 +1,5 @@
+{
+  "type": "feature",
+  "category": "``s3``",
+  "description": "Boto3 will now opt into using the awscrt on select EC2 instance types for s3 transfers."
+}
