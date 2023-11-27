@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``personalize-runtime``",
-  "description": "[``botocore``] Enables metadata in recommendations and next best action recommendations"
-}

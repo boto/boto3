@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``controltower``",
-  "description": "[``botocore``] Add APIs to create and manage a landing zone."
-}
