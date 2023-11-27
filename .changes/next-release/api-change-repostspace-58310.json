@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``repostspace``",
+  "description": "[``botocore``] Initial release of AWS re:Post Private"
+}
