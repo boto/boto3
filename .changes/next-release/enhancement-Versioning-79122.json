@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Versioning",
+  "description": "Bump boto3 from 1.29.7 to 1.33.0 to match Botocore versioning scheme."
+}
