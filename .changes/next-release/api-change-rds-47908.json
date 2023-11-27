@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Updates Amazon RDS documentation for support for RDS for Db2."
-}
