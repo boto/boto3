@@ -16,6 +16,8 @@ import time
 import unittest
 from unittest import mock
 
+from botocore.compat import HAS_CRT
+
 
 def unique_id(name):
     """
@@ -50,3 +52,13 @@ class BaseTestCase(unittest.TestCase):
 
     def tearDown(self):
         self.bc_session_patch.stop()
+
+
+def requires_crt(reason=None):
+    if reason is None:
+        reason = "Test requires awscrt to be installed"
+
+    def decorator(func):
+        return unittest.skipIf(not HAS_CRT, reason)(func)
+
+    return decorator
