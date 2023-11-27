@@ -32,8 +32,8 @@ from s3transfer.crt import (
 )
 
 # Singletons for CRT-backed transfers
-_CRT_S3_CLIENT = None
-_BOTOCORE_CRT_SERIALIZER = None
+CRT_S3_CLIENT = None
+BOTOCORE_CRT_SERIALIZER = None
 
 CLIENT_CREATION_LOCK = threading.Lock()
 PROCESS_LOCK_NAME = 'boto3'
@@ -59,15 +59,10 @@ def _create_crt_request_serializer(session, region_name):
     )
 
 
-def _create_crt_s3_client(session, config, region_name, credentials, **kwargs):
+def _create_crt_s3_client(
+    session, config, region_name, credentials, lock, **kwargs
+):
     """Create boto3 wrapper class to manage crt lock reference and S3 client."""
-    lock = acquire_crt_s3_process_lock(PROCESS_LOCK_NAME)
-    if lock is None:
-        # If we're unable to acquire the lock, we cannot
-        # use the CRT in this process and should default to
-        # the classic s3transfer manager.
-        return None
-
     cred_wrapper = BotocoreCRTCredentialsWrapper(credentials)
     cred_provider = cred_wrapper.to_crt_credentials_provider()
     return CRTS3Client(
@@ -79,30 +74,37 @@ def _create_crt_s3_client(session, config, region_name, credentials, **kwargs):
 
 
 def _initialize_crt_transfer_primatives(client, config):
+    lock = acquire_crt_s3_process_lock(PROCESS_LOCK_NAME)
+    if lock is None:
+        # If we're unable to acquire the lock, we cannot
+        # use the CRT in this process and should default to
+        # the classic s3transfer manager.
+        return None, None
+
     session = Session()
     region_name = client.meta.region_name
     credentials = client._get_credentials()
 
     serializer = _create_crt_request_serializer(session, region_name)
     s3_client = _create_crt_s3_client(
-        session, config, region_name, credentials
+        session, config, region_name, credentials, lock
     )
     return serializer, s3_client
 
 
 def get_crt_s3_client(client, config):
-    global _CRT_S3_CLIENT
-    global _BOTOCORE_CRT_SERIALIZER
+    global CRT_S3_CLIENT
+    global BOTOCORE_CRT_SERIALIZER
 
     with CLIENT_CREATION_LOCK:
-        if _CRT_S3_CLIENT is None:
+        if CRT_S3_CLIENT is None:
             serializer, s3_client = _initialize_crt_transfer_primatives(
                 client, config
             )
-            _BOTOCORE_CRT_SERIALIZER = serializer
-            _CRT_S3_CLIENT = s3_client
+            BOTOCORE_CRT_SERIALIZER = serializer
+            CRT_S3_CLIENT = s3_client
 
-    return _CRT_S3_CLIENT
+    return CRT_S3_CLIENT
 
 
 class CRTS3Client:
@@ -125,15 +127,19 @@ class CRTS3Client:
 def is_crt_compatible_request(client, crt_s3_client):
     """
     Boto3 client must use same signing region and credentials
-    as the _CRT_S3_CLIENT singleton. Otherwise fallback to classic.
+    as the CRT_S3_CLIENT singleton. Otherwise fallback to classic.
     """
     if crt_s3_client is None:
         return False
 
-    is_same_region = client.meta.region_name == crt_s3_client.region
+    boto3_creds = client._get_credentials()
+    if boto3_creds is None:
+        return False
+
     is_same_identity = compare_identity(
-        client._get_credentials(), crt_s3_client.cred_provider
+        boto3_creds.get_frozen_credentials(), crt_s3_client.cred_provider
     )
+    is_same_region = client.meta.region_name == crt_s3_client.region
     return is_same_region and is_same_identity
 
 
@@ -156,6 +162,6 @@ def create_crt_transfer_manager(client, config):
     crt_s3_client = get_crt_s3_client(client, config)
     if is_crt_compatible_request(client, crt_s3_client):
         return CRTTransferManager(
-            crt_s3_client.crt_client, _BOTOCORE_CRT_SERIALIZER
+            crt_s3_client.crt_client, BOTOCORE_CRT_SERIALIZER
         )
     return None
