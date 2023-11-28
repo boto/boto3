@@ -199,11 +199,8 @@ def _should_use_crt(config):
 
     logger.debug(
         "Opting out of CRT Transfer Manager. Preferred client: "
-        "{pref_transfer_client}, CRT available: {HAS_CRT}, "
-        "Instance Optimized: {is_optimized_instance}.",
-        pref_transfer_client,
-        HAS_CRT,
-        is_optimized_instance,
+        f"{pref_transfer_client}, CRT available: {HAS_CRT}, "
+        f"Instance Optimized: {is_optimized_instance}."
     )
     return False
 
