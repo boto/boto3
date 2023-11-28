@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.33.2
+======
+
+* api-change:``accessanalyzer``: [``botocore``] This release adds support for external access findings for S3 directory buckets to help you easily identify cross-account access. Updated service API, documentation, and paginators.
+* api-change:``bedrock-agent-runtime``: [``botocore``] This release introduces Agents for Amazon Bedrock Runtime
+* api-change:``bedrock-agent``: [``botocore``] This release introduces Agents for Amazon Bedrock
+* api-change:``bedrock-runtime``: [``botocore``] This release adds support for minor versions/aliases for invoke model identifier.
+* api-change:``bedrock``: [``botocore``] This release adds support for customization types, model life cycle status and minor versions/aliases for model identifiers.
+* api-change:``connect``: [``botocore``] Added support for following capabilities: Amazon Connect's in-app, web, and video calling. Two-way SMS integrations. Contact Lens real-time chat analytics feature. Amazon Connect Analytics Datalake capability. Capability to configure real time chat rules.
+* api-change:``customer-profiles``: [``botocore``] This release introduces DetectProfileObjectType API to auto generate object type mapping.
+* api-change:``qbusiness``: [``botocore``] Amazon Q - a generative AI powered application that your employees can use to ask questions and get answers from knowledge spread across disparate content repositories, summarize reports, write articles, take actions, and much more - all within their company's connected content repositories.
+* api-change:``qconnect``: [``botocore``] Amazon Q in Connect, an LLM-enhanced evolution of Amazon Connect Wisdom. This release adds generative AI support to Amazon Q Connect QueryAssistant and GetRecommendations APIs.
+* api-change:``s3``: [``botocore``] Adds support for S3 Express One Zone.
+* api-change:``s3control``: [``botocore``] Adds support for S3 Express One Zone, and InvocationSchemaVersion 2.0 for S3 Batch Operations.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.33.1
 ======
 
