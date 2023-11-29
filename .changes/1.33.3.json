@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``application-autoscaling``",
+    "description": "[``botocore``] Amazon SageMaker customers can now use Application Auto Scaling to automatically scale the number of Inference Component copies across an endpoint to meet the varying demand of their workloads.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] AWS Clean Rooms now provides differential privacy to protect against user-identification attempts and machine learning modeling to allow two parties to identify similar users in their data.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cleanroomsml``",
+    "description": "[``botocore``] Public Preview SDK release of AWS Clean Rooms ML APIs",
+    "type": "api-change"
+  },
+  {
+    "category": "``opensearch``",
+    "description": "[``botocore``] Launching Amazon OpenSearch Service support for new zero-ETL integration with Amazon S3. Customers can now manage their direct query data sources to Amazon S3 programatically",
+    "type": "api-change"
+  },
+  {
+    "category": "``opensearchserverless``",
+    "description": "[``botocore``] Amazon OpenSearch Serverless collections support an additional attribute called standby-replicas. This allows to specify whether a collection should have redundancy enabled.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-runtime``",
+    "description": "[``botocore``] Update sagemaker-runtime client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] This release adds following support 1/ Improved SDK tooling for model deployment. 2/ New Inference Component based features to lower inference costs and latency 3/ SageMaker HyperPod management. 4/ Additional parameters for FM Fine Tuning in Autopilot",
+    "type": "api-change"
+  },
+  {
+    "category": "``sts``",
+    "description": "[``botocore``] Documentation updates for AWS Security Token Service.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  }
+]
