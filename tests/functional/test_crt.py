@@ -16,7 +16,11 @@ from contextlib import ContextDecorator
 from botocore.compat import HAS_CRT
 from botocore.credentials import Credentials
 
-from boto3.s3.transfer import TransferConfig, create_transfer_manager
+from boto3.s3.transfer import (
+    TransferConfig,
+    create_transfer_manager,
+    has_minimum_crt_version,
+)
 from tests import mock, requires_crt
 
 if HAS_CRT:
@@ -62,3 +66,14 @@ class TestS3TransferWithCRT:
         config = TransferConfig()
         transfer_manager = create_transfer_manager(client, config)
         assert isinstance(transfer_manager, CRTTransferManager)
+
+    @requires_crt()
+    def test_minimum_crt_version(self):
+        assert has_minimum_crt_version((0, 16, 12)) is True
+
+    @requires_crt()
+    def test_minimum_crt_version_bad_crt_version(self):
+        with mock.patch("awscrt.__version__") as vers:
+            vers.return_value = None
+
+            assert has_minimum_crt_version((0, 16, 12)) is False
