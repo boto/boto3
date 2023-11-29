@@ -182,7 +182,8 @@ def create_transfer_manager(client, config, osutil=None):
 
 
 def _should_use_crt(config):
-    if HAS_CRT:
+    # This feature requires awscrt>=0.19.17
+    if HAS_CRT and has_minimum_crt_version((0, 19, 17)):
         is_optimized_instance = awscrt.s3.is_optimized_for_system()
     else:
         is_optimized_instance = False
@@ -203,6 +204,21 @@ def _should_use_crt(config):
         f"Instance Optimized: {is_optimized_instance}."
     )
     return False
+
+
+def has_minimum_crt_version(minimum_version):
+    """Not intended for use outside boto3."""
+    if not HAS_CRT:
+        return False
+
+    crt_version_str = awscrt.__version__
+    try:
+        crt_version_ints = map(int, crt_version_str.split("."))
+        crt_version_tuple = tuple(crt_version_ints)
+    except (TypeError, ValueError):
+        return False
+
+    return crt_version_tuple >= minimum_version
 
 
 def _create_default_transfer_manager(client, config, osutil):
