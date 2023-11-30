@@ -13,6 +13,7 @@
 
 from contextlib import ContextDecorator
 
+import pytest
 from botocore.compat import HAS_CRT
 from botocore.credentials import Credentials
 
@@ -71,9 +72,18 @@ class TestS3TransferWithCRT:
     def test_minimum_crt_version(self):
         assert has_minimum_crt_version((0, 16, 12)) is True
 
+    @pytest.mark.parametrize(
+        "bad_version",
+        (
+            None,
+            "0.1.0-dev",
+            "0.20",
+            object(),
+        ),
+    )
     @requires_crt()
-    def test_minimum_crt_version_bad_crt_version(self):
+    def test_minimum_crt_version_bad_crt_version(self, bad_version):
         with mock.patch("awscrt.__version__") as vers:
-            vers.return_value = None
+            vers.return_value = bad_version
 
             assert has_minimum_crt_version((0, 16, 12)) is False
