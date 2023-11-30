@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``s3transfer``",
+  "description": "Raise floor for ``s3transfer`` to 0.8.2 to avoid any conflicts with the awscrt"
+}
