@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.33.7
+======
+
+* api-change:``billingconductor``: [``botocore``] This release adds the ability to specify a linked account of the billing group for the custom line item resource.
+* api-change:``braket``: [``botocore``] This release enhances service support to create quantum tasks and hybrid jobs associated with Braket Direct Reservations.
+* api-change:``cloud9``: [``botocore``] This release adds the requirement to include the imageId parameter in the CreateEnvironmentEC2 API call.
+* api-change:``cloudformation``: [``botocore``] Including UPDATE_* states as a success status for CreateStack waiter.
+* api-change:``finspace``: [``botocore``] Release General Purpose type clusters
+* api-change:``medialive``: [``botocore``] Adds support for custom color correction on channels using 3D LUT files.
+* api-change:``servicecatalog-appregistry``: [``botocore``] Documentation-only updates for Dawn
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.33.6
 ======
 
