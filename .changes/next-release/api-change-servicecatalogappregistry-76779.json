@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``servicecatalog-appregistry``",
+  "description": "[``botocore``] Documentation-only updates for Dawn"
+}
