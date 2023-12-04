@@ -28,7 +28,6 @@ def document_model_driven_resource_method(
     resource_action_model=None,
     include_signature=True,
 ):
-
     document_model_driven_method(
         section=section,
         method_name=method_name,

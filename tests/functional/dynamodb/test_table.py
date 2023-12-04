@@ -19,7 +19,6 @@ from tests import unittest
 
 
 class TestTableResourceCustomizations(unittest.TestCase):
-
     maxDiff = None
 
     def setUp(self):

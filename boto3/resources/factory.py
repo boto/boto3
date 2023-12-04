@@ -370,6 +370,7 @@ class ResourceFactory:
         Creates a new property on the resource to lazy-load its value
         via the resource's ``load`` method (if it exists).
         """
+
         # The property loader will check to see if this resource has already
         # been loaded and return the cached value if possible. If not, then
         # it first checks to see if it CAN be loaded (raise if not), then
