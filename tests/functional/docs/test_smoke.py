@@ -74,7 +74,6 @@ def test_documentation(
     # If the service has resources, make sure the service resource
     # is at least documented.
     if service_name in available_resources:
-
         resource = boto3.resource(service_name, 'us-east-1')
         _assert_has_resource_documentation(
             generated_docs, service_name, resource
