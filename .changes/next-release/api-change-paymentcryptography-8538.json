@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``payment-cryptography``",
-  "description": "[``botocore``] AWS Payment Cryptography IPEK feature release"
-}
