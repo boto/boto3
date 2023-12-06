@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.33.9
+======
+
+* api-change:``backup``: [``botocore``] AWS Backup - Features: Add VaultType to the output of DescribeRecoveryPoint, ListRecoveryPointByBackupVault API and add ResourceType to the input of ListRestoreJobs API
+* api-change:``comprehend``: [``botocore``] Documentation updates for Trust and Safety features.
+* api-change:``connect``: [``botocore``] Releasing Tagging Support for Instance Management APIS
+* api-change:``ec2``: [``botocore``] Releasing the new cpuManufacturer attribute within the DescribeInstanceTypes API response which notifies our customers with information on who the Manufacturer is for the processor attached to the instance, for example: Intel.
+* api-change:``payment-cryptography``: [``botocore``] AWS Payment Cryptography IPEK feature release
+
+
 1.33.8
 ======
 
