@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``connect``",
+  "description": "[``botocore``] Releasing Tagging Support for Instance Management APIS"
+}
