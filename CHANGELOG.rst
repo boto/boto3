@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.33.10
+=======
+
+* api-change:``codedeploy``: [``botocore``] This release adds support for two new CodeDeploy features: 1) zonal deployments for Amazon EC2 in-place deployments, 2) deployments triggered by Auto Scaling group termination lifecycle hook events.
+
+
 1.33.9
 ======
 
