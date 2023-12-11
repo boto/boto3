@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.33.12
+=======
+
+* api-change:``neptune``: [``botocore``] This release adds a new parameter configuration setting to the Neptune cluster related APIs that can be leveraged to switch between the underlying supported storage modes.
+* api-change:``pinpoint``: [``botocore``] This release includes Amazon Pinpoint API documentation updates pertaining to campaign message sending rate limits.
+* api-change:``securityhub``: [``botocore``] Added new resource detail objects to ASFF, including resources for AwsDynamoDbTable, AwsEc2ClientVpnEndpoint, AwsMskCluster, AwsS3AccessPoint, AwsS3Bucket
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.33.11
 =======
 
