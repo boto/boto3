@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``drs``",
+  "description": "[``botocore``] Adding AgentVersion to SourceServer and RecoveryInstance structures"
+}
