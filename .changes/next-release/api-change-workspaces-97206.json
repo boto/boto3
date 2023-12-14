@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``workspaces``",
+  "description": "[``botocore``] Updated note to ensure customers understand running modes."
+}
