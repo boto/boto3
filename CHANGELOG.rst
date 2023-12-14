@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.34.1
+======
+
+* api-change:``appstream``: [``botocore``] This release includes support for images of Windows Server 2022 platform.
+* api-change:``b2bi``: [``botocore``] Documentation updates for AWS B2B Data Interchange
+* api-change:``billingconductor``: [``botocore``] Billing Conductor is releasing a new API, GetBillingGroupCostReport, which provides the ability to retrieve/view the Billing Group Cost Report broken down by attributes for a specific billing group.
+* api-change:``connect``: [``botocore``] This release adds support for more granular billing using tags (key:value pairs)
+* api-change:``controltower``: [``botocore``] Documentation updates for AWS Control Tower.
+* api-change:``firehose``: [``botocore``] This release, 1) adds configurable buffering hints for the Splunk destination, and 2) reduces the minimum configurable buffering interval for supported destinations
+* api-change:``gamelift``: [``botocore``] Amazon GameLift adds the ability to add and update the game properties of active game sessions.
+* api-change:``iot``: [``botocore``] This release adds the ability to self-manage certificate signing in AWS IoT Core fleet provisioning using the new certificate provider resource.
+* api-change:``neptune-graph``: [``botocore``] This is the initial SDK release for Amazon Neptune Analytics
+* api-change:``opensearch``: [``botocore``] Updating documentation for Amazon OpenSearch Service support for new zero-ETL integration with Amazon S3.
+* api-change:``quicksight``: [``botocore``] Update Dashboard Links support; SingleAxisOptions support; Scatterplot Query limit support.
+* api-change:``workspaces``: [``botocore``] Updated note to ensure customers understand running modes.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.34.0
 ======
 
