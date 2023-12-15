@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.2
+======
+
+* api-change:``cloud9``: [``botocore``] Updated Cloud9 API documentation for AL2023 release
+* api-change:``connect``: [``botocore``] Adds relatedContactId field to StartOutboundVoiceContact API input. Introduces PauseContact API and ResumeContact API for Task contacts. Adds pause duration, number of pauses, timestamps for last paused and resumed events to DescribeContact API response. Adds new Rule type and new Rule action.
+* api-change:``connectcases``: [``botocore``] Increase number of fields that can be included in CaseEventIncludedData from 50 to 200
+* api-change:``kms``: [``botocore``] Documentation updates for AWS Key Management Service
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation by adding code examples
+* api-change:``sagemaker``: [``botocore``] This release 1) introduces a new API: DeleteCompilationJob , and 2) adds InfraCheckConfig for Create/Describe training job API
+
+
 1.34.1
 ======
 
