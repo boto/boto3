@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.3
+======
+
+* api-change:``cognito-idp``: [``botocore``] Amazon Cognito now supports trigger versions that define the fields in the request sent to pre token generation Lambda triggers.
+* api-change:``eks``: [``botocore``] Add support for EKS Cluster Access Management.
+* api-change:``quicksight``: [``botocore``] A docs-only release to add missing entities to the API reference.
+* api-change:``route53resolver``: [``botocore``] Add DOH protocols in resolver endpoints.
+
+
 1.34.2
 ======
 
