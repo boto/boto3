@@ -29,7 +29,7 @@ jobs:
 
         # These labels are required
         stale-issue-label: closing-soon
-        exempt-issue-labels: automation-exempt,needs-review,bug
+        exempt-issue-labels: automation-exempt,needs-review
         response-requested-label: response-requested
 
         # Don't set closed-for-staleness label to skip closing very old issues
