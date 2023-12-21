@@ -182,8 +182,8 @@ def create_transfer_manager(client, config, osutil=None):
 
 
 def _should_use_crt(config):
-    # This feature requires awscrt>=0.19.17
-    if HAS_CRT and has_minimum_crt_version((0, 19, 17)):
+    # This feature requires awscrt>=0.19.18
+    if HAS_CRT and has_minimum_crt_version((0, 19, 18)):
         is_optimized_instance = awscrt.s3.is_optimized_for_system()
     else:
         is_optimized_instance = False
