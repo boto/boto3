@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent``",
-  "description": "[``botocore``] Adding Claude 2.1 support to Bedrock Agents"
-}
