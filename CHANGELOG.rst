@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.7
+======
+
+* api-change:``bedrock-agent``: [``botocore``] Adding Claude 2.1 support to Bedrock Agents
+* api-change:``glue``: [``botocore``] This release adds additional configurations for Query Session Context on the following APIs: GetUnfilteredTableMetadata, GetUnfilteredPartitionMetadata, GetUnfilteredPartitionsMetadata.
+* api-change:``lakeformation``: [``botocore``] This release adds additional configurations on GetTemporaryGlueTableCredentials for Query Session Context.
+* api-change:``mediaconnect``: [``botocore``] This release adds the DescribeSourceMetadata API. This API can be used to view the stream information of the flow's source.
+* api-change:``networkmonitor``: [``botocore``] CloudWatch Network Monitor is a new service within CloudWatch that will help network administrators and operators continuously monitor network performance metrics such as round-trip-time and packet loss between their AWS-hosted applications and their on-premises locations.
+* api-change:``omics``: [``botocore``] Provides minor corrections and an updated description of APIs.
+* api-change:``secretsmanager``: [``botocore``] Update endpoint rules and examples.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.34.6
 ======
 
