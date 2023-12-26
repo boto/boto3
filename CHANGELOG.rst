@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.8
+======
+
+* api-change:``iam``: [``botocore``] Documentation updates for AWS Identity and Access Management (IAM).
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.34.7
 ======
 
