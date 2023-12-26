@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iam``",
+  "description": "[``botocore``] Documentation updates for AWS Identity and Access Management (IAM)."
+}
