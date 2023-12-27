@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.34.9
+======
+
+* api-change:``emr``: [``botocore``] Update emr client to latest version
+
+
 1.34.8
 ======
 
