@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.10
+=======
+
+* api-change:``codestar-connections``: [``botocore``] New integration with the GitLab self-managed provider type.
+* api-change:``kinesis-video-archived-media``: [``botocore``] NoDataRetentionException thrown when GetImages requested for a Stream that does not retain data (that is, has a DataRetentionInHours of 0).
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Studio now supports Docker access from within app container
+
+
 1.34.9
 ======
 
