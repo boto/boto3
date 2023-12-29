@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.11
+=======
+
+* api-change:``apprunner``: [``botocore``] AWS App Runner adds Python 3.11 and Node.js 18 runtimes.
+* api-change:``location``: [``botocore``] This release introduces a new parameter to bypasses an API key's expiry conditions and delete the key.
+* api-change:``quicksight``: [``botocore``] Add LinkEntityArn support for different partitions; Add UnsupportedUserEditionException in UpdateDashboardLinks API; Add support for New Reader Experience Topics
+
+
 1.34.10
 =======
 
