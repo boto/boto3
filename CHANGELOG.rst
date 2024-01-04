@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.34.13
+=======
+
+* api-change:``config``: [``botocore``] Updated ResourceType enum with new resource types onboarded by AWS Config in November and December 2023.
+* api-change:``docdb``: [``botocore``] Adding PerformanceInsightsEnabled and PerformanceInsightsKMSKeyId fields to DescribeDBInstances Response.
+* api-change:``ecs``: [``botocore``] This release adds support for managed instance draining which facilitates graceful termination of Amazon ECS instances.
+* api-change:``es``: [``botocore``] This release adds support for new or existing Amazon OpenSearch domains to enable TLS 1.3 or TLS 1.2 with perfect forward secrecy cipher suites for domain endpoints.
+* api-change:``lightsail``: [``botocore``] This release adds support to set up an HTTPS endpoint on an instance.
+* api-change:``opensearch``: [``botocore``] This release adds support for new or existing Amazon OpenSearch domains to enable TLS 1.3 or TLS 1.2 with perfect forward secrecy cipher suites for domain endpoints.
+* api-change:``sagemaker``: [``botocore``] Adding support for provisioned throughput mode for SageMaker Feature Groups
+* api-change:``servicecatalog``: [``botocore``] Added Idempotency token support to Service Catalog  AssociateServiceActionWithProvisioningArtifact, DisassociateServiceActionFromProvisioningArtifact, DeleteServiceAction API
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.34.12
 =======
 
