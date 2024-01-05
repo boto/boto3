@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.14
+=======
+
+* api-change:``connect``: [``botocore``] Minor trait updates for User APIs
+* api-change:``kms``: [``botocore``] Documentation updates for AWS Key Management Service (KMS).
+* api-change:``redshift-serverless``: [``botocore``] use_fips_ssl and require_ssl parameter support for Workgroup, UpdateWorkgroup, and CreateWorkgroup
+
+
 1.34.13
 =======
 
