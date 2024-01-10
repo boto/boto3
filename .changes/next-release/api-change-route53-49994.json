@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53``",
-  "description": "[``botocore``] Route53 now supports geoproximity routing in AWS regions"
-}
