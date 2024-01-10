@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``connectcampaigns``",
+  "description": "[``botocore``] Minor pattern updates for Campaign and Dial Request API fields."
+}
