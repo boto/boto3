@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iot``",
-  "description": "[``botocore``] Add ConflictException to Update APIs of AWS IoT Software Package Catalog"
-}
