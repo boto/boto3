@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.18
+=======
+
+* api-change:``connect``: [``botocore``] Supervisor Barge for Chat is now supported through the MonitorContact API.
+* api-change:``connectparticipant``: [``botocore``] Introduce new Supervisor participant role
+* api-change:``location``: [``botocore``] Location SDK documentation update. Added missing fonts to the MapConfiguration data type. Updated note for the SubMunicipality property in the place data type.
+* api-change:``mwaa``: [``botocore``] This Amazon MWAA feature release includes new fields in CreateWebLoginToken response model. The new fields IamIdentity and AirflowIdentity will let you match identifications, as the Airflow identity length is currently hashed to 64 characters.
+* api-change:``s3control``: [``botocore``] S3 On Outposts team adds dualstack endpoints support for S3Control and S3Outposts API calls.
+* api-change:``supplychain``: [``botocore``] This release includes APIs CreateBillOfMaterialsImportJob and GetBillOfMaterialsImportJob.
+* api-change:``transfer``: [``botocore``] AWS Transfer Family now supports static IP addresses for SFTP & AS2 connectors and for async MDNs on AS2 servers.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.34.17
 =======
 
