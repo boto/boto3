@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.20
+=======
+
+* api-change:``iot``: [``botocore``] Revert release of LogTargetTypes
+* api-change:``iotfleetwise``: [``botocore``] Updated APIs: SignalNodeType query parameter has been added to ListSignalCatalogNodesRequest and ListVehiclesResponse has been extended with attributes field.
+* api-change:``macie2``: [``botocore``] This release adds support for analyzing Amazon S3 objects that are encrypted using dual-layer server-side encryption with AWS KMS keys (DSSE-KMS). It also adds support for reporting DSSE-KMS details in statistics and metadata about encryption settings for S3 buckets and objects.
+* api-change:``payment-cryptography``: [``botocore``] Provide an additional option for key exchange using RSA wrap/unwrap in addition to tr-34/tr-31 in ImportKey and ExportKey operations. Added new key usage (type) TR31_M1_ISO_9797_1_MAC_KEY, for use with Generate/VerifyMac dataplane operations  with ISO9797 Algorithm 1 MAC calculations.
+* api-change:``personalize-runtime``: [``botocore``] Documentation updates for Amazon Personalize
+* api-change:``personalize``: [``botocore``] Documentation updates for Amazon Personalize.
+* api-change:``rekognition``: [``botocore``] This release adds ContentType and TaxonomyLevel attributes to DetectModerationLabels and GetMediaAnalysisJob API responses.
+* api-change:``securityhub``: [``botocore``] Documentation updates for AWS Security Hub
+
+
 1.34.19
 =======
 

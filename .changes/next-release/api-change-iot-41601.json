@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iot``",
-  "description": "[``botocore``] Revert release of LogTargetTypes"
-}
