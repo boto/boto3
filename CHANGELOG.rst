@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.21
+=======
+
+* api-change:``dynamodb``: [``botocore``] Updating note for enabling streams for UpdateTable.
+* api-change:``keyspaces``: [``botocore``] This release adds support for Multi-Region Replication with provisioned tables, and Keyspaces auto scaling APIs
+
+
 1.34.20
 =======
 
