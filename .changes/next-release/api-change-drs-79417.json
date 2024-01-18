@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``drs``",
-  "description": "[``botocore``] Removed invalid and unnecessary default values."
-}

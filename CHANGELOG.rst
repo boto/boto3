@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.22
+=======
+
+* api-change:``b2bi``: [``botocore``] Increasing TestMapping inputFileContent file size limit to 5MB and adding file size limit 250KB for TestParsing input file. This release also includes exposing InternalServerException for Tag APIs.
+* api-change:``cloudtrail``: [``botocore``] This release adds a new API ListInsightsMetricData to retrieve metric data from CloudTrail Insights.
+* api-change:``connect``: [``botocore``] GetMetricDataV2 now supports 3 groupings
+* api-change:``drs``: [``botocore``] Removed invalid and unnecessary default values.
+* api-change:``firehose``: [``botocore``] Allow support for Snowflake as a Kinesis Data Firehose delivery destination.
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] Increase BatchGetRecord limits from 10 items to 100 items
+
+
 1.34.21
 =======
 
