@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``qconnect``",
-  "description": "[``botocore``] Increased Quick Response name max length to 100"
-}
