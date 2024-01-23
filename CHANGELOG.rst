@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.34.26
+=======
+
+* api-change:``inspector2``: [``botocore``] This release adds support for CIS scans on EC2 instances.
+
+
 1.34.25
 =======
 
