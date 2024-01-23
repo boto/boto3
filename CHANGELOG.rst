@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.34.25
+=======
+
+* enhancement:documentation: [``botocore``] Updates the GitHub issue creation link in our README
+
+
 1.34.24
 =======
 
