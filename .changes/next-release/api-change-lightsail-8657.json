@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lightsail``",
-  "description": "[``botocore``] This release adds support for IPv6-only instance plans."
-}
