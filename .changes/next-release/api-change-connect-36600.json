@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``connect``",
+  "description": "[``botocore``] Update list and string length limits for predefined attributes."
+}
