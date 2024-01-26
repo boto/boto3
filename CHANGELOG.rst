@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.29
+=======
+
+* api-change:``connect``: [``botocore``] Update list and string length limits for predefined attributes.
+* api-change:``inspector2``: [``botocore``] This release adds ECR container image scanning based on their lastRecordedPullTime.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Automatic Model Tuning now provides an API to programmatically delete tuning jobs.
+
+
 1.34.28
 =======
 
