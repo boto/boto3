@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.30
+=======
+
+* api-change:``autoscaling``: [``botocore``] EC2 Auto Scaling customers who use attribute based instance-type selection can now intuitively define their Spot instances price protection limit as a percentage of the lowest priced On-Demand instance type.
+* api-change:``comprehend``: [``botocore``] Comprehend PII analysis now supports Spanish input documents.
+* api-change:``ec2``: [``botocore``] EC2 Fleet customers who use attribute based instance-type selection can now intuitively define their Spot instances price protection limit as a percentage of the lowest priced On-Demand instance type.
+* api-change:``mwaa``: [``botocore``] This release adds MAINTENANCE environment status for Amazon MWAA environments.
+* api-change:``rds``: [``botocore``] Introduced support for the InsufficientDBInstanceCapacityFault error in the RDS RestoreDBClusterFromSnapshot and RestoreDBClusterToPointInTime API methods. This provides enhanced error handling, ensuring a more robust experience.
+* api-change:``snowball``: [``botocore``] Modified description of createaddress to include direction to add path when providing a JSON file.
+
+
 1.34.29
 =======
 
