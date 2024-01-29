@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``comprehend``",
-  "description": "[``botocore``] Comprehend PII analysis now supports Spanish input documents."
-}
