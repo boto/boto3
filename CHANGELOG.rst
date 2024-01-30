@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.31
+=======
+
+* api-change:``datazone``: [``botocore``] Add new skipDeletionCheck to DeleteDomain. Add new skipDeletionCheck to DeleteProject which also automatically deletes dependent objects
+* api-change:``route53``: [``botocore``] Update the SDKs for text changes in the APIs.
+
+
 1.34.30
 =======
 
