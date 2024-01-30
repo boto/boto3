@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datazone``",
-  "description": "[``botocore``] Add new skipDeletionCheck to DeleteDomain. Add new skipDeletionCheck to DeleteProject which also automatically deletes dependent objects"
-}
