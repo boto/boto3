@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``glue``",
+  "description": "[``botocore``] Update page size limits for GetJobRuns and GetTriggers APIs."
+}
