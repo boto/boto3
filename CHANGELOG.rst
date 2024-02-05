@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.35
+=======
+
+* api-change:``glue``: [``botocore``] Introduce Catalog Encryption Role within Glue Data Catalog Settings. Introduce SASL/PLAIN as an authentication method for Glue Kafka connections
+* api-change:``workspaces``: [``botocore``] Added definitions of various WorkSpace states
+
+
 1.34.34
 =======
 

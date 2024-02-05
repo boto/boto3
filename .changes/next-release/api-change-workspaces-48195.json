@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workspaces``",
-  "description": "[``botocore``] Added definitions of various WorkSpace states"
-}
