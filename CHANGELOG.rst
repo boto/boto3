@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.39
+=======
+
+* api-change:``amp``: [``botocore``] Overall documentation updates.
+* api-change:``batch``: [``botocore``] This feature allows Batch to support configuration of repository credentials for jobs running on ECS
+* api-change:``braket``: [``botocore``] Creating a job will result in DeviceOfflineException when using an offline device, and DeviceRetiredException when using a retired device.
+* api-change:``cost-optimization-hub``: [``botocore``] Adding includeMemberAccounts field to the response of ListEnrollmentStatuses API.
+* api-change:``ecs``: [``botocore``] Documentation only update for Amazon ECS.
+* api-change:``iot``: [``botocore``] This release allows AWS IoT Core users to enable Online Certificate Status Protocol (OCSP) Stapling for TLS X.509 Server Certificates when creating and updating AWS IoT Domain Configurations with Custom Domain.
+* api-change:``pricing``: [``botocore``] Add Throttling Exception to all APIs.
+
+
 1.34.38
 =======
 
