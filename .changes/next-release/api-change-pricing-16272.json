@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``pricing``",
+  "description": "[``botocore``] Add Throttling Exception to all APIs."
+}
