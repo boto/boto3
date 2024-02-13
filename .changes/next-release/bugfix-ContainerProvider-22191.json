@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "ContainerProvider",
+  "description": "[``botocore``] Properly refreshes token from file from EKS in ContainerProvider"
+}
