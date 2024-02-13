@@ -1,0 +1,32 @@
+[
+  {
+    "category": "ContainerProvider",
+    "description": "[``botocore``] Properly refreshes token from file from EKS in ContainerProvider",
+    "type": "bugfix"
+  },
+  {
+    "category": "``lightsail``",
+    "description": "[``botocore``] This release adds support to upgrade the major version of a database.",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-catalog``",
+    "description": "[``botocore``] AWS Marketplace Catalog API now supports setting intent on requests",
+    "type": "api-change"
+  },
+  {
+    "category": "``resource-explorer-2``",
+    "description": "[``botocore``] Resource Explorer now uses newly supported IPv4 'amazonaws.com' endpoints by default.",
+    "type": "api-change"
+  },
+  {
+    "category": "``securitylake``",
+    "description": "[``botocore``] Documentation updates for Security Lake",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  }
+]

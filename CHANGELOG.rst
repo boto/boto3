@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.41
+=======
+
+* bugfix:ContainerProvider: [``botocore``] Properly refreshes token from file from EKS in ContainerProvider
+* api-change:``lightsail``: [``botocore``] This release adds support to upgrade the major version of a database.
+* api-change:``marketplace-catalog``: [``botocore``] AWS Marketplace Catalog API now supports setting intent on requests
+* api-change:``resource-explorer-2``: [``botocore``] Resource Explorer now uses newly supported IPv4 'amazonaws.com' endpoints by default.
+* api-change:``securitylake``: [``botocore``] Documentation updates for Security Lake
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+
+
 1.34.40
 =======
 
