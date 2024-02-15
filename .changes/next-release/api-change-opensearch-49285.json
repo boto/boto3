@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearch``",
-  "description": "[``botocore``] Adds additional supported instance types."
-}
