@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mediatailor``",
+  "description": "[``botocore``] MediaTailor: marking #AdBreak.OffsetMillis as required."
+}
