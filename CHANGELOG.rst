@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.45
+=======
+
+* api-change:``amplify``: [``botocore``] This release contains API changes that enable users to configure their Amplify domains with their own custom SSL/TLS certificate.
+* api-change:``chatbot``: [``botocore``] This release adds support for AWS Chatbot. You can now monitor, operate, and troubleshoot your AWS resources with interactive ChatOps using the AWS SDK.
+* api-change:``config``: [``botocore``] Documentation updates for the AWS Config CLI
+* api-change:``ivs``: [``botocore``] Changed description for latencyMode in Create/UpdateChannel and Channel/ChannelSummary.
+* api-change:``keyspaces``: [``botocore``] Documentation updates for Amazon Keyspaces
+* api-change:``mediatailor``: [``botocore``] MediaTailor: marking #AdBreak.OffsetMillis as required.
+
+
 1.34.44
 =======
 
