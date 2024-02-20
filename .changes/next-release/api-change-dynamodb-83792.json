@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dynamodb``",
-  "description": "[``botocore``] Publishing quick fix for doc only update."
-}

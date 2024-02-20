@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``dynamodb``",
+    "description": "[``botocore``] Publishing quick fix for doc only update.",
+    "type": "api-change"
+  },
+  {
+    "category": "``firehose``",
+    "description": "[``botocore``] This release updates a few Firehose related APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lambda``",
+    "description": "[``botocore``] Add .NET 8 (dotnet8) Runtime support to AWS Lambda.",
+    "type": "api-change"
+  }
+]
