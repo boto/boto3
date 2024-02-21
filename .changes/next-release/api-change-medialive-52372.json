@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medialive``",
-  "description": "[``botocore``] MediaLive now supports the ability to restart pipelines in a running channel."
-}
