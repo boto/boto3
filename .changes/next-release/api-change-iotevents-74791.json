@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iotevents``",
+  "description": "[``botocore``] Increase the maximum length of descriptions for Inputs, Detector Models, and Alarm Models"
+}
