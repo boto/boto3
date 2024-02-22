@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.48
+=======
+
+* api-change:``internetmonitor``: [``botocore``] This release adds IPv4 prefixes to health events
+* api-change:``kinesisvideo``: [``botocore``] Increasing NextToken parameter length restriction for List APIs from 512 to 1024.
+
+
 1.34.47
 =======
 
