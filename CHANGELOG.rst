@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.49
+=======
+
+* api-change:``appsync``: [``botocore``] Documentation only updates for AppSync
+* api-change:``qldb``: [``botocore``] Clarify possible values for KmsKeyArn and EncryptionDescription.
+* api-change:``rds``: [``botocore``] Add pattern and length based validations for DBShardGroupIdentifier
+* api-change:``rum``: [``botocore``] Doc-only update for new RUM metrics that were added
+
+
 1.34.48
 =======
 
