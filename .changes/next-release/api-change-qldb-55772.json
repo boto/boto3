@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``qldb``",
+  "description": "[``botocore``] Clarify possible values for KmsKeyArn and EncryptionDescription."
+}
