@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.50
+=======
+
+* api-change:``apigateway``: [``botocore``] Documentation updates for Amazon API Gateway.
+* api-change:``drs``: [``botocore``] Added volume status to DescribeSourceServer replicated volumes.
+* api-change:``kafkaconnect``: [``botocore``] Adds support for tagging, with new TagResource, UntagResource and ListTagsForResource APIs to manage tags and updates to existing APIs to allow tag on create. This release also adds support for the new DeleteWorkerConfiguration API.
+* api-change:``rds``: [``botocore``] This release adds support for gp3 data volumes for Multi-AZ DB Clusters.
+
+
 1.34.49
 =======
 
