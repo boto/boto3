@@ -5946,7 +5946,7 @@ CHANGELOG
 * api-change:``sagemaker``: [``botocore``] This release allows customers to describe one or more versioned model packages through BatchDescribeModelPackage, update project via UpdateProject, modify and read customer metadata properties using Create, Update and Describe ModelPackage and enables cross account registration of model packages.
 * enhancement:Session: [``botocore``] Added `get_partition_for_region` allowing partition lookup by region name.
 * api-change:``textract``: [``botocore``] This release adds support for asynchronously analyzing invoice and receipt documents through two new APIs: StartExpenseAnalysis and GetExpenseAnalysis
-* enchancement:``s3``: TransferConfig now supports the `max_bandwidth` argument.
+* enhancement:``s3``: TransferConfig now supports the `max_bandwidth` argument.
 
 
 1.19.4
@@ -6004,7 +6004,7 @@ CHANGELOG
 =======
 
 * api-change:``quicksight``: [``botocore``] AWS QuickSight Service  Features    - Add IP Restriction UI and public APIs support.
-* enchancement:AWSCRT: [``botocore``] Upgrade awscrt extra to 0.12.5
+* enhancement:AWSCRT: [``botocore``] Upgrade awscrt extra to 0.12.5
 * api-change:``ivs``: [``botocore``] Bug fix: remove unsupported maxResults and nextToken pagination parameters from ListTagsForResource
 
 
@@ -6450,7 +6450,7 @@ CHANGELOG
 =======
 
 * api-change:``chime``: [``botocore``] Add support for "auto" in Region field of StartMeetingTranscription API request.
-* enchancement:Client: [``botocore``] Improve client performance by caching _alias_event_name on EventAliaser
+* enhancement:Client: [``botocore``] Improve client performance by caching _alias_event_name on EventAliaser
 
 
 1.18.17
@@ -9408,7 +9408,7 @@ CHANGELOG
 
 * api-change:``workmail``: [``botocore``] Update workmail client to latest version
 * api-change:``iotsitewise``: [``botocore``] Update iotsitewise client to latest version
-* enchancement:Endpoints: [``botocore``] Improved endpoint resolution for clients with unknown regions
+* enhancement:Endpoints: [``botocore``] Improved endpoint resolution for clients with unknown regions
 
 
 1.13.7
@@ -12772,8 +12772,8 @@ CHANGELOG
 
 * api-change:``logs``: [``botocore``] Update logs client to latest version
 * api-change:``config``: [``botocore``] Update config client to latest version
-* feature:Events: [``botocore``] This migrates the event system to using sevice ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://botocore.amazonaws.com/v1/documentation/api/latest/index.html#upgrade-notes>`_ to determine if you are impacted and how to proceed if you are.
-* feature:Events: This migrates the event system to using sevice ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/upgrading.html>`_ to determine if you are impacted and how to proceed if you are.
+* feature:Events: [``botocore``] This migrates the event system to using service ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://botocore.amazonaws.com/v1/documentation/api/latest/index.html#upgrade-notes>`_ to determine if you are impacted and how to proceed if you are.
+* feature:Events: This migrates the event system to using service ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/upgrading.html>`_ to determine if you are impacted and how to proceed if you are.
 
 
 1.8.9
