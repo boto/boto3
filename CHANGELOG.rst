@@ -76,7 +76,7 @@ CHANGELOG
 * api-change:``healthlake``: [``botocore``] This release adds a new response parameter, JobProgressReport, to the DescribeFHIRImportJob and ListFHIRImportJobs API operation. JobProgressReport provides details on the progress of the import job on the server.
 * api-change:``opensearch``: [``botocore``] Adds additional supported instance types.
 * api-change:``polly``: [``botocore``] Amazon Polly adds 1 new voice - Burcu (tr-TR)
-* api-change:``sagemaker``: [``botocore``] This release adds a new API UpdateClusterSoftware for SageMaker HyperPod. This API allows users to patch HyperPod clusters with latest platform softwares.
+* api-change:``sagemaker``: [``botocore``] This release adds a new API UpdateClusterSoftware for SageMaker HyperPod. This API allows users to patch HyperPod clusters with latest platform software.
 * api-change:``secretsmanager``: [``botocore``] Doc only update for Secrets Manager
 * api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
 
@@ -595,7 +595,7 @@ CHANGELOG
 * api-change:``application-autoscaling``: [``botocore``] Amazon SageMaker customers can now use Application Auto Scaling to automatically scale the number of Inference Component copies across an endpoint to meet the varying demand of their workloads.
 * api-change:``cleanrooms``: [``botocore``] AWS Clean Rooms now provides differential privacy to protect against user-identification attempts and machine learning modeling to allow two parties to identify similar users in their data.
 * api-change:``cleanroomsml``: [``botocore``] Public Preview SDK release of AWS Clean Rooms ML APIs
-* api-change:``opensearch``: [``botocore``] Launching Amazon OpenSearch Service support for new zero-ETL integration with Amazon S3. Customers can now manage their direct query data sources to Amazon S3 programatically
+* api-change:``opensearch``: [``botocore``] Launching Amazon OpenSearch Service support for new zero-ETL integration with Amazon S3. Customers can now manage their direct query data sources to Amazon S3 programmatically
 * api-change:``opensearchserverless``: [``botocore``] Amazon OpenSearch Serverless collections support an additional attribute called standby-replicas. This allows to specify whether a collection should have redundancy enabled.
 * api-change:``sagemaker-runtime``: [``botocore``] Update sagemaker-runtime client to latest version
 * api-change:``sagemaker``: [``botocore``] This release adds following support 1/ Improved SDK tooling for model deployment. 2/ New Inference Component based features to lower inference costs and latency 3/ SageMaker HyperPod management. 4/ Additional parameters for FM Fine Tuning in Autopilot
@@ -1078,7 +1078,7 @@ CHANGELOG
 =======
 
 * api-change:``cloudformation``: [``botocore``] SDK and documentation updates for UpdateReplacePolicy
-* api-change:``drs``: [``botocore``] Updated exsiting API to allow AWS Elastic Disaster Recovery support of launching recovery into existing EC2 instances.
+* api-change:``drs``: [``botocore``] Updated existing API to allow AWS Elastic Disaster Recovery support of launching recovery into existing EC2 instances.
 * api-change:``entityresolution``: [``botocore``] This launch expands our matching techniques to include provider-based matching to help customer match, link, and enhance records with minimal data movement. With data service providers, we have removed the need for customers to build bespoke integrations,.
 * api-change:``managedblockchain-query``: [``botocore``] This release introduces two new APIs: GetAssetContract and ListAssetContracts. This release also adds support for Bitcoin Testnet.
 * api-change:``mediapackagev2``: [``botocore``] This release allows customers to manage MediaPackage v2 resource using CloudFormation.
@@ -2727,7 +2727,7 @@ CHANGELOG
 * api-change:``kms``: [``botocore``] AWS KMS is deprecating the RSAES_PKCS1_V1_5 wrapping algorithm option in the GetParametersForImport API that is used in the AWS KMS Import Key Material feature. AWS KMS will end support for this wrapping algorithm by October 1, 2023.
 * api-change:``lightsail``: [``botocore``] This release adds Lightsail for Research feature support, such as GUI session access, cost estimates, stop instance on idle, and disk auto mount.
 * api-change:``managedblockchain``: [``botocore``] This release adds support for tagging to the accessor resource in Amazon Managed Blockchain
-* api-change:``omics``: [``botocore``] Minor model changes to accomodate batch imports feature
+* api-change:``omics``: [``botocore``] Minor model changes to accommodate batch imports feature
 
 
 1.26.80
@@ -3508,7 +3508,7 @@ CHANGELOG
 * bugfix:s3: [``botocore``] fixes missing x-amz-content-sha256 header for s3 on outpost
 * enhancement:sso: [``botocore``] Add support for loading sso-session profiles from the aws config
 * api-change:``connect``: [``botocore``] This release updates the APIs: UpdateInstanceAttribute, DescribeInstanceAttribute, and ListInstanceAttributes. You can use it to programmatically enable/disable enhanced contact monitoring using attribute type ENHANCED_CONTACT_MONITORING on the specified Amazon Connect instance.
-* api-change:``greengrassv2``: [``botocore``] Adds new parent target ARN paramater to CreateDeployment, GetDeployment, and ListDeployments APIs for the new subdeployments feature.
+* api-change:``greengrassv2``: [``botocore``] Adds new parent target ARN parameter to CreateDeployment, GetDeployment, and ListDeployments APIs for the new subdeployments feature.
 * api-change:``route53``: [``botocore``] Amazon Route 53 now supports the Europe (Spain) Region (eu-south-2) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
 * api-change:``ssmsap``: [``botocore``] AWS Systems Manager for SAP provides simplified operations and management of SAP applications such as SAP HANA. With this release, SAP customers and partners can automate and simplify their SAP system administration tasks such as backup/restore of SAP HANA.
 * api-change:``workspaces``: [``botocore``] This release introduces ModifyCertificateBasedAuthProperties, a new API that allows control of certificate-based auth properties associated with a WorkSpaces directory. The DescribeWorkspaceDirectories API will now additionally return certificate-based auth properties in its responses.
@@ -3613,7 +3613,7 @@ CHANGELOG
 ======
 
 * api-change:``iotsitewise``: [``botocore``] This release adds the ListAssetModelProperties and ListAssetProperties APIs. You can list all properties that belong to a single asset model or asset using these two new APIs.
-* api-change:``s3control``: [``botocore``] S3 on Outposts launches support for Lifecycle configuration for Outposts buckets. With S3 Lifecycle configuration, you can mange objects so they are stored cost effectively. You can manage objects using size-based rules and specify how many noncurrent versions bucket will retain.
+* api-change:``s3control``: [``botocore``] S3 on Outposts launches support for Lifecycle configuration for Outposts buckets. With S3 Lifecycle configuration, you can manage objects so they are stored cost effectively. You can manage objects using size-based rules and specify how many noncurrent versions bucket will retain.
 * api-change:``sagemaker``: [``botocore``] This release updates Framework model regex for ModelPackage to support new Framework version xgboost, sklearn.
 * api-change:``ssm-incidents``: [``botocore``] Adds support for tagging replication-set on creation.
 
@@ -5291,7 +5291,7 @@ CHANGELOG
 
 * api-change:``cloudformation``: [``botocore``] This SDK release adds AWS CloudFormation Hooks HandlerErrorCodes
 * api-change:``lookoutvision``: [``botocore``] This release makes CompilerOptions in Lookout for Vision's StartModelPackagingJob's Configuration object optional.
-* api-change:``pinpoint``: [``botocore``] This SDK release adds a new paramater creation date for GetApp and GetApps Api call
+* api-change:``pinpoint``: [``botocore``] This SDK release adds a new parameter creation date for GetApp and GetApps Api call
 * api-change:``sns``: [``botocore``] Customer requested typo fix in API documentation.
 * api-change:``wafv2``: [``botocore``] Adds support for AWS WAF Fraud Control account takeover prevention (ATP), with configuration options for the new managed rule group AWSManagedRulesATPRuleSet and support for application integration SDKs for Android and iOS mobile apps.
 
@@ -13005,7 +13005,7 @@ CHANGELOG
 * api-change:``cloudhsmv2``: [``botocore``] Update cloudhsmv2 client to latest version
 * api-change:``sagemaker``: [``botocore``] Update sagemaker client to latest version
 * api-change:``mq``: [``botocore``] Update mq client to latest version
-* enhancment:Timestamp Serialization: [``botocore``] Support explicit timestamp serialization per timestamp shape.
+* enhancement:Timestamp Serialization: [``botocore``] Support explicit timestamp serialization per timestamp shape.
 * api-change:``glacier``: [``botocore``] Update glacier client to latest version
 
 
@@ -13839,7 +13839,7 @@ CHANGELOG
 * bugfix:Presign: [``botocore``] Fix issue where some events were not fired during the presigning of a request thus not including a variety of customizations (`#1340 <https://github.com/boto/botocore/issues/1340>`__)
 * enhancement:Credentials: [``botocore``] Improved error message when the source profile for an assume role is misconfigured. Fixes aws/aws-cli`#2763 <https://github.com/aws/aws-cli/issues/2763>`__
 * api-change:``guardduty``: [``botocore``] Update guardduty client to latest version
-* enhancment:Paginator: [``botocore``] Added paginators for a number of services where the result key is unambiguous.
+* enhancement:Paginator: [``botocore``] Added paginators for a number of services where the result key is unambiguous.
 
 
 1.5.20
@@ -14143,7 +14143,7 @@ CHANGELOG
 1.1.0
 =====
 
-* bugfix:``EC2.Vpc.filter``: Fix issue with clobbering of ``Filtering`` paramter. (`issue 154 <https://github.com/boto/boto3/pull/154>`__)
+* bugfix:``EC2.Vpc.filter``: Fix issue with clobbering of ``Filtering`` parameter. (`issue 154 <https://github.com/boto/boto3/pull/154>`__)
 
 
 0.0.22

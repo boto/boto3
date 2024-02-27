@@ -16,7 +16,7 @@
   },
   {
     "category": "``opensearch``",
-    "description": "[``botocore``] Launching Amazon OpenSearch Service support for new zero-ETL integration with Amazon S3. Customers can now manage their direct query data sources to Amazon S3 programatically",
+    "description": "[``botocore``] Launching Amazon OpenSearch Service support for new zero-ETL integration with Amazon S3. Customers can now manage their direct query data sources to Amazon S3 programmatically",
     "type": "api-change"
   },
   {

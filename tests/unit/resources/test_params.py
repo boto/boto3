@@ -201,7 +201,7 @@ class TestServiceActionParams(BaseTestCase):
         item2 = mock.Mock()
         item2.meta = ResourceMeta('test', data={'Key': 'item2'})
 
-        # Here we create params and then re-use it to build up a more
+        # Here we create params and then reuse it to build up a more
         # complex structure over multiple calls.
         params = create_request_parameters(item1, request_model)
         create_request_parameters(item2, request_model, params=params)
