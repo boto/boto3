@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.34.51
+=======
+
+* api-change:``amplifyuibuilder``: [``botocore``] We have added the ability to tag resources after they are created
+
+
 1.34.50
 =======
 
