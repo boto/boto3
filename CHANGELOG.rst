@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.53
+=======
+
+* api-change:``docdb-elastic``: [``botocore``] Launched Elastic Clusters Readable Secondaries, Start/Stop, Configurable Shard Instance count, Automatic Backups and Snapshot Copying
+* api-change:``eks``: [``botocore``] Added support for new AL2023 AMIs to the supported AMITypes.
+* api-change:``lexv2-models``: [``botocore``] This release makes AMAZON.QnAIntent generally available in Amazon Lex. This generative AI feature leverages large language models available through Amazon Bedrock to automate frequently asked questions (FAQ) experience for end-users.
+* api-change:``migrationhuborchestrator``: [``botocore``] Adds new CreateTemplate, UpdateTemplate and DeleteTemplate APIs.
+* api-change:``quicksight``: [``botocore``] TooltipTarget for Combo chart visuals; ColumnConfiguration limit increase to 2000; Documentation Update
+* api-change:``sagemaker``: [``botocore``] Adds support for ModelDataSource in Model Packages to support unzipped models. Adds support to specify SourceUri for models which allows registration of models without mandating a container for hosting. Using SourceUri, customers can decouple the model from hosting information during registration.
+* api-change:``securitylake``: [``botocore``] Add capability to update the Data Lake's MetaStoreManager Role in order to perform required data lake updates to use Iceberg table format in their data lake or update the role for any other reason.
+
+
 1.34.52
 =======
 
