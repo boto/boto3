@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``accessanalyzer``",
-  "description": "[``botocore``] Fixed a typo in description field."
-}
