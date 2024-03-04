@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] Add DetailedStatus field to DescribeStackEvents and DescribeStacks APIs"
-}
