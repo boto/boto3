@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.56
+=======
+
+* api-change:``apigateway``: [``botocore``] Documentation updates for Amazon API Gateway
+* api-change:``chatbot``: [``botocore``] Minor update to documentation.
+* api-change:``organizations``: [``botocore``] This release contains an endpoint addition
+* api-change:``sesv2``: [``botocore``] Adds support for providing custom headers within SendEmail and SendBulkEmail for SESv2.
+
+
 1.34.55
 =======
 
