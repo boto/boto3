@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.57
+=======
+
+* api-change:``dynamodb``: [``botocore``] Doc only updates for DynamoDB documentation
+* api-change:``imagebuilder``: [``botocore``] Add PENDING status to Lifecycle Execution resource status. Add StartTime and EndTime to ListLifecycleExecutionResource API response.
+* api-change:``mwaa``: [``botocore``] Amazon MWAA adds support for Apache Airflow v2.8.1.
+* api-change:``rds``: [``botocore``] Updated the input of CreateDBCluster and ModifyDBCluster to support setting CA certificates. Updated the output of DescribeDBCluster to show current CA certificate setting value.
+* api-change:``redshift``: [``botocore``] Update for documentation only. Covers port ranges, definition updates for data sharing, and definition updates to cluster-snapshot documentation.
+* api-change:``verifiedpermissions``: [``botocore``] Deprecating details in favor of configuration for GetIdentitySource and ListIdentitySources APIs.
+
+
 1.34.56
 =======
 
