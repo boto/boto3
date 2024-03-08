@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.59
+=======
+
+* api-change:``batch``: [``botocore``] This release adds JobStateTimeLimitActions setting to the Job Queue API. It allows you to configure an action Batch can take for a blocking job in front of the queue after the defined period of time. The new parameter applies for ECS, EKS, and FARGATE Job Queues.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Documentation update for Bedrock Runtime Agent
+* api-change:``cloudtrail``: [``botocore``] Added exceptions to CreateTrail, DescribeTrails, and ListImportFailures APIs.
+* api-change:``codebuild``: [``botocore``] This release adds support for a new webhook event: PULL_REQUEST_CLOSED.
+* api-change:``cognito-idp``: [``botocore``] Add ConcurrentModificationException to SetUserPoolMfaConfig
+* api-change:``guardduty``: [``botocore``] Add RDS Provisioned and Serverless Usage types
+* api-change:``transfer``: [``botocore``] Added DES_EDE3_CBC to the list of supported encryption algorithms for messages sent with an AS2 connector.
+
+
 1.34.58
 =======
 

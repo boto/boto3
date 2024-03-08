@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent-runtime``",
-  "description": "[``botocore``] Documentation update for Bedrock Runtime Agent"
-}
