@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.61
+=======
+
+* api-change:``cloudformation``: [``botocore``] CloudFormation documentation update for March, 2024
+* api-change:``connect``: [``botocore``] This release increases MaxResults limit to 500 in request for SearchUsers, SearchQueues and SearchRoutingProfiles APIs of Amazon Connect.
+* api-change:``ec2``: [``botocore``] Documentation updates for Amazon EC2.
+* api-change:``kafka``: [``botocore``] Added support for specifying the starting position of topic replication in MSK-Replicator.
+* api-change:``ssm``: [``botocore``] March 2024 doc-only updates for Systems Manager.
+
+
 1.34.60
 =======
 
