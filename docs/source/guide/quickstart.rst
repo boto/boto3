@@ -24,7 +24,7 @@ To use Boto3, you first need to install it and its dependencies.
 Install or update Python
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before installing Boto3, install Python 3.8 or later; support for Python 3.6 and
+Before installing Boto3, install Python 3.8 or later; support for Python 3.7 and
 earlier is deprecated. After the deprecation date listed for each Python
 version, new releases of Boto3 will not include support for that version of
 Python. For details, including the deprecation schedule and how to update your
