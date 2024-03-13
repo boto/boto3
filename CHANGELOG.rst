@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.62
+=======
+
+* api-change:``ivs-realtime``: [``botocore``] adds support for multiple new composition layout configuration options (grid, pip)
+* api-change:``kinesisanalyticsv2``: [``botocore``] Support new RuntimeEnvironmentUpdate parameter within UpdateApplication API allowing callers to change the Flink version upon which their application runs.
+* api-change:``s3``: [``botocore``] This release makes the default option for S3 on Outposts request signing to use the SigV4A algorithm when using AWS Common Runtime (CRT).
+
+
 1.34.61
 =======
 
