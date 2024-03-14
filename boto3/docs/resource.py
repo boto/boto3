@@ -255,7 +255,6 @@ class ResourceDocumenter(BaseDocumenter):
                 intro_link='references_intro',
             )
             self.member_map['references'] = reference_list
-            self._add_overview_of_member_type(section, 'references')
         for reference in references:
             reference_list.append(reference.name)
             # Create a new DocumentStructure for each reference and add contents.
