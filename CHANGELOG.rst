@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.64
+=======
+
+* api-change:``backup``: [``botocore``] This release introduces a boolean attribute ManagedByAWSBackupOnly as part of ListRecoveryPointsByResource api to filter the recovery points based on ownership. This attribute can be used to filter out the recovery points protected by AWSBackup.
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports overflow behavior on Reserved Capacity.
+* api-change:``connect``: [``botocore``] This release adds Hierarchy based Access Control fields to Security Profile public APIs and adds support for UserAttributeFilter to SearchUsers API.
+* api-change:``ec2``: [``botocore``] Add media accelerator and neuron device information on the describe instance types API.
+* api-change:``kinesisanalyticsv2``: [``botocore``] Support for Flink 1.18 in Managed Service for Apache Flink
+* api-change:``s3``: [``botocore``] Documentation updates for Amazon S3.
+* api-change:``sagemaker``: [``botocore``] Adds m6i, m6id, m7i, c6i, c6id, c7i, r6i r6id, r7i, p5 instance type support to Sagemaker Notebook Instances and miscellaneous wording fixes for previous Sagemaker documentation.
+* api-change:``workspaces-thin-client``: [``botocore``] Removed unused parameter kmsKeyArn from UpdateDeviceRequest
+
+
 1.34.63
 =======
 
