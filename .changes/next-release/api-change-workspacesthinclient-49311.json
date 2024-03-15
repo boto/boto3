@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``workspaces-thin-client``",
+  "description": "[``botocore``] Removed unused parameter kmsKeyArn from UpdateDeviceRequest"
+}
