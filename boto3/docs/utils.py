@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -13,8 +13,6 @@
 import inspect
 
 import jmespath
-
-from botocore.compat import six
 
 
 def get_resource_ignore_params(params):
@@ -39,10 +37,7 @@ def get_resource_ignore_params(params):
 
 
 def is_resource_action(action_handle):
-    if six.PY3:
-        return inspect.isfunction(action_handle)
-    else:
-        return inspect.ismethod(action_handle)
+    return inspect.isfunction(action_handle)
 
 
 def get_resource_public_actions(resource_class):
@@ -58,8 +53,7 @@ def get_resource_public_actions(resource_class):
 
 
 def get_identifier_values_for_example(identifier_names):
-    example_values = ['\'%s\'' % identifier for identifier in identifier_names]
-    return ','.join(example_values)
+    return ','.join([f'\'{identifier}\'' for identifier in identifier_names])
 
 
 def get_identifier_args_for_signature(identifier_names):
@@ -67,38 +61,41 @@ def get_identifier_args_for_signature(identifier_names):
 
 
 def get_identifier_description(resource_name, identifier_name):
-    return "The %s's %s identifier. This **must** be set." % (
-        resource_name, identifier_name)
+    return (
+        f"The {resource_name}'s {identifier_name} identifier. "
+        f"This **must** be set."
+    )
 
 
-def add_resource_type_overview(section, resource_type, description,
-                               intro_link=None):
+def add_resource_type_overview(
+    section, resource_type, description, intro_link=None
+):
     section.style.new_line()
-    section.write('.. rst-class:: admonition-title')
-    section.style.new_line()
-    section.style.new_line()
-    section.write(resource_type)
+    section.style.h3(resource_type)
     section.style.new_line()
     section.style.new_line()
     section.write(description)
     section.style.new_line()
     if intro_link is not None:
-        section.write('For more information about %s refer to the '
-                      ':ref:`Resources Introduction Guide<%s>`.' % (
-                          resource_type.lower(), intro_link))
+        section.write(
+            f'For more information about {resource_type.lower()} refer to the '
+            f':ref:`Resources Introduction Guide<{intro_link}>`.'
+        )
         section.style.new_line()
 
 
-class DocumentModifiedShape(object):
-    def __init__(self, shape_name, new_type, new_description,
-                 new_example_value):
+class DocumentModifiedShape:
+    def __init__(
+        self, shape_name, new_type, new_description, new_example_value
+    ):
         self._shape_name = shape_name
         self._new_type = new_type
         self._new_description = new_description
         self._new_example_value = new_example_value
 
-    def replace_documentation_for_matching_shape(self, event_name, section,
-                                                 **kwargs):
+    def replace_documentation_for_matching_shape(
+        self, event_name, section, **kwargs
+    ):
         if self._shape_name == section.context.get('shape'):
             self._replace_documentation(event_name, section)
         for section_name in section.available_sections:
@@ -107,23 +104,31 @@ class DocumentModifiedShape(object):
                 self._replace_documentation(event_name, sub_section)
             else:
                 self.replace_documentation_for_matching_shape(
-                    event_name, sub_section)
+                    event_name, sub_section
+                )
 
     def _replace_documentation(self, event_name, section):
-        if event_name.startswith('docs.request-example') or \
-                event_name.startswith('docs.response-example'):
+        if event_name.startswith(
+            'docs.request-example'
+        ) or event_name.startswith('docs.response-example'):
             section.remove_all_sections()
             section.clear_text()
             section.write(self._new_example_value)
 
-        if event_name.startswith('docs.request-params') or \
-                event_name.startswith('docs.response-params'):
+        if event_name.startswith(
+            'docs.request-params'
+        ) or event_name.startswith('docs.response-params'):
+            allowed_sections = (
+                'param-name',
+                'param-documentation',
+                'end-structure',
+                'param-type',
+                'end-param',
+            )
             for section_name in section.available_sections:
                 # Delete any extra members as a new shape is being
                 # used.
-                if section_name not in ['param-name', 'param-documentation',
-                                        'end-structure', 'param-type',
-                                        'end-param']:
+                if section_name not in allowed_sections:
                     section.delete_section(section_name)
 
             # Update the documentation
@@ -135,8 +140,7 @@ class DocumentModifiedShape(object):
             type_section = section.get_section('param-type')
             if type_section.getvalue().decode('utf-8').startswith(':type'):
                 type_section.clear_text()
-                type_section.write(':type %s: %s' % (
-                    section.name, self._new_type))
+                type_section.write(f':type {section.name}: {self._new_type}')
             else:
                 type_section.clear_text()
-                type_section.style.italics('(%s) -- ' % self._new_type)
+                type_section.style.italics(f'({self._new_type}) -- ')

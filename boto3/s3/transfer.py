@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -122,21 +122,33 @@ transfer.  For example:
 
 
 """
+import logging
+import threading
+from os import PathLike, fspath, getpid
+
+from botocore.compat import HAS_CRT
 from botocore.exceptions import ClientError
-from botocore.compat import six
-from s3transfer.exceptions import RetriesExceededError as \
-    S3TransferRetriesExceededError
+from s3transfer.exceptions import (
+    RetriesExceededError as S3TransferRetriesExceededError,
+)
+from s3transfer.futures import NonThreadedExecutor
 from s3transfer.manager import TransferConfig as S3TransferConfig
 from s3transfer.manager import TransferManager
-from s3transfer.futures import NonThreadedExecutor
 from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import OSUtils
 
+import boto3.s3.constants as constants
 from boto3.exceptions import RetriesExceededError, S3UploadFailedError
 
+if HAS_CRT:
+    import awscrt.s3
+
+    from boto3.crt import create_crt_transfer_manager
 
 KB = 1024
 MB = KB * KB
+
+logger = logging.getLogger(__name__)
 
 
 def create_transfer_manager(client, config, osutil=None):
@@ -154,6 +166,63 @@ def create_transfer_manager(client, config, osutil=None):
     :rtype: s3transfer.manager.TransferManager
     :returns: A transfer manager based on parameters provided
     """
+    if _should_use_crt(config):
+        crt_transfer_manager = create_crt_transfer_manager(client, config)
+        if crt_transfer_manager is not None:
+            logger.debug(
+                f"Using CRT client. pid: {getpid()}, thread: {threading.get_ident()}"
+            )
+            return crt_transfer_manager
+
+    # If we don't resolve something above, fallback to the default.
+    logger.debug(
+        f"Using default client. pid: {getpid()}, thread: {threading.get_ident()}"
+    )
+    return _create_default_transfer_manager(client, config, osutil)
+
+
+def _should_use_crt(config):
+    # This feature requires awscrt>=0.19.18
+    if HAS_CRT and has_minimum_crt_version((0, 19, 18)):
+        is_optimized_instance = awscrt.s3.is_optimized_for_system()
+    else:
+        is_optimized_instance = False
+    pref_transfer_client = config.preferred_transfer_client.lower()
+
+    if (
+        is_optimized_instance
+        and pref_transfer_client == constants.AUTO_RESOLVE_TRANSFER_CLIENT
+    ):
+        logger.debug(
+            "Attempting to use CRTTransferManager. Config settings may be ignored."
+        )
+        return True
+
+    logger.debug(
+        "Opting out of CRT Transfer Manager. Preferred client: "
+        f"{pref_transfer_client}, CRT available: {HAS_CRT}, "
+        f"Instance Optimized: {is_optimized_instance}."
+    )
+    return False
+
+
+def has_minimum_crt_version(minimum_version):
+    """Not intended for use outside boto3."""
+    if not HAS_CRT:
+        return False
+
+    crt_version_str = awscrt.__version__
+    try:
+        crt_version_ints = map(int, crt_version_str.split("."))
+        crt_version_tuple = tuple(crt_version_ints)
+    except (TypeError, ValueError):
+        return False
+
+    return crt_version_tuple >= minimum_version
+
+
+def _create_default_transfer_manager(client, config, osutil):
+    """Create the default TransferManager implementation for s3transfer."""
     executor_cls = None
     if not config.use_threads:
         executor_cls = NonThreadedExecutor
@@ -163,17 +232,21 @@ def create_transfer_manager(client, config, osutil=None):
 class TransferConfig(S3TransferConfig):
     ALIAS = {
         'max_concurrency': 'max_request_concurrency',
-        'max_io_queue': 'max_io_queue_size'
+        'max_io_queue': 'max_io_queue_size',
     }
 
-    def __init__(self,
-                 multipart_threshold=8 * MB,
-                 max_concurrency=10,
-                 multipart_chunksize=8 * MB,
-                 num_download_attempts=5,
-                 max_io_queue=100,
-                 io_chunksize=256 * KB,
-                 use_threads=True):
+    def __init__(
+        self,
+        multipart_threshold=8 * MB,
+        max_concurrency=10,
+        multipart_chunksize=8 * MB,
+        num_download_attempts=5,
+        max_io_queue=100,
+        io_chunksize=256 * KB,
+        use_threads=True,
+        max_bandwidth=None,
+        preferred_transfer_client=constants.AUTO_RESOLVE_TRANSFER_CLIENT,
+    ):
         """Configuration object for managed S3 transfers
 
         :param multipart_threshold: The transfer size threshold for which
@@ -208,15 +281,29 @@ class TransferConfig(S3TransferConfig):
 
         :param use_threads: If True, threads will be used when performing
             S3 transfers. If False, no threads will be used in
-            performing transfers: all logic will be ran in the current thread.
+            performing transfers; all logic will be ran in the current thread.
+
+        :param max_bandwidth: The maximum bandwidth that will be consumed
+            in uploading and downloading file content. The value is an integer
+            in terms of bytes per second.
+
+        :param preferred_transfer_client: String specifying preferred transfer
+            client for transfer operations.
+
+            Current supported settings are:
+              * auto (default) - Use the CRTTransferManager when calls
+                  are made with supported environment and settings.
+              * classic - Only use the origin S3TransferManager with
+                  requests. Disables possible CRT upgrade on requests.
         """
-        super(TransferConfig, self).__init__(
+        super().__init__(
             multipart_threshold=multipart_threshold,
             max_request_concurrency=max_concurrency,
             multipart_chunksize=multipart_chunksize,
             num_download_attempts=num_download_attempts,
             max_io_queue_size=max_io_queue,
             io_chunksize=io_chunksize,
+            max_bandwidth=max_bandwidth,
         )
         # Some of the argument names are not the same as the inherited
         # S3TransferConfig so we add aliases so you can still access the
@@ -224,17 +311,18 @@ class TransferConfig(S3TransferConfig):
         for alias in self.ALIAS:
             setattr(self, alias, getattr(self, self.ALIAS[alias]))
         self.use_threads = use_threads
+        self.preferred_transfer_client = preferred_transfer_client
 
     def __setattr__(self, name, value):
         # If the alias name is used, make sure we set the name that it points
         # to as that is what actually is used in governing the TransferManager.
         if name in self.ALIAS:
-            super(TransferConfig, self).__setattr__(self.ALIAS[name], value)
+            super().__setattr__(self.ALIAS[name], value)
         # Always set the value of the actual name provided.
-        super(TransferConfig, self).__setattr__(name, value)
+        super().__setattr__(name, value)
 
 
-class S3Transfer(object):
+class S3Transfer:
     ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
     ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
 
@@ -258,8 +346,9 @@ class S3Transfer(object):
         else:
             self._manager = create_transfer_manager(client, config, osutil)
 
-    def upload_file(self, filename, bucket, key,
-                    callback=None, extra_args=None):
+    def upload_file(
+        self, filename, bucket, key, callback=None, extra_args=None
+    ):
         """Upload a file to an S3 object.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -269,12 +358,15 @@ class S3Transfer(object):
             :py:meth:`S3.Client.upload_file`
             :py:meth:`S3.Client.upload_fileobj`
         """
-        if not isinstance(filename, six.string_types):
-            raise ValueError('Filename must be a string')
+        if isinstance(filename, PathLike):
+            filename = fspath(filename)
+        if not isinstance(filename, str):
+            raise ValueError('Filename must be a string or a path-like object')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.upload(
-            filename, bucket, key, extra_args, subscribers)
+            filename, bucket, key, extra_args, subscribers
+        )
         try:
             future.result()
         # If a client error was raised, add the backwards compatibility layer
@@ -283,11 +375,14 @@ class S3Transfer(object):
         # client error.
         except ClientError as e:
             raise S3UploadFailedError(
-                "Failed to upload %s to %s: %s" % (
-                    filename, '/'.join([bucket, key]), e))
+                "Failed to upload {} to {}: {}".format(
+                    filename, '/'.join([bucket, key]), e
+                )
+            )
 
-    def download_file(self, bucket, key, filename, extra_args=None,
-                      callback=None):
+    def download_file(
+        self, bucket, key, filename, extra_args=None, callback=None
+    ):
         """Download an S3 object to a file.
 
         Variants have also been injected into S3 client, Bucket and Object.
@@ -297,12 +392,15 @@ class S3Transfer(object):
             :py:meth:`S3.Client.download_file`
             :py:meth:`S3.Client.download_fileobj`
         """
-        if not isinstance(filename, six.string_types):
-            raise ValueError('Filename must be a string')
+        if isinstance(filename, PathLike):
+            filename = fspath(filename)
+        if not isinstance(filename, str):
+            raise ValueError('Filename must be a string or a path-like object')
 
         subscribers = self._get_subscribers(callback)
         future = self._manager.download(
-            bucket, key, filename, extra_args, subscribers)
+            bucket, key, filename, extra_args, subscribers
+        )
         try:
             future.result()
         # This is for backwards compatibility where when retries are
@@ -331,6 +429,7 @@ class ProgressCallbackInvoker(BaseSubscriber):
     :param callback: A callable that takes a single positional argument for
         how many bytes were transferred.
     """
+
     def __init__(self, callback):
         self._callback = callback
 

@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``apigateway``",
+    "description": "[``botocore``] Documentation updates for Amazon API Gateway",
+    "type": "api-change"
+  },
+  {
+    "category": "``chatbot``",
+    "description": "[``botocore``] Minor update to documentation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``organizations``",
+    "description": "[``botocore``] This release contains an endpoint addition",
+    "type": "api-change"
+  },
+  {
+    "category": "``sesv2``",
+    "description": "[``botocore``] Adds support for providing custom headers within SendEmail and SendBulkEmail for SESv2.",
+    "type": "api-change"
+  }
+]

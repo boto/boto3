@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``sagemaker``", 
+    "description": "[``botocore``] SageMaker model registry now supports up to 5 containers and associated environment variables.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``sqs``", 
+    "description": "[``botocore``] Documentation updates for Amazon SQS.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``ec2``", 
+    "description": "[``botocore``] Adding a new reserved field to support future infrastructure improvements for Amazon EC2 Fleet.", 
+    "type": "api-change"
+  }
+]

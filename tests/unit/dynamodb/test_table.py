@@ -4,19 +4,17 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-from tests import unittest, mock
-
 from boto3.dynamodb.table import BatchWriter
+from tests import mock, unittest
 
 
 class BaseTransformationTest(unittest.TestCase):
-
     maxDiff = None
 
     def setUp(self):
@@ -24,21 +22,22 @@ class BaseTransformationTest(unittest.TestCase):
         self.client.batch_write_item.return_value = {'UnprocessedItems': {}}
         self.table_name = 'tablename'
         self.flush_amount = 2
-        self.batch_writer = BatchWriter(self.table_name, self.client,
-                                        self.flush_amount)
+        self.batch_writer = BatchWriter(
+            self.table_name, self.client, self.flush_amount
+        )
 
     def assert_batch_write_calls_are(self, expected_batch_writes):
-        self.assertEqual(self.client.batch_write_item.call_count,
-                         len(expected_batch_writes))
+        assert self.client.batch_write_item.call_count == len(
+            expected_batch_writes
+        )
         batch_write_calls = [
-            args[1] for args in
-            self.client.batch_write_item.call_args_list
+            args[1] for args in self.client.batch_write_item.call_args_list
         ]
-        self.assertEqual(batch_write_calls, expected_batch_writes)
+        assert batch_write_calls == expected_batch_writes
 
     def test_batch_write_does_not_immediately_write(self):
         self.batch_writer.put_item(Item={'Hash': 'foo'})
-        self.assertFalse(self.client.batch_write_item.called)
+        assert not self.client.batch_write_item.called
 
     def test_batch_write_flushes_at_flush_amount(self):
         self.batch_writer.put_item(Item={'Hash': 'foo1'})
@@ -124,7 +123,7 @@ class BaseTransformationTest(unittest.TestCase):
                 },
             },
             # Then the last response shows that everything went through
-            {'UnprocessedItems': {}}
+            {'UnprocessedItems': {}},
         ]
         self.batch_writer.put_item(Item={'Hash': 'foo1'})
         self.batch_writer.put_item(Item={'Hash': 'foo2'})
@@ -156,15 +155,17 @@ class BaseTransformationTest(unittest.TestCase):
     def test_all_items_flushed_on_exit(self):
         with self.batch_writer as b:
             b.put_item(Item={'Hash': 'foo1'})
-        self.assert_batch_write_calls_are([
-            {
-                'RequestItems': {
-                    self.table_name: [
-                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
-                    ]
+        self.assert_batch_write_calls_are(
+            [
+                {
+                    'RequestItems': {
+                        self.table_name: [
+                            {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                        ]
+                    },
                 },
-            },
-        ])
+            ]
+        )
 
     def test_never_send_more_than_max_batch_size(self):
         # Suppose the server sends backs a response that indicates that
@@ -185,9 +186,7 @@ class BaseTransformationTest(unittest.TestCase):
                     ],
                 },
             },
-            {
-                'UnprocessedItems': {}
-            },
+            {'UnprocessedItems': {}},
         ]
         with BatchWriter(self.table_name, self.client, flush_amount=2) as b:
             b.put_item(Item={'Hash': 'foo1'})
@@ -223,9 +222,9 @@ class BaseTransformationTest(unittest.TestCase):
                 ]
             }
         }
-        self.assert_batch_write_calls_are([first_batch, second_batch,
-                                           third_batch])
-
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch]
+        )
 
     def test_repeated_flushing_on_exit(self):
         # We're going to simulate unprocessed_items
@@ -246,9 +245,7 @@ class BaseTransformationTest(unittest.TestCase):
                     ],
                 },
             },
-            {
-                'UnprocessedItems': {}
-            },
+            {'UnprocessedItems': {}},
         ]
         with BatchWriter(self.table_name, self.client, flush_amount=4) as b:
             b.put_item(Item={'Hash': 'foo1'})
@@ -283,106 +280,241 @@ class BaseTransformationTest(unittest.TestCase):
                 ]
             }
         }
-        self.assert_batch_write_calls_are([first_batch, second_batch,
-                                           third_batch])
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch]
+        )
 
     def test_auto_dedup_for_dup_requests(self):
-        with BatchWriter(self.table_name, self.client,
-                         flush_amount=5, overwrite_by_pkeys=["pkey", "skey"]) as b:
+        with BatchWriter(
+            self.table_name,
+            self.client,
+            flush_amount=5,
+            overwrite_by_pkeys=["pkey", "skey"],
+        ) as b:
             # dup 1
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other1'
-            })
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other2'
-            })
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other1'}
+            )
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other2'}
+            )
             # dup 2
-            b.delete_item(Key={
-                'pkey': 'foo1',
-                'skey': 'bar2',
-            })
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar2',
-                'other': 'other3'
-            })
+            b.delete_item(
+                Key={
+                    'pkey': 'foo1',
+                    'skey': 'bar2',
+                }
+            )
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar2', 'other': 'other3'}
+            )
             # dup 3
-            b.put_item(Item={
-                'pkey': 'foo2',
-                'skey': 'bar2',
-                'other': 'other3'
-            })
-            b.delete_item(Key={
-                'pkey': 'foo2',
-                'skey': 'bar2',
-            })
+            b.put_item(
+                Item={'pkey': 'foo2', 'skey': 'bar2', 'other': 'other3'}
+            )
+            b.delete_item(
+                Key={
+                    'pkey': 'foo2',
+                    'skey': 'bar2',
+                }
+            )
             # dup 4
-            b.delete_item(Key={
-                'pkey': 'foo2',
-                'skey': 'bar3',
-            })
-            b.delete_item(Key={
-                'pkey': 'foo2',
-                'skey': 'bar3',
-            })
+            b.delete_item(
+                Key={
+                    'pkey': 'foo2',
+                    'skey': 'bar3',
+                }
+            )
+            b.delete_item(
+                Key={
+                    'pkey': 'foo2',
+                    'skey': 'bar3',
+                }
+            )
             # 5
-            b.delete_item(Key={
-                'pkey': 'foo3',
-                'skey': 'bar3',
-            })
+            b.delete_item(
+                Key={
+                    'pkey': 'foo3',
+                    'skey': 'bar3',
+                }
+            )
             # 2nd batch
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other1'
-            })
-            b.put_item(Item={
-                'pkey': 'foo1',
-                'skey': 'bar1',
-                'other': 'other2'
-            })
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other1'}
+            )
+            b.put_item(
+                Item={'pkey': 'foo1', 'skey': 'bar1', 'other': 'other2'}
+            )
 
         first_batch = {
             'RequestItems': {
                 self.table_name: [
-                    {'PutRequest': { 'Item': {
-                        'pkey': 'foo1',
-                        'skey': 'bar1',
-                        'other': 'other2'
-                    }}},
-                    {'PutRequest': { 'Item': {
-                        'pkey': 'foo1',
-                        'skey': 'bar2',
-                        'other': 'other3'
-                    }}},
-                    {'DeleteRequest': {'Key': {
-                        'pkey': 'foo2',
-                        'skey': 'bar2',
-                    }}},
-                    {'DeleteRequest': {'Key': {
-                        'pkey': 'foo2',
-                        'skey': 'bar3',
-                    }}},
-                    {'DeleteRequest': {'Key': {
-                        'pkey': 'foo3',
-                        'skey': 'bar3',
-                    }}},
+                    {
+                        'PutRequest': {
+                            'Item': {
+                                'pkey': 'foo1',
+                                'skey': 'bar1',
+                                'other': 'other2',
+                            }
+                        }
+                    },
+                    {
+                        'PutRequest': {
+                            'Item': {
+                                'pkey': 'foo1',
+                                'skey': 'bar2',
+                                'other': 'other3',
+                            }
+                        }
+                    },
+                    {
+                        'DeleteRequest': {
+                            'Key': {
+                                'pkey': 'foo2',
+                                'skey': 'bar2',
+                            }
+                        }
+                    },
+                    {
+                        'DeleteRequest': {
+                            'Key': {
+                                'pkey': 'foo2',
+                                'skey': 'bar3',
+                            }
+                        }
+                    },
+                    {
+                        'DeleteRequest': {
+                            'Key': {
+                                'pkey': 'foo3',
+                                'skey': 'bar3',
+                            }
+                        }
+                    },
                 ]
             }
         }
         second_batch = {
             'RequestItems': {
                 self.table_name: [
-                    {'PutRequest': { 'Item': {
-                        'pkey': 'foo1',
-                        'skey': 'bar1',
-                        'other': 'other2'
-                    }}},
+                    {
+                        'PutRequest': {
+                            'Item': {
+                                'pkey': 'foo1',
+                                'skey': 'bar1',
+                                'other': 'other2',
+                            }
+                        }
+                    },
                 ]
             }
         }
         self.assert_batch_write_calls_are([first_batch, second_batch])
+
+    def test_added_unsent_request_not_flushed_put(self):
+        # If n requests that get sent fail to process where n = flush_amount
+        # and at least one more request gets created before the second attempt,
+        # then previously if n requests were successful on the next run and
+        # returned an empty dict, _item_buffer would be emptied before sending
+        # the next batch of n requests
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                        {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {},
+            },
+            {
+                'UnprocessedItems': {},
+            },
+        ]
+        self.batch_writer.put_item({'Hash': 'foo1'})
+        self.batch_writer.put_item({'Hash': 'foo2'})
+        self.batch_writer.put_item({'Hash': 'foo3'})
+        self.assertIn(
+            {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+            self.batch_writer._items_buffer,
+        )
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        final_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                ]
+            }
+        }
+        # same batch sent twice since all failed on first try
+        # and flush_items = 2
+        self.assert_batch_write_calls_are([batch, batch])
+        # test that the next two items get sent
+        self.batch_writer.put_item({'Hash': 'foo4'})
+        self.assert_batch_write_calls_are([batch, batch, final_batch])
+        # the buffer should be empty now
+        self.assertEqual(self.batch_writer._items_buffer, [])
+
+    def test_added_unsent_request_not_flushed_delete(self):
+        # If n requests that get sent fail to process where n = flush_amount
+        # and at least one more request gets created before the second attempt,
+        # then previously if n requests were successful on the next run and
+        # returned an empty dict, _item_buffer would be emptied before sending
+        # the next batch of n requests
+        self.client.batch_write_item.side_effect = [
+            {
+                'UnprocessedItems': {
+                    self.table_name: [
+                        {'DeleteRequest': {'Key': {'Hash': 'foo1'}}},
+                        {'DeleteRequest': {'Key': {'Hash': 'foo2'}}},
+                    ],
+                },
+            },
+            {
+                'UnprocessedItems': {},
+            },
+            {
+                'UnprocessedItems': {},
+            },
+        ]
+        self.batch_writer.delete_item({'Hash': 'foo1'})
+        self.batch_writer.delete_item({'Hash': 'foo2'})
+        self.batch_writer.delete_item({'Hash': 'foo3'})
+        self.assertIn(
+            {'DeleteRequest': {'Key': {'Hash': 'foo3'}}},
+            self.batch_writer._items_buffer,
+        )
+        batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'DeleteRequest': {'Key': {'Hash': 'foo1'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo2'}}},
+                ]
+            }
+        }
+        final_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'DeleteRequest': {'Key': {'Hash': 'foo3'}}},
+                    {'DeleteRequest': {'Key': {'Hash': 'foo4'}}},
+                ]
+            }
+        }
+        # same batch sent twice since all failed on first try
+        # and flush_items = 2
+        self.assert_batch_write_calls_are([batch, batch])
+        # test that the next two items get sent
+        self.batch_writer.delete_item({'Hash': 'foo4'})
+        self.assert_batch_write_calls_are([batch, batch, final_batch])
+        # the buffer should be empty now
+        self.assertEqual(self.batch_writer._items_buffer, [])

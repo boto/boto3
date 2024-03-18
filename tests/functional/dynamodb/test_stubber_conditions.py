@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -31,33 +31,41 @@ class TestStubberSupportsFilterExpressions(unittest.TestCase):
         )
 
         stubber = Stubber(table.meta.client)
-        stubber.add_response('query', dict(Items=list()), expected_params=dict(
+        stubber.add_response(
+            'query',
+            dict(Items=list()),
+            expected_params=dict(
                 TableName='mytable',
                 KeyConditionExpression=key_expr,
-                FilterExpression=filter_expr
-        ))
+                FilterExpression=filter_expr,
+            ),
+        )
 
         with stubber:
-            response = table.query(KeyConditionExpression=key_expr,
-                                   FilterExpression=filter_expr)
+            response = table.query(
+                KeyConditionExpression=key_expr, FilterExpression=filter_expr
+            )
 
-        self.assertEqual(list(), response['Items'])
+        assert response['Items'] == []
         stubber.assert_no_pending_responses()
 
     def test_table_scan_can_be_stubbed_with_expressions(self):
         table = self.resource.Table('mytable')
         filter_expr = Attr('myattr').eq('foo') & (
-                Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')
+            Attr('myattr2').lte('buzz') | Attr('myattr2').gte('fizz')
         )
 
         stubber = Stubber(table.meta.client)
-        stubber.add_response('scan', dict(Items=list()), expected_params=dict(
-                TableName='mytable',
-                FilterExpression=filter_expr
-        ))
+        stubber.add_response(
+            'scan',
+            dict(Items=list()),
+            expected_params=dict(
+                TableName='mytable', FilterExpression=filter_expr
+            ),
+        )
 
         with stubber:
             response = table.scan(FilterExpression=filter_expr)
 
-        self.assertEqual(list(), response['Items'])
+        assert response['Items'] == []
         stubber.assert_no_pending_responses()

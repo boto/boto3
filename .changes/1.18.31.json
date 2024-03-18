@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``s3``",
+    "description": "[``botocore``] Documentation updates for Amazon S3.",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr``",
+    "description": "[``botocore``] Update emr client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] This release adds the BootMode flag to the ImportImage API and showing the detected BootMode of an ImportImage task.",
+    "type": "api-change"
+  }
+]

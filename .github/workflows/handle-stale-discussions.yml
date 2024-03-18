@@ -1,0 +1,26 @@
+name: HandleStaleDiscussions
+on:
+  schedule:
+    - cron: "0 4 * * 1"
+  discussion_comment:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  handle-stale-discussions:
+    name: Handle stale discussions
+    runs-on: ubuntu-latest
+    permissions:
+      discussions: write
+    steps:
+      - name: Stale discussions action
+        uses: aws-github-ops/handle-stale-discussions@a98e47e10f9a5d4ed08ffb27b7a19454302f9a43
+        with:
+          # This will close stale-discussions as outdated instead of answered
+          close-stale-as-answered: false
+          # This will disable auto-closing answered discussions
+          close-answered-discussions: false
+        env:
+          GITHUB_TOKEN:  ${{secrets.GITHUB_TOKEN}}

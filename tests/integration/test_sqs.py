@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -12,8 +12,7 @@
 # language governing permissions and limitations under the License.
 
 import boto3.session
-
-from tests import unittest, unique_id
+from tests import unique_id, unittest
 
 
 class TestSQSResource(unittest.TestCase):

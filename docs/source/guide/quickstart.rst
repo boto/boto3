@@ -24,10 +24,11 @@ To use Boto3, you first need to install it and its dependencies.
 Install or update Python
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Before installing Boto3, install Python 3.6 or later; support for Python 2.7 and Python 3.5 and
-earlier is deprecated. After the deprecation date listed for each Python version, new releases of
-Boto3 will not include support for that version of Python. For details, including the deprecation
-schedule and how to update your project to use Python 3.6, see :ref:`guide_migration_py3`.
+Before installing Boto3, install Python 3.8 or later; support for Python 3.7 and
+earlier is deprecated. After the deprecation date listed for each Python
+version, new releases of Boto3 will not include support for that version of
+Python. For details, including the deprecation schedule and how to update your
+project to use Python 3.8, see :ref:`guide_migration_py3`.
 
 For information about how to get the latest version of Python, see the official `Python
 documentation <https://www.python.org/downloads/>`_. 
@@ -55,6 +56,37 @@ certain versions, you may provide constraints when installing::
 
    The latest development version of Boto3 is on `GitHub <https://github.com/boto/boto3>`_.
 
+Using the AWS Common Runtime (CRT)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In addition to the default install of Boto3, you can choose to include the new `AWS Common Runtime <https://docs.aws.amazon.com/sdkref/latest/guide/common-runtime.html>`_
+(CRT). The AWS CRT is a collection of modular packages that serve as a new foundation for AWS SDKs.
+Each library provides better performance and minimal footprint for the functional area it
+implements. Using the CRT, SDKs can share the same base code when possible, improving consistency
+and throughput optimizations across AWS SDKs.
+
+When the AWS CRT is included, Boto3 uses it to incorporate features not otherwise
+available in the AWS SDK for Python.
+
+You'll find it used in features like:
+
+-  `Amazon S3 Multi-Region Access Points <https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPoints.html>`_
+-  `Amazon S3 Object Integrity <https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html>`_
+-  Amazon EventBridge Global Endpoints
+
+However, Boto3 doesn't use the AWS CRT by default but you can opt into using it by specifying the
+:code:`crt` `extra feature <https://www.python.org/dev/peps/pep-0508/#extras>`_ when installing Boto3::
+
+    pip install boto3[crt]
+
+To revert to the non-CRT version of Boto3, use this command::
+
+    pip uninstall awscrt
+
+If you need to re-enable CRT,  reinstall :code:`boto3[crt]` to ensure you get a compatible version of :code:`awscrt`::
+
+    pip install boto3[crt]
+
 Configuration
 -------------
 
@@ -75,7 +107,7 @@ If you have the `AWS CLI <http://aws.amazon.com/cli/>`_ installed, then you can 
 
 Alternatively, you can create the credentials file yourself. By default, its location is
 ``~/.aws/credentials``. At a minimum, the credentials file should specify the access key and secret
-access key. In this example, the key and secret key for the account are specified the ``default`` profile::
+access key. In this example, the key and secret key for the account are specified in the ``default`` profile::
 
     [default]
     aws_access_key_id = YOUR_ACCESS_KEY
@@ -112,8 +144,8 @@ You can also upload and download binary data. For example, the following uploads
 assuming that the bucket ``my-bucket`` already exists::
 
     # Upload a new file
-    data = open('test.jpg', 'rb')
-    s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
+    with open('test.jpg', 'rb') as data:
+        s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
 
 :ref:`guide_resources` and :ref:`guide_collections` are covered in more detail in the following
 sections.

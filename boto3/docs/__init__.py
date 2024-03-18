@@ -4,13 +4,15 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 import os
+
+from botocore.docs import DEPRECATED_SERVICE_NAMES
 
 from boto3.docs.service import ServiceDocumenter
 
@@ -31,9 +33,19 @@ def generate_docs(root_dir, session):
     if not os.path.exists(services_doc_path):
         os.makedirs(services_doc_path)
 
-    for service_name in session.get_available_services():
-        docs = ServiceDocumenter(service_name, session).document_service()
+    # Prevents deprecated service names from being generated in docs.
+    available_services = [
+        service
+        for service in session.get_available_services()
+        if service not in DEPRECATED_SERVICE_NAMES
+    ]
+
+    for service_name in available_services:
+        docs = ServiceDocumenter(
+            service_name, session, services_doc_path
+        ).document_service()
         service_doc_path = os.path.join(
-            services_doc_path, service_name + '.rst')
+            services_doc_path, service_name + '.rst'
+        )
         with open(service_doc_path, 'wb') as f:
             f.write(docs)

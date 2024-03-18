@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``codestar-notifications``",
+    "description": "[``botocore``] This release adds tag based access control for the UntagResource API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] This release supports new task definition sizes.",
+    "type": "api-change"
+  }
+]

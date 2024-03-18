@@ -1,0 +1,27 @@
+[
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Upgrade awscrt version to 0.14.0",
+    "type": "enhancement"
+  },
+  {
+    "category": "``cloudfront``",
+    "description": "[``botocore``] Adds Http 3 support to distributions",
+    "type": "api-change"
+  },
+  {
+    "category": "``identitystore``",
+    "description": "[``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso``",
+    "description": "[``botocore``] Documentation updates to reflect service rename - AWS IAM Identity Center (successor to AWS Single Sign-On)",
+    "type": "api-change"
+  },
+  {
+    "category": "``wisdom``",
+    "description": "[``botocore``] This release introduces a new API PutFeedback that allows submitting feedback to Wisdom on content relevance.",
+    "type": "api-change"
+  }
+]

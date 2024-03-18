@@ -1,7 +1,7 @@
 .. _guide_configuration:
 
 Configuration
-===========
+=============
 
 Overview
 ---------
@@ -19,12 +19,14 @@ For details about credential configuration, see the :ref:`guide_credentials` gui
 
 
 Using the Config object
--------------------------
+-----------------------
 This option is for configuring client-specific configurations that affect the behavior of your specific client object only. As described earlier, there are options used here that will supersede those found in other configuration locations:
 
 * ``region_name`` (string) - The AWS Region used in instantiating the client. If used, this takes precedence over environment variable and configuration file values. But it doesn't overwrite a ``region_name`` value *explicitly* passed to individual service methods.
 * ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL with an expiry of greater than 7 days, you should specify Signature Version 2.
-* ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
+* ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
+* ``proxies`` (dictionary) - Each entry maps a protocol name to the proxy server Boto3 should use to communicate using that protocol. See :ref:`specify_proxies` for more information.
+* ``proxies_config`` (dictionary) - Additional proxy configuration settings. For more information, see :ref:`configure_proxies`.
 * ``retries`` (dictionary) - Client retry behavior configuration options that include retry mode and maximum retry attempts. For more information, see the :ref:`guide_retries` guide.  
 
 
@@ -48,9 +50,103 @@ To set these configuration options, create a ``Config`` object with the options 
 
     client = boto3.client('kinesis', config=my_config)
 
+
+Using proxies
+~~~~~~~~~~~~~
+With Boto3, you can use proxies as intermediaries between your code and AWS. Proxies can provide functions such as filtering, security, firewalls, and privacy assurance.
+
+.. _specify_proxies:
+
+Specifying proxy servers
+''''''''''''''''''''''''
+
+You can specify proxy servers to be used for connections when using specific protocols. The ``proxies`` option in the ``Config`` object is a dictionary in which each entry maps a protocol to the address and port number of the proxy server for that protocol.
+
+In the following example, a proxy list is set up to use ``proxy.amazon.com``, port 6502 as the proxy for all HTTP requests by default. HTTPS requests use port 2010 on ``proxy.amazon.org`` instead.
+
+
+.. code-block:: python
+
+    import boto3
+    from botocore.config import Config
+
+    proxy_definitions = {
+        'http': 'http://proxy.amazon.com:6502',
+        'https': 'https://proxy.amazon.org:2010'
+    }
+
+    my_config = Config(
+        region_name='us-east-2',
+        signature_version='v4',
+        proxies=proxy_definitions
+    )
+
+    client = boto3.client('kinesis', config=my_config)
+
+Alternatively, you can use the ``HTTP_PROXY`` and ``HTTPS_PROXY`` environment variables to specify proxy servers.  Proxy servers specified using the ``proxies`` option in the ``Config`` object will override proxy servers specified using environment variables.
+
+.. _configure_proxies:
+
+Configuring proxies
+'''''''''''''''''''
+You can configure how Boto3 uses proxies by specifying the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. For more information about these keys, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config>`_.
+
+.. code-block:: python
+
+    import boto3
+    from botocore.config import Config
+
+    proxy_definitions = {
+        'http': 'http://proxy.amazon.com:6502',
+        'https': 'https://proxy.amazon.org:2010'
+    }
+
+    my_config = Config(
+        region_name='us-east-2',
+        signature_version='v4',
+        proxies=proxy_definitions,
+        proxies_config={
+            'proxy_client_cert': '/path/of/certificate'
+        }
+    )
+
+    client = boto3.client('kinesis', config=my_config)
+
+With the addition of the ``proxies_config`` option shown here, the proxy will use the specified certificate file for authentication when using the HTTPS proxy.
+
+Using client context parameters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Some services have configuration settings that are specific to their clients. These settings are called client context parameters. Please refer to the ``Client Context Parameters`` section of a service client's documentation for a list of available parameters and information on how to use them.
+
+.. _configure_client_context:
+
+Configuring client context parameters
+'''''''''''''''''''''''''''''''''''''
+You can configure client context parameters by passing a dictionary of key-value pairs to the ``client_context_params`` parameter in your ``Config``. Invalid parameter values or parameters that are not modeled by the service will be ignored.
+
+.. code-block:: python
+
+    import boto3
+    from botocore.config import Config
+
+    my_config = Config(
+        region_name='us-east-2',
+        client_context_params={
+            'my_great_context_param': 'foo'
+        }
+    )
+
+    client = boto3.client('kinesis', config=my_config)
+
+Boto3 does not support setting ``client_context_params`` per request. Differing configurations will require creation of a new client.
+
 Using environment variables 
 ---------------------------
-Configurations can be set through the use of system-wide environment variables. If set, these configurations are global and will affect all clients created unless explicitly overwritten through the use of a ``Config`` object. 
+You can set configuration settings using system-wide environment variables. These configurations are global and will affect all clients created unless you override them with a ``Config`` object.
+
+.. note::
+    Only the configuration settings listed below can be set using environment variables.
+
 
 ``AWS_ACCESS_KEY_ID``
     The access key for your AWS account.
@@ -132,7 +228,7 @@ Configurations can be set through the use of system-wide environment variables. 
     see the ``retry_mode`` configuration file section.
 
 Using a configuration file
--------------------
+--------------------------
 
 Boto3 will also search the ``~/.aws/config`` file when looking for
 configuration values.  You can change the location of this file by

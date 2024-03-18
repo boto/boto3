@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``acm-pca``",
+    "description": "[``botocore``] Documentation correction for AWS Private CA",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Added a new API UpdateRoutingProfileAgentAvailabilityTimer to update agent availability timer of a routing profile.",
+    "type": "api-change"
+  },
+  {
+    "category": "``datasync``",
+    "description": "[``botocore``] Display cloud storage used capacity at a cluster level.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] This is a documentation update to address various tickets.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Including DataCaptureConfig key in the Amazon Sagemaker Search's transform job object",
+    "type": "api-change"
+  }
+]

@@ -4,43 +4,44 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import os
-import threading
-import math
-import tempfile
-import shutil
-import hashlib
-import string
 import datetime
+import hashlib
+import io
 import logging
+import math
+import os
+import shutil
+import string
+import tempfile
+import threading
+from pathlib import Path
 
-from tests import unittest, unique_id
-from botocore.compat import six
 from botocore.client import Config
 
-import boto3.session
 import boto3.s3.transfer
+import boto3.session
+from tests import unique_id, unittest
 
-
-urlopen = six.moves.urllib.request.urlopen
 LOG = logging.getLogger('boto3.tests.integration')
 
 
 def assert_files_equal(first, second):
     if os.path.getsize(first) != os.path.getsize(second):
-        raise AssertionError("Files are not equal: %s, %s" % (first, second))
+        raise AssertionError(f"Files are not equal: {first}, {second}")
     first_md5 = md5_checksum(first)
     second_md5 = md5_checksum(second)
     if first_md5 != second_md5:
         raise AssertionError(
-            "Files are not equal: %s(md5=%s) != %s(md5=%s)" % (
-                first, first_md5, second, second_md5))
+            "Files are not equal: {}(md5={}) != {}(md5={})".format(
+                first, first_md5, second, second_md5
+            )
+        )
 
 
 def md5_checksum(filename):
@@ -68,7 +69,8 @@ def setup_module():
         'Bucket': _SHARED_BUCKET,
         'CreateBucketConfiguration': {
             'LocationConstraint': _DEFAULT_REGION,
-        }
+        },
+        'ObjectOwnership': 'ObjectWriter',
     }
     try:
         s3.create_bucket(**params)
@@ -78,6 +80,7 @@ def setup_module():
         # final call as to whether or not the bucket exists.
         LOG.debug("create_bucket() raised an exception: %s", e, exc_info=True)
     waiter.wait(Bucket=_SHARED_BUCKET)
+    s3.delete_public_access_block(Bucket=_SHARED_BUCKET)
 
 
 def clear_out_bucket(bucket, region, delete_bucket=False):
@@ -96,8 +99,9 @@ def clear_out_bucket(bucket, region, delete_bucket=False):
             # delete a bucket.  We'll let the waiter make
             # the final call as to whether the bucket was able
             # to be deleted.
-            LOG.debug("delete_bucket() raised an exception: %s",
-                      e, exc_info=True)
+            LOG.debug(
+                "delete_bucket() raised an exception: %s", e, exc_info=True
+            )
             waiter = s3.get_waiter('bucket_not_exists')
             waiter.wait(Bucket=bucket)
 
@@ -106,7 +110,7 @@ def teardown_module():
     clear_out_bucket(_SHARED_BUCKET, _DEFAULT_REGION, delete_bucket=True)
 
 
-class FileCreator(object):
+class FileCreator:
     def __init__(self):
         self.rootdir = tempfile.mkdtemp()
 
@@ -197,8 +201,7 @@ class TestS3Resource(unittest.TestCase):
 
         # Create an object
         obj = self.bucket.Object('test.txt')
-        obj.put(
-            Body='hello, world')
+        obj.put(Body='hello, world')
         waiter = client.get_waiter('object_exists')
         waiter.wait(Bucket=self.bucket_name, Key='test.txt')
         self.addCleanup(obj.delete)
@@ -213,8 +216,7 @@ class TestS3Resource(unittest.TestCase):
         self.assertEqual(12, list(self.bucket.objects.all())[0].size)
 
         # Perform a resource action with a low-level response
-        self.assertEqual(b'hello, world',
-                         obj.get()['Body'].read())
+        self.assertEqual(b'hello, world', obj.get()['Body'].read())
 
     def test_s3_resource_waiter(self):
         # Create a bucket
@@ -224,13 +226,11 @@ class TestS3Resource(unittest.TestCase):
         bucket.wait_until_exists()
         # Confirm the bucket exists by finding it in a list of all of our
         # buckets
-        self.assertIn(bucket_name,
-                      [b.name for b in self.s3.buckets.all()])
+        self.assertIn(bucket_name, [b.name for b in self.s3.buckets.all()])
 
         # Create an object
         obj = bucket.Object('test.txt')
-        obj.put(
-            Body='hello, world')
+        obj.put(Body='hello, world')
         self.addCleanup(obj.delete)
 
         # Wait till the bucket exists
@@ -255,14 +255,7 @@ class TestS3Resource(unittest.TestCase):
         response = part.upload(Body='hello, world!')
 
         # Complete the upload, which requires info on all of the parts
-        part_info = {
-            'Parts': [
-                {
-                    'PartNumber': 1,
-                    'ETag': response['ETag']
-                }
-            ]
-        }
+        part_info = {'Parts': [{'PartNumber': 1, 'ETag': response['ETag']}]}
 
         mpu.complete(MultipartUpload=part_info)
         self.addCleanup(self.bucket.Object('mp-test.txt').delete)
@@ -279,7 +272,7 @@ class TestS3Resource(unittest.TestCase):
         for i in range(10):
             obj.put(Body="Version %s" % i)
 
-        # Delete all the versions of the object
+            # Delete all the versions of the object
             bucket.object_versions.all().delete()
 
         versions = list(bucket.object_versions.all())
@@ -288,6 +281,7 @@ class TestS3Resource(unittest.TestCase):
 
 class TestS3Transfers(unittest.TestCase):
     """Tests for the high level boto3.s3.transfer module."""
+
     def setUp(self):
         self.region = _DEFAULT_REGION
         self.bucket_name = _SHARED_BUCKET
@@ -301,17 +295,16 @@ class TestS3Transfers(unittest.TestCase):
         self.files.remove_all()
 
     def delete_object(self, key):
-        self.client.delete_object(
-            Bucket=self.bucket_name,
-            Key=key)
+        self.client.delete_object(Bucket=self.bucket_name, Key=key)
 
     def object_exists(self, key):
         waiter = self.client.get_waiter('object_exists')
         waiter.wait(Bucket=self.bucket_name, Key=key)
         return True
 
-    def wait_until_object_exists(self, key_name, extra_params=None,
-                                 min_successes=3):
+    def wait_until_object_exists(
+        self, key_name, extra_params=None, min_successes=3
+    ):
         waiter = self.client.get_waiter('object_exists')
         params = {'Bucket': self.bucket_name, 'Key': key_name}
         if extra_params is not None:
@@ -320,32 +313,37 @@ class TestS3Transfers(unittest.TestCase):
             waiter.wait(**params)
 
     def create_s3_transfer(self, config=None):
-        return boto3.s3.transfer.S3Transfer(self.client,
-                                            config=config)
+        return boto3.s3.transfer.S3Transfer(self.client, config=config)
 
     def assert_has_public_read_acl(self, response):
         grants = response['Grants']
-        public_read = [g['Grantee'].get('URI', '') for g in grants
-                       if g['Permission'] == 'READ']
+        public_read = [
+            g['Grantee'].get('URI', '')
+            for g in grants
+            if g['Permission'] == 'READ'
+        ]
         self.assertIn('groups/global/AllUsers', public_read[0])
 
     def test_copy(self):
         self.client.put_object(
-            Bucket=self.bucket_name, Key='foo', Body='beach')
+            Bucket=self.bucket_name, Key='foo', Body='beach'
+        )
         self.addCleanup(self.delete_object, 'foo')
 
         self.client.copy(
             CopySource={'Bucket': self.bucket_name, 'Key': 'foo'},
-            Bucket=self.bucket_name, Key='bar'
+            Bucket=self.bucket_name,
+            Key='bar',
         )
         self.addCleanup(self.delete_object, 'bar')
 
         self.object_exists('bar')
 
     def test_upload_fileobj(self):
-        fileobj = six.BytesIO(b'foo')
+        fileobj = io.BytesIO(b'foo')
         self.client.upload_fileobj(
-            Fileobj=fileobj, Bucket=self.bucket_name, Key='foo')
+            Fileobj=fileobj, Bucket=self.bucket_name, Key='foo'
+        )
         self.addCleanup(self.delete_object, 'foo')
 
         self.object_exists('foo')
@@ -354,74 +352,92 @@ class TestS3Transfers(unittest.TestCase):
         # This has to be an integration test because the fileobj will never
         # actually be read from when using the stubber and therefore the
         # progress callbacks will not be invoked.
-        chunksize = 5 * (1024 ** 2)
+        chunksize = 5 * (1024**2)
         config = boto3.s3.transfer.TransferConfig(
             multipart_chunksize=chunksize,
             multipart_threshold=chunksize,
-            max_concurrency=1
+            max_concurrency=1,
         )
-        fileobj = six.BytesIO(b'0' * (chunksize * 3))
+        fileobj = io.BytesIO(b'0' * (chunksize * 3))
 
         def progress_callback(amount):
             self.progress += amount
 
         self.client.upload_fileobj(
-            Fileobj=fileobj, Bucket=self.bucket_name, Key='foo',
-            Config=config, Callback=progress_callback)
+            Fileobj=fileobj,
+            Bucket=self.bucket_name,
+            Key='foo',
+            Config=config,
+            Callback=progress_callback,
+        )
         self.addCleanup(self.delete_object, 'foo')
 
         self.object_exists('foo')
         self.assertEqual(self.progress, chunksize * 3)
 
     def test_download_fileobj(self):
-        fileobj = six.BytesIO()
+        fileobj = io.BytesIO()
         self.client.put_object(
-            Bucket=self.bucket_name, Key='foo', Body=b'beach')
+            Bucket=self.bucket_name, Key='foo', Body=b'beach'
+        )
         self.addCleanup(self.delete_object, 'foo')
 
         self.wait_until_object_exists('foo')
         self.client.download_fileobj(
-            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj)
+            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj
+        )
 
         self.assertEqual(fileobj.getvalue(), b'beach')
 
+    def test_upload_via_path(self):
+        transfer = self.create_s3_transfer()
+        filename = self.files.create_file_with_size('path.txt', filesize=1024)
+        transfer.upload_file(Path(filename), self.bucket_name, 'path.txt')
+        self.addCleanup(self.delete_object, 'path.txt')
+        self.assertTrue(self.object_exists('path.txt'))
+
     def test_upload_below_threshold(self):
         config = boto3.s3.transfer.TransferConfig(
-            multipart_threshold=2 * 1024 * 1024)
+            multipart_threshold=2 * 1024 * 1024
+        )
         transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
-            'foo.txt', filesize=1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             'foo.txt')
+            'foo.txt', filesize=1024 * 1024
+        )
+        transfer.upload_file(filename, self.bucket_name, 'foo.txt')
         self.addCleanup(self.delete_object, 'foo.txt')
-
         self.assertTrue(self.object_exists('foo.txt'))
 
     def test_upload_above_threshold(self):
         config = boto3.s3.transfer.TransferConfig(
-            multipart_threshold=2 * 1024 * 1024)
+            multipart_threshold=2 * 1024 * 1024
+        )
         transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
-            '20mb.txt', filesize=20 * 1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             '20mb.txt')
+            '20mb.txt', filesize=20 * 1024 * 1024
+        )
+        transfer.upload_file(filename, self.bucket_name, '20mb.txt')
         self.addCleanup(self.delete_object, '20mb.txt')
         self.assertTrue(self.object_exists('20mb.txt'))
 
     def test_upload_file_above_threshold_with_acl(self):
         config = boto3.s3.transfer.TransferConfig(
-            multipart_threshold=5 * 1024 * 1024)
+            multipart_threshold=5 * 1024 * 1024
+        )
         transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
-            '6mb.txt', filesize=6 * 1024 * 1024)
+            '6mb.txt', filesize=6 * 1024 * 1024
+        )
         extra_args = {'ACL': 'public-read'}
-        transfer.upload_file(filename, self.bucket_name,
-                             '6mb.txt', extra_args=extra_args)
+        transfer.upload_file(
+            filename, self.bucket_name, '6mb.txt', extra_args=extra_args
+        )
         self.addCleanup(self.delete_object, '6mb.txt')
 
         self.assertTrue(self.object_exists('6mb.txt'))
         response = self.client.get_object_acl(
-            Bucket=self.bucket_name, Key='6mb.txt')
+            Bucket=self.bucket_name, Key='6mb.txt'
+        )
         self.assert_has_public_read_acl(response)
 
     def test_upload_file_above_threshold_with_ssec(self):
@@ -431,19 +447,22 @@ class TestS3Transfers(unittest.TestCase):
             'SSECustomerAlgorithm': 'AES256',
         }
         config = boto3.s3.transfer.TransferConfig(
-            multipart_threshold=5 * 1024 * 1024)
+            multipart_threshold=5 * 1024 * 1024
+        )
         transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
-            '6mb.txt', filesize=6 * 1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             '6mb.txt', extra_args=extra_args)
+            '6mb.txt', filesize=6 * 1024 * 1024
+        )
+        transfer.upload_file(
+            filename, self.bucket_name, '6mb.txt', extra_args=extra_args
+        )
         self.addCleanup(self.delete_object, '6mb.txt')
         # A head object will fail if it has a customer key
         # associated with it and it's not provided in the HeadObject
         # request so we can use this to verify our functionality.
         response = self.client.head_object(
-            Bucket=self.bucket_name,
-            Key='6mb.txt', **extra_args)
+            Bucket=self.bucket_name, Key='6mb.txt', **extra_args
+        )
         self.assertEqual(response['SSECustomerAlgorithm'], 'AES256')
 
     def test_progress_callback_on_upload(self):
@@ -456,9 +475,11 @@ class TestS3Transfers(unittest.TestCase):
 
         transfer = self.create_s3_transfer()
         filename = self.files.create_file_with_size(
-            '20mb.txt', filesize=20 * 1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             '20mb.txt', callback=progress_callback)
+            '20mb.txt', filesize=20 * 1024 * 1024
+        )
+        transfer.upload_file(
+            filename, self.bucket_name, '20mb.txt', callback=progress_callback
+        )
         self.addCleanup(self.delete_object, '20mb.txt')
 
         # The callback should have been called enough times such that
@@ -472,18 +493,21 @@ class TestS3Transfers(unittest.TestCase):
         # twice when using signature version 4.
         self.amount_seen = 0
         lock = threading.Lock()
+
         def progress_callback(amount):
             with lock:
                 self.amount_seen += amount
 
         client = self.session.client(
-            's3', self.region,
-            config=Config(signature_version='s3v4'))
+            's3', self.region, config=Config(signature_version='s3v4')
+        )
         transfer = boto3.s3.transfer.S3Transfer(client)
         filename = self.files.create_file_with_size(
-            '10mb.txt', filesize=10 * 1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             '10mb.txt', callback=progress_callback)
+            '10mb.txt', filesize=10 * 1024 * 1024
+        )
+        transfer.upload_file(
+            filename, self.bucket_name, '10mb.txt', callback=progress_callback
+        )
         self.addCleanup(self.delete_object, '10mb.txt')
 
         self.assertEqual(self.amount_seen, 10 * 1024 * 1024)
@@ -491,12 +515,17 @@ class TestS3Transfers(unittest.TestCase):
     def test_can_send_extra_params_on_upload(self):
         transfer = self.create_s3_transfer()
         filename = self.files.create_file_with_size('foo.txt', filesize=1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             'foo.txt', extra_args={'ACL': 'public-read'})
+        transfer.upload_file(
+            filename,
+            self.bucket_name,
+            'foo.txt',
+            extra_args={'ACL': 'public-read'},
+        )
         self.addCleanup(self.delete_object, 'foo.txt')
 
         response = self.client.get_object_acl(
-            Bucket=self.bucket_name, Key='foo.txt')
+            Bucket=self.bucket_name, Key='foo.txt'
+        )
         self.assert_has_public_read_acl(response)
 
     def test_can_configure_threshold(self):
@@ -505,9 +534,9 @@ class TestS3Transfers(unittest.TestCase):
         )
         transfer = self.create_s3_transfer(config)
         filename = self.files.create_file_with_size(
-            'foo.txt', filesize=8 * 1024 * 1024)
-        transfer.upload_file(filename, self.bucket_name,
-                             'foo.txt')
+            'foo.txt', filesize=8 * 1024 * 1024
+        )
+        transfer.upload_file(filename, self.bucket_name, 'foo.txt')
         self.addCleanup(self.delete_object, 'foo.txt')
 
         self.assertTrue(self.object_exists('foo.txt'))
@@ -521,17 +550,20 @@ class TestS3Transfers(unittest.TestCase):
             'SSECustomerKey': key_bytes,
             'SSECustomerAlgorithm': 'AES256',
         }
-        self.client.put_object(Bucket=self.bucket_name,
-                               Key='foo.txt',
-                               Body=b'hello world',
-                               **extra_args)
+        self.client.put_object(
+            Bucket=self.bucket_name,
+            Key='foo.txt',
+            Body=b'hello world',
+            **extra_args,
+        )
         self.addCleanup(self.delete_object, 'foo.txt')
         transfer = self.create_s3_transfer()
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         self.wait_until_object_exists('foo.txt', extra_params=extra_args)
-        transfer.download_file(self.bucket_name, 'foo.txt',
-                               download_path, extra_args=extra_args)
+        transfer.download_file(
+            self.bucket_name, 'foo.txt', download_path, extra_args=extra_args
+        )
         with open(download_path, 'rb') as f:
             self.assertEqual(f.read(), b'hello world')
 
@@ -545,15 +577,21 @@ class TestS3Transfers(unittest.TestCase):
 
         transfer = self.create_s3_transfer()
         filename = self.files.create_file_with_size(
-            '20mb.txt', filesize=20 * 1024 * 1024)
+            '20mb.txt', filesize=20 * 1024 * 1024
+        )
         with open(filename, 'rb') as f:
-            self.client.put_object(Bucket=self.bucket_name,
-                                   Key='20mb.txt', Body=f)
+            self.client.put_object(
+                Bucket=self.bucket_name, Key='20mb.txt', Body=f
+            )
         self.addCleanup(self.delete_object, '20mb.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
-        transfer.download_file(self.bucket_name, '20mb.txt',
-                               download_path, callback=progress_callback)
+        transfer.download_file(
+            self.bucket_name,
+            '20mb.txt',
+            download_path,
+            callback=progress_callback,
+        )
 
         self.assertEqual(self.amount_seen, 20 * 1024 * 1024)
 
@@ -561,44 +599,45 @@ class TestS3Transfers(unittest.TestCase):
         transfer = self.create_s3_transfer()
 
         filename = self.files.create_file_with_size(
-            'foo.txt', filesize=1024 * 1024)
+            'foo.txt', filesize=1024 * 1024
+        )
         with open(filename, 'rb') as f:
-            self.client.put_object(Bucket=self.bucket_name,
-                                   Key='foo.txt',
-                                   Body=f)
+            self.client.put_object(
+                Bucket=self.bucket_name, Key='foo.txt', Body=f
+            )
             self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         self.wait_until_object_exists('foo.txt')
-        transfer.download_file(self.bucket_name, 'foo.txt',
-                               download_path)
+        transfer.download_file(self.bucket_name, 'foo.txt', download_path)
         assert_files_equal(filename, download_path)
 
     def test_download_above_threshold(self):
         transfer = self.create_s3_transfer()
 
         filename = self.files.create_file_with_size(
-            'foo.txt', filesize=20 * 1024 * 1024)
+            'foo.txt', filesize=20 * 1024 * 1024
+        )
         with open(filename, 'rb') as f:
-            self.client.put_object(Bucket=self.bucket_name,
-                                   Key='foo.txt',
-                                   Body=f)
+            self.client.put_object(
+                Bucket=self.bucket_name, Key='foo.txt', Body=f
+            )
             self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         self.wait_until_object_exists('foo.txt')
-        transfer.download_file(self.bucket_name, 'foo.txt',
-                               download_path)
+        transfer.download_file(self.bucket_name, 'foo.txt', download_path)
         assert_files_equal(filename, download_path)
 
     def test_download_file_with_directory_not_exist(self):
         transfer = self.create_s3_transfer()
-        self.client.put_object(Bucket=self.bucket_name,
-                                Key='foo.txt',
-                                Body=b'foo')
+        self.client.put_object(
+            Bucket=self.bucket_name, Key='foo.txt', Body=b'foo'
+        )
         self.addCleanup(self.delete_object, 'foo.txt')
-        download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
-                                     'downloaded.txt')
+        download_path = os.path.join(
+            self.files.rootdir, 'a', 'b', 'c', 'downloaded.txt'
+        )
         self.wait_until_object_exists('foo.txt')
         with self.assertRaises(IOError):
             transfer.download_file(self.bucket_name, 'foo.txt', download_path)
@@ -607,14 +646,16 @@ class TestS3Transfers(unittest.TestCase):
         transfer = self.create_s3_transfer()
 
         filename = self.files.create_file_with_size(
-            'foo.txt', filesize=20 * 1024 * 1024)
+            'foo.txt', filesize=20 * 1024 * 1024
+        )
         with open(filename, 'rb') as f:
-            self.client.put_object(Bucket=self.bucket_name,
-                                   Key='foo.txt',
-                                   Body=f)
+            self.client.put_object(
+                Bucket=self.bucket_name, Key='foo.txt', Body=f
+            )
             self.addCleanup(self.delete_object, 'foo.txt')
-        download_path = os.path.join(self.files.rootdir, 'a', 'b', 'c',
-                                     'downloaded.txt')
+        download_path = os.path.join(
+            self.files.rootdir, 'a', 'b', 'c', 'downloaded.txt'
+        )
         self.wait_until_object_exists('foo.txt')
         with self.assertRaises(IOError):
             transfer.download_file(self.bucket_name, 'foo.txt', download_path)
@@ -624,17 +665,18 @@ class TestS3Transfers(unittest.TestCase):
         # from the clients work.  We're not exhaustively testing through
         # this client interface.
         filename = self.files.create_file_with_size(
-            'foo.txt', filesize=1024 * 1024)
-        self.client.upload_file(Filename=filename,
-                                Bucket=self.bucket_name,
-                                Key='foo.txt')
+            'foo.txt', filesize=1024 * 1024
+        )
+        self.client.upload_file(
+            Filename=filename, Bucket=self.bucket_name, Key='foo.txt'
+        )
         self.addCleanup(self.delete_object, 'foo.txt')
 
         download_path = os.path.join(self.files.rootdir, 'downloaded.txt')
         self.wait_until_object_exists('foo.txt')
-        self.client.download_file(Bucket=self.bucket_name,
-                                  Key='foo.txt',
-                                  Filename=download_path)
+        self.client.download_file(
+            Bucket=self.bucket_name, Key='foo.txt', Filename=download_path
+        )
         assert_files_equal(filename, download_path)
 
     def test_transfer_methods_do_not_use_threads(self):
@@ -653,21 +695,22 @@ class TestS3Transfers(unittest.TestCase):
         config = boto3.s3.transfer.TransferConfig(use_threads=False)
 
         self.client.upload_file(
-            Bucket=self.bucket_name, Key=key, Filename=filename,
-            Config=config)
+            Bucket=self.bucket_name, Key=key, Filename=filename, Config=config
+        )
         self.addCleanup(self.delete_object, key)
         self.assertTrue(self.object_exists(key))
 
-        fileobj = six.BytesIO()
+        fileobj = io.BytesIO()
         self.client.download_fileobj(
-            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj, Config=config)
+            Bucket=self.bucket_name, Key='foo', Fileobj=fileobj, Config=config
+        )
         self.assertEqual(fileobj.getvalue(), content)
 
     def test_transfer_methods_through_bucket(self):
         # This is just a sanity check to ensure that the bucket interface work.
         key = 'bucket.txt'
         bucket = self.session.resource('s3').Bucket(self.bucket_name)
-        filename = self.files.create_file_with_size(key, 1024*1024)
+        filename = self.files.create_file_with_size(key, 1024 * 1024)
         bucket.upload_file(Filename=filename, Key=key)
         self.addCleanup(self.delete_object, key)
         download_path = os.path.join(self.files.rootdir, unique_id('foo'))
@@ -678,7 +721,7 @@ class TestS3Transfers(unittest.TestCase):
         # This is just a sanity check to ensure that the object interface work.
         key = 'object.txt'
         obj = self.session.resource('s3').Object(self.bucket_name, key)
-        filename = self.files.create_file_with_size(key, 1024*1024)
+        filename = self.files.create_file_with_size(key, 1024 * 1024)
         obj.upload_file(Filename=filename)
         self.addCleanup(self.delete_object, key)
         download_path = os.path.join(self.files.rootdir, unique_id('foo'))

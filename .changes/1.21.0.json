@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``appflow``",
+    "description": "[``botocore``] Launching Amazon AppFlow SAP as a destination connector SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "Parser",
+    "description": "[``botocore``] Adding support for parsing int/long types in rest-json response headers.",
+    "type": "feature"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Adds support for determining which Aurora PostgreSQL versions support Babelfish.",
+    "type": "api-change"
+  },
+  {
+    "category": "``athena``",
+    "description": "[``botocore``] This release adds a subfield, ErrorType, to the AthenaError response object in the GetQueryExecution API when a query fails.",
+    "type": "api-change"
+  }
+]

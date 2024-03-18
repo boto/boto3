@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Update cloudwatch client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``efs``",
+    "description": "[``botocore``] Update efs client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivschat``",
+    "description": "[``botocore``] Updates the range for a Chat Room's maximumMessageRatePerSecond field.",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] Improved the visibility of the guidance for updating AWS WAF resources, such as web ACLs and rule groups.",
+    "type": "api-change"
+  }
+]

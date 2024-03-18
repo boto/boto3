@@ -11,7 +11,7 @@
 .. _user_guides:
 
 +++++++++++++++
-Developer guide
+Developer Guide
 +++++++++++++++
 
 
@@ -40,7 +40,6 @@ Tools
    :maxdepth: 1
 
    cloud9
-   sdk-metrics
 
 
 Migrations

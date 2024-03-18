@@ -1,4 +1,4 @@
-Customization references
+Customization References
 ========================
 
 .. toctree::

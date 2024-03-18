@@ -1,0 +1,7 @@
+[
+  {
+    "category": "documentation",
+    "description": "[``botocore``] Updates the GitHub issue creation link in our README",
+    "type": "enhancement"
+  }
+]

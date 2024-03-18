@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``lookoutmetrics``", 
+    "description": "[``botocore``] Allowing dot(.) character in table name for RDS and Redshift as source connector.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``location``", 
+    "description": "[``botocore``] Adds support for calculation of routes, resource tagging and customer provided KMS keys.", 
+    "type": "api-change"
+  }, 
+  {
+    "category": "``datasync``", 
+    "description": "[``botocore``] Added SecurityDescriptorCopyFlags option that allows for control of which components of SMB security descriptors are copied from source to destination objects.", 
+    "type": "api-change"
+  }
+]

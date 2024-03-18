@@ -2,10 +2,11 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
+SPHINXOPTS    = -j auto
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
+SERVICESDIR   = source/reference/services
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -40,6 +41,8 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+	# Clears out the source directory (excluding 'index.rst').
+	find $(SERVICESDIR) -depth 1 ! -name 'index.rst' -exec rm -rf '{}' \+
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

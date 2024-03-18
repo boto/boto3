@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``autoscaling``",
+    "description": "[``botocore``] EC2 Auto Scaling customers who use attribute based instance-type selection can now intuitively define their Spot instances price protection limit as a percentage of the lowest priced On-Demand instance type.",
+    "type": "api-change"
+  },
+  {
+    "category": "``comprehend``",
+    "description": "[``botocore``] Comprehend PII analysis now supports Spanish input documents.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] EC2 Fleet customers who use attribute based instance-type selection can now intuitively define their Spot instances price protection limit as a percentage of the lowest priced On-Demand instance type.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mwaa``",
+    "description": "[``botocore``] This release adds MAINTENANCE environment status for Amazon MWAA environments.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Introduced support for the InsufficientDBInstanceCapacityFault error in the RDS RestoreDBClusterFromSnapshot and RestoreDBClusterToPointInTime API methods. This provides enhanced error handling, ensuring a more robust experience.",
+    "type": "api-change"
+  },
+  {
+    "category": "``snowball``",
+    "description": "[``botocore``] Modified description of createaddress to include direction to add path when providing a JSON file.",
+    "type": "api-change"
+  }
+]

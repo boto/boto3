@@ -4,42 +4,51 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import os
 import json
-import tempfile
+import os
 import shutil
-from tests import unittest
+import tempfile
 
 import botocore.session
 from botocore.compat import OrderedDict
-from botocore.loaders import Loader
 from botocore.docs.bcdoc.restdoc import DocumentStructure
+from botocore.loaders import Loader
 
 from boto3.session import Session
+from tests import unittest
 
 
 class BaseDocsTest(unittest.TestCase):
     def setUp(self):
         self.root_dir = tempfile.mkdtemp()
         self.version_dirs = os.path.join(
-            self.root_dir, 'myservice', '2014-01-01')
+            self.root_dir, 'myservice', '2014-01-01'
+        )
         os.makedirs(self.version_dirs)
 
         self.model_file = os.path.join(self.version_dirs, 'service-2.json')
         self.waiter_model_file = os.path.join(
-            self.version_dirs, 'waiters-2.json')
+            self.version_dirs, 'waiters-2.json'
+        )
         self.paginator_model_file = os.path.join(
-            self.version_dirs, 'paginators-1.json')
+            self.version_dirs, 'paginators-1.json'
+        )
         self.resource_model_file = os.path.join(
-            self.version_dirs, 'resources-1.json')
+            self.version_dirs, 'resources-1.json'
+        )
         self.example_model_file = os.path.join(
-            self.version_dirs, 'examples-1.json')
+            self.version_dirs, 'examples-1.json'
+        )
+        self.docs_root_dir = tempfile.mkdtemp()
+        self.root_services_path = os.path.join(
+            self.docs_root_dir, 'reference', 'services'
+        )
 
         self.json_model = {}
         self.waiter_json_model = {}
@@ -48,12 +57,13 @@ class BaseDocsTest(unittest.TestCase):
         self._setup_models()
 
         self.doc_name = 'MyDoc'
-        self.doc_structure = DocumentStructure(self.doc_name)
+        self.doc_structure = DocumentStructure(self.doc_name, target='html')
 
         self.setup_client_and_resource()
 
     def tearDown(self):
         shutil.rmtree(self.root_dir)
+        shutil.rmtree(self.docs_root_dir)
 
     def setup_client_and_resource(self):
         self._write_models()
@@ -61,9 +71,17 @@ class BaseDocsTest(unittest.TestCase):
         self.botocore_session = botocore.session.get_session()
         self.botocore_session.register_component('data_loader', self.loader)
         self.session = Session(
-            botocore_session=self.botocore_session, region_name='us-east-1')
+            botocore_session=self.botocore_session, region_name='us-east-1'
+        )
         self.client = self.session.client('myservice', 'us-east-1')
         self.resource = self.session.resource('myservice', 'us-east-1')
+
+    def get_nested_service_contents(self, service, type, name):
+        service_file_path = os.path.join(
+            self.root_services_path, service, type, f'{name}.rst'
+        )
+        with open(service_file_path, 'rb') as f:
+            return f.read().decode('utf-8')
 
     def _setup_models(self):
         self.json_model = {
@@ -79,44 +97,54 @@ class BaseDocsTest(unittest.TestCase):
                 'SampleOperation': {
                     'name': 'SampleOperation',
                     'input': {'shape': 'SampleOperationInputOutput'},
-                    'output': {'shape': 'SampleOperationInputOutput'}
+                    'output': {'shape': 'SampleOperationInputOutput'},
                 }
             },
             'shapes': {
                 'SampleOperationInputOutput': {
                     'type': 'structure',
-                    'members': OrderedDict([
-                        ('Foo', {
-                            'shape': 'String',
-                            'documentation': 'Documents Foo'}),
-                        ('Bar', {
-                            'shape': 'String',
-                            'documentation': 'Documents Bar'}),
-                    ])
+                    'members': OrderedDict(
+                        [
+                            (
+                                'Foo',
+                                {
+                                    'shape': 'String',
+                                    'documentation': 'Documents Foo',
+                                },
+                            ),
+                            (
+                                'Bar',
+                                {
+                                    'shape': 'String',
+                                    'documentation': 'Documents Bar',
+                                },
+                            ),
+                        ]
+                    ),
                 },
-                'String': {
-                    'type': 'string'
-                }
-            }
+                'String': {'type': 'string'},
+            },
         }
 
         self.example_json_model = {
             "version": 1,
             "examples": {
-                "SampleOperation": [{
-                    "id": "sample-id",
-                    "title": "sample-title",
-                    "description": "Sample Description.",
-                    "input": OrderedDict([
-                        ("Foo", "bar"),
-                    ]),
-                    "comments": {
-                        "input": {
-                            "Foo": "biz"
+                "SampleOperation": [
+                    {
+                        "id": "sample-id",
+                        "title": "sample-title",
+                        "description": "Sample Description.",
+                        "input": OrderedDict(
+                            [
+                                ("Foo", "bar"),
+                            ]
+                        ),
+                        "comments": {
+                            "input": {"Foo": "biz"},
                         },
                     }
-                }]
-            }
+                ]
+            },
         }
 
         self.waiter_json_model = {
@@ -127,17 +155,21 @@ class BaseDocsTest(unittest.TestCase):
                     "operation": "SampleOperation",
                     "maxAttempts": 40,
                     "acceptors": [
-                        {"expected": "complete",
-                         "matcher": "pathAll",
-                         "state": "success",
-                         "argument": "Biz"},
-                        {"expected": "failed",
-                         "matcher": "pathAny",
-                         "state": "failure",
-                         "argument": "Biz"}
-                    ]
+                        {
+                            "expected": "complete",
+                            "matcher": "pathAll",
+                            "state": "success",
+                            "argument": "Biz",
+                        },
+                        {
+                            "expected": "failed",
+                            "matcher": "pathAny",
+                            "state": "failure",
+                            "argument": "Biz",
+                        },
+                    ],
                 }
-            }
+            },
         }
 
         self.paginator_json_model = {
@@ -146,36 +178,45 @@ class BaseDocsTest(unittest.TestCase):
                     "input_token": "NextResult",
                     "output_token": "NextResult",
                     "limit_key": "MaxResults",
-                    "result_key": "Biz"
+                    "result_key": "Biz",
                 }
             }
         }
 
         self.resource_json_model = {
             "service": {
-                "actions": OrderedDict([
-                    ("SampleOperation", {
-                        "request": {"operation": "SampleOperation"}
-                    }),
-                    ("SampleListReturnOperation", {
-                        "request": {"operation": "SampleOperation"},
-                        "resource": {
-                            "type": "Sample",
-                            "identifiers": [
-                                {"target": "Name", "source": "response",
-                                 "path": "Samples[].Name"}
-                            ],
-                            "path": "Samples[]"
-                        }
-                    })
-                ]),
+                "actions": OrderedDict(
+                    [
+                        (
+                            "SampleOperation",
+                            {"request": {"operation": "SampleOperation"}},
+                        ),
+                        (
+                            "SampleListReturnOperation",
+                            {
+                                "request": {"operation": "SampleOperation"},
+                                "resource": {
+                                    "type": "Sample",
+                                    "identifiers": [
+                                        {
+                                            "target": "Name",
+                                            "source": "response",
+                                            "path": "Samples[].Name",
+                                        }
+                                    ],
+                                    "path": "Samples[]",
+                                },
+                            },
+                        ),
+                    ]
+                ),
                 "has": {
                     "Sample": {
                         "resource": {
                             "type": "Sample",
                             "identifiers": [
                                 {"target": "Name", "source": "input"}
-                            ]
+                            ],
                         }
                     }
                 },
@@ -185,26 +226,30 @@ class BaseDocsTest(unittest.TestCase):
                         "resource": {
                             "type": "Sample",
                             "identifiers": [
-                                {"target": "Name", "source": "response",
-                                 "path": "Samples[].Foo"}
-                            ]
-                        }
+                                {
+                                    "target": "Name",
+                                    "source": "response",
+                                    "path": "Samples[].Foo",
+                                }
+                            ],
+                        },
                     }
-                }
+                },
             },
             "resources": {
                 "Sample": {
-                    "identifiers": [
-                        {"name": "Name", "memberName": "Foo"}
-                    ],
+                    "identifiers": [{"name": "Name", "memberName": "Foo"}],
                     "shape": "SampleOperationInputOutput",
                     "load": {
                         "request": {
                             "operation": "SampleOperation",
                             "params": [
-                                {"target": "Foo", "source": "identifier",
-                                 "name": "Name"}
-                            ]
+                                {
+                                    "target": "Foo",
+                                    "source": "identifier",
+                                    "name": "Name",
+                                }
+                            ],
                         }
                     },
                     "actions": {
@@ -212,9 +257,12 @@ class BaseDocsTest(unittest.TestCase):
                             "request": {
                                 "operation": "SampleOperation",
                                 "params": [
-                                    {"target": "Foo", "source": "identifier",
-                                     "name": "Name"}
-                                ]
+                                    {
+                                        "target": "Foo",
+                                        "source": "identifier",
+                                        "name": "Name",
+                                    }
+                                ],
                             }
                         }
                     },
@@ -223,9 +271,12 @@ class BaseDocsTest(unittest.TestCase):
                             "request": {
                                 "operation": "SampleOperation",
                                 "params": [
-                                    {"target": "Samples[].Foo",
-                                     "source": "identifier", "name": "Name"}
-                                ]
+                                    {
+                                        "target": "Samples[].Foo",
+                                        "source": "identifier",
+                                        "name": "Name",
+                                    }
+                                ],
                             }
                         }
                     },
@@ -234,9 +285,12 @@ class BaseDocsTest(unittest.TestCase):
                             "resource": {
                                 "type": "Sample",
                                 "identifiers": [
-                                    {"target": "Name", "source": "data",
-                                     "path": "Foo"}
-                                ]
+                                    {
+                                        "target": "Name",
+                                        "source": "data",
+                                        "path": "Foo",
+                                    }
+                                ],
                             }
                         }
                     },
@@ -244,13 +298,16 @@ class BaseDocsTest(unittest.TestCase):
                         "Complete": {
                             "waiterName": "SampleOperationComplete",
                             "params": [
-                                {"target": "Foo", "source": "identifier",
-                                 "name": "Name"}
-                            ]
+                                {
+                                    "target": "Foo",
+                                    "source": "identifier",
+                                    "name": "Name",
+                                }
+                            ],
                         }
-                    }
+                    },
                 }
-            }
+            },
         }
 
     def _write_models(self):
@@ -273,8 +330,9 @@ class BaseDocsTest(unittest.TestCase):
         shape_name = list(shape.keys())[0]
         self.json_model['shapes'][shape_name] = shape[shape_name]
 
-    def add_shape_to_params(self, param_name, shape_name, documentation=None,
-                            is_required=False):
+    def add_shape_to_params(
+        self, param_name, shape_name, documentation=None, is_required=False
+    ):
         params_shape = self.json_model['shapes']['SampleOperationInputOutput']
         member = {'shape': shape_name}
         if documentation is not None:
@@ -290,11 +348,11 @@ class BaseDocsTest(unittest.TestCase):
         if contents is None:
             contents = self.doc_structure.flush_structure().decode('utf-8')
         for line in lines:
-            self.assertIn(line, contents)
+            assert line in contents
             beginning = contents.find(line)
-            contents = contents[(beginning + len(line)):]
+            contents = contents[(beginning + len(line)) :]
 
     def assert_not_contains_lines(self, lines):
         contents = self.doc_structure.flush_structure().decode('utf-8')
         for line in lines:
-            self.assertNotIn(line, contents)
+            assert line not in contents

@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``dms``",
+    "description": "[``botocore``] This release adds DMS Fleet Advisor Target Recommendation APIs and exposes functionality for DMS Fleet Advisor. It adds functionality to start Target Recommendation calculation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``location``",
+    "description": "[``botocore``] Documentation update for the release of 3 additional map styles for use with Open Data Maps: Open Data Standard Dark, Open Data Visualization Light & Open Data Visualization Dark.",
+    "type": "api-change"
+  }
+]

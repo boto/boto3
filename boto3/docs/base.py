@@ -4,7 +4,7 @@
 # may not use this file except in compliance with the License. A copy of
 # the License is located at
 #
-# http://aws.amazon.com/apache2.0/
+# https://aws.amazon.com/apache2.0/
 #
 # or in the "license" file accompanying this file. This file is
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
@@ -13,7 +13,7 @@
 from botocore.compat import OrderedDict
 
 
-class BaseDocumenter(object):
+class BaseDocumenter:
     def __init__(self, resource):
         self._resource = resource
         self._client = self._resource.meta.client
@@ -24,8 +24,28 @@ class BaseDocumenter(object):
         self._service_docs_name = self._client.__class__.__name__
         self.member_map = OrderedDict()
         self.represents_service_resource = (
-            self._service_name == self._resource_name)
+            self._service_name == self._resource_name
+        )
+        self._resource_class_name = self._resource_name
+        if self._resource_name == self._service_name:
+            self._resource_class_name = 'ServiceResource'
 
     @property
     def class_name(self):
-        return '%s.%s' % (self._service_docs_name, self._resource_name)
+        return f'{self._service_docs_name}.{self._resource_name}'
+
+
+class NestedDocumenter(BaseDocumenter):
+    def __init__(self, resource, root_docs_path):
+        super().__init__(resource)
+        self._root_docs_path = root_docs_path
+        self._resource_sub_path = self._resource_name.lower()
+        if self._resource_name == self._service_name:
+            self._resource_sub_path = 'service-resource'
+
+    @property
+    def class_name(self):
+        resource_class_name = self._resource_name
+        if self._resource_name == self._service_name:
+            resource_class_name = 'ServiceResource'
+        return f'{self._service_docs_name}.{resource_class_name}'

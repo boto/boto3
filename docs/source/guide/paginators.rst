@@ -29,7 +29,7 @@ underlying API operation. The ``paginate`` method then returns an iterable
     client = boto3.client('s3', region_name='us-west-2')
 
     # Create a reusable Paginator
-    paginator = client.get_paginator('list_objects')
+    paginator = client.get_paginator('list_objects_v2')
 
     # Create a PageIterator from the Paginator
     page_iterator = paginator.paginate(Bucket='my-bucket')
@@ -46,7 +46,7 @@ the pages of API operation results. The ``paginate`` method accepts a
 ``PaginationConfig`` named argument that can be used to customize the
 pagination::
 
-    paginator = client.get_paginator('list_objects')
+    paginator = client.get_paginator('list_objects_v2')
     page_iterator = paginator.paginate(Bucket='my-bucket',
                                        PaginationConfig={'MaxItems': 10})
 
@@ -81,7 +81,7 @@ to the client::
     import boto3
     
     client = boto3.client('s3', region_name='us-west-2')
-    paginator = client.get_paginator('list_objects')
+    paginator = client.get_paginator('list_objects_v2')
     operation_parameters = {'Bucket': 'my-bucket',
                             'Prefix': 'foo/baz'}
     page_iterator = paginator.paginate(**operation_parameters)
@@ -102,7 +102,7 @@ JMESPath expressions that are applied to each page of results through the
     import boto3
     
     client = boto3.client('s3', region_name='us-west-2')
-    paginator = client.get_paginator('list_objects')
+    paginator = client.get_paginator('list_objects_v2')
     page_iterator = paginator.paginate(Bucket='my-bucket')
     filtered_iterator = page_iterator.search("Contents[?Size > `100`][]")
     for key_data in filtered_iterator:

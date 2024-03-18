@@ -186,15 +186,15 @@ If you are able to make a connection, you need to recompile OpenSSL and Python t
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure the SDK or CLI doesn't not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
+To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
 
 
     #!/usr/bin/env bash
     set -e
 
-    OPENSSL_VERSION="1.1.1d"
+    OPENSSL_VERSION="1.1.1m"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_2"
-    PYTHON_VERSION="3.8.1"
+    PYTHON_VERSION="3.9.10"
     PYTHON_PREFIX="/opt/python-with-min-tls1_2"
 
 
@@ -223,6 +223,44 @@ After you run this script, you should be able to use this newly installed versio
 
 This should print out::
 
-    Python 3.8.1
+    Python 3.9.10
 
 To confirm this new version of Python does not negotiate a version earlier than TLS 1.2, rerun the steps from `Determining Supported Protocols`_ using the newly installed Python version (that is, ``/opt/python-with-min-tls1_2/bin/python3``).
+
+Enforcing TLS 1.3
+------------------
+
+.. note::
+    Some AWS Services do not yet support TLS 1.3, configuring this as your minimum version may affect SDK interoperability.
+    We recommend testing this change with each service prior to production deployment.
+
+
+The process of ensuring the AWS SDK for Python uses no TLS version earlier than TLS 1.3 is the same as the instructions in the `Enforcing TLS 1.2`_ section with some minor modifications, primarily adding the ``no-tls1_2`` flag to the openssl build configuration.
+
+The following are the modified build instructions::
+
+
+    #!/usr/bin/env bash
+    set -e
+
+    OPENSSL_VERSION="1.1.1m"
+    OPENSSL_PREFIX="/opt/openssl-with-min-tls1_3"
+    PYTHON_VERSION="3.9.10"
+    PYTHON_PREFIX="/opt/python-with-min-tls1_3"
+
+
+    curl -O "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
+    tar -xzf "openssl-$OPENSSL_VERSION.tar.gz"
+    cd openssl-$OPENSSL_VERSION
+    ./config --prefix=$OPENSSL_PREFIX no-ssl3 no-tls1 no-tls1_1 no-tls1_2 no-shared
+    make > /dev/null
+    sudo make install_sw > /dev/null
+
+
+    cd /tmp
+    curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    tar -xzf "Python-$PYTHON_VERSION.tgz"
+    cd Python-$PYTHON_VERSION
+    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
+    make > /dev/null
+    sudo make install > /dev/null

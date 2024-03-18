@@ -1,0 +1,62 @@
+[
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] This feature allows Batch to support configuration of ephemeral storage size for jobs running on FARGATE",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-identity``",
+    "description": "[``botocore``] AppInstanceBots can be used to add a bot powered by Amazon Lex to chat channels.  ExpirationSettings provides automatic resource deletion for AppInstanceUsers.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-media-pipelines``",
+    "description": "[``botocore``] This release adds Amazon Chime SDK call analytics. Call analytics include voice analytics, which provides speaker search and voice tone analysis. These capabilities can be used with Amazon Transcribe and Transcribe Call Analytics to generate machine-learning-powered insights from real-time audio.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-messaging``",
+    "description": "[``botocore``] ExpirationSettings provides automatic resource deletion for Channels.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-voice``",
+    "description": "[``botocore``] This release adds Amazon Chime SDK call analytics. Call analytics include voice analytics, which provides speaker search and voice tone analysis. These capabilities can be used with Amazon Transcribe and Transcribe Call Analytics to generate machine-learning-powered insights from real-time audio.",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeartifact``",
+    "description": "[``botocore``] Repository CreationTime is added to the CreateRepository and ListRepositories API responses.",
+    "type": "api-change"
+  },
+  {
+    "category": "``guardduty``",
+    "description": "[``botocore``] Adds AutoEnableOrganizationMembers attribute to DescribeOrganizationConfiguration and UpdateOrganizationConfiguration APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivs-realtime``",
+    "description": "[``botocore``] Initial release of the Amazon Interactive Video Service RealTime API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconvert``",
+    "description": "[``botocore``] AWS Elemental MediaConvert SDK now supports passthrough of ID3v2 tags for audio inputs to audio-only HLS outputs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Amazon SageMaker Autopilot adds two new APIs - CreateAutoMLJobV2 and DescribeAutoMLJobV2. Amazon SageMaker Notebook Instances now supports the ml.geospatial.interactive instance type.",
+    "type": "api-change"
+  },
+  {
+    "category": "``servicediscovery``",
+    "description": "[``botocore``] Reverted the throttling exception RequestLimitExceeded for AWS Cloud Map APIs introduced in SDK version 1.12.424 2023-03-09 to previous exception specified in the ErrorCode.",
+    "type": "api-change"
+  },
+  {
+    "category": "``textract``",
+    "description": "[``botocore``] The AnalyzeDocument - Tables feature adds support for new elements in the API: table titles, footers, section titles, summary cells/tables, and table type.",
+    "type": "api-change"
+  }
+]
