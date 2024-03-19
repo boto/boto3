@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.66
+=======
+
+* api-change:``cloudformation``: [``botocore``] Documentation update, March 2024. Corrects some formatting.
+* api-change:``ec2``: [``botocore``] This release adds the new DescribeMacHosts API operation for getting information about EC2 Mac Dedicated Hosts. Users can now see the latest macOS versions that their underlying Apple Mac can support without needing to be updated.
+* api-change:``finspace``: [``botocore``] Adding new attributes readWrite and onDemand to dataview models for Database Maintenance operations.
+* api-change:``logs``: [``botocore``] Update LogSamples field in Anomaly model to be a list of LogEvent
+* api-change:``managedblockchain-query``: [``botocore``] Introduces a new API for Amazon Managed Blockchain Query: ListFilteredTransactionEvents.
+
+
 1.34.65
 =======
 
