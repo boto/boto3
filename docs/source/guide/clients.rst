@@ -156,3 +156,7 @@ General Example
             futures = [executor.submit(do_s3_task, s3_client, task) for task in my_tasks]
 
 .. _Botocore Events: https://botocore.amazonaws.com/v1/documentation/api/latest/topics/events.html
+
+.. note::
+
+   Note that `boto3.client` uses a single, shared session for all calls. This can lead to concurrency issues unexpectedly when done across parallelization primitives. We recommend managing your own session(s) with concurrent code.
