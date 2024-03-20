@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``managedblockchain-query``",
-  "description": "[``botocore``] AMB Query: update GetTransaction to include transactionId as input"
-}
