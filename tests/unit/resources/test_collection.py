@@ -158,7 +158,7 @@ class TestResourceCollection(BaseTestCase):
         # the collection is expecting to be required from its
         # definition. This saves a bunch of repetitive typing
         # and lets you just define a collection in the tests
-        # below. Any identifiers you expect to be availabe in
+        # below. Any identifiers you expect to be available in
         # the resource definition will automatically be there.
         resource_def = self.collection_def.get('resource', {})
         for identifier in resource_def.get('identifiers', []):

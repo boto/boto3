@@ -1,7 +1,7 @@
 [
   {
     "category": "``EC2.Vpc.filter``", 
-    "description": "Fix issue with clobbering of ``Filtering`` paramter. (`issue 154 <https://github.com/boto/boto3/pull/154>`__)", 
+    "description": "Fix issue with clobbering of ``Filtering`` parameter. (`issue 154 <https://github.com/boto/boto3/pull/154>`__)", 
     "type": "bugfix"
   }
 ]

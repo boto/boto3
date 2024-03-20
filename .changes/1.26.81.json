@@ -36,7 +36,7 @@
   },
   {
     "category": "``omics``",
-    "description": "[``botocore``] Minor model changes to accomodate batch imports feature",
+    "description": "[``botocore``] Minor model changes to accommodate batch imports feature",
     "type": "api-change"
   }
 ]

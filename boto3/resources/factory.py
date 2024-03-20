@@ -458,7 +458,7 @@ class ResourceFactory:
         Creates a new property on the resource to lazy-load a reference.
         """
         # References are essentially an action with no request
-        # or response, so we can re-use the response handlers to
+        # or response, so we can reuse the response handlers to
         # build up resources from identifiers and data members.
         handler = ResourceHandler(
             search_path=reference_model.resource.path,

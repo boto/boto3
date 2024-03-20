@@ -7,7 +7,7 @@
   {
     "category": "AWSCRT",
     "description": "[``botocore``] Upgrade awscrt extra to 0.12.5",
-    "type": "enchancement"
+    "type": "enhancement"
   },
   {
     "category": "``ivs``",

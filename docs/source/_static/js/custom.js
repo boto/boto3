@@ -72,7 +72,7 @@ function isValidResource(name, serviceDocName) {
 		window.location.assign(newPath);
 	}
 }());
-// Given a service name, we apply the html classes which indicate a current page to the corresponsing list item.
+// Given a service name, we apply the html classes which indicate a current page to the corresponding list item.
 // Before: <li class="toctree-l2"><a class="reference internal" href="../../acm.html">ACM</a></li>
 // After: <li class="toctree-l2 current current-page"><a class="reference internal" href="../../acm.html">ACM</a></li>
 function makeServiceLinkCurrent(serviceName) {
@@ -115,7 +115,7 @@ function determineVisibleTocOpenMenu() {
   return mediaQuery.matches ? 'toc-menu-open-sm' : 'toc-menu-open-md';
 }
 
-// A mapping of current to next focus id's. For example, We want a corresponsing
+// A mapping of current to next focus id's. For example, We want a corresponding
 // menu's close button to be highlighted after a menu is opened with a keyboard.
 const NEXT_FOCUS_ID_MAP = {
   'nav-menu-open': 'nav-menu-close',

@@ -12,6 +12,6 @@
   {
     "category": "Endpoints", 
     "description": "[``botocore``] Improved endpoint resolution for clients with unknown regions", 
-    "type": "enchancement"
+    "type": "enhancement"
   }
 ]

@@ -11,7 +11,7 @@
   },
   {
     "category": "``pinpoint``",
-    "description": "[``botocore``] This SDK release adds a new paramater creation date for GetApp and GetApps Api call",
+    "description": "[``botocore``] This SDK release adds a new parameter creation date for GetApp and GetApps Api call",
     "type": "api-change"
   },
   {
