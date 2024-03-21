@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.34.68
+=======
+
+* api-change:``codeartifact``: [``botocore``] This release adds Package groups to CodeArtifact so you can more conveniently configure package origin controls for multiple packages.
+
+
 1.34.67
 =======
 
