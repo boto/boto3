@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.69
+=======
+
+* api-change:``firehose``: [``botocore``] Updates Amazon Firehose documentation for message regarding Enforcing Tags IAM Policy.
+* api-change:``kendra``: [``botocore``] Documentation update, March 2024. Corrects some docs for Amazon Kendra.
+* api-change:``pricing``: [``botocore``] Add ResourceNotFoundException to ListPriceLists and GetPriceListFileUrl APIs
+* api-change:``rolesanywhere``: [``botocore``] This release relaxes constraints on the durationSeconds request parameter for the *Profile APIs that support it. This parameter can now take on values that go up to 43200.
+* api-change:``securityhub``: [``botocore``] Added new resource detail object to ASFF, including resource for LastKnownExploitAt
+
+
 1.34.68
 =======
 
