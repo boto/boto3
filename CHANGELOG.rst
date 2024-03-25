@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.70
+=======
+
+* api-change:``codebuild``: [``botocore``] Supporting GitLab and GitLab Self Managed as source types in AWS CodeBuild.
+* api-change:``ec2``: [``botocore``] Added support for ModifyInstanceMetadataDefaults and GetInstanceMetadataDefaults to set Instance Metadata Service account defaults
+* api-change:``ecs``: [``botocore``] Documentation only update for Amazon ECS.
+* api-change:``emr-containers``: [``botocore``] This release increases the number of supported job template parameters from 20 to 100.
+* api-change:``globalaccelerator``: [``botocore``] AWS Global Accelerator now supports cross-account sharing for bring your own IP addresses.
+* api-change:``medialive``: [``botocore``] Exposing TileMedia H265 options
+* api-change:``sagemaker``: [``botocore``] Introduced support for the following new instance types on SageMaker Studio for JupyterLab and CodeEditor applications: m6i, m6id, m7i, c6i, c6id, c7i, r6i, r6id, r7i, and p5
+
+
 1.34.69
 =======
 
