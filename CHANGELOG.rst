@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.71
+=======
+
+* api-change:``bedrock-agent-runtime``: [``botocore``] This release adds support to customize prompts sent through the RetrieveAndGenerate API in Agents for Amazon Bedrock.
+* api-change:``ce``: [``botocore``] Adds support for backfill of cost allocation tags, with new StartCostAllocationTagBackfill and ListCostAllocationTagBackfillHistory API.
+* api-change:``ec2``: [``botocore``] Documentation updates for Elastic Compute Cloud (EC2).
+* api-change:``ecs``: [``botocore``] This is a documentation update for Amazon ECS.
+* api-change:``finspace``: [``botocore``] Add new operation delete-kx-cluster-node and add status parameter to list-kx-cluster-node operation.
+
+
 1.34.70
 =======
 
