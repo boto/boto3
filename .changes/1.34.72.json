@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] This feature allows AWS Batch to support configuration of imagePullSecrets and allowPrivilegeEscalation for jobs running on EKS",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent``",
+    "description": "[``botocore``] This changes introduces metadata documents statistics and also updates the documentation for bedrock agent.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent-runtime``",
+    "description": "[``botocore``] This release introduces filtering support on Retrieve and RetrieveAndGenerate APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Added minimum capacity to  Amazon ElastiCache Serverless. This feature allows customer to ensure minimum capacity even without current load",
+    "type": "api-change"
+  },
+  {
+    "category": "``secretsmanager``",
+    "description": "[``botocore``] Documentation updates for Secrets Manager",
+    "type": "api-change"
+  }
+]

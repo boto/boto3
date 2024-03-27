@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.72
+=======
+
+* api-change:``batch``: [``botocore``] This feature allows AWS Batch to support configuration of imagePullSecrets and allowPrivilegeEscalation for jobs running on EKS
+* api-change:``bedrock-agent``: [``botocore``] This changes introduces metadata documents statistics and also updates the documentation for bedrock agent.
+* api-change:``bedrock-agent-runtime``: [``botocore``] This release introduces filtering support on Retrieve and RetrieveAndGenerate APIs.
+* api-change:``elasticache``: [``botocore``] Added minimum capacity to  Amazon ElastiCache Serverless. This feature allows customer to ensure minimum capacity even without current load
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for Secrets Manager
+
+
 1.34.71
 =======
 
