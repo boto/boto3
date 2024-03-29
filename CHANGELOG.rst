@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.74
+=======
+
+* api-change:``b2bi``: [``botocore``] Supporting new EDI X12 transaction sets for X12 versions 4010, 4030, and 5010.
+* api-change:``codebuild``: [``botocore``] Add new fleet status code for Reserved Capacity.
+* api-change:``codeconnections``: [``botocore``] Duplicating the CodeStar Connections service into the new, rebranded AWS CodeConnections service.
+* api-change:``internetmonitor``: [``botocore``] This release adds support to allow customers to track cross account monitors through ListMonitor, GetMonitor, ListHealthEvents, GetHealthEvent, StartQuery APIs.
+* api-change:``iotwireless``: [``botocore``] Add support for retrieving key historical and live metrics for LoRaWAN devices and gateways
+* api-change:``marketplace-catalog``: [``botocore``] This release enhances the ListEntities API to support ResaleAuthorizationId filter and sort for OfferEntity in the request and the addition of a ResaleAuthorizationId field in the response of OfferSummary.
+* api-change:``neptune-graph``: [``botocore``] Add the new API Start-Import-Task for Amazon Neptune Analytics.
+* api-change:``sagemaker``: [``botocore``] This release adds support for custom images for the CodeEditor App on SageMaker Studio
+
+
 1.34.73
 =======
 
