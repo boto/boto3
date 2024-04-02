@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.76
+=======
+
+* api-change:``ecs``: [``botocore``] Documentation only update for Amazon ECS.
+* api-change:``glue``: [``botocore``] Adding View related fields to responses of read-only Table APIs.
+* api-change:``ivschat``: [``botocore``] Doc-only update. Changed "Resources" to "Key Concepts" in docs and updated text.
+* api-change:``rolesanywhere``: [``botocore``] This release increases the limit on the roleArns request parameter for the *Profile APIs that support it. This parameter can now take up to 250 role ARNs.
+* api-change:``securityhub``: [``botocore``] Documentation updates for AWS Security Hub
+
+
 1.34.75
 =======
 
