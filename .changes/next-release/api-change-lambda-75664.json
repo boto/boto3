@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lambda``",
-  "description": "[``botocore``] Add Ruby 3.3 (ruby3.3) support to AWS Lambda"
-}
