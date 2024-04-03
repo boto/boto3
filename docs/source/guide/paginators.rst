@@ -89,6 +89,75 @@ to the client::
         print(page['Contents'])
 
 
+Prefixes, delimiters, and `MaxItems`
+------------------------------------
+
+When using ``list_objects`` with a delimiter and the ``MaxItems`` option, the
+``MaxItems`` limit only applies to the objects matched and returned in the
+``Contents`` list. This means that while the total number of objects
+enumerated in ``Contents`` will be no greater than ``MaxItems`` items, there
+may be values in ``CommonPrefixes`` beyond that limit.
+
+For example, picture a scenario in which a bucket contains 20,000 objects,
+each with a different prefix, using the slash character ("/") as a delimiter:
+
+* ``bucket-name/prefix1/key1``
+* ``bucket-name/prefix2/key2``
+* ...
+* ``bucket-name/prefixN/keyN``
+
+With that in mind, consider what happens when the following code runs:
+
+.. code-block:: python
+
+    num_prefixes = 0
+    num_keys = 0
+
+    s3 = boto3.client('s3')
+    paginator = s3.get_paginator('list_objects_v2')
+
+    for result in paginator.paginate(
+                Bucket='pagination-test-ericsh', Delimiter='/',
+                PaginationConfig={'MaxItems': 2000}):
+        for prefix in result.get('CommonPrefixes', []):
+            num_prefixes += 1
+        for item in result.get('Contents', []):
+            num_keys += 1
+
+This code iterates over the 20,000 objects, limiting the total number of objects
+listed to 2,000. Because the results include the 20,000 common prefixes, this
+paginator runs far longer than expected, since it still processes all 20,000
+common prefixes despite the value of ``MaxItems``.
+
+To process a maximum number of total items, track the total number of results
+and when it reaches the limit, break out of the paginator's loop.
+
+.. code-block:: python
+
+    num_prefixes = 0
+    num_keys = 0
+
+    s3 = boto3.client('s3')
+    paginator = s3.get_paginator('list_objects_v2')
+
+    for result in paginator.paginate(
+                Bucket='bucket-name', Delimiter='/'):
+        prefixes = result.get('CommonPrefixes', [])
+        keys = result.get('Contents', [])
+
+        num_prefixes += len(prefixes)
+        num_keys += len(keys)
+        if num_prefixes + num_keys > 2000:
+            break
+
+        for prefix in prefixes:
+            print(f"Prefix: {prefix['Prefix']}")
+        for key in keys:
+            print(f"Key:    {key['Key']}")
+
+This will stop pagination when the combined size of the ``CommonPrefixes`` list and the ``Contents`` list reaches 2,000.
+
+
 Filtering results with JMESPath
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
