@@ -117,7 +117,7 @@ With that in mind, consider what happens when the following code runs:
     paginator = s3.get_paginator('list_objects_v2')
 
     for result in paginator.paginate(
-                Bucket='pagination-test-ericsh', Delimiter='/',
+                Bucket='bucket-name', Delimiter='/',
                 PaginationConfig={'MaxItems': 2000}):
         for prefix in result.get('CommonPrefixes', []):
             num_prefixes += 1
