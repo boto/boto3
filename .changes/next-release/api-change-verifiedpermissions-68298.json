@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``verifiedpermissions``",
+  "description": "[``botocore``] Adds GroupConfiguration field to Identity Source API's"
+}
