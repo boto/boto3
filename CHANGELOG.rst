@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.79
+=======
+
+* api-change:``quicksight``: [``botocore``] Adding IAMIdentityCenterInstanceArn parameter to CreateAccountSubscription
+* api-change:``resource-groups``: [``botocore``] Added a new QueryErrorCode RESOURCE_TYPE_NOT_SUPPORTED that is returned by the ListGroupResources operation if the group query contains unsupported resource types.
+* api-change:``verifiedpermissions``: [``botocore``] Adding BatchIsAuthorizedWithToken API which supports multiple authorization requests against a PolicyStore given a bearer token.
+
+
 1.34.78
 =======
 
