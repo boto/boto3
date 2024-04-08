@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.80
+=======
+
+* api-change:``controlcatalog``: [``botocore``] This is the initial SDK release for AWS Control Catalog, a central catalog for AWS managed controls. This release includes 3 new APIs - ListDomains, ListObjectives, and ListCommonControls - that vend high-level data to categorize controls across the AWS platform.
+* api-change:``mgn``: [``botocore``] Added USE_SOURCE as default option to LaunchConfigurationTemplate bootMode parameter.
+* api-change:``networkmonitor``: [``botocore``] Updated the allowed monitorName length for CloudWatch Network Monitor.
+
+
 1.34.79
 =======
 
