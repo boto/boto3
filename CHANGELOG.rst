@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.81
+=======
+
+* api-change:``codebuild``: [``botocore``] Add new webhook filter types for GitHub webhooks
+* api-change:``mediaconvert``: [``botocore``] This release includes support for bringing your own fonts to use for burn-in or DVB-Sub captioning workflows.
+* api-change:``pinpoint``: [``botocore``] The OrchestrationSendingRoleArn has been added to the email channel and is used to send emails from campaigns or journeys.
+* api-change:``rds``: [``botocore``] This release adds support for specifying the CA certificate to use for the new db instance when restoring from db snapshot, restoring from s3, restoring to point in time, and creating a db instance read replica.
+
+
 1.34.80
 =======
 

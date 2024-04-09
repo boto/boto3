@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codebuild``",
-  "description": "[``botocore``] Add new webhook filter types for GitHub webhooks"
-}
