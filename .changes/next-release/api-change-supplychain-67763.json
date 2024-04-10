@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``supplychain``",
-  "description": "[``botocore``] This release includes API SendDataIntegrationEvent for AWS Supply Chain"
-}
