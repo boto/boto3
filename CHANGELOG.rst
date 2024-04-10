@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.82
+=======
+
+* api-change:``cleanrooms``: [``botocore``] AWS Clean Rooms Differential Privacy is now fully available. Differential privacy protects against user-identification attempts.
+* api-change:``connect``: [``botocore``] This release adds new Submit Auto Evaluation Action for Amazon Connect Rules.
+* api-change:``networkmonitor``: [``botocore``] Examples were added to CloudWatch Network Monitor commands.
+* api-change:``qconnect``: [``botocore``] This release adds a new QiC public API updateSession and updates an existing QiC public API createSession
+* api-change:``rekognition``: [``botocore``] Added support for ContentType to content moderation detections.
+* api-change:``supplychain``: [``botocore``] This release includes API SendDataIntegrationEvent for AWS Supply Chain
+* api-change:``workspaces-thin-client``: [``botocore``] Adding tags field to SoftwareSet. Removing tags fields from Summary objects. Changing the list of exceptions in tagging APIs. Fixing an issue where the SDK returns empty tags in Get APIs.
+
+
 1.34.81
 =======
 
