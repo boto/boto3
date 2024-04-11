@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pipes``",
-  "description": "[``botocore``] LogConfiguration ARN validation fixes"
-}

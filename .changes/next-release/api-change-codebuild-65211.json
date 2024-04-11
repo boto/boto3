@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codebuild``",
-  "description": "[``botocore``] Support access tokens for Bitbucket sources"
-}
