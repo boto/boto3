@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``config``",
+  "description": "[``botocore``] Updates documentation for AWS Config"
+}
