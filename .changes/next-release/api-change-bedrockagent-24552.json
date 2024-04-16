@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock-agent``",
+  "description": "[``botocore``] For Create Agent API, the agentResourceRoleArn parameter is no longer required."
+}
