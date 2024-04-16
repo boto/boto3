@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``entityresolution``",
-  "description": "[``botocore``] Cross Account Resource Support ."
-}
