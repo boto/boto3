@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.86
+=======
+
+* api-change:``ec2``: [``botocore``] Documentation updates for Elastic Compute Cloud (EC2).
+* api-change:``qbusiness``: [``botocore``] This release adds support for IAM Identity Center (IDC) as the identity gateway for Q Business. It also allows users to provide an explicit intent for Q Business to identify how the Chat request should be handled.
+
+
 1.34.85
 =======
 
