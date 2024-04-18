@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``drs``",
-  "description": "[``botocore``] Outpost ARN added to Source Server and Recovery Instance"
-}

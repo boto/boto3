@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workspaces``",
-  "description": "[``botocore``] Adds new APIs for managing and sharing WorkSpaces BYOL configuration across accounts."
-}
