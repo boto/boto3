@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker``",
+  "description": "[``botocore``] Removed deprecated enum values and updated API documentation."
+}
