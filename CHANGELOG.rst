@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.88
+=======
+
+* api-change:``glue``: [``botocore``] Adding RowFilter in the response for GetUnfilteredTableMetadata API
+* api-change:``internetmonitor``: [``botocore``] This update introduces the GetInternetEvent and ListInternetEvents APIs, which provide access to internet events displayed on the Amazon CloudWatch Internet Weather Map.
+* api-change:``personalize``: [``botocore``] This releases auto training capability while creating a solution and automatically syncing latest solution versions when creating/updating a campaign
+
+
 1.34.87
 =======
 
