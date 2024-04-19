@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Adding RowFilter in the response for GetUnfilteredTableMetadata API"
-}
