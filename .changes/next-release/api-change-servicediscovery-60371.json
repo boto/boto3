@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``servicediscovery``",
-  "description": "[``botocore``] This release adds examples to several Cloud Map actions."
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift-serverless``",
-  "description": "[``botocore``] Updates description of schedule field for scheduled actions."
-}
