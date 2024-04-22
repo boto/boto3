@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.89
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] Releasing the support for simplified configuration and return of control
+* api-change:``bedrock-agent-runtime``: [``botocore``] Releasing the support for simplified configuration and return of control
+* api-change:``payment-cryptography``: [``botocore``] Adding support to TR-31/TR-34 exports for optional headers, allowing customers to add additional metadata (such as key version and KSN) when exporting keys from the service.
+* api-change:``redshift-serverless``: [``botocore``] Updates description of schedule field for scheduled actions.
+* api-change:``route53profiles``: [``botocore``] Route 53 Profiles allows you to apply a central DNS configuration across many VPCs regardless of account.
+* api-change:``sagemaker``: [``botocore``] This release adds support for Real-Time Collaboration and Shared Space for JupyterLab App on SageMaker Studio.
+* api-change:``servicediscovery``: [``botocore``] This release adds examples to several Cloud Map actions.
+* api-change:``transfer``: [``botocore``] Adding new API to support remote directory listing using SFTP connector
+
+
 1.34.88
 =======
 
