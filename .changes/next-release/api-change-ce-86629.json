@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ce``",
-  "description": "[``botocore``] Added additional metadata that might be applicable to your reservation recommendations."
-}
