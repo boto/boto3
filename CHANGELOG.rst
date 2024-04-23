@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.34.90
+=======
+
+* api-change:``bedrock``: [``botocore``] This release introduces Model Evaluation and Guardrails for Amazon Bedrock.
+* api-change:``bedrock-agent``: [``botocore``] Introducing the ability to create multiple data sources per knowledge base, specify S3 buckets as data sources from external accounts, and exposing levers to define the deletion behavior of the underlying vector store data.
+* api-change:``bedrock-agent-runtime``: [``botocore``] This release introduces zero-setup file upload support for the RetrieveAndGenerate API. This allows you to chat with your data without setting up a Knowledge Base.
+* api-change:``bedrock-runtime``: [``botocore``] This release introduces Guardrails for Amazon Bedrock.
+* api-change:``ce``: [``botocore``] Added additional metadata that might be applicable to your reservation recommendations.
+* api-change:``ec2``: [``botocore``] This release introduces EC2 AMI Deregistration Protection, a new AMI property that can be enabled by customers to protect an AMI against an unintended deregistration. This release also enables the AMI owners to view the AMI 'LastLaunchedTime' in DescribeImages API.
+* api-change:``pi``: [``botocore``] Clarifies how aggregation works for GetResourceMetrics in the Performance Insights API.
+* api-change:``rds``: [``botocore``] Fix the example ARN for ModifyActivityStreamRequest
+* api-change:``workspaces-web``: [``botocore``] Added InstanceType and MaxConcurrentSessions parameters on CreatePortal and UpdatePortal Operations as well as the ability to read Customer Managed Key & Additional Encryption Context parameters on supported resources (Portal, BrowserSettings, UserSettings, IPAccessSettings)
+
+
 1.34.89
 =======
 
