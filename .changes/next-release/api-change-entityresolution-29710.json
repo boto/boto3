@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``entityresolution``",
-  "description": "[``botocore``] Support Batch Unique IDs Deletion."
-}

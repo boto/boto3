@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.91
+=======
+
+* api-change:``datasync``: [``botocore``] This change allows users to disable and enable the schedules associated with their tasks.
+* api-change:``ec2``: [``botocore``] Launching capability for customers to enable or disable automatic assignment of public IPv4 addresses to their network interface
+* api-change:``emr-containers``: [``botocore``] EMRonEKS Service support for SecurityConfiguration enforcement for Spark Jobs.
+* api-change:``entityresolution``: [``botocore``] Support Batch Unique IDs Deletion.
+* api-change:``gamelift``: [``botocore``] Amazon GameLift releases container fleets support for public preview. Deploy Linux-based containerized game server software for hosting on Amazon GameLift.
+* api-change:``ssm``: [``botocore``] Add SSM DescribeInstanceProperties API to public AWS SDK.
+
+
 1.34.90
 =======
 
