@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.91
+=======
+
+* api-change:``datasync``: [``botocore``] This change allows users to disable and enable the schedules associated with their tasks.
+* api-change:``ec2``: [``botocore``] Launching capability for customers to enable or disable automatic assignment of public IPv4 addresses to their network interface
+* api-change:``emr-containers``: [``botocore``] EMRonEKS Service support for SecurityConfiguration enforcement for Spark Jobs.
+* api-change:``entityresolution``: [``botocore``] Support Batch Unique IDs Deletion.
+* api-change:``gamelift``: [``botocore``] Amazon GameLift releases container fleets support for public preview. Deploy Linux-based containerized game server software for hosting on Amazon GameLift.
+* api-change:``ssm``: [``botocore``] Add SSM DescribeInstanceProperties API to public AWS SDK.
+
+
 1.34.90
 =======
 
@@ -13,6 +24,7 @@ CHANGELOG
 * api-change:``ec2``: [``botocore``] This release introduces EC2 AMI Deregistration Protection, a new AMI property that can be enabled by customers to protect an AMI against an unintended deregistration. This release also enables the AMI owners to view the AMI 'LastLaunchedTime' in DescribeImages API.
 * api-change:``pi``: [``botocore``] Clarifies how aggregation works for GetResourceMetrics in the Performance Insights API.
 * api-change:``rds``: [``botocore``] Fix the example ARN for ModifyActivityStreamRequest
+* api-change:``sqs``: [``botocore``] This release enables customers to call SQS using AWS JSON-1.0 protocol
 * api-change:``workspaces-web``: [``botocore``] Added InstanceType and MaxConcurrentSessions parameters on CreatePortal and UpdatePortal Operations as well as the ability to read Customer Managed Key & Additional Encryption Context parameters on supported resources (Portal, BrowserSettings, UserSettings, IPAccessSettings)
 
 
