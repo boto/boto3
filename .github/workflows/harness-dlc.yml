@@ -1,0 +1,17 @@
+name: Clone and List
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  clone-and-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: List files
+        run: ls
