@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``emr-containers``",
+  "description": "[``botocore``] EMRonEKS Service support for SecurityConfiguration enforcement for Spark Jobs."
+}
