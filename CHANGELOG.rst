@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.92
+=======
+
+* api-change:``appsync``: [``botocore``] UpdateGraphQLAPI documentation update and datasource introspection secret arn update
+* api-change:``fms``: [``botocore``] AWS Firewall Manager adds support for network ACL policies to manage Amazon Virtual Private Cloud (VPC) network access control lists (ACLs) for accounts in your organization.
+* api-change:``ivs``: [``botocore``] Bug Fix: IVS does not support arns with the `svs` prefix
+* api-change:``ivs-realtime``: [``botocore``] Bug Fix: IVS Real Time does not support ARNs using the `svs` prefix.
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation for setting local time zones for RDS for Db2 DB instances.
+* api-change:``stepfunctions``: [``botocore``] Add new ValidateStateMachineDefinition operation, which performs syntax checking on the definition of a Amazon States Language (ASL) state machine.
+
+
 1.34.91
 =======
 

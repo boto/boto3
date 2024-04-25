@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Updates Amazon RDS documentation for setting local time zones for RDS for Db2 DB instances."
-}
