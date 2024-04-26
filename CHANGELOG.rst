@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.93
+=======
+
+* api-change:``codepipeline``: [``botocore``] Add ability to manually and automatically roll back a pipeline stage to a previously successful execution.
+* api-change:``cognito-idp``: [``botocore``] Add LimitExceededException to SignUp errors
+* api-change:``connectcampaigns``: [``botocore``] This release adds support for specifying if Answering Machine should wait for prompt sound.
+* api-change:``marketplace-entitlement``: [``botocore``] Releasing minor endpoint updates.
+* api-change:``oam``: [``botocore``] This release introduces support for Source Accounts to define which Metrics and Logs to share with the Monitoring Account
+* api-change:``rds``: [``botocore``] SupportsLimitlessDatabase field added to describe-db-engine-versions to indicate whether the DB engine version supports Aurora Limitless Database.
+* api-change:``support``: [``botocore``] Releasing minor endpoint updates.
+
+
 1.34.92
 =======
 
