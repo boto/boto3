@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``connectcases``",
+  "description": "[``botocore``] This feature releases DeleteField, DeletedLayout, and DeleteTemplate API's"
+}

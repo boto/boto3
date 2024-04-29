@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``inspector2``",
+  "description": "[``botocore``] Update Inspector2 to include new Agentless API parameters."
+}
