@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``transcribe``",
-  "description": "[``botocore``] This update provides error messaging for generative call summarization in Transcribe Call Analytics"
-}

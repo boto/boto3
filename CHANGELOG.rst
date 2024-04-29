@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.94
+=======
+
+* api-change:``amplify``: [``botocore``] Updating max results limit for listing any resources (Job, Artifacts, Branch, BackendResources, DomainAssociation) to 50 with the exception of list apps that where max results can be up to 100.
+* api-change:``connectcases``: [``botocore``] This feature releases DeleteField, DeletedLayout, and DeleteTemplate API's
+* api-change:``inspector2``: [``botocore``] Update Inspector2 to include new Agentless API parameters.
+* api-change:``timestream-query``: [``botocore``] This change allows users to update and describe account settings associated with their accounts.
+* api-change:``transcribe``: [``botocore``] This update provides error messaging for generative call summarization in Transcribe Call Analytics
+* api-change:``trustedadvisor``: [``botocore``] This release adds the BatchUpdateRecommendationResourceExclusion API to support batch updates of Recommendation Resource exclusion statuses and introduces a new exclusion status filter to the ListRecommendationResources and ListOrganizationRecommendationResources APIs.
+
+
 1.34.93
 =======
 
