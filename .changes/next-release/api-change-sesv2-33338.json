@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sesv2``",
-  "description": "[``botocore``] Fixes ListContacts and ListImportJobs APIs to use POST instead of GET."
-}
