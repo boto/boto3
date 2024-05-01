@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``securityhub``",
+  "description": "[``botocore``] Updated CreateMembers API request with limits."
+}
