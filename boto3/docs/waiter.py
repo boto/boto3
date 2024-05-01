@@ -92,7 +92,7 @@ def document_resource_waiter(
         'Waits until this {} is {}. This method calls '
         ':py:meth:`{}.Waiter.{}.wait` which polls '
         ':py:meth:`{}.Client.{}` every {} seconds until '
-        'a successful state is reached. An error is returned '
+        'a successful state is reached. An error is raised '
         'after {} failed checks.'.format(
             resource_name,
             ' '.join(resource_waiter_model.name.split('_')[2:]),
