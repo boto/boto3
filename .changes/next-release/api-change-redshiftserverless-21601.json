@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift-serverless``",
-  "description": "[``botocore``] Update Redshift Serverless List Scheduled Actions Output Response to include Namespace Name."
-}
