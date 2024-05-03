@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sesv2``",
-  "description": "[``botocore``] Adds support for specifying replacement headers per BulkEmailEntry in SendBulkEmail in SESv2."
-}
