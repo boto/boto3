@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.100
+========
+
+* api-change:``b2bi``: [``botocore``] Documentation update to clarify the MappingTemplate definition.
+* api-change:``budgets``: [``botocore``] This release adds tag support for budgets and budget actions.
+* api-change:``resiliencehub``: [``botocore``] AWS Resilience Hub has expanded its drift detection capabilities by introducing a new type of drift detection - application resource drift. This new enhancement detects changes, such as the addition or deletion of resources within the application's input sources.
+* api-change:``route53profiles``: [``botocore``] Doc only update for Route 53 profiles that fixes some link  issues
+
+
 1.34.99
 =======
 
