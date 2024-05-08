@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``polly``",
+  "description": "[``botocore``] Add new engine - generative - that builds the most expressive conversational voices."
+}

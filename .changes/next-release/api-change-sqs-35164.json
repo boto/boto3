@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sqs``",
+  "description": "[``botocore``] This release adds MessageSystemAttributeNames to ReceiveMessageRequest to replace AttributeNames."
+}
