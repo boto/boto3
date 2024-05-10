@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53resolver``",
-  "description": "[``botocore``] Update the DNS Firewall settings to correct a spelling issue."
-}
