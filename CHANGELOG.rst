@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.104
+========
+
+* api-change:``events``: [``botocore``] Amazon EventBridge introduces KMS customer-managed key (CMK) encryption support for custom and partner events published on EventBridge Event Bus (including default bus) and UpdateEventBus API.
+* api-change:``vpc-lattice``: [``botocore``] This release adds TLS Passthrough support. It also increases max number of target group per rule to 10.
+
+
 1.34.103
 ========
 
