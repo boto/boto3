@@ -159,8 +159,8 @@ def download_file(
     Usage::
 
         import boto3
-        s3 = boto3.resource('s3')
-        s3.meta.client.download_file('mybucket', 'hello.txt', '/tmp/hello.txt')
+        s3 = boto3.client('s3')
+        s3.download_file('mybucket', 'hello.txt', '/tmp/hello.txt')
 
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
