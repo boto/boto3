@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.105
+========
+
+* api-change:``connect``: [``botocore``] Amazon Connect provides enhanced search capabilities for flows & flow modules on the Connect admin website and programmatically using APIs. You can search for flows and flow modules by name, description, type, status, and tags, to filter and identify a specific flow in your Connect instances.
+* api-change:``s3``: [``botocore``] Updated a few x-id in the http uri traits
+
+
 1.34.104
 ========
 
