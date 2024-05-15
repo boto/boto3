@@ -227,6 +227,11 @@ You can set configuration settings using system-wide environment variables. Thes
     Specifies the types of retries the SDK will use.  For more information,
     see the ``retry_mode`` configuration file section.
 
+``AWS_SDK_UA_APP_ID``
+    AppId is an optional application specific identifier that can be set.
+    When set it will be appended to the User-Agent header of every request
+    in the form of App/{AppId}.
+
 Using a configuration file
 --------------------------
 
