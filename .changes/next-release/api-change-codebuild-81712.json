@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codebuild``",
-  "description": "[``botocore``] CodeBuild Reserved Capacity VPC Support"
-}
