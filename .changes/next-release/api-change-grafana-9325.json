@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``grafana``",
+  "description": "[``botocore``] This release adds new ServiceAccount and ServiceAccountToken APIs."
+}
