@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "retries",
+  "description": "[``botocore``] Fix backoff calculation for truncated binary exponential backoff (`#3178 <https://github.com/boto/botocore/issues/3178>`__)"
+}
