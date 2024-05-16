@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.107
+========
+
+* api-change:``acm-pca``: [``botocore``] This release adds support for waiters to fail on AccessDeniedException when having insufficient permissions
+* api-change:``connect``: [``botocore``] Adding Contact Flow metrics to the GetMetricDataV2 API
+* api-change:``kafka``: [``botocore``] AWS MSK support for Broker Removal.
+* api-change:``mwaa``: [``botocore``] Amazon MWAA now supports Airflow web server auto scaling to automatically handle increased demand from REST APIs, Command Line Interface (CLI), or more Airflow User Interface (UI) users. Customers can specify maximum and minimum web server instances during environment creation and update workflow.
+* api-change:``quicksight``: [``botocore``] This release adds DescribeKeyRegistration and UpdateKeyRegistration APIs to manage QuickSight Customer Managed Keys (CMK).
+* api-change:``sagemaker``: [``botocore``] Introduced WorkerAccessConfiguration to SageMaker Workteam. This allows customers to configure resource access for workers in a workteam.
+* api-change:``secretsmanager``: [``botocore``] Documentation updates for AWS Secrets Manager
+* bugfix:retries: [``botocore``] Fix backoff calculation for truncated binary exponential backoff (`#3178 <https://github.com/boto/botocore/issues/3178>`__)
+
+
 1.34.106
 ========
 
