@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.109
+========
+
+* api-change:``bedrock-agent``: [``botocore``] This release adds support for using Guardrails with Bedrock Agents.
+* api-change:``bedrock-agent-runtime``: [``botocore``] This release adds support for using Guardrails with Bedrock Agents.
+* api-change:``controltower``: [``botocore``] Added ListControlOperations API and filtering support for ListEnabledControls API. Updates also includes added metadata for enabled controls and control operations.
+* api-change:``osis``: [``botocore``] Add support for creating an OpenSearch Ingestion pipeline that is attached to a provided VPC. Add information about the destinations of an OpenSearch Ingestion pipeline to the GetPipeline and ListPipelines APIs.
+* api-change:``rds``: [``botocore``] This release adds support for EngineLifecycleSupport on DBInstances, DBClusters, and GlobalClusters.
+* api-change:``secretsmanager``: [``botocore``] add v2 smoke tests and smithy smokeTests trait for SDK testing
+
+
 1.34.108
 ========
 

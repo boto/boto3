@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] This release adds support for EngineLifecycleSupport on DBInstances, DBClusters, and GlobalClusters."
-}
