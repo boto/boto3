@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wafv2``",
-  "description": "[``botocore``] You can now use Security Lake to collect web ACL traffic data."
-}
