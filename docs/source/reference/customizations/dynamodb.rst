@@ -62,3 +62,8 @@ DynamoDB conditions
    :members:
    :undoc-members:
    :inherited-members:
+
+.. note::
+
+    You are also able to chain conditions together using the logical operators:
+    ``&`` (and), ``|`` (or), and ``~`` (not). 
