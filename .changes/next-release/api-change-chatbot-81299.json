@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``chatbot``",
+  "description": "[``botocore``] This change adds support for tagging Chatbot configurations."
+}
