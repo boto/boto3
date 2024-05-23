@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``opsworks``",
+  "description": "[``botocore``] Documentation-only update for OpsWorks Stacks."
+}
