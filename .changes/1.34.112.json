@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``emr-serverless``",
+    "description": "[``botocore``] This release adds the capability to run interactive workloads using Apache Livy Endpoint.",
+    "type": "api-change"
+  },
+  {
+    "category": "``opsworks``",
+    "description": "[``botocore``] Documentation-only update for OpsWorks Stacks.",
+    "type": "api-change"
+  }
+]
