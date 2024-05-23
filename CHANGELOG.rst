@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.112
+========
+
+* api-change:``emr-serverless``: [``botocore``] This release adds the capability to run interactive workloads using Apache Livy Endpoint.
+* api-change:``opsworks``: [``botocore``] Documentation-only update for OpsWorks Stacks.
+
+
 1.34.111
 ========
 
