@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.113
+========
+
+* api-change:``dynamodb``: [``botocore``] Documentation only updates for DynamoDB.
+* api-change:``iotfleetwise``: [``botocore``] AWS IoT FleetWise now supports listing vehicles with attributes filter, ListVehicles API is updated to support additional attributes filter.
+* api-change:``managedblockchain``: [``botocore``] This is a minor documentation update to address the impact of the shut down of the Goerli and Polygon networks.
+
+
 1.34.112
 ========
 
