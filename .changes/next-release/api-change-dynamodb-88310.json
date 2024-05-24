@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dynamodb``",
+  "description": "[``botocore``] Documentation only updates for DynamoDB."
+}
