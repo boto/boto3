@@ -32,7 +32,7 @@
   {
     "category": "Timestamp Serialization", 
     "description": "[``botocore``] Support explicit timestamp serialization per timestamp shape.", 
-    "type": "enhancment"
+    "type": "enhancement"
   }, 
   {
     "category": "``glacier``", 

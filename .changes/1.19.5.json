@@ -37,6 +37,6 @@
   {
     "category": "``s3``",
     "description": "TransferConfig now supports the `max_bandwidth` argument.",
-    "type": "enchancement"
+    "type": "enhancement"
   }
 ]

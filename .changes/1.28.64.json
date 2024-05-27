@@ -6,7 +6,7 @@
   },
   {
     "category": "``drs``",
-    "description": "[``botocore``] Updated exsiting API to allow AWS Elastic Disaster Recovery support of launching recovery into existing EC2 instances.",
+    "description": "[``botocore``] Updated existing API to allow AWS Elastic Disaster Recovery support of launching recovery into existing EC2 instances.",
     "type": "api-change"
   },
   {

@@ -12,3 +12,10 @@ src_paths = ["boto3", "tests"]
 [tool.black]
 line-length = 79
 skip_string_normalization = true
+
+[tool.codespell]
+# Ref: https://github.com/codespell-project/codespell#using-a-config-file
+skip = '.git,*.svg,*.css,shortbreadv1.js'
+check-hidden = true
+ignore-regex = '\b(KAKFA|MAPE)\b'
+ignore-words-list = 'braket'

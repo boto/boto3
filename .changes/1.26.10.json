@@ -16,7 +16,7 @@
   },
   {
     "category": "``greengrassv2``",
-    "description": "[``botocore``] Adds new parent target ARN paramater to CreateDeployment, GetDeployment, and ListDeployments APIs for the new subdeployments feature.",
+    "description": "[``botocore``] Adds new parent target ARN parameter to CreateDeployment, GetDeployment, and ListDeployments APIs for the new subdeployments feature.",
     "type": "api-change"
   },
   {
