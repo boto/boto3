@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``kafka``",
+  "description": "[``botocore``] Adds ControllerNodeInfo in ListNodes response to support Raft mode for MSK"
+}
