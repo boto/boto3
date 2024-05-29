@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``securityhub``",
-  "description": "[``botocore``] Add ROOT type for TargetType model"
-}
