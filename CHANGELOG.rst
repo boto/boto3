@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.115
+========
+
+* api-change:``athena``: [``botocore``] Throwing validation errors on CreateNotebook with Name containing `/`,`:`,`\`
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports manually creating GitHub webhooks
+* api-change:``connect``: [``botocore``] This release includes changes to DescribeContact API's response by including ConnectedToSystemTimestamp, RoutingCriteria, Customer, Campaign, AnsweringMachineDetectionStatus, CustomerVoiceActivity, QualityMetrics, DisconnectDetails, and SegmentAttributes information from a contact in Amazon Connect.
+* api-change:``glue``: [``botocore``] Add optional field JobMode to CreateJob and UpdateJob APIs.
+* api-change:``securityhub``: [``botocore``] Add ROOT type for TargetType model
+
+
 1.34.114
 ========
 
