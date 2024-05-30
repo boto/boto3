@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr-serverless``",
-  "description": "[``botocore``] The release adds support for spark structured streaming."
-}

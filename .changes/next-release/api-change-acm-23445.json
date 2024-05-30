@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``acm``",
-  "description": "[``botocore``] add v2 smoke tests and smithy smokeTests trait for SDK testing."
-}
