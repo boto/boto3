@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.117
+========
+
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports Self-hosted GitHub Actions runners for Github Enterprise
+* api-change:``codeguru-security``: [``botocore``] This release includes minor model updates and documentation updates.
+* api-change:``elasticache``: [``botocore``] Update to attributes of TestFailover and minor revisions.
+* api-change:``launch-wizard``: [``botocore``] This release adds support for describing workload deployment specifications, deploying additional workload types, and managing tags for Launch Wizard resources with API operations.
+
+
 1.34.116
 ========
 
