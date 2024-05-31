@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``elasticache``",
+  "description": "[``botocore``] Update to attributes of TestFailover and minor revisions."
+}
