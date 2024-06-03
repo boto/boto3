@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``amplify``",
+    "description": "[``botocore``] This doc-only update identifies fields that are specific to Gen 1 and Gen 2 applications.",
+    "type": "api-change"
+  },
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] This release adds support for the AWS Batch GetJobQueueSnapshot API operation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``eks``",
+    "description": "[``botocore``] Adds support for EKS add-ons pod identity associations integration",
+    "type": "api-change"
+  },
+  {
+    "category": "``iottwinmaker``",
+    "description": "[``botocore``] Support RESET_VALUE UpdateType for PropertyUpdates to reset property value to default or null",
+    "type": "api-change"
+  }
+]
