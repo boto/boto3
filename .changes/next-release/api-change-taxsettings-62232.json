@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``taxsettings``",
+  "description": "[``botocore``] Initial release of AWS Tax Settings API"
+}
