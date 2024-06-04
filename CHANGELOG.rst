@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.34.119
+========
+
+* api-change:``ec2``: [``botocore``] U7i instances with up to 32 TiB of DDR5 memory and 896 vCPUs are now available. C7i-flex instances are launched and are lower-priced variants of the Amazon EC2 C7i instances that offer a baseline level of CPU performance with the ability to scale up to the full compute performance 95% of the time.
+* api-change:``pipes``: [``botocore``] This release adds Timestream for LiveAnalytics as a supported target in EventBridge Pipes
+* api-change:``sagemaker``: [``botocore``] Extend DescribeClusterNode response with private DNS hostname and IP address, and placement information about availability zone and availability zone ID.
+* api-change:``taxsettings``: [``botocore``] Initial release of AWS Tax Settings API
+
+
 1.34.118
 ========
 
