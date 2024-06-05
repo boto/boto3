@@ -134,7 +134,7 @@ consider their clients thread-safe without careful review.
 
 .. note::
     ``boto3.client('<service_name>')`` is an alias for creating a client with a
-    shared default session. Invoking `boto3.client()` inside of a concurrent
+    shared default session. Invoking ``boto3.client()`` inside of a concurrent
     context may result in response ordering issues or interpreter failures
     from underlying SSL modules.
 
