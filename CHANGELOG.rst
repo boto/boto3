@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.120
+========
+
+* api-change:``globalaccelerator``: [``botocore``] This release contains a new optional ip-addresses input field for the update accelerator and update custom routing accelerator apis. This input enables consumers to replace IPv4 addresses on existing accelerators with addresses provided in the input.
+* api-change:``glue``: [``botocore``] AWS Glue now supports native SaaS connectivity: Salesforce connector available now
+* api-change:``s3``: [``botocore``] Added new params copySource and key to copyObject API for supporting S3 Access Grants plugin. These changes will not change any of the existing S3 API functionality.
+
+
 1.34.119
 ========
 
