@@ -133,7 +133,7 @@ need to use these interfaces, but those that do should no longer
 consider their clients thread-safe without careful review.
 
 .. note::
-    `boto3.client('<client_name>')` is an alias for creating a client with a
+    ``boto3.client('<service_name>')`` is an alias for creating a client with a
     shared default session. Invoking `boto3.client()` inside of a concurrent
     context may result in response ordering issues or interpreter failures
     from underlying SSL modules.
