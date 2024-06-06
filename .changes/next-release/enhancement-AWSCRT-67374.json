@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "AWSCRT",
-  "description": "[``botocore``] Update awscrt version to 0.20.11"
-}
