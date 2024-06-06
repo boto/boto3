@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.34.121
+========
+
+* api-change:``account``: [``botocore``] This release adds 3 new APIs (AcceptPrimaryEmailUpdate, GetPrimaryEmail, and StartPrimaryEmailUpdate) used to centrally manage the root user email address of member accounts within an AWS organization.
+* api-change:``alexaforbusiness``: [``botocore``] The alexaforbusiness client has been removed following the deprecation of the service.
+* api-change:``firehose``: [``botocore``] Adds integration with Secrets Manager for Redshift, Splunk, HttpEndpoint, and Snowflake destinations
+* api-change:``fsx``: [``botocore``] This release adds support to increase metadata performance on FSx for Lustre file systems beyond the default level provisioned when a file system is created. This can be done by specifying MetadataConfiguration during the creation of Persistent_2 file systems or by updating it on demand.
+* api-change:``glue``: [``botocore``] This release adds support for creating and updating Glue Data Catalog Views.
+* api-change:``honeycode``: [``botocore``] The honeycode client has been removed following the deprecation of the service.
+* api-change:``iotwireless``: [``botocore``] Adds support for wireless device to be in Conflict FUOTA Device Status due to a FUOTA Task, so it couldn't be attached to a new one.
+* api-change:``location``: [``botocore``] Added two new APIs, VerifyDevicePosition and ForecastGeofenceEvents. Added support for putting larger geofences up to 100,000 vertices with Geobuf fields.
+* api-change:``sns``: [``botocore``] Doc-only update for SNS. These changes include customer-reported issues and TXC3 updates.
+* api-change:``sqs``: [``botocore``] Doc only updates for SQS. These updates include customer-reported issues and TCX3 modifications.
+* api-change:``storagegateway``: [``botocore``] Adds SoftwareUpdatePreferences to DescribeMaintenanceStartTime and UpdateMaintenanceStartTime, a structure which contains AutomaticUpdatePolicy.
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.20.11
+
+
 1.34.120
 ========
 
