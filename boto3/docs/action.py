@@ -147,8 +147,8 @@ def document_action(
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example_prefix = '{} = {}.{}'.format(
-        example_return_value, example_resource_name, action_model.name
+    example_prefix = (
+        f'{example_return_value} = {example_resource_name}.{action_model.name}'
     )
     full_action_name = (
         f"{section.context.get('qualifier', '')}{action_model.name}"
@@ -193,13 +193,10 @@ def document_load_reload_action(
         It is useful for generating docstrings.
     """
     description = (
-        'Calls :py:meth:`{}.Client.{}` to update the attributes of the '
-        '{} resource. Note that the load and reload methods are '
-        'the same method and can be used interchangeably.'.format(
-            get_service_module_name(service_model),
-            xform_name(load_model.request.operation),
-            resource_name,
-        )
+        f'Calls :py:meth:`{get_service_module_name(service_model)}.Client.'
+        f'{xform_name(load_model.request.operation)}` to update the attributes of the '
+        f'{resource_name} resource. Note that the load and reload methods are '
+        'the same method and can be used interchangeably.'
     )
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:

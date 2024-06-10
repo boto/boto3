@@ -3,6 +3,7 @@
 """
 distutils/setuptools install script.
 """
+
 import os
 import re
 

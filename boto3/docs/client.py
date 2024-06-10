@@ -20,9 +20,5 @@ class Boto3ClientDocumenter(ClientDocumenter):
         section.write('import boto3')
         section.style.new_line()
         section.style.new_line()
-        section.write(
-            'client = boto3.client(\'{service}\')'.format(
-                service=self._service_name
-            )
-        )
+        section.write(f'client = boto3.client(\'{self._service_name}\')')
         section.style.end_codeblock()

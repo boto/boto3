@@ -34,7 +34,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
             contents = contents[(beginning + len(line)) :]
 
     def get_class_document_block(self, class_name, contents):
-        start_class_document = '.. py:class:: %s' % class_name
+        start_class_document = f'.. py:class:: {class_name}'
         start_index = contents.find(start_class_document)
         assert start_index != -1, 'Class is not found in contents'
         contents = contents[start_index:]
@@ -42,7 +42,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         return contents[:end_index]
 
     def get_method_document_block(self, method_name, contents):
-        start_method_document = '  .. py:method:: %s(' % method_name
+        start_method_document = f'  .. py:method:: {method_name}('
         start_index = contents.find(start_method_document)
         assert start_index != -1, 'Method is not found in contents'
         contents = contents[start_index:]
@@ -68,7 +68,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         return contents[:end_index]
 
     def get_request_parameter_document_block(self, param_name, contents):
-        start_param_document = ':type %s:' % param_name
+        start_param_document = f':type {param_name}:'
         start_index = contents.find(start_param_document)
         assert start_index != -1, 'Param is not found in contents'
         contents = contents[start_index:]
@@ -80,7 +80,7 @@ class BaseDocsFunctionalTests(unittest.TestCase):
         start_index = contents.find(start_param_document)
         assert start_index != -1, 'There is no response structure'
 
-        start_param_document = '- **%s**' % param_name
+        start_param_document = f'- **{param_name}**'
         start_index = contents.find(start_param_document)
         assert start_index != -1, 'Param is not found in contents'
         contents = contents[start_index:]

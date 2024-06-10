@@ -51,8 +51,8 @@ def document_model_driven_resource_method(
         resource_type = resource_action_model.resource.type
 
         new_return_section = section.add_new_section('return')
-        return_resource_type = '{}.{}'.format(
-            operation_model.service_model.service_name, resource_type
+        return_resource_type = (
+            f'{operation_model.service_model.service_name}.{resource_type}'
         )
 
         return_type = f':py:class:`{return_resource_type}`'
