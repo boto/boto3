@@ -118,12 +118,7 @@ def document_sub_resource(
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example = '{} = {}.{}({})'.format(
-        xform_name(sub_resource_model.resource.type),
-        example_resource_name,
-        sub_resource_model.name,
-        example_values,
-    )
+    example = f'{xform_name(sub_resource_model.resource.type)} = {example_resource_name}.{sub_resource_model.name}({example_values})'
     example_section.style.start_codeblock()
     example_section.write(example)
     example_section.style.end_codeblock()
@@ -141,10 +136,7 @@ def document_sub_resource(
     return_section = section.add_new_section('return')
     return_section.style.new_line()
     return_section.write(
-        ':rtype: :py:class:`{}.{}`'.format(
-            get_service_module_name(service_model),
-            sub_resource_model.resource.type,
-        )
+        f':rtype: :py:class:`{get_service_module_name(service_model)}.{sub_resource_model.resource.type}`'
     )
     return_section.style.new_line()
     return_section.write(

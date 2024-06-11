@@ -36,6 +36,7 @@ You can then use the ``scripts/gen-changelog`` to generate the
 CHANGELOG.rst file.
 
 """
+
 import argparse
 import json
 import os
@@ -132,9 +133,7 @@ def replace_issue_references(parsed, repo_name):
 
     def linkify(match):
         number = match.group()[1:]
-        return '`{} <https://github.com/{}/issues/{}>`__'.format(
-            match.group(), repo_name, number
-        )
+        return f'`{match.group()} <https://github.com/{repo_name}/issues/{number}>`__'
 
     new_description = re.sub(r'#\d+', linkify, description)
     parsed['description'] = new_description

@@ -210,7 +210,7 @@ class TestDynamodbBatchWrite(BaseDynamoDBTest):
         num_elements = 1000
         items = []
         for i in range(num_elements):
-            items.append({'MyHashKey': 'foo%s' % i, 'OtherKey': 'bar%s' % i})
+            items.append({'MyHashKey': f'foo{i}', 'OtherKey': f'bar{i}'})
         with self.table.batch_writer() as batch:
             for item in items:
                 batch.put_item(Item=item)

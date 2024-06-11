@@ -165,12 +165,7 @@ def document_batch_action(
     example_resource_name = xform_name(resource_name)
     if service_model.service_name == resource_name:
         example_resource_name = resource_name
-    example_prefix = '{} = {}.{}.{}'.format(
-        example_return_value,
-        example_resource_name,
-        collection_model.name,
-        batch_action_model.name,
-    )
+    example_prefix = f'{example_return_value} = {example_resource_name}.{collection_model.name}.{batch_action_model.name}'
     document_model_driven_resource_method(
         section=section,
         method_name=batch_action_model.name,
@@ -229,11 +224,7 @@ def document_collection_method(
                 f'Creates an iterable of all {collection_model.resource.type} '
                 f'resources in the collection.'
             ),
-            'example_prefix': '{}_iterator = {}.{}.all'.format(
-                xform_name(collection_model.resource.type),
-                example_resource_name,
-                collection_model.name,
-            ),
+            'example_prefix': f'{xform_name(collection_model.resource.type)}_iterator = {example_resource_name}.{collection_model.name}.all',
             'exclude_input': underlying_operation_members,
         },
         'filter': {
@@ -245,11 +236,7 @@ def document_collection_method(
                 f'and extreme caution should be taken when performing actions '
                 f'on all resources.'
             ),
-            'example_prefix': '{}_iterator = {}.{}.filter'.format(
-                xform_name(collection_model.resource.type),
-                example_resource_name,
-                collection_model.name,
-            ),
+            'example_prefix': f'{xform_name(collection_model.resource.type)}_iterator = {example_resource_name}.{collection_model.name}.filter',
             'exclude_input': get_resource_ignore_params(
                 collection_model.request.params
             ),
@@ -259,11 +246,7 @@ def document_collection_method(
                 f'Creates an iterable up to a specified amount of '
                 f'{collection_model.resource.type} resources in the collection.'
             ),
-            'example_prefix': '{}_iterator = {}.{}.limit'.format(
-                xform_name(collection_model.resource.type),
-                example_resource_name,
-                collection_model.name,
-            ),
+            'example_prefix': f'{xform_name(collection_model.resource.type)}_iterator = {example_resource_name}.{collection_model.name}.limit',
             'include_input': [
                 DocumentedShape(
                     name='count',
@@ -282,11 +265,7 @@ def document_collection_method(
                 f'resources in the collection, but limits the number of '
                 f'items returned by each service call by the specified amount.'
             ),
-            'example_prefix': '{}_iterator = {}.{}.page_size'.format(
-                xform_name(collection_model.resource.type),
-                example_resource_name,
-                collection_model.name,
-            ),
+            'example_prefix': f'{xform_name(collection_model.resource.type)}_iterator = {example_resource_name}.{collection_model.name}.page_size',
             'include_input': [
                 DocumentedShape(
                     name='count',
