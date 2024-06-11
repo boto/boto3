@@ -104,8 +104,8 @@ def document_resource_waiter(
             waiter_model.max_attempts,
         )
     )
-    example_prefix = '{}.{}'.format(
-        xform_name(resource_name), resource_waiter_model.name
+    example_prefix = (
+        f'{xform_name(resource_name)}.{resource_waiter_model.name}'
     )
     full_waiter_name = (
         f"{section.context.get('qualifier', '')}{resource_waiter_model.name}"

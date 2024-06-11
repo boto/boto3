@@ -126,9 +126,7 @@ class TestServiceActionCall(BaseTestCase):
     def test_service_action_call_positional_argument(self):
         def _api_call(*args, **kwargs):
             if args:
-                raise TypeError(
-                    "%s() only accepts keyword arguments." % 'get_frobs'
-                )
+                raise TypeError("get_frobs() only accepts keyword arguments.")
 
         resource = mock.Mock()
         resource.meta = ResourceMeta('test', client=mock.Mock())
@@ -304,9 +302,7 @@ class TestBatchActionCall(BaseTestCase):
 
         def _api_call(*args, **kwargs):
             if args:
-                raise TypeError(
-                    "%s() only accepts keyword arguments." % 'get_frobs'
-                )
+                raise TypeError("get_frobs() only accepts keyword arguments.")
 
         crp_mock.side_effect = side_effect
 

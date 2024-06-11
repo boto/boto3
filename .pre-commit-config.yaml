@@ -6,21 +6,9 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
-  - repo: 'https://github.com/asottile/pyupgrade'
-    rev: v3.15.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.8
     hooks:
-      - id: pyupgrade
-        args:
-          - '--py38-plus'
-  - repo: 'https://github.com/PyCQA/isort'
-    rev: 5.12.0
-    hooks:
-      - id: isort
-  - repo: 'https://github.com/psf/black'
-    rev: 23.11.0
-    hooks:
-      - id: black
-  - repo: 'https://github.com/pycqa/flake8'
-    rev: 6.1.0
-    hooks:
-      - id: flake8
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format

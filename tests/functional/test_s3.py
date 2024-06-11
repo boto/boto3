@@ -147,8 +147,8 @@ class TestCopy(BaseTransferTest):
         for i in range(num_parts):
             # Fill in the parts
             part_number = i + 1
-            copy_range = "bytes={}-{}".format(
-                i * part_size, i * part_size + (part_size - 1)
+            copy_range = (
+                f"bytes={i * part_size}-{i * part_size + (part_size - 1)}"
             )
             self.stub_copy_part(part_number=part_number, copy_range=copy_range)
             parts.append({'ETag': self.etag, 'PartNumber': part_number})
@@ -389,8 +389,8 @@ class TestDownloadFileobj(BaseTransferTest):
         if end_byte is not None:
             contents = full_contents[start_byte : end_byte + 1]
             part_range = f'bytes={start_byte}-{end_byte_range}'
-            content_range = 'bytes={}-{}/{}'.format(
-                start_byte, end_byte, len(full_contents)
+            content_range = (
+                f'bytes={start_byte}-{end_byte}/{len(full_contents)}'
             )
             get_object_response['ContentRange'] = content_range
             expected_params['Range'] = part_range
