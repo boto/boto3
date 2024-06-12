@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.34.125
+========
+
+* api-change:``apptest``: [``botocore``] AWS Mainframe Modernization Application Testing is an AWS Mainframe Modernization service feature that automates functional equivalence testing for mainframe application modernization and migration to AWS, and regression testing.
+* api-change:``backupstorage``: [``botocore``] The backupstorage client has been removed following the deprecation of the service.
+* api-change:``ec2``: [``botocore``] Tagging support for Traffic Mirroring FilterRule resource
+* api-change:``osis``: [``botocore``] SDK changes for self-managed vpc endpoint to OpenSearch ingestion pipelines.
+* api-change:``redshift``: [``botocore``] Updates to remove DC1 and DS2 node types.
+* api-change:``secretsmanager``: [``botocore``] Introducing RotationToken parameter for PutSecretValue API
+* api-change:``securitylake``: [``botocore``] This release updates request validation regex to account for non-commercial aws partitions.
+* api-change:``sesv2``: [``botocore``] This release adds support for Amazon EventBridge as an email sending events destination.
+
+
 1.34.124
 ========
 
