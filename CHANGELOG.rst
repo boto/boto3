@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.126
+========
+
+* api-change:``cloudhsmv2``: [``botocore``] Added support for hsm type hsm2m.medium. Added supported for creating a cluster in FIPS or NON_FIPS mode.
+* api-change:``glue``: [``botocore``] This release adds support for configuration of evaluation method for composite rules in Glue Data Quality rulesets.
+* api-change:``iotwireless``: [``botocore``] Add RoamingDeviceSNR and RoamingDeviceRSSI to Customer Metrics.
+* api-change:``kms``: [``botocore``] This feature allows customers to use their keys stored in KMS to derive a shared secret which can then be used to establish a secured channel for communication, provide proof of possession, or establish trust with other parties.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for CMAF ingest (DASH-IF live media ingest protocol interface 1)
+
+
 1.34.125
 ========
 
