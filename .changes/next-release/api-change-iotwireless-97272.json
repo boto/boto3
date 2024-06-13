@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iotwireless``",
+  "description": "[``botocore``] Add RoamingDeviceSNR and RoamingDeviceRSSI to Customer Metrics."
+}
