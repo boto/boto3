@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.34.128
+========
+
+* api-change:``acm-pca``: [``botocore``] Doc-only update that adds name constraints as an allowed extension for ImportCertificateAuthorityCertificate.
+* api-change:``batch``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports global and organization GitHub webhooks
+* api-change:``cognito-idp``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``ds``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``efs``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``glue``: [``botocore``] This release introduces a new feature, Usage profiles. Usage profiles allow the AWS Glue admin to create different profiles for various classes of users within the account, enforcing limits and defaults for jobs and sessions.
+* api-change:``mediaconvert``: [``botocore``] This release includes support for creating I-frame only video segments for DASH trick play.
+* api-change:``secretsmanager``: [``botocore``] Doc only update for Secrets Manager
+* api-change:``waf``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
+
 1.34.127
 ========
 

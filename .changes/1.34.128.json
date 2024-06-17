@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``acm-pca``",
+    "description": "[``botocore``] Doc-only update that adds name constraints as an allowed extension for ImportCertificateAuthorityCertificate.",
+    "type": "api-change"
+  },
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``codebuild``",
+    "description": "[``botocore``] AWS CodeBuild now supports global and organization GitHub webhooks",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-idp``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ds``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``efs``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] This release introduces a new feature, Usage profiles. Usage profiles allow the AWS Glue admin to create different profiles for various classes of users within the account, enforcing limits and defaults for jobs and sessions.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconvert``",
+    "description": "[``botocore``] This release includes support for creating I-frame only video segments for DASH trick play.",
+    "type": "api-change"
+  },
+  {
+    "category": "``secretsmanager``",
+    "description": "[``botocore``] Doc only update for Secrets Manager",
+    "type": "api-change"
+  },
+  {
+    "category": "``waf``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  }
+]
