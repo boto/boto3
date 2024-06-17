@@ -60,17 +60,13 @@ Identity and access management
 ------------------------------
 
 AWS Identity and Access Management (IAM) is an AWS service that helps an administrator securely control access to AWS resources.
-IAM administrators control who can be *authenticated* (signed in) and *authorized* (have permissions) to use AWS resources. IAM is an AWS service that you can use with no additional charge.
+IAM administrators control who can be *authenticated* (signed in) and *authorized* (have permissions) to use AWS resources. IAM is an AWS service that you can use at no additional charge.
+For details about working with IAM, see `AWS Identity and Access Management <https://aws.amazon.com/iam/>`_. We also strongly recommend reviewing the `Security best practices in IAM <https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html>`_.
 
-To use Boto3 to access AWS, you need an AWS account and AWS credentials. To increase the security of your
-AWS account, we recommend that you use an *IAM user* to provide access credentials instead of using your AWS
-account credentials.
 
-For details about working with IAM, see `IAM <https://aws.amazon.com/iam/>`_.
-
-For an overview of IAM users and why they are important for the security of your account,
-see `AWS Security Credentials <https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html>`_
-in the `Amazon Web Services General Reference <https://docs.aws.amazon.com/general/latest/gr/>`_.
+To use Boto3 to access AWS, you need an AWS account and AWS credentials. For more information on credentials
+see `AWS security credentials <https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html>`_
+in the `AWS General Reference <https://docs.aws.amazon.com/general/latest/gr/>`_.
 
 .. _compliance_validation_intro:
 
