@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.34.129
+========
+
+* api-change:``bedrock-runtime``: [``botocore``] This release adds support for using Guardrails with the Converse and ConverseStream APIs.
+* api-change:``cloudtrail``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``config``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``eks``: [``botocore``] This release adds support to surface async fargate customer errors from async path to customer through describe-fargate-profile API response.
+* api-change:``lightsail``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``polly``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``rekognition``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``sagemaker``: [``botocore``] Launched a new feature in SageMaker to provide managed MLflow Tracking Servers for customers to track ML experiments. This release also adds a new capability of attaching additional storage to SageMaker HyperPod cluster instances.
+* api-change:``shield``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``snowball``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
+
 1.34.128
 ========
 
