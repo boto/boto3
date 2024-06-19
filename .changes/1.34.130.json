@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``artifact``",
+    "description": "[``botocore``] This release adds an acceptanceType field to the ReportSummary structure (used in the ListReports API response).",
+    "type": "api-change"
+  },
+  {
+    "category": "``athena``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cur``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``directconnect``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elastictranscoder``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``opensearch``",
+    "description": "[``botocore``] This release enables customers to use JSON Web Tokens (JWT) for authentication on their Amazon OpenSearch Service domains.",
+    "type": "api-change"
+  }
+]
