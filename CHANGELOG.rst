@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.130
+========
+
+* api-change:``artifact``: [``botocore``] This release adds an acceptanceType field to the ReportSummary structure (used in the ListReports API response).
+* api-change:``athena``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``cur``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``directconnect``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``elastictranscoder``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``opensearch``: [``botocore``] This release enables customers to use JSON Web Tokens (JWT) for authentication on their Amazon OpenSearch Service domains.
+
+
 1.34.129
 ========
 
