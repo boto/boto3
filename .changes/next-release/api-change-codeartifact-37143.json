@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codeartifact``",
+  "description": "[``botocore``] Add support for the Cargo package format."
+}
