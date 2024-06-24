@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.132
+========
+
+* api-change:``bedrock-runtime``: [``botocore``] Increases Converse API's document name length
+* api-change:``customer-profiles``: [``botocore``] This release includes changes to ProfileObjectType APIs, adds functionality top set and get capacity for profile object types.
+* api-change:``ec2``: [``botocore``] Fix EC2 multi-protocol info in models.
+* api-change:``qbusiness``: [``botocore``] Allow enable/disable Q Apps when creating/updating a Q application; Return the Q Apps enablement information when getting a Q application.
+* api-change:``ssm``: [``botocore``] Add sensitive trait to SSM IPAddress property for CloudTrail redaction
+* api-change:``workspaces-web``: [``botocore``] Added ability to enable DeepLinking functionality on a Portal via UserSettings as well as added support for IdentityProvider resource tagging.
+
+
 1.34.131
 ========
 
