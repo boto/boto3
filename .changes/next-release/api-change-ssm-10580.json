@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ssm``",
-  "description": "[``botocore``] Add sensitive trait to SSM IPAddress property for CloudTrail redaction"
-}
