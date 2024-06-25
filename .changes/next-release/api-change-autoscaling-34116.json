@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``autoscaling``",
-  "description": "[``botocore``] Doc only update for Auto Scaling's TargetTrackingMetricDataQuery"
-}
