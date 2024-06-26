@@ -167,7 +167,7 @@ class TypeSerializer:
     def _is_number(self, value):
         if isinstance(value, (int, Decimal)):
             return True
-        elif isinstance(value, float):
+        if isinstance(value, float):
             raise TypeError(
                 'Float types are not supported. Use Decimal types instead.'
             )
