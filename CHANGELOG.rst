@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.134
+========
+
+* api-change:``controltower``: [``botocore``] Added ListLandingZoneOperations API.
+* api-change:``eks``: [``botocore``] Added support for disabling unmanaged addons during cluster creation.
+* api-change:``ivs-realtime``: [``botocore``] IVS Real-Time now offers customers the ability to upload public keys for customer vended participant tokens.
+* api-change:``kinesisanalyticsv2``: [``botocore``] This release adds support for new ListApplicationOperations and DescribeApplicationOperation APIs. It adds a new configuration to enable system rollbacks, adds field ApplicationVersionCreateTimestamp for clarity and improves support for pagination for APIs.
+* api-change:``opensearch``: [``botocore``] This release adds support for enabling or disabling Natural Language Query Processing feature for Amazon OpenSearch Service domains, and provides visibility into the current state of the setup or tear-down.
+
+
 1.34.133
 ========
 
