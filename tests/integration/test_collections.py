@@ -27,6 +27,7 @@ BLOCKLIST = {
     'ec2': ['images'],
     'iam': ['signing_certificates'],
     'sqs': ['dead_letter_source_queues'],
+    'opsworks': [],
 }
 
 
@@ -35,6 +36,9 @@ def all_collections():
     # except those which have been blocklisted.
     session = boto3.session.Session()
     for service_name in session.get_available_resources():
+        if BLOCKLIST.get(service_name, None) == []:
+            continue
+
         resource = session.resource(
             service_name, region_name=REGION_MAP.get(service_name, 'us-west-2')
         )
