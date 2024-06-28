@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pi``",
-  "description": "[``botocore``] Noting that the filter db.sql.db_id isn't available for RDS for SQL Server DB instances."
-}

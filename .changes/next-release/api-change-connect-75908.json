@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect``",
-  "description": "[``botocore``] This release supports showing PreferredAgentRouting step via DescribeContact API."
-}
