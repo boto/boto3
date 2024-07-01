@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.34.137
+========
+
+* api-change:``apigateway``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``cognito-identity``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``connect``: [``botocore``] Authentication profiles are Amazon Connect resources (in gated preview) that allow you to configure authentication settings for users in your contact center. This release adds support for new ListAuthenticationProfiles, DescribeAuthenticationProfile and UpdateAuthenticationProfile APIs.
+* api-change:``docdb``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``eks``: [``botocore``] Updates EKS managed node groups to support EC2 Capacity Blocks for ML
+* api-change:``payment-cryptography``: [``botocore``] Added further restrictions on logging of potentially sensitive inputs and outputs.
+* api-change:``payment-cryptography-data``: [``botocore``] Adding support for dynamic keys for encrypt, decrypt, re-encrypt and translate pin functions.  With this change, customers can use one-time TR-31 keys directly in dataplane operations without the need to first import them into the service.
+* api-change:``stepfunctions``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``swf``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``wafv2``: [``botocore``] JSON body inspection: Update documentation to clarify that JSON parsing doesn't include full validation.
+
+
 1.34.136
 ========
 
