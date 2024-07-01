@@ -38,6 +38,28 @@ underlying API operation. The ``paginate`` method then returns an iterable
         print(page['Contents'])
 
 
+Optional ``build_full_result()`` function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+While ``PageIterator`` is the recommended approach for handling paginated results, 
+there's also a convenient function called ``build_full_result()`` that can retrieve all results at once.::
+
+    import boto3
+
+    # Create a client
+    client = boto3.client('s3', region_name='us-west-2')
+
+    # Create a reusable Paginator
+    paginator = client.get_paginator('list_objects_v2')
+
+    # Invoke build_full_result() from the Paginator
+    full_result = paginator.paginate(Bucket='my-bucket').build_full_result()
+    
+    print(full_result)
+
+See `source code <https://github.com/boto/botocore/blob/master/botocore/paginate.py#L477>`_.
+
+
 Customizing page iterators
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -47,8 +69,10 @@ the pages of API operation results. The ``paginate`` method accepts a
 pagination::
 
     paginator = client.get_paginator('list_objects_v2')
-    page_iterator = paginator.paginate(Bucket='my-bucket',
-                                       PaginationConfig={'MaxItems': 10})
+    page_iterator = paginator.paginate(
+        Bucket="my-bucket",
+        PaginationConfig={"MaxItems": 10},
+    )
 
 ``MaxItems``
     Limits the maximum number of total returned items returned while
@@ -82,8 +106,10 @@ to the client::
     
     client = boto3.client('s3', region_name='us-west-2')
     paginator = client.get_paginator('list_objects_v2')
-    operation_parameters = {'Bucket': 'my-bucket',
-                            'Prefix': 'foo/baz'}
+    operation_parameters = {
+        "Bucket": "my-bucket",
+        "Prefix": "foo/baz",
+    }
     page_iterator = paginator.paginate(**operation_parameters)
     for page in page_iterator:
         print(page['Contents'])
