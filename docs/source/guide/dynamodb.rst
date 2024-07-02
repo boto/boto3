@@ -137,7 +137,7 @@ Expected output::
 Updating an item
 ----------------
 
-You can then update attributes of the item in the table::
+You can then update attributes of the item in the table using :py:meth:`DynamoDB.Table.update_item`::
 
     table.update_item(
         Key={
