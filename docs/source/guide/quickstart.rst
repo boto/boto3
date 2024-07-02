@@ -140,7 +140,7 @@ Now that you have an ``s3`` resource, you can make send requests to the service.
     for bucket in s3.buckets.all():
         print(bucket.name)
 
-You can also upload and download binary data. For example, the following uploads a new file to S3,
+You can also upload and download binary data. For example, the following code uploads a new file to S3,
 assuming that the bucket ``my-bucket`` already exists::
 
     # Upload a new file
