@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.139
+========
+
+* api-change:``application-autoscaling``: [``botocore``] Doc only update for Application Auto Scaling that fixes resource name.
+* api-change:``directconnect``: [``botocore``] This update includes documentation for support of new native 400 GBps ports for Direct Connect.
+* api-change:``organizations``: [``botocore``] Added a new reason under ConstraintViolationException in RegisterDelegatedAdministrator API to prevent registering suspended accounts as delegated administrator of a service.
+* api-change:``rekognition``: [``botocore``] This release adds support for tagging projects and datasets with the CreateProject and CreateDataset APIs.
+* api-change:``workspaces``: [``botocore``] Fix create workspace bundle RootStorage/UserStorage to accept non null values
+
+
 1.34.138
 ========
 
