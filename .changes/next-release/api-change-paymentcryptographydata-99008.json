@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``payment-cryptography-data``",
+  "description": "[``botocore``] Added further restrictions on logging of potentially sensitive inputs and outputs."
+}
