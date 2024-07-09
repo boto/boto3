@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datazone``",
-  "description": "[``botocore``] This release deprecates dataProductItem field from SearchInventoryResultItem, along with some unused DataProduct shapes"
-}
