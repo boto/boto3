@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.144
+========
+
+* api-change:``acm-pca``: [``botocore``] Minor refactoring of C2J model for AWS Private CA
+* api-change:``arc-zonal-shift``: [``botocore``] Adds the option to subscribe to get notifications when a zonal autoshift occurs in a region.
+* api-change:``globalaccelerator``: [``botocore``] This feature adds exceptions to the Customer API to avoid throwing Internal Service errors
+* api-change:``pinpoint``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``quicksight``: [``botocore``] Vega ally control options and Support for Reviewed Answers in Topics
+
+
 1.34.143
 ========
 
