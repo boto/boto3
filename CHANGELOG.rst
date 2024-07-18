@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.34.145
+========
+
+* api-change:``acm-pca``: [``botocore``] Fix broken waiters for the acm-pca client.  Waiters broke in version 1.13.144 of the Boto3 SDK.
+* api-change:``connect``: [``botocore``] Amazon Connect expands search API coverage for additional resources.  Search for hierarchy groups by name, ID, tag, or other criteria (new endpoint). Search for agent statuses by name, ID, tag, or other criteria (new endpoint). Search for users by their assigned proficiencies (enhanced endpoint)
+* api-change:``ec2``: [``botocore``] Amazon VPC IP Address Manager (IPAM) now supports Bring-Your-Own-IP (BYOIP) for IP addresses registered with any Internet Registry. This feature uses DNS TXT records to validate ownership of a public IP address range.
+* api-change:``firehose``: [``botocore``] This release 1) Add configurable buffering hints for Snowflake as destination. 2) Add ReadFromTimestamp for MSK As Source. Firehose will start reading data from MSK Cluster using offset associated with this timestamp. 3) Gated public beta release to add Apache Iceberg tables as destination.
+* api-change:``ivschat``: [``botocore``] Documentation update for IVS Chat API Reference.
+* api-change:``medialive``: [``botocore``] AWS Elemental MediaLive now supports the SRT protocol via the new SRT Caller input type.
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation to specify an eventual consistency model for DescribePendingMaintenanceActions.
+* api-change:``sagemaker``: [``botocore``] SageMaker Training supports R5, T3 and R5D instances family. And SageMaker Processing supports G5 and R5D instances family.
+* api-change:``secretsmanager``: [``botocore``] Doc only update for Secrets Manager
+* api-change:``taxsettings``: [``botocore``] Set default endpoint for aws partition. Requests from all regions in aws partition will be forward to us-east-1 endpoint.
+* api-change:``timestream-query``: [``botocore``] Doc-only update for TimestreamQuery. Added guidance about the accepted valid value for the QueryPricingModel parameter.
+* api-change:``workspaces-thin-client``: [``botocore``] Documentation update for WorkSpaces Thin Client.
+* bugfix:Waiter: [``botocore``] Update waiters to handle expected boolean values when matching errors (`boto/botocore#3220 <https://github.com/boto/botocore/issues/3220>`__)
+
+
 1.34.144
 ========
 
