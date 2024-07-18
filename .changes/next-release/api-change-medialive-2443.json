@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medialive``",
-  "description": "[``botocore``] AWS Elemental MediaLive now supports the SRT protocol via the new SRT Caller input type."
-}

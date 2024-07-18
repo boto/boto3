@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Waiter",
-  "description": "[``botocore``] Update waiters to handle expected boolean values when matching errors (`boto/botocore#3220 <https://github.com/boto/botocore/issues/3220>`__)"
-}
