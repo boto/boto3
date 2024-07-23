@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``entityresolution``",
-  "description": "[``botocore``] Support First Party ID Mapping"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appsync``",
-  "description": "[``botocore``] Adding support for paginators in AppSync list APIs"
-}

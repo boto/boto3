@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect``",
-  "description": "[``botocore``] Added PostContactSummary segment type on ListRealTimeContactAnalysisSegmentsV2 API"
-}

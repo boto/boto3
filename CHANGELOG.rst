@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.34.147
+========
+
+* api-change:``appsync``: [``botocore``] Adding support for paginators in AppSync list APIs
+* api-change:``cleanrooms``: [``botocore``] This release adds AWS Entity Resolution integration to associate ID namespaces & ID mapping workflow resources as part of ID namespace association and  ID mapping table  in AWS Clean Rooms. It also introduces a new ID_MAPPING_TABLE analysis rule to manage the protection on ID mapping table.
+* api-change:``cleanroomsml``: [``botocore``] Adds SQL query as the source of seed audience for audience generation job.
+* api-change:``connect``: [``botocore``] Added PostContactSummary segment type on ListRealTimeContactAnalysisSegmentsV2 API
+* api-change:``connect-contact-lens``: [``botocore``] Added PostContactSummary segment type on ListRealTimeContactAnalysisSegments API
+* api-change:``datazone``: [``botocore``] This release removes the deprecated dataProductItem field from Search API output.
+* api-change:``entityresolution``: [``botocore``] Support First Party ID Mapping
+
+
 1.34.146
 ========
 
