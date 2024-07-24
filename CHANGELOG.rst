@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.34.148
+========
+
+* api-change:``cleanrooms``: [``botocore``] Three enhancements to the AWS Clean Rooms: Disallowed Output Columns, Flexible Result Receivers, SQL as a Seed
+* api-change:``dynamodb``: [``botocore``] DynamoDB doc only update for July
+* api-change:``iotsitewise``: [``botocore``] Adds support for creating SiteWise Edge gateways that run on a Siemens Industrial Edge Device.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for Irdeto DRM encryption in DASH manifests.
+* api-change:``medical-imaging``: [``botocore``] CopyImageSet API adds copying selected instances between image sets, and overriding inconsistent metadata with a force parameter. UpdateImageSetMetadata API enables reverting to prior versions; updates to Study, Series, and SOP Instance UIDs; and updates to private elements, with a force parameter.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] Update for rebrand to AWS End User Messaging SMS and Voice.
+
+
 1.34.147
 ========
 
