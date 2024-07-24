@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dynamodb``",
+  "description": "[``botocore``] DynamoDB doc only update for July"
+}
