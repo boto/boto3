@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codecommit``",
+  "description": "[``botocore``] CreateRepository API now throws OperationNotAllowedException when the account has been restricted from creating a repository."
+}
