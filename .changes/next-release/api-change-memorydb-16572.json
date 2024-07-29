@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``memorydb``",
+  "description": "[``botocore``] Renaming full service name as it appears in developer documentation."
+}
