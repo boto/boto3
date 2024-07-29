@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``elasticache``",
-  "description": "[``botocore``] Renaming full service name as it appears in developer documentation."
-}
