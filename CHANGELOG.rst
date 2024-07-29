@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.150
+========
+
+* api-change:``elasticache``: [``botocore``] Renaming full service name as it appears in developer documentation.
+* api-change:``memorydb``: [``botocore``] Renaming full service name as it appears in developer documentation.
+
+
 1.34.149
 ========
 
