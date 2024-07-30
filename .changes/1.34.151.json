@@ -1,0 +1,57 @@
+[
+  {
+    "category": "``appstream``",
+    "description": "[``botocore``] Added support for Red Hat Enterprise Linux 8 on Amazon AppStream 2.0",
+    "type": "api-change"
+  },
+  {
+    "category": "``autoscaling``",
+    "description": "[``botocore``] Increase the length limit for VPCZoneIdentifier from 2047 to 5000",
+    "type": "api-change"
+  },
+  {
+    "category": "``codepipeline``",
+    "description": "[``botocore``] AWS CodePipeline V2 type pipelines now support stage level conditions to enable development teams to safely release changes that meet quality and compliance requirements.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Doc only update for changes to deletion API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elb``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lexv2-models``",
+    "description": "[``botocore``] This release adds new capabilities to the AMAZON.QnAIntent: Custom prompting, Guardrails integration and ExactResponse support for Bedrock Knowledge Base.",
+    "type": "api-change"
+  },
+  {
+    "category": "``logs``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rolesanywhere``",
+    "description": "[``botocore``] IAM RolesAnywhere now supports custom role session name on the CreateSession. This release adds the acceptRoleSessionName option to a profile to control whether a role session name will be accepted in a session request with a given profile.",
+    "type": "api-change"
+  },
+  {
+    "category": "``tnb``",
+    "description": "[``botocore``] This release adds Network Service Update, through which customers will be able to update their instantiated networks to a new network package. See the documentation for limitations. The release also enhances the Get network operation API to return parameter overrides used during the operation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces``",
+    "description": "[``botocore``] Removing multi-session as it isn't supported for pools",
+    "type": "api-change"
+  }
+]
