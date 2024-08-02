@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.153
+========
+
+* api-change:``cloudwatch``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``kinesis``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``resiliencehub``: [``botocore``] Customers are presented with the grouping recommendations and can determine if the recommendations are accurate and apply to their case. This feature simplifies onboarding by organizing resources into appropriate AppComponents.
+* api-change:``route53``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+* api-change:``waf-regional``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
+
 1.34.152
 ========
 
