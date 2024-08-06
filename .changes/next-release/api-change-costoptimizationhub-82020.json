@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cost-optimization-hub``",
+  "description": "[``botocore``] This release adds savings percentage support to the ListRecommendationSummaries API."
+}
