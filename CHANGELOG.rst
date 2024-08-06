@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.155
+========
+
+* api-change:``bedrock-agent-runtime``: [``botocore``] Introduce model invocation output traces for orchestration traces, which contain the model's raw response and usage.
+* api-change:``cognito-idp``: [``botocore``] Advanced security feature updates to include password history and log export for Cognito user pools.
+* api-change:``cost-optimization-hub``: [``botocore``] This release adds savings percentage support to the ListRecommendationSummaries API.
+* api-change:``workspaces``: [``botocore``] Added support for BYOL_GRAPHICS_G4DN_WSP IngestionProcess
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.21.2
+
+
 1.34.154
 ========
 

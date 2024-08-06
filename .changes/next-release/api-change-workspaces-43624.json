@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workspaces``",
-  "description": "[``botocore``] Added support for BYOL_GRAPHICS_G4DN_WSP IngestionProcess"
-}
