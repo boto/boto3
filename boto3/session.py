@@ -16,7 +16,8 @@ import os
 
 import botocore.session
 from botocore.client import Config
-from botocore.exceptions import DataNotFoundError, UnknownServiceError
+from botocore.exceptions import DataNotFoundError, UnknownServiceError, NoCredentialsError
+from botocore.credentials import AssumeRoleCredentialFetcher, DeferredRefreshableCredentials
 
 import boto3
 import boto3.utils
@@ -474,6 +475,53 @@ class Session:
         )
 
         return cls(client=client)
+
+    def assume_role(self, role_arn, extra_args=None):
+        """
+        Create a new session that assumes the given role.
+
+        :type role_arn: str
+        :param role_arn: The ARN of the role to be assumed.
+        :type extra_args: dict
+        :param extra_args: Any additional arguments to add to the assume
+            role request using the format of the botocore operation.
+            Possible keys include, but may not be limited to,
+            DurationSeconds, Policy, and RoleSessionName.
+        """
+        botocore_session = self._session
+
+        credentials = botocore_session.get_credentials()
+        if not credentials:
+            # Error out now rather than wait for the new session to get used
+            raise NoCredentialsError
+
+        credential_fetcher = AssumeRoleCredentialFetcher(
+            botocore_session.create_client,
+            credentials,
+            role_arn,
+            extra_args=extra_args
+        )
+
+        assumed_role_credentials = DeferredRefreshableCredentials(
+            credential_fetcher.fetch_credentials,
+            "assume-role"
+        )
+
+        assumed_role_botocore_session = botocore.session.get_session()
+        assumed_role_botocore_session._credentials = assumed_role_credentials
+
+        # note that if this session's region changes, it will not cascade
+        region_name = self.region_name
+
+        assumed_role_boto3_session = Session(
+            botocore_session=assumed_role_botocore_session,
+            region_name=region_name,
+        )
+
+        # provice traceability
+        assumed_role_boto3_session.assume_role_parent_session = self
+
+        return assumed_role_boto3_session
 
     def _register_default_handlers(self):
         # S3 customizations
