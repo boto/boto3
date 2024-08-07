@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.34.156
+========
+
+* api-change:``appintegrations``: [``botocore``] Updated CreateDataIntegration and CreateDataIntegrationAssociation API to support bulk data export from Amazon Connect Customer Profiles to the customer S3 bucket.
+* api-change:``glue``: [``botocore``] Introducing AWS Glue Data Quality anomaly detection, a new functionality that uses ML-based solutions to detect data anomalies users have not explicitly defined rules for.
+
+
 1.34.155
 ========
 
