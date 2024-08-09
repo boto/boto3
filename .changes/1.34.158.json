@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``cognito-idp``",
+    "description": "[``botocore``] Fixed a description of AdvancedSecurityAdditionalFlows in Amazon Cognito user pool configuration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release supports adding RoutingCriteria via UpdateContactRoutingData public API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm``",
+    "description": "[``botocore``] Systems Manager doc-only updates for August 2024.",
+    "type": "api-change"
+  }
+]
