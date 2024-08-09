@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cognito-idp``",
-  "description": "[``botocore``] Fixed a description of AdvancedSecurityAdditionalFlows in Amazon Cognito user pool configuration."
-}

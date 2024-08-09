@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.34.158
+========
+
+* api-change:``cognito-idp``: [``botocore``] Fixed a description of AdvancedSecurityAdditionalFlows in Amazon Cognito user pool configuration.
+* api-change:``connect``: [``botocore``] This release supports adding RoutingCriteria via UpdateContactRoutingData public API.
+* api-change:``ssm``: [``botocore``] Systems Manager doc-only updates for August 2024.
+
+
 1.34.157
 ========
 
