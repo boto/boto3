@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``config``",
-  "description": "[``botocore``] Documentation update for the OrganizationConfigRuleName regex pattern."
-}
