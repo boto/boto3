@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.34.160
+========
+
+* api-change:``amplify``: [``botocore``] Add a new field "cacheConfig" that enables users to configure the CDN cache settings for an App
+* api-change:``appstream``: [``botocore``] This release includes following new APIs: CreateThemeForStack, DescribeThemeForStack, UpdateThemeForStack, DeleteThemeForStack to support custom branding programmatically.
+* api-change:``fis``: [``botocore``] This release adds support for additional error information on experiment failure. It adds the error code, location, and account id on relevant failures to the GetExperiment and ListExperiment API responses.
+* api-change:``glue``: [``botocore``] Add AttributesToGet parameter support for Glue GetTables
+* api-change:``neptune-graph``: [``botocore``] Amazon Neptune Analytics provides a new option for customers to load data into a graph using the RDF (Resource Description Framework) NTRIPLES format. When loading NTRIPLES files, use the value `convertToIri` for the `blankNodeHandling` parameter.
+
+
 1.34.159
 ========
 
