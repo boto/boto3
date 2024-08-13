@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``amplify``",
-  "description": "[``botocore``] Add a new field \"cacheConfig\" that enables users to configure the CDN cache settings for an App"
-}
