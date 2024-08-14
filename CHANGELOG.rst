@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.34.161
+========
+
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports using Secrets Manager to store git credentials and using multiple source credentials in a single project.
+
+
 1.34.160
 ========
 
