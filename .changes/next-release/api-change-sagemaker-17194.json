@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Introduce Endpoint and EndpointConfig Arns in sagemaker:ListPipelineExecutionSteps API response"
-}

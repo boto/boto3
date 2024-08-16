@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Improvements of integration between AWS Batch and EC2.",
+    "type": "api-change"
+  },
+  {
+    "category": "``inspector2``",
+    "description": "[``botocore``] Update the correct format of key and values for resource tags",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] Amazon QuickSight launches Customer Managed Key (CMK) encryption for Data Source metadata",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Introduce Endpoint and EndpointConfig Arns in sagemaker:ListPipelineExecutionSteps API response",
+    "type": "api-change"
+  },
+  {
+    "category": "``sesv2``",
+    "description": "[``botocore``] Marking use case description field of account details as deprecated.",
+    "type": "api-change"
+  },
+  {
+    "category": "signing",
+    "description": "[``botocore``] Adds internal support for the new 'auth' trait to allow a priority list of auth types for a service or operation.",
+    "type": "feature"
+  }
+]

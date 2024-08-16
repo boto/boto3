@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.0
+======
+
+* api-change:``batch``: [``botocore``] Improvements of integration between AWS Batch and EC2.
+* api-change:``inspector2``: [``botocore``] Update the correct format of key and values for resource tags
+* api-change:``quicksight``: [``botocore``] Amazon QuickSight launches Customer Managed Key (CMK) encryption for Data Source metadata
+* api-change:``sagemaker``: [``botocore``] Introduce Endpoint and EndpointConfig Arns in sagemaker:ListPipelineExecutionSteps API response
+* api-change:``sesv2``: [``botocore``] Marking use case description field of account details as deprecated.
+* feature:signing: [``botocore``] Adds internal support for the new 'auth' trait to allow a priority list of auth types for a service or operation.
+
+
 1.34.162
 ========
 
