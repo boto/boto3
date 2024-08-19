@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.35.1
+======
+
+* api-change:``bedrock``: [``botocore``] Amazon Bedrock Batch Inference/ Model Invocation is a feature which allows customers to asynchronously run inference on a large set of records/files stored in S3.
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports creating fleets with macOS platform for running builds.
+* api-change:``deadline``: [``botocore``] This release adds additional search fields and provides sorting by multiple fields.
+* api-change:``lambda``: [``botocore``] Release Lambda FunctionRecursiveConfig, enabling customers to turn recursive loop detection on or off on individual functions. This release adds two new APIs, GetFunctionRecursionConfig and PutFunctionRecursionConfig.
+* api-change:``ssm-sap``: [``botocore``] Add new attributes to the outputs of GetApplication and GetDatabase APIs.
+
+
 1.35.0
 ======
 
