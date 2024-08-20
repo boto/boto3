@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.2
+======
+
+* api-change:``ecs``: [``botocore``] Documentation only release to address various tickets
+* api-change:``opensearchserverless``: [``botocore``] Added FailureCode and FailureMessage to BatchGetCollectionResponse for BatchGetVPCEResponse for non-Active Collection and VPCE.
+* api-change:``s3``: [``botocore``] Amazon Simple Storage Service / Features : Add support for conditional writes for PutObject and CompleteMultipartUpload APIs.
+
+
 1.35.1
 ======
 
