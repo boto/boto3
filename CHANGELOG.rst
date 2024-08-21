@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.35.3
+======
+
+* api-change:``codestar``: [``botocore``] The codestar client has been removed following the deprecation of the service on July 31, 2024.
+* api-change:``ec2``: [``botocore``] DescribeInstanceStatus now returns health information on EBS volumes attached to Nitro instances
+* api-change:``entityresolution``: [``botocore``] Increase the mapping attributes in Schema to 35.
+* api-change:``glue``: [``botocore``] Add optional field JobRunQueuingEnabled to CreateJob and UpdateJob APIs.
+* api-change:``lambda``: [``botocore``] Release FilterCriteria encryption for Lambda EventSourceMapping,  enabling customers to encrypt their filter criteria using a customer-owned KMS key.
+* api-change:``securityhub``: [``botocore``] Security Hub documentation and definition updates
+* api-change:``ses``: [``botocore``] Enable email receiving customers to provide SES with access to their S3 buckets via an IAM role for "Deliver to S3 Action"
+
+
 1.35.2
 ======
 
