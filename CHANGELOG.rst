@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.4
+======
+
+* api-change:``autoscaling``: [``botocore``] Amazon EC2 Auto Scaling now provides EBS health check to manage EC2 instance replacement
+* api-change:``bedrock``: [``botocore``] Amazon Bedrock Evaluation BatchDeleteEvaluationJob API allows customers to delete evaluation jobs under terminated evaluation job statuses - Stopped, Failed, or Completed. Customers can submit a batch of 25 evaluation jobs to be deleted at once.
+* api-change:``emr-containers``: [``botocore``] Correct endpoint for FIPS is configured for US Gov Regions.
+* api-change:``inspector2``: [``botocore``] Add enums for Agentless scan statuses and EC2 enablement error states
+* api-change:``quicksight``: [``botocore``] Explicit query for authors and dashboard viewing sharing for embedded users
+* api-change:``route53``: [``botocore``] Amazon Route 53 now supports the Asia Pacific (Malaysia) Region (ap-southeast-5) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region.
+
+
 1.35.3
 ======
 
