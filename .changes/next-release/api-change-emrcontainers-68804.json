@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr-containers``",
-  "description": "[``botocore``] Correct endpoint for FIPS is configured for US Gov Regions."
-}
