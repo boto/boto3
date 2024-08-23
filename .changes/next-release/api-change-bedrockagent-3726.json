@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent``",
-  "description": "[``botocore``] Releasing the support for Action User Confirmation."
-}
