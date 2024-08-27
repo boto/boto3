@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``bedrock``",
+    "description": "[``botocore``] Amazon Bedrock SDK updates for Inference Profile.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-runtime``",
+    "description": "[``botocore``] Amazon Bedrock SDK updates for Inference Profile.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chatbot``",
+    "description": "[``botocore``] Update documentation to be consistent with the API docs",
+    "type": "api-change"
+  },
+  {
+    "category": "``omics``",
+    "description": "[``botocore``] Adds data provenance to import jobs from read sets and references",
+    "type": "api-change"
+  },
+  {
+    "category": "``polly``",
+    "description": "[``botocore``] Amazon Polly adds 2 new voices: Jitka (cs-CZ) and Sabrina (de-CH).",
+    "type": "api-change"
+  }
+]
