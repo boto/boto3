@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``chatbot``",
+  "description": "[``botocore``] Update documentation to be consistent with the API docs"
+}
