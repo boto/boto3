@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workspaces``",
-  "description": "[``botocore``] Documentation-only update that clarifies the StartWorkspaces and StopWorkspaces actions, and a few other minor edits."
-}
