@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.9
+======
+
+* api-change:``bedrock-agent-runtime``: [``botocore``] Lifting the maximum length on Bedrock KnowledgeBase RetrievalFilter array
+* api-change:``bedrock-runtime``: [``botocore``] Add support for imported-model in invokeModel and InvokeModelWithResponseStream.
+* api-change:``personalize``: [``botocore``] This releases ability to update automatic training scheduler for customer solutions
+* api-change:``quicksight``: [``botocore``] Increased Character Limit for Dataset Calculation Field expressions
+* api-change:``stepfunctions``: [``botocore``] This release adds support for static analysis to ValidateStateMachineDefinition API, which can now return optional WARNING diagnostics for semantic errors on the definition of an Amazon States Language (ASL) state machine.
+* api-change:``wafv2``: [``botocore``] The minimum request rate for a rate-based rule is now 10. Before this, it was 100.
+
+
 1.35.8
 ======
 
