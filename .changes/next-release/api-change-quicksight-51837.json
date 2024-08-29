@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Increased Character Limit for Dataset Calculation Field expressions"
-}

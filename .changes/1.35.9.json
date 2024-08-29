@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``bedrock-agent-runtime``",
+    "description": "[``botocore``] Lifting the maximum length on Bedrock KnowledgeBase RetrievalFilter array",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-runtime``",
+    "description": "[``botocore``] Add support for imported-model in invokeModel and InvokeModelWithResponseStream.",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize``",
+    "description": "[``botocore``] This releases ability to update automatic training scheduler for customer solutions",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] Increased Character Limit for Dataset Calculation Field expressions",
+    "type": "api-change"
+  },
+  {
+    "category": "``stepfunctions``",
+    "description": "[``botocore``] This release adds support for static analysis to ValidateStateMachineDefinition API, which can now return optional WARNING diagnostics for semantic errors on the definition of an Amazon States Language (ASL) state machine.",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] The minimum request rate for a rate-based rule is now 10. Before this, it was 100.",
+    "type": "api-change"
+  }
+]
