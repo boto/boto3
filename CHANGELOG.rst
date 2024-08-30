@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.10
+=======
+
+* api-change:``backup``: [``botocore``] The latest update introduces two new attributes, VaultType and VaultState, to the DescribeBackupVault and ListBackupVaults APIs. The VaultState attribute reflects the current status of the vault, while the VaultType attribute indicates the specific category of the vault.
+* api-change:``datazone``: [``botocore``] Amazon DataZone now adds new governance capabilities of Domain Units for organization within your Data Domains, and Authorization Policies for tighter controls.
+* api-change:``logs``: [``botocore``] This release introduces a new optional parameter: Entity, in PutLogEvents request
+* api-change:``redshift-data``: [``botocore``] The release include the new Redshift DataAPI feature for session use, customer execute query with --session-keep-alive-seconds parameter and can submit follow-up queries to same sessions with returned`session-id`
+
+
 1.35.9
 ======
 
