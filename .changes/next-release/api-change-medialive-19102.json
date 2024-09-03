@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medialive``",
-  "description": "[``botocore``] Added MinQP as a Rate Control option for H264 and H265 encodes."
-}
