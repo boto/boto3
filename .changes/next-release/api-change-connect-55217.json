@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``connect``",
+  "description": "[``botocore``] Release ReplicaConfiguration as part of DescribeInstance"
+}
