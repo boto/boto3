@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent``",
-  "description": "[``botocore``] Add support for user metadata inside PromptVariant."
-}

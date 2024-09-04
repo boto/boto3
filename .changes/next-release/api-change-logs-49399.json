@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``logs``",
-  "description": "[``botocore``] Update to support new APIs for delivery of logs from AWS services."
-}
