@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.12
+=======
+
+* api-change:``appsync``: [``botocore``] Adds new logging levels (INFO and DEBUG) for additional log output control
+* api-change:``bedrock-agent``: [``botocore``] Add support for user metadata inside PromptVariant.
+* api-change:``finspace``: [``botocore``] Updates Finspace documentation for smaller instances.
+* api-change:``fis``: [``botocore``] This release adds safety levers, a new mechanism to stop all running experiments and prevent new experiments from starting.
+* api-change:``logs``: [``botocore``] Update to support new APIs for delivery of logs from AWS services.
+* api-change:``s3control``: [``botocore``] Amazon Simple Storage Service /S3 Access Grants / Features : This release launches new Access Grants API - ListCallerAccessGrants.
+
+
 1.35.11
 =======
 
