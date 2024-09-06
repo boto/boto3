@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.35.14
+=======
+
+* api-change:``qapps``: [``botocore``] Adds UpdateLibraryItemMetadata api to change status of app for admin verification feature and returns isVerified field in any api returning the app or library item.
+
+
 1.35.13
 =======
 
