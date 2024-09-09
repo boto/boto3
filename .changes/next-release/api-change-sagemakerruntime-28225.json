@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker-runtime``",
+  "description": "[``botocore``] AWS SageMaker Runtime feature: Add sticky routing to support stateful inference models."
+}
