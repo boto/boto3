@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.16
+=======
+
+* api-change:``chime-sdk-voice``: [``botocore``] Documentation-only update that clarifies the ValidateE911Address action of the Amazon Chime SDK Voice APIs.
+* api-change:``cognito-identity``: [``botocore``] This release adds sensitive trait to some required shapes.
+* api-change:``pipes``: [``botocore``] This release adds support for customer managed KMS keys in Amazon EventBridge Pipe
+* api-change:``securityhub``: [``botocore``] Documentation update for Security Hub
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.21.5
+* enhancement:``s3``: [``botocore``] Adds logic to gracefully handle invalid timestamps returned in the Expires header.
+
+
 1.35.15
 =======
 
