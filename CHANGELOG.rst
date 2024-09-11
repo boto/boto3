@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.17
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] Amazon Bedrock Knowledge Bases now supports using inference profiles to increase throughput and improve resilience.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Amazon Bedrock Knowledge Bases now supports using inference profiles to increase throughput and improve resilience.
+* api-change:``ecr``: [``botocore``] Added KMS_DSSE to EncryptionType
+* api-change:``guardduty``: [``botocore``] Add support for new statistic types in GetFindingsStatistics.
+* api-change:``lexv2-models``: [``botocore``] Support new Polly voice engines in VoiceSettings: long-form and generative
+* api-change:``medialive``: [``botocore``] Adds AV1 Codec support, SRT ouputs, and MediaLive Anywhere support.
+
+
 1.35.16
 =======
 
