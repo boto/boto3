@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.19
+=======
+
+* api-change:``amplify``: [``botocore``] Doc only update to Amplify to explain platform setting for Next.js 14 SSG only applications
+* api-change:``ivs``: [``botocore``] Updates to all tags descriptions.
+* api-change:``ivschat``: [``botocore``] Updates to all tags descriptions.
+
+
 1.35.18
 =======
 
