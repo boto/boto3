@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.20
+=======
+
+* api-change:``bedrock``: [``botocore``] This feature adds cross account s3 bucket and VPC support to ModelInvocation jobs. To use a cross account bucket, pass in the accountId of the bucket to s3BucketOwner in the ModelInvocationJobInputDataConfig or ModelInvocationJobOutputDataConfig.
+* api-change:``iot``: [``botocore``] This release adds additional enhancements to AWS IoT Device Management Software Package Catalog and Jobs. It also adds SBOM support in Software Package Version.
+* api-change:``medialive``: [``botocore``] Removing the ON_PREMISE enum from the input settings field.
+* api-change:``organizations``: [``botocore``] Doc only update for AWS Organizations that fixes several customer-reported issues
+* api-change:``pca-connector-scep``: [``botocore``] This is a general availability (GA) release of Connector for SCEP, a feature of AWS Private CA. Connector for SCEP links your SCEP-enabled and mobile device management systems to AWS Private CA for digital signature installation and certificate management.
+* api-change:``rds``: [``botocore``] Launching Global Cluster tagging.
+
+
 1.35.19
 =======
 
