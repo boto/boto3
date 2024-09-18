@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Add `launchType` and `sourceIPs` fields to GuardDuty findings."
-}

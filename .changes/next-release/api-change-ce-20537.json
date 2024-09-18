@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ce``",
-  "description": "[``botocore``] This release extends the GetReservationPurchaseRecommendation API to support recommendations for Amazon DynamoDB reservations."
-}
