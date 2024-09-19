@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.35.23
+=======
+
+* api-change:``codeconnections``: [``botocore``] This release adds the PullRequestComment field to CreateSyncConfiguration API input, UpdateSyncConfiguration API input, GetSyncConfiguration API output and ListSyncConfiguration API output
+* api-change:``glue``: [``botocore``] This change is for releasing TestConnection api SDK model
+* api-change:``lambda``: [``botocore``] Tagging support for Lambda event source mapping, and code signing configuration resources.
+* api-change:``mediaconvert``: [``botocore``] This release provides support for additional DRM configurations per SPEKE Version 2.0.
+* api-change:``medialive``: [``botocore``] Adds Bandwidth Reduction Filtering for HD AVC and HEVC encodes, multiplex container settings.
+* api-change:``quicksight``: [``botocore``] QuickSight: 1. Add new API - ListFoldersForResource. 2. Commit mode adds visibility configuration of Apply button on multi-select controls for authors.
+* api-change:``sagemaker``: [``botocore``] Introduced support for G6e instance types on SageMaker Studio for JupyterLab and CodeEditor applications.
+* api-change:``workspaces-web``: [``botocore``] WorkSpaces Secure Browser now enables Administrators to view and manage end-user browsing sessions via Session Management APIs.
+
+
 1.35.22
 =======
 
