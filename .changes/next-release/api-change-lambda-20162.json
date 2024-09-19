@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lambda``",
+  "description": "[``botocore``] Tagging support for Lambda event source mapping, and code signing configuration resources."
+}
