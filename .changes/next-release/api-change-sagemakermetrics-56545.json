@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker-metrics``",
-  "description": "[``botocore``] This release introduces support for the SageMaker Metrics BatchGetMetrics API."
-}
