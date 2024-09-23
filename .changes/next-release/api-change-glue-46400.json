@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Added AthenaProperties parameter to Glue Connections, allowing Athena to store service specific properties on Glue Connections."
-}
