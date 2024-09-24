@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.35.26
+=======
+
+* api-change:``bedrock``: [``botocore``] Add support for Cross Region Inference in Bedrock Model Evaluations.
+* api-change:``budgets``: [``botocore``] Releasing minor partitional endpoint updates
+* api-change:``kinesis``: [``botocore``] This release includes support to add tags when creating a stream
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] AWS End User Messaging SMS-Voice V2 has added support for resource policies. Use the three new APIs to create, view, edit, and delete resource policies.
+* api-change:``sagemaker``: [``botocore``] Adding `HiddenInstanceTypes` and `HiddenSageMakerImageVersionAliases` attribute to SageMaker API
+
+
 1.35.25
 =======
 
