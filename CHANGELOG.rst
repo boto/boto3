@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.28
+=======
+
+* api-change:``chatbot``: [``botocore``] Return State and StateReason fields for Chatbot Channel Configurations.
+* api-change:``lambda``: [``botocore``] Reverting Lambda resource-based policy and block public access APIs.
+* api-change:``organizations``: [``botocore``] Add support for policy operations on the CHATBOT_POLICY policy type.
+* api-change:``pcs``: [``botocore``] AWS PCS API documentation - Edited the description of the iamInstanceProfileArn parameter of the CreateComputeNodeGroup and UpdateComputeNodeGroup actions; edited the description of the SlurmCustomSetting data type to list the supported parameters for clusters and compute node groups.
+* api-change:``rds-data``: [``botocore``] Documentation update for RDS Data API to reflect support for Aurora MySQL Serverless v2 and Provisioned DB clusters.
+* api-change:``sagemaker``: [``botocore``] Adding `TagPropagation` attribute to Sagemaker API
+
+
 1.35.27
 =======
 
