@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Adding `TagPropagation` attribute to Sagemaker API"
-}
