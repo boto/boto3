@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.29
+=======
+
+* api-change:``customer-profiles``: [``botocore``] Introduces optional RoleArn parameter for PutIntegration request and includes RoleArn in the response of PutIntegration, GetIntegration and ListIntegrations
+* api-change:``quicksight``: [``botocore``] Adding personalization in QuickSight data stories. Admins can enable or disable personalization through QuickSight settings.
+* api-change:``securityhub``: [``botocore``] Documentation updates for AWS Security Hub
+* api-change:``sesv2``: [``botocore``] This release adds support for engagement tracking over Https using custom domains.
+
+
 1.35.28
 =======
 
