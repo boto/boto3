@@ -28,7 +28,7 @@ Retrieve a bucket's website configuration by calling the AWS SDK for Python
 
     # Retrieve the website configuration
     s3 = boto3.client('s3')
-    result = s3.get_bucket_website(Bucket='amzn-s3-demo-website-bucket	')
+    result = s3.get_bucket_website(Bucket='amzn-s3-demo-website-bucket')
  
 
 Set a website configuration
