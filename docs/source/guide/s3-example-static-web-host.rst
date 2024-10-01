@@ -48,7 +48,7 @@ A bucket's website configuration can be set by calling the
 
     # Set the website configuration
     s3 = boto3.client('s3')
-    s3.put_bucket_website(Bucket='amzn-s3-demo-website-bucket	',
+    s3.put_bucket_website(Bucket='amzn-s3-demo-website-bucket',
                           WebsiteConfiguration=website_configuration)
 
 
