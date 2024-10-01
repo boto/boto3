@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.31
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] This release adds support to stop an ongoing ingestion job using the StopIngestionJob API in Agents for Amazon Bedrock.
+* api-change:``codeartifact``: [``botocore``] Add support for the dual stack endpoints.
+* api-change:``rds``: [``botocore``] This release provides additional support for enabling Aurora Limitless Database DB clusters.
+
+
 1.35.30
 =======
 
