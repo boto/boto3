@@ -34,7 +34,7 @@ the following conditions:
 
 * **Batch actions (see below)**::
 
-      s3.Bucket('my-bucket').objects.delete()
+      s3.Bucket('amzn-s3-demo-bucket').objects.delete()
 
 Filtering
 ---------
@@ -124,11 +124,11 @@ Some collections support batch actions, which are actions that operate
 on an entire page of results at a time. They will automatically handle
 pagination::
 
-    # S3 delete everything in `my-bucket`
+    # S3 delete everything in `amzn-s3-demo-bucket`
     s3 = boto3.resource('s3')
-    s3.Bucket('my-bucket').objects.delete()
+    s3.Bucket('amzn-s3-demo-bucket').objects.delete()
 
 .. danger::
 
-   The above example will **completely erase all data** in the ``my-bucket``
-   bucket! Please be careful with batch actions.
+   The above example will **completely erase all data** in the
+   ``amzn-s3-demo-bucket`` bucket! Please be careful with batch actions.

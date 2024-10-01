@@ -231,7 +231,7 @@ Using Amazon S3 as an example resource service, you can use the client’s excep
     client = boto3.resource('s3')
 
     try:
-        client.create_bucket(BucketName='myTestBucket')
+        client.create_bucket(BucketName='amzn-s3-demo-bucket')
 
     except client.meta.client.exceptions.BucketAlreadyExists as err:
         print("Bucket {} already exists!".format(err.response['Error']['BucketName']))

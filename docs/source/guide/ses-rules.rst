@@ -106,7 +106,7 @@ Example
         'Actions'   : [
           {
             'S3Action'         : {
-              'BucketName'     : 'S3_BUCKET_NAME',
+              'BucketName'     : 'amzn-s3-demo-bucket',
               'ObjectKeyPrefix': 'SES_email'
             }
           }

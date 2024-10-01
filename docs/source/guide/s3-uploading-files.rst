@@ -58,7 +58,7 @@ object must be opened in binary mode, not text mode.
 
     s3 = boto3.client('s3')
     with open("FILE_NAME", "rb") as f:
-        s3.upload_fileobj(f, "BUCKET_NAME", "OBJECT_NAME")
+        s3.upload_fileobj(f, "amzn-s3-demo-bucket", "OBJECT_NAME")
 
 
 The ``upload_file`` and ``upload_fileobj`` methods are provided by the S3 
@@ -82,7 +82,7 @@ object.
 .. code-block:: python
 
     s3.upload_file(
-        'FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME',
+        'FILE_NAME', 'amzn-s3-demo-bucket', 'OBJECT_NAME',
         ExtraArgs={'Metadata': {'mykey': 'myvalue'}}
     )
 
@@ -93,7 +93,7 @@ list) value 'public-read' to the S3 object.
 .. code-block:: python
 
     s3.upload_file(
-        'FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME',
+        'FILE_NAME', 'amzn-s3-demo-bucket', 'OBJECT_NAME',
         ExtraArgs={'ACL': 'public-read'}
     )
 
@@ -103,7 +103,7 @@ The ``ExtraArgs`` parameter can also be used to set custom or multiple ACLs.
 .. code-block:: python
 
     s3.upload_file(
-        'FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME',
+        'FILE_NAME', 'amzn-s3-demo-bucket', 'OBJECT_NAME',
         ExtraArgs={
             'GrantRead': 'uri="http://acs.amazonaws.com/groups/global/AllUsers"',
             'GrantFullControl': 'id="01234567890abcdefg"',
@@ -129,7 +129,7 @@ instance's ``__call__`` method will be invoked intermittently.
 .. code-block:: python
 
     s3.upload_file(
-        'FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME',
+        'FILE_NAME', 'amzn-s3-demo-bucket', 'OBJECT_NAME',
         Callback=ProgressPercentage('FILE_NAME')
     )
 

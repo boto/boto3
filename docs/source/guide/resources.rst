@@ -48,12 +48,12 @@ instantiation will result in an exception. Examples of identifiers::
     print(queue.url)
 
     # S3 Object (bucket_name and key are identifiers)
-    obj = s3.Object(bucket_name='boto3', key='test.py')
+    obj = s3.Object(bucket_name='amzn-s3-demo-bucket', key='test.py')
     print(obj.bucket_name)
     print(obj.key)
 
     # Raises exception, missing identifier: key!
-    obj = s3.Object(bucket_name='boto3')
+    obj = s3.Object(bucket_name='amzn-s3-demo-bucket')
 
 Identifiers may also be passed as positional arguments::
 
@@ -70,9 +70,9 @@ Identifiers also play a role in resource instance equality. For two
 instances of a resource to be considered equal, their identifiers must
 be equal::
 
-    >>> bucket1 = s3.Bucket('boto3')
-    >>> bucket2 = s3.Bucket('boto3')
-    >>> bucket3 = s3.Bucket('some-other-bucket')
+    >>> bucket1 = s3.Bucket('amzn-s3-demo-bucket1')
+    >>> bucket2 = s3.Bucket('amzn-s3-demo-bucket1')
+    >>> bucket3 = s3.Bucket('amzn-s3-demo-bucket3')
 
     >>> bucket1 == bucket2
     True
@@ -128,7 +128,7 @@ of actions::
         message.delete()
 
     # S3 Object
-    obj = s3.Object(bucket_name='boto3', key='test.py')
+    obj = s3.Object(bucket_name='amzn-s3-demo-bucket', key='test.py')
     response = obj.get()
     data = response['Body'].read()
 
