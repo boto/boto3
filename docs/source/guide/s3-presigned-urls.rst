@@ -65,7 +65,7 @@ perform a GET request.
 
     import requests    # To install: pip install requests
 
-    url = create_presigned_url('amzn-s3-demo-bucket	', 'OBJECT_NAME')
+    url = create_presigned_url('amzn-s3-demo-bucket', 'OBJECT_NAME')
     if url is not None:
         response = requests.get(url)
 
