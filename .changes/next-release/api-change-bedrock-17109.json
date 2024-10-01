@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock``",
+  "description": "[``botocore``] Add support for custom models via provisioned throughput for Bedrock Model Evaluation"
+}

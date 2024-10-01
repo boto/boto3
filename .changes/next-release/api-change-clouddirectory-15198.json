@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``clouddirectory``",
+  "description": "[``botocore``] Add examples for API operations in model."
+}
