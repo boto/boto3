@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.35.30
+=======
+
+* api-change:``bedrock``: [``botocore``] Add support for custom models via provisioned throughput for Bedrock Model Evaluation
+* api-change:``clouddirectory``: [``botocore``] Add examples for API operations in model.
+* api-change:``connect``: [``botocore``] Amazon Connect introduces StartOutboundChatContact API allowing customers to initiate outbound chat contacts
+* api-change:``pricing``: [``botocore``] Add examples for API operations in model.
+* api-change:``resource-groups``: [``botocore``] This update includes new APIs to support application groups and to allow users to manage resource tag-sync tasks in applications.
+* api-change:``supplychain``: [``botocore``] Release DataLakeDataset, DataIntegrationFlow and ResourceTagging APIs for AWS Supply Chain
+* api-change:``timestream-influxdb``: [``botocore``] Timestream for InfluxDB now supports port configuration and additional customer-modifiable InfluxDB v2 parameters. This release adds Port to the CreateDbInstance and UpdateDbInstance API, and additional InfluxDB v2 parameters to the CreateDbParameterGroup API.
+* api-change:``verifiedpermissions``: [``botocore``] Add examples for API operations in model.
+
+
 1.35.29
 =======
 
