@@ -75,5 +75,5 @@ method.
 
     # Set the CORS configuration
     s3 = boto3.client('s3')
-    s3.put_bucket_cors(Bucket='BUCKET_NAME',
+    s3.put_bucket_cors(Bucket='amzn-s3-demo-bucket',
                        CORSConfiguration=cors_configuration)

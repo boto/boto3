@@ -140,12 +140,13 @@ Now that you have an ``s3`` resource, you can make send requests to the service.
     for bucket in s3.buckets.all():
         print(bucket.name)
 
-You can also upload and download binary data. For example, the following uploads a new file to S3,
-assuming that the bucket ``my-bucket`` already exists::
+You can also upload and download binary data. For example, the following
+uploads a new file to S3, assuming that the bucket ``amzn-s3-demo-bucket``
+already exists::
 
     # Upload a new file
     with open('test.jpg', 'rb') as data:
-        s3.Bucket('my-bucket').put_object(Key='test.jpg', Body=data)
+        s3.Bucket('amzn-s3-demo-bucket').put_object(Key='test.jpg', Body=data)
 
 :ref:`guide_resources` and :ref:`guide_collections` are covered in more detail in the following
 sections.
