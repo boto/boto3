@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotdeviceadvisor``",
-  "description": "[``botocore``] Add clientToken attribute and implement idempotency for CreateSuiteDefinition."
-}
