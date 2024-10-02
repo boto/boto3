@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock-runtime``",
+  "description": "[``botocore``] Added new fields to Amazon Bedrock Guardrails trace"
+}
