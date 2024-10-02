@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.35.32
+=======
+
+* api-change:``appstream``: [``botocore``] Added support for Automatic Time Zone Redirection on Amazon AppStream 2.0
+* api-change:``b2bi``: [``botocore``] Added and updated APIs to support outbound EDI transformations
+* api-change:``bedrock-agent-runtime``: [``botocore``] Added raw model response and usage metrics to PreProcessing and PostProcessing Trace
+* api-change:``bedrock-runtime``: [``botocore``] Added new fields to Amazon Bedrock Guardrails trace
+* api-change:``iotdeviceadvisor``: [``botocore``] Add clientToken attribute and implement idempotency for CreateSuiteDefinition.
+* api-change:``ivs-realtime``: [``botocore``] Adds new Stage Health EventErrorCodes applicable to RTMP(S) broadcasts. Bug Fix: Enforces that EncoderConfiguration Video height and width must be even-number values.
+* api-change:``s3``: [``botocore``] This release introduces a header representing the minimum object size limit for Lifecycle transitions.
+* api-change:``sagemaker``: [``botocore``] releasing builtinlcc to public
+* api-change:``workspaces``: [``botocore``] WSP is being rebranded to become DCV.
+
+
 1.35.31
 =======
 
