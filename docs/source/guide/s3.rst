@@ -50,7 +50,7 @@ if the file size is larger than the threshold specified in the
 
     # Perform the transfer
     s3 = boto3.client('s3')
-    s3.upload_file('FILE_NAME', 'BUCKET_NAME', 'OBJECT_NAME', Config=config)
+    s3.upload_file('FILE_NAME', 'amzn-s3-demo-bucket', 'OBJECT_NAME', Config=config)
 
 
 Concurrent transfer operations
@@ -70,7 +70,7 @@ value; to increase usage, increase it.
 
     # Download an S3 object
     s3 = boto3.client('s3')
-    s3.download_file('BUCKET_NAME', 'OBJECT_NAME', 'FILE_NAME', Config=config)
+    s3.download_file('amzn-s3-demo-bucket', 'OBJECT_NAME', 'FILE_NAME', Config=config)
 
 
 Threads
@@ -88,4 +88,4 @@ the value of the ``max_concurrency`` attribute is ignored.
     config = TransferConfig(use_threads=False)
 
     s3 = boto3.client('s3')
-    s3.download_file('BUCKET_NAME', 'OBJECT_NAME', 'FILE_NAME', Config=config)
+    s3.download_file('amzn-s3-demo-bucket', 'OBJECT_NAME', 'FILE_NAME', Config=config)

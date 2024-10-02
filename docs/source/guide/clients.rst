@@ -105,8 +105,8 @@ from its list of possible waiters::
 Then to actually start waiting, you must call the waiter's ``wait()`` method
 with the method's appropriate parameters passed in::
 
-    # Begin waiting for the S3 bucket, mybucket, to exist
-    s3_bucket_exists_waiter.wait(Bucket='mybucket')
+    # Begin waiting for the S3 bucket, amzn-s3-demo-bucket, to exist
+    s3_bucket_exists_waiter.wait(Bucket='amzn-s3-demo-bucket')
 
 Multithreading or multiprocessing with clients
 ----------------------------------------------

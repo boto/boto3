@@ -27,5 +27,5 @@ The example retrieves the current access control list of an S3 bucket.
 
     # Retrieve a bucket's ACL
     s3 = boto3.client('s3')
-    result = s3.get_bucket_acl(Bucket='my-bucket')
+    result = s3.get_bucket_acl(Bucket='amzn-s3-demo-bucket')
     print(result)

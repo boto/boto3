@@ -31,7 +31,7 @@ the bucket name.
 
     # Retrieve the policy of the specified bucket
     s3 = boto3.client('s3')
-    result = s3.get_bucket_policy(Bucket='BUCKET_NAME')
+    result = s3.get_bucket_policy(Bucket='amzn-s3-demo-bucket')
     print(result['Policy'])
 
 
@@ -50,7 +50,7 @@ stored in the bucket identified by the ``bucket_name`` variable.
     import json
 
     # Create a bucket policy
-    bucket_name = 'BUCKET_NAME'
+    bucket_name = 'amzn-s3-demo-bucket'
     bucket_policy = {
         'Version': '2012-10-17',
         'Statement': [{
