@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.35.33
+=======
+
+* api-change:``codepipeline``: [``botocore``] AWS CodePipeline introduces Commands action that enables you to easily run shell commands as part of your pipeline execution.
+* api-change:``connect``: [``botocore``] Public GetMetricDataV2 Grouping increase from 3 to 4
+* api-change:``ec2``: [``botocore``] This release includes a new API for modifying instance cpu-options after launch.
+* api-change:``iot``: [``botocore``] This release adds support for Custom Authentication with X.509 Client Certificates, support for Custom Client Certificate validation, and support for selecting application protocol and authentication type without requiring TLS ALPN for customer's AWS IoT Domain Configurations.
+* api-change:``marketplace-reporting``: [``botocore``] The AWS Marketplace Reporting service introduces the GetBuyerDashboard API. This API returns a dashboard that provides visibility into your organization's AWS Marketplace agreements and associated spend across the AWS accounts in your organization.
+* api-change:``mediapackagev2``: [``botocore``] Added support for ClipStartTime on the FilterConfiguration object on OriginEndpoint manifest settings objects. Added support for EXT-X-START tags on produced HLS child playlists.
+* api-change:``quicksight``: [``botocore``] QuickSight: Add support for exporting and importing folders in AssetBundle APIs
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.22.0
+
+
 1.35.32
 =======
 
