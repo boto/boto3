@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.35.34
+=======
+
+* api-change:``ec2``: [``botocore``] Documentation updates for Amazon EC2.
+* api-change:``iot-data``: [``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.
+
+
 1.35.33
 =======
 
