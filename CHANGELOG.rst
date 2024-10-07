@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.35
+=======
+
+* api-change:``deadline``: [``botocore``] Add support for using the template from a previous job during job creation and listing parameter definitions for a job.
+* api-change:``marketplace-reporting``: [``botocore``] Documentation-only update for AWS Marketplace Reporting API.
+* api-change:``qconnect``: [``botocore``] This release adds support for the following capabilities: Configuration of the Gen AI system via AIAgent and AIPrompts. Integration support for Bedrock Knowledge Base.
+* api-change:``redshift``: [``botocore``] Add validation pattern to S3KeyPrefix on the EnableLogging API
+
+
 1.35.34
 =======
 
