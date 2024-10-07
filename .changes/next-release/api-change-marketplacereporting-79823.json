@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``marketplace-reporting``",
+  "description": "[``botocore``] Documentation-only update for AWS Marketplace Reporting API."
+}
