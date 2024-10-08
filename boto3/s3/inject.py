@@ -599,7 +599,8 @@ def upload_fileobj(
 
     :type Fileobj: a file-like object
     :param Fileobj: A file-like object to upload. At a minimum, it must
-        implement the `read` method, and must return bytes.
+        implement the `read` method, and must return bytes. This object will
+        have the `close` method called on it.
 
     :type Bucket: str
     :param Bucket: The name of the bucket to upload to.
@@ -663,7 +664,8 @@ def bucket_upload_fileobj(
 
     :type Fileobj: a file-like object
     :param Fileobj: A file-like object to upload. At a minimum, it must
-        implement the `read` method, and must return bytes.
+        implement the `read` method, and must return bytes. This object will
+        have the `close` method called on it.
 
     :type Key: str
     :param Key: The name of the key to upload to.
@@ -713,7 +715,8 @@ def object_upload_fileobj(
 
     :type Fileobj: a file-like object
     :param Fileobj: A file-like object to upload. At a minimum, it must
-        implement the `read` method, and must return bytes.
+        implement the `read` method, and must return bytes. This object will
+        have the `close` method called on it.
 
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
