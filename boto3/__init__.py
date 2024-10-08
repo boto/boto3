@@ -69,7 +69,7 @@ def set_stream_logger(name='boto3', level=logging.DEBUG, format_string=None):
     logger.addHandler(handler)
 
 
-def _get_default_session():
+def get_default_session():
     """
     Get the default session, creating one if needed.
 
@@ -81,6 +81,9 @@ def _get_default_session():
     _warn_deprecated_python()
 
     return DEFAULT_SESSION
+
+
+_get_default_session = get_default_session
 
 
 def client(*args, **kwargs):
