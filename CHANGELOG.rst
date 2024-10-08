@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.36
+=======
+
+* api-change:``elasticache``: [``botocore``] AWS ElastiCache SDK now supports using APIs with newly launched Valkey engine. Please refer to updated AWS ElastiCache public documentation for detailed information on API usage.
+* api-change:``memorydb``: [``botocore``] Amazon MemoryDB SDK now supports all APIs for newly launched Valkey engine. Please refer to the updated Amazon MemoryDB public documentation for detailed information on API usage.
+* enhancement:Python: [``botocore``] Added provisional Python 3.13 support to Botocore
+* enhancement:Python: Added provisional Python 3.13 support to Boto3
+
+
 1.35.35
 =======
 
