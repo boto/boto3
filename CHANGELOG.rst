@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.35.37
+=======
+
+* api-change:``codepipeline``: [``botocore``] AWS CodePipeline introduces a Compute category
+
+
 1.35.36
 =======
 
