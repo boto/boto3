@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotfleetwise``",
-  "description": "[``botocore``] Refine campaign related API validations"
-}
