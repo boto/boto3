@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``acm-pca``",
+  "description": "[``botocore``] Documentation updates for AWS Private CA."
+}
