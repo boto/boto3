@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``robomaker``",
+  "description": "[``botocore``] Documentation update: added support notices to each API action."
+}
