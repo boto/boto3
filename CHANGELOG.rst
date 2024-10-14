@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.35.40
+=======
+
+* api-change:``codepipeline``: [``botocore``] AWS CodePipeline V2 type pipelines now support automatically retrying failed stages and skipping stage for failed entry conditions.
+* api-change:``mailmanager``: [``botocore``] Mail Manager support for viewing and exporting metadata of archived messages.
+* api-change:``securitylake``: [``botocore``] This release updates request validation regex for resource ARNs.
+* api-change:``supplychain``: [``botocore``] This release adds AWS Supply Chain instance management functionality. Specifically adding CreateInstance, DeleteInstance, GetInstance, ListInstances, and UpdateInstance APIs.
+* api-change:``transfer``: [``botocore``] This release enables customers using SFTP connectors to query the transfer status of their files to meet their monitoring needs as well as orchestrate post transfer actions.
+
+
 1.35.39
 =======
 
