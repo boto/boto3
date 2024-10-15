@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``amplify``",
+  "description": "[``botocore``] Added sourceUrlType field to StartDeployment request"
+}
