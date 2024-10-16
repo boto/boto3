@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.35.42
+=======
+
+* api-change:``s3``: [``botocore``] Add support for the new optional bucket-region and prefix query parameters in the ListBuckets API. For ListBuckets requests that express pagination, Amazon S3 will now return both the bucket names and associated AWS regions in the response.
+* bugfix:Config: [``botocore``] Fixed sigv4a_signing_region_set resolution when set in environment or config file.
+
+
 1.35.41
 =======
 
