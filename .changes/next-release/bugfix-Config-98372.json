@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Config",
-  "description": "[``botocore``] Fixed sigv4a_signing_region_set resolution when set in environment or config file."
-}
