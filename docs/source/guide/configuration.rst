@@ -474,7 +474,7 @@ in the ``~/.aws/config`` file.
 ``sigv4a_signing_region_set``
 A comma delimited list of regions use when signing with SigV4a. If this is not set,
 the SDK will check if the service has modeled a default; if none is found, this will
-default to '*'.
+default to ``*``.
 
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
