@@ -234,7 +234,7 @@ You can set configuration settings using system-wide environment variables. Thes
 
 ``AWS_SIGV4A_SIGNING_REGION_SET``
     A comma-delimited list of regions to sign when signing with SigV4a.  For more
-information, see the ``sigv4a_signing_region_set`` configuration file section.
+    information, see the ``sigv4a_signing_region_set`` configuration file section.
 
 
 Using a configuration file
