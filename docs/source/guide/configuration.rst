@@ -233,8 +233,8 @@ You can set configuration settings using system-wide environment variables. Thes
     in the form of App/{AppId}.
 
 ``AWS_SIGV4A_SIGNING_REGION_SET``
-    A comma delimited list of regions to sign when singing with SigV4a.  For more information,
-    see the ``sigv4a_signing_region_set`` configuration file section.
+    A comma-delimited list of regions to sign when signing with SigV4a.  For more
+information, see the ``sigv4a_signing_region_set`` configuration file section.
 
 
 Using a configuration file
@@ -472,9 +472,9 @@ in the ``~/.aws/config`` file.
           throttling.  This is a provisional mode whose behavior might change.
 
 ``sigv4a_signing_region_set``
-A comma delimited list of regions use when signing with SigV4a. If this is not set,
-the SDK will check if the service has modeled a default; if none is found, this will
-default to ``*``.
+    A comma-delimited list of regions use when signing with SigV4a. If this is not set,
+    the SDK will check if the service has modeled a default; if none is found, this will
+    default to ``*``.
 
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
