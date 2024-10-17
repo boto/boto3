@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.35.43
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] Removing support for topK property in PromptModelInferenceConfiguration object, Making PromptTemplateConfiguration property as required, Limiting the maximum PromptVariant to 1
+* api-change:``dataexchange``: [``botocore``] This release adds Data Grant support, through which customers can programmatically create data grants to share with other AWS accounts and accept data grants from other AWS accounts.
+* api-change:``ecs``: [``botocore``] This is an Amazon ECS documentation only update to address tickets.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] Added the registrations status of REQUIRES_AUTHENTICATION
+* api-change:``pipes``: [``botocore``] This release adds validation to require specifying a SecurityGroup and Subnets in the Vpc object under PipesSourceSelfManagedKafkaParameters. It also adds support for iso-e, iso-f, and other non-commercial partitions in ARN parameters.
+* api-change:``quicksight``: [``botocore``] Add StartDashboardSnapshotJobSchedule API. RestoreAnalysis now supports restoring analysis to folders.
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation for TAZ IAM support
+* api-change:``workspaces``: [``botocore``] Updated the DomainName pattern for Active Directory
+
+
 1.35.42
 =======
 
