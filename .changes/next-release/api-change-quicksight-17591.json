@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Add StartDashboardSnapshotJobSchedule API. RestoreAnalysis now supports restoring analysis to folders."
-}
