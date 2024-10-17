@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``pinpoint-sms-voice-v2``",
+  "description": "[``botocore``] Added the registrations status of REQUIRES_AUTHENTICATION"
+}
