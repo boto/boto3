@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock``",
+  "description": "[``botocore``] Adding converse support to CMI API's"
+}
