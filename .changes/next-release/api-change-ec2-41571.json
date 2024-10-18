@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ec2``",
-  "description": "[``botocore``] RequestSpotInstances and RequestSpotFleet feature release."
-}

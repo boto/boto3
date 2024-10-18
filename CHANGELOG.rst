@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.35.44
+=======
+
+* api-change:``athena``: [``botocore``] Removing FEDERATED from Create/List/Delete/GetDataCatalog API
+* api-change:``bedrock``: [``botocore``] Adding converse support to CMI API's
+* api-change:``bedrock-runtime``: [``botocore``] Added converse support for custom imported models
+* api-change:``datazone``: [``botocore``] Adding the following project member designations: PROJECT_CATALOG_VIEWER, PROJECT_CATALOG_CONSUMER and PROJECT_CATALOG_STEWARD in the CreateProjectMembership API and PROJECT_CATALOG_STEWARD designation in the AddPolicyGrant API.
+* api-change:``ec2``: [``botocore``] RequestSpotInstances and RequestSpotFleet feature release.
+
+
 1.35.43
 =======
 
