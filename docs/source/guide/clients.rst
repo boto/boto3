@@ -105,8 +105,8 @@ from its list of possible waiters::
 Then to actually start waiting, you must call the waiter's ``wait()`` method
 with the method's appropriate parameters passed in::
 
-    # Begin waiting for the S3 bucket, mybucket, to exist
-    s3_bucket_exists_waiter.wait(Bucket='mybucket')
+    # Begin waiting for the S3 bucket, amzn-s3-demo-bucket, to exist
+    s3_bucket_exists_waiter.wait(Bucket='amzn-s3-demo-bucket')
 
 Multithreading or multiprocessing with clients
 ----------------------------------------------
@@ -131,6 +131,12 @@ built on) allows advanced users to provide their own custom event hooks
 which may interact with boto3’s client. The majority of users will not
 need to use these interfaces, but those that do should no longer
 consider their clients thread-safe without careful review.
+
+.. note::
+    ``boto3.client('<service_name>')`` is an alias for creating a client with a
+    shared default session. Invoking ``boto3.client()`` inside of a concurrent
+    context may result in response ordering issues or interpreter failures
+    from underlying SSL modules.
 
 General Example
 ~~~~~~~~~~~~~~~

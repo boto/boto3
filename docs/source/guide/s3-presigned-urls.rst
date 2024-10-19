@@ -65,7 +65,7 @@ perform a GET request.
 
     import requests    # To install: pip install requests
 
-    url = create_presigned_url('BUCKET_NAME', 'OBJECT_NAME')
+    url = create_presigned_url('amzn-s3-demo-bucket', 'OBJECT_NAME')
     if url is not None:
         response = requests.get(url)
 
@@ -176,7 +176,7 @@ presigned POST URL to perform a POST request to upload a file to S3.
 
     # Generate a presigned S3 POST URL
     object_name = 'OBJECT_NAME'
-    response = create_presigned_post('BUCKET_NAME', object_name)
+    response = create_presigned_post('amzn-s3-demo-bucket', object_name)
     if response is None:
         exit(1)
 

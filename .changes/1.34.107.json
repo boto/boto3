@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``acm-pca``",
+    "description": "[``botocore``] This release adds support for waiters to fail on AccessDeniedException when having insufficient permissions",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Adding Contact Flow metrics to the GetMetricDataV2 API",
+    "type": "api-change"
+  },
+  {
+    "category": "``kafka``",
+    "description": "[``botocore``] AWS MSK support for Broker Removal.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mwaa``",
+    "description": "[``botocore``] Amazon MWAA now supports Airflow web server auto scaling to automatically handle increased demand from REST APIs, Command Line Interface (CLI), or more Airflow User Interface (UI) users. Customers can specify maximum and minimum web server instances during environment creation and update workflow.",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] This release adds DescribeKeyRegistration and UpdateKeyRegistration APIs to manage QuickSight Customer Managed Keys (CMK).",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Introduced WorkerAccessConfiguration to SageMaker Workteam. This allows customers to configure resource access for workers in a workteam.",
+    "type": "api-change"
+  },
+  {
+    "category": "``secretsmanager``",
+    "description": "[``botocore``] Documentation updates for AWS Secrets Manager",
+    "type": "api-change"
+  },
+  {
+    "category": "retries",
+    "description": "[``botocore``] Fix backoff calculation for truncated binary exponential backoff (`#3178 <https://github.com/boto/botocore/issues/3178>`__)",
+    "type": "bugfix"
+  }
+]

@@ -1,9 +1,10 @@
-wheel==0.38.1
+wheel==0.43.0
 coverage==7.2.7
-setuptools==67.8.0;python_version>="3.12"
+setuptools==71.1.0;python_version>="3.12"
+packaging==24.1;python_version>="3.12"  # Requirement for setuptools>=71
 
 # Pytest specific deps
-pytest==7.4.0
-pytest-cov==4.1.0
+pytest==8.1.1
+pytest-cov==5.0.0
 atomicwrites>=1.0 # Windows requirement
 colorama>0.3.0 # Windows requirement

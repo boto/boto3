@@ -12,12 +12,10 @@ jobs:
         permissions:
             issues: write
         steps:
-        - uses: aws-actions/closed-issue-message@8b6324312193476beecf11f8e8539d73a3553bf4
+        - uses: aws-actions/closed-issue-message@80edfc24bdf1283400eb04d20a8a605ae8bf7d48
           with:
             # These inputs are both required
             repo-token: "${{ secrets.GITHUB_TOKEN }}"
-            message: |
-                     ### ⚠️COMMENT VISIBILITY WARNING⚠️ 
-                     Comments on closed issues are hard for our team to see. 
-                     If you need more assistance, please either tag a team member or open a new issue that references this one. 
-                     If you wish to keep having a conversation with other community members under this issue feel free to do so.
+            message: | 
+                     This issue is now closed. Comments on closed issues are hard for our team to see. 
+                     If you need more assistance, please open a new issue that references this one. 

@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``bedrock-agent``",
+    "description": "[``botocore``] Releasing the support for Action User Confirmation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent-runtime``",
+    "description": "[``botocore``] Releasing the support for Action User Confirmation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``codebuild``",
+    "description": "[``botocore``] Added support for the MAC_ARM environment type for CodeBuild fleets.",
+    "type": "api-change"
+  },
+  {
+    "category": "``organizations``",
+    "description": "[``botocore``] Releasing minor partitional endpoint updates.",
+    "type": "api-change"
+  },
+  {
+    "category": "``qbusiness``",
+    "description": "[``botocore``] Amazon QBusiness: Enable support for SAML and OIDC federation through AWS IAM Identity Provider integration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``supplychain``",
+    "description": "[``botocore``] Update API documentation to clarify the event SLA as well as the data model expectations",
+    "type": "api-change"
+  }
+]

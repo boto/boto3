@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] AWS ElastiCache SDK now supports using APIs with newly launched Valkey engine. Please refer to updated AWS ElastiCache public documentation for detailed information on API usage.",
+    "type": "api-change"
+  },
+  {
+    "category": "``memorydb``",
+    "description": "[``botocore``] Amazon MemoryDB SDK now supports all APIs for newly launched Valkey engine. Please refer to the updated Amazon MemoryDB public documentation for detailed information on API usage.",
+    "type": "api-change"
+  },
+  {
+    "category": "Python",
+    "description": "[``botocore``] Added provisional Python 3.13 support to Botocore",
+    "type": "enhancement"
+  },
+  {
+    "category": "Python",
+    "description": "Added provisional Python 3.13 support to Boto3",
+    "type": "enhancement"
+  }
+]

@@ -16,7 +16,7 @@ jobs:
       discussions: write
     steps:
       - name: Stale discussions action
-        uses: aws-github-ops/handle-stale-discussions@a98e47e10f9a5d4ed08ffb27b7a19454302f9a43
+        uses: aws-github-ops/handle-stale-discussions@711a9813957be17629fc6933afcd8bd132c57254
         with:
           # This will close stale-discussions as outdated instead of answered
           close-stale-as-answered: false

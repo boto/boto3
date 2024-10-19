@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``dataexchange``",
+    "description": "[``botocore``] Updated SendDataSetNotificationRequest Comment to be maximum length 4096.",
+    "type": "api-change"
+  },
+  {
+    "category": "``dlm``",
+    "description": "[``botocore``] Added support for pre and post scripts in Amazon Data Lifecycle Manager EBS snapshot lifecycle policies.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] This Amazon RDS release adds support for the multi-tenant configuration. In this configuration, an RDS DB instance can contain multiple tenant databases. In RDS for Oracle, a tenant database is a pluggable database (PDB).",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  }
+]

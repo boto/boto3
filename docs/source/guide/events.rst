@@ -14,17 +14,16 @@ Boto3's event system.
 An introduction to the event system
 -----------------------------------
 
-Boto3's event system allows users to register a function to
-a specific event. Then once the running program reaches a line that
-emits that specific event, Boto3 will call every function
-registered to the event in the order in which they were registered.
-When Boto3 calls each of these registered functions,
-it will call each of them with a specific set of
-keyword arguments that are associated with that event.
-Then once the registered function
-is called, the function may modify the keyword arguments passed to that
-function or return a value.
-Here is an example of how the event system works::
+Boto3's event system allows users to register a function to a specific event.
+Then once the running program reaches a line that emits that specific event,
+Boto3 will call every function registered to the event in the order in which
+they were registered.
+
+When Boto3 calls each of these registered functions, it will call each of them
+with a specific set of keyword arguments that are associated with that event.
+Then once the registered function is called, the function may modify the
+keyword arguments passed to that function or return a value. Here is an
+example of how the event system works::
 
     import boto3
 
@@ -37,19 +36,19 @@ Here is an example of how the event system works::
     def add_my_bucket(params, **kwargs):
         # Add the name of the bucket you want to default to.
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket'
 
     # Register the function to an event
     event_system.register('provide-client-params.s3.ListObjectsV2', add_my_bucket)
 
     response = s3.list_objects_v2()
 
-In this example, the handler ``add_my_bucket``
-is registered such that the handler will inject the
-value ``'mybucket'`` for the ``Bucket`` parameter whenever the
-``list_objects_v2`` client call is made without the ``Bucket`` parameter. Note
-that if the same ``list_objects_v2`` call is made without the ``Bucket``
-parameter and the registered handler, it will result in a validation error.
+In this example, the handler ``add_my_bucket`` is registered such that the
+handler will inject the value ``'amzn-s3-demo-bucket'`` for the ``Bucket``
+parameter whenever the ``list_objects_v2`` client call is made without the
+``Bucket`` parameter. Note that if the same ``list_objects_v2`` call is made
+without the ``Bucket`` parameter and the registered handler, it will result in
+a validation error.
 
 Here are the takeaways from this example:
 
@@ -103,11 +102,11 @@ its hierarchical structure::
 
     def add_my_general_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket1'
 
     def add_my_specific_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'myspecificbucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket2'
 
     event_system.register('provide-client-params.s3', add_my_general_bucket)
     event_system.register('provide-client-params.s3.ListObjectsV2', add_my_specific_bucket)
@@ -116,17 +115,18 @@ its hierarchical structure::
     put_obj_response = s3.put_object(Key='mykey', Body=b'my body')
 
 In this example, the ``list_objects_v2`` method call will use the
-``'myspecificbucket'`` for the bucket instead of ``'mybucket'`` because
-the ``add_my_specific_bucket`` method was registered to the
-``'provide-client-params.s3.ListObjectsV2'`` event which is more specific than
-the ``'provide-client-params.s3'`` event. Thus, the
+``'amzn-s3-demo-bucket2'`` for the bucket instead of
+``'amzn-s3-demo-bucket1'`` because the ``add_my_specific_bucket`` method was
+registered to the ``'provide-client-params.s3.ListObjectsV2'`` event which is
+more specific than the ``'provide-client-params.s3'`` event. Thus, the
 ``add_my_specific_bucket`` function is called before the
 ``add_my_general_bucket`` function is called when the event is emitted.
 
-However for the ``put_object`` call, the bucket used is ``'mybucket'``. This
-is because the event emitted for the ``put_object`` client call is
-``'provide-client-params.s3.PutObject'`` and the ``add_my_general_bucket``
-method is called via its registration to ``'provide-client-params.s3'``. The
+However for the ``put_object`` call, the bucket used is
+``'amzn-s3-demo-bucket1'``. This is because the event emitted for the
+``put_object`` client call is ``'provide-client-params.s3.PutObject'`` and the
+``add_my_general_bucket`` method is called via its registration to
+``'provide-client-params.s3'``. The
 ``'provide-client-params.s3.ListObjectsV2'`` event is never emitted so the
 registered ``add_my_specific_bucket`` function is never called.
 
@@ -147,7 +147,7 @@ of using wildcards in the event system::
 
     def add_my_wildcard_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket'
 
     event_system.register('provide-client-params.s3.*', add_my_wildcard_bucket)
     response = s3.list_objects_v2()
@@ -184,11 +184,11 @@ to another client's event system::
 
     def add_my_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket1'
 
     def add_my_other_bucket(params, **kwargs):
         if 'Bucket' not in params:
-            params['Bucket'] = 'myotherbucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket2'
 
     client1.meta.events.register(
         'provide-client-params.s3.ListObjectsV2', add_my_bucket)
@@ -200,10 +200,10 @@ to another client's event system::
 
 
 Thanks to the isolation of clients' event systems, ``client1`` will inject
-``'mybucket'`` for its ``list_objects_v2`` method call while ``client2`` will
-inject ``'myotherbucket'`` for its ``list_objects_v2`` method call because
-``add_my_bucket`` was registered to ``client1`` while ``add_my_other_bucket``
-was registered to ``client2``.
+``'amzn-s3-demo-bucket1'`` for its ``list_objects_v2`` method call while
+``client2`` will inject ``'amzn-s3-demo-bucket2'`` for its ``list_objects_v2``
+method call because ``add_my_bucket`` was registered to ``client1`` while
+``add_my_other_bucket`` was registered to ``client2``.
 
 
 Boto3 specific events
@@ -212,13 +212,14 @@ Boto3 specific events
 Boto3 emits a set of events that users can register to
 customize clients or resources and modify the behavior of method calls.
 
-Here is a table of events that users of Boto3 can register handlers to. More information
-about each event can be found in the corresponding sections below:
+Here is a table of events that users of Boto3 can register handlers to. More
+information about each event can be found in the corresponding sections below:
 
 .. note::
 
-  Events with a ``*`` in their order number are conditionally emitted while all others are always emitted.
-  An explanation of all 3 conditional events is provided below.
+  Events with a ``*`` in their order number are conditionally emitted while
+  all others are always emitted. An explanation of all 3 conditional events is
+  provided below.
 
   ``2 *`` - ``creating-resource-class`` is emitted ONLY when using a service resource.
 
@@ -440,7 +441,7 @@ about each event can be found in the corresponding sections below:
     def add_my_bucket(params, **kwargs):
         # Add the name of the bucket you want to default to.
         if 'Bucket' not in params:
-            params['Bucket'] = 'mybucket'
+            params['Bucket'] = 'amzn-s3-demo-bucket'
 
     # Register the function to an event
     event_system.register('provide-client-params.s3.ListObjectsV2', add_my_bucket)
@@ -551,13 +552,13 @@ about each event can be found in the corresponding sections below:
     # Register the function to an event
     event_system.register('request-created.s3.ListObjectsV2', inspect_request_created)
 
-    response = s3.list_objects_v2(Bucket='my-bucket')
+    response = s3.list_objects_v2(Bucket='amzn-s3-demo-bucket')
 
   This should output::
 
     Request Info:
     method: GET
-    url: https://my-bucket.s3 ...
+    url: https://amzn-s3-demo-bucket.s3 ...
     data: ...
     params: { ... }
     auth_path: ...
@@ -682,9 +683,9 @@ about each event can be found in the corresponding sections below:
   ``'after-call.service-name.operation-name'``
 
 :Description:
-  This event is emitted just after the service client makes an API call.
-  This event allows developers to postprocess or inspect the API response according to the
-  specific requirements of their application if needed.
+  This event is emitted just after the service client makes an API call. This
+  event allows developers to postprocess or inspect the API response according
+  to the specific requirements of their application if needed.
 
 :Keyword Arguments Emitted:
 
@@ -720,7 +721,7 @@ about each event can be found in the corresponding sections below:
     # Register the function to an event
     event_system.register('after-call.s3.ListObjectsV2', print_after_call_args)
 
-    s3.list_objects_v2(Bucket='my-bucket')
+    s3.list_objects_v2(Bucket='amzn-s3-demo-bucket')
 
   This should output::
 

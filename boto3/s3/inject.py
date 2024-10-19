@@ -10,6 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import copy as python_copy
+
 from botocore.exceptions import ClientError
 
 from boto3 import utils
@@ -129,7 +131,7 @@ def upload_file(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed upload arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -157,8 +159,8 @@ def download_file(
     Usage::
 
         import boto3
-        s3 = boto3.resource('s3')
-        s3.meta.client.download_file('mybucket', 'hello.txt', '/tmp/hello.txt')
+        s3 = boto3.client('s3')
+        s3.download_file('mybucket', 'hello.txt', '/tmp/hello.txt')
 
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
@@ -176,7 +178,7 @@ def download_file(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -220,7 +222,7 @@ def bucket_upload_file(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed upload arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -264,7 +266,7 @@ def bucket_download_file(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -305,7 +307,7 @@ def object_upload_file(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed upload arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -346,7 +348,7 @@ def object_download_file(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -407,7 +409,7 @@ def copy(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -432,7 +434,11 @@ def copy(
     if config is None:
         config = TransferConfig()
 
-    with create_transfer_manager(self, config) as manager:
+    # copy is not supported in the CRT
+    new_config = python_copy.copy(config)
+    new_config.preferred_transfer_client = "classic"
+
+    with create_transfer_manager(self, new_config) as manager:
         future = manager.copy(
             copy_source=CopySource,
             bucket=Bucket,
@@ -482,7 +488,7 @@ def bucket_copy(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -545,7 +551,7 @@ def object_copy(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -604,7 +610,7 @@ def upload_fileobj(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed upload arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -665,7 +671,7 @@ def bucket_upload_fileobj(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed upload arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -712,7 +718,7 @@ def object_upload_fileobj(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed upload arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_UPLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -763,7 +769,7 @@ def download_fileobj(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -824,7 +830,7 @@ def bucket_download_fileobj(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to
@@ -871,7 +877,7 @@ def object_download_fileobj(
     :type ExtraArgs: dict
     :param ExtraArgs: Extra arguments that may be passed to the
         client operation. For allowed download arguments see
-        boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS.
+        :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 
     :type Callback: function
     :param Callback: A method which takes a number of bytes transferred to

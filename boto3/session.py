@@ -66,9 +66,7 @@ class Session:
 
         # Setup custom user-agent string if it isn't already customized
         if self._session.user_agent_name == 'Botocore':
-            botocore_info = 'Botocore/{}'.format(
-                self._session.user_agent_version
-            )
+            botocore_info = f'Botocore/{self._session.user_agent_version}'
             if self._session.user_agent_extra:
                 self._session.user_agent_extra += ' ' + botocore_info
             else:
@@ -496,7 +494,6 @@ class Session:
         return cls(client=client)
 
     def _register_default_handlers(self):
-
         # S3 customizations
         self._session.register(
             'creating-client-class.s3',

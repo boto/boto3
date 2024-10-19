@@ -1,0 +1,27 @@
+[
+  {
+    "category": "``dynamodb``",
+    "description": "[``botocore``] Generate account endpoint for DynamoDB requests when the account ID is available",
+    "type": "api-change"
+  },
+  {
+    "category": "``neptune``",
+    "description": "[``botocore``] Add v2 smoke tests and smithy smokeTests trait for SDK testing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Amazon SageMaker now supports using manifest files to specify the location of uncompressed model artifacts within Model Packages",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-metrics``",
+    "description": "[``botocore``] This release introduces support for the SageMaker Metrics BatchGetMetrics API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces``",
+    "description": "[``botocore``] Releasing new ErrorCodes for SysPrep failures during ImageImport and CreateImage process",
+    "type": "api-change"
+  }
+]

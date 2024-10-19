@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``drs``",
+    "description": "[``botocore``] Outpost ARN added to Source Server and Recovery Instance",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr-serverless``",
+    "description": "[``botocore``] This release adds the capability to publish detailed Spark engine metrics to Amazon Managed Service for Prometheus (AMP) for  enhanced monitoring for Spark jobs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``guardduty``",
+    "description": "[``botocore``] Added IPv6Address fields for local and remote IP addresses",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] This release adds support for the Cross Sheet Filter and Control features, and support for warnings in asset imports for any permitted errors encountered during execution",
+    "type": "api-change"
+  },
+  {
+    "category": "``rolesanywhere``",
+    "description": "[``botocore``] This release introduces the PutAttributeMapping and DeleteAttributeMapping APIs. IAM Roles Anywhere now provides the capability to define a set of mapping rules, allowing customers to specify which data is extracted from their X.509 end-entity certificates.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Removed deprecated enum values and updated API documentation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces``",
+    "description": "[``botocore``] Adds new APIs for managing and sharing WorkSpaces BYOL configuration across accounts.",
+    "type": "api-change"
+  }
+]

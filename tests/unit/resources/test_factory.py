@@ -379,7 +379,7 @@ class TestResourceFactory(BaseTestResourceFactory):
     def test_resource_lazy_properties_missing_load(self, action_cls):
         model = {
             'shape': 'TestShape',
-            'identifiers': [{'name': 'Url'}]
+            'identifiers': [{'name': 'Url'}],
             # Note the lack of a `load` method. These resources
             # are usually loaded via a call on a parent resource.
         }

@@ -1,0 +1,42 @@
+name: Run CRT tests
+ 
+on:
+  push:
+  pull_request:
+    branches-ignore: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: '${{ matrix.os }}'
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        # Python 3.8 and 3.9 do not run on m1 hardware which is now standard for
+        # macOS-latest.
+        # https://github.com/actions/setup-python/issues/696#issuecomment-1637587760
+        exclude:
+        - { python-version: "3.8", os: "macos-latest" }
+        - { python-version: "3.9", os: "macos-latest" }
+        include:
+        - { python-version: "3.8", os: "macos-13" }
+        - { python-version: "3.9", os: "macos-13" }
+
+    steps:
+      - uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+      - name: 'Set up Python ${{ matrix.python-version }}'
+        uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3
+        with:
+          python-version: '${{ matrix.python-version }}'
+          cache: 'pip'
+          allow-prereleases: true
+      - name: Install dependencies and CRT
+        run: |
+          python scripts/ci/install --extras crt
+      - name: Run tests
+        run: |
+          python scripts/ci/run-crt-tests --with-cov --with-xdist

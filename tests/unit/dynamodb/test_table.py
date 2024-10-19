@@ -15,7 +15,6 @@ from tests import mock, unittest
 
 
 class BaseTransformationTest(unittest.TestCase):
-
     maxDiff = None
 
     def setUp(self):

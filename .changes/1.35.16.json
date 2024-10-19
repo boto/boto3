@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``chime-sdk-voice``",
+    "description": "[``botocore``] Documentation-only update that clarifies the ValidateE911Address action of the Amazon Chime SDK Voice APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-identity``",
+    "description": "[``botocore``] This release adds sensitive trait to some required shapes.",
+    "type": "api-change"
+  },
+  {
+    "category": "``pipes``",
+    "description": "[``botocore``] This release adds support for customer managed KMS keys in Amazon EventBridge Pipe",
+    "type": "api-change"
+  },
+  {
+    "category": "``securityhub``",
+    "description": "[``botocore``] Documentation update for Security Hub",
+    "type": "api-change"
+  },
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Update awscrt version to 0.21.5",
+    "type": "enhancement"
+  },
+  {
+    "category": "``s3``",
+    "description": "[``botocore``] Adds logic to gracefully handle invalid timestamps returned in the Expires header.",
+    "type": "enhancement"
+  }
+]

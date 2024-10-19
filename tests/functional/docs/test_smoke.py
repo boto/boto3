@@ -74,7 +74,6 @@ def test_documentation(
     # If the service has resources, make sure the service resource
     # is at least documented.
     if service_name in available_resources:
-
         resource = boto3.resource(service_name, 'us-east-1')
         _assert_has_resource_documentation(
             generated_docs, service_name, resource
@@ -120,13 +119,13 @@ def _assert_has_client_documentation(generated_docs, service_name, client):
         '======',
         'Client',
         '======',
-        '.. py:class:: %s.Client' % class_name,
+        f'.. py:class:: {class_name}.Client',
         '  A low-level client representing',
         '    import boto3',
-        '    client = boto3.client(\'%s\')' % service_name,
+        f'    client = boto3.client(\'{service_name}\')',
         'These are the available methods:',
-        '  %s/client/get_paginator' % service_name,
-        '  %s/client/get_waiter' % service_name,
+        f'  {service_name}/client/get_paginator',
+        f'  {service_name}/client/get_waiter',
     ]
     _assert_contains_lines_in_order(ref_lines, generated_docs)
     for method_name in ['get_paginator', 'get_waiter']:
@@ -154,9 +153,7 @@ def _assert_has_paginator_documentation(
     for paginator_name in paginator_names:
         _assert_contains_lines_in_order(
             [
-                '.. py:class:: {}.Paginator.{}'.format(
-                    client.__class__.__name__, paginator_name
-                ),
+                f'.. py:class:: {client.__class__.__name__}.Paginator.{paginator_name}',
                 '  .. py:method:: paginate(',
             ],
             get_nested_file_contents(
@@ -177,11 +174,8 @@ def _assert_has_waiter_documentation(
     for waiter_name in waiter_model.waiter_names:
         _assert_contains_lines_in_order(
             [
-                '.. py:class:: {}.Waiter.{}'.format(
-                    client.__class__.__name__, waiter_name
-                ),
-                '    waiter = client.get_waiter(\'%s\')'
-                % xform_name(waiter_name),
+                f'.. py:class:: {client.__class__.__name__}.Waiter.{waiter_name}',
+                f'    waiter = client.get_waiter(\'{xform_name(waiter_name)}\')',
                 '  .. py:method:: wait(',
             ],
             get_nested_file_contents(service_name, 'waiter', waiter_name),
@@ -204,8 +198,7 @@ def _assert_has_resource_documentation(generated_docs, service_name, resource):
         '================',
         'Service Resource',
         '================',
-        '.. py:class:: %s.ServiceResource'
-        % (resource.meta.client.__class__.__name__),
+        f'.. py:class:: {resource.meta.client.__class__.__name__}.ServiceResource',
         '  A resource representing',
         '    import boto3',
         f'    {service_name} = boto3.resource(\'{service_name}\')',

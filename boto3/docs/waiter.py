@@ -90,9 +90,9 @@ def document_resource_waiter(
     service_module_name = get_service_module_name(service_model)
     description = (
         'Waits until this {} is {}. This method calls '
-        ':py:meth:`{}.Waiter.{}.wait` which polls. '
+        ':py:meth:`{}.Waiter.{}.wait` which polls '
         ':py:meth:`{}.Client.{}` every {} seconds until '
-        'a successful state is reached. An error is returned '
+        'a successful state is reached. An error is raised '
         'after {} failed checks.'.format(
             resource_name,
             ' '.join(resource_waiter_model.name.split('_')[2:]),
@@ -104,8 +104,8 @@ def document_resource_waiter(
             waiter_model.max_attempts,
         )
     )
-    example_prefix = '{}.{}'.format(
-        xform_name(resource_name), resource_waiter_model.name
+    example_prefix = (
+        f'{xform_name(resource_name)}.{resource_waiter_model.name}'
     )
     full_waiter_name = (
         f"{section.context.get('qualifier', '')}{resource_waiter_model.name}"

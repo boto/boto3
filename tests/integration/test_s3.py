@@ -38,9 +38,7 @@ def assert_files_equal(first, second):
     second_md5 = md5_checksum(second)
     if first_md5 != second_md5:
         raise AssertionError(
-            "Files are not equal: {}(md5={}) != {}(md5={})".format(
-                first, first_md5, second, second_md5
-            )
+            f"Files are not equal: {first}(md5={first_md5}) != {second}(md5={second_md5})"
         )
 
 
@@ -270,7 +268,7 @@ class TestS3Resource(unittest.TestCase):
         # Create several versions of an object
         obj = self.bucket.Object('test.txt')
         for i in range(10):
-            obj.put(Body="Version %s" % i)
+            obj.put(Body=f"Version {i}")
 
             # Delete all the versions of the object
             bucket.object_versions.all().delete()
