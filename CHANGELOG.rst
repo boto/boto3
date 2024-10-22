@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.35.46
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Updating invoke regex to support imported models for converse API
+* api-change:``imagebuilder``: [``botocore``] Add macOS platform and instance placement options
+* api-change:``m2``: [``botocore``] Add AuthSecretsManagerArn optional parameter to batch job APIs, expand batch parameter limits, and introduce clientToken constraints.
+* api-change:``rds``: [``botocore``] Global clusters now expose the Endpoint attribute as one of its fields. It is a Read/Write endpoint for the global cluster which resolves to the Global Cluster writer instance.
+* api-change:``repostspace``: [``botocore``] Adds the BatchAddRole and BatchRemoveRole APIs.
+* api-change:``timestream-query``: [``botocore``] This release adds support for Query Insights, a feature that provides details of query execution, enabling users to identify areas for improvement to optimize their queries, resulting in improved query performance and lower query costs.
+* bugfix:``s3``: [``botocore``] Fixed SelectObjectContent regression from `#3284 <https://github.com/boto/botocore/issues/3284>`__.
+
+
 1.35.45
 =======
 
