@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.35.47
+=======
+
+* api-change:``bedrock``: [``botocore``] Doc updates for supporting converse
+* api-change:``connect``: [``botocore``] Amazon Connect Service Feature: Add support to start screen sharing for a web calling contact.
+* api-change:``ec2``: [``botocore``] Amazon EC2 X8g, C8g and M8g instances are powered by AWS Graviton4 processors. X8g provide the lowest cost per GiB of memory among Graviton4 instances. C8g provide the best price performance for compute-intensive workloads. M8g provide the best price performance in for general purpose workloads.
+* api-change:``mwaa``: [``botocore``] Introducing InvokeRestApi which allows users to invoke the Apache Airflow REST API on the webserver with the specified inputs.
+* api-change:``payment-cryptography``: [``botocore``] Add support for ECC P-256 and P-384 Keys.
+* api-change:``payment-cryptography-data``: [``botocore``] Add ECDH support on PIN operations.
+* bugfix:``s3``: [``botocore``] Fix S3 200 Error handling to address bugs introduced in payload operations.
+
+
 1.35.46
 =======
 
