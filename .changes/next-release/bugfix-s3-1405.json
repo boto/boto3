@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``s3``",
+  "description": "[``botocore``] Fix S3 200 Error handling to address bugs introduced in payload operations."
+}
