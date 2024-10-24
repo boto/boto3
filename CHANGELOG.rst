@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.48
+=======
+
+* api-change:``appconfig``: [``botocore``] This release improves deployment safety by granting customers the ability to REVERT completed deployments, to the last known good state.In the StopDeployment API revert case the status of a COMPLETE deployment will be REVERTED. AppConfig only allows a revert within 72 hours of deployment completion.
+* api-change:``ec2``: [``botocore``] This release includes a new API to describe some details of the Amazon Machine Images (AMIs) that were used to launch EC2 instances, even if those AMIs are no longer available for use.
+* api-change:``ecs``: [``botocore``] This release adds support for EBS volumes attached to Amazon ECS Windows tasks running on EC2 instances.
+* api-change:``nimble``: [``botocore``] The nimble client has been removed following the deprecation of the service.
+* api-change:``pcs``: [``botocore``] Documentation update: added the default value of the Slurm configuration parameter scaleDownIdleTimeInSeconds to its description.
+* api-change:``qbusiness``: [``botocore``] Add a new field in chat response. This field can be used to support nested schemas in array fields
+
+
 1.35.47
 =======
 
