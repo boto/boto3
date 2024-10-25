@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``supplychain``",
+  "description": "[``botocore``] API doc updates, and also support showing error message on a failed instance"
+}
