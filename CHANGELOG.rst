@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.50
+=======
+
+* api-change:``mediapackagev2``: [``botocore``] MediaPackage V2 Live to VOD Harvester is a MediaPackage V2 feature, which is used to export content from an origin endpoint to a S3 bucket.
+* api-change:``opensearch``: [``botocore``] Adds support for provisioning dedicated coordinator nodes. Coordinator nodes can be specified using the new NodeOptions parameter in ClusterConfig.
+* api-change:``rds``: [``botocore``] This release adds support for Enhanced Monitoring and Performance Insights when restoring Aurora Limitless Database DB clusters. It also adds support for the os-upgrade pending maintenance action.
+* api-change:``storagegateway``: [``botocore``] Documentation update: Amazon FSx File Gateway will no longer be available to new customers.
+
+
 1.35.49
 =======
 
