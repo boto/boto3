@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``network-firewall``",
+  "description": "[``botocore``] AWS Network Firewall now supports configuring TCP idle timeout"
+}
