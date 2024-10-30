@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearchserverless``",
-  "description": "[``botocore``] Neo Integration via IAM Identity Center (IdC)"
-}
