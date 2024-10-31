@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``batch``",
+  "description": "[``botocore``] Add `podNamespace` to `EksAttemptDetail` and `containerID` to `EksAttemptContainerDetail`."
+}

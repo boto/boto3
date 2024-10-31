@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``glue``",
+  "description": "[``botocore``] Add schedule support for AWS Glue column statistics"
+}
