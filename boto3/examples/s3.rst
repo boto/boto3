@@ -9,7 +9,7 @@ the objects in the bucket.
     import boto3
 
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket('my-bucket')
+    bucket = s3.Bucket('amzn-s3-demo-bucket')
     for obj in bucket.objects.all():
         print(obj.key)
 
@@ -26,7 +26,7 @@ Amazon S3 bucket:
 
     client = boto3.client('s3')
     paginator = client.get_paginator('list_objects')
-    result = paginator.paginate(Bucket='my-bucket', Delimiter='/')
+    result = paginator.paginate(Bucket='amzn-s3-demo-bucket', Delimiter='/')
     for prefix in result.search('CommonPrefixes'):
         print(prefix.get('Prefix'))
 
@@ -43,7 +43,7 @@ restoration is finished.
     import boto3
 
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket('glacier-bucket')
+    bucket = s3.Bucket('amzn-s3-demo-bucket')
     for obj_sum in bucket.objects.all():
         obj = s3.Object(obj_sum.bucket_name, obj_sum.key)
         if obj.storage_class == 'GLACIER':
@@ -80,7 +80,7 @@ object; S3 already knows how to decrypt the object.
     import boto3
     import os
 
-    BUCKET = 'your-bucket-name'
+    BUCKET = 'amzn-s3-demo-bucket'
     s3 = boto3.client('s3')
     keyid = '<the key id>'
 
@@ -122,7 +122,7 @@ Boto3 will automatically compute this value for us.
     import boto3
     import os
 
-    BUCKET = 'your-bucket-name'
+    BUCKET = 'amzn-s3-demo-bucket'
     KEY = os.urandom(32)
     s3 = boto3.client('s3')
 
@@ -158,7 +158,7 @@ S3 object.
     s3 = boto3.client('s3')
 
     s3.download_file(
-        "bucket-name", "key-name", "tmp.txt",
+        "amzn-s3-demo-bucket", "key-name", "tmp.txt",
         ExtraArgs={"VersionId": "my-version-id"}
     )
 
@@ -175,7 +175,7 @@ using JMESPath.
     s3 = boto3.client("s3")
 
     s3_paginator = s3.get_paginator('list_objects_v2')
-    s3_iterator = s3_paginator.paginate(Bucket='your-bucket-name')
+    s3_iterator = s3_paginator.paginate(Bucket='amzn-s3-demo-bucket')
 
     filtered_iterator = s3_iterator.search(
         "Contents[?to_string(LastModified)>='\"2022-01-05 08:05:37+00:00\"'].Key"

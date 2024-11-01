@@ -113,7 +113,7 @@ def upload_file(
 
         import boto3
         s3 = boto3.client('s3')
-        s3.upload_file('/tmp/hello.txt', 'mybucket', 'hello.txt')
+        s3.upload_file('/tmp/hello.txt', 'amzn-s3-demo-bucket', 'hello.txt')
 
     Similar behavior as S3Transfer's upload_file() method, except that
     argument names are capitalized. Detailed examples can be found at
@@ -160,7 +160,7 @@ def download_file(
 
         import boto3
         s3 = boto3.client('s3')
-        s3.download_file('mybucket', 'hello.txt', '/tmp/hello.txt')
+        s3.download_file('amzn-s3-demo-bucket', 'hello.txt', '/tmp/hello.txt')
 
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
@@ -207,7 +207,7 @@ def bucket_upload_file(
 
         import boto3
         s3 = boto3.resource('s3')
-        s3.Bucket('mybucket').upload_file('/tmp/hello.txt', 'hello.txt')
+        s3.Bucket('amzn-s3-demo-bucket').upload_file('/tmp/hello.txt', 'hello.txt')
 
     Similar behavior as S3Transfer's upload_file() method,
     except that parameters are capitalized. Detailed examples can be found at
@@ -251,7 +251,7 @@ def bucket_download_file(
 
         import boto3
         s3 = boto3.resource('s3')
-        s3.Bucket('mybucket').download_file('hello.txt', '/tmp/hello.txt')
+        s3.Bucket('amzn-s3-demo-bucket').download_file('hello.txt', '/tmp/hello.txt')
 
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
@@ -295,7 +295,7 @@ def object_upload_file(
 
         import boto3
         s3 = boto3.resource('s3')
-        s3.Object('mybucket', 'hello.txt').upload_file('/tmp/hello.txt')
+        s3.Object('amzn-s3-demo-bucket', 'hello.txt').upload_file('/tmp/hello.txt')
 
     Similar behavior as S3Transfer's upload_file() method,
     except that parameters are capitalized. Detailed examples can be found at
@@ -336,7 +336,7 @@ def object_download_file(
 
         import boto3
         s3 = boto3.resource('s3')
-        s3.Object('mybucket', 'hello.txt').download_file('/tmp/hello.txt')
+        s3.Object('amzn-s3-demo-bucket', 'hello.txt').download_file('/tmp/hello.txt')
 
     Similar behavior as S3Transfer's download_file() method,
     except that parameters are capitalized. Detailed examples can be found at
@@ -388,10 +388,10 @@ def copy(
         import boto3
         s3 = boto3.resource('s3')
         copy_source = {
-            'Bucket': 'mybucket',
+            'Bucket': 'amzn-s3-demo-bucket1',
             'Key': 'mykey'
         }
-        s3.meta.client.copy(copy_source, 'otherbucket', 'otherkey')
+        s3.meta.client.copy(copy_source, 'amzn-s3-demo-bucket2', 'otherkey')
 
     :type CopySource: dict
     :param CopySource: The name of the source bucket, key name of the
@@ -469,10 +469,10 @@ def bucket_copy(
         import boto3
         s3 = boto3.resource('s3')
         copy_source = {
-            'Bucket': 'mybucket',
+            'Bucket': 'amzn-s3-demo-bucket1',
             'Key': 'mykey'
         }
-        bucket = s3.Bucket('otherbucket')
+        bucket = s3.Bucket('amzn-s3-demo-bucket2')
         bucket.copy(copy_source, 'otherkey')
 
     :type CopySource: dict
@@ -534,10 +534,10 @@ def object_copy(
         import boto3
         s3 = boto3.resource('s3')
         copy_source = {
-            'Bucket': 'mybucket',
+            'Bucket': 'amzn-s3-demo-bucket1',
             'Key': 'mykey'
         }
-        bucket = s3.Bucket('otherbucket')
+        bucket = s3.Bucket('amzn-s3-demo-bucket2')
         obj = bucket.Object('otherkey')
         obj.copy(copy_source)
 
@@ -595,7 +595,7 @@ def upload_fileobj(
         s3 = boto3.client('s3')
 
         with open('filename', 'rb') as data:
-            s3.upload_fileobj(data, 'mybucket', 'mykey')
+            s3.upload_fileobj(data, 'amzn-s3-demo-bucket', 'mykey')
 
     :type Fileobj: a file-like object
     :param Fileobj: A file-like object to upload. At a minimum, it must
@@ -656,7 +656,7 @@ def bucket_upload_fileobj(
 
         import boto3
         s3 = boto3.resource('s3')
-        bucket = s3.Bucket('mybucket')
+        bucket = s3.Bucket('amzn-s3-demo-bucket')
 
         with open('filename', 'rb') as data:
             bucket.upload_fileobj(data, 'mykey')
@@ -705,7 +705,7 @@ def object_upload_fileobj(
 
         import boto3
         s3 = boto3.resource('s3')
-        bucket = s3.Bucket('mybucket')
+        bucket = s3.Bucket('amzn-s3-demo-bucket')
         obj = bucket.Object('mykey')
 
         with open('filename', 'rb') as data:
@@ -754,7 +754,7 @@ def download_fileobj(
         s3 = boto3.client('s3')
 
         with open('filename', 'wb') as data:
-            s3.download_fileobj('mybucket', 'mykey', data)
+            s3.download_fileobj('amzn-s3-demo-bucket', 'mykey', data)
 
     :type Bucket: str
     :param Bucket: The name of the bucket to download from.
@@ -815,7 +815,7 @@ def bucket_download_fileobj(
 
         import boto3
         s3 = boto3.resource('s3')
-        bucket = s3.Bucket('mybucket')
+        bucket = s3.Bucket('amzn-s3-demo-bucket')
 
         with open('filename', 'wb') as data:
             bucket.download_fileobj('mykey', data)
@@ -864,7 +864,7 @@ def object_download_fileobj(
 
         import boto3
         s3 = boto3.resource('s3')
-        bucket = s3.Bucket('mybucket')
+        bucket = s3.Bucket('amzn-s3-demo-bucket')
         obj = bucket.Object('mykey')
 
         with open('filename', 'wb') as data:
