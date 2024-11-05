@@ -28,12 +28,14 @@ There are two types of configuration data in Boto3: credentials and non-credenti
 
 Boto3 will look in several locations when searching for credentials. The mechanism in which Boto3 looks for credentials is to search through a list of possible locations and stop as soon as it finds credentials. The order in which Boto3 searches for credentials is:
 
-#. Passing credentials as parameters in the ``boto.client()`` method
+#. Passing credentials as parameters in the ``boto3.client()`` method
 #. Passing credentials as parameters when creating a ``Session`` object
 #. Environment variables
+#. Assume role provider
+#. Assume role with web identity provider
+#. AWS IAM Identity Center credential provider
 #. Shared credential file (``~/.aws/credentials``)
 #. AWS config file (``~/.aws/config``)
-#. Assume Role provider
 #. Boto2 config file (``/etc/boto.cfg`` and ``~/.boto``)
 #. Instance metadata service on an Amazon EC2 instance that has an IAM role configured.
 
@@ -91,72 +93,6 @@ Boto3 will check these environment variables for credentials:
 * ``AWS_SESSION_TOKEN`` - The session key for your AWS account. This is only needed when you are using temporary credentials. The ``AWS_SECURITY_TOKEN`` environment variable can also be used, but is only supported for backwards compatibility purposes. ``AWS_SESSION_TOKEN`` is supported by multiple AWS SDKs besides python.
 
 
-Shared credentials file
------------------------
-
-The shared credentials file has a default location of ``~/.aws/credentials``. You can change the location of the shared credentials file by setting the ``AWS_SHARED_CREDENTIALS_FILE`` environment variable.
-
-This file is an INI formatted file with section names corresponding to profiles. With each section, the three configuration variables shown above can be specified: ``aws_access_key_id``, ``aws_secret_access_key``, ``aws_session_token``. *These are the only supported values in the shared credential file.*
-
-Below is a minimal example of the shared credentials file:
-
-.. code-block:: ini
-
-    [default]
-    aws_access_key_id=foo
-    aws_secret_access_key=bar
-    aws_session_token=baz
-
-The shared credentials file also supports the concept of profiles. Profiles represent logical groups of configuration. The shared credential file can have multiple profiles:
-
-.. code-block:: ini
-
-    [default]
-    aws_access_key_id=foo
-    aws_secret_access_key=bar
-
-    [dev]
-    aws_access_key_id=foo2
-    aws_secret_access_key=bar2
-
-    [prod]
-    aws_access_key_id=foo3
-    aws_secret_access_key=bar3
-
-
-You can then specify a profile name via the ``AWS_PROFILE`` environment variable or the ``profile_name`` argument when creating a ``Session``. For example, we can create a Session using the “dev” profile and any clients created from this session will use the “dev” credentials:
-
-.. code-block:: python
-
-    import boto3
-
-    session = boto3.Session(profile_name='dev')
-    dev_s3_client = session.client('s3')
-
-
-
-AWS config file
----------------
-
-Boto3 can also load credentials from ``~/.aws/config``. You can change this default location by setting the ``AWS_CONFIG_FILE`` environment variable. The config file is an INI format, with the same keys supported by the shared credentials file. The only difference is that profile sections *must* have the format of ``[profile profile-name]``, except for the default profile:
-
-.. code-block:: ini
-
-    [default]
-    aws_access_key_id=foo
-    aws_secret_access_key=bar
-
-    [profile dev]
-    aws_access_key_id=foo2
-    aws_secret_access_key=bar2
-
-    [profile prod]
-    aws_access_key_id=foo3
-    aws_secret_access_key=bar3
-
-The reason that section names must start with profile in the ``~/.aws/config`` file is because there are other sections in this file that are permitted that aren't profile configurations.
-
-
 Assume role provider
 --------------------
 
@@ -178,7 +114,7 @@ You can specify the following configuration values for configuring an IAM role i
 
 If MFA authentication is not enabled then you only need to specify a ``role_arn`` and a ``source_profile``.
 
-When you specify a profile that has an IAM role configuration, Boto3 will make an ``AssumeRole`` call to retrieve temporary credentials. Subsequent Boto3 API calls will use the cached temporary credentials until they expire, in which case Boto3 will then automatically refresh the credentials. 
+When you specify a profile that has an IAM role configuration, Boto3 will make an ``AssumeRole`` call to retrieve temporary credentials. Subsequent Boto3 API calls will use the cached temporary credentials until they expire, in which case Boto3 will then automatically refresh the credentials.
 
 Please note that Boto3 does not write these temporary credentials to disk. This means that temporary credentials from the ``AssumeRole`` calls are only cached in-memory within a single session. All clients created from that session will share the same temporary credentials.
 
@@ -228,9 +164,10 @@ This provider can also be configured via environment variables:
 * ``AWS_WEB_IDENTITY_TOKEN_FILE`` - The path to the web identity token file.
 * ``AWS_ROLE_SESSION_NAME`` - The name applied to this assume-role session.
 
-.. note:: 
+.. note::
 
     These environment variables currently only apply to the assume role with web identity provider and do not apply to the general assume role provider configuration.
+
 
 AWS IAM Identity Center
 -----------------------
@@ -266,6 +203,72 @@ For example, we can create a Session using the ``my-sso-profile`` profile and an
 
     session = boto3.Session(profile_name='my-sso-profile')
     s3_client = session.client('s3')
+
+
+Shared credentials file
+-----------------------
+
+The shared credentials file has a default location of ``~/.aws/credentials``. You can change the location of the shared credentials file by setting the ``AWS_SHARED_CREDENTIALS_FILE`` environment variable.
+
+This file is an INI formatted file with section names corresponding to profiles. With each section, the three configuration variables shown above can be specified: ``aws_access_key_id``, ``aws_secret_access_key``, ``aws_session_token``. *These are the only supported values in the shared credential file.*
+
+Below is a minimal example of the shared credentials file:
+
+.. code-block:: ini
+
+    [default]
+    aws_access_key_id=foo
+    aws_secret_access_key=bar
+    aws_session_token=baz
+
+The shared credentials file also supports the concept of profiles. Profiles represent logical groups of configuration. The shared credential file can have multiple profiles:
+
+.. code-block:: ini
+
+    [default]
+    aws_access_key_id=foo
+    aws_secret_access_key=bar
+
+    [dev]
+    aws_access_key_id=foo2
+    aws_secret_access_key=bar2
+
+    [prod]
+    aws_access_key_id=foo3
+    aws_secret_access_key=bar3
+
+
+You can then specify a profile name via the ``AWS_PROFILE`` environment variable or the ``profile_name`` argument when creating a ``Session``. For example, we can create a Session using the “dev” profile and any clients created from this session will use the “dev” credentials:
+
+.. code-block:: python
+
+    import boto3
+
+    session = boto3.Session(profile_name='dev')
+    dev_s3_client = session.client('s3')
+
+
+AWS config file
+---------------
+
+Boto3 can also load credentials from ``~/.aws/config``. You can change this default location by setting the ``AWS_CONFIG_FILE`` environment variable. The config file is an INI format, with the same keys supported by the shared credentials file. The only difference is that profile sections *must* have the format of ``[profile profile-name]``, except for the default profile:
+
+.. code-block:: ini
+
+    [default]
+    aws_access_key_id=foo
+    aws_secret_access_key=bar
+
+    [profile dev]
+    aws_access_key_id=foo2
+    aws_secret_access_key=bar2
+
+    [profile prod]
+    aws_access_key_id=foo3
+    aws_secret_access_key=bar3
+
+The reason that section names must start with profile in the ``~/.aws/config`` file is because there are other sections in this file that are permitted that aren't profile configurations.
+
 
 Boto2 configuration file support
 --------------------------------
