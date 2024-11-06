@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codebuild``",
+  "description": "[``botocore``] AWS CodeBuild now adds additional compute types for reserved capacity fleet."
+}
