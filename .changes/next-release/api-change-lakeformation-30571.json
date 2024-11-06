@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lakeformation``",
-  "description": "[``botocore``] API changes for new named tag expressions feature."
-}
