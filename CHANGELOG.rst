@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.35.55
+=======
+
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now adds additional compute types for reserved capacity fleet.
+* api-change:``guardduty``: [``botocore``] GuardDuty RDS Protection expands support for Amazon Aurora PostgreSQL Limitless Databases.
+* api-change:``lakeformation``: [``botocore``] API changes for new named tag expressions feature.
+* api-change:``qapps``: [``botocore``] Introduces category apis in AmazonQApps. Web experience users use Categories to tag and filter library items.
+* api-change:``s3control``: [``botocore``] Fix ListStorageLensConfigurations and ListStorageLensGroups deserialization for Smithy SDKs.
+* api-change:``verifiedpermissions``: [``botocore``] Adding BatchGetPolicy API which supports the retrieval of multiple policies across multiple policy stores within a single request.
+* enhancement:protocol: [``botocore``] Added support for header enabling service migration off the AWS Query protocol.
+
+
 1.35.54
 =======
 
