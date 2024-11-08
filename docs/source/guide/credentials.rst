@@ -37,6 +37,7 @@ Boto3 will look in several locations when searching for credentials. The mechani
 #. Shared credential file (``~/.aws/credentials``)
 #. AWS config file (``~/.aws/config``)
 #. Boto2 config file (``/etc/boto.cfg`` and ``~/.boto``)
+#. Container credential provider
 #. Instance metadata service on an Amazon EC2 instance that has an IAM role configured.
 
 Each of those locations is discussed in more detail below.
@@ -285,6 +286,11 @@ Boto3 will attempt to load credentials from the Boto2 config file. It first chec
 .. note:: 
     
     This credential provider is primarily for backwards compatibility purposes with Boto2.
+
+
+Container credential provider
+---------
+You can associate an IAM role with each of your Amazon Elastic Container Service (Amazon ECS) task definitions. Temporary credentials for that role are then available to that task's containers. For more information, see `IAM Roles for Tasks <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`_ in the Amazon Elastic Container Service Developer Guide.
 
 
 IAM roles
