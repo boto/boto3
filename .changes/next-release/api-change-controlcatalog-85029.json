@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``controlcatalog``",
-  "description": "[``botocore``] AWS Control Catalog GetControl public API returns additional data in output, including Implementation and Parameters"
-}
