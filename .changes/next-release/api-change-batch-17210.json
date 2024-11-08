@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``batch``",
+  "description": "[``botocore``] This feature allows override LaunchTemplates to be specified in an AWS Batch Compute Environment."
+}
