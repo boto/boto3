@@ -27,6 +27,22 @@ The name of an Amazon S3 bucket must be unique across all regions of the AWS
 platform. The bucket can be located in a specific region to minimize latency
 or to address regulatory requirements.
 
+.. warning::
+
+    You need to make sure that the region in your aws configuration matches the
+    region where you want your bucket to be created. By default, s3 will create
+    a bucket in ``us-east-1`` if the ``LocationConstraint`` is not specified.
+    However, if the region in your configuration doesn't match the
+    ``LocationConstraint``, you'll get ``IllegalLocationConstraintException``
+    error when calling ``create_bucket`` function.
+
+    To avoid this error, you should either:
+
+    * Option 1: Make sure that your ``LocationConstraint`` is same as the region in your
+      configuration, or
+    * Option 2: If you're using a default value for ``LocationConstraint``, make sure
+      that the region in your configuration is set to ``us-east-1``.
+
 .. code-block:: python
 
     import logging
@@ -59,6 +75,8 @@ or to address regulatory requirements.
             logging.error(e)
             return False
         return True
+
+
 
 
 List existing buckets
