@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``fis``",
+  "description": "[``botocore``] This release adds support for generating experiment reports with the experiment report configuration"
+}
