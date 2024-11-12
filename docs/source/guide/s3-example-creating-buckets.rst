@@ -27,6 +27,14 @@ The name of an Amazon S3 bucket must be unique across all regions of the AWS
 platform. The bucket can be located in a specific region to minimize latency
 or to address regulatory requirements.
 
+.. note::
+    The `LocationConstraint` value is used to specify the region where a bucket
+    will be created. S3 requires `LocationConstraint` to be specified when creating
+    buckets using a client in regions other than `us-east-1`. When no region is
+    specified, `us-east-1` is used by default. The example below ensures the S3
+    client is created in the same region as the bucket to avoid a
+    `IllegalLocationConstraintException` error.
+
 .. code-block:: python
 
     import logging
