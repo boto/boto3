@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.35.59
+=======
+
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports non-containerized Linux and Windows builds on Reserved Capacity.
+* api-change:``controltower``: [``botocore``] Added ResetEnabledControl API.
+* api-change:``fis``: [``botocore``] This release adds support for generating experiment reports with the experiment report configuration
+* api-change:``gamelift``: [``botocore``] Amazon GameLift releases container fleets support for general availability. Deploy Linux-based containerized game server software for hosting on Amazon GameLift.
+* api-change:``payment-cryptography``: [``botocore``] Updated ListAliases API with KeyArn filter.
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation for Amazon RDS Extended Support for Amazon Aurora MySQL.
+
+
 1.35.58
 =======
 
