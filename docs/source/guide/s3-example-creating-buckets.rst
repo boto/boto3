@@ -57,8 +57,8 @@ or to address regulatory requirements.
         try:
             bucket_config = {}
             s3_client = boto3.client('s3', region_name=region)
-            if region != "us-east-1":
-                bucket_config["CreateBucketConfiguration"] = {"LocationConstraint": region}
+            if region != 'us-east-1':
+                bucket_config['CreateBucketConfiguration'] = {'LocationConstraint': region}
 
             s3_client.create_bucket(Bucket=bucket_name, **bucket_config)
         except ClientError as e:

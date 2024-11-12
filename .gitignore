@@ -18,8 +18,6 @@ coverage.xml
 venv
 env2
 env3
-boto3_venv/
-
 
 # Virtualenv support files and directories
 .python-version
