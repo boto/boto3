@@ -28,12 +28,12 @@ platform. The bucket can be located in a specific region to minimize latency
 or to address regulatory requirements.
 
 .. note::
-    The `LocationConstraint` value is used to specify the region where a bucket
-    will be created. S3 requires `LocationConstraint` to be specified when creating
-    buckets using a client in regions other than `us-east-1`. When no region is
-    specified, `us-east-1` is used by default. The example below ensures the S3
+    The ``LocationConstraint`` value is used to specify the region where a bucket
+    will be created. S3 requires ``LocationConstraint`` to be specified when creating
+    buckets using a client in regions other than ``us-east-1``. When no region is
+    specified, ``us-east-1`` is used by default. The example below ensures the S3
     client is created in the same region as the bucket to avoid a
-    `IllegalLocationConstraintException` error.
+    ``IllegalLocationConstraintException`` error.
 
 .. code-block:: python
 
@@ -55,11 +55,12 @@ or to address regulatory requirements.
 
         # Create bucket
         try:
+            bucket_config = {}
             s3_client = boto3.client('s3', region_name=region)
-            location = {'LocationConstraint': region} if region != 'us-east-1' else {}
-            s3_client.create_bucket(
-                Bucket=bucket_name, CreateBucketConfiguration=location
-            )
+            if region != "us-east-1":
+                bucket_config["CreateBucketConfiguration"] = {"LocationConstraint": region}
+
+            s3_client.create_bucket(Bucket=bucket_name, **bucket_config)
         except ClientError as e:
             logging.error(e)
             return False
