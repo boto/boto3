@@ -199,6 +199,17 @@ Using Amazon Kinesis as an example service, you can use Boto3 to catch the excep
 
     The Boto3 ``standard`` retry mode will catch throttling errors and exceptions, and will back off and retry them for you.
 
+.. note::
+
+    The low-level clients for a few AWS services, such as S3, do not return service errors in a ``ClientError`` object. However, the ``ClientError`` may be accessible via the ``__cause__`` attribute of the overlying error:
+.. code-block:: python
+
+    except boto3.exceptions.S3UploadFailedError as error:
+        _clientError = error.__cause__.ClientError
+        if _clientError.response['Error']['Code'] == 'InvalidRequest':
+            logger.warn(f"There was an error when attempting to upload: {_clientError.response['Error']['Message']}")
+
+
 Additionally, you can also access some of the dynamic service-side exceptions from the client’s exception property. Using the previous example, you would need to modify only the ``except`` clause.
 
 .. code-block:: python
