@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``internetmonitor``",
+  "description": "[``botocore``] Add new query type Routing_Suggestions regarding querying interface"
+}
