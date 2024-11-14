@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift``",
-  "description": "[``botocore``] Adds support for Amazon Redshift S3AccessGrants"
-}
