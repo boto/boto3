@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ec2``",
-  "description": "[``botocore``] Remove non-functional enum variants for FleetCapacityReservationUsageStrategy"
-}
