@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.35.65
+=======
+
+* api-change:``b2bi``: [``botocore``] Add new X12 transactions sets and versions
+* api-change:``ec2``: [``botocore``] This release adds VPC Block Public Access (VPC BPA), a new declarative control which blocks resources in VPCs and subnets that you own in a Region from reaching or being reached from the internet through internet gateways and egress-only internet gateways.
+* api-change:``ecs``: [``botocore``] This release introduces support for configuring the version consistency feature for individual containers defined within a task definition. The configuration allows to specify whether ECS should resolve the container image tag specified in the container definition to an image digest.
+* api-change:``efs``: [``botocore``] Add support for the new parameters in EFS replication APIs
+* api-change:``glue``: [``botocore``] AWS Glue Data Catalog now enhances managed table optimizations of Apache Iceberg tables that can be accessed only from a specific Amazon Virtual Private Cloud (VPC) environment.
+* api-change:``keyspaces``: [``botocore``] Amazon Keyspaces Multi-Region Replication: Adds support to add new regions to multi and single-region keyspaces.
+* api-change:``mwaa``: [``botocore``] Amazon MWAA now supports a new environment class, mw1.micro, ideal for workloads requiring fewer resources than mw1.small. This class supports a single instance of each Airflow component: Scheduler, Worker, and Webserver.
+* api-change:``taxsettings``: [``botocore``] Release Tax Inheritance APIs,  Tax Exemption APIs, and functionality update for some existing Tax Registration APIs
+* api-change:``workspaces``: [``botocore``] Releasing new ErrorCodes for Image Validation failure during CreateWorkspaceImage process
+
+
 1.35.64
 =======
 
