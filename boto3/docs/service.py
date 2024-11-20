@@ -42,6 +42,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
         self.sections = [
             'title',
             'client',
+            'client-exceptions',
             'paginators',
             'waiters',
             'resources',
@@ -65,6 +66,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
         self.title(doc_structure.get_section('title'))
 
         self.client_api(doc_structure.get_section('client'))
+        self.client_exceptions(doc_structure.get_section('client-exceptions'))
         self.paginator_api(doc_structure.get_section('paginators'))
         self.waiter_api(doc_structure.get_section('waiters'))
         if self._service_resource:

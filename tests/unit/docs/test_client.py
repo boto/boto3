@@ -10,6 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+from botocore.docs.client import ClientExceptionsDocumenter
+
 from boto3.docs.client import Boto3ClientDocumenter
 from tests.unit.docs import BaseDocsTest
 
@@ -17,6 +19,16 @@ from tests.unit.docs import BaseDocsTest
 class TestBoto3ClientDocumenter(BaseDocsTest):
     def setUp(self):
         super().setUp()
+        exception_shape = {
+            'SomeException': {
+                'exception': True,
+                'type': 'structure',
+                'members': {'Message': {'shape': 'String'}},
+            }
+        }
+        self.add_shape(exception_shape)
+        self.add_shape_to_errors('SomeException')
+        self.setup_client_and_resource()
         self.client_documenter = Boto3ClientDocumenter(
             self.client, self.root_services_path
         )
@@ -96,8 +108,82 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 '    - *(dict) --*',
                 '      - **Foo** *(string) --*',
                 '      - **Bar** *(string) --*',
+                '**Exceptions**',
+                '*   :py:class:`MyService.Client.exceptions.SomeException`',
             ],
             self.get_nested_service_contents(
                 'myservice', 'client', 'sample_operation'
+            ),
+        )
+
+
+class TestClientExceptionsDocumenter(BaseDocsTest):
+    def setup_documenter(self):
+        self.setup_client_and_resource()
+        self.exceptions_documenter = ClientExceptionsDocumenter(
+            self.client, self.root_services_path
+        )
+
+    def test_no_modeled_exceptions(self):
+        self.setup_documenter()
+        self.exceptions_documenter.document_exceptions(self.doc_structure)
+        self.assert_contains_lines_in_order(
+            [
+                '=================',
+                'Client Exceptions',
+                '=================',
+                'Client exceptions are available',
+                'This client has no modeled exception classes.',
+            ]
+        )
+
+    def test_modeled_exceptions(self):
+        exception_shape = {
+            'SomeException': {
+                'exception': True,
+                'type': 'structure',
+                'members': {'Message': {'shape': 'String'}},
+            }
+        }
+        self.add_shape(exception_shape)
+        self.setup_documenter()
+        self.exceptions_documenter.document_exceptions(self.doc_structure)
+        self.assert_contains_lines_in_order(
+            [
+                '=================',
+                'Client Exceptions',
+                '=================',
+                'Client exceptions are available',
+                'The available client exceptions are:',
+                '.. toctree::',
+                ':maxdepth: 1',
+                ':titlesonly:',
+                '  myservice/client/exceptions/SomeException',
+            ]
+        )
+        self.assert_contains_lines_in_order(
+            [
+                '.. py:class:: MyService.Client.exceptions.SomeException',
+                '**Example**',
+                '::',
+                'except client.exceptions.SomeException as e:',
+                '.. py:attribute:: response',
+                '**Syntax**',
+                '{',
+                "'Message': 'string',",
+                "'Error': {",
+                "'Code': 'string',",
+                "'Message': 'string'",
+                '}',
+                '}',
+                '**Structure**',
+                '- *(dict) --*',
+                '- **Message** *(string) --* ',
+                '- **Error** *(dict) --* ',
+                '- **Code** *(string) --* ',
+                '- **Message** *(string) --* ',
+            ],
+            self.get_nested_service_contents(
+                'myservice', 'client/exceptions', 'SomeException'
             ),
         )
