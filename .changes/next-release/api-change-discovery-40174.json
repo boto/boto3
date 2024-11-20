@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``discovery``",
-  "description": "[``botocore``] Add support to import data from commercially available discovery tools without file manipulation."
-}

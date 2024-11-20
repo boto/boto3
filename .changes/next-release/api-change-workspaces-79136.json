@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workspaces``",
-  "description": "[``botocore``] Added support for Rocky Linux 8 on Amazon WorkSpaces Personal."
-}
