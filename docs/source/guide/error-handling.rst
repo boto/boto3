@@ -205,7 +205,7 @@ Using Amazon Kinesis as an example service, you can use Boto3 to catch the excep
 .. code-block:: python
 
     except boto3.exceptions.S3UploadFailedError as error:
-        _clientError = error.__cause__.ClientError
+        _clientError = error.__cause__
         if _clientError.response['Error']['Code'] == 'InvalidRequest':
             logger.warn(f"There was an error when attempting to upload: {_clientError.response['Error']['Message']}")
 
