@@ -290,7 +290,7 @@ Boto3 will attempt to load credentials from the Boto2 config file. It first chec
 
 Container credential provider
 ---------
-You can associate an IAM role with each of your Amazon Elastic Container Service (Amazon ECS) task definitions. Temporary credentials for that role are then available to that task's containers. For more information, see `IAM Roles for Tasks <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`_ in the Amazon Elastic Container Service Developer Guide.
+If you are using Amazon Elastic Container Service (Amazon ECS) or Amazon Elastic Kubernetes Service (Amazon EKS), you can obtain credentials by specifying an HTTP endpoint as an environment variable.  The SDK will request credentials from the specified endpoint.  For more information, see `Container credential provider <https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html>`_ in the Amazon SDKs and Tools Reference Guide.
 
 
 IAM roles
