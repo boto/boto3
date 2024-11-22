@@ -2,6 +2,32 @@
 CHANGELOG
 =========
 
+1.35.68
+=======
+
+* api-change:``autoscaling``: [``botocore``] Now, Amazon EC2 Auto Scaling customers can enable target tracking policies to take quicker scaling decisions, enhancing their application performance and EC2 utilization. To get started, specify target tracking to monitor a metric that is available on Amazon CloudWatch at seconds-level interval.
+* api-change:``bcm-pricing-calculator``: [``botocore``] Initial release of the AWS Billing and Cost Management Pricing Calculator API.
+* api-change:``bedrock-agent-runtime``: [``botocore``] InvokeInlineAgent API release to help invoke runtime agents without any dependency on preconfigured agents.
+* api-change:``ce``: [``botocore``] This release adds the Impact field(contains Contribution field) to the GetAnomalies API response under RootCause
+* api-change:``chatbot``: [``botocore``] Adds support for programmatic management of custom actions and aliases which can be associated with channel configurations.
+* api-change:``codepipeline``: [``botocore``] AWS CodePipeline V2 type pipelines now support ECRBuildAndPublish and InspectorScan actions.
+* api-change:``cognito-idp``: [``botocore``] Add support for users to sign up and sign in without passwords, using email and SMS OTPs and Passkeys. Add support for Passkeys based on WebAuthn. Add support for enhanced branding customization for hosted authentication pages with Amazon Cognito Managed Login. Add feature tiers with new pricing.
+* api-change:``connect``: [``botocore``] Amazon Connect Service Feature: Add APIs for Amazon Connect Email Channel
+* api-change:``elbv2``: [``botocore``] This release adds support for advertising trusted CA certificate names in associated trust stores.
+* api-change:``emr``: [``botocore``] Advanced Scaling in Amazon EMR Managed Scaling
+* api-change:``inspector2``: [``botocore``] Extend inspector2 service model to include ServiceQuotaExceededException.
+* api-change:``lambda``: [``botocore``] Add ProvisionedPollerConfig to Lambda event-source-mapping API.
+* api-change:``mailmanager``: [``botocore``] Added new "DeliverToQBusiness" rule action to MailManager RulesSet for ingesting email data into Amazon Q Business customer applications
+* api-change:``neptune-graph``: [``botocore``] Add 4 new APIs to support new Export features, allowing Parquet and CSV formats. Add new arguments in Import APIs to support Parquet import. Add a new query "neptune.read" to run algorithms without loading data into database
+* api-change:``omics``: [``botocore``] This release adds support for resource policy based cross account S3 access to sequence store read sets.
+* api-change:``quicksight``: [``botocore``] This release includes: Update APIs to support Image, Layer Map, font customization, and Plugin Visual. Add Identity center related information in ListNamsespace API. Update API for restrictedFolder support in topics and add API for SearchTopics, Describe/Update DashboardsQA Configration.
+* api-change:``sagemaker``: [``botocore``] This release adds APIs for new features for SageMaker endpoint to scale down to zero instances, native support for multi-adapter inference, and endpoint scaling improvements.
+* api-change:``ses``: [``botocore``] This release adds support for starting email contacts in your Amazon Connect instance as an email receiving action.
+* api-change:``sns``: [``botocore``] ArchivePolicy attribute added to Archive and Replay feature
+* api-change:``stepfunctions``: [``botocore``] Add support for variables and JSONata in TestState, GetExecutionHistory, DescribeStateMachine, and DescribeStateMachineForExecution
+* api-change:``workspaces``: [``botocore``] While integrating WSP-DCV rebrand, a few mentions were erroneously renamed from WSP to DCV. This release reverts those mentions back to WSP.
+
+
 1.35.67
 =======
 
