@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sns``",
-  "description": "[``botocore``] ArchivePolicy attribute added to Archive and Replay feature"
-}

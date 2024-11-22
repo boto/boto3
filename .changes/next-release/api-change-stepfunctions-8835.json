@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``stepfunctions``",
-  "description": "[``botocore``] Add support for variables and JSONata in TestState, GetExecutionHistory, DescribeStateMachine, and DescribeStateMachineForExecution"
-}
