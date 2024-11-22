@@ -37,6 +37,7 @@ Boto3 will look in several locations when searching for credentials. The mechani
 #. Shared credential file (``~/.aws/credentials``)
 #. AWS config file (``~/.aws/config``)
 #. Boto2 config file (``/etc/boto.cfg`` and ``~/.boto``)
+#. Container credential provider
 #. Instance metadata service on an Amazon EC2 instance that has an IAM role configured.
 
 Each of those locations is discussed in more detail below.
@@ -285,6 +286,11 @@ Boto3 will attempt to load credentials from the Boto2 config file. It first chec
 .. note:: 
     
     This credential provider is primarily for backwards compatibility purposes with Boto2.
+
+
+Container credential provider
+---------
+If you are using Amazon Elastic Container Service (Amazon ECS) or Amazon Elastic Kubernetes Service (Amazon EKS), you can obtain credentials by specifying an HTTP endpoint as an environment variable.  The SDK will request credentials from the specified endpoint.  For more information, see `Container credential provider <https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html>`_ in the Amazon SDKs and Tools Reference Guide.
 
 
 IAM roles
