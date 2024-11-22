@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``apigateway``",
-  "description": "[``botocore``] Added support for custom domain names for private APIs."
-}

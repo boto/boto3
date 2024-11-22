@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lambda``",
-  "description": "[``botocore``] Adds support for metrics for event source mappings for AWS Lambda"
-}

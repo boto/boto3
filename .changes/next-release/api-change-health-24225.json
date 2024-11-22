@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``health``",
-  "description": "[``botocore``] Adds metadata property to an AffectedEntity."
-}
