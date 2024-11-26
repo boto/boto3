@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent``",
-  "description": "[``botocore``] Custom Orchestration API release for AWSBedrockAgents."
-}
