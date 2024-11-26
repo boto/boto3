@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock-agent-runtime``",
+  "description": "[``botocore``] Custom Orchestration and Streaming configurations API release for AWSBedrockAgents."
+}
