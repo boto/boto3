@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent``",
-  "description": "[``botocore``] Add support for specifying embeddingDataType, either FLOAT32 or BINARY"
-}
