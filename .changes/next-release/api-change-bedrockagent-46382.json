@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock-agent``",
+  "description": "[``botocore``] This release introduces APIs to upload documents directly into a Knowledge Base"
+}

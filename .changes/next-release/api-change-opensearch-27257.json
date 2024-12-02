@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``opensearch``",
+  "description": "[``botocore``] This feature introduces support for CRUDL APIs, enabling the creation and management of Connected data sources."
+}
