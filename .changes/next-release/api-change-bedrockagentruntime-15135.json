@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent-runtime``",
-  "description": "[``botocore``] Releasing SDK for multi agent collaboration"
-}
