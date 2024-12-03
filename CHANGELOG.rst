@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.73
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Add an API parameter that allows customers to set performance configuration for invoking a model.
+* api-change:``s3control``: [``botocore``] It allows customers to pass CRC64NVME as a header in S3 Batch Operations copy requests
+* api-change:``socialmessaging``: [``botocore``] Added support for passing role arn corresponding to the supported event destination
+
+
 1.35.72
 =======
 
