@@ -9,14 +9,12 @@ sell copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 #}
 
-{%- extends "!page.html" %}
+{% extends "base.html" %}
+
 
 {% block body -%}
-<script>
-    document.body.dataset.theme = localStorage.getItem("theme") || "auto";
-</script>
-{% include "partials/icons.html" %}
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+{% include 'layout.html' %}
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden-svg">
     <symbol id="svg-close" viewBox="0 0 24 24">
         <title>Close Menu</title>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"
@@ -176,15 +174,11 @@ furnished to do so, subject to the following conditions:
             {%- endif %}
             {# start of AWS modification of Furo template #}
             <div class="legal-info">
-                <script type="text/javascript" src="{{ pathto('_static/shortbreadv1.js',1 ) }}"></script>
-                <script type="text/javascript">
-                        const shortbread = AWSCShortbread({
-                            domain: ".amazonaws.com",
-            });
-                        shortbread.checkForCookieConsent();
-                </script>
-                <a href="https://aws.amazon.com/privacy">Privacy</a> | <a href="https://aws.amazon.com/terms">Site Terms</a> | <a
-                    href="#" onclick="shortbread.customizeCookies();">Cookie preferences</a>
+                <!-- <script type="text/javascript" src="{{ pathto('_static/shortbreadv1.js',1 ) }}"></script> -->
+                <!-- <script type="text/javascript" src="{{ pathto('_static/js/loadShortbread.js',1) }}"></script> -->
+                <a href="https://aws.amazon.com/privacy">Privacy</a> | 
+                <a href="https://aws.amazon.com/terms">Site Terms</a> | 
+                <a href="#" id="cookie-button-link">Cookie preferences</a>
             </div>
             {# end of AWS modification of Furo template #}
           </div>

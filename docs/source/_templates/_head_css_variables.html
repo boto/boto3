@@ -1,0 +1,31 @@
+{#
+  This is where user-provided CSS variables get converted into actual values.
+#}
+{% macro declare_css_variables(user_customisations, pygments_theme) -%}
+  <link rel="stylesheet" href="{{ pathto('../_static/css/dark_light_mode.css', 1) }}">
+  --color-code-background: {{ pygments_theme.background }};
+  --color-code-foreground: {{ pygments_theme.foreground }};
+  {% if user_customisations -%}
+  {% for name, value in user_customisations.items() -%}
+    --{{ name }}: {{ value }};
+  {% endfor %}
+  {%- endif %}
+{%- endmacro %}
+
+
+<!-- <link rel="stylesheet" href="{{ pathto('../_static/css/dark_light_mode.css', 1) }}"> -->
+<!-- <style>
+  body {
+    {{ declare_css_variables(theme_light_css_variables, furo_pygments.light) }}
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      {{ declare_css_variables(theme_dark_css_variables, furo_pygments.dark) }}
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        {{ declare_css_variables(theme_dark_css_variables, furo_pygments.dark) }}
+      }
+    }
+  }
+</style> -->
