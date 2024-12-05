@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.35.76
+=======
+
+* api-change:``partnercentral-selling``: [``botocore``] Introducing the preview of new partner central selling APIs designed to transform how AWS partners collaborate and co-sell with multiple partners. This enables multiple partners to seamlessly engage and jointly pursue customer opportunities, fostering a new era of collaborative selling.
+* api-change:``qbusiness``: [``botocore``] This release removes the deprecated UserId and UserGroups fields from SearchRelevantContent api's request parameters.
+
+
 1.35.75
 =======
 
