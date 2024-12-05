@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	if (typeof AWSCShortbread !== 'undefined') {
 		const shortbread = AWSCShortbread({
-        // domain: ".amazonaws.com"
-        domain: "d3o2vvnrhogbwx.cloudfront.net"
+        domain: ".amazonaws.com"
+        // domain: ".cloudfront.net"
     	});
 
 	    // Check for cookie consent
