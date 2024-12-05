@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    // Check for cookie consent
 	    shortbread.checkForCookieConsent();
 
-	    // Add event listener for 'Cookie preferences' button read from page.html
+	    // Add event listener for 'Cookie preferences' link read from page.html
 	    const cookiePreferencesLink = document.getElementById('cookie-button-link');
 	    if (cookiePreferencesLink) {
 	        cookiePreferencesLink.addEventListener('click', function(event) {
