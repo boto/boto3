@@ -11,8 +11,11 @@ furnished to do so, subject to the following conditions:
 
 {%- extends "!page.html" %}
 
-{% block body -%}
+{%- block extrahead %}
 <script src="https://a0.awsstatic.com/s_code/js/3.0/awshome_s_code.js"></script>
+{% endblock %}
+
+{% block body -%}
 <script>
     document.body.dataset.theme = localStorage.getItem("theme") || "auto";
 </script>
