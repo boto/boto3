@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.35.77
+=======
+
+* api-change:``appsync``: [``botocore``] Provides description of new Amazon Bedrock runtime datasource.
+* api-change:``cognito-idp``: [``botocore``] Change `CustomDomainConfig` from a required to an optional parameter for the `UpdateUserPoolDomain` operation.
+* api-change:``ec2``: [``botocore``] This release includes a new API for modifying instance network-performance-options after launch.
+* api-change:``ecs``: [``botocore``] This is a documentation only update to address various tickets for Amazon ECS.
+* api-change:``keyspaces``: [``botocore``] Amazon Keyspaces: adding the list of IAM actions required by the UpdateKeyspace API.
+* api-change:``medialive``: [``botocore``] H265 outputs now support disabling the deblocking filter.
+* api-change:``workspaces``: [``botocore``] Added text to clarify case-sensitivity
+
+
 1.35.76
 =======
 
