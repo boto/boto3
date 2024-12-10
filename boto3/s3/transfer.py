@@ -379,7 +379,7 @@ class S3Transfer:
                 "Failed to upload {} to {}: {}".format(
                     filename, '/'.join([bucket, key]), e
                 )
-            )
+            ) from ClientError
 
     def download_file(
         self, bucket, key, filename, extra_args=None, callback=None
