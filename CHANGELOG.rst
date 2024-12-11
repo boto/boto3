@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.35.79
+=======
+
+* api-change:``artifact``: [``botocore``] Add support for listing active customer agreements for the calling AWS Account.
+* api-change:``cloudtrail``: [``botocore``] Doc-only updates for CloudTrail.
+* api-change:``cognito-idp``: [``botocore``] Updated descriptions for some API operations and parameters, corrected some errors in Cognito user pools
+* api-change:``controlcatalog``: [``botocore``] Minor documentation updates to the content of ImplementationDetails object part of the Control Catalog GetControl API
+* api-change:``emr-serverless``: [``botocore``] This release adds support for accessing system profile logs in Lake Formation-enabled jobs.
+* api-change:``mgh``: [``botocore``] API and documentation updates for AWS MigrationHub related to adding support for listing migration task updates and associating, disassociating and listing source resources
+* api-change:``sesv2``: [``botocore``] Introduces support for multi-region endpoint.
+* api-change:``timestream-influxdb``: [``botocore``] Adds networkType parameter to CreateDbInstance API which allows IPv6 support to the InfluxDB endpoint
+
+
 1.35.78
 =======
 
