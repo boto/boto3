@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``guardduty``",
+  "description": "[``botocore``] Improved descriptions for certain APIs."
+}
