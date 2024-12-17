@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``backupsearch``",
+  "description": "[``botocore``] Add support for searching backups"
+}
