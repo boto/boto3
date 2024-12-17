@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cleanroomsml``",
-  "description": "[``botocore``] Add support for SQL compute configuration for StartAudienceGenerationJob API."
-}
