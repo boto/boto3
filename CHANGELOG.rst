@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.35.84
+=======
+
+* api-change:``amplify``: [``botocore``] Added WAF Configuration to Amplify Apps
+* api-change:``budgets``: [``botocore``] Releasing minor partition endpoint updates
+* api-change:``connect``: [``botocore``] This release adds support for the UpdateParticipantAuthentication API used for customer authentication within Amazon Connect chats.
+* api-change:``connectparticipant``: [``botocore``] This release adds support for the GetAuthenticationUrl and CancelParticipantAuthentication APIs used for customer authentication within Amazon Connect chats. There are also minor updates to the GetAttachment API.
+* api-change:``datasync``: [``botocore``] AWS DataSync introduces the ability to update attributes for in-cloud locations.
+* api-change:``iot``: [``botocore``] Release connectivity status query API which is a dedicated high throughput(TPS) API to query a specific device's most recent connectivity state and metadata.
+* api-change:``mwaa``: [``botocore``] Added support for Apache Airflow version 2.10.3 to MWAA.
+* api-change:``quicksight``: [``botocore``] Add support for PerformanceConfiguration attribute to Dataset entity. Allow PerformanceConfiguration specification in CreateDataset and UpdateDataset APIs.
+* api-change:``resiliencehub``: [``botocore``] AWS Resilience Hub now automatically detects already configured CloudWatch alarms and FIS experiments as part of the assessment process and returns the discovered resources in the corresponding list API responses. It also allows you to include or exclude test recommendations for an AppComponent.
+* api-change:``transfer``: [``botocore``] Added AS2 agreement configurations to control filename preservation and message signing enforcement. Added AS2 connector configuration to preserve content type from S3 objects.
+
+
 1.35.83
 =======
 
