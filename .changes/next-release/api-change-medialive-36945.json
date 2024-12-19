@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``medialive``",
+  "description": "[``botocore``] MediaLive is releasing ListVersions api"
+}
