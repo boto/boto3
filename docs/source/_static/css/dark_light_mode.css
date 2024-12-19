@@ -1,0 +1,20 @@
+body {
+  --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+}
+
+/* Dark theme styles */
+@media not print {
+  body[data-theme="dark"] {
+    --color-code-background: #272822;
+    --color-code-foreground: #f8f8f2;
+  }
+
+  /* For users who prefer dark color scheme */
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #272822;
+      --color-code-foreground: #f8f8f2;
+    }
+  }
+}
