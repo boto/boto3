@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``eks``",
+  "description": "[``botocore``] This release expands the catalog of upgrade insight checks"
+}
