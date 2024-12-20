@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``billing``",
-  "description": "[``botocore``] Added new API's for defining and fetching Billing Views."
-}

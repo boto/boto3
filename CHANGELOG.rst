@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.35.86
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] Support for custom user agent and max web pages crawled for web connector. Support app only credentials for SharePoint connector. Increase agents memory duration limit to 365 days. Support to specify max number of session summaries to include in agent invocation context.
+* api-change:``bedrock-agent-runtime``: [``botocore``] bedrock agents now supports long term memory and performance configs. Invokeflow supports performance configs. RetrieveAndGenerate performance configs
+* api-change:``bedrock-data-automation``: [``botocore``] Documentation update for Amazon Bedrock Data Automation
+* api-change:``bedrock-data-automation-runtime``: [``botocore``] Documentation update for Amazon Bedrock Data Automation Runtime
+* api-change:``billing``: [``botocore``] Added new API's for defining and fetching Billing Views.
+* api-change:``ce``: [``botocore``] Support for retrieving cost, usage, and forecast for billing view.
+* api-change:``connect``: [``botocore``] This release supports adding NotAttributeCondition and Range to the RoutingCriteria object.
+* api-change:``docdb``: [``botocore``] Support AWS Secret Manager managed password for AWS DocumentDB instance-based cluster.
+* api-change:``eks``: [``botocore``] This release expands the catalog of upgrade insight checks
+* api-change:``macie2``: [``botocore``] This release adds support for identifying S3 general purpose buckets that exceed the Amazon Macie quota for preventative control monitoring.
+* api-change:``outposts``: [``botocore``] Add CS8365C as a supported power connector for Outpost sites.
+* api-change:``sagemaker``: [``botocore``] This release adds support for c6i, m6i and r6i instance on SageMaker Hyperpod and trn1 instances in batch
+
+
 1.35.85
 =======
 

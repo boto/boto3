@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ce``",
-  "description": "[``botocore``] Support for retrieving cost, usage, and forecast for billing view."
-}
