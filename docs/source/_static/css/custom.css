@@ -103,3 +103,7 @@ h3.admonition-title::before {
     mask-image: var(--icon-admonition-default);
     mask-repeat: no-repeat;
 }
+/* Apply SVG from inline page.html */
+.hidden-svg {
+    display: none;
+}
