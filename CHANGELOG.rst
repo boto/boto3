@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.87
+=======
+
+* api-change:``ecr``: [``botocore``] Documentation update for ECR GetAccountSetting and PutAccountSetting APIs.
+* api-change:``ecr-public``: [``botocore``] Add support for Dualstack endpoints
+* api-change:``eks``: [``botocore``] This release adds support for DescribeClusterVersions API that provides important information about Kubernetes versions along with end of support dates
+* api-change:``glue``: [``botocore``] Add IncludeRoot parameters to GetCatalogs API to return root catalog.
+
+
 1.35.86
 =======
 
