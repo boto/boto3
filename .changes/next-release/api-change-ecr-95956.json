@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecr``",
-  "description": "[``botocore``] Documentation update for ECR GetAccountSetting and PutAccountSetting APIs."
-}
