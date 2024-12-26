@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bcm-pricing-calculator``",
-  "description": "[``botocore``] Added ConflictException to DeleteBillEstimate."
-}

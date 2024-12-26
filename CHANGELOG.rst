@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.35.88
+=======
+
+* api-change:``bcm-pricing-calculator``: [``botocore``] Added ConflictException to DeleteBillEstimate.
+* api-change:``ecr``: [``botocore``] Add support for Dualstack Endpoints
+* api-change:``network-firewall``: [``botocore``] Dual-stack endpoints are now supported.
+* api-change:``securityhub``: [``botocore``] Documentation updates for AWS Security Hub
+
+
 1.35.87
 =======
 
