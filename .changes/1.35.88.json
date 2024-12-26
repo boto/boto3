@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``bcm-pricing-calculator``",
+    "description": "[``botocore``] Added ConflictException to DeleteBillEstimate.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecr``",
+    "description": "[``botocore``] Add support for Dualstack Endpoints",
+    "type": "api-change"
+  },
+  {
+    "category": "``network-firewall``",
+    "description": "[``botocore``] Dual-stack endpoints are now supported.",
+    "type": "api-change"
+  },
+  {
+    "category": "``securityhub``",
+    "description": "[``botocore``] Documentation updates for AWS Security Hub",
+    "type": "api-change"
+  }
+]
