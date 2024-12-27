@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] Updates Amazon RDS documentation to correct various descriptions."
+}
