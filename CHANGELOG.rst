@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.35.90
+=======
+
+* api-change:``ecr``: [``botocore``] Restoring custom endpoint functionality for ECR
+* api-change:``ecr-public``: [``botocore``] Restoring custom endpoint functionality for ECR Public
+
+
 1.35.89
 =======
 
