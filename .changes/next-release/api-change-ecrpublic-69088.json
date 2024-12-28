@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ecr-public``",
+  "description": "[``botocore``] Restoring custom endpoint functionality for ECR Public"
+}
