@@ -104,6 +104,6 @@ h3.admonition-title::before {
     mask-repeat: no-repeat;
 }
 /* Apply SVG from inline page.html */
-.hidden-svg {
+.hidden {
     display: none;
 }

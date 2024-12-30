@@ -9,12 +9,17 @@ sell copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 #}
 
-{% extends "base.html" %}
+{% extends "!page.html" %}
+
+{%- block extrahead %}
+<script src="https://prod.assets.shortbread.aws.dev/shortbread.js"></script>
+<link href="https://prod.assets.shortbread.aws.dev/shortbread.css" rel="stylesheet">
+{% endblock %}
 
 
 {% block body -%}
-{% include 'layout.html' %}
-<svg xmlns="http://www.w3.org/2000/svg" class="hidden-svg">
+{% include 'partials/icons.html' %}
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
     <symbol id="svg-close" viewBox="0 0 24 24">
         <title>Close Menu</title>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"

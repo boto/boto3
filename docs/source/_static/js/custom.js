@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 const nonResourceSubHeadings = [
 	'client',
 	'waiters',
@@ -174,17 +175,47 @@ function activateLabelOnEnter() {
   });
 }
 
+function loadThemeFromLocalStorage(){
+  document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+}
+
 // Improves accessibility for keyboard-only users.
 function setupKeyboardFriendlyNavigation() {
   activateLabelOnEnter();
   toggleSidebarMenuVisibility('.toc-drawer', '#__toc');
   toggleSidebarMenuVisibility('.sidebar-drawer', '#__navigation');
 }
+
+function loadShortbread() {
+	if (typeof AWSCShortbread !== 'undefined') {
+		const shortbread = AWSCShortbread({
+		// If you're testing in your dev environment, use ".cloudfront.net" for domain, else ".amazonaws.com"
+        domain: '.amazonaws.com'
+    	});
+
+	    // Check for cookie consent
+	    shortbread.checkForCookieConsent();
+
+	    const cookiePreferencesLink = document.getElementById('cookie-button-link');
+	    if (cookiePreferencesLink) {
+	        cookiePreferencesLink.addEventListener('click', function(event) {
+	            event.preventDefault();
+	            shortbread.customizeCookies();
+	        });
+	    }
+	    console.log("AWSCShortbread successfully loaded...!!!")
+	} else {
+		console.error("AWSCShortbread failed to load!!!")
+	}
+}
+
 // Functions to run after the DOM loads.
 function runAfterDOMLoads() {
 	expandSubMenu();
 	makeCodeBlocksScrollable();
 	setupKeyboardFriendlyNavigation();
+	loadThemeFromLocalStorage();
+	loadShortbread();
 }
 // Run a function after the DOM loads.
 function ready(fn) {
