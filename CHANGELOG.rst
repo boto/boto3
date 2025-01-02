@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.35.91
+=======
+
+* api-change:``appsync``: [``botocore``] Modify UpdateGraphQLAPI operation and flag authenticationType as required.
+* api-change:``gamelift``: [``botocore``] Amazon GameLift releases a new game session shutdown feature. Use the Amazon GameLift console or AWS CLI to terminate an in-progress game session that's entered a bad state or is no longer needed.
+* api-change:``mediaconnect``: [``botocore``] AWS Elemental MediaConnect now supports Content Quality Analysis for enhanced source stream monitoring. This enables you to track specific audio and video metrics in transport stream source flows, ensuring your content meets quality standards.
+* api-change:``mediaconvert``: [``botocore``] This release adds support for the AVC3 codec and fixes an alignment issue with Japanese vertical captions.
+* api-change:``organizations``: [``botocore``] Added ALL_FEATURES_MIGRATION_ORGANIZATION_SIZE_LIMIT_EXCEEDED to ConstraintViolationException for the EnableAllFeatures operation.
+* api-change:``sagemaker``: [``botocore``] Adding ETag information with Model Artifacts for Model Registry
+* api-change:``sqs``: [``botocore``] In-flight message typo fix from 20k to 120k.
+
+
 1.35.90
 =======
 

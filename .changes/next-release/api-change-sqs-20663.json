@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sqs``",
-  "description": "[``botocore``] In-flight message typo fix from 20k to 120k."
-}

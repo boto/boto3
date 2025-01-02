@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appsync``",
-  "description": "[``botocore``] Modify UpdateGraphQLAPI operation and flag authenticationType as required."
-}
