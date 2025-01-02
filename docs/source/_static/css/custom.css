@@ -106,7 +106,7 @@ h3.admonition-title::before {
     mask-image: var(--icon-admonition-default);
     mask-repeat: no-repeat;
 }
-/* Apply class selector from inline page.html */
+/* Hides an element by removing it from the document flow */
 .hidden {
     display: none;
 }

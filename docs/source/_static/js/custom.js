@@ -232,7 +232,6 @@ function loadShortbread() {
 // Functions to run after the DOM loads.
 function runAfterDOMLoads() {
 	expandSubMenu();
-
 	makeCodeBlocksScrollable();
 	setupKeyboardFriendlyNavigation();
 	loadThemeFromLocalStorage();
