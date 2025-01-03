@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecs``",
-  "description": "[``botocore``] Adding SDK reference examples for Amazon ECS operations."
-}
