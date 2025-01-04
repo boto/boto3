@@ -166,6 +166,7 @@ html_static_path = ['_static']
 # List of custom CSS files relative to _static directory.
 html_css_files = [
     'css/custom.css',
+    'css/dark_light_mode.css',
 ]
 # List of custom JS files relative to _static directory.
 html_js_files = [
