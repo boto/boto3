@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``iotsecuretunneling``",
+    "description": "[``botocore``] Adds dualstack endpoint support for IoT Secure Tunneling",
+    "type": "api-change"
+  },
+  {
+    "category": "``supplychain``",
+    "description": "[``botocore``] Allow vanity DNS domain when creating a new ASC instance",
+    "type": "api-change"
+  }
+]
