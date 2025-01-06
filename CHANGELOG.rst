@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.35.93
+=======
+
+* api-change:``iotsecuretunneling``: [``botocore``] Adds dualstack endpoint support for IoT Secure Tunneling
+* api-change:``supplychain``: [``botocore``] Allow vanity DNS domain when creating a new ASC instance
+
+
 1.35.92
 =======
 

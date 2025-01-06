@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotsecuretunneling``",
-  "description": "[``botocore``] Adds dualstack endpoint support for IoT Secure Tunneling"
-}
