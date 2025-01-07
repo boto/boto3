@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudhsmv2``",
-  "description": "[``botocore``] Adds support to ModifyCluster for modifying a Cluster's Hsm Type."
-}
