@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.94
+=======
+
+* api-change:``cloudhsmv2``: [``botocore``] Adds support to ModifyCluster for modifying a Cluster's Hsm Type.
+* api-change:``dynamodb``: [``botocore``] This release makes Amazon DynamoDB point-in-time-recovery (PITR) to be configurable. You can set PITR recovery period for each table individually to between 1 and 35 days.
+* api-change:``imagebuilder``: [``botocore``] This release adds support for importing images from ISO disk files. Added new ImportDiskImage API operation.
+
+
 1.35.93
 =======
 
