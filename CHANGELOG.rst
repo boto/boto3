@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.96
+=======
+
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild Now Supports BuildBatch in Reserved Capacity and Lambda
+* api-change:``compute-optimizer``: [``botocore``] This release expands AWS Compute Optimizer rightsizing recommendation support for Amazon EC2 Auto Scaling groups to include those with scaling policies and multiple instance types.
+* api-change:``fms``: [``botocore``] AWS Firewall Manager now lets you combine multiple resource tags using the logical AND operator or the logical OR operator.
+
+
 1.35.95
 =======
 
