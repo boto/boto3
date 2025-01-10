@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.35.97
+=======
+
+* api-change:``redshift``: [``botocore``] Additions to the PubliclyAccessible and Encrypted parameters clarifying what the defaults are.
+* api-change:``securitylake``: [``botocore``] Doc only update for ServiceName that fixes several customer-reported issues
+* api-change:``sts``: [``botocore``] Fixed typos in the descriptions.
+
+
 1.35.96
 =======
 
