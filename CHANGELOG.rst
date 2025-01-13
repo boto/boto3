@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.35.98
+=======
+
+* api-change:``artifact``: [``botocore``] Support resolving regional API calls to partition's leader region endpoint.
+* api-change:``bedrock``: [``botocore``] With this release, Bedrock Evaluation will now support latency-optimized inference for foundation models.
+* api-change:``ec2``: [``botocore``] Add support for DisconnectOnSessionTimeout flag in CreateClientVpnEndpoint and ModifyClientVpnEndpoint requests and DescribeClientVpnEndpoints responses
+* api-change:``kafkaconnect``: [``botocore``] Support updating connector configuration via UpdateConnector API. Release Operations API to monitor the status of the connector operation.
+* api-change:``transcribe``: [``botocore``] This update provides tagging support for Transcribe's Call Analytics Jobs and Call Analytics Categories.
+
+
 1.35.97
 =======
 
