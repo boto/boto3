@@ -236,6 +236,15 @@ You can set configuration settings using system-wide environment variables. Thes
     A comma-delimited list of regions to sign when signing with SigV4a.  For more
     information, see the ``sigv4a_signing_region_set`` configuration file section.
 
+``AWS_REQUEST_CHECKSUM_CALCULATION``
+    Determines when a checksum will be calculated for request payloads. For more
+    information, see the ``request_checksum_calculation`` configuration file section.
+
+
+``AWS_RESPONSE_CHECKSUM_VALIDATION``
+    Determines when checksum validation will be performed on response payloads. For more
+    information, see the ``response_checksum_validation`` configuration file section.
+
 
 Using a configuration file
 --------------------------
@@ -475,6 +484,31 @@ in the ``~/.aws/config`` file.
     A comma-delimited list of regions use when signing with SigV4a. If this is not set,
     the SDK will check if the service has modeled a default; if none is found, this will
     default to ``*``.
+
+``request_checksum_calculation``
+    Determines when a checksum will be calculated for request payloads. Valid values are:
+
+    * ``when_supported`` -- When set, a checksum will be calculated for
+      all request payloads of operations modeled with the ``httpChecksum``
+      trait where ``requestChecksumRequired`` is ``true`` or a
+      ``requestAlgorithmMember`` is modeled.
+
+    * ``when_required`` -- When set, a checksum will only be calculated
+      for request payloads of operations modeled with the ``httpChecksum``
+      trait where ``requestChecksumRequired`` is ``true`` or where a
+      ``requestAlgorithmMember`` is modeled and supplied.
+
+``response_checksum_validation``
+    Determines when checksum validation will be performed on response payloads. Valid values are:
+
+    * ``when_supported`` -- When set, checksum validation is performed on
+      all response payloads of operations modeled with the ``httpChecksum``
+      trait where ``responseAlgorithms`` is modeled, except when no modeled
+      checksum algorithms are supported.
+
+    * ``when_required`` -- When set, checksum validation is not performed
+      on response payloads of operations unless the checksum algorithm is
+      supported and the ``requestValidationModeMember`` member is set to ``ENABLED``.
 
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
