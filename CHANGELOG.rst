@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.36.1
+======
+
+* api-change:``ecs``: [``botocore``] The release addresses Amazon ECS documentation tickets.
+* api-change:``sagemaker``: [``botocore``] Added support for ml.trn1.32xlarge instance type in Reserved Capacity Offering
+
+
 1.36.0
 ======
 
