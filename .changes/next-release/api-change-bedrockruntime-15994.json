@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bedrock-runtime``",
+  "description": "[``botocore``] Allow hyphens in tool name for Converse and ConverseStream APIs"
+}
