@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.36.2
+======
+
+* api-change:``bedrock-runtime``: [``botocore``] Allow hyphens in tool name for Converse and ConverseStream APIs
+* api-change:``detective``: [``botocore``] Doc only update for Detective documentation.
+* api-change:``ec2``: [``botocore``] Release u7i-6tb.112xlarge, u7i-8tb.112xlarge, u7inh-32tb.480xlarge, p5e.48xlarge, p5en.48xlarge, f2.12xlarge, f2.48xlarge, trn2.48xlarge instance types.
+* api-change:``notifications``: [``botocore``] Added support for Managed Notifications, integration with AWS Organization and added aggregation summaries for Aggregate Notifications
+* api-change:``sagemaker``: [``botocore``] Correction of docs for  "Added support for ml.trn1.32xlarge instance type in Reserved Capacity Offering"
+
+
 1.36.1
 ======
 
