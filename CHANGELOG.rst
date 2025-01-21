@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.36.3
+======
+
+* api-change:``batch``: [``botocore``] Documentation-only update: clarified the description of the shareDecaySeconds parameter of the FairsharePolicy data type, clarified the description of the priority parameter of the JobQueueDetail data type.
+* api-change:``cognito-idp``: [``botocore``] corrects the dual-stack endpoint configuration for cognitoidp
+* api-change:``connect``: [``botocore``] Added DeleteContactFlowVersion API and the CAMPAIGN flow type
+* api-change:``emr-serverless``: [``botocore``] Increasing entryPoint in SparkSubmit to accept longer script paths. New limit is 4kb.
+* api-change:``iotsitewise``: [``botocore``] AWS IoT SiteWise now supports ingestion and querying of Null (all data types) and NaN (double type) values of bad or uncertain data quality. New partial error handling prevents data loss during ingestion. Enabled by default for new customers; existing customers can opt-in.
+* api-change:``logs``: [``botocore``] Documentation-only update to address doc errors
+* api-change:``quicksight``: [``botocore``] Added `DigitGroupingStyle` in ThousandsSeparator to allow grouping by `LAKH`( Indian Grouping system ) currency. Support LAKH and `CRORE` currency types in Column Formatting.
+* api-change:``sns``: [``botocore``] This release adds support for the topic attribute FifoThroughputScope for SNS FIFO topics. For details, see the documentation history in the Amazon Simple Notification Service Developer Guide.
+
+
 1.36.2
 ======
 
