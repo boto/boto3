@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cognito-idp``",
-  "description": "[``botocore``] corrects the dual-stack endpoint configuration for cognitoidp"
-}
