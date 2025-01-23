@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.36.5
+======
+
+* api-change:``ec2``: [``botocore``] Added "future" allocation type for future dated capacity reservation
+
+
 1.36.4
 ======
 
