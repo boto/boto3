@@ -1,3 +1,6 @@
+/*This file replaces the style defined in the "_head_css_variables.html" 
+partial from furo==2022.12.7*/
+
 body {
   --color-code-background: #f8f8f8;
   --color-code-foreground: black;
