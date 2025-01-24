@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sso-oidc``",
-  "description": "[``botocore``] Fixed typos in the descriptions."
-}

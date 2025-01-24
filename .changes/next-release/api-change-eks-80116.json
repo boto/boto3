@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks``",
-  "description": "[``botocore``] Adds support for UpdateStrategies in EKS Managed Node Groups."
-}

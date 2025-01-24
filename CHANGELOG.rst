@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.36.6
+======
+
+* api-change:``cloudtrail``: [``botocore``] This release introduces the SearchSampleQueries API that allows users to search for CloudTrail Lake sample queries.
+* api-change:``eks``: [``botocore``] Adds support for UpdateStrategies in EKS Managed Node Groups.
+* api-change:``healthlake``: [``botocore``] Added new authorization strategy value 'SMART_ON_FHIR' for CreateFHIRDatastore API to support Smart App 2.0
+* api-change:``ssm``: [``botocore``] Systems Manager doc-only update for January, 2025.
+* api-change:``sso-oidc``: [``botocore``] Fixed typos in the descriptions.
+* api-change:``transfer``: [``botocore``] Added CustomDirectories as a new directory option for storing inbound AS2 messages, MDN files and Status files.
+
+
 1.36.5
 ======
 
