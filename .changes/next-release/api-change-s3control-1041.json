@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``s3control``",
+  "description": "[``botocore``] Minor fix to ARN validation for Lambda functions passed to S3 Batch Operations"
+}
