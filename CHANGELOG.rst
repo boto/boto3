@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.36.8
+======
+
+* api-change:``appsync``: [``botocore``] Add stash and outErrors to EvaluateCode/EvaluateMappingTemplate response
+* api-change:``datasync``: [``botocore``] AWS DataSync now supports the Kerberos authentication protocol for SMB locations.
+* api-change:``deadline``: [``botocore``] feature: Deadline: Add support for limiting the concurrent usage of external resources, like floating licenses, using limits and the ability to constrain the maximum number of workers that work on a job
+* api-change:``ec2``: [``botocore``] This release changes the CreateFleet CLI and SDK's such that if you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.
+* api-change:``firehose``: [``botocore``] For AppendOnly streams, Firehose will automatically scale to match your throughput.
+* api-change:``timestream-influxdb``: [``botocore``] Adds 'allocatedStorage' parameter to UpdateDbInstance API that allows increasing the database instance storage size and 'dbStorageType' parameter to UpdateDbInstance API that allows changing the storage type of the database instance
+
+
 1.36.7
 ======
 

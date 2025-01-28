@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appsync``",
-  "description": "[``botocore``] Add stash and outErrors to EvaluateCode/EvaluateMappingTemplate response"
-}
