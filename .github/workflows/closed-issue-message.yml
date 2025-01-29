@@ -12,6 +12,9 @@ jobs:
         permissions:
             issues: write
         steps:
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '16'
         - uses: aws-actions/closed-issue-message@37548691e7cc75ba58f85c9f873f9eee43590449
           with:
             # These inputs are both required
