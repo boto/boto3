@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecr``",
-  "description": "[``botocore``] Add support for Dualstack and Dualstack-with-FIPS Endpoints"
-}
