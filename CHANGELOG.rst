@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.36.10
+=======
+
+* api-change:``appstream``: [``botocore``] Add support for managing admin consent requirement on selected domains for OneDrive Storage Connectors in AppStream2.0.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Add a 'reason' field to InternalServerException
+* api-change:``ecr``: [``botocore``] Temporarily updating dualstack endpoint support
+* api-change:``ecr-public``: [``botocore``] Temporarily updating dualstack endpoint support
+* api-change:``mediatailor``: [``botocore``] Adds options for configuring how MediaTailor conditions ads before inserting them into the content stream. Based on the new settings, MediaTailor will either transcode ads to match the content stream as it has in the past, or it will insert ads without first transcoding them.
+* api-change:``qbusiness``: [``botocore``] Added APIs to manage QBusiness user subscriptions
+* api-change:``s3tables``: [``botocore``] You can now use the CreateTable API operation to create tables with schemas by adding an optional metadata argument.
+* api-change:``verifiedpermissions``: [``botocore``] Adds Cedar JSON format support for entities and context data in authorization requests
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.23.8
+
+
 1.36.9
 ======
 

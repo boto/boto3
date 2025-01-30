@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecr``",
-  "description": "[``botocore``] Temporarily updating dualstack endpoint support"
-}
