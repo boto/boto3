@@ -510,6 +510,9 @@ in the ``~/.aws/config`` file.
       on response payloads of operations unless the checksum algorithm is
       supported and the ``requestValidationModeMember`` member is set to ``ENABLED``.
 
+``use_dualstack_endpoint``
+    When ``true``, dualstack endpoint resolution is enabled.  Valid values are ``true`` or ``false``.  Default : ``false``.
+
 .. _IAM Roles for Amazon EC2: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
 .. _Using IAM Roles: http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html
 .. _Sourcing Credentials with an External Process: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sourcing-external.html
