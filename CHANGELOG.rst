@@ -2,6 +2,37 @@
 CHANGELOG
 =========
 
+1.36.12
+=======
+
+* api-change:``mediatailor``: [``botocore``] Add support for CloudWatch Vended Logs which allows for delivery of customer logs to CloudWatch Logs, S3, or Firehose.
+
+
+1.36.11
+=======
+
+* api-change:``amp``: [``botocore``] Add support for sending metrics to cross account and CMCK AMP workspaces through RoleConfiguration on Create/Update Scraper.
+* api-change:``bedrock-agent-runtime``: [``botocore``] This change is to deprecate the existing citation field under RetrieveAndGenerateStream API response in lieu of GeneratedResponsePart and RetrievedReferences
+* api-change:``codebuild``: [``botocore``] Added support for CodeBuild self-hosted Buildkite runner builds
+* api-change:``geo-routes``: [``botocore``] The OptimizeWaypoints API now supports 50 waypoints per request (20 with constraints like AccessHours or AppointmentTime). It adds waypoint clustering via Clustering and ClusteringIndex for better optimization. Also, total distance validation is removed for greater flexibility.
+* api-change:``rds``: [``botocore``] Updates to Aurora MySQL and Aurora PostgreSQL API pages with instance log type in the create and modify DB Cluster.
+* api-change:``sagemaker``: [``botocore``] This release introduces a new valid value in InstanceType parameter: p5en.48xlarge, in ProductionVariant.
+
+
+1.36.10
+=======
+
+* api-change:``appstream``: [``botocore``] Add support for managing admin consent requirement on selected domains for OneDrive Storage Connectors in AppStream2.0.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Add a 'reason' field to InternalServerException
+* api-change:``ecr``: [``botocore``] Temporarily updating dualstack endpoint support
+* api-change:``ecr-public``: [``botocore``] Temporarily updating dualstack endpoint support
+* api-change:``mediatailor``: [``botocore``] Adds options for configuring how MediaTailor conditions ads before inserting them into the content stream. Based on the new settings, MediaTailor will either transcode ads to match the content stream as it has in the past, or it will insert ads without first transcoding them.
+* api-change:``qbusiness``: [``botocore``] Added APIs to manage QBusiness user subscriptions
+* api-change:``s3tables``: [``botocore``] You can now use the CreateTable API operation to create tables with schemas by adding an optional metadata argument.
+* api-change:``verifiedpermissions``: [``botocore``] Adds Cedar JSON format support for entities and context data in authorization requests
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.23.8
+
+
 1.36.9
 ======
 
