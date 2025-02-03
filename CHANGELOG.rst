@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.36.12
+=======
+
+* api-change:``mediatailor``: [``botocore``] Add support for CloudWatch Vended Logs which allows for delivery of customer logs to CloudWatch Logs, S3, or Firehose.
+
+
 1.36.11
 =======
 
