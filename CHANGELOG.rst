@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.36.13
+=======
+
+* api-change:``datasync``: [``botocore``] Doc-only update to provide more information on using Kerberos authentication with SMB locations.
+* api-change:``dms``: [``botocore``] Introduces TargetDataSettings with the TablePreparationMode option available for data migrations.
+* api-change:``iam``: [``botocore``] This release adds support for accepting encrypted SAML assertions. Customers can now configure their identity provider to encrypt the SAML assertions it sends to IAM.
+* api-change:``neptune-graph``: [``botocore``] Added argument to `list-export` to filter by graph ID
+* api-change:``qbusiness``: [``botocore``] Adds functionality to enable/disable a new Q Business Chat orchestration feature. If enabled, Q Business can orchestrate over datasources and plugins without the need for customers to select specific chat modes.
+* api-change:``sagemaker``: [``botocore``] IPv6 support for Hyperpod clusters
+
+
 1.36.12
 =======
 
