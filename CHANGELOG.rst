@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.36.15
+=======
+
+* api-change:``cloudformation``: [``botocore``] We added 5 new stack refactoring APIs: CreateStackRefactor, ExecuteStackRefactor, ListStackRefactors, DescribeStackRefactor, ListStackRefactorActions.
+* api-change:``connectcases``: [``botocore``] This release adds the ability to conditionally require fields on a template. Check public documentation for more information.
+* api-change:``cost-optimization-hub``: [``botocore``] This release enables AWS Cost Optimization Hub to show cost optimization recommendations for Amazon Auto Scaling Groups, including those with single and mixed instance types.
+* api-change:``s3``: [``botocore``] Updated list of the valid AWS Region values for the LocationConstraint parameter for general purpose buckets.
+* enhancement:Eventsteam: [``botocore``] The SDK no longer validates payload size for eventstreams. This is to facilitate varying payload requirements across AWS services.
+
+
 1.36.14
 =======
 
