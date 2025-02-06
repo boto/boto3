@@ -101,6 +101,15 @@ def resource(*args, **kwargs):
     return _get_default_session().resource(*args, **kwargs)
 
 
+def assume_role(*args, **kwargs):
+    """
+    Create a new session that assumes the given role.
+
+    See :py:meth:`boto3.session.Session.assume_role`.
+    """
+    return _get_default_session().assume_role(*args, **kwargs)
+
+
 # Set up logging to ``/dev/null`` like a library is supposed to.
 # https://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
 class NullHandler(logging.Handler):
