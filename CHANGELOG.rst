@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.36.16
+=======
+
+* api-change:``ecr``: [``botocore``] Adds support to handle the new basic scanning daily quota.
+* api-change:``eks``: [``botocore``] Introduce versionStatus field to take place of status field in EKS DescribeClusterVersions API
+* api-change:``mediaconvert``: [``botocore``] This release adds support for Animated GIF output, forced chroma sample positioning metadata, and Extensible Wave Container format
+* api-change:``pi``: [``botocore``] Adds documentation for dimension groups and dimensions to analyze locks for Database Insights.
+* api-change:``transcribe``: [``botocore``] This release adds support for the Clinical Note Template Customization feature for the AWS HealthScribe APIs within Amazon Transcribe.
+
+
 1.36.15
 =======
 
