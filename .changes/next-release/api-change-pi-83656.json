@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pi``",
-  "description": "[``botocore``] Adds documentation for dimension groups and dimensions to analyze locks for Database Insights."
-}
