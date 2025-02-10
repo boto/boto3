@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.36.17
+=======
+
+* api-change:``apigatewayv2``: [``botocore``] Documentation updates for Amazon API Gateway
+* api-change:``cloudfront``: [``botocore``] Doc-only update that adds defaults for CloudFront VpcOriginEndpointConfig values.
+* api-change:``connect``: [``botocore``] Updated the CreateContact API documentation to indicate that it only applies to EMAIL contacts.
+* api-change:``dms``: [``botocore``] New vendors for DMS Data Providers: DB2 LUW and DB2 for z/OS
+
+
 1.36.16
 =======
 
