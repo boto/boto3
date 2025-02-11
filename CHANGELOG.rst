@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.36.18
+=======
+
+* api-change:``acm-pca``: [``botocore``] Private Certificate Authority service now supports Partitioned CRL as a revocation configuration option.
+* api-change:``appsync``: [``botocore``] Add support for operation level caching
+* api-change:``ec2``: [``botocore``] Adding support for the new fullSnapshotSizeInBytes field in the response of the EC2 EBS DescribeSnapshots API. This field represents the size of all the blocks that were written to the source volume at the time the snapshot was created.
+* api-change:``pi``: [``botocore``] Documentation only update for RDS Performance Insights dimensions for execution plans and locking analysis.
+
+
 1.36.17
 =======
 
