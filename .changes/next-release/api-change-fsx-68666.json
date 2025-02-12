@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``fsx``",
-  "description": "[``botocore``] Support for in-place Lustre version upgrades"
-}

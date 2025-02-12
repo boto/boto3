@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codebuild``",
-  "description": "[``botocore``] Add note for the RUNNER_BUILDKITE_BUILD buildType."
-}

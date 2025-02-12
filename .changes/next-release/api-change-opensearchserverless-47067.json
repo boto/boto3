@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearchserverless``",
-  "description": "[``botocore``] Custom OpenSearchServerless Entity ID for SAML Config."
-}
