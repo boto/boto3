@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds-data``",
-  "description": "[``botocore``] Add support for Stop DB feature."
-}

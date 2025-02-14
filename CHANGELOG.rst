@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.36.21
+=======
+
+* api-change:``codebuild``: [``botocore``] Added test suite names to test case metadata
+* api-change:``connect``: [``botocore``] Release Notes: 1) Analytics API enhancements: Added new ListAnalyticsDataLakeDataSets API. 2)  Onboarding API Idempotency: Adds ClientToken to instance creation and management APIs to support idempotency.
+* api-change:``dms``: [``botocore``] Introduces premigration assessment feature to DMS Serverless API for start-replication and describe-replications
+* api-change:``rds-data``: [``botocore``] Add support for Stop DB feature.
+* api-change:``s3``: [``botocore``] Added support for Content-Range header in HeadObject response.
+* api-change:``wafv2``: [``botocore``] The WAFv2 API now supports configuring data protection in webACLs.
+* api-change:``workspaces-thin-client``: [``botocore``] Update Environment and Device name field definitions
+
+
 1.36.20
 =======
 
