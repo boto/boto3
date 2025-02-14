@@ -15,6 +15,7 @@ tests/.coverage
 coverage.xml
 
 # Common virtualenv names
+.venv
 venv
 env2
 env3
