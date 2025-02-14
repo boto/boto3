@@ -31,7 +31,22 @@ Python. For details, including the deprecation schedule and how to update your
 project to use Python 3.8, see :ref:`guide_migration_py3`.
 
 For information about how to get the latest version of Python, see the official `Python
-documentation <https://www.python.org/downloads/>`_. 
+documentation <https://www.python.org/downloads/>`_.
+
+Setup a virtual environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Once you have a supported version of Python installed, you should set up
+your workspace by creating a virtual environment and activate it::
+
+    $ python -m venv .venv
+    ...
+    $ source .venv/bin/activate
+
+This provides an isolated space for your installation that will avoid unexpected
+interactions with packages installed at the system level. Skipping this step may
+result in unexpected dependency conflicts or failures with other tools installed
+on your system.
 
 Install Boto3
 ~~~~~~~~~~~~~
