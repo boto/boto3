@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``amplify``",
+    "description": "[``botocore``] Add ComputeRoleArn to CreateApp, UpdateApp, CreateBranch, and UpdateBranch, allowing caller to specify a role to be assumed by Amplify Hosting for server-side rendered applications.",
+    "type": "api-change"
+  },
+  {
+    "category": "``dms``",
+    "description": "[``botocore``] Support replicationConfigArn in DMS DescribeApplicableIndividualAssessments API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-influxdb``",
+    "description": "[``botocore``] This release introduces APIs to manage DbClusters and adds support for read replicas",
+    "type": "api-change"
+  },
+  {
+    "category": "Parsers",
+    "description": "[``botocore``] Minor Parser updates to support the new smithy-generated protocol tests. See `boto/botocore#3247 <https://github.com/boto/botocore/pull/3247>`__ for more details.",
+    "type": "enhancement"
+  }
+]

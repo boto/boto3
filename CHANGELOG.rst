@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.36.22
+=======
+
+* api-change:``amplify``: [``botocore``] Add ComputeRoleArn to CreateApp, UpdateApp, CreateBranch, and UpdateBranch, allowing caller to specify a role to be assumed by Amplify Hosting for server-side rendered applications.
+* api-change:``dms``: [``botocore``] Support replicationConfigArn in DMS DescribeApplicableIndividualAssessments API.
+* api-change:``timestream-influxdb``: [``botocore``] This release introduces APIs to manage DbClusters and adds support for read replicas
+* enhancement:Parsers: [``botocore``] Minor Parser updates to support the new smithy-generated protocol tests. See `boto/botocore#3247 <https://github.com/boto/botocore/pull/3247>`__ for more details.
+
+
 1.36.21
 =======
 
