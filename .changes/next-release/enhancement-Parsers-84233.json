@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Parsers",
+  "description": "[``botocore``] Minor Parser updates to support the new smithy-generated protocol tests. See `boto/botocore#3247 <https://github.com/boto/botocore/pull/3247>`__ for more details."
+}
