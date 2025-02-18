@@ -13,7 +13,6 @@
 
 import copy
 from importlib.resources import path
-import os
 
 import botocore.session
 from botocore.client import Config
