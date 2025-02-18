@@ -66,11 +66,14 @@ class TestSession(BaseTestCase):
             aws_access_key_id='key',
             aws_secret_access_key='secret',
             aws_session_token='token',
+            aws_account_id='account',
         )
 
         assert self.bc_session_cls.called
         assert bc_session.set_credentials.called
-        bc_session.set_credentials.assert_called_with('key', 'secret', 'token')
+        bc_session.set_credentials.assert_called_with(
+            'key', 'secret', 'token', 'account'
+        )
 
     def test_can_get_credentials(self):
         access_key = 'foo'
@@ -240,6 +243,7 @@ class TestSession(BaseTestCase):
             region_name='us-west-2',
             api_version=None,
             config=None,
+            aws_account_id=None,
         )
 
     def test_create_resource_with_args(self):
