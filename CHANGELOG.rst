@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.36.23
+=======
+
+* api-change:``batch``: [``botocore``] This documentation-only update corrects some typos.
+* api-change:``emr-containers``: [``botocore``] EMR on EKS StartJobRun Api will be supporting the configuration of log storage in AWS by using "managedLogs" under "MonitoringConfiguration".
+* api-change:``medialive``: [``botocore``] Adds support for creating CloudWatchAlarmTemplates for AWS Elemental MediaTailor Playback Configuration resources.
+
+
 1.36.22
 =======
 
