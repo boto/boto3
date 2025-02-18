@@ -79,11 +79,13 @@ class TestSession(BaseTestCase):
         access_key = 'foo'
         secret_key = 'bar'
         token = 'baz'
+        account_id = 'bin'
 
         creds = mock.Mock()
         creds.access_key = access_key
         creds.secret_key = secret_key
         creds.token = token
+        creds.account_id = account_id
 
         bc_session = self.bc_session_cls.return_value
         bc_session.get_credentials.return_value = creds
@@ -92,12 +94,14 @@ class TestSession(BaseTestCase):
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
             aws_session_token=token,
+            aws_account_id=account_id,
         )
 
         credentials = session.get_credentials()
         assert credentials.access_key == access_key
         assert credentials.secret_key == secret_key
         assert credentials.token == token
+        assert credentials.account_id == account_id
 
     def test_profile_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
