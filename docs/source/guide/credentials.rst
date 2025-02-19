@@ -309,3 +309,121 @@ Best practices for configuring credentials
 If you're running on an EC2 instance, use AWS IAM roles. See the `IAM Roles for Amazon EC2 <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html>`_ guide for more information on how to set this up.
 
 If you want to interoperate with multiple AWS SDKs (e.g Java, JavaScript, Ruby, PHP, .NET, AWS CLI, Go, C++), use the shared credentials file (``~/.aws/credentials``). By using the shared credentials file, you can use a single file for credentials that will work in all AWS SDKs.
+
+
+Configuring Account ID-Based Endpoints
+--------------------------------------
+Boto3 supports account ID-based endpoints, which improve performance and scalability by using your AWS account ID to streamline request routing for services that support this feature. When using Boto3 with a compatible credential provider and service, the SDK automatically constructs an account ID-based endpoint instead of a regional endpoint.
+
+Account ID-based endpoints follow this format:
+
+.. code-block:: shell
+
+    https://<account-id>.myservice.<region>.amazonaws.com
+
+
+* ``<account-id>`` is the AWS account ID sourced from your credentials.
+* ``<region>`` is the AWS region where the request is being made.
+
+
+Supported Credential Providers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Boto3 can automatically construct account ID-based endpoints by sourcing the AWS account ID from the following places:
+
+* Credentials set using the ``boto3.client()`` method
+* Credentials set when creating a ``Session`` object
+* Environment variables
+* Assume role provider
+* Assume role with web identity provider
+* AWS IAM Identity Center credential provider
+* Shared credential file (``~/.aws/credentials``)
+* AWS config file (``~/.aws/config``)
+* Container credential provider
+
+You can read more about these locations in the sections above.
+
+
+Setting the Account ID
+~~~~~~~~~~~~~~~~~~~~~~
+
+You can provide an account ID along with your AWS credentials using one of the following:
+
+Passing it as a parameter when creating clients:
+
+.. code-block:: python
+
+    import boto3
+
+    client = boto3.client(
+        'dynamodb',
+        aws_account_id=ACCOUNT_ID
+    )
+
+Passing it as a parameter when creating a ``Session`` object:
+
+.. code-block:: python
+
+    import boto3
+
+    session = boto3.Session(
+        aws_account_id=ACCOUNT_ID
+    )
+
+Setting an environment variable:
+
+.. code-block:: shell
+
+    export AWS_ACCOUNT_ID=<ACCOUNT_ID>
+
+Setting it in the shared credential or config file:
+
+.. code-block:: ini
+
+    [default]
+    aws_account_id=foo
+
+
+Configuring Endpoint Routing Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The account ID endpoint mode is a setting that can be used to turn off account ID-based endpoint routing if necessary.
+
+Valid values are:
+
+* ``preferred`` – The endpoint should include account ID if available.
+* ``disabled`` – A resolved endpoint doesn't include account ID.
+* ``required`` – The endpoint must include account ID. If the account ID isn't available, the SDK throws an error.
+
+.. note::
+
+    The default behavior in Boto3 is ``preferred``.
+
+
+You can configure the setting using one of the following:
+
+Setting it in the ``Config`` object when creating clients:
+
+.. code-block:: python
+
+    import boto3
+    from botocore.config import Config
+
+    my_config = Config(
+        account_id_endpoint_mode = 'disabled'
+    )
+
+    client = boto3.client('dynamodb', config=my_config)
+
+Setting an environment variable:
+
+.. code-block:: shell
+
+    export AWS_ACCOUNT_ID_ENDPOINT_MODE=disabled
+
+Setting it in the shared credential or config file:
+
+.. code-block:: ini
+
+    [default]
+    account_id_endpoint_mode=disabled
