@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.36.24
+=======
+
+* api-change:``codepipeline``: [``botocore``] Add environment variables to codepipeline action declaration.
+* api-change:``ecs``: [``botocore``] This is a documentation only release for Amazon ECS that supports the CPU task limit increase.
+* api-change:``lightsail``: [``botocore``] Documentation updates for Amazon Lightsail.
+* api-change:``location``: [``botocore``] Adds support for larger property maps for tracking and geofence positions changes. It increases the maximum number of items from 3 to 4, and the maximum value length from 40 to 150.
+* api-change:``mailmanager``: [``botocore``] This release adds additional metadata fields in Mail Manager archive searches to show email source and details about emails that were archived when being sent with SES.
+* api-change:``network-firewall``: [``botocore``] This release introduces Network Firewall's Automated Domain List feature. New APIs include UpdateFirewallAnalysisSettings, StartAnalysisReport, GetAnalysisReportResults, and ListAnalysisReports. These allow customers to enable analysis on firewalls to identify and report frequently accessed domain.
+* api-change:``sagemaker``: [``botocore``] Adds r8g instance type support to SageMaker Realtime Endpoints
+* api-change:``sesv2``: [``botocore``] This release adds the ability for outbound email sent with SES to preserve emails to a Mail Manager archive.
+
+
 1.36.23
 =======
 
