@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.36.25
+=======
+
+* api-change:``codebuild``: [``botocore``] Add webhook status and status message to AWS CodeBuild webhooks
+* api-change:``guardduty``: [``botocore``] Reduce the minimum number of required attack sequence signals from 2 to 1
+* api-change:``license-manager-user-subscriptions``: [``botocore``] Updates entity to include Microsoft RDS SAL as a valid type of user subscription.
+* api-change:``rds``: [``botocore``] CloudWatch Database Insights now supports Amazon RDS.
+* api-change:``sagemaker``: [``botocore``] Added new capability in the UpdateCluster operation to remove instance groups from your SageMaker HyperPod cluster.
+* api-change:``workspaces-web``: [``botocore``] Add support for toolbar configuration under user settings.
+
+
 1.36.24
 =======
 
