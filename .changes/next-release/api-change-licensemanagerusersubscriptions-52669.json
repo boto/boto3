@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``license-manager-user-subscriptions``",
-  "description": "[``botocore``] Updates entity to include Microsoft RDS SAL as a valid type of user subscription."
-}

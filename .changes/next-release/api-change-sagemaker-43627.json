@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Added new capability in the UpdateCluster operation to remove instance groups from your SageMaker HyperPod cluster."
-}
