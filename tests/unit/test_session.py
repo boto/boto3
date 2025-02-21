@@ -66,6 +66,22 @@ class TestSession(BaseTestCase):
             aws_access_key_id='key',
             aws_secret_access_key='secret',
             aws_session_token='token',
+        )
+
+        assert self.bc_session_cls.called
+        assert bc_session.set_credentials.called
+        bc_session.set_credentials.assert_called_with(
+            'key', 'secret', 'token', None
+        )
+
+    def test_credentials_can_be_set_with_account_id(self):
+        bc_session = self.bc_session_cls.return_value
+
+        # Set values in constructor
+        Session(
+            aws_access_key_id='key',
+            aws_secret_access_key='secret',
+            aws_session_token='token',
             aws_account_id='account',
         )
 

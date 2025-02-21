@@ -77,12 +77,7 @@ class Session:
         if profile_name is not None:
             self._session.set_config_variable('profile', profile_name)
 
-        if (
-            aws_access_key_id
-            or aws_secret_access_key
-            or aws_session_token
-            or aws_account_id
-        ):
+        if aws_access_key_id or aws_secret_access_key or aws_session_token:
             self._session.set_credentials(
                 aws_access_key_id,
                 aws_secret_access_key,
