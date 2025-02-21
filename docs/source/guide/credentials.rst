@@ -313,7 +313,7 @@ If you want to interoperate with multiple AWS SDKs (e.g Java, JavaScript, Ruby, 
 
 Configuring Account ID-Based Endpoints
 --------------------------------------
-Boto3 supports account ID-based endpoints, which improve performance and scalability by using your AWS account ID to streamline request routing for services that support this feature. When using Boto3 with a compatible credential provider and service, the SDK automatically constructs an account ID-based endpoint instead of a regional endpoint.
+Boto3 supports account ID-based endpoints, which improve performance and scalability by using your AWS account ID to streamline request routing for services that support this feature. When Boto3 resolves credentials containing an account ID, it automatically constructs an account ID-based endpoint instead of a regional endpoint.
 
 Account ID-based endpoints follow this format:
 
@@ -357,6 +357,8 @@ Passing it as a parameter when creating clients:
 
     client = boto3.client(
         'dynamodb',
+        aws_access_key_id=ACCESS_KEY,
+        aws_secret_access_key=SECRET_KEY,
         aws_account_id=ACCOUNT_ID
     )
 
@@ -367,6 +369,8 @@ Passing it as a parameter when creating a ``Session`` object:
     import boto3
 
     session = boto3.Session(
+        aws_access_key_id=ACCESS_KEY,
+        aws_secret_access_key=SECRET_KEY,
         aws_account_id=ACCOUNT_ID
     )
 
@@ -374,14 +378,18 @@ Setting an environment variable:
 
 .. code-block:: shell
 
+    export AWS_ACCESS_KEY_ID=<ACCESS_KEY>
+    export AWS_SECRET_ACCESS_KEY=<SECRET_KEY>
     export AWS_ACCOUNT_ID=<ACCOUNT_ID>
 
-Setting it in the shared credential or config file:
+Setting it in the shared credentials or config file:
 
 .. code-block:: ini
 
     [default]
-    aws_account_id=foo
+    aws_access_key_id=foo
+    aws_secret_access_key=bar
+    aws_account_id=baz
 
 
 Configuring Endpoint Routing Behavior
@@ -421,7 +429,7 @@ Setting an environment variable:
 
     export AWS_ACCOUNT_ID_ENDPOINT_MODE=disabled
 
-Setting it in the shared credential or config file:
+Setting it in the shared credentials or config file:
 
 .. code-block:: ini
 
