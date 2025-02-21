@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.36.26
+=======
+
+* api-change:``appstream``: [``botocore``] Added support for Certificate-Based Authentication on AppStream 2.0 multi-session fleets.
+* api-change:``bedrock-agent``: [``botocore``] Introduce a new parameter which represents the user-agent header value used by the Bedrock Knowledge Base Web Connector.
+
+
 1.36.25
 =======
 
