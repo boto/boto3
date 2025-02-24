@@ -13,7 +13,7 @@
 import pytest
 from botocore import loaders
 from botocore.client import Config
-from botocore.exceptions import UnknownServiceError
+from botocore.exceptions import NoCredentialsError, UnknownServiceError
 
 from boto3 import __version__
 from boto3.exceptions import ResourceNotExistsError
@@ -70,17 +70,47 @@ class TestSession(BaseTestCase):
 
         assert self.bc_session_cls.called
         assert bc_session.set_credentials.called
-        bc_session.set_credentials.assert_called_with('key', 'secret', 'token')
+        bc_session.set_credentials.assert_called_with(
+            'key', 'secret', 'token', None
+        )
+
+    def test_credentials_can_be_set_with_account_id(self):
+        bc_session = self.bc_session_cls.return_value
+
+        # Set values in constructor
+        Session(
+            aws_access_key_id='key',
+            aws_secret_access_key='secret',
+            aws_session_token='token',
+            aws_account_id='account',
+        )
+
+        assert self.bc_session_cls.called
+        assert bc_session.set_credentials.called
+        bc_session.set_credentials.assert_called_with(
+            'key', 'secret', 'token', 'account'
+        )
+
+    def test_account_id_set_without_credentials(self):
+        bc_session = self.bc_session_cls.return_value
+
+        with pytest.raises(NoCredentialsError) as e:
+            Session(aws_account_id='account_id')
+
+        assert not bc_session.set_credentials.called
+        assert 'Unable to locate credentials' in str(e.value)
 
     def test_can_get_credentials(self):
         access_key = 'foo'
         secret_key = 'bar'
         token = 'baz'
+        account_id = 'bin'
 
         creds = mock.Mock()
         creds.access_key = access_key
         creds.secret_key = secret_key
         creds.token = token
+        creds.account_id = account_id
 
         bc_session = self.bc_session_cls.return_value
         bc_session.get_credentials.return_value = creds
@@ -89,12 +119,14 @@ class TestSession(BaseTestCase):
             aws_access_key_id=access_key,
             aws_secret_access_key=secret_key,
             aws_session_token=token,
+            aws_account_id=account_id,
         )
 
         credentials = session.get_credentials()
         assert credentials.access_key == access_key
         assert credentials.secret_key == secret_key
         assert credentials.token == token
+        assert credentials.account_id == account_id
 
     def test_profile_can_be_set(self):
         bc_session = self.bc_session_cls.return_value
@@ -240,6 +272,7 @@ class TestSession(BaseTestCase):
             region_name='us-west-2',
             api_version=None,
             config=None,
+            aws_account_id=None,
         )
 
     def test_create_resource_with_args(self):
