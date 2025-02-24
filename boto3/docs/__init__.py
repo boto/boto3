@@ -24,7 +24,7 @@ def generate_docs(root_dir, session):
     text files documenting each service.
 
     :param root_dir: The directory to write the reference files to. Each
-        service's reference documentation is loacated at
+        service's reference documentation is located at
         root_dir/reference/services/service-name.rst
 
     :param session: The boto3 session
