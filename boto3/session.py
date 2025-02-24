@@ -557,6 +557,8 @@ class Session:
     def _account_id_set_without_credentials(
         self, account_id, access_key, secret_key
     ):
-        if account_id and access_key is None and secret_key is None:
+        if account_id is None:
+            return False
+        elif access_key is None or secret_key is None:
             return True
         return False
