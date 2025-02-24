@@ -16,7 +16,11 @@ import os
 
 import botocore.session
 from botocore.client import Config
-from botocore.exceptions import DataNotFoundError, UnknownServiceError
+from botocore.exceptions import (
+    DataNotFoundError,
+    NoCredentialsError,
+    UnknownServiceError,
+)
 
 import boto3
 import boto3.utils
@@ -84,6 +88,10 @@ class Session:
             aws_account_id,
         )
         if any(creds):
+            if self._account_id_set_without_credentials(
+                aws_account_id, aws_access_key_id, aws_secret_access_key
+            ):
+                raise NoCredentialsError()
             self._session.set_credentials(
                 aws_access_key_id,
                 aws_secret_access_key,
@@ -545,3 +553,10 @@ class Session:
                 event_emitter=self.events,
             ),
         )
+
+    def _account_id_set_without_credentials(
+        self, account_id, access_key, secret_key
+    ):
+        if account_id and access_key is None and secret_key is None:
+            return True
+        return False

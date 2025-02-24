@@ -13,7 +13,7 @@
 import pytest
 from botocore import loaders
 from botocore.client import Config
-from botocore.exceptions import UnknownServiceError
+from botocore.exceptions import NoCredentialsError, UnknownServiceError
 
 from boto3 import __version__
 from boto3.exceptions import ResourceNotExistsError
@@ -90,6 +90,15 @@ class TestSession(BaseTestCase):
         bc_session.set_credentials.assert_called_with(
             'key', 'secret', 'token', 'account'
         )
+
+    def test_account_id_set_without_credentials(self):
+        bc_session = self.bc_session_cls.return_value
+
+        with pytest.raises(NoCredentialsError) as e:
+            Session(aws_account_id='account_id')
+
+        assert not bc_session.set_credentials.called
+        assert 'Unable to locate credentials' in str(e.value)
 
     def test_can_get_credentials(self):
         access_key = 'foo'
