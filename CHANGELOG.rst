@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.37.0
+======
+
+* api-change:``bedrock-agent``: [``botocore``] This release improves support for newer models in Amazon Bedrock Flows.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Adding support for ReasoningContent fields in Pre-Processing, Post-Processing and Orchestration Trace outputs.
+* api-change:``bedrock-runtime``: [``botocore``] This release adds Reasoning Content support to Converse and ConverseStream APIs
+* api-change:``elasticache``: [``botocore``] Documentation update, adding clarity and rephrasing.
+* api-change:``elastic-inference``: [``botocore``] The elastic-inference client has been removed following the deprecation of the service.
+* feature:Endpoints: [``botocore``] Generate and use AWS-account-based endpoints for compatible services when the account ID is available. At launch, DynamoDB is the first and only compatible service. The new endpoint URL pattern will be ``https://<account-id>.ddb.<region>.amazonaws.com``. Additional services may be added in the future. See the documentation for details: https://docs.aws.amazon.com/sdkref/latest/guide/feature-account-endpoints.html
+
+
 1.36.26
 =======
 
