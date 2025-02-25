@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Stale issue job
     steps:
-    - uses: aws-actions/stale-issue-cleanup@58eca62c897621a4ad524b1612a982d02d6b0d3c
+    - uses: aws-actions/stale-issue-cleanup@v7.0.1
       with:
         issue-types: issues
         stale-issue-message: Greetings! It looks like this issue hasn’t been 
