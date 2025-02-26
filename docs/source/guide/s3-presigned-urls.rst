@@ -70,6 +70,59 @@ perform a GET request.
         response = requests.get(url)
 
 
+Pass the original file names and extensions to presigned URLs
+===================================================
+
+If you are using S3 as an object store for your web service users' files, a common solution is to store
+anonymized "raw" files like `file.bin` in S3, and the original file names and extensions in a relational database.
+
+In this scenario, unless you explicitly specify a `Content-Disposition` HTTP-header, your users will receive
+“raw” files using generated presigned urls.
+
+.. code-block:: python
+
+    import logging
+    import boto3
+    from botocore.exceptions import ClientError
+
+
+    def create_presigned_url(bucket_name, object_name, expiration=3600,
+                             request_content_disposition: str | None = None):
+        """Generate a presigned URL to share an S3 object
+
+        :param bucket_name: string
+        :param object_name: string
+        :param expiration: Time in seconds for the presigned URL to remain valid
+        :param request_content_disposition: HTTP header that tells the browser the name and extension of the original file.
+        :return: Presigned URL as string. If error, returns None.
+        """
+
+        # Generate a presigned URL for the S3 object
+        s3_client = boto3.client('s3')
+        params = {"Bucket": bucket_name, "Key": object_name}
+        if request_content_disposition:
+            params["ResponseContentDisposition"] = request_content_disposition
+        try:
+            response = s3_client.generate_presigned_url('get_object',
+                                                        Params=params,
+                                                        ExpiresIn=expiration)
+        except ClientError as e:
+            logging.error(e)
+            return None
+
+        # The response contains the presigned URL
+        return response
+
+By applying these changes, you can generate links with the original file names:
+.. code-block:: python
+
+    from urllib.parse import quote
+
+    original_filename = 'demo_file.txt'
+    url = create_presigned_url('amzn-s3-demo-bucket', 'OBJECT_NAME',
+                               request_content_disposition=f'attachment; filename="{quote(original_filename)}"')
+
+
 Using presigned URLs to perform other S3 operations
 ===================================================
 
