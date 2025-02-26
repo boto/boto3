@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.37.2
+======
+
+* api-change:``application-signals``: [``botocore``] This release adds API support for reading Service Level Objectives and Services from monitoring accounts, from SLO and Service-scoped operations, including ListServices and ListServiceLevelObjectives.
+* api-change:``batch``: [``botocore``] AWS Batch: Resource Aware Scheduling feature support
+* api-change:``chime``: [``botocore``] Removes the Amazon Chime SDK APIs from the "chime" namespace.  Amazon Chime SDK APIs continue to be available in the AWS SDK via the dedicated Amazon Chime SDK namespaces: chime-sdk-identity, chime-sdk-mediapipelines, chime-sdk-meetings, chime-sdk-messaging, and chime-sdk-voice.
+* api-change:``cloudfront``: [``botocore``] Documentation update for VPC origin config.
+* api-change:``ec2``: [``botocore``] Amazon EC2 Fleet customers can now override the Block Device Mapping specified in the Launch Template when creating a new Fleet request, saving the effort of creating and associating new Launch Templates to customize the Block Device Mapping.
+* api-change:``iotfleetwise``: [``botocore``] This release adds an optional listResponseScope request parameter in certain list API requests to limit the response to metadata only.
+* api-change:``oam``: [``botocore``] This release adds support for sharing AWS::ApplicationSignals::Service and AWS::ApplicationSignals::ServiceLevelObjective resources.
+* api-change:``sagemaker``: [``botocore``] AWS SageMaker InferenceComponents now support rolling update deployments for Inference Components.
+* enhancement:``Protocol``: [``botocore``] Adds support for the smithy-rpc-v2-cbor protocol.  If a service supports smithy-rpc-v2-cbor, this protocol will automatically be used.  For more information, see https://smithy.io/2.0/additional-specs/protocols/smithy-rpc-v2.html
+
+
 1.37.1
 ======
 
