@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr``",
-  "description": "[``botocore``] Definition update for EbsConfiguration."
-}
