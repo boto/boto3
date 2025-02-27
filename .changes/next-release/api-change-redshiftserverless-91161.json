@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``redshift-serverless``",
+  "description": "[``botocore``] Add track support for Redshift Serverless workgroup."
+}
