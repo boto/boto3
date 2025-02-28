@@ -29,9 +29,6 @@ example, with the ``pip`` command.
 
     pip install cryptography
 
-Each section describes a single function from the example's `entire
-source file <https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/python/example_code/kms/encrypt_decrypt_file.py>`_.
-
 
 Retrieve an existing master key
 ===============================
