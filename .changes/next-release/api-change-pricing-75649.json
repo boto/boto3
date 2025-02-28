@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pricing``",
-  "description": "[``botocore``] Update GetProducts and DescribeServices API request input validations."
-}

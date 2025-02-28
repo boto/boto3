@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks``",
-  "description": "[``botocore``] Adding licenses to EKS Anywhere Subscription operations response."
-}
