@@ -426,8 +426,12 @@ class Session:
             )
         except UnknownServiceError:
             available = self.get_available_resources()
-            has_low_level_client = service_name in self.get_available_services()
-            raise ResourceNotExistsError(service_name, available, has_low_level_client)
+            has_low_level_client = (
+                service_name in self.get_available_services()
+            )
+            raise ResourceNotExistsError(
+                service_name, available, has_low_level_client
+            )
         except DataNotFoundError:
             # This is because we've provided an invalid API version.
             available_api_versions = self._loader.list_api_versions(
@@ -505,7 +509,9 @@ class Session:
         # S3 customizations
         self._session.register(
             "creating-client-class.s3",
-            boto3.utils.lazy_call("boto3.s3.inject.inject_s3_transfer_methods"),
+            boto3.utils.lazy_call(
+                "boto3.s3.inject.inject_s3_transfer_methods"
+            ),
         )
         self._session.register(
             "creating-resource-class.s3.Bucket",
@@ -517,7 +523,9 @@ class Session:
         )
         self._session.register(
             "creating-resource-class.s3.ObjectSummary",
-            boto3.utils.lazy_call("boto3.s3.inject.inject_object_summary_methods"),
+            boto3.utils.lazy_call(
+                "boto3.s3.inject.inject_object_summary_methods"
+            ),
         )
 
         # DynamoDb customizations
@@ -530,7 +538,9 @@ class Session:
         )
         self._session.register(
             "creating-resource-class.dynamodb.Table",
-            boto3.utils.lazy_call("boto3.dynamodb.table.register_table_methods"),
+            boto3.utils.lazy_call(
+                "boto3.dynamodb.table.register_table_methods"
+            ),
             unique_id="high-level-dynamodb-table",
         )
 
@@ -548,7 +558,9 @@ class Session:
             ),
         )
 
-    def _account_id_set_without_credentials(self, account_id, access_key, secret_key):
+    def _account_id_set_without_credentials(
+        self, account_id, access_key, secret_key
+    ):
         if account_id is None:
             return False
         elif access_key is None or secret_key is None:
@@ -569,24 +581,31 @@ class RefreshableSession(Session):
     :type sts_client_kwargs: dict
     :param sts_client_kwargs:  Optional keyword arguments for the STS.Client object.
     """
-    
+
     def __init__(
         self,
         assume_role_kwargs: dict,
         defer_refresh: bool = True,
-        sts_client_kwargs: dict = {},
+        sts_client_kwargs: dict = None,
         **kwargs,
     ):
         super().__init__(**kwargs)
         self.assume_role_kwargs = assume_role_kwargs
-        self._sts_client = boto3.client(service_name="sts", **sts_client_kwargs)
+        if sts_client_kwargs is not None:
+            self._sts_client = boto3.client(
+                service_name="sts", **sts_client_kwargs
+            )
+        else:
+            self._sts_client = boto3.client(service_name="sts")
 
         # determining how exactly to refresh expired temporary credentials
         if not defer_refresh:
-            self._session._credentials = RefreshableCredentials.create_from_metadata(
-                metadata=self._get_credentials(),
-                refresh_using=self._get_credentials,
-                method="sts-assume-role",
+            self._session._credentials = (
+                RefreshableCredentials.create_from_metadata(
+                    metadata=self._get_credentials(),
+                    refresh_using=self._get_credentials,
+                    method="sts-assume-role",
+                )
             )
         else:
             self._session._credentials = DeferredRefreshableCredentials(
@@ -601,5 +620,7 @@ class RefreshableSession(Session):
             "access_key": _temporary_credentials.get("AccessKeyId"),
             "secret_key": _temporary_credentials.get("SecretAccessKey"),
             "token": _temporary_credentials.get("SessionToken"),
-            "expiry_time": _temporary_credentials.get("Expiration").isoformat(),
+            "expiry_time": _temporary_credentials.get(
+                "Expiration"
+            ).isoformat(),
         }
