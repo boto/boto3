@@ -13,9 +13,7 @@
 import copy as python_copy
 from functools import partial
 
-from botocore.context import with_current_context
 from botocore.exceptions import ClientError
-from botocore.useragent import register_feature_id
 
 from boto3 import utils
 from boto3.s3.transfer import (
@@ -24,6 +22,29 @@ from boto3.s3.transfer import (
     TransferConfig,
     create_transfer_manager,
 )
+
+try:
+    from botocore.context import with_current_context
+except ImportError:
+    from functools import wraps
+
+    def with_current_context(hook=None):
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+
+            return wrapper
+
+        return decorator
+
+
+try:
+    from botocore.useragent import register_feature_id
+except ImportError:
+
+    def register_feature_id(feature_id):
+        pass
 
 
 def inject_s3_transfer_methods(class_attributes, **kwargs):
