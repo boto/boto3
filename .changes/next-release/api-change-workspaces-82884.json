@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``workspaces``",
+  "description": "[``botocore``] Added DeviceTypeWorkSpacesThinClient type to allow users to access their WorkSpaces through a WorkSpaces Thin Client."
+}
