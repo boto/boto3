@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] The release addresses Amazon ECS documentation tickets.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Added support for ml.trn1.32xlarge instance type in Reserved Capacity Offering",
+    "type": "api-change"
+  }
+]
