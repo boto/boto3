@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.37.8
+======
+
+* api-change:``bedrock``: [``botocore``] This releases adds support for Custom Prompt Router
+* api-change:``cloudtrail``: [``botocore``] Doc-only update for CloudTrail.
+* api-change:``ivs-realtime``: [``botocore``] IVS Real-Time now offers customers the ability to merge fragmented recordings in the event of a participant disconnect.
+* api-change:``networkflowmonitor``: [``botocore``] This release contains 2 changes. 1: DeleteScope/GetScope/UpdateScope operations now return 404 instead of 500 when the resource does not exist. 2: Expected string format for clientToken fields of CreateMonitorInput/CreateScopeInput/UpdateMonitorInput have been updated to be an UUID based string.
+* api-change:``redshift-data``: [``botocore``] This release adds support for ListStatements API to filter statements by ClusterIdentifier, WorkgroupName, and Database.
+* api-change:``wafv2``: [``botocore``] You can now perform an exact match or rate limit aggregation against the web request's JA4 fingerprint.
+* api-change:``workspaces``: [``botocore``] Added a new ModifyEndpointEncryptionMode API for managing endpoint encryption settings.
+
+
 1.37.7
 ======
 
