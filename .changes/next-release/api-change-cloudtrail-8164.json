@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudtrail``",
-  "description": "[``botocore``] Doc-only update for CloudTrail."
-}
