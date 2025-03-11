@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medialive``",
-  "description": "[``botocore``] Add an enum option DISABLED for Output Locking Mode under Global Configuration."
-}
