@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.37.12
+=======
+
+* api-change:``acm-pca``: [``botocore``] Private Certificate Authority service now supports P521 and RSA3072 key algorithms.
+* api-change:``amplify``: [``botocore``] Introduced support for Skew Protection. Added enableSkewProtection field to createBranch and updateBranch API.
+* api-change:``codebuild``: [``botocore``] AWS CodeBuild now supports webhook filtering by organization name
+* api-change:``datazone``: [``botocore``] This release adds support to update projects and environments
+* api-change:``dynamodb``: [``botocore``] Generate account endpoints for DynamoDB requests using ARN-sourced account ID when available
+* api-change:``ec2``: [``botocore``] This release changes the CreateLaunchTemplate, CreateLaunchTemplateVersion, ModifyLaunchTemplate CLI and SDKs such that if you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.
+* api-change:``ivs-realtime``: [``botocore``] IVS Real-Time now offers customers the ability to adjust the participant & composition recording segment duration
+* api-change:``logs``: [``botocore``] Updated CreateLogAnomalyDetector to accept only kms key arn
+* api-change:``mediapackagev2``: [``botocore``] This release adds the ResetChannelState and ResetOriginEndpointState operation to reset MediaPackage V2 channel and origin endpoint. This release also adds a new field, UrlEncodeChildManifest, for HLS/LL-HLS to allow URL-encoding child manifest query string based on the requirements of AWS SigV4.
+* api-change:``s3control``: [``botocore``] Updating GetDataAccess response for S3 Access Grants to include the matched Grantee for the requested prefix
+
+
 1.37.11
 =======
 
