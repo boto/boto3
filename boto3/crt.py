@@ -41,7 +41,6 @@ PROCESS_LOCK_NAME = 'boto3'
 
 
 def _create_crt_client(session, config, region_name, cred_provider):
-    print("_create_crt_client")
     """Create a CRT S3 Client for file transfer.
 
     Instantiating many of these may lead to degraded performance or
@@ -76,7 +75,6 @@ def _create_crt_s3_client(
 
 
 def _initialize_crt_transfer_primatives(client, config):
-    print(f"before _initialize_crt_transfer_primatives is {CRT_S3_CLIENT}")
     lock = acquire_crt_s3_process_lock(PROCESS_LOCK_NAME)
     if lock is None:
         # If we're unable to acquire the lock, we cannot
