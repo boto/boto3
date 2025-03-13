@@ -223,7 +223,7 @@ information about each event can be found in the corresponding sections below:
 
   ``2 *`` - ``creating-resource-class`` is emitted ONLY when using a service resource.
 
-  ``8 *`` - ``after-call`` is emitted when a successful API response is received.
+  ``8 *`` - ``after-call`` is emitted once the API response is received.
 
   ``9 *`` - ``after-call-error`` is emitted when an unsuccessful API response is received.
 
