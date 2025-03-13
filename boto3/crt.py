@@ -29,7 +29,6 @@ from s3transfer.crt import (
     CRTTransferManager,
     acquire_crt_s3_process_lock,
     create_s3_crt_client,
-    clean_up_s3_crt_client
 )
 
 # Singletons for CRT-backed transfers
