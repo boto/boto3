@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.37.13
+=======
+
+* api-change:``cognito-identity``: [``botocore``] Updated API model build artifacts for identity pools
+* api-change:``cognito-idp``: [``botocore``] Minor description updates to API parameters
+* api-change:``glue``: [``botocore``] This release added AllowFullTableExternalDataAccess to glue catalog resource.
+* api-change:``lakeformation``: [``botocore``] This release added "condition" to LakeFormation OptIn APIs, also added WithPrivilegedAccess flag to RegisterResource and DescribeResource.
+
+
 1.37.12
 =======
 
