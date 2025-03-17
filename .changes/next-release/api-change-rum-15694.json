@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rum``",
-  "description": "[``botocore``] CloudWatch RUM now supports unminification of JS error stack traces."
-}
