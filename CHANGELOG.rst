@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.37.15
+=======
+
+* api-change:``appsync``: [``botocore``] Providing Tagging support for DomainName in AppSync
+* api-change:``cleanrooms``: [``botocore``] This release adds support for PySpark jobs. Customers can now analyze data by running jobs using approved PySpark analysis templates.
+* api-change:``mediaconvert``: [``botocore``] This release adds support for AVC passthrough, the ability to specify PTS offset without padding, and an A/V segment matching feature.
+* api-change:``route53``: [``botocore``] Amazon Route 53 now supports the iso-f regions for private DNS Amazon VPCs and cloudwatch healthchecks.
+
+
 1.37.14
 =======
 
