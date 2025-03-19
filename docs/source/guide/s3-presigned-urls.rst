@@ -43,10 +43,11 @@ when the URL is generated.
         # Generate a presigned URL for the S3 object
         s3_client = boto3.client('s3')
         try:
-            response = s3_client.generate_presigned_url('get_object',
-                                                        Params={'Bucket': bucket_name,
-                                                                'Key': object_name},
-                                                        ExpiresIn=expiration)
+            response = s3_client.generate_presigned_url(
+                'get_object',
+                Params={'Bucket': bucket_name, 'Key': object_name},
+                ExpiresIn=expiration,
+            )
         except ClientError as e:
             logging.error(e)
             return None
@@ -63,7 +64,7 @@ perform a GET request.
 
 .. code-block:: python
 
-    import requests    # To install: pip install requests
+    import requests  # To install: pip install requests
 
     url = create_presigned_url('amzn-s3-demo-bucket', 'OBJECT_NAME')
     if url is not None:
@@ -92,8 +93,9 @@ the appropriate method so this argument is not normally required.
     from botocore.exceptions import ClientError
 
 
-    def create_presigned_url_expanded(client_method_name, method_parameters=None,
-                                      expiration=3600, http_method=None):
+    def create_presigned_url_expanded(
+        client_method_name, method_parameters=None, expiration=3600, http_method=None
+    ):
         """Generate a presigned URL to invoke an S3.Client method
 
         Not all the client methods provided in the AWS Python SDK are supported.
@@ -108,10 +110,12 @@ the appropriate method so this argument is not normally required.
         # Generate a presigned URL for the S3 client method
         s3_client = boto3.client('s3')
         try:
-            response = s3_client.generate_presigned_url(ClientMethod=client_method_name,
-                                                        Params=method_parameters,
-                                                        ExpiresIn=expiration,
-                                                        HttpMethod=http_method)
+            response = s3_client.generate_presigned_url(
+                ClientMethod=client_method_name,
+                Params=method_parameters,
+                ExpiresIn=expiration,
+                HttpMethod=http_method,
+            )
         except ClientError as e:
             logging.error(e)
             return None
@@ -134,8 +138,9 @@ request and requires additional parameters to be sent as part of the request.
     from botocore.exceptions import ClientError
 
 
-    def create_presigned_post(bucket_name, object_name,
-                              fields=None, conditions=None, expiration=3600):
+    def create_presigned_post(
+        bucket_name, object_name, fields=None, conditions=None, expiration=3600
+    ):
         """Generate a presigned URL S3 POST request to upload a file
 
         :param bucket_name: string
@@ -152,11 +157,13 @@ request and requires additional parameters to be sent as part of the request.
         # Generate a presigned S3 POST URL
         s3_client = boto3.client('s3')
         try:
-            response = s3_client.generate_presigned_post(bucket_name,
-                                                         object_name,
-                                                         Fields=fields,
-                                                         Conditions=conditions,
-                                                         ExpiresIn=expiration)
+            response = s3_client.generate_presigned_post(
+                bucket_name,
+                object_name,
+                Fields=fields,
+                Conditions=conditions,
+                ExpiresIn=expiration,
+            )
         except ClientError as e:
             logging.error(e)
             return None
@@ -172,7 +179,7 @@ presigned POST URL to perform a POST request to upload a file to S3.
 
 .. code-block:: python
 
-    import requests    # To install: pip install requests
+    import requests  # To install: pip install requests
 
     # Generate a presigned S3 POST URL
     object_name = 'OBJECT_NAME'
