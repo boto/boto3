@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.37.16
+=======
+
+* api-change:``bedrock``: [``botocore``] Support custom prompt routers for evaluation jobs
+* api-change:``ec2``: [``botocore``] Doc-only updates for EC2 for March 2025.
+* api-change:``lambda``: [``botocore``] Add Ruby 3.4 (ruby3.4) support to AWS Lambda.
+* api-change:``mediaconnect``: [``botocore``] This release adds support for NDI flow outputs in AWS Elemental MediaConnect. You can now send content from your MediaConnect transport streams directly to your NDI environment using the new NDI output type.
+* api-change:``neptune-graph``: [``botocore``] Update IAM Role ARN Validation to Support Role Paths
+* api-change:``sagemaker``: [``botocore``] Added support for g6, g6e, m6i, c6i instance types in SageMaker Processing Jobs.
+
+
 1.37.15
 =======
 
