@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotwireless``",
-  "description": "[``botocore``] Mark EutranCid under LteNmr optional."
-}

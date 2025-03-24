@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.37.19
+=======
+
+* api-change:``iotwireless``: [``botocore``] Mark EutranCid under LteNmr optional.
+* api-change:``pcs``: [``botocore``] ClusterName/ClusterIdentifier, ComputeNodeGroupName/ComputeNodeGroupIdentifier, and QueueName/QueueIdentifier can now have 10 characters, and a minimum of 3 characters. The TagResource API action can now return ServiceQuotaExceededException.
+* api-change:``qconnect``: [``botocore``] Provides the correct value for supported model ID.
+* api-change:``ssm``: [``botocore``] This release adds the AvailableSecurityUpdatesComplianceStatus field to patch baseline operations, as well as the AvailableSecurityUpdateCount and InstancesWithAvailableSecurityUpdates to patch state operations. Applies to Windows Server managed nodes only.
+
+
 1.37.18
 =======
 
