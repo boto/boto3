@@ -62,6 +62,14 @@ li {
     justify-content: center;
     cursor: pointer;
 }
+/* Aligns theme toggle and menu toggle on a medium viewport */
+.content-icon-container {
+    align-items: center;
+}
+/* Adds gap between theme toggle and menu toggle on a small viewport */
+.header-right {
+    gap: 0.5rem;
+}
 /* Safeguard for ensuring menus are always visible on larger screens. */
 @media (min-width: 82em) {
     .hide-sidebar {
