@@ -118,3 +118,7 @@ h3.admonition-title::before {
 .hidden {
     display: none;
 }
+/* Replaces in-line styling in icons.html */
+.icon-opacity{
+    opacity: 50%;
+}

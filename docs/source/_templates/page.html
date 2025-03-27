@@ -68,8 +68,8 @@ furnished to do so, subject to the following conditions:
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-half"></use></svg>
-          <svg class="theme-icon-when-auto-dark"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -101,7 +101,23 @@ furnished to do so, subject to the following conditions:
           <span>{% trans %}Back to top{% endtrans %}</span>
         </a>
         <div class="content-icon-container">
-          {%- set theme_top_of_page_buttons = [] -%}
+          {% if theme_top_of_page_button != "edit" -%}
+            {{ warning("Got configuration for 'top_of_page_button': this is deprecated.") }}
+          {%- endif -%}
+
+          {%- if theme_top_of_page_buttons == "" -%}
+            {% if theme_top_of_page_button == None -%}
+              {#- We respect the old configuration of disabling all the buttons -#}
+              {%- set theme_top_of_page_buttons = [] -%}
+            {% else %}
+              {%- set theme_top_of_page_buttons = ["view", "edit"] -%}
+            {%- endif -%}
+          {% else -%}
+            {% if theme_top_of_page_button != "edit" -%}
+              {%- set theme_top_of_page_buttons = [] -%}
+              {{ warning("Got configuration for both 'top_of_page_button' and 'top_of_page_buttons', ignoring both and removing all top of page buttons.") }}
+            {%- endif -%}
+          {%- endif -%}
           {% for button in theme_top_of_page_buttons -%}
             {% if button == "view" %}
             {%- include "components/view-this-page.html" with context -%}
@@ -115,8 +131,8 @@ furnished to do so, subject to the following conditions:
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-half"></use></svg>
-              <svg class="theme-icon-when-auto-dark"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
