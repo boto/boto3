@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sso-oidc``",
-  "description": "[``botocore``] This release adds AwsAdditionalDetails in the CreateTokenWithIAM API response."
-}
