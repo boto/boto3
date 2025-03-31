@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``eks``",
+  "description": "[``botocore``] Add support for updating RemoteNetworkConfig for hybrid nodes on EKS UpdateClusterConfig API"
+}
