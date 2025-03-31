@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-runtime``",
-  "description": "[``botocore``] Add Prompt Caching support to Converse and ConverseStream APIs"
-}

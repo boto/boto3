@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.37.24
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Add Prompt Caching support to Converse and ConverseStream APIs
+* api-change:``deadline``: [``botocore``] With this release you can use a new field to specify the search term match type. Search term match types currently support fuzzy and contains matching.
+* api-change:``ec2``: [``botocore``] Release VPC Route Server, a new feature allowing dynamic routing in VPCs.
+* api-change:``eks``: [``botocore``] Add support for updating RemoteNetworkConfig for hybrid nodes on EKS UpdateClusterConfig API
+* api-change:``marketplace-entitlement``: [``botocore``] Add support for Marketplace Entitlement Service dual-stack endpoints.
+* api-change:``outposts``: [``botocore``] Enabling Asset Level Capacity Management feature, which allows customers to create a Capacity Task for a single Asset on their active Outpost.
+* api-change:``s3``: [``botocore``] Amazon S3 adds support for S3 Access Points for directory buckets in AWS Dedicated Local Zones
+* api-change:``s3control``: [``botocore``] Amazon S3 adds support for S3 Access Points for directory buckets in AWS Dedicated Local Zones
+* api-change:``sesv2``: [``botocore``] Add dual-stack support to global endpoints.
+* api-change:``transfer``: [``botocore``] Add WebAppEndpointPolicy support for WebApps
+
+
 1.37.23
 =======
 

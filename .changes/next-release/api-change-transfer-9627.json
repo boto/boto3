@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``transfer``",
-  "description": "[``botocore``] Add WebAppEndpointPolicy support for WebApps"
-}
