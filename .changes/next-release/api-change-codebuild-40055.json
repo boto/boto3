@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codebuild``",
-  "description": "[``botocore``] This release adds support for environment type WINDOWS_SERVER_2022_CONTAINER in ProjectEnvironment"
-}
