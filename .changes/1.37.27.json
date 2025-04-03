@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``bedrock-agent``",
+    "description": "[``botocore``] Added optional \"customMetadataField\" for Amazon Aurora knowledge bases, allowing single-column metadata. Also added optional \"textIndexName\" for MongoDB Atlas knowledge bases, enabling hybrid search support.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-voice``",
+    "description": "[``botocore``] Added FOC date as an attribute of PhoneNumberOrder, added AccessDeniedException as a possible return type of ValidateE911Address",
+    "type": "api-change"
+  },
+  {
+    "category": "``mailmanager``",
+    "description": "[``botocore``] Add support for Dual_Stack and PrivateLink types of IngressPoint. For configuration requests, SES Mail Manager will now accept both IPv4/IPv6 dual-stack endpoints and AWS PrivateLink VPC endpoints for email receiving.",
+    "type": "api-change"
+  },
+  {
+    "category": "``opensearch``",
+    "description": "[``botocore``] Improve descriptions for various API commands and data types.",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53``",
+    "description": "[``botocore``] Added us-gov-east-1 and us-gov-west-1 as valid Latency Based Routing regions for change-resource-record-sets.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Adds support for i3en, m7i, r7i instance types for SageMaker Hyperpod",
+    "type": "api-change"
+  },
+  {
+    "category": "``sesv2``",
+    "description": "[``botocore``] This release enables customers to provide attachments in the SESv2 SendEmail and SendBulkEmail APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``transcribe``",
+    "description": "[``botocore``] This Feature Adds Support for the \"zh-HK\" Locale for Batch Operations",
+    "type": "api-change"
+  },
+  {
+    "category": "Eventstream",
+    "description": "[``botocore``] The event streams maximum payload size is now required to be 24Mb or less.",
+    "type": "enhancement"
+  }
+]
