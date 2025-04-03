@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``opensearch``",
+  "description": "[``botocore``] Improve descriptions for various API commands and data types."
+}

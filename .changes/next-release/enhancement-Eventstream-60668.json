@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Eventstream",
+  "description": "[``botocore``] The event streams maximum payload size is now required to be 24Mb or less."
+}
