@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.37.28
+=======
+
+* api-change:``ds-data``: [``botocore``] Doc only update - fixed broken links.
+* api-change:``ec2``: [``botocore``] Doc-only updates for Amazon EC2
+* api-change:``events``: [``botocore``] Amazon EventBridge adds support for customer-managed keys on Archives and validations for two fields: eventSourceArn and kmsKeyIdentifier.
+* api-change:``s3control``: [``botocore``] Updated max size of Prefixes parameter of Scope data type.
+
+
 1.37.27
 =======
 
