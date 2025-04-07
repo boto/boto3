@@ -132,9 +132,9 @@ importlib-metadata==8.0.0 \
     --hash=sha256:15584cf2b1bf449d98ff8a6ff1abef57bf20f3ac6454f431736cd3e660921b2f \
     --hash=sha256:188bd24e4c346d3f0a933f275c2fec67050326a856b9a359881d7c2a697e8812
     # via sphinx
-jinja2==3.1.4 \
-    --hash=sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369 \
-    --hash=sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d
+jinja2==3.1.6 \
+    --hash=sha256:0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d \
+    --hash=sha256:85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
     # via sphinx
 markupsafe==2.1.5 \
     --hash=sha256:00e046b6dd71aa03a41079792f8473dc494d564611a8f89bbbd7cb93295ebdcf \
