@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codebuild``",
+  "description": "[``botocore``] AWS CodeBuild now offers an enhanced debugging experience."
+}
