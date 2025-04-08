@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``storagegateway``",
-  "description": "[``botocore``] Added new ActiveDirectoryStatus value, ListCacheReports paginator, and support for longer pagination tokens."
-}
