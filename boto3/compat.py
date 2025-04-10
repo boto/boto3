@@ -24,6 +24,8 @@ from boto3.exceptions import PythonDeprecationWarning
 # ConnectionError
 SOCKET_ERROR = ConnectionError
 
+_APPEND_MODE_CHAR = 'a'
+
 import collections.abc as collections_abc
 
 
@@ -80,3 +82,7 @@ def _warn_deprecated_python():
             "later. More information can be found here: {}"
         ).format(py_version[0], py_version[1], params['date'], params['blog_link'])
         warnings.warn(warning, PythonDeprecationWarning)
+
+
+def is_append_mode(fileobj):
+    return hasattr(fileobj, 'mode') and _APPEND_MODE_CHAR in fileobj.mode
