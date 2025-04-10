@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``m2``",
-  "description": "[``botocore``] Introduce three new APIs: CreateDataSetExportTask, GetDataSetExportTask and ListDataSetExportHistory. Add support for batch restart for Blu Age applications."
-}
