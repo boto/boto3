@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "``download_fileobj``",
-  "description": "Fileobj provided in append mode will no longer allow concurrent writes to preserve data integrity."
-}

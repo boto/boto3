@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect-contact-lens``",
-  "description": "[``botocore``] Making sentiment optional for ListRealtimeContactAnalysisSegments Response depending on conversational analytics configuration"
-}

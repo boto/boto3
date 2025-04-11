@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.37.33
+=======
+
+* api-change:``connect-contact-lens``: [``botocore``] Making sentiment optional for ListRealtimeContactAnalysisSegments Response depending on conversational analytics configuration
+* api-change:``datazone``: [``botocore``] Raise hard limit of authorized principals per SubscriptionTarget from 10 to 20.
+* api-change:``detective``: [``botocore``] Add support for Detective DualStack endpoints
+* api-change:``dynamodb``: [``botocore``] Doc only update for API descriptions.
+* api-change:``marketplace-entitlement``: [``botocore``] Add support for Marketplace Entitlement Service dual-stack endpoints for CN and GOV regions
+* api-change:``meteringmarketplace``: [``botocore``] Add support for Marketplace Metering Service dual-stack endpoints for CN regions
+* api-change:``pcs``: [``botocore``] Changed the minimum length of clusterIdentifier, computeNodeGroupIdentifier, and queueIdentifier to 3.
+* api-change:``verifiedpermissions``: [``botocore``] Adds deletion protection support to policy stores. Deletion protection is disabled by default, can be enabled via the CreatePolicyStore or UpdatePolicyStore APIs, and is visible in GetPolicyStore.
+* bugfix:``download_fileobj``: Fileobj provided in append mode will no longer allow concurrent writes to preserve data integrity.
+
+
 1.37.32
 =======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``marketplace-entitlement``",
-  "description": "[``botocore``] Add support for Marketplace Entitlement Service dual-stack endpoints for CN and GOV regions"
-}
