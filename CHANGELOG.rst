@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.37.34
+=======
+
+* api-change:``entityresolution``: [``botocore``] This is to add new metrics to our GetIdMappingJob API and also update uniqueId naming for batchDeleteUniqueIds API to be more accurate
+* api-change:``taxsettings``: [``botocore``] Indonesia SOR Tax Registration Launch
+
+
 1.37.33
 =======
 
