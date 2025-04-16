@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``resource-groups``",
-  "description": "[``botocore``] Resource Groups: TagSyncTasks can be created with ResourceQuery"
-}

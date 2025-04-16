@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``events``",
-  "description": "[``botocore``] Adding support for KmsKeyIdentifer in CreateConnection, UpdateConnection and DescribeConnection APIs"
-}
