@@ -208,8 +208,8 @@ function setupKeyboardFriendlyNavigation() {
 function loadShortbread() {
 	if (typeof AWSCShortbread !== "undefined") {
 		const shortbread = AWSCShortbread({
-			// If you're testing in your dev environment, use ".cloudfront.net" for domain, else ".amazonaws.com"
-			domain: ".amazonaws.com",
+			// If you're testing in your dev environment, use ".cloudfront.net" for domain, else "boto3.amazonaws.com"
+			domain: "boto3.amazonaws.com",
 		});
 
 		// Check for cookie consent
