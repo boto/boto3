@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.37.35
+=======
+
+* api-change:``connectcases``: [``botocore``] This feature provides capabilities to help track and meet service level agreements (SLAs) on cases programmatically. It allows configuring a new related item of type `Sla` on a case using CreateRelatedItem API and provides the ability to search for this new related item using SearchRelatedItems API.
+* api-change:``dsql``: [``botocore``] Added GetClusterEndpointService API. The new API allows retrieving endpoint service name specific to a cluster.
+* api-change:``eks``: [``botocore``] Added support for new AL2023 ARM64 NVIDIA AMIs to the supported AMITypes.
+* api-change:``events``: [``botocore``] Adding support for KmsKeyIdentifer in CreateConnection, UpdateConnection and DescribeConnection APIs
+* api-change:``resource-groups``: [``botocore``] Resource Groups: TagSyncTasks can be created with ResourceQuery
+* api-change:``s3tables``: [``botocore``] S3 Tables now supports setting encryption configurations on table buckets and tables. Encryption configurations can use server side encryption using AES256 or KMS customer-managed keys.
+* api-change:``servicecatalog``: [``botocore``] Updated default value for the access-level-filter in SearchProvisionedProducts API to Account. For access to userLevel or roleLevel, the user must provide access-level-filter parameter.
+
+
 1.37.34
 =======
 
