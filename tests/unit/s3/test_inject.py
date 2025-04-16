@@ -16,6 +16,7 @@ import pytest
 from botocore.exceptions import ClientError
 
 from boto3.s3 import inject
+from boto3.s3.transfer import TransferConfig
 from tests import mock, unittest
 
 
@@ -263,3 +264,19 @@ class TestObejctSummaryLoad(unittest.TestCase):
         self.head_object_response.pop('ContentLength')
         inject.object_summary_load(self.resource)
         assert self.resource.meta.data == {'ETag': 'my-etag'}
+
+
+def test_disable_threading_if_append_mode(caplog, tmp_path):
+    config = TransferConfig(use_threads=True)
+    with open(tmp_path / 'myfile', 'ab') as f:
+        inject.disable_threading_if_append_mode(config, f)
+    assert config.use_threads is False
+    assert 'A single thread will be used' in caplog.text
+
+
+def test_threading_not_disabled_if_not_append_mode(caplog, tmp_path):
+    config = TransferConfig(use_threads=True)
+    with open(tmp_path / 'myfile', 'wb') as f:
+        inject.disable_threading_if_append_mode(config, f)
+    assert config.use_threads is True
+    assert 'A single thread will be used' not in caplog.text
