@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecs``",
-  "description": "[``botocore``] Adds a new AccountSetting - defaultLogDriverMode for ECS."
-}

@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.37.36
+=======
+
+* api-change:``accessanalyzer``: [``botocore``] Added new resource types to evaluate for public access in resource policies and added support for S3 directory bucket access points.
+* api-change:``amp``: [``botocore``] Add Workspace Configuration APIs for Amazon Prometheus
+* api-change:``autoscaling``: [``botocore``] Doc only update for EC2 Auto Scaling.
+* api-change:``bedrock``: [``botocore``] With this release, Bedrock Evaluation will now support custom metrics for evaluation.
+* api-change:``connect``: [``botocore``] This release adds following capabilities to Contact Lens Rules APIs 1/ 'ASSIGN_SLA' action and  '$.Case.TemplateId' comparison value for 'OnCaseCreate' and 'OnCaseUpdate' event sources 2/ 'OnSlaBreach' Cases event source which supports '$.RelatedItem.SlaConfiguration.Name' comparison value
+* api-change:``ecs``: [``botocore``] Adds a new AccountSetting - defaultLogDriverMode for ECS.
+* api-change:``iotfleetwise``: [``botocore``] We've added stricter parameter validations to AWS IoT FleetWise signal catalog, model manifest, and decoder manifest APIs.
+* api-change:``memorydb``: [``botocore``] Added support for IPv6 and dual stack for Valkey and Redis clusters. Customers can now launch new Valkey and Redis clusters with IPv6 and dual stack networking support.
+* api-change:``omics``: [``botocore``] Add versioning for HealthOmics workflows
+
+
 1.37.35
 =======
 
