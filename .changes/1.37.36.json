@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``accessanalyzer``",
+    "description": "[``botocore``] Added new resource types to evaluate for public access in resource policies and added support for S3 directory bucket access points.",
+    "type": "api-change"
+  },
+  {
+    "category": "``amp``",
+    "description": "[``botocore``] Add Workspace Configuration APIs for Amazon Prometheus",
+    "type": "api-change"
+  },
+  {
+    "category": "``autoscaling``",
+    "description": "[``botocore``] Doc only update for EC2 Auto Scaling.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock``",
+    "description": "[``botocore``] With this release, Bedrock Evaluation will now support custom metrics for evaluation.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release adds following capabilities to Contact Lens Rules APIs 1/ 'ASSIGN_SLA' action and  '$.Case.TemplateId' comparison value for 'OnCaseCreate' and 'OnCaseUpdate' event sources 2/ 'OnSlaBreach' Cases event source which supports '$.RelatedItem.SlaConfiguration.Name' comparison value",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Adds a new AccountSetting - defaultLogDriverMode for ECS.",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotfleetwise``",
+    "description": "[``botocore``] We've added stricter parameter validations to AWS IoT FleetWise signal catalog, model manifest, and decoder manifest APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``memorydb``",
+    "description": "[``botocore``] Added support for IPv6 and dual stack for Valkey and Redis clusters. Customers can now launch new Valkey and Redis clusters with IPv6 and dual stack networking support.",
+    "type": "api-change"
+  },
+  {
+    "category": "``omics``",
+    "description": "[``botocore``] Add versioning for HealthOmics workflows",
+    "type": "api-change"
+  }
+]
