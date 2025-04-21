@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``firehose``",
-  "description": "[``botocore``] Documentation update regarding the number of streams you can create using the CreateDeliveryStream API."
-}
