@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.37.38
+=======
+
+* api-change:``arc-zonal-shift``: [``botocore``] Updates to documentation and exception types for Zonal Autoshift
+* api-change:``budgets``: [``botocore``] Releasing the new Budget FilterExpression and Metrics fields to support more granular filtering options. These new fields are intended to replace CostFilters and CostTypes, which are deprecated as of 2025/18/04.
+* api-change:``firehose``: [``botocore``] Documentation update regarding the number of streams you can create using the CreateDeliveryStream API.
+* api-change:``mediatailor``: [``botocore``] Added support for Recurring Prefetch and Traffic Shaping on both Single and Recurring Prefetch. ListPrefetchSchedules now return single prefetchs by default and can be provided scheduleType of SINGLE, RECURRING, AND ALL.
+* api-change:``qbusiness``: [``botocore``] The CheckDocumentAccess API for Amazon Q Business is a self-service debugging API that allows administrators to verify document access permissions and review Access Control List (ACL) configurations.
+
+
 1.37.37
 =======
 
