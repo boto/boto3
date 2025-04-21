@@ -1,6 +1,4 @@
-sphinx==7.4.7 ; python_version >= "3.9"
-# Use sphinx 7.1.2 for Python 3.8
-sphinx==7.1.2 ; python_version < "3.9"
+sphinx==7.4.7
 furo==2024.08.06
 sphinx_copybutton==0.5.1
 sphinx-remove-toctrees==0.0.3
