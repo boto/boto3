@@ -13,15 +13,14 @@ module) and Boto3 (which implements the API functionality and higher-level featu
 
 Timeline
 --------
-Going forward, all projects using Boto3 need to transition to Python 3.8 or later. Boto3 and
-Botocore ended support for Python 3.7 on December, 13, 2023, and support for Python 2.7
-ended July 15, 2021.
+Going forward, all projects using Boto3 need to transition to a supported version of Python 3. Boto3 and
+Botocore ended support for Python 2.7 on July 15, 2021.
 
 Updating your project to use Python 3
 -------------------------------------
 
-Before you begin to update your project and environment, make sure you’ve installed or updated to
-Python 3.8 or later as described in :ref:`upgrade to Python 3 <quickstart_install_python>`. You can
+Before you begin to update your project and environment, make sure you’ve installed or updated to a
+supported version of Python as described in :ref:`upgrade to Python 3 <quickstart_install_python>`. You can
 get Python from the `PSF web site <https://www.python.org/downloads>`_ or using your local package
 manager.
 
@@ -43,7 +42,7 @@ To update the AWS SDK for Python
 3. (Optional) Verify that the SDK is using the correct version of Python::
 
     $ python3 -c "import boto3, sys; print(f'{sys.version} \nboto3: {boto3.__version__}')"
-    3.8.6 (default, Jan  7 2021, 17:11:21)
+    3.x.y (default, Jan  7 2021, 17:11:21)
     [GCC 7.3.1 20180712 (Red Hat 7.3.1-11)]
     boto3: 1.16.15
 
