@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cognito-idp``",
+  "description": "[``botocore``] This release adds refresh token rotation."
+}
