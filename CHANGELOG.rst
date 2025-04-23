@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.38.1
+======
+
+* api-change:``codebuild``: [``botocore``] Add support for custom instance type for reserved capacity fleets
+* api-change:``ecs``: [``botocore``] Add support to roll back an In_Progress ECS Service Deployment
+* api-change:``imagebuilder``: [``botocore``] Add all ``imagebuilder`` modeled paginators that are currently supported by botocore.
+* api-change:``resource-explorer-2``: [``botocore``] Documentation-only update for CreateView option correction
+
+
 1.38.0
 ======
 
