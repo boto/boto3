@@ -1,0 +1,22 @@
+[
+  {
+    "category": "``codebuild``",
+    "description": "[``botocore``] Add support for custom instance type for reserved capacity fleets",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Add support to roll back an In_Progress ECS Service Deployment",
+    "type": "api-change"
+  },
+  {
+    "category": "``imagebuilder``",
+    "description": "[``botocore``] Add all ``imagebuilder`` modeled paginators that are currently supported by botocore.",
+    "type": "api-change"
+  },
+  {
+    "category": "``resource-explorer-2``",
+    "description": "[``botocore``] Documentation-only update for CreateView option correction",
+    "type": "api-change"
+  }
+]
