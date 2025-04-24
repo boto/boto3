@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.38.2
+======
+
+* api-change:``apprunner``: [``botocore``] AWS App Runner adds Node.js 22 runtime.
+* api-change:``appsync``: [``botocore``] Add data source support to Event APIs
+* api-change:``bedrock-data-automation``: [``botocore``] Added support for modality routing and modality enablement on CreateDataAutomationProject and UpdateDataAutomationProject APIs
+* api-change:``codebuild``: [``botocore``] Remove redundant validation check.
+* api-change:``dynamodb``: [``botocore``] Add support for ARN-sourced account endpoint generation for TransactWriteItems. This will generate account endpoints for DynamoDB TransactWriteItems requests using ARN-sourced account ID when available.
+* api-change:``ecs``: [``botocore``] Documentation only release for Amazon ECS
+* api-change:``pcs``: [``botocore``] Documentation-only update: added valid values for the version property of the Scheduler and SchedulerRequest data types.
+* api-change:``rds``: [``botocore``] This Amazon RDS release adds support for managed master user passwords for Oracle CDBs.
+
+
 1.38.1
 ======
 
