@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ecs``",
+  "description": "[``botocore``] Documentation only release for Amazon ECS."
+}
