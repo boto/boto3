@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.38.4
+======
+
+* api-change:``acm``: [``botocore``] Add support for file-based HTTP domain control validation, available through Amazon CloudFront.
+* api-change:``bedrock-runtime``: [``botocore``] This release adds native h2 support for the bedrock runtime API, the support is only limited to SDKs that support h2 requests natively.
+* api-change:``cloudfront``: [``botocore``] Add distribution tenant, connection group, and multi-tenant distribution APIs to the CloudFront SDK.
+* api-change:``dynamodb``: [``botocore``] Doc only update for GSI descriptions.
+* api-change:``imagebuilder``: [``botocore``] Add integration with SSM Parameter Store to Image Builder.
+
+
 1.38.3
 ======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``imagebuilder``",
-  "description": "[``botocore``] Add integration with SSM Parameter Store to Image Builder."
-}
