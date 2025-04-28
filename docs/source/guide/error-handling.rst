@@ -245,7 +245,8 @@ Botocore exceptions will have detailed error messaging when those exceptions are
 
 Outside of specific error or exception details and messaging, you might want to extract additional metadata from error responses:
 
-* *Exception class and error message* - You can use this data to build logic around, or in response to, these errors and exceptions.
+* *Exception class* - You can use this data to build logic around, or in response to, these errors and exceptions.
+* *Error message* - This data can help reason about the cause of the error and provide more context around the issue. These messages are subject to change and should not be relied upon in code.
 * *Request ID and HTTP status code* - AWS service exceptions might still be vague or lacking in details. If this occurs, contacting customer support and providing the AWS service name, error, error message, and request ID could allow a support engineer to further look into your issue.
 
 Using a low-level Amazon SQS client, here’s an example of catching a generic or vague exception from the AWS service, and parsing out useful metadata from the error response.
