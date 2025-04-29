@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.38.5
+======
+
+* api-change:``connectcases``: [``botocore``] Introduces CustomEntity as part of the UserUnion data type. This field is used to indicate the entity who is performing the API action.
+* api-change:``kinesis``: [``botocore``] Amazon KDS now supports tagging and attribute-based access control (ABAC) for enhanced fan-out consumers.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] AWS End User Messaging has added MONITOR and FILTER functionality to SMS Protect.
+* api-change:``qbusiness``: [``botocore``] Add support for anonymous user access for Q Business applications
+* api-change:``sagemaker``: [``botocore``] Introduced support for P5en instance types on SageMaker Studio for JupyterLab and CodeEditor applications.
+* api-change:``sagemaker-metrics``: [``botocore``] SageMaker Metrics Service now supports FIPS endpoint in all US and Canada Commercial regions.
+* api-change:``ssm``: [``botocore``] This release adds support for just-In-time node access in AWS Systems Manager. Just-in-time node access enables customers to move towards zero standing privileges by requiring operators to request access and obtain approval before remotely connecting to nodes managed by the SSM Agent.
+* api-change:``ssm-guiconnect``: [``botocore``] This release adds API support for the connection recording GUI Connect feature of AWS Systems Manager
+
+
 1.38.4
 ======
 
