@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``qbusiness``",
+  "description": "[``botocore``] Add support for anonymous user access for Q Business applications"
+}
