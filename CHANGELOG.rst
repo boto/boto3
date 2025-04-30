@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.38.6
+======
+
+* api-change:``bedrock``: [``botocore``] You can now specify a cross region inference profile as a teacher model for the CreateModelCustomizationJob API. Additionally, the GetModelCustomizationJob API has been enhanced to return the sub-task statuses of a customization job within the StatusDetails response field.
+* api-change:``bedrock-agent``: [``botocore``] Features:    Add inline code node to prompt flow
+* api-change:``bedrock-agent-runtime``: [``botocore``] Support for Custom Orchestration within InlineAgents
+* api-change:``cleanrooms``: [``botocore``] This release adds support for ProtectedQuery results to be delivered to more than one collaboration member via the new distribute output configuration in StartProtectedQuery.
+* api-change:``deadline``: [``botocore``] Adds support for tag management on workers and tag inheritance from fleets to their associated workers.
+* api-change:``ec2``: [``botocore``] Launch of cost distribution feature for IPAM owners to distribute costs to internal teams.
+* api-change:``ecr``: [``botocore``] Adds dualstack support for Amazon Elastic Container Registry (Amazon ECR).
+* api-change:``ecr-public``: [``botocore``] Adds dualstack support for Amazon Elastic Container Registry Public (Amazon ECR Public).
+* api-change:``logs``: [``botocore``] CloudWatch Logs supports "DELIVERY" log class. This log class is used only for delivering AWS Lambda logs to Amazon S3 or Amazon Data Firehose.
+* api-change:``mailmanager``: [``botocore``] Introducing new RuleSet rule PublishToSns action, which allows customers to publish email notifications to an Amazon SNS topic. New PublishToSns action enables customers to easily integrate their email workflows via Amazon SNS, allowing them to notify other systems about important email events.
+
+
 1.38.5
 ======
 
