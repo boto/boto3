@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``bedrock``",
+    "description": "[``botocore``] You can now specify a cross region inference profile as a teacher model for the CreateModelCustomizationJob API. Additionally, the GetModelCustomizationJob API has been enhanced to return the sub-task statuses of a customization job within the StatusDetails response field.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent``",
+    "description": "[``botocore``] Features:    Add inline code node to prompt flow",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent-runtime``",
+    "description": "[``botocore``] Support for Custom Orchestration within InlineAgents",
+    "type": "api-change"
+  },
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] This release adds support for ProtectedQuery results to be delivered to more than one collaboration member via the new distribute output configuration in StartProtectedQuery.",
+    "type": "api-change"
+  },
+  {
+    "category": "``deadline``",
+    "description": "[``botocore``] Adds support for tag management on workers and tag inheritance from fleets to their associated workers.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Launch of cost distribution feature for IPAM owners to distribute costs to internal teams.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecr``",
+    "description": "[``botocore``] Adds dualstack support for Amazon Elastic Container Registry (Amazon ECR).",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecr-public``",
+    "description": "[``botocore``] Adds dualstack support for Amazon Elastic Container Registry Public (Amazon ECR Public).",
+    "type": "api-change"
+  },
+  {
+    "category": "``logs``",
+    "description": "[``botocore``] CloudWatch Logs supports \"DELIVERY\" log class. This log class is used only for delivering AWS Lambda logs to Amazon S3 or Amazon Data Firehose.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mailmanager``",
+    "description": "[``botocore``] Introducing new RuleSet rule PublishToSns action, which allows customers to publish email notifications to an Amazon SNS topic. New PublishToSns action enables customers to easily integrate their email workflows via Amazon SNS, allowing them to notify other systems about important email events.",
+    "type": "api-change"
+  }
+]
