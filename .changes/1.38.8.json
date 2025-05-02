@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``bedrock-data-automation``",
+    "description": "[``botocore``] Added support for Custom output and blueprints for AUDIO data types.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ds``",
+    "description": "[``botocore``] Doc only update - fixed typos.",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis``",
+    "description": "[``botocore``] Marking ResourceARN as required for Amazon Kinesis Data Streams APIs TagResource, UntagResource, and ListTagsForResource.",
+    "type": "api-change"
+  }
+]
