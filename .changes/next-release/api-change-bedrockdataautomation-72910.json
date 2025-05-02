@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-data-automation``",
-  "description": "[``botocore``] Added support for Custom output and blueprints for AUDIO data types."
-}
