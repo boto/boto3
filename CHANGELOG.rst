@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.38.9
+======
+
+* api-change:``datazone``: [``botocore``] This release adds a new authorization policy to control the usage of custom AssetType when creating an Asset. Customer can now add new grant(s) of policyType USE_ASSET_TYPE for custom AssetTypes to apply authorization policy to projects members and domain unit owners.
+* api-change:``devicefarm``: [``botocore``] Add an optional parameter to the GetDevicePoolCompatibility API to pass in project information to check device pool compatibility.
+* api-change:``ec2``: [``botocore``] This update introduces API operations to manage and create local gateway VIF and VIF groups. It also includes API operations to describe Outpost LAGs and service link VIFs.
+* api-change:``ecs``: [``botocore``] Add support to roll back an In_Progress ECS Service Deployment
+* api-change:``mediaconvert``: [``botocore``] This release adds an optional sidecar per-frame video quality metrics report and an ALL_PCM option for audio selectors. It also changes the data type for Probe API response fields related to video and audio bitrate from integer to double.
+
+
 1.38.8
 ======
 
