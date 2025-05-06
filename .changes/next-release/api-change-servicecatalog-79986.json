@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``servicecatalog``",
+  "description": "[``botocore``] ServiceCatalog's APIs (DeleteServiceAction, DisassociateServiceActionFromProvisioningArtifact, AssociateServiceActionWithProvisioningArtifact) now throw InvalidParametersException when IdempotencyToken is invalid."
+}
