@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.38.10
+=======
+
+* api-change:``ec2``: [``botocore``] This release adds support for Amazon EBS Provisioned Rate for Volume Initialization, which lets you specify a volume initialization rate to ensure that your EBS volumes are initialized in a predictable amount of time.
+* api-change:``servicecatalog``: [``botocore``] ServiceCatalog's APIs (DeleteServiceAction, DisassociateServiceActionFromProvisioningArtifact, AssociateServiceActionWithProvisioningArtifact) now throw InvalidParametersException when IdempotencyToken is invalid.
+* api-change:``timestream-query``: [``botocore``] Add dualstack endpoints support and correct us-gov-west-1 FIPS endpoint.
+* api-change:``timestream-write``: [``botocore``] Add dualstack endpoints support.
+
+
 1.38.9
 ======
 
