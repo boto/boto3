@@ -85,4 +85,8 @@ def _warn_deprecated_python():
 
 
 def is_append_mode(fileobj):
-    return hasattr(fileobj, 'mode') and _APPEND_MODE_CHAR in fileobj.mode
+    return (
+        hasattr(fileobj, 'mode') and
+        isinstance(fileobj.mode, str) and
+        _APPEND_MODE_CHAR in fileobj.mode
+    )

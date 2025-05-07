@@ -10,6 +10,7 @@
 # distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import gzip
 import io
 
 import pytest
@@ -277,6 +278,18 @@ def test_disable_threading_if_append_mode(caplog, tmp_path):
 def test_threading_not_disabled_if_not_append_mode(caplog, tmp_path):
     config = TransferConfig(use_threads=True)
     with open(tmp_path / 'myfile', 'wb') as f:
+        inject.disable_threading_if_append_mode(config, f)
+    assert config.use_threads is True
+    assert 'A single thread will be used' not in caplog.text
+
+
+def test_threading_not_disabled_if_mode_non_string(caplog, tmp_path):
+    config = TransferConfig(use_threads=True)
+    with gzip.open(tmp_path / 'myfile', 'wb') as f:
+        # In Python 3.13, gzip started assigning strings
+        # instead of integers for mode. Explicitly set
+        # mode to an integer to ensure we test the right behavior.
+        f.mode = 2
         inject.disable_threading_if_append_mode(config, f)
     assert config.use_threads is True
     assert 'A single thread will be used' not in caplog.text
