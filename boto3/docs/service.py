@@ -10,13 +10,13 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import importlib.resources
 import os
 
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.docs.service import ServiceDocumenter as BaseServiceDocumenter
 from botocore.exceptions import DataNotFoundError
 
-import boto3
 from boto3.docs.client import Boto3ClientDocumenter
 from boto3.docs.resource import ResourceDocumenter, ServiceResourceDocumenter
 from boto3.utils import ServiceContext
@@ -24,7 +24,7 @@ from boto3.utils import ServiceContext
 
 class ServiceDocumenter(BaseServiceDocumenter):
     # The path used to find examples
-    EXAMPLE_PATH = os.path.join(os.path.dirname(boto3.__file__), 'examples')
+    EXAMPLE_PATH = str(importlib.resources.files('boto3') / 'examples')
 
     def __init__(self, service_name, session, root_docs_path):
         super().__init__(
