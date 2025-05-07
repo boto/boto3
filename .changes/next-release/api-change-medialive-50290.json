@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``medialive``",
+  "description": "[``botocore``] Enables Updating Anywhere Settings on a MediaLive Anywhere Channel."
+}
