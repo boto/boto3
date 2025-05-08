@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.38.12
+=======
+
+* api-change:``cloudfront``: [``botocore``] Doc-only update for CloudFront. These changes include customer-reported issues.
+* api-change:``codepipeline``: [``botocore``] Add support for Secrets Manager and Plaintext environment variable types in Commands action
+* api-change:``ec2``: [``botocore``] Launching the feature to support ENA queues offering flexibility to support multiple queues per Enhanced Network Interface (ENI)
+* api-change:``glue``: [``botocore``] This new release supports customizable RefreshInterval for all Saas ZETL integrations from 15 minutes to 6 days.
+* api-change:``guardduty``: [``botocore``] Updated description of a data structure.
+* api-change:``sso-admin``: [``botocore``] Update PutPermissionBoundaryToPermissionSet API's managedPolicyArn pattern to allow valid ARN only. Update ApplicationName to allow white spaces.
+
+
 1.38.11
 =======
 
