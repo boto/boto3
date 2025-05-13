@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.38.15
+=======
+
+* api-change:``bedrock``: [``botocore``] Enable cross-Region inference for Amazon Bedrock Guardrails by using the crossRegionConfig parameter when calling the CreateGuardrail or UpdateGuardrail operation.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Changes for enhanced metadata in trace
+* api-change:``controltower``: [``botocore``] AWS Control Tower now reports the inheritance drift status for EnabledBaselines through the GetEnabledBaseline and ListEnabledBaselines APIs. You can now filter EnabledBaselines by their enablement and drift status using the ListEnabledBaselines API to view accounts and OUs that require attention.
+* api-change:``dsql``: [``botocore``] CreateMultiRegionClusters and DeleteMultiRegionClusters APIs marked as deprecated. Introduced new multi-Region clusters creation experience through multiRegionProperties parameter in CreateCluster API.
+* api-change:``ecs``: [``botocore``] This release extends functionality for Amazon EBS volumes attached to Amazon ECS tasks by adding support for the new EBS volumeInitializationRate parameter in ECS RunTask/StartTask/CreateService/UpdateService APIs.
+* api-change:``license-manager``: [``botocore``] Add Tagging feature to resources in the Managed Entitlements service. License and Grant resources can now be tagged.
+
+
 1.38.14
 =======
 
