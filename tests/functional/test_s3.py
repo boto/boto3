@@ -384,13 +384,16 @@ class TestDownloadFileobj(BaseTransferTest):
         self.stub_head(content_length=len(self.contents))
         self.stub_get_object(self.contents)
 
-    def stub_get_object(self, full_contents, start_byte=0, end_byte=None):
+    def stub_get_object(
+        self, full_contents, start_byte=0, end_byte=None, extra_params=None
+    ):
         """
         Stubs out the get_object operation.
 
         :param full_contents: The FULL contents of the object
         :param start_byte: The first byte to grab.
         :param end_byte: The last byte to grab.
+        :param extra_params: Extra request parameters to expect.
         """
         get_object_response = {}
         expected_params = {}
@@ -429,6 +432,8 @@ class TestDownloadFileobj(BaseTransferTest):
             }
         )
         expected_params.update({"Bucket": self.bucket, "Key": self.key})
+        if extra_params is not None:
+            expected_params.update(extra_params)
 
         self.stubber.add_response(
             method='get_object',
@@ -436,7 +441,9 @@ class TestDownloadFileobj(BaseTransferTest):
             expected_params=expected_params,
         )
 
-    def stub_multipart_download(self, contents, part_size, num_parts):
+    def stub_multipart_download(
+        self, contents, part_size, num_parts, extra_params=None
+    ):
         self.stub_head(content_length=len(contents))
 
         for i in range(num_parts):
@@ -446,6 +453,7 @@ class TestDownloadFileobj(BaseTransferTest):
                 full_contents=contents,
                 start_byte=start_byte,
                 end_byte=end_byte,
+                extra_params=extra_params,
             )
 
     def test_client_download(self):
@@ -486,7 +494,10 @@ class TestDownloadFileobj(BaseTransferTest):
     def test_multipart_download(self):
         self.contents = b'A' * 55
         self.stub_multipart_download(
-            contents=self.contents, part_size=5, num_parts=11
+            contents=self.contents,
+            part_size=5,
+            num_parts=11,
+            extra_params={'IfMatch': self.etag},
         )
         transfer_config = TransferConfig(
             multipart_chunksize=5, multipart_threshold=1, max_concurrency=1
@@ -506,7 +517,10 @@ class TestDownloadFileobj(BaseTransferTest):
     def test_download_progress(self):
         self.contents = b'A' * 55
         self.stub_multipart_download(
-            contents=self.contents, part_size=5, num_parts=11
+            contents=self.contents,
+            part_size=5,
+            num_parts=11,
+            extra_params={'IfMatch': self.etag},
         )
         transfer_config = TransferConfig(
             multipart_chunksize=5, multipart_threshold=1, max_concurrency=1
