@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``service-quotas``",
+  "description": "[``botocore``] This release introduces CreateSupportCase operation to SDK."
+}
