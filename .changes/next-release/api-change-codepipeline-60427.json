@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codepipeline``",
-  "description": "[``botocore``] CodePipeline now supports new API ListDeployActionExecutionTargets that lists the deployment target details for deploy action executions."
-}
