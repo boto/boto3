@@ -12,7 +12,7 @@
 # language governing permissions and limitations under the License.
 
 import copy
-import os
+import importlib.resources
 
 import botocore.session
 from botocore.client import Config
@@ -147,9 +147,8 @@ class Session:
         Setup loader paths so that we can load resources.
         """
         self._loader = self._session.get_component('data_loader')
-        self._loader.search_paths.append(
-            os.path.join(os.path.dirname(__file__), 'data')
-        )
+        data_path = str(importlib.resources.files('boto3') / 'data')
+        self._loader.search_paths.append(data_path)
 
     def get_available_services(self):
         """
