@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dsql``",
-  "description": "[``botocore``] CreateMultiRegionCluster and DeleteMultiRegionCluster APIs removed"
-}
