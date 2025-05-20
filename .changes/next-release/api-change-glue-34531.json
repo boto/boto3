@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``glue``",
+  "description": "[``botocore``] Enhanced AWS Glue ListConnectionTypes API Model with additional metadata fields."
+}
