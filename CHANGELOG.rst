@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.38.20
+=======
+
+* api-change:``datasync``: [``botocore``] Remove Discovery APIs from the DataSync service
+* api-change:``ec2``: [``botocore``] This release expands the ModifyInstanceMaintenanceOptions API to enable or disable instance migration during customer-initiated reboots for EC2 Scheduled Reboot Events.
+* api-change:``glue``: [``botocore``] Enhanced AWS Glue ListConnectionTypes API Model with additional metadata fields.
+* api-change:``inspector2``: [``botocore``] This release adds GetClustersForImage API and filter updates as part of the mapping of container images to running containers feature.
+* api-change:``oam``: [``botocore``] Add IncludeTags field to GetLink, GetSink and UpdateLink API
+* api-change:``privatenetworks``: [``botocore``] The privatenetworks client has been removed following the deprecation of the service.
+* api-change:``rds``: [``botocore``] This release introduces the new DescribeDBMajorEngineVersions API for describing the properties of specific major versions of database engines.
+
+
 1.38.19
 =======
 
