@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.38.21
+=======
+
+* api-change:``application-autoscaling``: [``botocore``] Doc only update that addresses a customer reported issue.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Amazon Bedrock introduces asynchronous flows (in preview), which let you run flows for longer durations and yield control so that your application can perform other tasks and you don't have to actively monitor the flow's progress.
+* api-change:``cloudwatch``: [``botocore``] Adds support for setting up Contributor Insight rules on logs transformed via Logs Transformation feature.
+* api-change:``ec2``: [``botocore``] Release of Dualstack and Ipv6-only EC2 Public DNS hostnames
+* api-change:``partnercentral-selling``: [``botocore``] Modified validation to allow expectedCustomerSpend array with zero elements in Partner Opportunity operations.
+
+
 1.38.20
 =======
 
