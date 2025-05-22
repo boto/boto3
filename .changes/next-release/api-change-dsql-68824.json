@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dsql``",
+  "description": "[``botocore``] Features: support for customer managed encryption keys"
+}
