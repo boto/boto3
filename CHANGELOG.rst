@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.38.24
+=======
+
+* api-change:``ce``: [``botocore``] This release introduces Cost Comparison feature (GetCostAndUsageComparisons, GetCostComparisonDrivers) allowing you find cost variations across multiple dimensions and identify key drivers of spending changes.
+* api-change:``deadline``: [``botocore``] AWS Deadline Cloud service-managed fleets now support storage profiles. With storage profiles, you can map file paths between a workstation and the worker hosts running the job.
+* api-change:``ec2``: [``botocore``] This release adds three features - option to store AWS Site-to-Site VPN pre-shared keys in AWS Secrets Manager, GetActiveVpnTunnelStatus API to check the in-use VPN algorithms, and SampleType option in GetVpnConnectionDeviceSampleConfiguration API to get recommended sample configs for VPN devices.
+
+
 1.38.23
 =======
 
