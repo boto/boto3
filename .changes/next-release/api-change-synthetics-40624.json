@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``synthetics``",
-  "description": "[``botocore``] Add support to change ephemeral storage. Add a new field \"TestResult\" under CanaryRunStatus."
-}

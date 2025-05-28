@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.38.25
+=======
+
+* api-change:``cost-optimization-hub``: [``botocore``] This release allows customers to modify their preferred commitment term and payment options.
+* api-change:``ec2``: [``botocore``] Enable the option to automatically delete underlying Amazon EBS snapshots when deregistering Amazon Machine Images (AMIs)
+* api-change:``events``: [``botocore``] Allow for more than 2 characters for location codes in EventBridge ARNs
+* api-change:``network-firewall``: [``botocore``] You can now use VPC endpoint associations to create multiple firewall endpoints for a single firewall.
+* api-change:``synthetics``: [``botocore``] Add support to change ephemeral storage. Add a new field "TestResult" under CanaryRunStatus.
+
+
 1.38.24
 =======
 
