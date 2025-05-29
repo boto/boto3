@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``autoscaling``",
+  "description": "[``botocore``] Add support for \"apple\" CpuManufacturer in ABIS"
+}
