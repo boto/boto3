@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Add maintenance status field to DescribeMlflowTrackingServer API response"
-}
