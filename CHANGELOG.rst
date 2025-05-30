@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.38.27
+=======
+
+* api-change:``emr-serverless``: [``botocore``] This release adds the capability for users to specify an optional Execution IAM policy in the StartJobRun action. The resulting permissions assumed by the job run is the intersection of the permissions in the Execution Role and the specified Execution IAM Policy.
+* api-change:``sagemaker``: [``botocore``] Release new parameter CapacityReservationConfig in ProductionVariant
+
+
 1.38.26
 =======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Release new parameter CapacityReservationConfig in ProductionVariant"
-}
