@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``apigateway``",
-  "description": "[``botocore``] Adds support to set the routing mode for a custom domain name."
-}
