@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.38.30
+=======
+
+* api-change:``amplify``: [``botocore``] Update documentation for cacheConfig in CreateApp API
+* api-change:``evs``: [``botocore``] Amazon Elastic VMware Service (Amazon EVS) allows you to run VMware Cloud Foundation (VCF) directly within your Amazon VPC including simplified self-managed migration experience with guided workflow in AWS console or via AWS CLI, get full access to their VCF deployment and VCF license portability.
+* api-change:``invoicing``: [``botocore``] Added new Invoicing ListInvoiceSummaries API Operation
+* api-change:``mediaconnect``: [``botocore``] This release updates the DescribeFlow API to show peer IP addresses. You can now identify the peer IP addresses of devices connected to your sources and outputs. This helps you to verify and troubleshoot your flow's active connections.
+* api-change:``mediaconvert``: [``botocore``] This release includes support for embedding and signing C2PA content credentials in MP4 outputs.
+* api-change:``network-firewall``: [``botocore``] You can now monitor flow and alert log metrics from the Network Firewall console.
+* api-change:``sagemaker``: [``botocore``] Added support for p6-b200 instance type in SageMaker Training Jobs and Training Plans.
+* api-change:``transcribe``: [``botocore``] AWS Healthscribe now supports new templates for the clinical note summary: BIRP, SIRP, DAP, BEHAVIORAL_SOAP, and PHYSICAL_SOAP
+
+
 1.38.29
 =======
 
