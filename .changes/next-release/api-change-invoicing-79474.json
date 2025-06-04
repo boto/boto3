@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``invoicing``",
+  "description": "[``botocore``] Added new Invoicing ListInvoiceSummaries API Operation"
+}
