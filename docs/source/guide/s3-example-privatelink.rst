@@ -21,11 +21,15 @@ Configuring the client endpoint URL
 
 When configuring an S3 client to use an interface VPC endpoint it's important
 to note that only the resource type specified in the endpoint can be addressed
-using that client. Accessing both buckets and access points requires
-instantiating two clients, one for each resource type.
+using that client. An exception is Amazon S3 buckets, which can be addressed
+using `using an access point alias
+<https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-naming.html#access-points-alias>`_
+on the bucket endpoint as the bucket name. 
 
 The following example configures an S3 client to access S3 buckets via an
-interface VPC endpoint. This client cannot be used to address S3 access points.
+interface VPC endpoint. This client cannot be used to address S3 access points
+unless you `use an access point alias
+<https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-naming.html#access-points-alias>`_.
 
 .. code-block:: python
 
@@ -59,3 +63,15 @@ endpoint.
         service_name='s3control',
         endpoint_url='https://control.vpce-abc123-abcdefgh.s3.us-east-1.vpce.amazonaws.com'
     )
+
+The following example accesses an object in an Amazon S3 bucket using an access point alias.
+
+.. code-block:: python
+
+    import boto3
+
+    s3_client = boto3.client(
+        service_name='s3',
+        endpoint_url = 'https://bucket.vpce-abc123-abcdefgh.s3.us-east-1.vpce.amazonaws.com'
+    )
+    s3_client.get_object(Bucket='some-bucket-alias-s3alias', Key='file.txt')
