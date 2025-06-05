@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.38.31
+=======
+
+* api-change:``bcm-pricing-calculator``: [``botocore``] Updating the minimum for List APIs to be 1 (instead of 0)
+* api-change:``cloudformation``: [``botocore``] Add new warning type 'EXCLUDED_PROPERTIES'
+* api-change:``kms``: [``botocore``] AWS KMS announces the support for on-demand rotation of symmetric-encryption KMS keys with imported key material (EXTERNAL origin).
+* api-change:``wafv2``: [``botocore``] AWS WAF adds support for ASN-based traffic filtering and support for ASN-based rate limiting.
+
+
 1.38.30
 =======
 
