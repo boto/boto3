@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bcm-pricing-calculator``",
-  "description": "[``botocore``] Updating the minimum for List APIs to be 1 (instead of 0)"
-}
