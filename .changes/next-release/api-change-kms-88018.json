@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kms``",
-  "description": "[``botocore``] Remove unpopulated KeyMaterialId from Encrypt Response"
-}
