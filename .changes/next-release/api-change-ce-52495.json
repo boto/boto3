@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ce``",
-  "description": "[``botocore``] Support dual-stack endpoints for ce api"
-}
