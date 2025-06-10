@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.38.34
+=======
+
+* api-change:``gameliftstreams``: [``botocore``] Documentation updates for Amazon GameLift Streams to address formatting errors, correct resource ID examples, and update links to other guides
+
+
 1.38.33
 =======
 
