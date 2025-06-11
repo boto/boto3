@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.38.35
+=======
+
+* api-change:``controlcatalog``: [``botocore``] Introduced ListControlMappings API that retrieves control mappings. Added control aliases and governed resources fields in GetControl and ListControls APIs. New filtering capability in ListControls API, with implementation identifiers and implementation types.
+* api-change:``eks``: [``botocore``] Release for EKS Pod Identity Cross Account feature and disableSessionTags flag.
+* api-change:``lexv2-models``: [``botocore``] Add support for the Assisted NLU feature to improve bot performance
+* api-change:``networkmanager``: [``botocore``] Add support for public DNS hostname resolution to private IP addresses across Cloud WAN-managed VPCs. Add support for security group referencing across Cloud WAN-managed VPCs.
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation for Amazon RDS for Db2 cross-Region replicas in standby mode.
+* api-change:``wafv2``: [``botocore``] WAF now provides two DDoS protection options: resource-level monitoring for Application Load Balancers and the AWSManagedRulesAntiDDoSRuleSet managed rule group for CloudFront distributions.
+* bugfix:Serialization: [``botocore``] Fixes a bug where instances of decimal.Decimal were unable to be passed into JSON serialization
+
+
 1.38.34
 =======
 
