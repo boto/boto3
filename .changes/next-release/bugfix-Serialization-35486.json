@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Serialization",
-  "description": "[``botocore``] Fixes a bug where instances of decimal.Decimal were unable to be passed into JSON serialization"
-}

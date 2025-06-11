@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks``",
-  "description": "[``botocore``] Release for EKS Pod Identity Cross Account feature and disableSessionTags flag."
-}
