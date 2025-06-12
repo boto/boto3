@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecs``",
-  "description": "[``botocore``] This Amazon ECS  release supports updating the capacityProviderStrategy parameter in update-service."
-}
