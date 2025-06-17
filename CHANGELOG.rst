@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.38.38
+=======
+
+* api-change:``accessanalyzer``: [``botocore``] We are launching a new analyzer type, internal access analyzer. The new analyzer will generate internal access findings, which help customers understand who within their AWS organization or AWS Account has access to their critical AWS resources.
+* api-change:``acm``: [``botocore``] Adds support for Exportable Public Certificates
+* api-change:``backup``: [``botocore``] AWS Backup is adding support for integration of its logically air-gapped vaults with the AWS Organizations Multi-party approval capability.
+* api-change:``bedrock``: [``botocore``] This release of the SDK has the API and documentation for the createcustommodel API. This feature lets you copy a trained model into Amazon Bedrock for inference.
+* api-change:``dms``: [``botocore``] Add "Virtual" field to Data Provider as well as "S3Path" and "S3AccessRoleArn" fields to DataProvider settings
+* api-change:``guardduty``: [``botocore``] Adding support for extended threat detection for EKS Audit Logs and EKS Runtime Monitoring.
+* api-change:``inspector2``: [``botocore``] Add Code Repository Scanning as part of AWS InspectorV2
+* api-change:``mpa``: [``botocore``] This release enables customers to create Multi-party approval teams and approval requests to protect supported operations.
+* api-change:``network-firewall``: [``botocore``] Release of Active Threat Defense in Network Firewall
+* api-change:``organizations``: [``botocore``] Add support for policy operations on the SECURITYHUB_POLICY policy type.
+* api-change:``securityhub``: [``botocore``] Adds operations, structures, and exceptions required for public preview release of Security Hub V2.
+* api-change:``sts``: [``botocore``] The AWS Security Token Service APIs AssumeRoleWithSAML and AssumeRoleWithWebIdentity can now be invoked without pre-configured AWS credentials in the SDK configuration.
+* api-change:``wafv2``: [``botocore``] AWS WAF can now suggest protection packs for you based on the application information you provide when you create a webACL.
+
+
 1.38.37
 =======
 
