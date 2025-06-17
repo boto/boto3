@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``acm``",
-  "description": "[``botocore``] Adds support for Exportable Public Certificates"
-}
