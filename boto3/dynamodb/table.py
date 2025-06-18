@@ -117,7 +117,7 @@ class BatchWriter:
             if self._extract_pkey_values(item) == pkey_values_new:
                 self._items_buffer.remove(item)
                 logger.debug(
-                    "With overwrite_by_pkeys enabled, skipping " "request:%s",
+                    "With overwrite_by_pkeys enabled, skipping request:%s",
                     item,
                 )
 
