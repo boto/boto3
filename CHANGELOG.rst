@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.38.39
+=======
+
+* api-change:``aiops``: [``botocore``] This is the initial SDK release for Amazon AI Operations (AIOps). AIOps is a generative AI-powered assistant that helps you respond to incidents in your system by scanning your system's telemetry and quickly surface suggestions that might be related to your issue.
+* api-change:``autoscaling``: [``botocore``] Add IncludeInstances parameter to DescribeAutoScalingGroups API
+* api-change:``imagebuilder``: [``botocore``] Added paginators for ``imagebuilder``.
+* api-change:``logs``: [``botocore``] Added CloudWatch Logs Transformer support for converting CloudTrail, VPC Flow, EKS Audit, AWS WAF and Route53 Resolver logs to OCSF v1.1 format.
+* api-change:``s3``: [``botocore``] Added support for renaming objects within the same bucket using the new RenameObject API.
+* api-change:``sagemaker``: [``botocore``] Add support for p6-b200 instance type for SageMaker Hyperpod
+
+
 1.38.38
 =======
 
