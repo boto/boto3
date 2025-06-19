@@ -122,8 +122,8 @@ class TestDynamoDBCustomizations(BaseDocsFunctionalTests):
             [
                 # Make sure the request syntax is as expected.
                 'response = table.query(',
-                ('FilterExpression=Attr(\'myattribute\').' 'eq(\'myvalue\'),'),
-                ('KeyConditionExpression=Key(\'mykey\')' '.eq(\'myvalue\'),'),
+                ('FilterExpression=Attr(\'myattribute\').eq(\'myvalue\'),'),
+                ('KeyConditionExpression=Key(\'mykey\').eq(\'myvalue\'),'),
                 # Make sure the request parameter is documented correctly.
                 (
                     ':type FilterExpression: condition from '
