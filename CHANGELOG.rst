@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.38.40
+=======
+
+* api-change:``bedrock``: [``botocore``] This release of the SDK has the API and documentation for the createcustommodel API. This feature lets you copy a trained model into Amazon Bedrock for inference.
+* api-change:``emr-serverless``: [``botocore``] This release adds the capability to enable IAM IdentityCenter Trusted Identity Propagation for users running Interactive Sessions on EMR Serverless Applications.
+* api-change:``lambda``: [``botocore``] Support Schema Registry feature for Kafka Event Source Mapping. Customers can now configure a Schema Registry to enable schema validation and filtering for Avro, Protobuf, and JSON-formatted events in Lambda for Kafka Event Source.
+* api-change:``payment-cryptography``: [``botocore``] Additional support for managing HMAC keys that adheres to changes documented in X9.143-2021 and provides better interoperability for key import/export
+* api-change:``payment-cryptography-data``: [``botocore``] Additional support for managing HMAC keys that adheres to changes documented in X9.143-2021 and provides better interoperability for key import/export
+* api-change:``sagemaker``: [``botocore``] This release introduces alternative support for utilizing CFN templates from S3 for SageMaker Projects.
+
+
 1.38.39
 =======
 
