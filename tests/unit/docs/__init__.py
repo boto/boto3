@@ -14,9 +14,9 @@ import json
 import os
 import shutil
 import tempfile
+from collections import OrderedDict
 
 import botocore.session
-from botocore.compat import OrderedDict
 from botocore.docs.bcdoc.restdoc import DocumentStructure
 from botocore.loaders import Loader
 
