@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``elbv2``",
+  "description": "[``botocore``] Add Paginator for DescribeAccountLimits, and fix Paginators for DescribeTrustStoreAssociations, DescribeTrustStoreRevocations, and DescribeTrustStores"
+}

@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``batch``",
+  "description": "[``botocore``] Add userdataType to LaunchTemplateSpecification and LaunchTemplateSpecificationOverride."
+}
