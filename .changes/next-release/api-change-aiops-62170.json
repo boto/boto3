@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``aiops``",
-  "description": "[``botocore``] Adds support for cross account investigations for CloudWatch investigations AI Operations (AIOps)."
-}
