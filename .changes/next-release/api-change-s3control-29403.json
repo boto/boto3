@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``s3control``",
+  "description": "[``botocore``] Add support for the ability to use Amazon S3 Access Points with Amazon FSx for OpenZFS file systems."
+}
