@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``textract``",
-  "description": "[``botocore``] Add RotationAngle field to Geometry of WORD blocks for Textract AnalyzeDocument API"
-}
