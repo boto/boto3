@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kms``",
-  "description": "[``botocore``] This release updates AWS CLI examples for KMS APIs."
-}
