@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``config``",
+  "description": "[``botocore``] Added important considerations to the PutConformancePack and PutOrganizationConformancPack APIs."
+}
