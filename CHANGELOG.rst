@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.38.46
+=======
+
+* api-change:``config``: [``botocore``] Added important considerations to the PutConformancePack and PutOrganizationConformancPack APIs.
+* api-change:``connect``: [``botocore``] This release adds the following value to an InitiateAs enum: COMPLETED
+* api-change:``glue``: [``botocore``] AWS Glue now supports schema, partition and sort management of Apache Iceberg tables using Glue SDK
+* api-change:``guardduty``: [``botocore``] Update JSON target for Kubernetes workload resource type.
+* api-change:``qconnect``: [``botocore``] Adding UnauthorizedException to public SDK
+* api-change:``rds``: [``botocore``] StartDBCluster and StopDBCluster can now throw InvalidDBShardGroupStateFault.
+* api-change:``sesv2``: [``botocore``] Added support for new SES regions
+
+
 1.38.45
 =======
 
