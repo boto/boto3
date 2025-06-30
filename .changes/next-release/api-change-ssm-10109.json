@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ssm``",
+  "description": "[``botocore``] Introduces AccessType, a new filter value for the DescribeSessions API."
+}
