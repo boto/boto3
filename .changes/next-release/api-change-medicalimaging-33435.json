@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medical-imaging``",
-  "description": "[``botocore``] Added new fields to support the concept of primary image sets within the storage hierarchy."
-}

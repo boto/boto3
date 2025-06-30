@@ -2,6 +2,32 @@
 CHANGELOG
 =========
 
+1.39.0
+======
+
+* api-change:``arc-zonal-shift``: [``botocore``] Added support for on-demand practice runs and balanced capacity checks in ARC autoshift practice.
+* api-change:``b2bi``: [``botocore``] Updated APIs to support inbound EDI split capabilities and additional Partnership-level configurations of generated EDI files' contents and format.
+* api-change:``bedrock``: [``botocore``] Add support for API Keys, Re-Ranker, implicit filter for RAG / KB evaluation for Bedrock APIs.
+* api-change:``bedrock-runtime``: [``botocore``] Add API Key and document citations support for Bedrock Runtime APIs
+* api-change:``cloudformation``: [``botocore``] Added support for UNKNOWN drift status.
+* api-change:``config``: [``botocore``] Updated ResourceType enum with new resource types onboarded by AWS Config as of June 2025
+* api-change:``connect``: [``botocore``] This release introduces ChatMetrics to the model, providing comprehensive analytics insights for Amazon Connect chat conversations. Users can access these detailed metrics through the AWS Connect API by using the DescribeContact operation with their specific instance and contact IDs
+* api-change:``dataexchange``: [``botocore``] This release updates resource Id with alphanumeric constraint, including Asset id, Revision id, Data Set id, Job id, and Event Action id.
+* api-change:``dynamodb``: [``botocore``] This change adds support for witnesses in global tables. It also adds a new table status, REPLICATION_NOT_AUTHORIZED. This status will indicate scenarios where global replicas table can't be utilized for data plane operations.
+* api-change:``events``: [``botocore``] Added support for EventBridge Dualstack endpoints in AWS GovCloud (US) regions (us-gov-east-1 and us-gov-west-1). The dualstack endpoints are identical for both FIPS and non-FIPS configurations, following the format: events.{region}.api.aws
+* api-change:``glue``: [``botocore``] releasing source processing properties to support source properties for ODB integrations
+* api-change:``iam``: [``botocore``] Updated IAM ServiceSpecificCredential support to include expiration, API Key output format instead of username and password for services that will support API keys, and the ability to list credentials for all users in the account for a given service configuration.
+* api-change:``logs``: [``botocore``] Increase minimum length of queryId parameter to 1 character.
+* api-change:``medical-imaging``: [``botocore``] Added new fields to support the concept of primary image sets within the storage hierarchy.
+* api-change:``networkflowmonitor``: [``botocore``] Add ConflictExceptions to UpdateScope and DeleteScope operations for scopes being mutated.
+* api-change:``outposts``: [``botocore``] Make ContactName and ContactPhoneNumber required fields when creating and updating Outpost Site Addresses.
+* api-change:``pcs``: [``botocore``] Fixed the validation pattern for an instance profile Amazon Resource Name (ARN) in AWS PCS.
+* api-change:``quicksight``: [``botocore``] Introduced custom permission capabilities for reporting content. Added menu option in exploration to preserve configuration data when textbox menu option is used. Added support for Athena trusted identity propagation.
+* api-change:``ssm``: [``botocore``] Introduces AccessType, a new filter value for the DescribeSessions API.
+* api-change:``transfer``: [``botocore``] Added support for dual-stack (IPv4 and IPv6) endpoints for SFTP public endpoints and VPC-internal endpoints (SFTP, FTPS, FTP, and AS2), enabling customers to configure new servers with IPv4 or dual-stack mode, convert existing servers to dual-stack, and use IPv6 with service APIs.
+* feature:``bedrock``: [``botocore``] Add support for retrieving a Bearer token from environment variables to enable bearer authentication with Bedrock services.
+
+
 1.38.46
 =======
 

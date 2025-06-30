@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock``",
-  "description": "[``botocore``] Add support for API Keys, Re-Ranker, implicit filter for RAG / KB evaluation for Bedrock APIs."
-}

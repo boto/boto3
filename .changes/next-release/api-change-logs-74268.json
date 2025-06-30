@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``logs``",
-  "description": "[``botocore``] Increase minimum length of queryId parameter to 1 character."
-}
