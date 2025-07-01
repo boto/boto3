@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.39.1
+======
+
+* api-change:``cleanroomsml``: [``botocore``] This release introduces support for incremental training and distributed training for custom models in AWS Clean Rooms ML.
+* api-change:``datazone``: [``botocore``] Add support for the new optional domain-unit-id parameter in the UpdateProject API.
+* api-change:``ec2``: [``botocore``] Add Context to GetInstanceTypesFromInstanceRequirements API
+* api-change:``odb``: [``botocore``] This release adds API operations for Oracle Database@AWS. You can use the APIs to create Exadata infrastructure, ODB networks, and Exadata and Autonomous VM clusters inside AWS data centers. The infrastructure is managed by OCI. You can integrate these resources with AWS services.
+* api-change:``qbusiness``: [``botocore``] New ChatResponseConfiguration to Customize Q Business chat responses for specific use cases and communication needs. Updated Boosting capability allowing admins to provide preference on date attributes for recency and/or provide a preferred data source.
+* api-change:``rds``: [``botocore``] Amazon RDS Custom for Oracle now supports multi-AZ database instances.
+* api-change:``sagemaker``: [``botocore``] Updated field validation requirements for InstanceGroups.
+
+
 1.39.0
 ======
 
