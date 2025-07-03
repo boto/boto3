@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``deadline``",
-  "description": "[``botocore``] Added fields for output manifest reporting and task chunking parameters"
-}
