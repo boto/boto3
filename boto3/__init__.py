@@ -12,6 +12,7 @@
 # language governing permissions and limitations under the License.
 
 import logging
+from logging import NullHandler
 
 from boto3.compat import _warn_deprecated_python
 from boto3.session import Session
@@ -103,4 +104,4 @@ def resource(*args, **kwargs):
 
 # Set up do-nothing logging like a library is supposed to.
 # https://docs.python.org/3.3/howto/logging.html#configuring-logging-for-a-library
-logging.getLogger('boto3').addHandler(logging.NullHandler())
+logging.getLogger('boto3').addHandler(NullHandler())
