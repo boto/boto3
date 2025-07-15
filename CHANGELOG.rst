@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.39.5
+======
+
+* api-change:``bedrock-agent``: [``botocore``] Add support for S3 Vectors as a vector store.
+* api-change:``datazone``: [``botocore``] Removing restriction of environment profile identifier as required field, S3 feature release
+* api-change:``dynamodbstreams``: [``botocore``] Added support for optional shard filter parameter in DescribeStream api that allows customers to fetch child shards of a read_only parent shard.
+* api-change:``ec2``: [``botocore``] This release adds support for volume initialization status, which enables you to monitor when the initialization process for an EBS volume is completed. This release also adds IPv6 support to EC2 Instance Connect Endpoints, allowing you to connect to your EC2 Instance via a private IPv6 address.
+* api-change:``ecs``: [``botocore``] Amazon ECS supports native blue/green deployments, allowing you to validate new service revisions before directing production traffic to them.
+* api-change:``events``: [``botocore``] Add customer-facing logging for the EventBridge Event Bus, enabling customers to better observe their events and extract insights about their EventBridge usage.
+* api-change:``opensearch``: [``botocore``] AWS Opensearch adds support for enabling s3 vector engine options. After enabling this option, customers will be able to create indices with s3 vector engine.
+* api-change:``pricing``: [``botocore``] This release adds support for new filter types in GetProducts API, including EQUALS, CONTAINS, ANY_OF, and NONE_OF.
+* api-change:``quicksight``: [``botocore``] Introduced custom instructions for topics.
+* api-change:``repostspace``: [``botocore``] This release introduces Channels functionality with CreateChannel, GetChannel, ListChannels, and UpdateChannel operations. Channels provide dedicated collaboration spaces where teams can organize discussions and knowledge by projects, business units, or areas of responsibility.
+* api-change:``s3``: [``botocore``] Amazon S3 Metadata live inventory tables provide a queryable inventory of all the objects in your general purpose bucket so that you can determine the latest state of your data. To help minimize your storage costs, use journal table record expiration to set a retention period for your records.
+* api-change:``s3tables``: [``botocore``] Adds table bucket type to ListTableBucket and GetTableBucket API operations
+* api-change:``s3vectors``: [``botocore``] Amazon S3 Vectors provides cost-effective, elastic, and durable vector storage for queries based on semantic meaning and similarity.
+* api-change:``sagemaker``: [``botocore``] This release adds support for a new Restricted instance group type to enable a specialized environment for running Nova customization jobs on SageMaker HyperPod clusters. This release also adds support for SageMaker pipeline versioning.
+
+
 1.39.4
 ======
 
