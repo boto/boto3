@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Introduced custom instructions for topics."
-}
