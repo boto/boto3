@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.39.7
+======
+
+* api-change:``bedrock``: [``botocore``] This release adds support for on-demand custom model inference through CustomModelDeployment APIs for Amazon Bedrock.
+* api-change:``bedrock-agentcore``: [``botocore``] Initial release of Amazon Bedrock AgentCore SDK including Runtime, Built-In Tools, Memory, Gateway and Identity.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Initial release of Amazon Bedrock AgentCore SDK including Runtime, Built-In Tools, Memory, Gateway and Identity.
+* api-change:``bedrock-runtime``: [``botocore``] document update to support on demand custom model.
+* api-change:``datasync``: [``botocore``] AWS DataSync now supports IPv6 address inputs and outputs in create, update, and describe operations for NFS, SMB, and Object Storage locations
+* api-change:``glue``: [``botocore``] AWS Glue now supports schema, partition and sort management of Apache Iceberg tables using Glue SDK
+* api-change:``guardduty``: [``botocore``] Add expectedBucketOwner parameter to ThreatIntel and IPSet APIs.
+* api-change:``iotwireless``: [``botocore``] FuotaTaskId is not a valid IdentifierType for EventConfiguration and is being removed from possible IdentifierType values.
+* api-change:``logs``: [``botocore``] CloudWatch Logs updates: Added X-Ray tracing for Amazon Bedrock Agent resources. Logs introduced Log Group level resource policies (managed through Put/Delete/Describe Resource Policy APIs). For more information, see CloudWatch Logs API documentation.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for CDN Authentication using Static Headers in MediaPackage v2.
+* api-change:``networkflowmonitor``: [``botocore``] Introducing 2 new scope status types - DEACTIVATING and DEACTIVATED.
+* api-change:``payment-cryptography-data``: [``botocore``] Expand length of message data field for Mac generation and validation to 8192 characters.
+* api-change:``stepfunctions``: [``botocore``] Doc-only update to introduction, and edits to clarify input parameter and the set of control characters.
+
+
 1.39.6
 ======
 
