@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``stepfunctions``",
+  "description": "[``botocore``] Doc-only update to introduction, and edits to clarify input parameter and the set of control characters."
+}

@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``guardduty``",
+  "description": "[``botocore``] Add expectedBucketOwner parameter to ThreatIntel and IPSet APIs."
+}
