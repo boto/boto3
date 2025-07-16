@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-runtime``",
-  "description": "[``botocore``] document update to support on demand custom model."
-}

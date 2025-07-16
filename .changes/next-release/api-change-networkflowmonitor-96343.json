@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``networkflowmonitor``",
-  "description": "[``botocore``] Introducing 2 new scope status types - DEACTIVATING and DEACTIVATED."
-}
