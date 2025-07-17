@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``stepfunctions``",
-  "description": "[``botocore``] Align input with style guidelines."
-}
