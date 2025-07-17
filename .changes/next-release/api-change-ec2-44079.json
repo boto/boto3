@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ec2``",
+  "description": "[``botocore``] AWS Free Tier Version2 Support"
+}

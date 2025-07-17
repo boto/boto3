@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mailmanager``",
+  "description": "[``botocore``] Allow underscores in the local part of the input of the \"Email recipients rewrite\" action in rule sets."
+}
