@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.39.9
+======
+
+* api-change:``auditmanager``: [``botocore``] Updated error handling for RegisterOrganizationAdminAccount API to properly translate TooManyExceptions to HTTP 429 status code. This enhancement improves error handling consistency and provides clearer feedback when request limits are exceeded.
+* api-change:``logs``: [``botocore``] CloudWatchLogs launches GetLogObject API with streaming support for efficient log data retrieval. Logs added support for new AccountPolicy type METRIC_EXTRACTION_POLICY. For more information, see CloudWatch Logs API documentation
+* api-change:``mediaconvert``: [``botocore``] This release adds support for TAMS server integration with MediaConvert inputs.
+* api-change:``outposts``: [``botocore``] Add AWS Outposts API to surface customer billing information
+* api-change:``sesv2``: [``botocore``] Added IP Visibility support for managed dedicated pools. Enhanced GetDedicatedIp and GetDedicatedIps APIs to return managed IP addresses.
+* api-change:``ssm``: [``botocore``] July 2025 doc-only updates for Systems Manager.
+* enhancement:Python: Added provisional support for the upcoming Python 3.14 release
+* enhancement:Python: [``botocore``] Added provisional support for the upcoming Python 3.14 release
+
+
 1.39.8
 ======
 
