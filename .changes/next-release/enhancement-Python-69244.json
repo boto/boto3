@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Python",
+  "description": "Added provisional support for the upcoming Python 3.14 release"
+}
