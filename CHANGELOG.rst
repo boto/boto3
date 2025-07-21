@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.39.10
+=======
+
+* api-change:``cloudfront``: [``botocore``] Add dualstack endpoint support
+* api-change:``deadline``: [``botocore``] Add support for VPC resource endpoints in Service Managed Fleets
+* api-change:``ec2``: [``botocore``] This release adds support for C8gn, F2 and P6e-GB200 Instance types
+* api-change:``sagemaker``: [``botocore``] This release adds 1/ Support for S3FileSystem in CustomFileSystems 2/ The ability for a customer to select their preferred IpAddressType for use with private Workforces 3/ Support for p4de instance type in SageMaker Training Plans
+* api-change:``timestream-influxdb``: [``botocore``] Timestream for InfluxDB adds support for db.influx.24xlarge instance type. This enhancement enables higher compute capacity for demanding workloads through CreateDbInstance, CreateDbCluster, UpdateDbInstance, and UpdateDbCluster APIs.
+
+
 1.39.9
 ======
 
