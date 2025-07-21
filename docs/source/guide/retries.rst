@@ -102,7 +102,7 @@ Boto3 includes a variety of both retry configurations as well as configuration m
 Available configuration options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Boto3, users can customize two retry configurations:
+In Boto3, users can customize retry configurations:
 
 * ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy (default), standard, and adaptive.
 * ``max_attempts`` - This provides Boto3's retry handler with a value of maximum attempts. **Important**: The behavior differs depending on how it's configured:
@@ -110,7 +110,15 @@ In Boto3, users can customize two retry configurations:
   * When set in your AWS config file or using the ``AWS_MAX_ATTEMPTS`` environment variable: ``max_attempts`` includes the initial request (total requests)
   * When set in a ``Config`` object: ``max_attempts`` excludes the initial request (retries only)
 
-  For consistency, consider using ``total_max_attempts`` in ``Config`` objects, which always represents total requests including the initial call.
+  **Examples:**
+
+  * AWS config file with ``max_attempts = 3``: 1 initial request + 2 retries = 3 total attempts
+  * Environment variable ``AWS_MAX_ATTEMPTS=3``: 1 initial request + 2 retries = 3 total attempts  
+  * Config object with ``max_attempts: 3``: 1 initial request + 3 retries = 4 total attempts
+
+* ``total_max_attempts`` - Available only in ``Config`` objects, this always represents total requests including the initial call. This parameter was introduced to provide consistent behavior with the ``max_attempts`` setting used in AWS config files and environment variables. Note that ``total_max_attempts`` is not supported as an environment variable or in AWS config files.
+
+For consistency, consider using ``total_max_attempts`` in ``Config`` objects instead of ``max_attempts``.
 
 Defining a retry configuration in your AWS configuration file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -131,7 +139,7 @@ The second way to define your retry configuration is to use botocore to enable m
 
 Additionally, if your AWS configuration file is configured with retry behavior, but you want to override those global settings, you can use the ``Config`` object to override an individual client object at runtime.
 
-As shown in the following example, the ``Config`` object takes a ``retries`` dictionary where you can supply your two configuration options, ``total_max_attempts`` and ``mode``, and the values for each.
+As shown in the following example, the ``Config`` object takes a ``retries`` dictionary where you can supply configuration options such as ``total_max_attempts`` and ``mode``, and the values for each.
 
 .. code-block:: python
 
@@ -144,14 +152,6 @@ As shown in the following example, the ``Config`` object takes a ``retries`` dic
 
 .. note::
    The AWS configuration file uses ``retry_mode`` and the ``Config`` object uses ``mode``. Although named differently, they both refer to the same retry configuration whose options are legacy (default), standard, and adaptive.
-
-.. warning::
-   If you choose to use ``max_attempts`` instead of ``total_max_attempts`` in Config objects, be aware of this behavioral difference:
-   
-   * **Config file/Environment variable**: ``max_attempts`` includes the initial request (total requests)
-   * **Config object**: ``max_attempts`` excludes the initial request (retries only)
-   
-   For consistent behavior, use ``total_max_attempts`` as shown in the examples above.
 
 The following is an example of instantiating a ``Config`` object and passing it into an Amazon EC2 client to use at runtime.
 
