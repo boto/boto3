@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.39.11
+=======
+
+* api-change:``ecr``: [``botocore``] Add support for Image Tag Mutability Exception feature, allowing repositories to define wildcard-based patterns that override the default image tag mutability settings.
+* api-change:``emr``: [``botocore``] This release adds new parameter 'ExtendedSupport' in AWS EMR RunJobFlow, ModifyCluster and DescribeCluster API.
+* api-change:``lambda``: [``botocore``] This release migrated the model to Smithy keeping all features unchanged.
+* api-change:``neptunedata``: [``botocore``] This release updates the supported regions for Neptune API to include current AWS regions.
+
+
 1.39.10
 =======
 
