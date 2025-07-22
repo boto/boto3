@@ -24,7 +24,7 @@ Legacy mode is the default mode used by any Boto3 client you create. As its name
 
 **Legacy mode’s functionality includes:**
 
-* A default value of 5 for maximum retry attempts. This value can be overwritten through the ``max_attempts`` configuration parameter.
+* A default value of 5 for maximum attempts (including the initial request). See `Available configuration options`_ for more information on overwriting this value.
 * Retry attempts for a limited number of errors/exceptions::
 
    # General socket/connection errors
@@ -55,7 +55,7 @@ Standard mode is a retry mode that was introduced with the updated retry handler
 
 **Standard mode’s functionality includes:**
 
-* A default value of 3 for maximum retry attempts. This value can be overwritten through the ``max_attempts`` configuration parameter.
+* A default value of 3 for maximum attempts (including the initial request). See `Available configuration options`_ for more information on overwriting this value.
 * Retry attempts for an expanded list of errors/exceptions::
 
    # Transient errors/exceptions
@@ -102,10 +102,23 @@ Boto3 includes a variety of both retry configurations as well as configuration m
 Available configuration options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Boto3, users can customize two retry configurations:
+In Boto3, users can customize retry configurations:
 
 * ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy (default), standard, and adaptive.
-* ``max_attempts`` - This provides Boto3’s retry handler with a value of maximum retry attempts, where the initial call counts toward the ``max_attempts`` value that you provide.
+* ``max_attempts`` - This provides Boto3's retry handler with a value of maximum attempts. **Important**: The behavior differs depending on how it's configured:
+
+  * When set in your AWS config file or using the ``AWS_MAX_ATTEMPTS`` environment variable: ``max_attempts`` includes the initial request (total requests)
+  * When set in a ``Config`` object: ``max_attempts`` excludes the initial request (retries only)
+
+  **Examples:**
+
+  * AWS config file with ``max_attempts = 3``: 1 initial request + 2 retries = 3 total attempts
+  * Environment variable ``AWS_MAX_ATTEMPTS=3``: 1 initial request + 2 retries = 3 total attempts  
+  * Config object with ``max_attempts: 3``: 1 initial request + 3 retries = 4 total attempts
+
+* ``total_max_attempts`` - Available only in ``Config`` objects, this always represents total requests including the initial call. This parameter was introduced to provide consistent behavior with the ``max_attempts`` setting used in AWS config files and environment variables. Note that ``total_max_attempts`` is not supported as an environment variable or in AWS config files.
+
+For consistency, consider using ``total_max_attempts`` in ``Config`` objects instead of ``max_attempts``.
 
 Defining a retry configuration in your AWS configuration file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,7 +130,7 @@ This first way to define your retry configuration is to update your global AWS c
    max_attempts = 10
    retry_mode = standard
 
-Any Boto3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``legacy``, and the default ``max_attempts`` value is 5.
+Any Boto3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``legacy``, and the default ``max_attempts`` value is 5 (total attempts including initial request).
 
 Defining a retry configuration in a Config object for your Boto3 client
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,13 +139,13 @@ The second way to define your retry configuration is to use botocore to enable m
 
 Additionally, if your AWS configuration file is configured with retry behavior, but you want to override those global settings, you can use the ``Config`` object to override an individual client object at runtime.
 
-As shown in the following example, the ``Config`` object takes a ``retries`` dictionary where you can supply your two configuration options, ``max_attempts`` and ``mode``, and the values for each.
+As shown in the following example, the ``Config`` object takes a ``retries`` dictionary where you can supply configuration options such as ``total_max_attempts`` and ``mode``, and the values for each.
 
 .. code-block:: python
 
    config = Config(
       retries = {
-         'max_attempts': 10,
+         'total_max_attempts': 10,
          'mode': 'standard'
       }
    )
@@ -149,7 +162,7 @@ The following is an example of instantiating a ``Config`` object and passing it 
 
    config = Config(
       retries = {
-         'max_attempts': 10,
+         'total_max_attempts': 10,
          'mode': 'standard'
       }
    )
@@ -157,7 +170,7 @@ The following is an example of instantiating a ``Config`` object and passing it 
    ec2 = boto3.client('ec2', config=config)
 
 .. note::
-   As mentioned previously, if no configuration options are set, the default mode is ``legacy`` and the default ``max_attempts`` is 5.
+   As mentioned previously, if no configuration options are set, the default mode is ``legacy`` and the default ``total_max_attempts`` is 5 (total attempts including initial request).
 
 
 Validating retry attempts
