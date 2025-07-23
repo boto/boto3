@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``bedrock``",
+  "description": "[``botocore``] Fixes an issue where bearer authentication was incorrectly applied to all services with the ``bedrock`` signing name. Bearer auth is now only applied if the service model also includes the ``smithy.api#httpBearerAuth`` trait."
+}
