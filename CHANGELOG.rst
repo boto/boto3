@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.39.12
+=======
+
+* api-change:``ec2``: [``botocore``] Added support for skip-os-shutdown option for the EC2 instance stop and terminate operations. This feature enables customers to bypass the graceful OS shutdown, supporting faster state transitions when instance data preservation isn't critical.
+* api-change:``glue``: [``botocore``] AWS Glue now supports dynamic session policies for job executions. This feature allows you to specify custom, fine-grained permissions for each job run without creating multiple IAM roles.
+* api-change:``workspaces-thin-client``: [``botocore``] Added the lastUserId parameter to the ListDevices and GetDevice API.
+* bugfix:``bedrock``: [``botocore``] Fixes an issue where bearer authentication was incorrectly applied to all services with the ``bedrock`` signing name. Bearer auth is now only applied if the service model also includes the ``smithy.api#httpBearerAuth`` trait.
+
+
 1.39.11
 =======
 
