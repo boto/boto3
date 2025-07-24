@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``omics``",
+  "description": "[``botocore``] Add Git integration and README support for HealthOmics workflows"
+}
