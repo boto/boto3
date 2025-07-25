@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.39.14
+=======
+
+* api-change:``appintegrations``: [``botocore``] Amazon AppIntegrations introduces new configuration capabilities to enable customers to manage iframe permissions, control application refresh behavior (per contact or per browser/cross-contact), and run background applications (service).
+* api-change:``budgets``: [``botocore``] Adds IPv6 and PrivateLink support for AWS Budgets in IAD.
+* api-change:``config``: [``botocore``] Documentation improvements have been made to the EvaluationModel and DescribeConfigurationRecorders APIs.
+* api-change:``ec2``: [``botocore``] Transit Gateway native integration with AWS Network Firewall. Adding new enum value for the new Transit Gateway Attachment type.
+* api-change:``kms``: [``botocore``] Doc only update: fixed grammatical errors.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for specifying a preferred input for channels using CMAF ingest.
+* api-change:``socialmessaging``: [``botocore``] This release introduces new WhatsApp template management APIs that enable customers to programmatically create and submit templates for approval, monitor approval status, and manage the complete template lifecycle
+* api-change:``sqs``: [``botocore``] Documentation updates for Amazon SQS fair queues feature.
+
+
 1.39.13
 =======
 
