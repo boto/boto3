@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sqs``",
+  "description": "[``botocore``] Documentation updates for Amazon SQS fair queues feature."
+}
