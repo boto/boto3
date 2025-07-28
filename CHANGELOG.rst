@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.39.15
+=======
+
+* api-change:``directconnect``: [``botocore``] Enable MACSec support and features on Interconnects.
+* api-change:``iotsitewise``: [``botocore``] Add support for native anomaly detection in IoT SiteWise using new Computation Model APIs
+* api-change:``osis``: [``botocore``] Add Pipeline Role Arn as an optional parameter to the create / update pipeline APIs as an alternative to passing in the pipeline configuration body
+* enhancement:``sso``: [``botocore``] Updates legacy token auth flow to check if cached legacy tokens are expired according to the local clock. If expired, it will raise an ``UnauthorizedSSOTokenError`` instead of sending an expired token to Identity Center's ``GetRoleCredentials`` API.
+
+
 1.39.14
 =======
 
