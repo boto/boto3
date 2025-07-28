@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotsitewise``",
-  "description": "[``botocore``] Add support for native anomaly detection in IoT SiteWise using new Computation Model APIs"
-}

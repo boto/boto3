@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``directconnect``",
-  "description": "[``botocore``] Enable MACSec support and features on Interconnects."
-}
