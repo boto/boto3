@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``deadline``",
-  "description": "[``botocore``] Adds support for tag management on monitors."
-}

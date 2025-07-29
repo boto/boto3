@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.39.16
+=======
+
+* api-change:``batch``: [``botocore``] AWS Batch for SageMaker Training jobs feature support.  Includes new APIs for service job submission (e.g., SubmitServiceJob) and managing service environments (e.g., CreateServiceEnvironment) that enable queueing SageMaker Training jobs.
+* api-change:``cleanrooms``: [``botocore``] This feature provides the ability to update the table reference and allowed columns on an existing configured table.
+* api-change:``deadline``: [``botocore``] Adds support for tag management on monitors.
+* api-change:``location``: [``botocore``] This release 1) adds support for multi-polygon geofences with disconnected territories, and 2) enables polygon exclusion zones within geofences for more accurate representation of real-world boundaries.
+* api-change:``opensearchserverless``: [``botocore``] This is to support Granular access control support for SAML with IAMFedraton in AOSS
+
+
 1.39.15
 =======
 
