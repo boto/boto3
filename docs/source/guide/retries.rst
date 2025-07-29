@@ -105,7 +105,7 @@ Available configuration options
 In Boto3, users can customize retry configurations:
 
 * ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy, standard (default), and adaptive.
-* ``max_attempts`` - This provides Boto3's retry handler with a value of maximum attempts. **Important**: The behavior differs depending on how it's configured:
+* ``max_attempts`` - This provides Boto3's retry handler with a value of maximum attempts, where the initial call counts toward the ``max_attempts`` value that you provide. **Important**: The behavior differs depending on how it's configured:
 
   * When set in your AWS config file or using the ``AWS_MAX_ATTEMPTS`` environment variable: ``max_attempts`` includes the initial request (total requests)
   * When set in a ``Config`` object: ``max_attempts`` excludes the initial request (retries only)
@@ -119,8 +119,6 @@ In Boto3, users can customize retry configurations:
 * ``total_max_attempts`` - Available only in ``Config`` objects, this always represents total requests including the initial call. This parameter was introduced to provide consistent behavior with the ``max_attempts`` setting used in AWS config files and environment variables. Note that ``total_max_attempts`` is not supported as an environment variable or in AWS config files.
 
 For consistency, consider using ``total_max_attempts`` in ``Config`` objects instead of ``max_attempts``.
-* ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy, standard (default), and adaptive.
-* ``max_attempts`` - This provides Boto3’s retry handler with a value of maximum retry attempts, where the initial call counts toward the ``max_attempts`` value that you provide.
 
 Defining a retry configuration in your AWS configuration file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

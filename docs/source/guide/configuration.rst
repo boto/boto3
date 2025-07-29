@@ -469,21 +469,9 @@ in the ``~/.aws/config`` file.
 ``retry_mode``
     A string representing the type of retries Boto3 will perform.  Valid values are the following:
 
-        * ``legacy`` - As its name implies, ``legacy mode`` uses an older (v1) retry
-          handler that has limited functionality. By default, this mode
-          sets a maximum of 5 (1 initial request + 4 retries) attempts, though
-          this limit may vary for certain services or when max_attempts is
-          explicitly configured.
-        * ``standard`` - A standardized set of retry rules across the AWS SDKs.
-          This is the default value when no retry mode is provided. It includes
-          a standard set of errors and supports retry quotas that limit the
-          number of unsuccessful retries an SDK can make. By default, this mode
-          sets a maximum of 3 (1 initial request + 2 retries) attempts, though
-          this limit may vary for certain services or when max_attempts is
-          explicitly configured.
-        * ``adaptive`` - An experimental retry mode that includes all the
-          functionality of ``standard`` mode with automatic client-side
-          throttling.  This is a provisional mode whose behavior might change.
+    * ``legacy`` - Legacy mode uses an older (v1) retry handler that has limited functionality. The number of retries in this retry mode for some services is specified in the service model. This will default to 4 retries (5 max attempts) unless specified in the service model.
+    * ``standard`` - Standard mode is a default retry mode that was introduced with the updated retry handler (v2). It contains the standardized set of retry rules. This will default to 2 retries (3 max attempts) unless overridden.
+    * ``adaptive`` - An experimental retry mode that includes all the functionality of ``standard`` mode with automatic client-side throttling.  This is a provisional mode whose behavior might change.
 
 ``sigv4a_signing_region_set``
     A comma-delimited list of regions use when signing with SigV4a. If this is not set,
