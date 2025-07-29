@@ -469,13 +469,18 @@ in the ``~/.aws/config`` file.
 ``retry_mode``
     A string representing the type of retries Boto3 will perform.  Valid values are the following:
 
-        * ``legacy`` - The preexisting retry behavior.  This is the default value if
-          no retry mode is provided.
+        * ``legacy`` - As its name implies, ``legacy mode`` uses an older (v1) retry
+          handler that has limited functionality. By default, this mode
+          sets a maximum of 5 (1 initial request + 4 retries) attempts, though
+          this limit may vary for certain services or when max_attempts is
+          explicitly configured.
         * ``standard`` - A standardized set of retry rules across the AWS SDKs.
-          This includes a standard set of errors that are retried and
-          support for retry quotas, which limit the number of unsuccessful retries
-          an SDK can make.  This mode will default the maximum number of attempts
-          to 3 unless a ``max_attempts`` is explicitly provided.
+          This is the default value when no retry mode is provided. It includes
+          a standard set of errors and supports retry quotas that limit the
+          number of unsuccessful retries an SDK can make. By default, this mode
+          sets a maximum of 3 (1 initial request + 2 retries) attempts, though
+          this limit may vary for certain services or when max_attempts is
+          explicitly configured.
         * ``adaptive`` - An experimental retry mode that includes all the
           functionality of ``standard`` mode with automatic client-side
           throttling.  This is a provisional mode whose behavior might change.
