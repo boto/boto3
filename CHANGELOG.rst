@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.40.0
+======
+
+* api-change:``customer-profiles``: [``botocore``] The release updates standard profile with 2 new fields that supports account-level engagement. Updated APIs include CreateProfile, UpdateProfile, MergeProfiles, SearchProfiles, BatchGetProfile, GetSegmentMembership, CreateSegmentDefinition, CreateSegmentEstimate.
+* api-change:``ec2``: [``botocore``] Added support for the force option for the EC2 instance terminate command. This feature enables customers to recover resources associated with an instance stuck in the shutting-down state as a result of rare issues caused by a frozen operating system or an underlying hardware problem.
+* api-change:``elbv2``: [``botocore``] This release enables secondary IP addresses for Network Load Balancers.
+* api-change:``entityresolution``: [``botocore``] Add support for creating advanced rule-based matching workflows in AWS Entity Resolution.
+* api-change:``glue``: [``botocore``] Added support for Route node, S3 Iceberg sources/targets, catalog Iceberg sources, DynamoDB ELT connector, AutoDataQuality evaluation, enhanced PII detection with redaction, Kinesis fan-out support, and new R-series worker types.
+* api-change:``inspector2``: [``botocore``] Extend usage to include agentless hours and add CODE_REPOSITORY to aggregation resource type
+* api-change:``iot``: [``botocore``] This release allows AWS IoT Core users to use their own AWS KMS keys for data protection
+* api-change:``opensearch``: [``botocore``] Granular access control support for NEO-SAML with IAMFederation for AOS data source
+* api-change:``quicksight``: [``botocore``] Added Impala connector support
+* api-change:``s3control``: [``botocore``] Add Tags field to CreateAccessPoint
+* api-change:``sesv2``: [``botocore``] This release introduces support for Multi-tenant management
+* api-change:``workspaces-web``: [``botocore``] Added ability to log session activity on a portal to an S3 bucket.
+* feature:``sts``: [``botocore``] Updated the default sts service endpoint from ``legacy`` to ``regional``. This behavior can be overridden using the ``sts_regional_endpoints`` setting in the shared AWS config file or the ``AWS_STS_REGIONAL_ENDPOINTS`` environment variable.
+
+
 1.39.17
 =======
 
