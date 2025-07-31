@@ -421,7 +421,7 @@ in the ``~/.aws/config`` file.
 ``sts_regional_endpoints``
     Sets AWS STS endpoint resolution logic. This configuration can also be set
     using the environment variable ``AWS_STS_REGIONAL_ENDPOINTS``. By default,
-    this configuration option is set to ``legacy``. Valid values are the following:
+    this configuration option is set to ``regional``. Valid values are the following:
 
     * ``regional``
         Uses the STS endpoint that corresponds to the configured Region. For
