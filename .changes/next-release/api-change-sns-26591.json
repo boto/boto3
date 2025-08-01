@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sns``",
-  "description": "[``botocore``] Amazon SNS support for Amazon SQS fair queues"
-}

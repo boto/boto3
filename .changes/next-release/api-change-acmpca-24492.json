@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``acm-pca``",
-  "description": "[``botocore``] Doc-only update to add more information to GetCertificate action."
-}
