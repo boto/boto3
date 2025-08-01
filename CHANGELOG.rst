@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.40.1
+======
+
+* api-change:``acm-pca``: [``botocore``] Doc-only update to add more information to GetCertificate action.
+* api-change:``aiops``: [``botocore``] This release includes fix for InvestigationGroup timestamp conversion issue.
+* api-change:``arc-region-switch``: [``botocore``] This is the initial SDK release for Region switch
+* api-change:``auditmanager``: [``botocore``] Added a note to Framework APIs (CreateAssessmentFramework, GetAssessmentFramework, UpdateAssessmentFramework) clarifying that the Controls object returns a partial response when called through Framework APIs. Added documentation that the Framework's controlSources parameter is no longer supported.
+* api-change:``lightsail``: [``botocore``] This release adds support for the Asia Pacific (Jakarta) (ap-southeast-3) Region.
+* api-change:``observabilityadmin``: [``botocore``] CloudWatch Observability Admin adds the ability to enable telemetry on AWS resources such as Amazon VPCs (Flow Logs) in customers AWS Accounts and Organizations. The release introduces new APIs to manage telemetry rules, which define telemetry settings to be applied on AWS resources.
+* api-change:``pcs``: [``botocore``] Add support for IPv6 Networking for Clusters.
+* api-change:``securityhub``: [``botocore``] Release new resource detail type CodeRepository
+* api-change:``sns``: [``botocore``] Amazon SNS support for Amazon SQS fair queues
+
+
 1.40.0
 ======
 
