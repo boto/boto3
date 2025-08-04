@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codeconnections``",
-  "description": "[``botocore``] New integration with Azure DevOps provider type."
-}
