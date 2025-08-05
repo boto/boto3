@@ -319,18 +319,25 @@ class Session:
         :return: Service client instance
 
         """
+        create_client_kwargs = {
+            'region_name': region_name,
+            'api_version': api_version,
+            'use_ssl': use_ssl,
+            'verify': verify,
+            'endpoint_url': endpoint_url,
+            'aws_access_key_id': aws_access_key_id,
+            'aws_secret_access_key': aws_secret_access_key,
+            'aws_session_token': aws_session_token,
+            'config': config,
+            'aws_account_id': aws_account_id,
+        }
+        if aws_account_id is None:
+            # Remove aws_account_id for lambda for arbitrary
+            # botocore version mismatches.
+            del create_client_kwargs['aws_account_id']
+
         return self._session.create_client(
-            service_name,
-            region_name=region_name,
-            api_version=api_version,
-            use_ssl=use_ssl,
-            verify=verify,
-            endpoint_url=endpoint_url,
-            aws_access_key_id=aws_access_key_id,
-            aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token,
-            config=config,
-            aws_account_id=aws_account_id,
+            service_name, **create_client_kwargs
         )
 
     def resource(
