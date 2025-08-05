@@ -79,3 +79,7 @@ to create a new ``Session`` object for each thread or process::
             s3 = session.resource('s3')
 
             # Put your thread-safe code here
+
+.. note::
+
+   Note that `boto3.client` uses a single, shared session for all calls. This can lead to concurrency issues unexpectedly when done across parallelization primitives. We recommend managing your own session(s) with concurrent code.
