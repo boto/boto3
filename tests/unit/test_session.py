@@ -70,9 +70,7 @@ class TestSession(BaseTestCase):
 
         assert self.bc_session_cls.called
         assert bc_session.set_credentials.called
-        bc_session.set_credentials.assert_called_with(
-            'key', 'secret', 'token', None
-        )
+        bc_session.set_credentials.assert_called_with('key', 'secret', 'token')
 
     def test_credentials_can_be_set_with_account_id(self):
         bc_session = self.bc_session_cls.return_value

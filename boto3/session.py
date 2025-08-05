@@ -81,23 +81,21 @@ class Session:
         if profile_name is not None:
             self._session.set_config_variable('profile', profile_name)
 
-        creds = (
-            aws_access_key_id,
-            aws_secret_access_key,
-            aws_session_token,
-            aws_account_id,
-        )
-        if any(creds):
-            if self._account_id_set_without_credentials(
-                aws_account_id, aws_access_key_id, aws_secret_access_key
-            ):
+        credentials_kwargs = {
+            "aws_access_key_id": aws_access_key_id,
+            "aws_secret_access_key": aws_secret_access_key,
+            "aws_session_token": aws_session_token,
+            "aws_account_id": aws_account_id,
+        }
+
+        if any(credentials_kwargs.values()):
+            if self._account_id_set_without_credentials(**credentials_kwargs):
                 raise NoCredentialsError()
-            self._session.set_credentials(
-                aws_access_key_id,
-                aws_secret_access_key,
-                aws_session_token,
-                aws_account_id,
-            )
+
+            if aws_account_id is None:
+                del credentials_kwargs["aws_account_id"]
+
+            self._session.set_credentials(*credentials_kwargs.values())
 
         if region_name is not None:
             self._session.set_config_variable('region', region_name)
@@ -332,8 +330,8 @@ class Session:
             'aws_account_id': aws_account_id,
         }
         if aws_account_id is None:
-            # Remove aws_account_id for lambda for arbitrary
-            # botocore version mismatches.
+            # Remove aws_account_id for arbitrary
+            # botocore version mismatches in AWS Lambda.
             del create_client_kwargs['aws_account_id']
 
         return self._session.create_client(
@@ -562,10 +560,15 @@ class Session:
         )
 
     def _account_id_set_without_credentials(
-        self, account_id, access_key, secret_key
+        self,
+        *,
+        aws_account_id,
+        aws_access_key_id,
+        aws_secret_access_key,
+        **kwargs,
     ):
-        if account_id is None:
+        if aws_account_id is None:
             return False
-        elif access_key is None or secret_key is None:
+        elif aws_access_key_id is None or aws_secret_access_key is None:
             return True
         return False
