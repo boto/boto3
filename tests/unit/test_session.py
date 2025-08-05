@@ -272,7 +272,32 @@ class TestSession(BaseTestCase):
             region_name='us-west-2',
             api_version=None,
             config=None,
-            aws_account_id=None,
+        )
+
+    def test_create_client_with_aws_account_id(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(region_name='us-east-1')
+        session.client(
+            'sqs',
+            region_name='us-west-2',
+            aws_access_key_id="AKID1236MYFOOADKID",
+            aws_secret_access_key="S3cr3tK3y",
+            aws_account_id="1234567",
+        )
+
+        bc_session.create_client.assert_called_with(
+            'sqs',
+            aws_access_key_id="AKID1236MYFOOADKID",
+            aws_secret_access_key="S3cr3tK3y",
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name='us-west-2',
+            api_version=None,
+            config=None,
+            aws_account_id="1234567",
         )
 
     def test_create_resource_with_args(self):
