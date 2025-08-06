@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearchserverless``",
-  "description": "[``botocore``] Features: add Index APIs in OpenSearchServerless to support managed semantic enrichment"
-}
