@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Added support for VPC owner account ID associated with DNS request in the GuardDuty finding."
-}
