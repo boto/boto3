@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "stub",
+  "description": "[``botocore``] Fixes a bug which causes the stubber to begin failing for DynamoDB when SSO or AssumeRole credentials fail to load"
+}

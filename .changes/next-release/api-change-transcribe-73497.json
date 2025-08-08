@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``transcribe``",
+  "description": "[``botocore``] Update documentation to use key ARN only in OutputEncryptionKMSKeyId request parameter"
+}
