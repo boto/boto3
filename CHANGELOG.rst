@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.40.6
+======
+
+* api-change:``connect``: [``botocore``] This release adds a new API GetContactMetrics for Amazon Connect.
+* api-change:``inspector2``: [``botocore``] Add CVSSV4 to Vulnerability Search API and update enable/disable account id list length to 5
+* api-change:``iot-data``: [``botocore``] Adding DeleteConnection API to IoT Data Plane
+* api-change:``sagemaker``: [``botocore``] Adds support for GB200 UltraServers in Amazon SageMaker training jobs, training plans, and HyperPod clusters
+* api-change:``transcribe``: [``botocore``] Update documentation to use key ARN only in OutputEncryptionKMSKeyId request parameter
+* bugfix:stub: [``botocore``] Fixes a bug which causes the stubber to begin failing for DynamoDB when SSO or AssumeRole credentials fail to load
+
+
 1.40.5
 ======
 
