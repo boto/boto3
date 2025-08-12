@@ -20,7 +20,7 @@ jobs:
       security-events: write
     steps:
     - name: "Checkout repository"
-      uses: "actions/checkout@d632683dd7b4114ad314bca15554477dd762a938"
+      uses: "actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8"
 
     - name: "Run CodeQL init"
       uses: "github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858"
