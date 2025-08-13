@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.40.9
+======
+
+* api-change:``braket``: [``botocore``] Add support for Braket program sets.
+* api-change:``datazone``: [``botocore``] Adds support for account pools and project profile account decoupling
+* api-change:``fsx``: [``botocore``] Add Dual-Stack support for Amazon FSx for OpenZFS file systems
+* api-change:``partnercentral-selling``: [``botocore``] Add Tagging Support for Opportunity resources
+* api-change:``sagemaker``: [``botocore``] This release introduces compute quota for GPU, Trainium accelerators, vCPU, and vCPU memory utilization across teams in HyperPod clusters
+* api-change:``security-ir``: [``botocore``] Added support for Organizational Unit-level Membership configuration and the ability to resume a cancelled membership.
+
+
 1.40.8
 ======
 

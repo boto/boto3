@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datazone``",
-  "description": "[``botocore``] Adds support for account pools and project profile account decoupling"
-}
