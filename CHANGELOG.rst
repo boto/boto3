@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.40.11
+=======
+
+* api-change:``amp``: [``botocore``] Add Resource-based Policy APIs for Amazon Prometheus
+* api-change:``bedrock-agent``: [``botocore``] This release adds support for saving Bedrock Flows while node configuration is still in progress, even if the Flow is not yet able to be invoked
+* api-change:``glue``: [``botocore``] AWS Glue Zero ETL now supports On-demand snapshot load
+
+
 1.40.10
 =======
 
