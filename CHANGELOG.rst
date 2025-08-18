@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.40.12
+=======
+
+* api-change:``batch``: [``botocore``] Added default_x86_64 and default_arm64 as values to the instanceTypes field.
+* api-change:``bcm-dashboards``: [``botocore``] Billing and Cost Management Dashboards enables users to create dashboards that combine multiple visualizations of cost and usage data. Users can create, manage, and share dashboards. Tags are also available for dashboards.
+* api-change:``connect``: [``botocore``] Amazon Connect Service Feature: Add support to enable multi-user in-app, web, and video calling.
+* api-change:``connectparticipant``: [``botocore``] Amazon Connect Service Feature: Add support to enable multi-user in-app, web, and video calling.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``s3control``: [``botocore``] Adds support for Compute checksum functionality in Amazon S3 Batch Operations. You can now calculate checksums for a list of objects using supported algorithms in Amazon S3, without requiring a restore or download
+* api-change:``sagemaker``: [``botocore``] Customer managed keys now available for volume encryption of SageMaker HyperPod clusters.
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.27.6
+
+
 1.40.11
 =======
 
