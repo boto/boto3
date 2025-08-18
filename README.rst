@@ -79,7 +79,7 @@ Then, set up a default region (in e.g. ``~/.aws/config``):
 .. code-block:: ini
 
    [default]
-   region=us-east-1
+   region = us-east-1
 
 Other credential configuration methods can be found `here <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>`__
 
