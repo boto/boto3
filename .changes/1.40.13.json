@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] Support error message configuration for analysis templates",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Add support for \"warning\" volume status.",
+    "type": "api-change"
+  },
+  {
+    "category": "``polly``",
+    "description": "[``botocore``] Added support for new output format - Opus.",
+    "type": "api-change"
+  }
+]
