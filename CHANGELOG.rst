@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.40.14
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Launch CountTokens API to allow token counting
+* api-change:``billing``: [``botocore``] Clarify IPv4 and IPv6 endpoints
+* api-change:``cognito-idp``: [``botocore``] This release adds support for the new Terms APIs which allow displaying Terms of Use and Privacy Policy on the Managed Login user-registration page.
+* api-change:``datazone``: [``botocore``] This release supports policy grant identifier for cloud formation integration
+* api-change:``detective``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``dynamodb``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``eks``: [``botocore``] EKS Add-ons Custom Namespace Support
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``kinesisanalyticsv2``: [``botocore``] Adds Key Management Service (KMS) support allowing customer-managed key (CMK) encryption for Flink application data.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] This change added InternationalSendingEnbaled as part of describe/Update/Request phone number API response, and as part of update/Request phone number API request
+* api-change:``route53-recovery-control-config``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker``: [``botocore``] This release adds 1/ Launch ml.p5.4xlarge instance in Processing jobs, Training jobs and Training Plan 2/ Makes S3Uri to be required for S3FileSystem and S3FileSystemConfig.
+
+
 1.40.13
 =======
 
