@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``billing``",
+  "description": "[``botocore``] Clarify IPv4 and IPv6 endpoints"
+}
