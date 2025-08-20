@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-runtime``",
-  "description": "[``botocore``] Launch CountTokens API to allow token counting"
-}
