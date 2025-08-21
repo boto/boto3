@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotdeviceadvisor``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lookoutmetrics``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

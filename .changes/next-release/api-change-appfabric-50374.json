@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appfabric``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

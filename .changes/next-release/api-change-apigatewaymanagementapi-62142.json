@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``apigatewaymanagementapi``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}
