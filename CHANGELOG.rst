@@ -2,6 +2,42 @@
 CHANGELOG
 =========
 
+1.40.15
+=======
+
+* api-change:``apigatewaymanagementapi``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``appfabric``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``backup-gateway``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cloudhsm``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cognito-identity``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``comprehend``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ebs``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ecr-public``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ecs``: [``botocore``] This is a documentation only release that adds additional information for the update-service request parameters.
+* api-change:``elasticbeanstalk``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``es``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``forecastquery``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``gameliftstreams``: [``botocore``] The default application in a stream group can now be changed at any time using UpdateStreamGroup to update the DefaultApplicationIdentifier.
+* api-change:``glue``: [``botocore``] Added support for preprocessing queries in Data Quality operations through new DataQualityGlueTable structure.
+* api-change:``greengrassv2``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``guardduty``: [``botocore``] Remove Pattern trait from email field
+* api-change:``iotdeviceadvisor``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``iotevents``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``iotevents-data``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``iotthingsgraph``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kinesis-video-signaling``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lexv2-runtime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lookoutmetrics``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``managedblockchain``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mediapackage``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``panorama``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``pinpoint-email``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``resource-groups``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``s3outposts``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ssm-contacts``: [``botocore``] Doc-only updates for Incident Manager Contacts August 2025
+
+
 1.40.14
 =======
 

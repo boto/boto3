@@ -1,0 +1,157 @@
+[
+  {
+    "category": "``apigatewaymanagementapi``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``appfabric``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``backup-gateway``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudhsm``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-identity``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``comprehend``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``ebs``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecr-public``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] This is a documentation only release that adds additional information for the update-service request parameters.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticbeanstalk``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``es``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``forecastquery``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``gameliftstreams``",
+    "description": "[``botocore``] The default application in a stream group can now be changed at any time using UpdateStreamGroup to update the DefaultApplicationIdentifier.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Added support for preprocessing queries in Data Quality operations through new DataQualityGlueTable structure.",
+    "type": "api-change"
+  },
+  {
+    "category": "``greengrassv2``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``guardduty``",
+    "description": "[``botocore``] Remove Pattern trait from email field",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotdeviceadvisor``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotevents``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotevents-data``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotthingsgraph``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis-video-signaling``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``lexv2-runtime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``lookoutmetrics``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``managedblockchain``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediapackage``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``panorama``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``pinpoint-email``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``resource-groups``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3outposts``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm-contacts``",
+    "description": "[``botocore``] Doc-only updates for Incident Manager Contacts August 2025",
+    "type": "api-change"
+  }
+]
