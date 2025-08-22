@@ -2,6 +2,32 @@
 CHANGELOG
 =========
 
+1.40.16
+=======
+
+* api-change:``clouddirectory``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cognito-sync``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``docdb``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``elb``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``healthlake``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``iotanalytics``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``macie2``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``marketplacecommerceanalytics``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``medialive``: [``botocore``] AWS Elemental MediaLive now has a field called "SubtitleRows" for controlling subtitle row count for DVB-Sub and Burn-In captions outputs
+* api-change:``memorydb``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``proton``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``qconnect``: [``botocore``] Releasing model ID support for UpdateAIPrompt
+* api-change:``qldb``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``rds``: [``botocore``] Updates Amazon RDS documentation for Db2 read-only replicas.
+* api-change:``route53-recovery-readiness``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker``: [``botocore``] Launch SageMaker Notebook Instances support for AL2023 along with P6-B200 instance type and Rootless Docker support for SageMaker Studio.
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``simspaceweaver``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``synthetics``: [``botocore``] Added multi browser support for synthetics canaries, Increased ephemeral storage limit from 5GB to 10GB
+* api-change:``wafv2``: [``botocore``] test and verified, safe to release
+
+
 1.40.15
 =======
 
