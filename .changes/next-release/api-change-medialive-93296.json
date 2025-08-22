@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medialive``",
-  "description": "[``botocore``] AWS Elemental MediaLive now has a field called \"SubtitleRows\" for controlling subtitle row count for DVB-Sub and Burn-In captions outputs"
-}

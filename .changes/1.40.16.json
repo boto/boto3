@@ -1,0 +1,107 @@
+[
+  {
+    "category": "``clouddirectory``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-sync``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``docdb``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``elb``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``healthlake``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotanalytics``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``macie2``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplacecommerceanalytics``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``medialive``",
+    "description": "[``botocore``] AWS Elemental MediaLive now has a field called \"SubtitleRows\" for controlling subtitle row count for DVB-Sub and Burn-In captions outputs",
+    "type": "api-change"
+  },
+  {
+    "category": "``memorydb``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``proton``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``qconnect``",
+    "description": "[``botocore``] Releasing model ID support for UpdateAIPrompt",
+    "type": "api-change"
+  },
+  {
+    "category": "``qldb``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Updates Amazon RDS documentation for Db2 read-only replicas.",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53-recovery-readiness``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Launch SageMaker Notebook Instances support for AL2023 along with P6-B200 instance type and Rootless Docker support for SageMaker Studio.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-a2i-runtime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``simspaceweaver``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``synthetics``",
+    "description": "[``botocore``] Added multi browser support for synthetics canaries, Increased ephemeral storage limit from 5GB to 10GB",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] test and verified, safe to release",
+    "type": "api-change"
+  }
+]

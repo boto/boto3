@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``qconnect``",
-  "description": "[``botocore``] Releasing model ID support for UpdateAIPrompt"
-}

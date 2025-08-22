@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``wafv2``",
-  "description": "[``botocore``] test and verified, safe to release"
-}

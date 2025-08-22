@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cognito-sync``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

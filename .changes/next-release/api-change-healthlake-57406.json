@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``healthlake``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}
