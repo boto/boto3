@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kinesisanalytics``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

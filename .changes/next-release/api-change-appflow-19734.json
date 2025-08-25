@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appflow``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

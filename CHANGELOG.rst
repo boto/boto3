@@ -2,6 +2,53 @@
 CHANGELOG
 =========
 
+1.40.17
+=======
+
+* api-change:``appflow``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``b2bi``: [``botocore``] Updated APIs to support custom validation rules.
+* api-change:``chime-sdk-media-pipelines``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``chime-sdk-messaging``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cloudsearch``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cloudtrail-data``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``codeartifact``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``codeguru-security``: [``botocore``] Documentation update to notify users of the discontinuation of Amazon CodeGuru Security.
+* api-change:``codestar-notifications``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cur``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``datazone``: [``botocore``] Releasing the following features - Asset classification that lets users use restricted terms for classifying assets if they have the right permissions. Also adding a new enum value "Moving" to project status.
+* api-change:``dax``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``devops-guru``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ec2``: [``botocore``] Added IPv6 support for AWS Client VPN.
+* api-change:``emr-containers``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``finspace-data``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``forecast``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``iotfleethub``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kendra``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kinesisanalytics``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kinesis-video-archived-media``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lex-runtime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lookoutequipment``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mediaconvert``: [``botocore``] This release adds support for input rendition selection for HLS input, adds new Share API to enable sharing jobs with AWS Support for support investigations, and adds INCLUDE_AS_TS to iFrameOnlyManifest setting for HLS outputs.
+* api-change:``mediapackage-vod``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mediastore``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``personalize-runtime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``qbusiness``: [``botocore``] The Amazon Q Business GetDocumentContent operation now supports retrieval of the extracted text content in JSON format.
+* api-change:``resourcegroupstaggingapi``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker-edge``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker-runtime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``serverlessrepo``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``shield``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``snowball``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sqs``: [``botocore``] Documentation update for Amazon SQS Supports Large Payload Message feature
+* api-change:``support``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``support-app``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``timestream-influxdb``: [``botocore``] Add MAINTENANCE status for DbInstance and DbCluster
+* api-change:``translate``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``wellarchitected``: [``botocore``] Remove incorrect endpoint tests
+
+
 1.40.16
 =======
 

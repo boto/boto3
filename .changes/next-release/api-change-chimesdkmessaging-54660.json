@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``chime-sdk-messaging``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

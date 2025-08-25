@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker-edge``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

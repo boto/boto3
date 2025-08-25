@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``timestream-influxdb``",
-  "description": "[``botocore``] Add MAINTENANCE status for DbInstance and DbCluster"
-}

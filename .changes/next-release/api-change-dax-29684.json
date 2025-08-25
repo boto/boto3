@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``dax``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

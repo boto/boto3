@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``b2bi``",
-  "description": "[``botocore``] Updated APIs to support custom validation rules."
-}
