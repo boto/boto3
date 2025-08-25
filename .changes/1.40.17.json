@@ -1,0 +1,212 @@
+[
+  {
+    "category": "``appflow``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``b2bi``",
+    "description": "[``botocore``] Updated APIs to support custom validation rules.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-media-pipelines``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-messaging``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudsearch``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudtrail-data``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeartifact``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeguru-security``",
+    "description": "[``botocore``] Documentation update to notify users of the discontinuation of Amazon CodeGuru Security.",
+    "type": "api-change"
+  },
+  {
+    "category": "``codestar-notifications``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``cur``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``datazone``",
+    "description": "[``botocore``] Releasing the following features - Asset classification that lets users use restricted terms for classifying assets if they have the right permissions. Also adding a new enum value \"Moving\" to project status.",
+    "type": "api-change"
+  },
+  {
+    "category": "``dax``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``devops-guru``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Added IPv6 support for AWS Client VPN.",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr-containers``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``finspace-data``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``forecast``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotfleethub``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``kendra``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesisanalytics``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis-video-archived-media``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``lex-runtime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``lookoutequipment``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconvert``",
+    "description": "[``botocore``] This release adds support for input rendition selection for HLS input, adds new Share API to enable sharing jobs with AWS Support for support investigations, and adds INCLUDE_AS_TS to iFrameOnlyManifest setting for HLS outputs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediapackage-vod``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediastore``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize-runtime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``qbusiness``",
+    "description": "[``botocore``] The Amazon Q Business GetDocumentContent operation now supports retrieval of the extracted text content in JSON format.",
+    "type": "api-change"
+  },
+  {
+    "category": "``resourcegroupstaggingapi``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-edge``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-featurestore-runtime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-runtime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``serverlessrepo``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``shield``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``snowball``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``sqs``",
+    "description": "[``botocore``] Documentation update for Amazon SQS Supports Large Payload Message feature",
+    "type": "api-change"
+  },
+  {
+    "category": "``support``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``support-app``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-influxdb``",
+    "description": "[``botocore``] Add MAINTENANCE status for DbInstance and DbCluster",
+    "type": "api-change"
+  },
+  {
+    "category": "``translate``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``wellarchitected``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  }
+]
