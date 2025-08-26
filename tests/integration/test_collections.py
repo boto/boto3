@@ -19,7 +19,7 @@ from boto3.resources.collection import CollectionManager
 
 # A map of services to regions that cannot use us-west-2
 # for the integration tests.
-REGION_MAP = {'opsworks': 'us-east-1'}
+REGION_MAP = {}
 
 # A list of collections to ignore. They require parameters
 # or are very slow to run.
@@ -27,7 +27,6 @@ BLOCKLIST = {
     'ec2': ['images'],
     'iam': ['signing_certificates'],
     'sqs': ['dead_letter_source_queues'],
-    'opsworks': [],
 }
 
 
