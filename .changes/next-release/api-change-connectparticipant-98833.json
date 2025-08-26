@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connectparticipant``",
-  "description": "[``botocore``] Amazon Connect Participant Service: Remove unused fields from WebRTCConnection"
-}

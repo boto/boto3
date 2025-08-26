@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rbin``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

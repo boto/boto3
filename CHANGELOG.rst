@@ -2,6 +2,43 @@
 CHANGELOG
 =========
 
+1.40.18
+=======
+
+* api-change:``apprunner``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``arc-zonal-shift``: [``botocore``] This release adds new API options to enable allowed windows and multiple alarms for practice runs.
+* api-change:``codecommit``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``codestar-connections``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``comprehendmedical``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``connectparticipant``: [``botocore``] Amazon Connect Participant Service: Remove unused fields from WebRTCConnection
+* api-change:``dlm``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ec2``: [``botocore``] Add new APIs for viewing how your shared AMIs are used by other accounts, and identify resources in your account that are dependent on particular AMIs
+* api-change:``elastictranscoder``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``finspace``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``geo-routes``: [``botocore``] Added RouteFerryNotice PotentialViolatedVehicleRestrictionUsage value for CalculateRoutes. This value indicates when the Route is potentially forbidden for the given vehicle profile.
+* api-change:``glacier``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``globalaccelerator``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``greengrass``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``identitystore``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``imagebuilder``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``iotsecuretunneling``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kafka``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lookoutvision``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mgh``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``migration-hub-refactor-spaces``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mq``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``personalize-events``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``pinpoint``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ram``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``rbin``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``route53-recovery-cluster``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker-geospatial``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``servicecatalog-appregistry``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``signer``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``waf-regional``: [``botocore``] Remove incorrect endpoint tests
+
+
 1.40.17
 =======
 

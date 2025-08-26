@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glacier``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}
