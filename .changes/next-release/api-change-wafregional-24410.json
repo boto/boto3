@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``waf-regional``",
+  "description": "[``botocore``] Remove incorrect endpoint tests"
+}

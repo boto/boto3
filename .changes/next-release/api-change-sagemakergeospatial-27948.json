@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``sagemaker-geospatial``",
+  "description": "[``botocore``] Remove incorrect endpoint tests"
+}
