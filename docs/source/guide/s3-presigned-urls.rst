@@ -26,7 +26,7 @@ when the URL is generated.
 
 .. note::
 
-   Boto3 defaults to Signature Version 4 for S3 requests. However, in some environments, Botocore may fall back to Signature Version 2 and may potentially cause ``SignatureDoesNotMatch`` errors with presigned URLs.
+   Boto3 defaults to Signature Version 4 for S3 requests. However, in some environments, Signature Version 2 may be used and could potentially cause ``SignatureDoesNotMatch`` errors with presigned URLs.
 
    As per `S3 API <https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html>`_, AWS Regions created before January 30, 2014 continue to support Signature Version 2, while newer Regions support only Signature Version 4.
 
