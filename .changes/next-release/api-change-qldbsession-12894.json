@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``qldb-session``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``voice-id``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

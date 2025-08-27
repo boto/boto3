@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opsworks``",
-  "description": "[``botocore``] The opsworks client has been removed following the deprecation of the service."
-}

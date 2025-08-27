@@ -2,6 +2,48 @@
 CHANGELOG
 =========
 
+1.40.19
+=======
+
+* api-change:``amplifybackend``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``application-insights``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``batch``: [``botocore``] Added ECS_AL2023_NVIDIA as an option for Ec2Configuration.imageType.
+* api-change:``chime``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``chime-sdk-identity``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``chime-sdk-meetings``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``chime-sdk-voice``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``codeguruprofiler``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``datapipeline``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``discovery``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ds``: [``botocore``] Add APIs for CA AutoEnrollment support: DescribeCAEnrollmentPolicy, EnableCAEnrollmentPolicy and DisableCAEnrollmentPolicy.
+* api-change:``eks``: [``botocore``] Add support for on-demand refresh of EKS cluster insights
+* api-change:``elasticache``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``evidently``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``frauddetector``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``inspector``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kinesisvideo``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``kinesis-video-media``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lakeformation``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``lex-models``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``migrationhub-config``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``neptune-graph``: [``botocore``] Add StartGraph and StopGraph operations to Neptune Analytics
+* api-change:``opsworks``: [``botocore``] The opsworks client has been removed following the deprecation of the service.
+* api-change:``opsworkscm``: [``botocore``] The opsworkscm client has been removed following the deprecation of the service.
+* api-change:``personalize``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``pi``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``qldb-session``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``redshift``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``robomaker``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``sagemaker``: [``botocore``] This release adds support for AutoScaling on SageMaker HyperPod.
+* api-change:``schemas``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``snow-device-management``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``timestream-write``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``voice-id``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``workdocs``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``workmail``: [``botocore``] Remove incorrect endpoint tests
+
+
 1.40.18
 =======
 

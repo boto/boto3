@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``snow-device-management``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}
