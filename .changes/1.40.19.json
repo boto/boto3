@@ -1,0 +1,187 @@
+[
+  {
+    "category": "``amplifybackend``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``application-insights``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Added ECS_AL2023_NVIDIA as an option for Ec2Configuration.imageType.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-identity``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-meetings``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-voice``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeguruprofiler``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``datapipeline``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``discovery``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``ds``",
+    "description": "[``botocore``] Add APIs for CA AutoEnrollment support: DescribeCAEnrollmentPolicy, EnableCAEnrollmentPolicy and DisableCAEnrollmentPolicy.",
+    "type": "api-change"
+  },
+  {
+    "category": "``eks``",
+    "description": "[``botocore``] Add support for on-demand refresh of EKS cluster insights",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``evidently``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``frauddetector``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``inspector``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesisvideo``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis-video-media``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``lakeformation``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``lex-models``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``migrationhub-config``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``neptune-graph``",
+    "description": "[``botocore``] Add StartGraph and StopGraph operations to Neptune Analytics",
+    "type": "api-change"
+  },
+  {
+    "category": "``opsworks``",
+    "description": "[``botocore``] The opsworks client has been removed following the deprecation of the service.",
+    "type": "api-change"
+  },
+  {
+    "category": "``opsworkscm``",
+    "description": "[``botocore``] The opsworkscm client has been removed following the deprecation of the service.",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``pi``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``qldb-session``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``redshift``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``robomaker``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] This release adds support for AutoScaling on SageMaker HyperPod.",
+    "type": "api-change"
+  },
+  {
+    "category": "``schemas``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``snow-device-management``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-write``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``voice-id``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``workdocs``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``workmail``",
+    "description": "[``botocore``] Remove incorrect endpoint tests",
+    "type": "api-change"
+  }
+]
