@@ -2,6 +2,47 @@
 CHANGELOG
 =========
 
+1.40.20
+=======
+
+* api-change:``applicationcostprofiler``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``apprunner``: [``botocore``] Doc only updates for APIs and and datatypes related to IPAddressType and Subnets for IPv6 dualstack support.
+* api-change:``autoscaling-plans``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cloud9``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cloudhsmv2``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``cloudsearchdomain``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``codedeploy``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``codeguru-reviewer``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``connect``: [``botocore``] AgentStatusDrillDown feature in GetCurrentMetricData API. Adding AGENT_STATUS as filter and grouping in GetCurrentMetricData API
+* api-change:``databrew``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``dynamodb``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ec2``: [``botocore``] This release adds support for copying Amazon EBS snapshot and AMIs to and from Local Zones.
+* api-change:``ec2-instance-connect``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``fis``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``fms``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``geo-maps``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``glue``: [``botocore``] Adding support to fetch TargetDatabase field during GetDatabases with AttributesToGet
+* api-change:``healthlake``: [``botocore``] Add ValidationLevel parameter to StartFHIRImportJob API, allowing users to specify a FHIR validation level for their asynchronous import jobs.
+* api-change:``machinelearning``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mediastore-data``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``mturk``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``omics``: [``botocore``] Adds Amazon ECR pull through cache support to AWS HealthOmics, so you can more easily use container images from external sources.
+* api-change:``osis``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``pinpoint-sms-voice``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``rds``: [``botocore``] Added RDS HTTP Endpoint feature support flag to DescribeOrderableDBInstanceOptions API
+* api-change:``route53domains``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``savingsplans``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``scheduler``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ses``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``ssm-sap``: [``botocore``] Added support for Configuration Checks on SAP HANA Applications.
+* api-change:``sso``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``timestream-query``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``waf``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``workmailmessageflow``: [``botocore``] Remove incorrect endpoint tests
+* api-change:``xray``: [``botocore``] Remove incorrect endpoint tests
+
+
 1.40.19
 =======
 
