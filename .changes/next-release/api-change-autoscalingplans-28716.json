@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``autoscaling-plans``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

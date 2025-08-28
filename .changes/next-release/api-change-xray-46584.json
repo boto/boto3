@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``xray``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}

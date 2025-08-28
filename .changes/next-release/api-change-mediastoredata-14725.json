@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediastore-data``",
-  "description": "[``botocore``] Remove incorrect endpoint tests"
-}
