@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] Added RDS HTTP Endpoint feature support flag to DescribeOrderableDBInstanceOptions API"
+}
