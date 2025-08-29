@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ec2``",
+  "description": "[``botocore``] Release shows new route types such as filtered and advertisement."
+}
