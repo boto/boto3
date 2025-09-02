@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workmail``",
-  "description": "[``botocore``] Make RoleArn an optional parameter for the PutEmailMonitoringConfiguration API, and add UnsupportedOperationException to RegisterToWorkMail."
-}
