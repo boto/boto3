@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``rds``",
+  "description": "[``botocore``] Added new EndpointNetworkType and TargetConnectionNetworkType fields in Proxy APIs to support IPv6"
+}
