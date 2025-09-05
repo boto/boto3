@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.40.25
+=======
+
+* api-change:``ecs``: [``botocore``] This is a documentation only release that adds additional information for Amazon ECS Availability Zone rebalancing.
+* api-change:``pcs``: [``botocore``] Documentation-only update to add AccountingStorageEnforce to SlurmCustomSetting.
+* api-change:``sagemaker``: [``botocore``] Release IPv6 support with dualstack in SageMaker Notebooks, Tiered Storage Checkpointing Support in SageMaker HyperPod and P5.4xlarge instance type for SageMaker Hosting.
+
+
 1.40.24
 =======
 

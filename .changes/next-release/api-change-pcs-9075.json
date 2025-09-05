@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pcs``",
-  "description": "[``botocore``] Documentation-only update to add AccountingStorageEnforce to SlurmCustomSetting."
-}
