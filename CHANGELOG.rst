@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.40.26
+=======
+
+* api-change:``iotsitewise``: [``botocore``] Add ComputationModelVersion support in IoT SiteWise APIs
+* api-change:``s3``: [``botocore``] This release includes backward compatibility work on the "Expires" parameter.
+* api-change:``securityhub``: [``botocore``] This release adds the RESOURCE_NOT_FOUND error code as a possible value in responses to the following operations: BatchGetStandardsControlAssociations, BatchUpdateStandardsControlAssociations, and BatchGetSecurityControls.
+
+
 1.40.25
 =======
 
