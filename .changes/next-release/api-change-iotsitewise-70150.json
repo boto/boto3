@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iotsitewise``",
+  "description": "[``botocore``] Add ComputationModelVersion support in IoT SiteWise APIs"
+}
