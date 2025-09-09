@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.40.27
+=======
+
+* api-change:``autoscaling``: [``botocore``] Added WaitForTransitioningInstances parameter to the CancelInstanceRefresh API, allowing the caller to cancel an instance refresh without waiting for on-going launches and terminations.
+* api-change:``cloudwatch``: [``botocore``] Added a new API - DescribeAlarmContributors API, to retrieve alarm contributors in ALARM state. Added support in DescribeAlarmHistory API to query alarm contributor history
+* api-change:``connect``: [``botocore``] SDK release for user defined predefined attributes.
+* api-change:``datazone``: [``botocore``] Adds support for custom blueprints
+* api-change:``mediapackagev2``: [``botocore``] Added CUE tag SCTE output to MediaPackageV2 HLS and LL-HLS manifests.
+* api-change:``organizations``: [``botocore``] Documentation updates for AWS Organizations APIs.
+* api-change:``sagemaker``: [``botocore``] Released IPv6 support with dual-stack domain options on SageMaker Studio and introduced support for p6-b200.48xlarge instance type on SageMaker Studio for JupyterLab and CodeEditor applications.
+
+
 1.40.26
 =======
 
