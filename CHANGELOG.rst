@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.40.28
+=======
+
+* api-change:``networkflowmonitor``: [``botocore``] Added new enum value (AWS::Region) for type field under MonitorLocalResource and MonitorRemoteResource. Workload Insights and Monitor top contributors queries now support a new DestinationCategory (INTER_REGION).
+* api-change:``payment-cryptography``: [``botocore``] AWS Payment Cryptography Service now supports Multi-Region key replication. Customers can choose to automatically distribute keys across AWS Regions.
+
+
 1.40.27
 =======
 
