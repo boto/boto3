@@ -326,6 +326,7 @@ class TransferConfig(S3TransferConfig):
 class S3Transfer:
     ALLOWED_DOWNLOAD_ARGS = TransferManager.ALLOWED_DOWNLOAD_ARGS
     ALLOWED_UPLOAD_ARGS = TransferManager.ALLOWED_UPLOAD_ARGS
+    ALLOWED_COPY_ARGS = TransferManager.ALLOWED_COPY_ARGS
 
     def __init__(self, client=None, config=None, osutil=None, manager=None):
         if not client and not manager:
