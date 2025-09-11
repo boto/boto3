@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``datazone``",
+  "description": "[``botocore``] adding IAM principal id to IAM user profile details"
+}
