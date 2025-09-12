@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.40.30
+=======
+
+* api-change:``payment-cryptography``: [``botocore``] Add support for certificates to be signed by 3rd party certificate authorities.  New API GetCertificateSigningRequest API and support for providing certificates at run-time for tr-34 import/export
+
+
 1.40.29
 =======
 
