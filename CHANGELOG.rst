@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.40.31
+=======
+
+* api-change:``ce``: [``botocore``] Added endpoint support for eusc-de-east-1 region.
+* api-change:``medical-imaging``: [``botocore``] Added support for OpenID Connect (OIDC) custom authorizer
+* api-change:``observabilityadmin``: [``botocore``] CloudWatch Observability Admin adds the ability to enable telemetry centralization in customers' Organizations. The release introduces new APIs to manage centralization rules, which define settings to replicate telemetry data to a central destination in the customers' Organization.
+* api-change:``s3control``: [``botocore``] Introduce three new encryption filters: EncryptionType (SSE-S3, SSE-KMS, DSSE-KMS, SSE-C, NOT-SSE), KmsKeyArn (for SSE-KMS and DSSE-KMS), and BucketKeyEnabled (for SSE-KMS).
+* api-change:``sms``: [``botocore``] The sms client has been removed following the deprecation of the service.
+
+
 1.40.30
 =======
 
