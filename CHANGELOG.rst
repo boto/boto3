@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.40.33
+=======
+
+* api-change:``ec2``: [``botocore``] Add mac-m4.metal and mac-m4pro.metal instance types.
+* api-change:``network-firewall``: [``botocore``] Network Firewall now prevents TLS handshakes with the target server until after the Server Name Indication (SNI) has been seen and verified. The monitoring dashboard now provides deeper insights into PrivateLink endpoint candidates and offers filters based on IP addresses and protocol.
+* api-change:``pcs``: [``botocore``] Add support for Amazon EC2 Capacity Blocks for ML
+
+
 1.40.32
 =======
 
