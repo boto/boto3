@@ -56,6 +56,7 @@ Standard mode is a retry mode that was introduced with the updated retry handler
 **Standard mode’s functionality includes:**
 
 * A default value of 3 for maximum attempts (including the initial request). See `Available configuration options`_ for more information on overwriting this value.
+* Circuit-breaking functionality to prevent retry attempts during service outages.
 * Retry attempts for an expanded list of errors/exceptions::
 
    # Transient errors/exceptions
