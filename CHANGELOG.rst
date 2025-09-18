@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.40.34
+=======
+
+* api-change:``bedrock``: [``botocore``] Release includes an increase to the maximum policy build document size, an update to DeleteAutomatedReasoningPolicyBuildWorkflow to add ResourceInUseException, and corrections to UpdateAutomatedReasoningPolicyTestCaseRequest.
+* api-change:``budgets``: [``botocore``] Added BillingViewHealthStatus Exception which is thrown when a Budget is created or updated with a Billing View that is not in the HEALTHY status
+* api-change:``chime-sdk-messaging``: [``botocore``] Amazon Chime SDK Messaging GetMessagingSessionEndpoint API now returns dual-stack WebSocket endpoints supporting IPv4/IPv6.
+* api-change:``ec2``: [``botocore``] Allowed AMIs adds support for four new parameters - marketplaceProductCodes, deprecationTimeCondition, creationDateCondition and imageNames
+
+
 1.40.33
 =======
 
