@@ -7,7 +7,7 @@ distutils/setuptools install script.
 import os
 import re
 
-from setuptools import find_packages, setup
+from setuptools import find_namespace_packages, setup
 
 ROOT = os.path.dirname(__file__)
 VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
@@ -33,17 +33,16 @@ setup(
     author='Amazon Web Services',
     url='https://github.com/boto/boto3',
     scripts=[],
-    packages=find_packages(exclude=['tests*']),
+    packages=find_namespace_packages(exclude=['tests*']),
     package_data={'boto3': ['data/aws/resources/*.json', 'examples/*.rst']},
     include_package_data=True,
     install_requires=requires,
-    license="Apache License 2.0",
+    license="Apache-2.0",
     python_requires=">= 3.9",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
-        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
