@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sms-voice``",
-  "description": "[``botocore``] Updated the ``sms-voice`` client to the latest version. Note: this client is maintained only for backwards compatibility and should not be used for new development. We recommend using the ``pinpoint-sms-voice`` client for full support and ongoing updates."
-}
