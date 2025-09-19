@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.40.35
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Add tagging and VPC support to AgentCore Runtime, Code Interpreter, and Browser resources. Add support for configuring request headers in Runtime. Fix AgentCore Runtime shape names.
+* api-change:``config``: [``botocore``] Add UNKNOWN state to RemediationExecutionState and add IN_PROGRESS/EXITED/UNKNOWN states to RemediationExecutionStepState.
+* api-change:``connect``: [``botocore``] This release adds a persistent connection field to UserPhoneConfig that maintains agent's softphone media connection for faster call connections.
+* api-change:``kendra-ranking``: [``botocore``] Model whitespace change - no client difference
+* api-change:``license-manager-user-subscriptions``: [``botocore``] Added support for cross-account Active Directories.
+* api-change:``medialive``: [``botocore``] Add MinBitrate for QVBR mode under H264/H265/AV1 output codec. Add GopBReference, GopNumBFrames, SubGopLength fields under H265 output codec.
+* api-change:``sms-voice``: [``botocore``] Updated the ``sms-voice`` client to the latest version. Note: this client is maintained only for backwards compatibility and should not be used for new development. We recommend using the ``pinpoint-sms-voice`` client for full support and ongoing updates.
+* api-change:``sqs``: [``botocore``] Update invalid character handling documentation for SQS SendMessage API
+
+
 1.40.34
 =======
 
