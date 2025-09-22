@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.40.36
+=======
+
+* api-change:``batch``: [``botocore``] Starting in JAN 2026, AWS Batch will change the default AMI for new Amazon ECS compute environments from Amazon Linux 2 to Amazon Linux 2023. We recommend migrating AWS Batch Amazon ECS compute environments to Amazon Linux 2023 to maintain optimal performance and security.
+* api-change:``eks``: [``botocore``] Adds support for RepairConfig overrides and configurations in EKS Managed Node Groups.
+* api-change:``imagebuilder``: [``botocore``] Version ARNs are no longer required for the EC2 Image Builder list-image-build-version, list-component-build-version, and list-workflow-build-version APIs. Calling these APIs without the ARN returns all build versions for the given resource type in the requesting account.
+
+
 1.40.35
 =======
 
