@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cleanrooms``",
-  "description": "[``botocore``] Added support for running incremental ID mapping for rule-based workflows."
-}
