@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.40.37
+=======
+
+* api-change:``cleanrooms``: [``botocore``] Added support for running incremental ID mapping for rule-based workflows.
+* api-change:``ec2``: [``botocore``] Add Amazon EC2 R8gn instance types
+* api-change:``entityresolution``: [``botocore``] Support incremental id mapping workflow for AWS Entity Resolution
+* api-change:``ssm``: [``botocore``] Added Dualstack support to GetDeployablePatchSnapshotForInstance
+* api-change:``sso-admin``: [``botocore``] Add support for encryption at rest with Customer Managed KMS Key in AWS IAM Identity Center
+* api-change:``sso-oidc``: [``botocore``] This release includes exception definition and documentation updates.
+
+
 1.40.36
 =======
 

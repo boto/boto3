@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] Added support for running incremental ID mapping for rule-based workflows.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Add Amazon EC2 R8gn instance types",
+    "type": "api-change"
+  },
+  {
+    "category": "``entityresolution``",
+    "description": "[``botocore``] Support incremental id mapping workflow for AWS Entity Resolution",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm``",
+    "description": "[``botocore``] Added Dualstack support to GetDeployablePatchSnapshotForInstance",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso-admin``",
+    "description": "[``botocore``] Add support for encryption at rest with Customer Managed KMS Key in AWS IAM Identity Center",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso-oidc``",
+    "description": "[``botocore``] This release includes exception definition and documentation updates.",
+    "type": "api-change"
+  }
+]
