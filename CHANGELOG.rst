@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.40.38
+=======
+
+* api-change:``appstream``: [``botocore``] G6f instance support for AppStream 2.0
+* api-change:``cloudwatch``: [``botocore``] Fix default dualstack FIPS endpoints in AWS GovCloud(US) regions
+* api-change:``dax``: [``botocore``] This release adds support for IPv6-only, DUAL_STACK DAX instances
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``kms``: [``botocore``] Documentation only updates for KMS.
+* api-change:``neptune``: [``botocore``] Doc-only update to address customer use.
+
+
 1.40.37
 =======
 

@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``appstream``",
+    "description": "[``botocore``] G6f instance support for AppStream 2.0",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Fix default dualstack FIPS endpoints in AWS GovCloud(US) regions",
+    "type": "api-change"
+  },
+  {
+    "category": "``dax``",
+    "description": "[``botocore``] This release adds support for IPv6-only, DUAL_STACK DAX instances",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``kms``",
+    "description": "[``botocore``] Documentation only updates for KMS.",
+    "type": "api-change"
+  },
+  {
+    "category": "``neptune``",
+    "description": "[``botocore``] Doc-only update to address customer use.",
+    "type": "api-change"
+  }
+]
