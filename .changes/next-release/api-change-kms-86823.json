@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kms``",
-  "description": "[``botocore``] Documentation only updates for KMS."
-}
