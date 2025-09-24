@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudwatch``",
+  "description": "[``botocore``] Fix default dualstack FIPS endpoints in AWS GovCloud(US) regions"
+}
