@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.40.39
+=======
+
+* api-change:``glue``: [``botocore``] Update GetConnection(s) API to return KmsKeyArn & Add 63 missing connection types
+* api-change:``lightsail``: [``botocore``] Attribute HTTP binding update for Get/Delete operations
+* api-change:``network-firewall``: [``botocore``] Network Firewall now introduces Reject and Alert action support for stateful domain list rule groups, providing customers with more granular control over their network traffic.
+
+
 1.40.38
 =======
 
