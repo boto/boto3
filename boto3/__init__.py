@@ -18,7 +18,7 @@ from boto3.compat import _warn_deprecated_python
 from boto3.session import Session
 
 __author__ = 'Amazon Web Services'
-__version__ = '1.40.39'
+__version__ = '1.40.40'
 
 
 # The default Boto3 session; autoloaded when needed.
