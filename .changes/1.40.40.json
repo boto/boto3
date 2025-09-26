@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``bedrock-agent-runtime``",
+    "description": "[``botocore``] This release enhances the information provided through Flow Traces. New information includes source/next node tracking, execution chains for complex nodes, dependency action (operation) details, and dependency traces.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-data-automation``",
+    "description": "[``botocore``] Added support for configurable Speaker Labeling and Channel Labeling features for Audio modality.",
+    "type": "api-change"
+  },
+  {
+    "category": "``billing``",
+    "description": "[``botocore``] Add ability to combine custom billing views to create new consolidated views.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ce``",
+    "description": "[``botocore``] Support for payer account dimension and billing view health status.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Adds supports for manual contact picking (WorkList) operations on Routing Profiles, Agent Management and SearchContacts APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``dynamodbstreams``",
+    "description": "[``botocore``] Added support for IPv6 compatible endpoints for DynamoDB Streams.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] This release includes documentation updates for Amazon EBS General Purpose SSD (gp3) volumes with larger size and higher IOPS and throughput.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``redshift``",
+    "description": "[``botocore``] Support tagging and tag propagation to IAM Identity Center for Redshift Idc Applications",
+    "type": "api-change"
+  }
+]
