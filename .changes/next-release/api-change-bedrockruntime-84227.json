@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-runtime``",
-  "description": "[``botocore``] New stop reason for Converse and ConverseStream"
-}
