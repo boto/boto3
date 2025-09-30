@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediatailor``",
-  "description": "[``botocore``] Adding TPS Traffic Shaping to Prefetch Schedules"
-}

@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.40.42
+=======
+
+* api-change:``application-signals``: [``botocore``] Amazon CloudWatch Application Signals is introducing the Application Map to give users a more comprehensive view of their service health. Users will now be able to group services, track their latest deployments, and view automated audit findings concerning service performance.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Tagging support for AgentCore Gateway
+* api-change:``chime-sdk-voice``: [``botocore``] Added support for IPv4-only and dual-stack network configurations for VoiceConnector and CreateVoiceConnector API.
+* api-change:``connectcases``: [``botocore``] This release adds support for two new related item types: ConnectCase for linking Amazon Connect cases and Custom for user-defined related items with configurable fields.
+* api-change:``customer-profiles``: [``botocore``] This release introduces ListProfileHistoryRecords and GetProfileHistoryRecord APIs for comprehensive profile history tracking with complete audit trails of creation, updates, merges, deletions, and data ingestion events.
+* api-change:``datasync``: [``botocore``] Added support for FIPS VPC endpoints in FIPS-enabled AWS Regions.
+* api-change:``datazone``: [``botocore``] This release adds support for creation of EMR on EKS Connections in Amazon DataZone.
+* api-change:``ds``: [``botocore``] AWS Directory service now supports IPv6-native and dual-stack configurations for AWS Managed Microsoft AD, AD Connector, and Simple AD (dual-stack only). Additionally, AWS Managed Microsoft AD Standard Edition directories can be upgraded to Enterprise Edition directories through a single API call.
+* api-change:``ecs``: [``botocore``] This release adds support for Managed Instances on Amazon ECS.
+* api-change:``fsx``: [``botocore``] Add Dual-Stack support for Amazon FSx for NetApp ONTAP and Windows File Server
+* api-change:``mediatailor``: [``botocore``] Adding TPS Traffic Shaping to Prefetch Schedules
+* api-change:``quicksight``: [``botocore``] added warnings to a few CLI pages
+* api-change:``rds``: [``botocore``] Enhanced RDS error handling: Added DBProxyEndpointNotFoundFault, DBShardGroupNotFoundFault, KMSKeyNotAccessibleFault for snapshots/restores/backups, NetworkTypeNotSupported, StorageTypeNotSupportedFault for restores, and granular state validation faults. Changed DBInstanceNotReadyFault to HTTP 400.
+* api-change:``transfer``: [``botocore``] Add support for updating server identity provider type
+
+
 1.40.41
 =======
 
