@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.40.43
+=======
+
+* api-change:``chime-sdk-meetings``: [``botocore``] Add support to receive dual stack MediaPlacement URLs in Chime Meetings SDK
+* api-change:``cleanrooms``: [``botocore``] This release introduces data access budgets to control how many times a table can be used for queries and jobs in a collaboration.
+* api-change:``cleanroomsml``: [``botocore``] This release introduces data access budgets to view how many times an input channel can be used for ML jobs in a collaboration.
+* api-change:``dms``: [``botocore``] This is a doc-only update, revising text for kms-key-arns.
+* api-change:``ecs``: [``botocore``] This is a documentation only Amazon ECS release that adds additional information for health checks.
+* api-change:``pcs``: [``botocore``] Added the UpdateCluster API action to modify cluster configurations, and Slurm custom settings for queues.
+
+
 1.40.42
 =======
 
