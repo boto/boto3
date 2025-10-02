@@ -139,7 +139,11 @@ from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import OSUtils
 
 import boto3.s3.constants as constants
-from boto3.exceptions import RetriesExceededError, S3UploadFailedError
+from boto3.exceptions import (
+    MissingMinimumCrtVersionError,
+    RetriesExceededError,
+    S3UploadFailedError,
+)
 
 if HAS_CRT:
     import awscrt.s3
@@ -198,7 +202,7 @@ def _should_use_crt(config):
         )
         if HAS_CRT:
             msg += f", with version: {awscrt.__version__}"
-        raise Exception(msg)
+        raise MissingMinimumCrtVersionError(msg)
 
     if (
         is_optimized_instance

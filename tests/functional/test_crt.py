@@ -17,6 +17,7 @@ import pytest
 from botocore.compat import HAS_CRT
 from botocore.credentials import Credentials
 
+from boto3.exceptions import MissingMinimumCrtVersionError
 from boto3.s3.transfer import (
     TransferConfig,
     create_transfer_manager,
@@ -83,7 +84,7 @@ class TestS3TransferWithCRT:
         config = TransferConfig(
             preferred_transfer_client='crt',
         )
-        with pytest.raises(Exception) as exc:
+        with pytest.raises(MissingMinimumCrtVersionError) as exc:
             create_transfer_manager(client, config)
         assert "missing minimum CRT" in str(exc.value)
 
@@ -94,7 +95,7 @@ class TestS3TransferWithCRT:
         config = TransferConfig(
             preferred_transfer_client='crt',
         )
-        with pytest.raises(Exception) as exc:
+        with pytest.raises(MissingMinimumCrtVersionError) as exc:
             create_transfer_manager(client, config)
         assert "missing minimum CRT" in str(exc.value)
         assert "with version: 0.19.0" in str(exc.value)
