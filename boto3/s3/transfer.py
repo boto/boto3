@@ -189,11 +189,21 @@ def _should_use_crt(config):
     pref_transfer_client = config.preferred_transfer_client.lower()
 
     if (
+        pref_transfer_client == constants.CRT_TRANSFER_CLIENT
+        and not has_min_crt
+    ):
+        msg = (
+            "CRT transfer client is configured but is missing minimum CRT "
+            f"version. CRT installed: {HAS_CRT}"
+        )
+        if HAS_CRT:
+            msg += f", with version: {awscrt.__version__}"
+        raise Exception(msg)
+
+    if (
         is_optimized_instance
         and pref_transfer_client == constants.AUTO_RESOLVE_TRANSFER_CLIENT
-    ) or (
-        has_min_crt and pref_transfer_client == constants.CRT_TRANSFER_CLIENT
-    ):
+    ) or pref_transfer_client == constants.CRT_TRANSFER_CLIENT:
         logger.debug(
             "Attempting to use CRTTransferManager. Config settings may be ignored."
         )

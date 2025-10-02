@@ -77,6 +77,28 @@ class TestS3TransferWithCRT:
         transfer_manager = create_transfer_manager(client, config)
         assert isinstance(transfer_manager, CRTTransferManager)
 
+    @mock.patch("boto3.s3.transfer.HAS_CRT", False)
+    def test_create_transfer_manager_with_crt_preferred_no_crt(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+        )
+        with pytest.raises(Exception) as exc:
+            create_transfer_manager(client, config)
+        assert "missing minimum CRT" in str(exc.value)
+
+    @requires_crt()
+    @mock.patch("awscrt.__version__", "0.19.0")
+    def test_create_transfer_manager_with_crt_preferred_bad_version(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+        )
+        with pytest.raises(Exception) as exc:
+            create_transfer_manager(client, config)
+        assert "missing minimum CRT" in str(exc.value)
+        assert "with version: 0.19.0" in str(exc.value)
+
     @requires_crt()
     def test_minimum_crt_version(self):
         assert has_minimum_crt_version((0, 16, 12)) is True
