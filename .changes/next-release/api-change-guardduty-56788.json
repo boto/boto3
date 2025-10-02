@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``guardduty``",
+  "description": "[``botocore``] Updated descriptions for the Location parameter in CreateTrustedEntitySet and CreateThreatEntitySet."
+}
