@@ -184,15 +184,15 @@ def create_transfer_manager(client, config, osutil=None):
 
 def _should_use_crt(config):
     # This feature requires awscrt>=0.19.18
-    if HAS_CRT and has_minimum_crt_version((0, 19, 18)):
-        is_optimized_instance = awscrt.s3.is_optimized_for_system()
-    else:
-        is_optimized_instance = False
+    has_min_crt = HAS_CRT and has_minimum_crt_version((0, 19, 18))
+    is_optimized_instance = has_min_crt and awscrt.s3.is_optimized_for_system()
     pref_transfer_client = config.preferred_transfer_client.lower()
 
     if (
         is_optimized_instance
         and pref_transfer_client == constants.AUTO_RESOLVE_TRANSFER_CLIENT
+    ) or (
+        has_min_crt and pref_transfer_client == constants.CRT_TRANSFER_CLIENT
     ):
         logger.debug(
             "Attempting to use CRTTransferManager. Config settings may be ignored."
@@ -296,6 +296,7 @@ class TransferConfig(S3TransferConfig):
                   are made with supported environment and settings.
               * classic - Only use the origin S3TransferManager with
                   requests. Disables possible CRT upgrade on requests.
+              * crt - Only use the CRTTransferManager with requests.
         """
         super().__init__(
             multipart_threshold=multipart_threshold,

@@ -69,6 +69,15 @@ class TestS3TransferWithCRT:
         assert isinstance(transfer_manager, CRTTransferManager)
 
     @requires_crt()
+    def test_create_transfer_manager_with_crt_preferred(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+        )
+        transfer_manager = create_transfer_manager(client, config)
+        assert isinstance(transfer_manager, CRTTransferManager)
+
+    @requires_crt()
     def test_minimum_crt_version(self):
         assert has_minimum_crt_version((0, 16, 12)) is True
 
