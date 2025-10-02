@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudformation``",
-  "description": "[``botocore``] Add new warning type 'EXCLUDED_RESOURCES'"
-}
