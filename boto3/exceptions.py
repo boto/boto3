@@ -124,3 +124,7 @@ class PythonDeprecationWarning(Warning):
     """
 
     pass
+
+
+class MissingMinimumCrtVersionError(Boto3Error):
+    pass
