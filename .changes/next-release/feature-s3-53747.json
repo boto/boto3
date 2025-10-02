@@ -1,0 +1,5 @@
+{
+  "type": "feature",
+  "category": "``s3``",
+  "description": "Added ``crt`` mode to ``preferred_transfer_client`` parameter in ``TransferConfig`` to enable CRT transfer client in all environments."
+}

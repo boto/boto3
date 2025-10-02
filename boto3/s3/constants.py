@@ -14,4 +14,5 @@
 
 # TransferConfig preferred_transfer_client settings
 CLASSIC_TRANSFER_CLIENT = "classic"
+CRT_TRANSFER_CLIENT = "crt"
 AUTO_RESOLVE_TRANSFER_CLIENT = "auto"
