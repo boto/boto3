@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediaconnect``",
-  "description": "[``botocore``] Enabling Tag-on-Create for AWS Elemental MediaConnect flow-based resource types"
-}

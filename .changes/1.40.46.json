@@ -1,0 +1,47 @@
+[
+  {
+    "category": "``backup``",
+    "description": "[``botocore``] Adds optional MaxScheduledRunsPreview input to GetBackupPlan API to provide a preview of up to 10 next scheduled backup plan runs in the GetBackupPlan response.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore``",
+    "description": "[``botocore``] Add support for batch memory management, agent card retrieval and session termination",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Add support for VM lifecycle configuration parameters and A2A protocol",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Adds labeling for DataQualityRuleResult for GetDataQualityResult and PublishDataQualityResult APIs",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconnect``",
+    "description": "[``botocore``] Enabling Tag-on-Create for AWS Elemental MediaConnect flow-based resource types",
+    "type": "api-change"
+  },
+  {
+    "category": "``memorydb``",
+    "description": "[``botocore``] Support for DescribeMultiRegionParameterGroups and DescribeMultiRegionParameters API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] Documentation improvements for QuickSight API documentation to clarify that delete operation APIs are global.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Documentation updates to the CreateDBClusterMessage$PubliclyAccessible and CreateDBInstanceMessage$PubliclyAccessible properties.",
+    "type": "api-change"
+  },
+  {
+    "category": "``resource-explorer-2``",
+    "description": "[``botocore``] Add new AWS Resource Explorer APIs",
+    "type": "api-change"
+  }
+]

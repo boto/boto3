@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``memorydb``",
-  "description": "[``botocore``] Support for DescribeMultiRegionParameterGroups and DescribeMultiRegionParameters API."
-}
