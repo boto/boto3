@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.40.47
+=======
+
+* api-change:``proton``: [``botocore``] Deprecating APIs in AWS Proton namespace.
+
+
 1.40.46
 =======
 
