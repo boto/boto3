@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Updated the text in the Important section of the ModifyDBClusterParameterGroup page."
-}
