@@ -157,6 +157,27 @@ class TestCRTTransferManager:
                 ("access", "secret", "notoken"),
                 False,
             ),
+            # Token normalization: None and empty string should be treated as equivalent
+            (
+                ("access", "secret", None),
+                ("access", "secret", ""),
+                True,
+            ),
+            (
+                ("access", "secret", ""),
+                ("access", "secret", None),
+                True,
+            ),
+            (
+                ("access", "secret", None),
+                ("access", "secret", None),
+                True,
+            ),
+            (
+                ("access", "secret", ""),
+                ("access", "secret", ""),
+                True,
+            ),
         ),
     )
     @requires_crt()

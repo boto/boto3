@@ -149,10 +149,14 @@ def compare_identity(boto3_creds, crt_s3_creds):
     except botocore.exceptions.NoCredentialsError:
         return False
 
+    # Normalize tokens: treat empty string and None as equivalent
+    boto3_token = boto3_creds.token if boto3_creds.token else None
+    crt_token = crt_creds.session_token if crt_creds.session_token else None
+
     is_matching_identity = (
         boto3_creds.access_key == crt_creds.access_key_id
         and boto3_creds.secret_key == crt_creds.secret_access_key
-        and boto3_creds.token == crt_creds.session_token
+        and boto3_token == crt_token
     )
     return is_matching_identity
 
