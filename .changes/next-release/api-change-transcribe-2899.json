@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``transcribe``",
-  "description": "[``botocore``] Move UntagResource API body member to query parameter"
-}
