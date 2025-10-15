@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lightsail``",
+  "description": "[``botocore``] Add support for manage Lightsail Bucket CORS configuration"
+}
