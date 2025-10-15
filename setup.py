@@ -14,7 +14,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.40.52,<1.41.0',
+    'botocore>=1.40.53,<1.41.0',
     'jmespath>=0.7.1,<2.0.0',
     's3transfer>=0.14.0,<0.15.0',
 ]
@@ -37,13 +37,12 @@ setup(
     package_data={'boto3': ['data/aws/resources/*.json', 'examples/*.rst']},
     include_package_data=True,
     install_requires=requires,
-    license="Apache License 2.0",
+    license="Apache-2.0",
     python_requires=">= 3.9",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
-        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
