@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``docdb``",
-  "description": "[``botocore``] Add support for NetworkType field in CreateDbCluster, ModifyDbCluster, RestoreDbClusterFromSnapshot and RestoreDbClusterToPointInTime for DocumentDB."
-}

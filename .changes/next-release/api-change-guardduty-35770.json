@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Added default pagination value for ListMalwareProtectionPlans API and updated UpdateFindingsFeedback API"
-}
