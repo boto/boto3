@@ -1,0 +1,257 @@
+[
+  {
+    "category": "``acm-pca``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``amplify``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``apigatewaymanagementapi``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``apprunner``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``apptest``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``autoscaling-plans``",
+    "description": "[``botocore``] Updated FIPS endpoints for US GovCloud regions",
+    "type": "api-change"
+  },
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``bcm-data-exports``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``billingconductor``",
+    "description": "[``botocore``] New feature: service flat CLI and first AWS managed pricing plan (BasicPricingPlan)",
+    "type": "api-change"
+  },
+  {
+    "category": "``customer-profiles``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``databrew``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``dataexchange``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``dlm``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``freetier``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``gamelift``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``geo-routes``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``globalaccelerator``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``grafana``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``identitystore``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivs``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivs-realtime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kafka``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``keyspaces``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kms``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``lex-models``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``lexv2-runtime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``lookoutequipment``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``m2``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``machinelearning``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-entitlement``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediapackagev2``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``medical-imaging``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``memorydb``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``migrationhub-config``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``networkflowmonitor``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``osis``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``personalize-runtime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``pinpoint-sms-voice``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``polly``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``pricing``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``qldb``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``qldb-session``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53-recovery-control-config``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm-contacts``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm-guiconnect``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-query``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``voice-id``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces-web``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  }
+]

@@ -2,6 +2,62 @@
 CHANGELOG
 =========
 
+1.40.54
+=======
+
+* api-change:``acm-pca``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``amplify``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``apigatewaymanagementapi``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``apprunner``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``apptest``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``autoscaling-plans``: [``botocore``] Updated FIPS endpoints for US GovCloud regions
+* api-change:``batch``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bcm-data-exports``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``billingconductor``: [``botocore``] New feature: service flat CLI and first AWS managed pricing plan (BasicPricingPlan)
+* api-change:``customer-profiles``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``databrew``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dataexchange``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dlm``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``freetier``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``gamelift``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``geo-routes``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``globalaccelerator``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``grafana``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``identitystore``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ivs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ivs-realtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kafka``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``keyspaces``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kms``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lex-models``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lexv2-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lookoutequipment``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``m2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``machinelearning``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``marketplace-entitlement``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mediapackagev2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``medical-imaging``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``memorydb``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``migrationhub-config``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``networkflowmonitor``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``osis``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``personalize``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``personalize-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pinpoint-sms-voice``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``polly``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pricing``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``qldb``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``qldb-session``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``route53-recovery-control-config``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ssm``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ssm-contacts``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ssm-guiconnect``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``timestream-query``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``voice-id``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workspaces-web``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.53
 =======
 
