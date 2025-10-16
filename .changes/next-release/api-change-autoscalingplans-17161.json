@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``autoscaling-plans``",
+  "description": "[``botocore``] Updated FIPS endpoints for US GovCloud regions"
+}

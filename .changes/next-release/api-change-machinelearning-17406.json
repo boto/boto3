@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``machinelearning``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

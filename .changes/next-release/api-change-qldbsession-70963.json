@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``qldb-session``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
