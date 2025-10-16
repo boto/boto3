@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``marketplace-entitlement``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

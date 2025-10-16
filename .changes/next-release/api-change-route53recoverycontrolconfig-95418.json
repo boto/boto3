@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53-recovery-control-config``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
