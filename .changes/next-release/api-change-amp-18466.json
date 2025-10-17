@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``amp``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

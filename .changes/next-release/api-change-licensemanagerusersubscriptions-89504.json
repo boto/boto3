@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``license-manager-user-subscriptions``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

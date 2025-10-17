@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``datasync``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

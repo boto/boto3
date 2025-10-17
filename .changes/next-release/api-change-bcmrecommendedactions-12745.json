@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``bcm-recommended-actions``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

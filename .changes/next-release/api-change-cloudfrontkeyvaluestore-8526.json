@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudfront-keyvaluestore``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
