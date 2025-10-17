@@ -1,0 +1,257 @@
+[
+  {
+    "category": "``amp``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``amplifybackend``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``appconfigdata``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``appintegrations``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``application-insights``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``arc-zonal-shift``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``bcm-recommended-actions``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-data-automation-runtime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-meetings``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudfront``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudfront-keyvaluestore``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codestar-notifications``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``controlcatalog``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``datasync``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ds``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``dsql``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Documentation updates for Amazon EC2.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``es``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``evidently``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``finspace``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``finspace-data``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``gameliftstreams``",
+    "description": "[``botocore``] Updates documentation to clarify valid application binaries for an Amazon GameLift Streams application and provide descriptions of stream session error status reasons",
+    "type": "api-change"
+  },
+  {
+    "category": "``geo-maps``",
+    "description": "[``botocore``] Added support for optional style parameters in maps, including Terrain, ContourDensity, Traffic, and TravelModes.",
+    "type": "api-change"
+  },
+  {
+    "category": "``imagebuilder``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iot-data``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotdeviceadvisor``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotthingsgraph``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iottwinmaker``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kendra-ranking``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis-video-media``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``lakeformation``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``license-manager``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``license-manager-user-subscriptions``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-catalog``",
+    "description": "[``botocore``] The ListEntities API now supports two new CAPI filters: DeliveryOptionTypes for SaaS products and CompatibleAWSServices for Container products.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconnect``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``migration-hub-refactor-spaces``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``network-firewall``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``networkmanager``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``organizations``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``pi``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``qapps``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``rolesanywhere``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53-recovery-readiness``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-geospatial``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``signer``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``swf``",
+    "description": "[``botocore``] Releasing minor endpoint updates.",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-write``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``tnb``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``wellarchitected``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  }
+]

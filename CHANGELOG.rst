@@ -2,6 +2,62 @@
 CHANGELOG
 =========
 
+1.40.55
+=======
+
+* api-change:``amp``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``amplifybackend``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``appconfigdata``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``appintegrations``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``application-insights``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``arc-zonal-shift``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bcm-recommended-actions``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-data-automation-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``chime-sdk-meetings``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudfront``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudfront-keyvaluestore``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codestar-notifications``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``controlcatalog``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``datasync``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ds``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dsql``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ec2``: [``botocore``] Documentation updates for Amazon EC2.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``es``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``events``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``evidently``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``finspace``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``finspace-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``gameliftstreams``: [``botocore``] Updates documentation to clarify valid application binaries for an Amazon GameLift Streams application and provide descriptions of stream session error status reasons
+* api-change:``geo-maps``: [``botocore``] Added support for optional style parameters in maps, including Terrain, ContourDensity, Traffic, and TravelModes.
+* api-change:``imagebuilder``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iot-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotdeviceadvisor``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotthingsgraph``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iottwinmaker``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kendra-ranking``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesis-video-media``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lakeformation``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``license-manager``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``license-manager-user-subscriptions``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``marketplace-catalog``: [``botocore``] The ListEntities API now supports two new CAPI filters: DeliveryOptionTypes for SaaS products and CompatibleAWSServices for Container products.
+* api-change:``mediaconnect``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``migration-hub-refactor-spaces``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``network-firewall``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``networkmanager``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``organizations``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pi``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``qapps``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rolesanywhere``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``route53-recovery-readiness``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sagemaker-geospatial``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``signer``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``swf``: [``botocore``] Releasing minor endpoint updates.
+* api-change:``timestream-write``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``tnb``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``wellarchitected``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.54
 =======
 
