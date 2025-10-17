@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``arc-zonal-shift``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

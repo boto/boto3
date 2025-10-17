@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kendra-ranking``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

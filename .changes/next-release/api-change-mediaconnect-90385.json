@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediaconnect``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
