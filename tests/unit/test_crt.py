@@ -59,13 +59,16 @@ def mock_serializer_singleton(monkeypatch):
     yield None
 
 
-def create_test_client(service_name='s3', region_name="us-east-1"):
+def create_test_client(
+    service_name='s3', region_name="us-east-1", endpoint_url=None
+):
     return boto3.client(
         service_name,
         region_name=region_name,
         aws_access_key_id="access",
         aws_secret_access_key="secret",
         aws_session_token="token",
+        endpoint_url=endpoint_url,
     )
 
 
@@ -234,3 +237,71 @@ class TestCRTTransferManager:
         )
         assert use1_crt_s3_client is crt_s3_client
         assert use1_crt_s3_client.region == "us-west-2"
+
+    @requires_crt()
+    def test_create_crt_transfer_manager_with_custom_endpoint(
+        self,
+        mock_crt_process_lock,
+        mock_crt_client_singleton,
+        mock_serializer_singleton,
+    ):
+        """Test that custom endpoints are properly passed through to the serializer"""
+        custom_endpoint = "https://custom-s3.example.com"
+        custom_client = create_test_client(
+            region_name="us-west-2", endpoint_url=custom_endpoint
+        )
+
+        tm = boto3.crt.create_crt_transfer_manager(custom_client, None)
+        assert isinstance(tm, s3transfer.crt.CRTTransferManager)
+
+        # Verify the serializer was created with the custom endpoint
+        serializer = boto3.crt.BOTOCORE_CRT_SERIALIZER
+        assert serializer is not None
+        # Check that the client_kwargs passed to the serializer includes the endpoint_url
+        assert hasattr(serializer, '_client')
+        # The serializer's internal client should have the custom endpoint
+        assert serializer._client.meta.endpoint_url == custom_endpoint
+
+    @requires_crt()
+    def test_create_crt_request_serializer_with_custom_endpoint(
+        self,
+        mock_crt_process_lock,
+        mock_crt_client_singleton,
+        mock_serializer_singleton,
+    ):
+        """Test that _create_crt_request_serializer properly handles custom endpoints"""
+        from botocore.session import Session
+
+        custom_endpoint = "https://custom-s3.example.com"
+        session = Session()
+
+        serializer = boto3.crt._create_crt_request_serializer(
+            session, "us-west-2", endpoint_url=custom_endpoint
+        )
+
+        # Verify serializer was created and has the custom endpoint in its client
+        assert serializer is not None
+        assert hasattr(serializer, '_client')
+        assert serializer._client.meta.endpoint_url == custom_endpoint
+        # Verify path-style addressing is configured for custom endpoints
+        assert serializer._client.meta.config.s3['addressing_style'] == 'path'
+
+    @requires_crt()
+    def test_create_crt_request_serializer_without_custom_endpoint(
+        self,
+        mock_crt_process_lock,
+        mock_crt_client_singleton,
+        mock_serializer_singleton,
+    ):
+        """Test that _create_crt_request_serializer works without custom endpoint (default behavior)"""
+        from botocore.session import Session
+
+        session = Session()
+
+        serializer = boto3.crt._create_crt_request_serializer(
+            session, "us-west-2", endpoint_url=None
+        )
+
+        # Verify serializer was created
+        assert serializer is not None
+        assert hasattr(serializer, '_client')
