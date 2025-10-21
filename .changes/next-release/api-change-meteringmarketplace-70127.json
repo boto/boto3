@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``meteringmarketplace``",
+  "description": "[``botocore``] Added ClientToken parameter to MeterUsage API for specifying idempotent requests."
+}

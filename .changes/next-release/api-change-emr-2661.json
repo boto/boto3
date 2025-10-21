@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``emr``",
+  "description": "[``botocore``] Added RECONFIGURING to the InstanceFleetState convenience enum."
+}
