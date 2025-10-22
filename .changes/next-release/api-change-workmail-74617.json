@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``workmail``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

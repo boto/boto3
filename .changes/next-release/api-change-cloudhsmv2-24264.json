@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudhsmv2``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
