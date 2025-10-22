@@ -2,6 +2,61 @@
 CHANGELOG
 =========
 
+1.40.57
+=======
+
+* api-change:``appfabric``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``autoscaling``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``b2bi``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bcm-dashboards``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ce``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``chatbot``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudformation``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudhsm``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudhsmv2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codeguru-reviewer``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cognito-identity``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``comprehendmedical``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``connect``: [``botocore``] This release added support for email address alias configuration and outbound campaign preview mode.
+* api-change:``connectcampaignsv2``: [``botocore``] Updated Amazon Connect Outbound Campaigns V2 SDK to support Preview Outbound Mode
+* api-change:``connectparticipant``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``devicefarm``: [``botocore``] This release adds support for optionally including an app as part of a CreateRemoteAccessSession request
+* api-change:``directconnect``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ds-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ec2``: [``botocore``] This release adds AvailabilityZoneId support for CreateNetworkInterface and DescribeNetworkInterfaces APIs.
+* api-change:``ec2-instance-connect``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``forecastquery``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iam``: [``botocore``] Updated OIDC and SAML apis to reject multiple simultaneous requests to change a unique object.
+* api-change:``inspector2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iot``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotanalytics``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotfleetwise``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotsecuretunneling``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotsitewise``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ivschat``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesisanalyticsv2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lexv2-models``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mailmanager``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``marketplace-agreement``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``medialive``: [``botocore``] Add 3 API operations for fetching alerts: ListAlerts (Channels), ListClusterAlerts (MediaLive Anywhere), and ListMultiplexAlerts
+* api-change:``mwaa``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``notificationscontacts``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``oam``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pcs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``redshift-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``route53``: [``botocore``] Amazon Route 53 now supports the ISOB West Region for private DNS for Amazon VPCs and cloudwatch healthchecks.
+* api-change:``route53-recovery-cluster``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rtbfabric``: [``botocore``] Update for general availability of AWS RTB Fabric service.
+* api-change:``sagemaker-a2i-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sns``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ssm-incidents``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workdocs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workmail``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workspaces``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.56
 =======
 
