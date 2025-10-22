@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iotanalytics``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

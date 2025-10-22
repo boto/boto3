@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appfabric``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

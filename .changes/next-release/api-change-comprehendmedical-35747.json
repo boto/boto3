@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``comprehendmedical``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
