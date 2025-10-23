@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``pinpoint-email``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

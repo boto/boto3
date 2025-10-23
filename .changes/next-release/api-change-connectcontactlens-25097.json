@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connect-contact-lens``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

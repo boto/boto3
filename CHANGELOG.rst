@@ -2,6 +2,61 @@
 CHANGELOG
 =========
 
+1.40.58
+=======
+
+* api-change:``account``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``application-autoscaling``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-agentcore``: [``botocore``] Fixing the service documentation name
+* api-change:``bedrock-agentcore-control``: [``botocore``] Fixing the service documentation name
+* api-change:``chime-sdk-voice``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudtrail-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codebuild``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codestar-connections``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``config``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``connect-contact-lens``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cur``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``discovery``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dms``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``docdb-elastic``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``drs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dsql``: [``botocore``] Add support for resource-based policies for Aurora DSQL clusters. This will enable you to implement Block Public Access (BPA) which will help restrict access to your Aurora DSQL public or VPC endpoints.
+* api-change:``ebs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ecr``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ecr-public``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``healthlake``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``internetmonitor``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotevents``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iot-jobs-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesis-video-archived-media``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesis-video-webrtc-storage``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lambda``: [``botocore``] Add NodeJs 24 (nodejs24.x) support to AWS Lambda.
+* api-change:``macie2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``managedblockchain-query``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``marketplacecommerceanalytics``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mediatailor``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mgh``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mgn``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mpa``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``neptunedata``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``networkmonitor``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``odb``: [``botocore``] Doc-only update that removes duplicate values from descriptions of ODB peering APIs.
+* api-change:``omics``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``opensearchserverless``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pca-connector-scep``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``personalize-events``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pinpoint-email``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``resiliencehub``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rum``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sagemaker``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sagemaker-edge``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``savingsplans``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``securitylake``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sesv2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``storagegateway``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``synthetics``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.57
 =======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``securitylake``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearchserverless``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
