@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``resiliencehub``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

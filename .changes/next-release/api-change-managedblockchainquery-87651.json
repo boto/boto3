@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``managedblockchain-query``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
