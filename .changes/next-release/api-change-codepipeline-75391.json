@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codepipeline``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

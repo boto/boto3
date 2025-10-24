@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``datazone``",
+  "description": "[``botocore``] This release adds support for MLflow connections Creation in DataZone"
+}

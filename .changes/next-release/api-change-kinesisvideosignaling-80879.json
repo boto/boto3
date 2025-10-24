@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``kinesis-video-signaling``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
