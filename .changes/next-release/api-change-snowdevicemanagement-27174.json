@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``snow-device-management``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
