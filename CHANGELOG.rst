@@ -2,6 +2,63 @@
 CHANGELOG
 =========
 
+1.40.59
+=======
+
+* api-change:``acm``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``amplifyuibuilder``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``application-signals``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``billing``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``budgets``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``chime-sdk-messaging``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudtrail``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codepipeline``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``datapipeline``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``datazone``: [``botocore``] This release adds support for MLflow connections Creation in DataZone
+* api-change:``docdb``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dynamodbstreams``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``eks``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``elb``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``evs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``fis``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``gameliftstreams``: [``botocore``] Add status reasons for TERMINATED stream sessions
+* api-change:``geo-maps``: [``botocore``] Added support for optional AdditionalFeatures parameter in the V2 GetTile API.
+* api-change:``inspector``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iot-managed-integrations``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotwireless``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesisanalytics``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesis-video-signaling``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``location``: [``botocore``] Added support for mobile app restrictions in Amazon Location API keys.
+* api-change:``lookoutvision``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mediapackage``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mediastore``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mediastore-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``migrationhubstrategy``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mq``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``panorama``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``payment-cryptography``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``payment-cryptography-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pca-connector-ad``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``qbusiness``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``robomaker``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``route53domains``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rtbfabric``: [``botocore``] Add support for custom rate limits.
+* api-change:``s3tables``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sagemaker``: [``botocore``] Added inference components model data caching feature
+* api-change:``sagemaker-metrics``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``securityhub``: [``botocore``] Release 3 layer filter support in GetFindingsV2, GetFindingStatisticsV2, GetResourcesV2,GetResourcesStatisticsV2, AutomationRule V2 APIs. Update filter casing in GetResourcesV2, GetResourcesStatisticsV2 APIs. Add new filters in GetFindingsV2, GetFindingStatisticsV2, AutomationRule V2 APIs.
+* api-change:``servicediscovery``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``snow-device-management``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sso-oidc``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``supplychain``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``translate``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``verifiedpermissions``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``vpc-lattice``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``wisdom``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workspaces-thin-client``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.58
 =======
 
