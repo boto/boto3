@@ -1,0 +1,262 @@
+[
+  {
+    "category": "``acm``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``amplifyuibuilder``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``application-signals``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``billing``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``budgets``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-messaging``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudtrail``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codepipeline``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``datapipeline``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``datazone``",
+    "description": "[``botocore``] This release adds support for MLflow connections Creation in DataZone",
+    "type": "api-change"
+  },
+  {
+    "category": "``docdb``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``dynamodbstreams``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``eks``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``elb``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``evs``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``fis``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``gameliftstreams``",
+    "description": "[``botocore``] Add status reasons for TERMINATED stream sessions",
+    "type": "api-change"
+  },
+  {
+    "category": "``geo-maps``",
+    "description": "[``botocore``] Added support for optional AdditionalFeatures parameter in the V2 GetTile API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``inspector``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iot-managed-integrations``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotwireless``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesisanalytics``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis-video-signaling``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``location``",
+    "description": "[``botocore``] Added support for mobile app restrictions in Amazon Location API keys.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lookoutvision``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediapackage``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediastore``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediastore-data``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``migrationhubstrategy``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``mq``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``panorama``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``payment-cryptography``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``payment-cryptography-data``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``pca-connector-ad``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``qbusiness``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``robomaker``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53domains``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``rtbfabric``",
+    "description": "[``botocore``] Add support for custom rate limits.",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3tables``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Added inference components model data caching feature",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-metrics``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``securityhub``",
+    "description": "[``botocore``] Release 3 layer filter support in GetFindingsV2, GetFindingStatisticsV2, GetResourcesV2,GetResourcesStatisticsV2, AutomationRule V2 APIs. Update filter casing in GetResourcesV2, GetResourcesStatisticsV2 APIs. Add new filters in GetFindingsV2, GetFindingStatisticsV2, AutomationRule V2 APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``servicediscovery``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``snow-device-management``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso-oidc``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``supplychain``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``translate``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``verifiedpermissions``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``vpc-lattice``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``wisdom``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces-thin-client``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  }
+]
