@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``repostspace``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

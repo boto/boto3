@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cost-optimization-hub``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

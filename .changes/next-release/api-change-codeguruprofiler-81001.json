@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``codeguruprofiler``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

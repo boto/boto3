@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``braket``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
