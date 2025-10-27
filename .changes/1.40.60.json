@@ -1,0 +1,257 @@
+[
+  {
+    "category": "``accessanalyzer``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``aiops``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``athena``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``backup-gateway``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-data-automation``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``braket``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ce``",
+    "description": "[``botocore``] Updated endpoint for eusc-de-east-1 region.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-identity``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime-sdk-media-pipelines``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeartifact``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeguruprofiler``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-idp``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``comprehend``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``connectcampaigns``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``controltower``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cost-optimization-hub``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``dax``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticbeanstalk``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``entityresolution``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``forecast``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``greengrass``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iam``",
+    "description": "[``botocore``] Fixed missing SummaryMap keys in GetAccountSummary response that were being filtered out during deserialization in AWS Java SDK v2",
+    "type": "api-change"
+  },
+  {
+    "category": "``invoicing``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis``",
+    "description": "[``botocore``] Adds support for record sizes up to 10MiB and introduces new UpdateMaxRecordSize API to modify stream record size limits. Adds record size parameters to existing CreateStream and DescribeStreamSummary APIs for request and response payloads respectively.",
+    "type": "api-change"
+  },
+  {
+    "category": "``launch-wizard``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``lex-runtime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``managedblockchain``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``mturk``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``neptune-graph``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``outposts``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``pinpoint``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``rbin``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds-data``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``redshift-serverless``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``rekognition``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``repostspace``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53profiles``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53resolver``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3vectors``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``scheduler``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``secretsmanager``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ses``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``shield``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``simspaceweaver``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``socialmessaging``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``ssm-sap``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso-admin``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``stepfunctions``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``waf-regional``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``workmailmessageflow``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  }
+]
