@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``simspaceweaver``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
