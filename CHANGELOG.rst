@@ -2,6 +2,62 @@
 CHANGELOG
 =========
 
+1.40.60
+=======
+
+* api-change:``accessanalyzer``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``aiops``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``athena``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``backup-gateway``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-data-automation``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``braket``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ce``: [``botocore``] Updated endpoint for eusc-de-east-1 region.
+* api-change:``chime-sdk-identity``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``chime-sdk-media-pipelines``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codeartifact``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codeguruprofiler``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cognito-idp``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``comprehend``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``connectcampaigns``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``controltower``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cost-optimization-hub``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``dax``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``elasticbeanstalk``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``entityresolution``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``forecast``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``greengrass``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iam``: [``botocore``] Fixed missing SummaryMap keys in GetAccountSummary response that were being filtered out during deserialization in AWS Java SDK v2
+* api-change:``invoicing``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesis``: [``botocore``] Adds support for record sizes up to 10MiB and introduces new UpdateMaxRecordSize API to modify stream record size limits. Adds record size parameters to existing CreateStream and DescribeStreamSummary APIs for request and response payloads respectively.
+* api-change:``launch-wizard``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lex-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``managedblockchain``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mturk``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``neptune-graph``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``outposts``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pinpoint``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rbin``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rds-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``redshift-serverless``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rekognition``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``repostspace``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``route53profiles``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``route53resolver``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``s3vectors``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``scheduler``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``secretsmanager``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ses``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``shield``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``simspaceweaver``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``socialmessaging``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ssm-sap``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sso-admin``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``stepfunctions``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``waf-regional``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workmailmessageflow``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.59
 =======
 

@@ -23,13 +23,13 @@ jobs:
       uses: "actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8"
 
     - name: "Run CodeQL init"
-      uses: "github/codeql-action/init@f443b600d91635bebf5b0d9ebc620189c0d6fba5"
+      uses: "github/codeql-action/init@4e94bd11f71e507f7f87df81788dff88d1dacbfb"
       with:
         config-file: "./.github/codeql.yml"
         languages: "python"
 
     - name: "Run CodeQL autobuild"
-      uses: "github/codeql-action/autobuild@f443b600d91635bebf5b0d9ebc620189c0d6fba5"
+      uses: "github/codeql-action/autobuild@4e94bd11f71e507f7f87df81788dff88d1dacbfb"
 
     - name: "Run CodeQL analyze"
-      uses: "github/codeql-action/analyze@f443b600d91635bebf5b0d9ebc620189c0d6fba5"
+      uses: "github/codeql-action/analyze@4e94bd11f71e507f7f87df81788dff88d1dacbfb"
