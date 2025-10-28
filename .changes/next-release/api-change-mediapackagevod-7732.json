@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mediapackage-vod``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

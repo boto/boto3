@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``codeguru-security``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

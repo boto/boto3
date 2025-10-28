@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lambda``",
+  "description": "[``botocore``] Added SerializedRequestEntityTooLargeException to Lambda Invoke API"
+}

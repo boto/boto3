@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``security-ir``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}

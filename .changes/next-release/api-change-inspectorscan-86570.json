@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``inspector-scan``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
