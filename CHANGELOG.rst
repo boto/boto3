@@ -2,6 +2,61 @@
 CHANGELOG
 =========
 
+1.40.61
+=======
+
+* api-change:``apigatewayv2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``application-signals``: [``botocore``] Added support for CloudWatch Synthetics Canary resources in ListAuditFindings API. This enhancement allows customers to retrieve audit findings specifically for CloudWatch Synthetics canaries and enables service-canary correlation analysis.
+* api-change:``backupsearch``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bcm-pricing-calculator``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-agent-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cleanroomsml``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:clients: [``botocore``] The following clients have been removed per deprecation of the services - qldb, qldb-session, robomaker, lookoutmetrics, lookoutvision, iotfleethub, apptest
+* api-change:``cloud9``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudsearchdomain``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codeconnections``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codeguru-security``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``detective``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ec2``: [``botocore``] This released the DescribeCapacityReservationTopology API.
+* api-change:``ecs``: [``botocore``] Amazon ECS supports native linear and canary service deployments, allowing you to shift traffic in increments for more control.
+* api-change:``efs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``elastictranscoder``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``emr-containers``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``gameliftstreams``: [``botocore``] Add stream group expiration date and expired status
+* api-change:``glacier``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``groundstation``: [``botocore``] Enable use of AzEl ephemerides
+* api-change:``inspector-scan``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kafkaconnect``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kendra``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kinesisvideo``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``lambda``: [``botocore``] Added SerializedRequestEntityTooLargeException to Lambda Invoke API
+* api-change:``marketplace-deployment``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``mediapackage-vod``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``migrationhuborchestrator``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``notifications``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``opensearch``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``organizations``: [``botocore``] Added Account State field to the ListDelegatedAdministrators API response.
+* api-change:``partnercentral-selling``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``pipes``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``ram``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``resource-groups``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``s3``: [``botocore``] Amazon Simple Storage Service / Features: Add conditional writes in CopyObject on destination key to prevent unintended object modifications.
+* api-change:``s3control``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker now supports deleting training and processing jobs in a terminal status.
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``security-ir``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``servicecatalog-appregistry``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sqs``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``support-app``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``taxsettings``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``trustedadvisor``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``workspaces``: [``botocore``] Added IPv6 address support for WorkSpaces using Dual-Stack subnets
+* api-change:``workspaces-instances``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``xray``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.60
 =======
 
