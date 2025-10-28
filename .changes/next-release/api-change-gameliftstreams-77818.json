@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``gameliftstreams``",
-  "description": "[``botocore``] Add stream group expiration date and expired status"
-}
