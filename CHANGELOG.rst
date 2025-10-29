@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.40.62
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] Add support for system tool and web citation response.
+
+
 1.40.61
 =======
 
