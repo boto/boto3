@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kms``",
-  "description": "[``botocore``] Add cross account VPC endpoint service connectivity support to CustomKeyStore."
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker-runtime``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}

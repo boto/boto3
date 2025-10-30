@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``clouddirectory``",
-  "description": "[``botocore``] Update endpoint ruleset parameters casing"
-}
