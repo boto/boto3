@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``auditmanager``",
+  "description": "[``botocore``] Update endpoint ruleset parameters casing"
+}
