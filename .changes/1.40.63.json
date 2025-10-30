@@ -1,0 +1,257 @@
+[
+  {
+    "category": "``amp``",
+    "description": "[``botocore``] Add Anomaly Detection APIs for Amazon Managed Prometheus",
+    "type": "api-change"
+  },
+  {
+    "category": "``apigateway``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``appconfig``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``appflow``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``applicationcostprofiler``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``appmesh``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``appsync``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``artifact``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``auditmanager``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Web-Bot-Auth support for AgentCore Browser tool to help reduce captcha challenges.",
+    "type": "api-change"
+  },
+  {
+    "category": "``chime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] Added support for advanced Spark configurations to optimize SQL performance",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudcontrol``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``clouddirectory``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudsearch``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codecatalyst``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codecommit``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``codedeploy``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``cognito-sync``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``compute-optimizer``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``connectcases``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``deadline``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``devops-guru``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``docdb``",
+    "description": "[``botocore``] Adding FailoverState and TagList to GlobalCluster and SynchronizationStatus to GlobalClusterMember.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Amazon ECS Service Connect now supports Envoy access logs, providing deeper observability into request-level traffic patterns and service interactions.",
+    "type": "api-change"
+  },
+  {
+    "category": "``eks-auth``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr-serverless``",
+    "description": "[``botocore``] This release adds the capability to enable User Background Sessions for customers running Trusted Identity Propagation enabled Interactive Sessions on EMR Serverless Applications.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``firehose``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``frauddetector``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``geo-places``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] This release adds the capability to enable User Background Sessions for customers running Trusted Identity Propagation enabled Interactive Sessions on AWS Glue.",
+    "type": "api-change"
+  },
+  {
+    "category": "``greengrassv2``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotevents-data``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``iot-managed-integrations``",
+    "description": "[``botocore``] Add a new GetManagedThingCertificate API to expose Iot ManagedIntegrations (MI) device certificate, and add  \"-\"  support for name, properties, actions and events in the CapabilityReportCapability object.",
+    "type": "api-change"
+  },
+  {
+    "category": "``keyspacesstreams``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``kms``",
+    "description": "[``botocore``] Add cross account VPC endpoint service connectivity support to CustomKeyStore.",
+    "type": "api-change"
+  },
+  {
+    "category": "``license-manager-linux-subscriptions``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-reporting``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``neptune``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``rtbfabric``",
+    "description": "[``botocore``] RTB Fabric documentation update.",
+    "type": "api-change"
+  },
+  {
+    "category": "``s3outposts``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker-runtime``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``schemas``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``serverlessrepo``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``servicecatalog``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sso``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  },
+  {
+    "category": "``sts``",
+    "description": "[``botocore``] Update endpoint ruleset parameters casing",
+    "type": "api-change"
+  }
+]

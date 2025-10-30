@@ -2,6 +2,62 @@
 CHANGELOG
 =========
 
+1.40.63
+=======
+
+* api-change:``amp``: [``botocore``] Add Anomaly Detection APIs for Amazon Managed Prometheus
+* api-change:``apigateway``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``appconfig``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``appflow``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``applicationcostprofiler``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``appmesh``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``appsync``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``artifact``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``auditmanager``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-agent``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``bedrock-agentcore-control``: [``botocore``] Web-Bot-Auth support for AgentCore Browser tool to help reduce captcha challenges.
+* api-change:``chime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cleanrooms``: [``botocore``] Added support for advanced Spark configurations to optimize SQL performance
+* api-change:``cloudcontrol``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``clouddirectory``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudsearch``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cloudwatch``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codecatalyst``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codecommit``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``codedeploy``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``cognito-sync``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``compute-optimizer``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``connectcases``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``deadline``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``devops-guru``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``docdb``: [``botocore``] Adding FailoverState and TagList to GlobalCluster and SynchronizationStatus to GlobalClusterMember.
+* api-change:``ecs``: [``botocore``] Amazon ECS Service Connect now supports Envoy access logs, providing deeper observability into request-level traffic patterns and service interactions.
+* api-change:``eks-auth``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``elasticache``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``emr-serverless``: [``botocore``] This release adds the capability to enable User Background Sessions for customers running Trusted Identity Propagation enabled Interactive Sessions on EMR Serverless Applications.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``firehose``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``frauddetector``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``geo-places``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``glue``: [``botocore``] This release adds the capability to enable User Background Sessions for customers running Trusted Identity Propagation enabled Interactive Sessions on AWS Glue.
+* api-change:``greengrassv2``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iotevents-data``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``iot-managed-integrations``: [``botocore``] Add a new GetManagedThingCertificate API to expose Iot ManagedIntegrations (MI) device certificate, and add  "-"  support for name, properties, actions and events in the CapabilityReportCapability object.
+* api-change:``keyspacesstreams``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``kms``: [``botocore``] Add cross account VPC endpoint service connectivity support to CustomKeyStore.
+* api-change:``license-manager-linux-subscriptions``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``marketplace-reporting``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``neptune``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``rtbfabric``: [``botocore``] RTB Fabric documentation update.
+* api-change:``s3outposts``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sagemaker-runtime``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``schemas``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``serverlessrepo``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``servicecatalog``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sso``: [``botocore``] Update endpoint ruleset parameters casing
+* api-change:``sts``: [``botocore``] Update endpoint ruleset parameters casing
+
+
 1.40.62
 =======
 
