@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``payment-cryptography``",
-  "description": "[``botocore``] Allow additional characters in the CertificateSubject for GetCertificateSigningRequest API."
-}
