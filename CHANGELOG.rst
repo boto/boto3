@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.40.65
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds support for direct code deploy with CreateAgentRuntime and UpdateAgentRuntime
+* api-change:``budgets``: [``botocore``] Fix the AWS Budgets endpoint for the aws-eusc partition.
+* api-change:``ec2``: [``botocore``] Add Amazon EC2 trn2.3xlarge instance type.
+* api-change:``ecs``: [``botocore``] Documentation-only update for LINEAR and CANARY deployment strategies.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``kinesis``: [``botocore``] Adds support for MinimumThroughputBillingCommitment with new UpdateAccountSettings API. Adds support to configure warm throughput for on-demand streams in new UpdateStreamWarmThroughput API and existing CreateStream API and UpdateStreamMode API.
+
+
 1.40.64
 =======
 
