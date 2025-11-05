@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datazone``",
-  "description": "[``botocore``] Added support for Project Resource Tags"
-}

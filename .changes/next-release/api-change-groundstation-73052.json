@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``groundstation``",
-  "description": "[``botocore``] Introduce CreateDataflowEndpointGroupV2 action"
-}
