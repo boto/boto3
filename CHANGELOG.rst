@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.40.68
+=======
+
+* api-change:``accessanalyzer``: [``botocore``] New field totalActiveErrors added to getFindingsStatistics response.
+* api-change:``backup``: [``botocore``] AWS Backup now supports customer-managed keys (CMK) for logically air-gapped vaults, enabling customers to maintain full control over their encryption key lifecycle. This feature helps organizations meet specific internal governance requirements or external regulatory compliance standards.
+* api-change:``connect``: [``botocore``] Added support for Conditional Questions in Evaluation Forms. Introduced Auto Evaluation capability for Evaluation Forms and Contact Evaluations. Added new API operations: SearchEvaluationForms and SearchContactEvaluations.
+* api-change:``ec2``: [``botocore``] Add Amazon EC2 R8a instance types
+* api-change:``gamelift``: [``botocore``] Amazon GameLift Servers now supports game builds that use the Windows 2022 operating system.
+* api-change:``identitystore``: [``botocore``] IdentityStore API: added new KMSExceptionReason fields to the Exception object; added multiple new fields to the User APIs - UserStatus, Birthdate, Website and Photos; added multiple new metadata fields for User, Groups and Membership APIs - CreatedAt, CreatedBy, UpdatedAt and UpdatedBy.
+* api-change:``quicksight``: [``botocore``] Support for New Data Prep Experience
+* api-change:``s3tables``: [``botocore``] Adds support for tagging APIs for S3 Tables
+* api-change:``s3vectors``: [``botocore``] Amazon S3 Vectors provides cost-effective, elastic, and durable vector storage for queries based on semantic meaning and similarity.
+* api-change:``sagemaker``: [``botocore``] Added NodeProvisioningMode parameter to UpdateCluster API to determine how instance provisioning is handled during cluster operations; in Continuous mode. Added VpcId field in UpdateDomain request for SageMaker Unified Studio domains with no VPC to add a customer VPC.
+* api-change:``ssm``: [``botocore``] Provides NoLongerSupportedException error message
+
+
 1.40.67
 =======
 
