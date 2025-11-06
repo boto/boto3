@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ssm``",
-  "description": "[``botocore``] Provides NoLongerSupportedException error message"
-}
