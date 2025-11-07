@@ -249,18 +249,31 @@ class TransferConfig(S3TransferConfig):
         'max_concurrency': 'max_request_concurrency',
         'max_io_queue': 'max_io_queue_size',
     }
+    DEFAULTS = {
+        'multipart_threshold': 8 * MB,
+        'max_concurrency': 10,
+        'max_request_concurrency': 10,
+        'multipart_chunksize': 8 * MB,
+        'num_download_attempts': 5,
+        'max_io_queue': 100,
+        'max_io_queue_size': 100,
+        'io_chunksize': 256 * KB,
+        'use_threads': True,
+        'max_bandwidth': None,
+        'preferred_transfer_client': constants.AUTO_RESOLVE_TRANSFER_CLIENT,
+    }
 
     def __init__(
         self,
-        multipart_threshold=8 * MB,
-        max_concurrency=10,
-        multipart_chunksize=8 * MB,
-        num_download_attempts=5,
-        max_io_queue=100,
-        io_chunksize=256 * KB,
-        use_threads=True,
-        max_bandwidth=None,
-        preferred_transfer_client=constants.AUTO_RESOLVE_TRANSFER_CLIENT,
+        multipart_threshold=S3TransferConfig.UNSET_DEFAULT,
+        max_concurrency=S3TransferConfig.UNSET_DEFAULT,
+        multipart_chunksize=S3TransferConfig.UNSET_DEFAULT,
+        num_download_attempts=S3TransferConfig.UNSET_DEFAULT,
+        max_io_queue=S3TransferConfig.UNSET_DEFAULT,
+        io_chunksize=S3TransferConfig.UNSET_DEFAULT,
+        use_threads=S3TransferConfig.UNSET_DEFAULT,
+        max_bandwidth=S3TransferConfig.UNSET_DEFAULT,
+        preferred_transfer_client=S3TransferConfig.UNSET_DEFAULT,
     ):
         """Configuration object for managed S3 transfers
 
@@ -325,7 +338,11 @@ class TransferConfig(S3TransferConfig):
         # S3TransferConfig so we add aliases so you can still access the
         # old version of the names.
         for alias in self.ALIAS:
-            setattr(self, alias, getattr(self, self.ALIAS[alias]))
+            setattr(
+                self,
+                alias,
+                object.__getattribute__(self, self.ALIAS[alias]),
+            )
         self.use_threads = use_threads
         self.preferred_transfer_client = preferred_transfer_client
 
@@ -336,6 +353,15 @@ class TransferConfig(S3TransferConfig):
             super().__setattr__(self.ALIAS[name], value)
         # Always set the value of the actual name provided.
         super().__setattr__(name, value)
+
+    def __getattribute__(self, item):
+        value = object.__getattribute__(self, item)
+        defaults = object.__getattribute__(self, 'DEFAULTS')
+        if item not in defaults:
+            return value
+        if value is self.UNSET_DEFAULT:
+            return self.DEFAULTS[item]
+        return value
 
 
 class S3Transfer:
