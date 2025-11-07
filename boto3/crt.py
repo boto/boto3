@@ -31,12 +31,23 @@ from s3transfer.crt import (
     create_s3_crt_client,
 )
 
+from boto3.s3.constants import CRT_TRANSFER_CLIENT
+
 # Singletons for CRT-backed transfers
 CRT_S3_CLIENT = None
 BOTOCORE_CRT_SERIALIZER = None
 
 CLIENT_CREATION_LOCK = threading.Lock()
 PROCESS_LOCK_NAME = 'boto3'
+
+
+ALLOWED_CRT_TRANSFER_CONFIG_OPTIONS = {
+    'multipart_threshold',
+    'max_concurrency',
+    'max_request_concurrency',
+    'multipart_chunksize',
+    'preferred_transfer_client',
+}
 
 
 def _create_crt_client(session, config, region_name, cred_provider):
@@ -157,11 +168,36 @@ def compare_identity(boto3_creds, crt_s3_creds):
     return is_matching_identity
 
 
+def _validate_crt_transfer_config(config):
+    # CRT client can also be configured via `AUTO_RESOLVE_TRANSFER_CLIENT`
+    # but it predates this validation. We only validate against CRT client
+    # configured via `CRT_TRANSFER_CLIENT` to preserve compatibility.
+    if config.preferred_transfer_client != CRT_TRANSFER_CLIENT:
+        return
+    invalid_crt_args = []
+    for param in config.DEFAULTS.keys():
+        val = config.get_deep_attr(param)
+        if (
+            param not in ALLOWED_CRT_TRANSFER_CONFIG_OPTIONS
+            and val is not config.UNSET_DEFAULT
+        ):
+            invalid_crt_args.append(param)
+    if len(invalid_crt_args) > 0:
+        raise ValueError(
+            "The following transfer config options are invalid "
+            "when `preferred_transfer_client` is set to `crt`: `"
+            f"{'`, `'.join(invalid_crt_args)}`"
+        )
+
+
 def create_crt_transfer_manager(client, config):
     """Create a CRTTransferManager for optimized data transfer."""
     crt_s3_client = get_crt_s3_client(client, config)
     if is_crt_compatible_request(client, crt_s3_client):
+        _validate_crt_transfer_config(config)
         return CRTTransferManager(
-            crt_s3_client.crt_client, BOTOCORE_CRT_SERIALIZER
+            crt_s3_client.crt_client,
+            BOTOCORE_CRT_SERIALIZER,
+            config=config,
         )
     return None
