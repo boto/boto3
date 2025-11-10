@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``acm-pca``",
-  "description": "[``botocore``] Private Certificate Authority service now supports ML-DSA key algorithms."
-}

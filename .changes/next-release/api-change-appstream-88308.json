@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appstream``",
-  "description": "[``botocore``] AWS Appstream support for IPv6"
-}

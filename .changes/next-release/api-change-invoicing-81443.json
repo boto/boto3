@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``invoicing``",
-  "description": "[``botocore``] Added new invoicing get-invoice-pdf API Operation"
-}
