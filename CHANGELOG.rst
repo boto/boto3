@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.40.70
+=======
+
+* api-change:``acm-pca``: [``botocore``] Private Certificate Authority service now supports ML-DSA key algorithms.
+* api-change:``appstream``: [``botocore``] AWS Appstream support for IPv6
+* api-change:``backup``: [``botocore``] AWS Backup supports backups of Amazon EKS clusters, including Kubernetes cluster state and persistent storage attached to the EKS cluster via a persistent volume claim (EBS volumes, EFS file systems, and S3 buckets).
+* api-change:``braket``: [``botocore``] Adds ExperimentalCapabilities field to CreateQuantumTask request and GetQuantumTask response objects. Enables use of experimental software capabilities when creating quantum tasks.
+* api-change:``datazone``: [``botocore``] Remove trackingServerName from DataZone Connection MLflowProperties
+* api-change:``dsql``: [``botocore``] Cluster endpoint added to CreateCluster and GetCluster API responses
+* api-change:``ec2``: [``botocore``] Amazon EC2 Fleet customers can now filter instance types based on encryption-in-transit support using Attribute-Based Instance Type Selection (ABIS), eliminating the manual effort of identifying and selecting compatible instance types for security-sensitive workloads.
+* api-change:``guardduty``: [``botocore``] Include tags filed in CreatePublishingDestinationRequest and DescribePublishingDestinationResponse.
+* api-change:``iam``: [``botocore``] Added CreateDelegationRequest API, which is not available for general use at this time.
+* api-change:``invoicing``: [``botocore``] Added new invoicing get-invoice-pdf API Operation
+* api-change:``kafka``: [``botocore``] Amazon MSK now supports intelligent rebalancing for MSK Express brokers.
+* api-change:``sts``: [``botocore``] Added GetDelegatedAccessToken API, which is not available for general use at this time.
+* api-change:``verifiedpermissions``: [``botocore``] Amazon Verified Permissions / Features : Adds support for entity Cedar tags.
+* api-change:``wafv2``: [``botocore``] AWS WAF now supports CLOUDWATCH_TELEMETRY_RULE_MANAGED as a LogScope option, enabling automated logging configuration through Amazon CloudWatch Logs for telemetry data collection and analysis.
+
+
 1.40.69
 =======
 
