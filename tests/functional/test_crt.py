@@ -17,7 +17,10 @@ import pytest
 from botocore.compat import HAS_CRT
 from botocore.credentials import Credentials
 
-from boto3.exceptions import MissingMinimumCrtVersionError
+from boto3.exceptions import (
+    InvalidCrtTransferConfigError,
+    MissingMinimumCrtVersionError,
+)
 from boto3.s3.transfer import (
     TransferConfig,
     create_transfer_manager,
@@ -119,3 +122,30 @@ class TestS3TransferWithCRT:
             vers.return_value = bad_version
 
             assert has_minimum_crt_version((0, 16, 12)) is False
+
+    @requires_crt()
+    def test_crt_transfer_manager_raises_with_invalid_crt_config(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+            # `max_bandwidth` is not an allowed CRT config option.
+            max_bandwidth=1024,
+        )
+        with pytest.raises(InvalidCrtTransferConfigError) as exc:
+            create_transfer_manager(client, config)
+        assert "transfer config options are invalid" in str(exc.value)
+        assert "max_bandwidth" in str(exc.value)
+
+    @requires_crt()
+    @MockOptimizedInstance()
+    def test_auto_transfer_manager_succeeds_with_invalid_crt_config(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='auto',
+            # `max_bandwidth` is not an allowed CRT config option.
+            # But config should only be validated when
+            # `preferred_transfer_client` == `crt`.
+            max_bandwidth=1024,
+        )
+        transfer_manager = create_transfer_manager(client, config)
+        assert isinstance(transfer_manager, CRTTransferManager)
