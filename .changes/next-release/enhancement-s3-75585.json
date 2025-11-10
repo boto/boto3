@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "``s3``",
+  "description": "Adds partial ``TransferConfig`` support for CRT transfer managers."
+}
