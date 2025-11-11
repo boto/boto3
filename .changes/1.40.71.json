@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Documentation-only update: update API and doc descriptions per EKS ImageType default value switch from AL2 to AL2023.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-data-automation``",
+    "description": "[``botocore``] Added support for Language Expansion feature for BDA Audio modality.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] AWS Site-to-Site VPN now supports VPN connections with up to 5 Gbps bandwidth per tunnel, a 4x improvement from existing limit of 1.25 Gbps.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``medical-imaging``",
+    "description": "[``botocore``] Added new fields in existing APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rtbfabric``",
+    "description": "[``botocore``] Added LogSettings and LinkAttribute fields to external links",
+    "type": "api-change"
+  },
+  {
+    "category": "``security-ir``",
+    "description": "[``botocore``] Added support for configuring communication preferences as well as clearly displaying case comment author identities.",
+    "type": "api-change"
+  }
+]
