@@ -360,7 +360,7 @@ class TransferConfig(S3TransferConfig):
         if item not in defaults:
             return value
         if value is self.UNSET_DEFAULT:
-            return self.DEFAULTS[item]
+            return defaults[item]
         return value
 
 
