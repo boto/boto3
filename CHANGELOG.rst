@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.40.71
+=======
+
+* api-change:``batch``: [``botocore``] Documentation-only update: update API and doc descriptions per EKS ImageType default value switch from AL2 to AL2023.
+* api-change:``bedrock-data-automation``: [``botocore``] Added support for Language Expansion feature for BDA Audio modality.
+* api-change:``ec2``: [``botocore``] AWS Site-to-Site VPN now supports VPN connections with up to 5 Gbps bandwidth per tunnel, a 4x improvement from existing limit of 1.25 Gbps.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``medical-imaging``: [``botocore``] Added new fields in existing APIs.
+* api-change:``rtbfabric``: [``botocore``] Added LogSettings and LinkAttribute fields to external links
+* api-change:``security-ir``: [``botocore``] Added support for configuring communication preferences as well as clearly displaying case comment author identities.
+
+
 1.40.70
 =======
 

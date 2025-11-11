@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``medical-imaging``",
-  "description": "[``botocore``] Added new fields in existing APIs."
-}
