@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.40.72
+=======
+
+* api-change:``amp``: [``botocore``] Add VPC source configuration support enabling Amazon Managed Service for Prometheus Collector to collect metrics from MSK clusters.
+* api-change:``connect``: [``botocore``] Updated Authentication Profile APIs to add support for automatic logout on user inactivity
+* api-change:``dms``: [``botocore``] Added support of SQL statements creation, metadata model discovery and selection rules transformation.
+* api-change:``ec2``: [``botocore``] Adds complete AMI ancestry tracing from immediate parent through each preceding generation back to the root AMI
+* api-change:``elbv2``: [``botocore``] This release expands ALB Authentication to support JWT verification and adds support for a new JWT validation action in listener rule.
+* api-change:``redshift``: [``botocore``] Added GetIdentityCenterAuthToken API to retrieve encrypted authentication tokens for Identity Center integrated applications. This API enables programmatic access to secure Identity Center tokens with proper error handling and parameter validation across supported SDK languages.
+* api-change:``s3tables``: [``botocore``] Adds support for request metrics metrics APIs for S3 Tables
+* api-change:``sagemaker``: [``botocore``] Add support for trn2.3xlarge instance type for SageMaker Hyperpod
+
+
 1.40.71
 =======
 
