@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecr``",
-  "description": "[``botocore``] Add Amazon ECR FIPS PrivateLink endpoint support"
-}
