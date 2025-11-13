@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.40.73
+=======
+
+* api-change:``cloudformation``: [``botocore``] CloudFormation now supports GetHookResult API with annotations to retrieve structured compliance check results and remediation guidance for each evaluated resource, replacing the previous single-message limitation with detailed validation outcomes.
+* api-change:``controlcatalog``: [``botocore``] Added support for related control mappings with new RELATED_CONTROL mapping type in ListControlMappings API.
+* api-change:``ec2``: [``botocore``] Added support for new accelerator types ("media") and accelerator names ("L4", "L40s", "GAUDI_HL_205", "INFERENTIA2", "TRAINIUM", "TRAINIUM2", "U30") in Attributes Based Instance Type Selection for launched instance types.
+* api-change:``ecr``: [``botocore``] Add Amazon ECR FIPS PrivateLink endpoint support
+* api-change:``elbv2``: [``botocore``] QUIC and TCP_QUIC protocol support for Network Load Balancer (NLB). This capability enables customers to forward QUIC traffic to their targets with ultra-low latency while maintaining session stickiness using QUIC Connection IDs.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``iotwireless``: [``botocore``] Integration of Device Location with Amazon Sidewalk network for Amazon Sidewalk enabled devices
+* api-change:``mediaconvert``: [``botocore``] Lowers minimum duration for black video generator. Adds support for embedding and signing C2PA content credentials in DASH and CMAF HLS outputs.
+* api-change:``rds``: [``botocore``] Updated endpoint and service metadata
+* api-change:``sagemaker``: [``botocore``] Added support for minor version upgrades and AWS Identity Center integration for SageMaker Hadron Partner Apps, enabling automated version management and IdC group-based access control.
+* api-change:``workspaces-web``: [``botocore``] Support for managing web content filtering for defining, tracking and regulating type of content accessed with WorkSpaces Secure Browser as part of browser settings.
+
+
 1.40.72
 =======
 
