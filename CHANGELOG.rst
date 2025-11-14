@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.40.74
+=======
+
+* api-change:``datazone``: [``botocore``] Adds support for granting read and write access to Amazon S3 general purpose buckets using CreateSubscriptionRequest and AcceptSubscriptionRequest APIs. Also adds search filters for SSOUser and SSOGroup to ListSubscriptions APIs and deprecates "sortBy" parameter for ListSubscriptions APIs.
+* api-change:``ec2``: [``botocore``] This release adds AvailabilityZoneId support for CreateInstanceConnectEndpoint, DescribeInstanceConnectEndpoints, and DeleteInstanceConnectEndpoint APIs.
+* api-change:``imagebuilder``: [``botocore``] EC2 Image Builder now supports invoking Lambda functions and executing Step Functions state machine through image workflows.
+* api-change:``medialive``: [``botocore``] Removed all the value constraint (min/max) for the shape definitions (e.g. integerMin0Max3600) on the C2j models to get rid of the need to request an exemption from the SDK team whenever a shape definition (e.g. integerMin0Max3600) is changed.
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.28.4
+
+
 1.40.73
 =======
 
