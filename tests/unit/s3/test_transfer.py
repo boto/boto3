@@ -76,6 +76,17 @@ class TestCreateTransferManager(unittest.TestCase):
                     client, config, None, None
                 )
 
+    def test_classic_transfer_manager_succeeds_with_invalid_crt_config(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client="classic",
+            # `max_bandwidth` is not an allowed CRT config option.
+            max_bandwidth=MB,
+        )
+        with mock.patch('boto3.s3.transfer.TransferManager') as manager:
+            create_transfer_manager(client, config)
+            assert manager.call_args == mock.call(client, config, None, None)
+
 
 class TestTransferConfig(unittest.TestCase):
     def assert_value_of_actual_and_alias(
@@ -173,6 +184,49 @@ class TestTransferConfig(unittest.TestCase):
             config.preferred_transfer_client
             == copied_config.preferred_transfer_client
         )
+
+    def test_unset_default(self):
+        config = TransferConfig()
+        defaults = TransferConfig.DEFAULTS
+
+        # Assert top-level params and aliases return defaults
+        # when accessed via public property.
+        assert config.multipart_threshold == defaults['multipart_threshold']
+        assert config.max_concurrency == defaults['max_concurrency']
+        assert (
+            config.max_request_concurrency
+            == defaults['max_request_concurrency']
+        )
+        assert config.multipart_chunksize == defaults['multipart_chunksize']
+        assert (
+            config.num_download_attempts == defaults['num_download_attempts']
+        )
+        assert config.max_io_queue == defaults['max_io_queue']
+        assert config.max_io_queue_size == defaults['max_io_queue_size']
+        assert config.io_chunksize == defaults['io_chunksize']
+        assert config.use_threads == defaults['use_threads']
+        assert config.max_bandwidth == defaults['max_bandwidth']
+        assert (
+            config.preferred_transfer_client
+            == defaults['preferred_transfer_client']
+        )
+        # Assert top-level params and aliases return UNSET_DEFAULT
+        # when directly accessed.
+        for param in defaults:
+            assert config.get_deep_attr(param) == TransferConfig.UNSET_DEFAULT
+
+    def test_explicit_config_values(self):
+        config = TransferConfig(
+            multipart_threshold=4 * MB,
+        )
+        config.max_concurrency = 1
+
+        assert config.multipart_threshold == 4 * MB
+        assert config.max_concurrency == 1
+        assert config.max_request_concurrency == 1
+        assert config.get_deep_attr('multipart_threshold') == 4 * MB
+        assert config.get_deep_attr('max_concurrency') == 1
+        assert config.get_deep_attr('max_request_concurrency') == 1
 
 
 class TestProgressCallbackInvoker(unittest.TestCase):
