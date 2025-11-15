@@ -24,12 +24,6 @@ class ResourceLoadException(Boto3Error):
     pass
 
 
-# NOTE: This doesn't appear to be used anywhere.
-# It's probably safe to remove this.
-class NoVersionFound(Boto3Error):
-    pass
-
-
 # We're subclassing from botocore.exceptions.DataNotFoundError
 # to keep backwards compatibility with anyone that was catching
 # this low level Botocore error before this exception was
