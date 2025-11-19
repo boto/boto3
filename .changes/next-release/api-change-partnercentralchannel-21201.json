@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``partnercentral-channel``",
+  "description": "[``botocore``] Initial GA launch of Partner Central Channel"
+}

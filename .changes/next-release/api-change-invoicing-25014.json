@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``invoicing``",
+  "description": "[``botocore``] Add support for adding Billing transfers in Invoice configuration"
+}

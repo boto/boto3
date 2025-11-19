@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ecs``",
+  "description": "[``botocore``] Added support for Amazon ECS Managed Instances infrastructure optimization configuration."
+}

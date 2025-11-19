@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``emr``",
+  "description": "[``botocore``] Add CloudWatch Logs integration for Spark driver, executor and step logs"
+}
