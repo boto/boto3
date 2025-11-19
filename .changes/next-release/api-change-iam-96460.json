@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``iam``",
-  "description": "[``botocore``] Added the EnableOutboundWebIdentityFederation, DisableOutboundWebIdentityFederation and GetOutboundWebIdentityFederationInfo APIs for the IAM outbound federation feature."
-}

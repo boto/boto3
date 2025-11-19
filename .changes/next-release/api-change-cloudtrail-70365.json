@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudtrail``",
-  "description": "[``botocore``] AWS CloudTrail now supports Insights for data events, expanding beyond management events to automatically detect unusual activity on data plane operations."
-}

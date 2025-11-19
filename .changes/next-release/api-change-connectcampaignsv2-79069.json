@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connectcampaignsv2``",
-  "description": "[``botocore``] This release added support for ring timer configuration for campaign calls."
-}

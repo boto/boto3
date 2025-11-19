@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``apigatewayv2``",
-  "description": "[``botocore``] Support for API Gateway portals and portal products."
-}
