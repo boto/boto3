@@ -35,6 +35,7 @@ Boto3 will look in several locations when searching for credentials. The mechani
 #. Assume role with web identity provider
 #. AWS IAM Identity Center credential provider
 #. Shared credential file (``~/.aws/credentials``)
+#. Login with console credentials
 #. AWS config file (``~/.aws/config``)
 #. Boto2 config file (``/etc/boto.cfg`` and ``~/.boto``)
 #. Container credential provider
@@ -247,6 +248,61 @@ You can then specify a profile name via the ``AWS_PROFILE`` environment variable
 
     session = boto3.Session(profile_name='dev')
     dev_s3_client = session.client('s3')
+
+
+.. _login-credentials:
+
+Login with console credentials
+------------------------------
+
+You can use your existing AWS Management Console sign-in credentials for programmatic 
+access to AWS services with Boto3. After a browser-based authentication flow using the 
+AWS CLI, temporary credentials are generated that Boto3 can automatically use. This 
+approach enhances security by eliminating the need to store long-term credentials locally.
+
+Prerequisites
+~~~~~~~~~~~~~
+
+* AWS CLI version 2.32.0 or later. See `Installing or updating to the latest version of the AWS CLI <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_ for more information.
+* AWS Common Runtime (CRT). See :ref:`using-crt` for installation instructions.
+* Access to sign into the AWS Management Console as a root user, IAM user, or through federation with IAM. If you use IAM Identity Center, go to `Login with IAM Identity Center credentials <https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html#command-line-sign-in-sso>`_ instead.
+* Ensure the IAM identity has the appropriate permissions. Attach the `SignInLocalDevelopmentAccess <https://docs.aws.amazon.com/signin/latest/userguide/security-iam-awsmanpol.html>`_ managed policy to your IAM user, role, or group. If you sign in as a root user, no additional permissions are required.
+
+Configuration
+~~~~~~~~~~~~~
+
+Use the AWS CLI ``aws login`` command to authenticate and configure your profile.
+You can use the ``--profile`` option to configure a named profile, or omit it to use the default profile.
+See the `AWS CLI documentation <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sign-in.html>`_ for detailed login instructions.
+
+Once configured, the profile in your ``~/.aws/config`` file will contain:
+
+.. code-block:: ini
+
+    [default]
+    login_session = arn:aws:iam::123456789012:user/username
+    region = us-east-1
+
+Usage with Boto3
+~~~~~~~~~~~~~~~~~
+
+Boto3 automatically uses the login session credentials when you specify the profile:
+
+.. code-block:: python
+
+    import boto3
+
+    # Use default profile with login session
+    session = boto3.Session()
+    s3_client = session.client('s3')
+
+    # Use named profile with login session
+    session = boto3.Session(profile_name='dev-profile')
+    s3_client = session.client('s3')
+
+Boto3 automatically refreshes cached credentials as needed.
+Sessions are valid for up to 12 hours, after which you must run ``aws login`` again.
+
 
 
 AWS config file
