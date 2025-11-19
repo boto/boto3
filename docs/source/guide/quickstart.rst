@@ -69,6 +69,8 @@ certain versions, you may provide constraints when installing::
 
    The latest development version of Boto3 is on `GitHub <https://github.com/boto/boto3>`_.
 
+.. _using-crt:
+
 Using the AWS Common Runtime (CRT)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -86,6 +88,7 @@ You'll find it used in features like:
 -  `Amazon S3 Multi-Region Access Points <https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPoints.html>`_
 -  `Amazon S3 Object Integrity <https://docs.aws.amazon.com/AmazonS3/latest/userguide/checking-object-integrity.html>`_
 -  Amazon EventBridge Global Endpoints
+-  :ref:`Login with console credentials <login-credentials>`
 
 However, Boto3 doesn't use the AWS CRT by default but you can opt into using it by specifying the
 :code:`crt` `extra feature <https://www.python.org/dev/peps/pep-0508/#extras>`_ when installing Boto3::
