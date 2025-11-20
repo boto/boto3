@@ -193,6 +193,7 @@ class TestCopy(BaseTransferTest):
             "UploadId": self.upload_id,
             "PartNumber": part_number,
             "CopySourceRange": copy_range,
+            "CopySourceIfMatch": self.etag,
         }
         self.stubber.add_response(
             method='upload_part_copy',
