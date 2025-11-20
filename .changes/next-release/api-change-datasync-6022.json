@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``datasync``",
+  "description": "[``botocore``] The partition value \"aws-eusc\" is now permitted for ARN (Amazon Resource Name) fields."
+}
