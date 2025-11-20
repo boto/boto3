@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``braket``",
-  "description": "[``botocore``] Add support for Braket spending limits."
-}

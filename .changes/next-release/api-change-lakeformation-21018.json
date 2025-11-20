@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lakeformation``",
-  "description": "[``botocore``] Added ServiceIntegrations as a request parameter for CreateLakeFormationIdentityCenterConfigurationRequest and UpdateLakeFormationIdentityCenterConfigurationRequest and response parameter for DescribeLakeFormationIdentityCenterConfigurationResponse"
-}

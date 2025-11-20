@@ -2,6 +2,44 @@
 CHANGELOG
 =========
 
+1.41.1
+======
+
+* api-change:``application-signals``: [``botocore``] Amazon CloudWatch Application Signals now supports un-instrumented services discovery, cross-account views, and change history, helping SRE and DevOps teams monitor and troubleshoot their large-scale distributed applications.
+* api-change:``autoscaling``: [``botocore``] This release adds support for three new features: 1) Image ID overrides in mixed instances policy, 2) Replace Root Volume - a new strategy for Instance Refresh, and 3) Instance Lifecycle Policy for enhanced instance lifecycle management.
+* api-change:``bedrock-agentcore``: [``botocore``] Bedrock AgentCore Memory release for redriving memory extraction jobs (StartMemoryExtractionJob and ListMemoryExtractionJob)
+* api-change:``bedrock-data-automation``: [``botocore``] Added support for Synchronous project type and PII Detection and Redaction
+* api-change:``bedrock-data-automation-runtime``: [``botocore``] Bedrock Data Automation Runtime Sync API
+* api-change:``braket``: [``botocore``] Add support for Braket spending limits.
+* api-change:``budgets``: [``botocore``] Add BillingViewHealthStatusException to DescribeBudgetPerformanceHistory and ServiceQuotaExceededException to UpdateBudget for improved error handling with Billing Views.
+* api-change:``cloudfront``: [``botocore``] This release adds support for bring your own IP (BYOIP) to CloudFront's CreateAnycastIpList API through an optional IpamCidrConfigs field.
+* api-change:``cloudtrail``: [``botocore``] AWS launches CloudTrail aggregated events to simplify monitoring of data events at scale. This feature delivers both granular and summarized data events for resources like S3/Lambda, helping security teams identify patterns without custom aggregation logic.
+* api-change:``connect``: [``botocore``] Add optional ability to exclude users from send notification actions for Contact Lens Rules.
+* api-change:``datasync``: [``botocore``] The partition value "aws-eusc" is now permitted for ARN (Amazon Resource Name) fields.
+* api-change:``devicefarm``: [``botocore``] Add support for environment variables and an IAM execution role.
+* api-change:``dms``: [``botocore``] Added support for customer-managed KMS key (CMK) for encryption for import private key certificate. Additionally added Amazon SageMaker Lakehouse endpoint used for zero-ETL integrations with data warehouses.
+* api-change:``dsql``: [``botocore``] Added clusterVpcEndpoint field to GetVpcEndpointServiceName API response, returning the VPC connection endpoint for the cluster
+* api-change:``ec2``: [``botocore``] This release adds support for multiple features including: VPC Encryption Control for the status of traffic flow; S2S VPN BGP Logging; TGW Flexible Costs; IPAM allocation of static IPs from IPAM pools to CF Anycast IP lists used on CloudFront distribution; and EBS Volume Integration with Recycle Bin
+* api-change:``ecs``: [``botocore``] Launching Amazon ECS Express Mode - a new feature that enables developers to quickly launch highly available, scalable containerized applications with a single command.
+* api-change:``elbv2``: [``botocore``] This release adds the target optimizer feature in ALB, enabling strict concurrency enforcement on targets.
+* api-change:``emr``: [``botocore``] Add support for configuring S3 destination for step logs on a per-step basis.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``glue``: [``botocore``] Added FunctionType parameter to Glue GetuserDefinedFunctions.
+* api-change:``imagebuilder``: [``botocore``] EC2 Image Builder now enables the distribution of existing AMIs, retry distribution, and define distribution workflows. It also supports automatic versioning for recipes and components, allowing automatic version increments and dynamic referencing in pipelines.
+* api-change:``kinesis``: [``botocore``] Kinesis Data Streams now supports up to 50 Enhance Fan-out consumers for On-demand Advantage Streams. On-demand Standard and Provisioned streams will continue with the existing limit of 20 consumers for Enhanced Fan-out.
+* api-change:``lakeformation``: [``botocore``] Added ServiceIntegrations as a request parameter for CreateLakeFormationIdentityCenterConfigurationRequest and UpdateLakeFormationIdentityCenterConfigurationRequest and response parameter for DescribeLakeFormationIdentityCenterConfigurationResponse
+* api-change:``license-manager``: [``botocore``] Added cross-account resource aggregation via license asset groups and expiry tracking for Self-Managed Licenses. Extended Org-Wide View to Self-Managed Licenses, added reporting for license asset groups, and removed Athena/Glue dependencies for cross-account resource discovery in commercial regions.
+* api-change:``networkmanager``: [``botocore``] This release adds support for Cloud WAN Routing Policy providing customers sophisticated routing controls to better manage their global networks
+* api-change:``organizations``: [``botocore``] Added new APIs for Billing Transfer, new policy type INSPECTOR_POLICY, and allow an account to transfer between organizations
+* api-change:``quicksight``: [``botocore``] Introducing comprehensive theme styling controls. New features include border customization (radius, width, color), flexible padding controls, background styling for cards and sheets, centralized typography management, and visual-level override support across layouts.
+* api-change:``rbin``: [``botocore``] Add support for EBS volume in Recycle Bin
+* api-change:``rds``: [``botocore``] Add support for VPC Encryption Controls.
+* api-change:``redshift-data``: [``botocore``] Increasing the length limit of Statement Name from 500 to 2048.
+* api-change:``s3``: [``botocore``] Enable / Disable ABAC on a general purpose bucket.
+* api-change:``sagemaker``: [``botocore``] Added training plan support for inference endpoints. Added HyperPod task governance with accelerator partition-based quota allocation. Added BatchRebootClusterNodes and BatchReplaceClusterNodes APIs. Updated ListClusterNodes to include privateDnsHostName.
+* api-change:``securityhub``: [``botocore``] Release Findings and Resources Trends APIs- GetFindingsTrendsV2 and GetResourcesTrendsV2. This supports time-series aggregated counts with composite filtering for 1-year of historical data analysis of Findings and Resources.
+
+
 1.41.0
 ======
 

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Added FunctionType parameter to Glue GetuserDefinedFunctions."
-}
