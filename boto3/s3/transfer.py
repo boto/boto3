@@ -296,23 +296,30 @@ class TransferConfig(S3TransferConfig):
             Other retryable exceptions such as throttling errors and 5xx
             errors are already retried by botocore (this default is 5). This
             does not take into account the number of exceptions retried by
-            botocore.
+            botocore. Note: This value is ignored when resolved transfer
+            manager type is CRTTransferManager.
 
         :param max_io_queue: The maximum amount of read parts that can be
             queued in memory to be written for a download. The size of each
             of these read parts is at most the size of ``io_chunksize``.
+            Note: This value is ignored when resolved transfer manager type
+            is CRTTransferManager.
 
         :param io_chunksize: The max size of each chunk in the io queue.
             Currently, this is size used when ``read`` is called on the
-            downloaded stream as well.
+            downloaded stream as well. Note: This value is ignored when
+            resolved transfer manager type is CRTTransferManager.
 
         :param use_threads: If True, threads will be used when performing
             S3 transfers. If False, no threads will be used in
             performing transfers; all logic will be run in the current thread.
+            Note: This value is ignored when resolved transfer manager type is
+            CRTTransferManager.
 
         :param max_bandwidth: The maximum bandwidth that will be consumed
             in uploading and downloading file content. The value is an integer
-            in terms of bytes per second.
+            in terms of bytes per second. Note: This value is ignored when
+            resolved transfer manager type is CRTTransferManager.
 
         :param preferred_transfer_client: String specifying preferred transfer
             client for transfer operations.
