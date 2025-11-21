@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``rds``",
-  "description": "[``botocore``] Add support for Upgrade Rollout Order"
-}

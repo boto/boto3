@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock``",
-  "description": "[``botocore``] Add support to automatically enforce safeguards across accounts within an AWS Organization."
-}

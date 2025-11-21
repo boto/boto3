@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mailmanager``",
-  "description": "[``botocore``] Add support for resources in the aws-eusc partition."
-}

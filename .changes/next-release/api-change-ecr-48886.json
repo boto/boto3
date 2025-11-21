@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecr``",
-  "description": "[``botocore``] Add support for ECR managed signing"
-}
