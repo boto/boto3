@@ -126,9 +126,5 @@ class PythonDeprecationWarning(Warning):
     pass
 
 
-class MissingMinimumCrtVersionError(Boto3Error):
-    pass
-
-
 class InvalidCrtTransferConfigError(Boto3Error):
     pass

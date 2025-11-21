@@ -128,7 +128,7 @@ import threading
 from os import PathLike, fspath, getpid
 
 from botocore.compat import HAS_CRT
-from botocore.exceptions import ClientError
+from botocore.exceptions import ClientError, MissingDependencyException
 from s3transfer.exceptions import (
     RetriesExceededError as S3TransferRetriesExceededError,
 )
@@ -140,7 +140,6 @@ from s3transfer.utils import OSUtils
 
 import boto3.s3.constants as constants
 from boto3.exceptions import (
-    MissingMinimumCrtVersionError,
     RetriesExceededError,
     S3UploadFailedError,
 )
@@ -202,7 +201,7 @@ def _should_use_crt(config):
         )
         if HAS_CRT:
             msg += f", with version: {awscrt.__version__}"
-        raise MissingMinimumCrtVersionError(msg)
+        raise MissingDependencyException(msg=msg)
 
     if (
         is_optimized_instance
