@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``security-ir``",
+  "description": "[``botocore``] Add ListInvestigations and SendFeedback APIs to support SecurityIR AI agents"
+}
