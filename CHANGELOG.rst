@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.41.3
+======
+
+* api-change:``cloudfront``: [``botocore``] Add TrustStore, ConnectionFunction APIs to CloudFront SDK
+* api-change:``logs``: [``botocore``] New CloudWatch Logs feature - LogGroup Deletion Protection, a capability that allows customers to safeguard their critical CloudWatch log groups from accidental or unintended deletion.
+* enhancement:awscrt: [``botocore``] Update awscrt version to 0.29.0
+
+
 1.41.2
 ======
 
