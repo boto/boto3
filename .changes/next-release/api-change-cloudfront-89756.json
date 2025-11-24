@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudfront``",
+  "description": "[``botocore``] Add TrustStore, ConnectionFunction APIs to CloudFront SDK"
+}
