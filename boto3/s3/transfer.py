@@ -139,6 +139,7 @@ from s3transfer.subscribers import BaseSubscriber
 from s3transfer.utils import OSUtils
 
 import boto3.s3.constants as constants
+from boto3.compat import TRANSFER_CONFIG_SUPPORTS_CRT
 from boto3.exceptions import (
     RetriesExceededError,
     S3UploadFailedError,
@@ -264,15 +265,15 @@ class TransferConfig(S3TransferConfig):
 
     def __init__(
         self,
-        multipart_threshold=S3TransferConfig.UNSET_DEFAULT,
-        max_concurrency=S3TransferConfig.UNSET_DEFAULT,
-        multipart_chunksize=S3TransferConfig.UNSET_DEFAULT,
-        num_download_attempts=S3TransferConfig.UNSET_DEFAULT,
-        max_io_queue=S3TransferConfig.UNSET_DEFAULT,
-        io_chunksize=S3TransferConfig.UNSET_DEFAULT,
-        use_threads=S3TransferConfig.UNSET_DEFAULT,
-        max_bandwidth=S3TransferConfig.UNSET_DEFAULT,
-        preferred_transfer_client=S3TransferConfig.UNSET_DEFAULT,
+        multipart_threshold=None,
+        max_concurrency=None,
+        multipart_chunksize=None,
+        num_download_attempts=None,
+        max_io_queue=None,
+        io_chunksize=None,
+        use_threads=None,
+        max_bandwidth=None,
+        preferred_transfer_client=None,
     ):
         """Configuration object for managed S3 transfers
 
@@ -331,14 +332,26 @@ class TransferConfig(S3TransferConfig):
                   requests. Disables possible CRT upgrade on requests.
               * crt - Only use the CRTTransferManager with requests.
         """
+        init_args = {
+            'multipart_threshold': multipart_threshold,
+            'max_concurrency': max_concurrency,
+            'multipart_chunksize': multipart_chunksize,
+            'num_download_attempts': num_download_attempts,
+            'max_io_queue': max_io_queue,
+            'io_chunksize': io_chunksize,
+            'use_threads': use_threads,
+            'max_bandwidth': max_bandwidth,
+            'preferred_transfer_client': preferred_transfer_client,
+        }
+        resolved = self._resolve_init_args(init_args)
         super().__init__(
-            multipart_threshold=multipart_threshold,
-            max_request_concurrency=max_concurrency,
-            multipart_chunksize=multipart_chunksize,
-            num_download_attempts=num_download_attempts,
-            max_io_queue_size=max_io_queue,
-            io_chunksize=io_chunksize,
-            max_bandwidth=max_bandwidth,
+            multipart_threshold=resolved['multipart_threshold'],
+            max_request_concurrency=resolved['max_concurrency'],
+            multipart_chunksize=resolved['multipart_chunksize'],
+            num_download_attempts=resolved['num_download_attempts'],
+            max_io_queue_size=resolved['max_io_queue'],
+            io_chunksize=resolved['io_chunksize'],
+            max_bandwidth=resolved['max_bandwidth'],
         )
         # Some of the argument names are not the same as the inherited
         # S3TransferConfig so we add aliases so you can still access the
@@ -349,8 +362,8 @@ class TransferConfig(S3TransferConfig):
                 alias,
                 object.__getattribute__(self, self.ALIAS[alias]),
             )
-        self.use_threads = use_threads
-        self.preferred_transfer_client = preferred_transfer_client
+        self.use_threads = resolved['use_threads']
+        self.preferred_transfer_client = resolved['preferred_transfer_client']
 
     def __setattr__(self, name, value):
         # If the alias name is used, make sure we set the name that it points
@@ -362,12 +375,25 @@ class TransferConfig(S3TransferConfig):
 
     def __getattribute__(self, item):
         value = object.__getattribute__(self, item)
+        if not TRANSFER_CONFIG_SUPPORTS_CRT:
+            return value
         defaults = object.__getattribute__(self, 'DEFAULTS')
         if item not in defaults:
             return value
         if value is self.UNSET_DEFAULT:
             return defaults[item]
         return value
+
+    def _resolve_init_args(self, init_args):
+        resolved = {}
+        for init_arg, val in init_args.items():
+            if val is not None:
+                resolved[init_arg] = val
+            elif TRANSFER_CONFIG_SUPPORTS_CRT:
+                resolved[init_arg] = self.UNSET_DEFAULT
+            else:
+                resolved[init_arg] = self.DEFAULTS[init_arg]
+        return resolved
 
 
 class S3Transfer:

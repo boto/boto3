@@ -31,6 +31,7 @@ from s3transfer.crt import (
     create_s3_crt_client,
 )
 
+from boto3.compat import TRANSFER_CONFIG_SUPPORTS_CRT
 from boto3.exceptions import InvalidCrtTransferConfigError
 from boto3.s3.constants import CRT_TRANSFER_CLIENT
 
@@ -197,10 +198,12 @@ def create_crt_transfer_manager(client, config):
     """Create a CRTTransferManager for optimized data transfer."""
     crt_s3_client = get_crt_s3_client(client, config)
     if is_crt_compatible_request(client, crt_s3_client):
-        _validate_crt_transfer_config(config)
-        return CRTTransferManager(
-            crt_s3_client.crt_client,
-            BOTOCORE_CRT_SERIALIZER,
-            config=config,
-        )
+        crt_transfer_manager_kwargs = {
+            'crt_s3_client': crt_s3_client.crt_client,
+            'crt_request_serializer': BOTOCORE_CRT_SERIALIZER,
+        }
+        if TRANSFER_CONFIG_SUPPORTS_CRT:
+            _validate_crt_transfer_config(config)
+            crt_transfer_manager_kwargs['config'] = config
+        return CRTTransferManager(**crt_transfer_manager_kwargs)
     return None
