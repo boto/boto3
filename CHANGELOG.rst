@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.41.4
+======
+
+* api-change:``ec2``: [``botocore``] This release adds support to view Network firewall proxy appliances attached to an existing NAT Gateway via DescribeNatGateways API NatGatewayAttachedAppliance structure.
+* api-change:``network-firewall``: [``botocore``] Network Firewall release of the Proxy feature.
+* api-change:``organizations``: [``botocore``] Add support for policy operations on the S3_POLICY and BEDROCK_POLICY policy type.
+* api-change:``route53``: [``botocore``] Adds support for new route53 feature: accelerated recovery.
+
+
 1.41.3
 ======
 

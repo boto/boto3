@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``network-firewall``",
-  "description": "[``botocore``] Network Firewall release of the Proxy feature."
-}
