@@ -53,10 +53,17 @@ def _create_crt_client(session, config, region_name, cred_provider):
     return create_s3_crt_client(**create_crt_client_kwargs)
 
 
-def _create_crt_request_serializer(session, region_name):
-    return BotocoreCRTRequestSerializer(
-        session, {'region_name': region_name, 'endpoint_url': None}
-    )
+def _create_crt_request_serializer(session, region_name, endpoint_url=None):
+    from botocore.config import Config
+
+    client_kwargs = {'region_name': region_name, 'endpoint_url': endpoint_url}
+
+    # When using custom endpoints, force path-style addressing to avoid
+    # invalid DNS names (e.g., bucket.custom-endpoint.com)
+    if endpoint_url is not None:
+        client_kwargs['config'] = Config(s3={'addressing_style': 'path'})
+
+    return BotocoreCRTRequestSerializer(session, client_kwargs)
 
 
 def _create_crt_s3_client(
@@ -84,8 +91,11 @@ def _initialize_crt_transfer_primatives(client, config):
     session = Session()
     region_name = client.meta.region_name
     credentials = client._get_credentials()
+    endpoint_url = client.meta.endpoint_url
 
-    serializer = _create_crt_request_serializer(session, region_name)
+    serializer = _create_crt_request_serializer(
+        session, region_name, endpoint_url
+    )
     s3_client = _create_crt_s3_client(
         session, config, region_name, credentials, lock
     )
@@ -149,10 +159,14 @@ def compare_identity(boto3_creds, crt_s3_creds):
     except botocore.exceptions.NoCredentialsError:
         return False
 
+    # Normalize tokens: treat empty string and None as equivalent
+    boto3_token = boto3_creds.token if boto3_creds.token else None
+    crt_token = crt_creds.session_token if crt_creds.session_token else None
+
     is_matching_identity = (
         boto3_creds.access_key == crt_creds.access_key_id
         and boto3_creds.secret_key == crt_creds.secret_access_key
-        and boto3_creds.token == crt_creds.session_token
+        and boto3_token == crt_token
     )
     return is_matching_identity
 
