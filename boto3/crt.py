@@ -192,8 +192,8 @@ def _validate_crt_transfer_config(config):
     if len(invalid_crt_args) > 0:
         raise InvalidCrtTransferConfigError(
             "The following transfer config options are invalid "
-            "when `preferred_transfer_client` is set to `crt`: `"
-            f"{'`, `'.join(invalid_crt_args)}`"
+            "when preferred_transfer_client is set to crt: "
+            f"{', '.join(invalid_crt_args)}`"
         )
 
 
