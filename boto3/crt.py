@@ -19,6 +19,7 @@ project and is not intended for external consumption. All interfaces
 contained within are subject to abrupt breaking changes.
 """
 
+import logging
 import threading
 
 import botocore.exceptions
@@ -34,6 +35,8 @@ from s3transfer.crt import (
 from boto3.compat import TRANSFER_CONFIG_SUPPORTS_CRT
 from boto3.exceptions import InvalidCrtTransferConfigError
 from boto3.s3.constants import CRT_TRANSFER_CLIENT
+
+logger = logging.getLogger(__name__)
 
 # Singletons for CRT-backed transfers
 CRT_S3_CLIENT = None
@@ -205,5 +208,10 @@ def create_crt_transfer_manager(client, config):
         if TRANSFER_CONFIG_SUPPORTS_CRT:
             _validate_crt_transfer_config(config)
             crt_transfer_manager_kwargs['config'] = config
+        if not TRANSFER_CONFIG_SUPPORTS_CRT and config:
+            logger.warning(
+                'Using TransferConfig with CRT client requires '
+                's3transfer >= 0.16.0, configured values will be ignored.'
+            )
         return CRTTransferManager(**crt_transfer_manager_kwargs)
     return None
