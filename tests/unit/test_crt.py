@@ -213,3 +213,21 @@ class TestCRTTransferManager:
         )
         assert use1_crt_s3_client is crt_s3_client
         assert use1_crt_s3_client.region == "us-west-2"
+
+    @requires_crt()
+    @mock.patch('boto3.crt.TRANSFER_CONFIG_SUPPORTS_CRT', False)
+    def test_config_without_crt_support_emits_warning(
+        self,
+        mock_crt_process_lock,
+        mock_crt_client_singleton,
+        mock_serializer_singleton,
+        caplog,
+    ):
+        config = TransferConfig()
+        boto3.crt.create_crt_transfer_manager(USW2_S3_CLIENT, config)
+        assert any(
+            [
+                'requires s3transfer >= 0.16.0' in r.message
+                for r in caplog.records
+            ]
+        )
