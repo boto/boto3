@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.41.5
+======
+
+* api-change:``bedrock-runtime``: [``botocore``] Bedrock Runtime Reserved Service Support
+* api-change:``compute-optimizer``: [``botocore``] Compute Optimizer now identifies idle NAT Gateway resources for cost optimization based on traffic patterns and backup configuration analysis. Access recommendations via the GetIdleRecommendations API.
+* api-change:``cost-optimization-hub``: [``botocore``] This release enables AWS Cost Optimization Hub to show cost optimization recommendations for NAT Gateway.
+
+
 1.41.4
 ======
 
