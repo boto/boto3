@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-runtime``",
-  "description": "[``botocore``] Bedrock Runtime Reserved Service Support"
-}
