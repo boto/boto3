@@ -124,3 +124,7 @@ class PythonDeprecationWarning(Warning):
     """
 
     pass
+
+
+class InvalidCrtTransferConfigError(Boto3Error):
+    pass

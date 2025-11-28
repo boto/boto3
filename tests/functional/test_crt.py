@@ -16,7 +16,11 @@ from contextlib import ContextDecorator
 import pytest
 from botocore.compat import HAS_CRT
 from botocore.credentials import Credentials
+from botocore.exceptions import MissingDependencyException
 
+from boto3.exceptions import (
+    InvalidCrtTransferConfigError,
+)
 from boto3.s3.transfer import (
     TransferConfig,
     create_transfer_manager,
@@ -69,6 +73,37 @@ class TestS3TransferWithCRT:
         assert isinstance(transfer_manager, CRTTransferManager)
 
     @requires_crt()
+    def test_create_transfer_manager_with_crt_preferred(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+        )
+        transfer_manager = create_transfer_manager(client, config)
+        assert isinstance(transfer_manager, CRTTransferManager)
+
+    @mock.patch("boto3.s3.transfer.HAS_CRT", False)
+    def test_create_transfer_manager_with_crt_preferred_no_crt(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+        )
+        with pytest.raises(MissingDependencyException) as exc:
+            create_transfer_manager(client, config)
+        assert "missing minimum CRT" in str(exc.value)
+
+    @requires_crt()
+    @mock.patch("awscrt.__version__", "0.19.0")
+    def test_create_transfer_manager_with_crt_preferred_bad_version(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+        )
+        with pytest.raises(MissingDependencyException) as exc:
+            create_transfer_manager(client, config)
+        assert "missing minimum CRT" in str(exc.value)
+        assert "with version: 0.19.0" in str(exc.value)
+
+    @requires_crt()
     def test_minimum_crt_version(self):
         assert has_minimum_crt_version((0, 16, 12)) is True
 
@@ -87,3 +122,30 @@ class TestS3TransferWithCRT:
             vers.return_value = bad_version
 
             assert has_minimum_crt_version((0, 16, 12)) is False
+
+    @requires_crt()
+    def test_crt_transfer_manager_raises_with_invalid_crt_config(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='crt',
+            # `max_bandwidth` is not an allowed CRT config option.
+            max_bandwidth=1024,
+        )
+        with pytest.raises(InvalidCrtTransferConfigError) as exc:
+            create_transfer_manager(client, config)
+        assert "transfer config options are invalid" in str(exc.value)
+        assert "max_bandwidth" in str(exc.value)
+
+    @requires_crt()
+    @MockOptimizedInstance()
+    def test_auto_transfer_manager_succeeds_with_invalid_crt_config(self):
+        client = create_mock_client()
+        config = TransferConfig(
+            preferred_transfer_client='auto',
+            # `max_bandwidth` is not an allowed CRT config option.
+            # But config should only be validated when
+            # `preferred_transfer_client` == `crt`.
+            max_bandwidth=1024,
+        )
+        transfer_manager = create_transfer_manager(client, config)
+        assert isinstance(transfer_manager, CRTTransferManager)
