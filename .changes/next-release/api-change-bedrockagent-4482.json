@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agent``",
-  "description": "[``botocore``] Support audio and video ingestion on Bedrock Knowledge Bases."
-}
