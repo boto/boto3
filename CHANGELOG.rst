@@ -2,6 +2,41 @@
 CHANGELOG
 =========
 
+1.42.0
+======
+
+* api-change:``appintegrations``: [``botocore``] This release adds support for MCP servers via the ApplicationType field, allowing customers to register their Bedrock AgentCore gateways as third party applications.
+* api-change:``bedrock-agent``: [``botocore``] Support audio and video ingestion on Bedrock Knowledge Bases.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Support audio and video content retrieval on Bedrock Knowledge Bases.
+* api-change:``cleanrooms``: [``botocore``] AWS Clean Rooms now supports privacy-enhancing synthetic dataset generation for custom ML training.
+* api-change:``cleanroomsml``: [``botocore``] AWS Clean Rooms ML now supports privacy-enhancing synthetic dataset generation for custom ML training.
+* api-change:``connect``: [``botocore``] This is a combined re:Invent release for Amazon Connect.
+* api-change:``connectcampaignsv2``: [``botocore``] This release added support for new WhatsApp channel and Journey type outbound campaign
+* api-change:``connectparticipant``: [``botocore``] Amazon Connect now supports message processing that intercepts and processes chat messages before they reach any participant.
+* api-change:``customer-profiles``: [``botocore``] This release introduces, CRUD APIs for the DomainObjectType and Recommender resources, APIs to offer statistical insights on Object Type Attributes, Changes to SegmentDefinition APIs to support SQL queries to create Segments, and Changes to Domain APIs to support Data Store.
+* api-change:``eks``: [``botocore``] This release adds support for EKS Capabilities
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``glue``: [``botocore``] feature: Glue: Add support for Iceberg materialized view in Glue Data Catalog, including updated CreateTable API to support materialized views and new APIs for managing data refresh for materialized views.
+feature: Glue: Add support for Iceberg table encryption keys and struct field defaults.
+* api-change:``lambda``: [``botocore``] Launching Lambda Managed Instances - a new feature to run Lambda on EC2.
+* api-change:``lexv2-models``: [``botocore``] Adds support for speech-to-speech models for human-like, adaptive, and expressive voice interactions. Also adds support for speech model preference, allowing customers to select which speech model they want to use for speech-to-text requests.
+* api-change:``marketplace-agreement``: [``botocore``] This release supports 1/multi-product transactions via offer sets. DescribeAgreement and SearchAgreements APIs now return offer set IDs. SearchAgreements also supports filtering by offer set ID and 2/variable payment pricing terms will be returned through GetAgreementTerms.
+* api-change:``marketplace-catalog``: [``botocore``] This release introduces offer set entity in AWS Marketplace Catalog API to enable multi-product transaction. Offer set enables sellers to group multiple private offers into a single-click purchase experience, simplifying procurement for customers purchasing multi-product solutions.
+* api-change:``partnercentral-account``: [``botocore``] Initial GA launch of Partner Central Account
+* api-change:``partnercentral-benefits``: [``botocore``] Initial GA launch of Partner Central Benefits
+* api-change:``partnercentral-selling``: [``botocore``] New Features:
+Lead Management APIs for capturing and nurturing leads
+Lead invitation support for partner collaboration
+Lead-to-opportunity conversion operations
+AWS Marketplace OfferSets support for opportunities
+* api-change:``personalize``: [``botocore``] This release adds support for includedDatasetColumns and performIncrementalUpdate in solution APIs, and rankingInfluence in campaign and batch inference APIs.
+* api-change:``qconnect``: [``botocore``] New AIAgent types: Orchestration for ModelContextProtocol tool integration, CaseSummary for Amazon Connect Case summaries, NoteTaker for Agent Assistance notes. Added ListSpans and Retrieve APIs. Enhanced Q in Connect AssistantAssociationType to support Bring Your Own Bedrock Knowledge Bases.
+* api-change:``route53globalresolver``: [``botocore``] Add SDK for Amazon Route 53 Global Resolver, a fully managed DNS resolver service that offers broad DNS-filtering security controls.
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.29.1
+* enhancement:``s3``: Adds partial ``TransferConfig`` support for CRT transfer managers.
+* feature:``s3``: Added ``crt`` mode to ``preferred_transfer_client`` parameter in ``TransferConfig`` to enable CRT transfer client in all environments.
+
+
 1.41.5
 ======
 

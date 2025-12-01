@@ -18,6 +18,8 @@ import warnings
 
 from boto3.exceptions import PythonDeprecationWarning
 
+from s3transfer.manager import TransferConfig
+
 # In python3, socket.error is OSError, which is too general
 # for what we want (i.e FileNotFoundError is a subclass of OSError).
 # In py3 all the socket related errors are in a newly created
@@ -27,6 +29,9 @@ SOCKET_ERROR = ConnectionError
 _APPEND_MODE_CHAR = 'a'
 
 import collections.abc as collections_abc
+
+
+TRANSFER_CONFIG_SUPPORTS_CRT = hasattr(TransferConfig, 'UNSET_DEFAULT')
 
 
 if sys.platform.startswith('win'):
