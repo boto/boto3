@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``s3tables``",
-  "description": "[``botocore``] Add storage class, replication, and table record expiration features to S3 Tables."
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``savingsplans``",
-  "description": "[``botocore``] Added support for Amazon Database Savings Plans"
-}
