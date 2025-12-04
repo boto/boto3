@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.42.3
+======
+
+* api-change:``lambda``: [``botocore``] Add DisallowedByVpcEncryptionControl to the LastUpdateStatusReasonCode and StateReasonCode enums to represent failures caused by VPC Encryption Controls.
+
+
 1.42.2
 ======
 
