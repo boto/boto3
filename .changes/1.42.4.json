@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Updating stop-task API to encapsulate containers with custom stop signal",
+    "type": "api-change"
+  },
+  {
+    "category": "``iam``",
+    "description": "[``botocore``] Adding the ExpirationTime attribute to the delegation request resource.",
+    "type": "api-change"
+  },
+  {
+    "category": "``inspector2``",
+    "description": "[``botocore``] This release adds a new ScanStatus called \"Unsupported Code Artifacts\". This ScanStatus will be returned when a Lambda function was not code scanned because it has unsupported code artifacts.",
+    "type": "api-change"
+  },
+  {
+    "category": "``partnercentral-account``",
+    "description": "[``botocore``] Adding Verification API's to Partner Central Account SDK.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sesv2``",
+    "description": "[``botocore``] Updating the desired url for `PutEmailIdentityDkimSigningAttributes` from v1 to v2",
+    "type": "api-change"
+  },
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Update awscrt version to 0.29.2",
+    "type": "enhancement"
+  }
+]

@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.42.4
+======
+
+* api-change:``ecs``: [``botocore``] Updating stop-task API to encapsulate containers with custom stop signal
+* api-change:``iam``: [``botocore``] Adding the ExpirationTime attribute to the delegation request resource.
+* api-change:``inspector2``: [``botocore``] This release adds a new ScanStatus called "Unsupported Code Artifacts". This ScanStatus will be returned when a Lambda function was not code scanned because it has unsupported code artifacts.
+* api-change:``partnercentral-account``: [``botocore``] Adding Verification API's to Partner Central Account SDK.
+* api-change:``sesv2``: [``botocore``] Updating the desired url for `PutEmailIdentityDkimSigningAttributes` from v1 to v2
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.29.2
+
+
 1.42.3
 ======
 
