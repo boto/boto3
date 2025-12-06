@@ -10,8 +10,8 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
-import sys
 from collections import namedtuple
+from importlib import import_module
 
 _ServiceContext = namedtuple(
     'ServiceContext',
@@ -45,16 +45,6 @@ class ServiceContext(_ServiceContext):
     """
 
     pass
-
-
-def import_module(name):
-    """Import module given a name.
-
-    Does not support relative imports.
-
-    """
-    __import__(name)
-    return sys.modules[name]
 
 
 def lazy_call(full_name, **kwargs):
