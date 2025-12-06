@@ -40,3 +40,4 @@ services.
    s3-example-configuring-buckets
    s3-example-mrap
    s3-example-privatelink
+   s3-client-context-manager
