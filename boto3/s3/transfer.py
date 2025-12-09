@@ -175,13 +175,17 @@ def create_transfer_manager(client, config, osutil=None):
         crt_transfer_manager = create_crt_transfer_manager(client, config)
         if crt_transfer_manager is not None:
             logger.debug(
-                f"Using CRT client. pid: {getpid()}, thread: {threading.get_ident()}"
+                "Using CRT client. pid: %s, thread: %s",
+                getpid(),
+                threading.get_ident(),
             )
             return crt_transfer_manager
 
     # If we don't resolve something above, fallback to the default.
     logger.debug(
-        f"Using default client. pid: {getpid()}, thread: {threading.get_ident()}"
+        "Using default client. pid: %s, thread: %s",
+        getpid(),
+        threading.get_ident(),
     )
     return _create_default_transfer_manager(client, config, osutil)
 
@@ -214,9 +218,11 @@ def _should_use_crt(config):
         return True
 
     logger.debug(
-        "Opting out of CRT Transfer Manager. Preferred client: "
-        f"{pref_transfer_client}, CRT available: {HAS_CRT}, "
-        f"Instance Optimized: {is_optimized_instance}."
+        "Opting out of CRT Transfer Manager. "
+        "Preferred client: %s, CRT available: %s, Instance Optimized: %s",
+        pref_transfer_client,
+        HAS_CRT,
+        is_optimized_instance,
     )
     return False
 
