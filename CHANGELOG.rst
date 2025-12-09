@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.42.6
+======
+
+* api-change:``account``: [``botocore``] This release adds a new API (GetGovCloudAccountInformation) used to retrieve information about a linked GovCloud account from the standard AWS partition.
+* api-change:``appsync``: [``botocore``] Update Event API to require EventConfig parameter in creation and update requests.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``guardduty``: [``botocore``] Adding support for Ec2LaunchTemplate Version field
+* api-change:``ivs-realtime``: [``botocore``] Token Exchange introduces seamless token exchange capabilities for IVS RTX, enabling customers to upgrade or downgrade token capabilities and update token attributes within the IVS client SDK without forcing clients to disconnect and reconnect.
+* api-change:``mgn``: [``botocore``] Added parameters encryption, IPv4/IPv6 protocol configuration, and enhanced tagging support for replication operations.
+* api-change:``route53``: [``botocore``] Amazon Route 53 now supports the EU (Germany) Region (eusc-de-east-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region
+
+
 1.42.5
 ======
 
