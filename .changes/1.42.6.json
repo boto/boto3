@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``account``",
+    "description": "[``botocore``] This release adds a new API (GetGovCloudAccountInformation) used to retrieve information about a linked GovCloud account from the standard AWS partition.",
+    "type": "api-change"
+  },
+  {
+    "category": "``appsync``",
+    "description": "[``botocore``] Update Event API to require EventConfig parameter in creation and update requests.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``guardduty``",
+    "description": "[``botocore``] Adding support for Ec2LaunchTemplate Version field",
+    "type": "api-change"
+  },
+  {
+    "category": "``ivs-realtime``",
+    "description": "[``botocore``] Token Exchange introduces seamless token exchange capabilities for IVS RTX, enabling customers to upgrade or downgrade token capabilities and update token attributes within the IVS client SDK without forcing clients to disconnect and reconnect.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mgn``",
+    "description": "[``botocore``] Added parameters encryption, IPv4/IPv6 protocol configuration, and enhanced tagging support for replication operations.",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53``",
+    "description": "[``botocore``] Amazon Route 53 now supports the EU (Germany) Region (eusc-de-east-1) for latency records, geoproximity records, and private DNS for Amazon VPCs in that region",
+    "type": "api-change"
+  }
+]
