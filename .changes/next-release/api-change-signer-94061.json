@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``signer``",
-  "description": "[``botocore``] Adds support for Signer GetRevocationStatus with updated endpoints"
-}
