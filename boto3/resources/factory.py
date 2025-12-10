@@ -145,7 +145,7 @@ class ResourceFactory:
         cls_name = resource_name
         if service_context.service_name == resource_name:
             cls_name = 'ServiceResource'
-        cls_name = service_context.service_name + '.' + cls_name
+        cls_name = f"{service_context.service_name}.{cls_name}"
 
         base_classes = [ServiceResource]
         if self._emitter is not None:
@@ -325,7 +325,7 @@ class ResourceFactory:
             # identifiers have a value ``None``. If any are ``None``,
             # a more informative user error than a generic AttributeError
             # is raised.
-            return getattr(self, '_' + identifier.name, None)
+            return getattr(self, f"_{identifier.name}", None)
 
         get_identifier.__name__ = str(identifier.name)
         get_identifier.__doc__ = docstring.IdentifierDocstring(
@@ -344,7 +344,7 @@ class ResourceFactory:
         """
 
         def get_identifier(self):
-            return getattr(self, '_' + identifier.name, None)
+            return getattr(self, f"_{identifier.name}", None)
 
         get_identifier.__name__ = str(identifier.member_name)
         get_identifier.__doc__ = docstring.AttributeDocstring(

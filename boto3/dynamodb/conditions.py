@@ -311,10 +311,10 @@ class ConditionExpressionBuilder:
         self._value_placeholder = 'v'
 
     def _get_name_placeholder(self):
-        return '#' + self._name_placeholder + str(self._name_count)
+        return f"#{self._name_placeholder}{self._name_count}"
 
     def _get_value_placeholder(self):
-        return ':' + self._value_placeholder + str(self._value_count)
+        return f":{self._value_placeholder}{self._value_count}"
 
     def reset(self):
         """Resets the placeholder name and values"""
@@ -451,7 +451,7 @@ class ConditionExpressionBuilder:
             # Assuming the values are grouped by parenthesis.
             # IN is the currently the only one that uses this so it maybe
             # needed to be changed in future.
-            return '(' + ', '.join(placeholder_list) + ')'
+            return f"({', '.join(placeholder_list)})"
         # Otherwise, treat the value as a single value that needs only
         # one placeholder.
         else:

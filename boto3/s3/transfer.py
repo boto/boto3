@@ -456,9 +456,7 @@ class S3Transfer:
         # client error.
         except ClientError as e:
             raise S3UploadFailedError(
-                "Failed to upload {} to {}: {}".format(
-                    filename, '/'.join([bucket, key]), e
-                )
+                f"Failed to upload {filename} to {bucket}/{key}: {e}"
             )
 
     def download_file(
