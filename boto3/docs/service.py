@@ -190,7 +190,7 @@ class ServiceDocumenter(BaseServiceDocumenter):
 
     def _get_example_file(self):
         return os.path.realpath(
-            os.path.join(self.EXAMPLE_PATH, self._service_name + '.rst')
+            os.path.join(self.EXAMPLE_PATH, f"{self._service_name}.rst")
         )
 
     def _document_examples(self, section):

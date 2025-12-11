@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.42.8
+======
+
+* api-change:``lambda``: [``botocore``] Add Dotnet 10 (dotnet10) support to AWS Lambda.
+* api-change:``organizations``: [``botocore``] Add support for policy operations on the NETWORK SECURITY DIRECTOR POLICY policy type.
+* api-change:``quicksight``: [``botocore``] This release adds new GetIdentityContext API, Dashboard customization options for tables and pivot tables, Visual styling options- borders and decals, map GeocodingPreferences, KeyPairCredentials for DataSourceCredentials. Snapshot APIs now support registered users. Parameters limit increased to 400
+* api-change:``secretsmanager``: [``botocore``] Add SortBy parameter to ListSecrets
+* api-change:``sesv2``: [``botocore``] Update GetEmailIdentity and CreateEmailIdentity response to include SigningHostedZone in DkimAttributes. Updated PutEmailIdentityDkimSigningAttributes Response to include SigningHostedZone.
+
+
 1.42.7
 ======
 

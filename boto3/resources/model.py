@@ -367,8 +367,8 @@ class ResourceModel:
 
         if name in names:
             logger.debug('Renaming %s %s %s', self.name, category, name)
-            self._renamed[(category, name)] = name + '_' + category
-            name += '_' + category
+            self._renamed[(category, name)] = f"{name}_{category}"
+            name += f"_{category}"
 
             if name in names:
                 # This isn't good, let's raise instead of trying to keep

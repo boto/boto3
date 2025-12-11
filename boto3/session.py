@@ -72,7 +72,7 @@ class Session:
         if self._session.user_agent_name == 'Botocore':
             botocore_info = f'Botocore/{self._session.user_agent_version}'
             if self._session.user_agent_extra:
-                self._session.user_agent_extra += ' ' + botocore_info
+                self._session.user_agent_extra += f" {botocore_info}"
             else:
                 self._session.user_agent_extra = botocore_info
             self._session.user_agent_name = 'Boto3'

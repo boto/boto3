@@ -104,7 +104,7 @@ class ServiceResource:
         # Allow setting identifiers as positional arguments in the order
         # in which they were defined in the ResourceJSON.
         for i, value in enumerate(args):
-            setattr(self, '_' + self.meta.identifiers[i], value)
+            setattr(self, f"_{self.meta.identifiers[i]}", value)
 
         # Allow setting identifiers via keyword arguments. Here we need
         # extra logic to ignore other keyword arguments like ``client``.
@@ -115,7 +115,7 @@ class ServiceResource:
             if name not in self.meta.identifiers:
                 raise ValueError(f'Unknown keyword argument: {name}')
 
-            setattr(self, '_' + name, value)
+            setattr(self, f"_{name}", value)
 
         # Validate that all identifiers have been set.
         for identifier in self.meta.identifiers:
@@ -123,15 +123,11 @@ class ServiceResource:
                 raise ValueError(f'Required parameter {identifier} not set')
 
     def __repr__(self):
-        identifiers = []
-        for identifier in self.meta.identifiers:
-            identifiers.append(
-                f'{identifier}={repr(getattr(self, identifier))}'
-            )
-        return "{}({})".format(
-            self.__class__.__name__,
-            ', '.join(identifiers),
-        )
+        identifiers = [
+            f'{identifier}={repr(getattr(self, identifier))}'
+            for identifier in self.meta.identifiers
+        ]
+        return f"{self.__class__.__name__}({', '.join(identifiers)})"
 
     def __eq__(self, other):
         # Should be instances of the same resource class
