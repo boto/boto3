@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lambda``",
-  "description": "[``botocore``] Add Dotnet 10 (dotnet10) support to AWS Lambda."
-}
