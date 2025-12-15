@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``service-quotas``",
-  "description": "[``botocore``] Add support for SQ Dashboard Api"
-}
