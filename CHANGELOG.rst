@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.42.12
+=======
+
+* api-change:``gameliftstreams``: [``botocore``] Added new stream group operation parameters for scale-on-demand capacity with automatic prewarming. Added new Gen6 stream classes based on the EC2 G6 instance family. Added new StartStreamSession parameter for exposure of real-time performance stats to clients.
+* api-change:``guardduty``: [``botocore``] Add support for dbiResourceId in finding.
+* api-change:``inspector-scan``: [``botocore``] Adds an additional OutputFormat
+* api-change:``kafkaconnect``: [``botocore``] Support dual-stack network connectivity for connectors via NetworkType field.
+* api-change:``mediaconvert``: [``botocore``] Adds support for tile encoding in HEVC and audio for video overlays.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for SPEKE V2 content key encryption in MediaPackage v2 Origin Endpoints.
+* api-change:``payment-cryptography``: [``botocore``] Support for AS2805 standard.  Modifications to import-key and export-key to support AS2805 variants.
+* api-change:``payment-cryptography-data``: [``botocore``] Support for AS2805 standard.  New API GenerateAs2805KekValidation and changes to translate pin, GenerateMac and VerifyMac to support AS2805 key variants.
+* api-change:``sagemaker``: [``botocore``] Adding the newly launched p6-b300.48xlarge ec2  instance support in Sagemaker(Hyperpod,Training and Sceptor)
+
+
 1.42.11
 =======
 

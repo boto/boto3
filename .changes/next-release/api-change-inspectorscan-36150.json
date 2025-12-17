@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``inspector-scan``",
-  "description": "[``botocore``] Adds an additional OutputFormat"
-}

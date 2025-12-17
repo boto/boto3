@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kafkaconnect``",
-  "description": "[``botocore``] Support dual-stack network connectivity for connectors via NetworkType field."
-}
