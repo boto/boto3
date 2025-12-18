@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``opensearch``",
+  "description": "[``botocore``] Amazon OpenSearch Service adds support for warm nodes, enabling new multi-tier architecture."
+}
