@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.42.13
+=======
+
+* api-change:``appstream``: [``botocore``] Added support for new operating systems (1) Ubuntu 24.04 Pro LTS on Elastic fleets, and (2) Microsoft Server 2025 on Always-On and On-Demand fleets
+* api-change:``arc-region-switch``: [``botocore``] New API to list Route 53 health checks created by ARC region switch for a plan in a specific AWS Region using the Region switch Regional data plane.
+* api-change:``artifact``: [``botocore``] Add support for ListReportVersions API  for the calling AWS account.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Feature to support header exchanges between Bedrock AgentCore Gateway Targets and client, along with propagating query parameter to the configured targets.
+* api-change:``bedrock-data-automation``: [``botocore``] Blueprint Optimization (BPO) is a new Amazon Bedrock Data Automation (BDA) capability that improves blueprint inference accuracy using example content assets and ground truth data. BPO works by generating better instructions for fields in the Blueprint using provided data.
+* api-change:``cleanrooms``: [``botocore``] Adding support for collaboration change requests requiring an approval workflow. Adding support for change requests that grant or revoke results receiver ability and modifying auto approved change types in an existing collaboration.
+* api-change:``ec2``: [``botocore``] This release adds AvailabilityZoneId support for CreateFleet, ModifyFleet, DescribeFleets, RequestSpotFleet, ModifySpotFleetRequests and DescribeSpotFleetRequests APIs.
+* api-change:``ecr``: [``botocore``] Adds support for ECR Create On Push
+* api-change:``ecs``: [``botocore``] Adding support for Event Windows via a new ECS account setting "fargateEventWindows". When enabled, ECS Fargate will use the configured event window for patching tasks. Introducing "CapacityOptionType" for CreateCapacityProvider API, allowing support for Spot capacity for ECS Managed Instances.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``iot``: [``botocore``] This release adds message batching for the IoT Rules Engine HTTP action.
+* api-change:``opensearch``: [``botocore``] Amazon OpenSearch Service adds support for warm nodes, enabling new multi-tier architecture.
+* api-change:``sesv2``: [``botocore``] Amazon SES introduces Email Validation feature which checks email addresses for syntax errors, domain validity, and risky addresses to help maintain deliverability and protect sender reputation. SES also adds resource tagging and ABAC support for EmailTemplates and CustomVerificationEmailTemplates.
+* api-change:``ssm-sap``: [``botocore``] Added "Stopping" for the HANA Database Status.
+
+
 1.42.12
 =======
 
