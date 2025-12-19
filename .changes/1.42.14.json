@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``arc-region-switch``",
+    "description": "[``botocore``] Automatic Plan Execution Reports allow customers to maintain a concise record of their Region switch Plan executions.  This enables customer SREs and leadership to have a clear view of their recovery posture based on the generated reports for their Plan executions.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Adding support for Custom Metrics and Pre-Defined Attributes to GetCurrentMetricData API.",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr-serverless``",
+    "description": "[``botocore``] Added JobLevelCostAllocationConfiguration field to enable cost allocation reporting at the job level, providing more granular visibility into EMR Serverless charges",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``iot``",
+    "description": "[``botocore``] This release adds event-based logging feature that enables granular event logging controls for AWS IoT logs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``qbusiness``",
+    "description": "[``botocore``] It is a internal bug fix for region expansion",
+    "type": "api-change"
+  },
+  {
+    "category": "``wickr``",
+    "description": "[``botocore``] AWS Wickr now provides a suite of admin APIs to allow you to programmatically manage secure communication for Wickr networks at scale. These APIs enable you to automate administrative workflows including user lifecycle management, network configuration, and security group administration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces-web``",
+    "description": "[``botocore``] Add support for WebAuthn under user settings.",
+    "type": "api-change"
+  }
+]
