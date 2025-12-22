@@ -11,9 +11,8 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 
-import random
-import time
 import unittest
+import uuid
 from unittest import mock
 
 from botocore.compat import HAS_CRT
@@ -21,12 +20,10 @@ from botocore.compat import HAS_CRT
 
 def unique_id(name):
     """
-    Generate a unique ID that includes the given name,
-    a timestamp and a random number. This helps when running
-    integration tests in parallel that must create remote
-    resources.
+    Generate a unique ID for integration tests
+    that create remote resources in parallel.
     """
-    return f'{name}-{int(time.time())}-{random.randint(0, 10000)}'
+    return f"{name}-{uuid.uuid4().hex}"
 
 
 class BaseTestCase(unittest.TestCase):
