@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.15
+=======
+
+* api-change:``config``: [``botocore``] Added supported resourceTypes for Config from July to November 2025
+* api-change:``ec2``: [``botocore``] Adds support for linkedGroupId on the CreatePlacementGroup and DescribePlacementGroups APIs. The linkedGroupId parameter is reserved for future use.
+* api-change:``guardduty``: [``botocore``] Make accountIds a required field in GetRemainingFreeTrialDays API to reflect service behavior.
+* api-change:``pcs``: [``botocore``] Change API Reference Documentation for default Mode in Accounting and SlurmRest
+
+
 1.42.14
 =======
 
