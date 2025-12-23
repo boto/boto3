@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.16
+=======
+
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``geo-places``: [``botocore``] Adds support for InferredSecondaryAddress place type, Designator in SecondaryAddressComponent and Heading in ReverseGeocode.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] This release adds support for the Registration Reviewer feature, which provides generative AI feedback on a phone number or sender ID registration to ensure completeness before sending to downstream (carrier) review.
+* api-change:``s3``: [``botocore``] Add additional validation to Outpost bucket names.
+
+
 1.42.15
 =======
 
