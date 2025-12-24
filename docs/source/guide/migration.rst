@@ -28,8 +28,8 @@ Second, while every service now uses the runtime-generated low-level client, som
     import boto, boto3
 
     # Low-level connections
-    conn = boto.connect_elastictranscoder()
-    client = boto3.client('elastictranscoder')
+    conn = boto.connect_dynamodb()
+    client = boto3.client('dynamodb')
 
     # High-level connections & resource objects
     from boto.s3.bucket import Bucket
