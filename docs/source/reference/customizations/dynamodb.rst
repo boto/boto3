@@ -53,6 +53,11 @@ Custom Boto3 types
 DynamoDB conditions
 -------------------
 
+.. note::
+
+    You are also able to chain conditions together using the logical operators:
+    ``&`` (and), ``|`` (or), and ``~`` (not).
+
 .. autoclass:: boto3.dynamodb.conditions.Key
    :members:
    :undoc-members:
@@ -62,8 +67,3 @@ DynamoDB conditions
    :members:
    :undoc-members:
    :inherited-members:
-
-.. note::
-
-    You are also able to chain conditions together using the logical operators:
-    ``&`` (and), ``|`` (or), and ``~`` (not). 
