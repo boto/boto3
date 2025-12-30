@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.42.19
+=======
+
+* api-change:``connect``: [``botocore``] Adds support for searching global contacts using the ActiveRegions filter, and pagination support for ListSecurityProfileFlowModules and ListEntitySecurityProfiles.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``kafkaconnect``: [``botocore``] This change sets the KafkaConnect GovCloud FIPS and FIPS DualStack endpoints to use kafkaconnect instead of kafkaconnect-fips as the service name. This is done to match the Kafka endpoints.
+
+
 1.42.18
 =======
 
