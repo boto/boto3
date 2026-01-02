@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.42.21
+=======
+
+* bugfix:``s3``: [``botocore``] Clarify ``payload_signing_enabled`` documentation to cover interaction with ``request_checksum_calculation``
+
+
 1.42.20
 =======
 
