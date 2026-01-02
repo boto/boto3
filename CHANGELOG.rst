@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.42.20
+=======
+
+* api-change:``cleanrooms``: [``botocore``] Added support for publishing detailed metrics to CloudWatch for operational monitoring of collaborations, including query performance and resource utilization.
+* api-change:``identitystore``: [``botocore``] This change introduces "Roles" attribute for User entities supported by AWS Identity Store SDK.
+
+
 1.42.19
 =======
 
