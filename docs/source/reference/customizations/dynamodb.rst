@@ -55,8 +55,6 @@ DynamoDB conditions
 
 .. note::
 
-    .. note::
-
     Both :py:class:`~boto3.dynamodb.conditions.Key` and
     :py:class:`~boto3.dynamodb.conditions.Attr` conditions can be chained
     together using the logical operators: ``&`` (and), ``|`` (or), and ``~`` (not).
