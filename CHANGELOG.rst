@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.42.24
+=======
+
+* api-change:``workspaces``: [``botocore``] Add StateMessage and ProgressPercentage fields to DescribeCustomWorkspaceImageImport API response.
+
+
 1.42.23
 =======
 
