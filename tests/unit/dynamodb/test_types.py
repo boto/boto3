@@ -167,7 +167,10 @@ class TestDeserializer(unittest.TestCase):
 
     def test_deserialize_decimal(self):
         assert self.deserializer.deserialize({'N': '1.25'}) == Decimal('1.25')
+        assert self.deserializer.deserialize({'N': '1.2500'}) == Decimal('1.25')
         assert self.deserializer.deserialize({'N': '1234567891234560000000000000000000000000'}) == Decimal('1.23456789123456E+39')
+        assert self.deserializer.deserialize({'N': '-1234567891234560000000000000000000000000'}) == Decimal('-1.23456789123456E+39')
+        assert self.deserializer.deserialize({'N': '1.23E+39'}) == Decimal('1.23E+39')
 
     def test_deserialize_string(self):
         assert self.deserializer.deserialize({'S': 'foo'}) == 'foo'
