@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.42.25
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds optional field "view" to GetMemory API input to give customers control over whether CMK encrypted data such as strategy decryption or override prompts is returned or not.
+* api-change:``cloudfront``: [``botocore``] Added EntityLimitExceeded exception handling to the following API operations AssociateDistributionWebACL, AssociateDistributionTenantWebACL, UpdateDistributionWithStagingConfig
+* api-change:``glue``: [``botocore``] Adding MaterializedViews task run APIs
+* api-change:``medialive``: [``botocore``] MediaPackage v2 output groups in MediaLive can now accept one additional destination for single pipeline channels and up to two additional destinations for standard channels. MediaPackage v2 destinations now support sending to cross region MediaPackage channels.
+* api-change:``transcribe``: [``botocore``] Adds waiters to Amazon Transcribe.
+
+
 1.42.24
 =======
 
