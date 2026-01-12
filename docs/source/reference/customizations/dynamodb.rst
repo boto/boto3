@@ -53,6 +53,25 @@ Custom Boto3 types
 DynamoDB conditions
 -------------------
 
+.. note::
+
+    Both :py:class:`~boto3.dynamodb.conditions.Key` and
+    :py:class:`~boto3.dynamodb.conditions.Attr` conditions can be chained
+    together using the logical operators: ``&`` (and), ``|`` (or), and ``~`` (not).
+
+    Example::
+
+        # Filter for users named 'John' who are over 25
+        FilterExpression=Attr('name').eq('John') & Attr('age').gt(25)
+
+        # Filter using OR
+        FilterExpression=Attr('status').eq('active') | Attr('role').eq('admin')
+
+        # Filter using NOT
+        FilterExpression=~Attr('deleted').eq(True)
+
+    See :ref:`dynamodb_guide` for more detailed usage examples.
+
 .. autoclass:: boto3.dynamodb.conditions.Key
    :members:
    :undoc-members:
