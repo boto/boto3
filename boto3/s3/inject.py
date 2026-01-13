@@ -451,8 +451,9 @@ def copy(
     :param SourceClient: The client to be used for operation that
         may happen at the source object. For example, this client is
         used for the head_object that determines the size of the copy.
-        If no client is provided, the current client is used as the client
-        for the source object.
+        The current client still requires IAM permissions to access 
+        both buckets. If no client is provided, the current client is 
+        used as the client for the source object.
 
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
@@ -530,8 +531,9 @@ def bucket_copy(
     :param SourceClient: The client to be used for operation that
         may happen at the source object. For example, this client is
         used for the head_object that determines the size of the copy.
-        If no client is provided, the current client is used as the client
-        for the source object.
+        The current client still requires IAM permissions to access 
+        both buckets. If no client is provided, the current client is 
+        used as the client for the source object.
 
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
@@ -593,8 +595,9 @@ def object_copy(
     :param SourceClient: The client to be used for operation that
         may happen at the source object. For example, this client is
         used for the head_object that determines the size of the copy.
-        If no client is provided, the current client is used as the client
-        for the source object.
+        The current client still requires IAM permissions to access 
+        both buckets. If no client is provided, the current client is 
+        used as the client for the source object.
 
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
