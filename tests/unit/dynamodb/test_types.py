@@ -206,3 +206,10 @@ class TestDeserializer(unittest.TestCase):
                 }
             }
         ) == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}
+
+    def test_deserialize_large_number_with_trailing_zeros(self):
+        # Numbers with trailing zeros that exceed 38 total digits but have
+        # <=38 significant digits are valid in DynamoDB and must deserialize.
+        large_num = '1234567895171680000000000000000000000000'
+        result = self.deserializer.deserialize({'N': large_num})
+        assert result == Decimal(large_num)
