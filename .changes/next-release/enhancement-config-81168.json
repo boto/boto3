@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "config",
+  "description": "[``botocore``] Add support for TCP Keep-Alive configuration via BOTOCORE_TCP_KEEPALIVE environment variable"
+}
