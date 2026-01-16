@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.42.30
+=======
+
+* api-change:``connect``: [``botocore``] Adds support to allow customers to create form with Dispute configuration
+* api-change:``datazone``: [``botocore``] This release adds support for numeric filtering and complex free-text searches cases for the Search and SearchListings APIs.
+* api-change:``glacier``: [``botocore``] Documentation updates for Amazon Glacier's maintenance mode
+* api-change:``launch-wizard``: [``botocore``] Added UpdateDeployment, ListDeploymentPatternVersions and GetDeploymentPatternVersion APIs for Launch Wizard
+* api-change:``resource-explorer-2``: [``botocore``] Added ViewName to View-related responses and ServiceViewName to GetServiceView response.
+* api-change:``sagemaker``: [``botocore``] Adding security consideration comments for lcc accessing execution role under root access
+
+
 1.42.29
 =======
 

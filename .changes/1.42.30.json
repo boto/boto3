@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Adds support to allow customers to create form with Dispute configuration",
+    "type": "api-change"
+  },
+  {
+    "category": "``datazone``",
+    "description": "[``botocore``] This release adds support for numeric filtering and complex free-text searches cases for the Search and SearchListings APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``glacier``",
+    "description": "[``botocore``] Documentation updates for Amazon Glacier's maintenance mode",
+    "type": "api-change"
+  },
+  {
+    "category": "``launch-wizard``",
+    "description": "[``botocore``] Added UpdateDeployment, ListDeploymentPatternVersions and GetDeploymentPatternVersion APIs for Launch Wizard",
+    "type": "api-change"
+  },
+  {
+    "category": "``resource-explorer-2``",
+    "description": "[``botocore``] Added ViewName to View-related responses and ServiceViewName to GetServiceView response.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Adding security consideration comments for lcc accessing execution role under root access",
+    "type": "api-change"
+  }
+]
