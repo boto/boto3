@@ -245,6 +245,10 @@ You can set configuration settings using system-wide environment variables. Thes
     Determines when checksum validation will be performed on response payloads. For more
     information, see the ``response_checksum_validation`` configuration file section.
 
+``BOTOCORE_TCP_KEEPALIVE``
+    Toggles the TCP Keep-Alive socket option used when creating connections.
+    Set to ``true`` to enable TCP Keepalive with system configurations,
+    or ``false`` to disable. By default, TCP Keepalive is not used when creating connections.
 
 Using a configuration file
 --------------------------
