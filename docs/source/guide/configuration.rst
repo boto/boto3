@@ -249,6 +249,8 @@ You can set configuration settings using system-wide environment variables. Thes
     Toggles the TCP Keep-Alive socket option used when creating connections.
     Valid values are ``true`` or ``false``. By default, TCP Keep-Alive is disabled.
     When set to ``true``, TCP Keep-Alive will be enabled with the system default configurations.
+    This is the environment variable equivalent of the ``tcp_keepalive`` configuration file
+    setting and ``Config`` option.
 
 Using a configuration file
 --------------------------
