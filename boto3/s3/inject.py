@@ -448,11 +448,12 @@ def copy(
         be periodically called during the copy.
 
     :type SourceClient: botocore or boto3 Client
-    :param SourceClient: The client to be used for operation that
+    :param SourceClient: The client to be used for operations that
         may happen at the source object. For example, this client is
         used for the head_object that determines the size of the copy.
-        If no client is provided, the current client is used as the client
-        for the source object.
+        If no client is provided, the current client is used as the
+        client for the source object.  The current client still
+        requires IAM permissions to access both buckets.
 
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
@@ -527,11 +528,12 @@ def bucket_copy(
         be periodically called during the copy.
 
     :type SourceClient: botocore or boto3 Client
-    :param SourceClient: The client to be used for operation that
+    :param SourceClient: The client to be used for operations that
         may happen at the source object. For example, this client is
         used for the head_object that determines the size of the copy.
-        If no client is provided, the current client is used as the client
-        for the source object.
+        If no client is provided, the current client is used as the
+        client for the source object.  The current client still
+        requires IAM permissions to access both buckets.
 
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
@@ -590,11 +592,12 @@ def object_copy(
         be periodically called during the copy.
 
     :type SourceClient: botocore or boto3 Client
-    :param SourceClient: The client to be used for operation that
+    :param SourceClient: The client to be used for operations that
         may happen at the source object. For example, this client is
         used for the head_object that determines the size of the copy.
-        If no client is provided, the current client is used as the client
-        for the source object.
+        If no client is provided, the current client is used as the
+        client for the source object.  The current client still
+        requires IAM permissions to access both buckets.
 
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
