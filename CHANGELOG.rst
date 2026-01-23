@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.42.34
+=======
+
+* api-change:``connect``: [``botocore``] Amazon Connect now offers public APIs to programmatically configure and run automated tests for contact center experiences. Integrate testing into CICD pipelines, run multiple tests at scale, and retrieve results via API to automate validation of voice interactions and workflows.
+* api-change:``datazone``: [``botocore``] Added api for deleting data export configuration for a domain
+* api-change:``qconnect``: [``botocore``] Fixes incorrect types in the UpdateAssistantAIAgent API request, adds MESSAGE to TargetType enum, and other minor changes.
+
+
 1.42.33
 =======
 
