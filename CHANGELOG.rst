@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.35
+=======
+
+* api-change:``connectcases``: [``botocore``] Amazon Connect now enables you to use tag-based access controls to define who can access specific cases. You can associate tags with case templates and configure security profiles to determine which users can access cases with those tags.
+* api-change:``ec2``: [``botocore``] DescribeInstanceTypes API response now includes an additionalFlexibleNetworkInterfaces field, the number of interfaces attachable to an instance when using flexible Elastic Network Adapter (ENA) queues in addition to the base number specified by maximumNetworkInterfaces.
+* api-change:``evidently``: [``botocore``] Deprecate all Evidently API for AWS CloudWatch Evidently deprecation
+* api-change:``groundstation``: [``botocore``] Adds support for AWS Ground Station Telemetry.
+
+
 1.42.34
 =======
 
