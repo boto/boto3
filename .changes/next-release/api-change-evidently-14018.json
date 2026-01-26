@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``evidently``",
-  "description": "[``botocore``] Deprecate all Evidently API for AWS CloudWatch Evidently deprecation"
-}
