@@ -86,7 +86,9 @@ iniconfig==2.0.0 \
 packaging==24.1 \
     --hash=sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002 \
     --hash=sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124
-    # via pytest
+    # via
+    #   pytest
+    #   wheel
 pluggy==1.5.0 \
     --hash=sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1 \
     --hash=sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669
@@ -107,7 +109,7 @@ tomli==2.0.1 \
     # via
     #   coverage
     #   pytest
-wheel==0.43.0 \
-    --hash=sha256:465ef92c69fa5c5da2d1cf8ac40559a8c940886afcef87dcf14b9470862f1d85 \
-    --hash=sha256:55c570405f142630c6b9f72fe09d9b67cf1477fcf543ae5b8dcb1f5b7377da81
+wheel==0.46.3 \
+    --hash=sha256:4b399d56c9d9338230118d705d9737a2a468ccca63d5e813e2a4fc7815d8bc4d \
+    --hash=sha256:e3e79874b07d776c40bd6033f8ddf76a7dad46a7b8aa1b2787a83083519a1803
     # via -r requirements-dev.txt
