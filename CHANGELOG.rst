@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.42.39
+=======
+
+* api-change:``connect``: [``botocore``] This release adds Estimated Wait Time support to the GetContactMetrics API for Amazon Connect.
+* api-change:``quicksight``: [``botocore``] Improve SessionTag usage guidelines in the GenerateEmbedURLForAnonymousUser API documentation. Update the GetIdentityContext document with the region support context.
+
+
 1.42.38
 =======
 
