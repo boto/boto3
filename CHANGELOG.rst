@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.42.41
+=======
+
+* api-change:``batch``: [``botocore``] AWS Batch Array Job Visibility feature support. Includes new statusSummaryLastUpdatedAt for array job parent DescribeJobs responses for the last time the statusSummary was updated. Includes both statusSummary and statusSummaryLastUpdatedAt in ListJobs responses for array job parents.
+* api-change:``dynamodb``: [``botocore``] This change supports the creation of multi-account global tables. It adds two new arguments to CreateTable, GlobalTableSourceArn and GlobalTableSettingsReplicationMode. DescribeTable is also updated to include information about GlobalTableSettingsReplicationMode.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``geo-maps``: [``botocore``] Added support for optional style parameters in maps, including 3D terrain and 3D Buildings
+* api-change:``kinesis``: [``botocore``] Adds StreamId parameter to AWS Kinesis Data Streams APIs that is reserved for future use.
+* api-change:``marketplace-catalog``: [``botocore``] Adds support for Catalog API us-east-1 dualstack endpoint catalog-marketplace.us-east-1.api.aws
+* api-change:``organizations``: [``botocore``] Updated the CloseAccount description.
+* api-change:``sso-admin``: [``botocore``] Added new Region management APIs to support multi-Region replication in IAM Identity Center.
+
+
 1.42.40
 =======
 
