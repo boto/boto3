@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``organizations``",
-  "description": "[``botocore``] Updated the CloseAccount description."
-}

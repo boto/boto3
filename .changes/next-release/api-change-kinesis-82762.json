@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``kinesis``",
-  "description": "[``botocore``] Adds StreamId parameter to AWS Kinesis Data Streams APIs that is reserved for future use."
-}
