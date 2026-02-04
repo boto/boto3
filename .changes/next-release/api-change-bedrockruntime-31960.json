@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-runtime``",
-  "description": "[``botocore``] Added support for structured outputs to Converse and ConverseStream APIs."
-}

@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Validation",
-  "description": "[``botocore``] Updated list validation to add fast-path for list members that only require basic type checking."
-}
