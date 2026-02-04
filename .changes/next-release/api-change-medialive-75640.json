@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``medialive``",
+  "description": "[``botocore``] AWS Elemental MediaLive now supports SRT listener mode for inputs and outputs, in addition to the existing SRT caller mode."
+}
