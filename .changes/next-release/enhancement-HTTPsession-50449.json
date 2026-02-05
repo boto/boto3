@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "HTTP session",
+  "description": "[``botocore``] Set blocksize from default 16KB to 128KB if urllib3 v2 is installed"
+}
