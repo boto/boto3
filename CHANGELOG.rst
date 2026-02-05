@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.42.43
+=======
+
+* api-change:``arc-region-switch``: [``botocore``] Updates documentation for ARC Region switch and provides stronger validation for Amazon Aurora Global Database execution block parameters.
+* api-change:``athena``: [``botocore``] Reduces the minimum TargetDpus to create or update capacity reservations from 24 to 4.
+* api-change:``bedrock-agentcore``: [``botocore``] Support Browser profile persistence (cookies and local storage) across sessions for AgentCore Browser.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Support Browser profile persistence (cookies and local storage) across sessions for AgentCore Browser.
+* api-change:``glue``: [``botocore``] This release adds the capability to easily create custom AWS Glue connections to data sources with REST APIs.
+* api-change:``medialive``: [``botocore``] Outputs using the AV1 codec in CMAF Ingest output groups in MediaLive now have the ability to specify a target bit depth of 8 or 10.
+* api-change:``neptune-graph``: [``botocore``] Minor neptune-graph documentation changes
+* api-change:``ram``: [``botocore``] Added ListSourceAssociations API. Allows RAM resource share owners to list source associations that determine which sources can access resources through service principal associations. Supports filtering by resource share ARN, source ID, source type, or status, with pagination.
+* api-change:``transfer``: [``botocore``] Adds support for the customer to send custom HTTP headers and configure an AS2 Connector to receive Asynchronous MDNs from their trading partner
+* api-change:``workspaces``: [``botocore``] Added support for 12 new graphics-optimized compute types - Graphics.g6 (xlarge, 2xlarge, 4xlarge, 8xlarge, 16xlarge), Graphics.gr6 (4xlarge, 8xlarge), Graphics.g6f (large, xlarge, 2xlarge, 4xlarge), and Graphics.gr6f (4xlarge).
+* enhancement:HTTP session: [``botocore``] Set blocksize from default 16KB to 128KB if urllib3 v2 is installed
+
+
 1.42.42
 =======
 
