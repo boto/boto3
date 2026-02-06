@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.42.44
+=======
+
+* api-change:``bedrock-data-automation-runtime``: [``botocore``] Add OutputConfiguration to InvokeDataAutomation input and output to support S3 output
+* api-change:``deadline``: [``botocore``] Adds support for tagging jobs during job creation
+* api-change:``iot-managed-integrations``: [``botocore``] Adding support for Custom(General) Authorization in managed integrations for AWS IoT Device Management cloud connectors.
+* api-change:``partnercentral-selling``: [``botocore``] Releasing AWS Opportunity Snapshots for SDK release.
+* api-change:``sagemaker``: [``botocore``] Adding g7e instance support in Sagemaker Training
+
+
 1.42.43
 =======
 
