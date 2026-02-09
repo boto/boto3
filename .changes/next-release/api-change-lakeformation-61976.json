@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lakeformation``",
-  "description": "[``botocore``] Allow cross account v5 in put data lake settings"
-}
