@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.42.48
+=======
+
+* api-change:``ec2``: [``botocore``] Launching nested virtualization. This feature allows you to run nested VMs inside virtual (non-bare metal) EC2 instances.
+
+
 1.42.47
 =======
 
