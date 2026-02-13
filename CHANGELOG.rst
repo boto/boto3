@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.42.49
+=======
+
+* api-change:``cloudwatch``: [``botocore``] Adding new evaluation states that provides information about the alarm evaluation process. Evaluation error Indicates configuration errors in alarm setup that require review and correction. Evaluation failure Indicates temporary CloudWatch issues.
+* api-change:``connect``: [``botocore``] API release for headerr notifications in the admin website. APIs allow customers to publish brief messages (including URLs) to a specified audience, and a new header icon will indicate when unread messages are available.
+* api-change:``ec2``: [``botocore``] This release adds geography information to EC2 region and availability zone APIs. DescribeRegions now includes a Geography field, while DescribeAvailabilityZones includes both Geography and SubGeography fields, enabling better geographic classification for AWS regions and zones.
+* api-change:``inspector2``: [``botocore``] Added .Net 10 (dotnet10) and Node 24.x (node24.x) runtime support for lambda package scanning
+* api-change:``sagemaker``: [``botocore``] Enable g7e instance type support for SageMaker Processing, and enable single file configuration provisioning for HyperPod Slurm, where customers have the option to use HyperPod API to provide the provisioning parameters.
+* enhancement:AWSCRT: [``botocore``] Update awscrt version to 0.31.2
+
+
 1.42.48
 =======
 
