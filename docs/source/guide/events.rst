@@ -460,7 +460,7 @@ information about each event can be found in the corresponding sections below:
   Use this event for modifying various HTTP request components prior to the request 
   being created. A response tuple may optionally be returned to trigger a short-circuit 
   and prevent the request from being made. This is useful for testing and is how the 
-  `botocore stubber <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/stubber.html>`_
+  `botocore stubber <https://docs.aws.amazon.com/botocore/latest/reference/stubber.html>`_
   mocks responses.
 
 :Keyword Arguments Emitted:

@@ -24,13 +24,13 @@ This option is for configuring client-specific configurations that affect the be
 
 * ``region_name`` (string) - The AWS Region used in instantiating the client. If used, this takes precedence over environment variable and configuration file values. But it doesn't overwrite a ``region_name`` value *explicitly* passed to individual service methods.
 * ``signature_version`` (string) - The signature version used when signing requests. Note that the default version is Signature Version 4. If you're using a presigned URL with an expiry of greater than 7 days, you should specify Signature Version 2.
-* ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
+* ``s3`` (related configurations; dictionary) - Amazon S3 service-specific configurations. For more information, see the `Botocore config reference <https://docs.aws.amazon.com/botocore/latest/reference/config.html>`_.
 * ``proxies`` (dictionary) - Each entry maps a protocol name to the proxy server Boto3 should use to communicate using that protocol. See :ref:`specify_proxies` for more information.
 * ``proxies_config`` (dictionary) - Additional proxy configuration settings. For more information, see :ref:`configure_proxies`.
 * ``retries`` (dictionary) - Client retry behavior configuration options that include retry mode and maximum retry attempts. For more information, see the :ref:`guide_retries` guide.  
 
 
-For more information about additional options, or for a complete list of options, see the `Config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_.
+For more information about additional options, or for a complete list of options, see the `Config reference <https://docs.aws.amazon.com/botocore/latest/reference/config.html>`_.
 
 To set these configuration options, create a ``Config`` object with the options you want, and then pass them into your client.
 
@@ -89,7 +89,7 @@ Alternatively, you can use the ``HTTP_PROXY`` and ``HTTPS_PROXY`` environment va
 
 Configuring proxies
 '''''''''''''''''''
-You can configure how Boto3 uses proxies by specifying the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. For more information about these keys, see the `Botocore config reference <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html#botocore.config.Config>`_.
+You can configure how Boto3 uses proxies by specifying the ``proxies_config`` option, which is a dictionary that specifies the values of several proxy options by name.  There are three keys in this dictionary: ``proxy_ca_bundle``, ``proxy_client_cert``, and ``proxy_use_forwarding_for_https``. For more information about these keys, see the `Botocore config reference <https://docs.aws.amazon.com/botocore/latest/reference/config.html#botocore.config.Config>`_.
 
 .. code-block:: python
 
