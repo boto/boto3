@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.42.50
+=======
+
+* api-change:``arc-region-switch``: [``botocore``] Clarify documentation on ARC Region Switch start-plan-execution operation
+* api-change:``ec2``: [``botocore``] Documentation updates for EC2 Secondary Networks
+* api-change:``ecr``: [``botocore``] Adds support for enabling blob mounting, and removes support for Clair based image scanning
+* api-change:``kafka``: [``botocore``] Amazon MSK now supports dual-stack connectivity (IPv4 and IPv6) for existing MSK clusters. You can enable dual-stack on existing clusters by specifying the NetworkType parameter in updateConnectivity API.
+* api-change:``kms``: [``botocore``] Added support for Decrypt and ReEncrypt API's to use dry run feature without ciphertext for authorization validation
+* api-change:``qconnect``: [``botocore``] Update MessageType enum to include missing types.
+
+
 1.42.49
 =======
 
