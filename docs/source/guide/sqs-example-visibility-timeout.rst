@@ -23,7 +23,7 @@ The scenario
 In this example, Python code is used to manage visibility timeout. The code uses the SDK for Python 
 to manage visibility timeout by using this method of the AWS.SQS client class:
 
-* `set_queue_attributes <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+* `set_queue_attributes <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
 
 For more information about Amazon SQS visibility timeout, see 
 `Visibility Timeout <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html>`_ 
@@ -46,7 +46,7 @@ Change the visibility timeout
 The example below shows how to:
  
 * Change the visibility timeout using 
-  `set_queue_attributes <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
+  `set_queue_attributes <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.set_queue_attributes>`_.
   
   Example
 -------

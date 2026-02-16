@@ -621,7 +621,7 @@ information about each event can be found in the corresponding sections below:
 :Description:
   This event is emitted before checking if the most recent request needs to be retried.
   Use this event to define custom retry behavior when the configurable  
-  `retry modes <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/retries.html>`_ 
+  `retry modes <https://docs.aws.amazon.com/boto3/latest/guide/retries.html>`_
   are not sufficient.
 
 :Keyword Arguments Emitted:
