@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.42.51
+=======
+
+* api-change:``ec2``: [``botocore``] Add Operator field to CreatePlacementGroup and DescribePlacementGroup APIs.
+* api-change:``evidently``: [``botocore``] The evidently client has been removed following the deprecation of the service.
+* api-change:``grafana``: [``botocore``] This release updates Amazon Managed Grafana's APIs to support customer managed KMS keys.
+* api-change:``iotanalytics``: [``botocore``] The iotanalytics client has been removed following the deprecation of the service.
+* api-change:``rds``: [``botocore``] Adds support for the StorageEncryptionType field to specify encryption type for DB clusters, DB instances, snapshots, automated backups, and global clusters.
+* api-change:``workspaces-web``: [``botocore``] Adds support for branding customization without requiring a custom wallpaper.
+
+
 1.42.50
 =======
 
