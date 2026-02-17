@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Add Operator field to CreatePlacementGroup and DescribePlacementGroup APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``evidently``",
+    "description": "[``botocore``] The evidently client has been removed following the deprecation of the service.",
+    "type": "api-change"
+  },
+  {
+    "category": "``grafana``",
+    "description": "[``botocore``] This release updates Amazon Managed Grafana's APIs to support customer managed KMS keys.",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotanalytics``",
+    "description": "[``botocore``] The iotanalytics client has been removed following the deprecation of the service.",
+    "type": "api-change"
+  },
+  {
+    "category": "``rds``",
+    "description": "[``botocore``] Adds support for the StorageEncryptionType field to specify encryption type for DB clusters, DB instances, snapshots, automated backups, and global clusters.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces-web``",
+    "description": "[``botocore``] Adds support for branding customization without requiring a custom wallpaper.",
+    "type": "api-change"
+  }
+]
