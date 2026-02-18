@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] This release adds support for federated catalogs in Athena-sourced configured tables.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Correcting in-app notifications API documentation.",
+    "type": "api-change"
+  }
+]
