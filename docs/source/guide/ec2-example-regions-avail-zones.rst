@@ -25,9 +25,9 @@ The scenario
 In this example, Python code is used to get details about regions and Availability Zones. The code uses the 
 AWS SDK for Python to get the data by using these methods of the EC2 client class:
  
-* `describe_regions <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.describe_regions>`_. 
+* `describe_regions <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/describe_regions.html>`_. 
 
-* `describe_availability_zones <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.describe_availability_zones>`_. 
+* `describe_availability_zones <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/describe_availability_zones.html>`_. 
  
 For more information about regions and Availability Zones, see 
 `Regions and Availability Zones <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html>`_ 
@@ -54,10 +54,10 @@ Describe Regions and Availability Zones
 The example below shows how to:
  
 * Describe Regions using 
-  `describe_regions <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.describe_regions>`_.
+  `describe_regions <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/describe_regions.html>`_.
 
 * Describe Availability Zones using 
-  `describe_availability_zones <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.describe_availability_zones>`_.
+  `describe_availability_zones <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/describe_availability_zones.html>`_.
  
 Example
 -------

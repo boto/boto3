@@ -34,13 +34,13 @@ In this example, Python code is used to perform several Amazon EC2 operations in
 The code uses the AWS SDK for Python to manage IAM access keys using these methods of the EC2 
 client class:
 
-* `describe_security_groups <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.describe_security_groups>`_.
+* `describe_security_groups <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/describe_security_groups.html>`_.
 
-* `authorize_security_group_ingress <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.authorize_security_group_ingress>`_.
+* `authorize_security_group_ingress <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/authorize_security_group_ingress.html>`_.
 
-* `create_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.create_security_group>`_.
+* `create_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/create_security_group.html>`_.
 
-* `delete_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.delete_security_group>`_.
+* `delete_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/delete_security_group.html>`_.
 
 For more information about the Amazon EC2 security groups, see 
 `Amazon EC2 Amazon Security Groups for Linux Instances <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html>`_ 
@@ -73,7 +73,7 @@ in the *Amazon Virtual Private Cloud User Guide*.
 The example below shows how to:
  
 * Describe a Security Group using 
-  `describe_security_groups <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.describe_security_groups>`_.
+  `describe_security_groups <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/describe_security_groups.html>`_.
 
 Example
 -------
@@ -104,10 +104,10 @@ Create a security group and rules
 The example below shows how to:
  
 * Create a Security Group using 
-  `create_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.create_security_group>`_.
+  `create_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/create_security_group.html>`_.
 
 * Add an ingress rule to a security group using 
-  `authorize_security_group_ingress <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.authorize_security_group_ingress>`_.
+  `authorize_security_group_ingress <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/authorize_security_group_ingress.html>`_.
  
 Example
 -------
@@ -160,7 +160,7 @@ in EC2-VPC.
 The example below shows how to:
  
 * Delete a security group using 
-  `delete_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2.html#EC2.Client.delete_security_group>`_.
+  `delete_security_group <https://docs.aws.amazon.com/boto3/latest/reference/services/ec2/client/delete_security_group.html>`_.
  
 Example
 -------

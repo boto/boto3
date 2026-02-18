@@ -29,12 +29,12 @@ API <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-ema
 
 The following examples show how to:
 
-* Create an email template using `create_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.create_template>`_.
-* List all email templates using `list_templates() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.list_templates>`_.
-* Retrieve an email template using `get_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.get_template>`_.
-* Update an email template using `update_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.update_template>`_.
-* Remove an email template using `delete_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.delete_template>`_.
-* Send a templated email using `send_templated_email() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.send_templated_email>`_.
+* Create an email template using `create_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/create_template.html>`_.
+* List all email templates using `list_templates() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/list_templates.html>`_.
+* Retrieve an email template using `get_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/get_template.html>`_.
+* Update an email template using `update_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/update_template.html>`_.
+* Remove an email template using `delete_template() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/delete_template.html>`_.
+* Send a templated email using `send_templated_email() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/send_templated_email.html>`_.
 
 Prerequisite tasks
 ==================

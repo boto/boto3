@@ -29,11 +29,11 @@ based on the value of the metric relative to a given threshold over a number of 
 In this example, Python code is used to create alarms in CloudWatch. The code 
 uses the AWS SDK for Python to create alarms using these methods of the AWS.CloudWatch client class:
 
-* `paginate(StateValue='INSUFFICIENT_DATA') <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
+* `get_paginator <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch/client/get_paginator.html>`_.
 
-* `put_metric_alarm <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
+* `put_metric_alarm <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch/client/put_metric_alarm.html>`_.
 
-* `delete_alarms <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch.html#CloudWatch.Client.delete_alarms>`_.
+* `delete_alarms <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch/client/delete_alarms.html>`_.
 
 For more information about CloudWatch alarms, see `Creating Amazon CloudWatch Alarms <http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html>`_ 
 in the *Amazon CloudWatch User Guide*.
@@ -50,8 +50,8 @@ Describe alarms
 
 The example below shows how to:
  
-* List metric alarms for insufficient data using 
-  `paginate(StateValue='INSUFFICIENT_DATA') <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch.html#CloudWatch.Client.paginate>`_.
+* List metric alarms for insufficient data using
+  `get_paginator <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch/client/get_paginator.html>`_.
  
 For more information about paginators see, :doc:`paginators`
  
@@ -86,7 +86,7 @@ the previous configuration of the alarm.
 The example below shows how to:
  
 * Create or update a metric alarm using 
-  `put_metric_alarm <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch.html#CloudWatch.Client.put_metric_alarm>`_.
+  `put_metric_alarm <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch/client/put_metric_alarm.html>`_.
   
 Example
 -------
@@ -128,7 +128,7 @@ Delete the specified alarms. In the event of an error, no alarms are deleted.
 The example below shows how to:
  
 * Delete a metric alarm using 
-  `delete_alarms <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch.html#CloudWatch.Client.delete_alarms>`_.
+  `delete_alarms <https://docs.aws.amazon.com/boto3/latest/reference/services/cloudwatch/client/delete_alarms.html>`_.
   
 Example
 -------

@@ -29,11 +29,11 @@ Receiving <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email
 The following examples show how to:
 
 * Create an email filter using 
-  `create_receipt_filter() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.create_receipt_filter>`__.
+  `create_receipt_filter() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/create_receipt_filter.html>`__.
 * List all email filters using 
-  `list_receipt_filters() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.list_receipt_filters>`__.
+  `list_receipt_filters() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/list_receipt_filters.html>`__.
 * Remove an email filter using 
-  `delete_receipt_filter() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.delete_receipt_filter>`__.
+  `delete_receipt_filter() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/delete_receipt_filter.html>`__.
 
 
 Prerequisite tasks

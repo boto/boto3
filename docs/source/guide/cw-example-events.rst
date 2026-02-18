@@ -32,11 +32,11 @@ events and route them to one or more target functions or streams.
 In this example, Python code is used to send events to CloudWatch Events. The code uses the
 AWS SDK for Python to manage instances using these methods of the CloudWatchEvents client class:
 
-* `put_rule <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.put_rule>`_.
+* `put_rule <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/put_rule.html>`_.
 
-* `put_targets <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.put_targets>`_.
+* `put_targets <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/put_targets.html>`_.
 
-* `put_events <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.put_events>`_.
+* `put_events <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/put_events.html>`_.
 
 For more information about CloudWatch Events, see 
 `Adding Events with PutEvents <http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/AddEventsPutEvents.html>`_ 
@@ -102,12 +102,12 @@ Create a scheduled rule
 =======================
 
 Create or update the specified rule. Rules are enabled by default, or based on value of the state. 
-You can disable a rule using `DisableRule <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.disable_rule>`_.
+You can disable a rule using `DisableRule <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/disable_rule.html>`_.
 
 The example below shows how to:
  
 * Create a CloudWatch Events rule using 
-  `put_rule <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.put_rule>`_.
+  `put_rule <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/put_rule.html>`_.
  
 
 Example
@@ -140,7 +140,7 @@ associated with the rule.
 The example below shows how to:
  
 * Add a target to a rule using 
-  `put_targets <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.put_targets>`_.
+  `put_targets <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/put_targets.html>`_.
  
 
 Example
@@ -174,7 +174,7 @@ Send custom events to Amazon CloudWatch Events so that they can be matched to ru
 The example below shows how to:
  
 * Send a custom event to CloudWatch Events using 
-  `put_events <https://docs.aws.amazon.com/boto3/latest/reference/services/events.html#CloudWatchEvents.Client.put_events>`_.
+  `put_events <https://docs.aws.amazon.com/boto3/latest/reference/services/events/client/put_events.html>`_.
  
 Example
 -------

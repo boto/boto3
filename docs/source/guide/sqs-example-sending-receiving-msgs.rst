@@ -22,11 +22,11 @@ The scenario
 In this example, Python code is used to send and receive messages. The code uses the AWS SDK for Python 
 to send and receive messages by using these methods of the AWS.SQS client class:
 
-* `send_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.send_message>`_.
+* `send_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs/client/send_message.html>`_.
 
-* `receive_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.receive_message>`_.
+* `receive_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs/client/receive_message.html>`_.
 
-* `delete_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.delete_message>`_.
+* `delete_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs/client/delete_message.html>`_.
 
 For more information about Amazon SQS messages, see 
 `Sending a Message to an Amazon SQS Queue <http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-send-message.html>`_ 
@@ -49,7 +49,7 @@ Send a message to a queue
 The example below shows how to:
  
 * Send a message to a queue using 
-  `send_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.send_message>`_.
+  `send_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs/client/send_message.html>`_.
   
 Example
 -------
@@ -96,10 +96,10 @@ Receive and delete messages from a queue
 The example below shows how to:
  
 * Receive a message from a queue using 
-  `receive_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.receive_message>`_.
+  `receive_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs/client/receive_message.html>`_.
   
 * Delete a message from a queue using 
-  `delete_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs.html#SQS.Client.delete_message>`_.
+  `delete_message <https://docs.aws.amazon.com/boto3/latest/reference/services/sqs/client/delete_message.html>`_.
 
 Example
 -------

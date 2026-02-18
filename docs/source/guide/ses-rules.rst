@@ -32,10 +32,10 @@ Receiving <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email
 
 The following examples show how to:
 
-* Create a receipt rule set using `create_receipt_rule_set()  <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.create_receipt_rule_set>`_.
-* Create a receipt rule using `create_receipt_rule() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.create_receipt_rule>`_.
-* Remove a receipt rule using `delete_receipt_rule() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.delete_receipt_rule>`_.
-* Remove a receipt rule set using `delete_receipt_rule_set() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses.html#SES.Client.delete_receipt_rule_set>`_.
+* Create a receipt rule set using `create_receipt_rule_set()  <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/create_receipt_rule_set.html>`_.
+* Create a receipt rule using `create_receipt_rule() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/create_receipt_rule.html>`_.
+* Remove a receipt rule using `delete_receipt_rule() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/delete_receipt_rule.html>`_.
+* Remove a receipt rule set using `delete_receipt_rule_set() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/delete_receipt_rule_set.html>`_.
 
 
 Prerequisite tasks

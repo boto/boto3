@@ -27,15 +27,15 @@ status is Active, which means the user can use the access key for API calls.
 In this example, Python code is used to manage access keys in IAM. The code uses the AWS SDK for Python 
 to manage IAM access keys using these methods of the IAM client class:
 
-* `create_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.create_access_key>`_.
+* `create_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/create_access_key.html>`_.
 
-* `paginate(UserName='IAM_USER_NAME') <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.paginate>`_.
+* `get_paginator <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/get_paginator.html>`_.
 
-* `get_access_key_last_used <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.get_access_key_last_used>`_.
+* `get_access_key_last_used <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/get_access_key_last_used.html>`_.
 
-* `update_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.update_access_key>`_.
+* `update_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/update_access_key.html>`_.
 
-* `delete_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.delete_access_key>`_.
+* `delete_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/delete_access_key.html>`_.
 
 
 For more information about IAM access keys, see `Managing Access Keys <http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html>`_ 
@@ -57,7 +57,7 @@ default status for new keys is :code:`Active`.
 The example below shows how to:
  
 * Create a new AWS access key using 
-  `create_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.create_access_key>`_.
+  `create_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/create_access_key.html>`_.
  
 Example
 -------
@@ -89,7 +89,7 @@ you can use this action to manage root credentials even if the AWS account has n
 The example below shows how to:
  
 * List a user's access keys using 
-  `paginate(UserName='IAM_USER_NAME') <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.paginate>`_.
+  `get_paginator <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/get_paginator.html>`_.
   
 For more information about paginators see, :doc:`paginators`
 
@@ -119,7 +119,7 @@ made with that key.
 The example below shows how to:
  
 * Get the access key last used using 
-  `get_access_key_last_used <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.get_access_key_last_used>`_.
+  `get_access_key_last_used <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/get_access_key_last_used.html>`_.
 
 Example
 -------
@@ -150,7 +150,7 @@ can be used to disable a user's key as part of a key rotation work flow.
 The example below shows how to:
  
 * Change the status of an access key to :code:`Active` using 
-  `update_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.update_access_key>`_.
+  `update_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/update_access_key.html>`_.
  
 Example
 -------
@@ -182,7 +182,7 @@ use this action to manage root credentials even if the AWS account has no associ
 The example below shows how to:
  
 * Delete an access key using 
-  `delete_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam.html#IAM.Client.delete_access_key>`_.
+  `delete_access_key <https://docs.aws.amazon.com/boto3/latest/reference/services/iam/client/delete_access_key.html>`_.
   
 Example
 -------
