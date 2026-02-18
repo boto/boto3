@@ -25,7 +25,7 @@ This section demonstrates how to use the AWS SDK for Python to access Amazon S3
 services.
 
 .. note::
-   Boto3 clients and resources have an option to use a custom endpoint using the ``endpoint_url`` parameter as shown in the `Session Reference <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html>`_ guide.
+   Boto3 clients and resources have an option to use a custom endpoint using the ``endpoint_url`` parameter as shown in the `Session Reference <https://docs.aws.amazon.com/boto3/latest/reference/core/session.html>`_ guide.
    This overrides the default endpoint the client or resource will use.
    Use caution when configuring this parameter as it can cause unintended behavior including S3 redirect issues.
    See `Service-specific endpoints <https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html>`_ page in the *AWS SDK reference guide* for more information.
