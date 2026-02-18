@@ -307,7 +307,7 @@ class Session:
             over environment variables and configuration values, but not over
             a region_name value passed explicitly to the method. See
             `botocore config documentation
-            <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_
+            <https://docs.aws.amazon.com/botocore/latest/reference/config.html>`_
             for more details.
 
         :type aws_account_id: string
@@ -416,7 +416,7 @@ class Session:
             user_agent_extra is specified in the client config, it overrides
             the default user_agent_extra provided by the resource API. See
             `botocore config documentation
-            <https://botocore.amazonaws.com/v1/documentation/api/latest/reference/config.html>`_
+            <https://docs.aws.amazon.com/botocore/latest/reference/config.html>`_
             for more details.
 
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`

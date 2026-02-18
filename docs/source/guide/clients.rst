@@ -161,4 +161,4 @@ General Example
         with ThreadPoolExecutor(max_workers=8) as executor:
             futures = [executor.submit(do_s3_task, s3_client, task) for task in my_tasks]
 
-.. _Botocore Events: https://botocore.amazonaws.com/v1/documentation/api/latest/topics/events.html
+.. _Botocore Events: https://docs.aws.amazon.com/botocore/latest/topics/events.html

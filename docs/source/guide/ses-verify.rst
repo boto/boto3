@@ -27,10 +27,10 @@ SES <https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-email.html>`_
 
 The following examples show how to:
 
-* Verify an email address using `verify_email_identity() <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html#SES.Client.verify_email_identity>`__.
-* Verify an email domain using `verify_domain_identity() <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html#SES.Client.verify_domain_identity>`__.
-* List all email addresses or domains using `list_identities() <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html#SES.Client.list_identities>`__.
-* Remove an email address or domain using `delete_identity() <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ses.html#SES.Client.delete_identity>`__.
+* Verify an email address using `verify_email_identity() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/verify_email_identity.html>`__.
+* Verify an email domain using `verify_domain_identity() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/verify_domain_identity.html>`__.
+* List all email addresses or domains using `list_identities() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/list_identities.html>`__.
+* Remove an email address or domain using `delete_identity() <https://docs.aws.amazon.com/boto3/latest/reference/services/ses/client/delete_identity.html>`__.
 
 Prerequisite tasks
 ==================

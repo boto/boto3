@@ -18710,8 +18710,8 @@ AWS Marketplace OfferSets support for opportunities
 
 * api-change:``logs``: [``botocore``] Update logs client to latest version
 * api-change:``config``: [``botocore``] Update config client to latest version
-* feature:Events: [``botocore``] This migrates the event system to using sevice ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://botocore.amazonaws.com/v1/documentation/api/latest/index.html#upgrade-notes>`_ to determine if you are impacted and how to proceed if you are.
-* feature:Events: This migrates the event system to using sevice ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/upgrading.html>`_ to determine if you are impacted and how to proceed if you are.
+* feature:Events: [``botocore``] This migrates the event system to using sevice ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://docs.aws.amazon.com/botocore/latest/#upgrade-notes>`_ to determine if you are impacted and how to proceed if you are.
+* feature:Events: This migrates the event system to using sevice ids instead of either client name or endpoint prefix. This prevents issues that might arise when a service changes their endpoint prefix, also fixes a long-standing bug where you could not register an event to a particular service if it happened to share its endpoint prefix with another service (e.g. ``autoscaling`` and ``application-autoscaling`` both use the endpoint prefix ``autoscaling``). Please see the `upgrade notes <https://docs.aws.amazon.com/boto3/latest/guide/upgrading.html>`_ to determine if you are impacted and how to proceed if you are.
 
 
 1.8.9
@@ -19985,7 +19985,7 @@ AWS Marketplace OfferSets support for opportunities
 * bugfix:Session: Fixed Session.__repr__ region argument name.
 * feature:s3: Add managed copies to S3 client, Bucket, and Object.
 * feature:s3: Add managed downloads to file-like objects in the S3 client, Bucket, and Object.
-* bugfix:s3: Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed.
+* bugfix:s3: Port ``s3.transfer`` module to use ``s3transfer`` package. Please refer to `Upgrading Notes <https://docs.aws.amazon.com/boto3/latest/guide/upgrading.html>`_ when upgrading. In porting the logic over, various performance issues and bugs were fixed.
 * feature:s3: Add ``io_chunksize`` parameter to ``TransferConfig``
 
 

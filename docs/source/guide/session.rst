@@ -56,7 +56,7 @@ You can configure each session with specific credentials, AWS Region information
 .. note::
     Only set the ``profile_name`` parameter when a specific profile is required for your session. To use the default profile, don’t set the ``profile_name`` parameter at all. If the ``profile_name`` parameter isn't set *and* there is no default profile, an empty config dictionary will be used.
 
-    For a detailed list of per-session configurations, see the `Session core reference <https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html>`_.
+    For a detailed list of per-session configurations, see the `Session core reference <https://docs.aws.amazon.com/boto3/latest/reference/core/session.html>`_.
 
 
 Multithreading or multiprocessing with sessions
