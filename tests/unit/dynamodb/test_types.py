@@ -144,6 +144,20 @@ class TestSerializer(unittest.TestCase):
         }
 
 
+    def test_serialize_integer_with_trailing_zeros(self):
+        # Integers with trailing zeros whose string representation exceeds
+        # 38 characters but whose significant digits fit within the 38-digit
+        # precision limit should serialize without error.  See GitHub #4693.
+        assert self.serializer.serialize(
+            1234567895171680000000000000000000000000
+        ) == {'N': '1.23456789517168E+39'}
+
+    def test_serialize_decimal_with_trailing_zeros(self):
+        assert self.serializer.serialize(
+            Decimal('1234567895171680000000000000000000000000')
+        ) == {'N': '1.23456789517168E+39'}
+
+
 class TestDeserializer(unittest.TestCase):
     def setUp(self):
         self.deserializer = TypeDeserializer()
@@ -206,3 +220,22 @@ class TestDeserializer(unittest.TestCase):
                 }
             }
         ) == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}
+
+    def test_deserialize_number_with_trailing_zeros(self):
+        # Numbers with trailing zeros whose string representation exceeds
+        # 38 characters but whose significant digits fit within the 38-digit
+        # precision limit should deserialize without error.  See GitHub #4693.
+        assert self.deserializer.deserialize(
+            {'N': '1234567895171680000000000000000000000000'}
+        ) == Decimal('1.23456789517168E+39')
+
+    def test_deserialize_negative_number_with_trailing_zeros(self):
+        assert self.deserializer.deserialize(
+            {'N': '-1234567895171680000000000000000000000000'}
+        ) == Decimal('-1.23456789517168E+39')
+
+    def test_deserialize_number_set_with_trailing_zeros(self):
+        assert self.deserializer.deserialize(
+            {'NS': ['1234567895171680000000000000000000000000', '1']}
+        ) == {Decimal('1.23456789517168E+39'), Decimal('1')}
+
