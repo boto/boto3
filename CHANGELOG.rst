@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.42.54
+=======
+
+* api-change:``appstream``: [``botocore``] Adding new attribute to disable IMDS v1 APIs for fleet, Image Builder and AppBlockBuilder instances.
+* api-change:``ecs``: [``botocore``] Migrated to Smithy. No functional changes
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``sagemaker-runtime``: [``botocore``] Added support for S3OutputPathExtension and Filename parameters to the InvokeEndpointAsync API to allow users to customize the S3 output path and file name for async inference response payloads.
+* api-change:``signer-data``: [``botocore``] This release introduces AWS Signer Data Plane SDK client supporting GetRevocationStatus API. The new client enables AWS PrivateLink connectivity with both private DNS and VPC endpoint URLs.
+* api-change:``ssm``: [``botocore``] Add support for AssociationDispatchAssumeRole in AWS SSM State Manager.
+* api-change:``trustedadvisor``: [``botocore``] Adding a new enum attribute(statusReason) to TrustedAdvisorAPI response. This attribute explains reasoning behind check status for certain specific scenarios.
+
+
 1.42.53
 =======
 
