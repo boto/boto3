@@ -16,6 +16,9 @@
           ],
           "path": "TableDescription"
         }
+      },
+      "TransactWriteItems": {
+        "request": { "operation": "TransactWriteItems" }
       }
     },
     "has": {
