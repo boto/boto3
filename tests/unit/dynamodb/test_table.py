@@ -518,3 +518,293 @@ class BaseTransformationTest(unittest.TestCase):
         self.assert_batch_write_calls_are([batch, batch, final_batch])
         # the buffer should be empty now
         self.assertEqual(self.batch_writer._items_buffer, [])
+
+    def test_consumed_capacity_agg_total(self):
+        self.client.batch_write_item.side_effect = [
+            {
+                'ConsumedCapacity': [
+                    {
+                        'TableName': self.table_name,
+                        'CapacityUnits': 5.0,
+                    }
+                ],
+                'UnprocessedItems': {},
+            },
+            {
+                'ConsumedCapacity': [
+                    {
+                        'TableName': self.table_name,
+                        'CapacityUnits': 5.0,
+                    }
+                ],
+                'UnprocessedItems': {},
+            },
+        ]
+
+        # ReturnConsumedCapacity=TOTAL
+        with BatchWriter(
+            self.table_name,
+            self.client,
+            flush_amount=2,
+            return_consumed_capacity='TOTAL',
+        ) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo2'})
+            b.put_item(Item={'Hash': 'foo3'})
+            b.put_item(Item={'Hash': 'foo4'})
+
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'TOTAL',
+        }
+
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'TOTAL',
+        }
+        self.assert_batch_write_calls_are([first_batch, second_batch])
+
+        self.assertEqual(
+            b.consumed_capacity,
+            [
+                {
+                    'TableName': self.table_name,
+                    'CapacityUnits': 10.0,
+                }
+            ],
+        )
+
+    def test_consumed_capacity_agg_none(self):
+        with BatchWriter(
+            self.table_name,
+            self.client,
+            flush_amount=2,
+            return_consumed_capacity='NONE',
+        ) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo2'})
+            b.put_item(Item={'Hash': 'foo3'})
+            b.put_item(Item={'Hash': 'foo4'})
+
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'NONE',
+        }
+
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'NONE',
+        }
+        self.assert_batch_write_calls_are([first_batch, second_batch])
+
+        self.assertIs(b.consumed_capacity, None)
+
+    def test_consumed_capacity_agg_indexes(self):
+        # Operation is on a table so there will be no split
+        self.client.batch_write_item.side_effect = [
+            {
+                'ConsumedCapacity': [
+                    {
+                        'TableName': self.table_name,
+                        'CapacityUnits': 45.0,
+                        'ReadCapacityUnits': 18.0,
+                        'WriteCapacityUnits': 27.0,
+                        'Table': {
+                            'CapacityUnits': 5.0,
+                            'ReadCapacityUnits': 2.0,
+                            'WriteCapacityUnits': 3.0,
+                        },
+                        'LocalSecondaryIndexes': {
+                            'FirstLSI': {
+                                'CapacityUnits': 10.0,
+                                'ReadCapacityUnits': 4.0,
+                                'WriteCapacityUnits': 6.0,
+                            },
+                            'SecondLSI': {
+                                'CapacityUnits': 20.0,
+                                'ReadCapacityUnits': 8.0,
+                                'WriteCapacityUnits': 12.0,
+                            },
+                        },
+                        'GlobalSecondaryIndexes': {
+                            'FirstGSI': {
+                                'CapacityUnits': 10.0,
+                                'ReadCapacityUnits': 4.0,
+                                'WriteCapacityUnits': 6.0,
+                            },
+                        },
+                    }
+                ],
+                'UnprocessedItems': {},
+            },
+            {
+                'ConsumedCapacity': [
+                    {
+                        'TableName': self.table_name,
+                        'CapacityUnits': 55.0,
+                        'ReadCapacityUnits': 22.0,
+                        'WriteCapacityUnits': 33.0,
+                        'Table': {
+                            'CapacityUnits': 5.0,
+                            'ReadCapacityUnits': 2.0,
+                            'WriteCapacityUnits': 3.0,
+                        },
+                        'LocalSecondaryIndexes': {
+                            'SecondLSI': {
+                                'CapacityUnits': 20.0,
+                                'ReadCapacityUnits': 8.0,
+                                'WriteCapacityUnits': 12.0,
+                            },
+                            'ThirdLSI': {
+                                'CapacityUnits': 30.0,
+                                'ReadCapacityUnits': 12.0,
+                                'WriteCapacityUnits': 18.0,
+                            },
+                        },
+                    }
+                ],
+                'UnprocessedItems': {},
+            },
+            {
+                'ConsumedCapacity': [
+                    {
+                        'TableName': self.table_name,
+                        'CapacityUnits': 55.0,
+                        'ReadCapacityUnits': 22.0,
+                        'WriteCapacityUnits': 33.0,
+                        'Table': {
+                            'CapacityUnits': 5.0,
+                            'ReadCapacityUnits': 2.0,
+                            'WriteCapacityUnits': 3.0,
+                        },
+                        'LocalSecondaryIndexes': {
+                            'FourthLSI': {
+                                'CapacityUnits': 40.0,
+                                'ReadCapacityUnits': 16.0,
+                                'WriteCapacityUnits': 24.0,
+                            }
+                        },
+                        'GlobalSecondaryIndexes': {
+                            'FirstGSI': {
+                                'CapacityUnits': 10.0,
+                                'ReadCapacityUnits': 4.0,
+                                'WriteCapacityUnits': 6.0,
+                            },
+                        },
+                    }
+                ],
+                'UnprocessedItems': {},
+            },
+        ]
+
+        with BatchWriter(
+            self.table_name,
+            self.client,
+            flush_amount=2,
+            return_consumed_capacity='INDEXES',
+        ) as b:
+            b.put_item(Item={'Hash': 'foo1'})
+            b.put_item(Item={'Hash': 'foo2'})
+            b.put_item(Item={'Hash': 'foo3'})
+            b.put_item(Item={'Hash': 'foo4'})
+            b.put_item(Item={'Hash': 'foo5'})
+            b.put_item(Item={'Hash': 'foo6'})
+
+        first_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo1'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo2'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'INDEXES',
+        }
+
+        second_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo3'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo4'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'INDEXES',
+        }
+
+        third_batch = {
+            'RequestItems': {
+                self.table_name: [
+                    {'PutRequest': {'Item': {'Hash': 'foo5'}}},
+                    {'PutRequest': {'Item': {'Hash': 'foo6'}}},
+                ]
+            },
+            'ReturnConsumedCapacity': 'INDEXES',
+        }
+        self.assert_batch_write_calls_are(
+            [first_batch, second_batch, third_batch]
+        )
+
+        self.assertEqual(
+            b.consumed_capacity,
+            [
+                {
+                    'TableName': self.table_name,
+                    'CapacityUnits': 155.0,
+                    'ReadCapacityUnits': 62.0,
+                    'WriteCapacityUnits': 93.0,
+                    'Table': {
+                        'CapacityUnits': 15.0,
+                        'ReadCapacityUnits': 6.0,
+                        'WriteCapacityUnits': 9.0,
+                    },
+                    'LocalSecondaryIndexes': {
+                        'FirstLSI': {
+                            'CapacityUnits': 10.0,
+                            'ReadCapacityUnits': 4.0,
+                            'WriteCapacityUnits': 6.0,
+                        },
+                        'SecondLSI': {
+                            'CapacityUnits': 40.0,
+                            'ReadCapacityUnits': 16.0,
+                            'WriteCapacityUnits': 24.0,
+                        },
+                        'ThirdLSI': {
+                            'CapacityUnits': 30.0,
+                            'ReadCapacityUnits': 12.0,
+                            'WriteCapacityUnits': 18.0,
+                        },
+                        'FourthLSI': {
+                            'CapacityUnits': 40.0,
+                            'ReadCapacityUnits': 16.0,
+                            'WriteCapacityUnits': 24.0,
+                        },
+                    },
+                    'GlobalSecondaryIndexes': {
+                        'FirstGSI': {
+                            'CapacityUnits': 20.0,
+                            'ReadCapacityUnits': 8.0,
+                            'WriteCapacityUnits': 12.0,
+                        },
+                    },
+                }
+            ],
+        )
