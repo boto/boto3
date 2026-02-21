@@ -112,6 +112,28 @@ def get_crt_s3_client(client, config):
     global CRT_S3_CLIENT
     global BOTOCORE_CRT_SERIALIZER
 
+    import os
+    import gc
+    from awscrt.common import join_all_native_threads
+
+    def before_fork():
+        global CRT_S3_CLIENT
+        try:
+            if CRT_S3_CLIENT is not None:
+                # The client is not safe to use after fork, so we need to release it.
+                # make sure the client is shutdown properly before fork
+                # also wait for every thread to be joined, incase of some thread is in the middle of cleanup.
+                CRT_S3_CLIENT = None
+                gc.collect()
+                if join_all_native_threads(timeout_sec=0.5) is False:
+                    # generate warning about the background threads still runnning.
+                    # It's possible when CRT used spearately from user, but it's user's responsbility to clean those up.
+                    print("WARNING: Background threads still running, dead lock or crash could happen. Check for CRT resources held before forking.")
+
+        except:
+            exit(-1)
+
+
     with CLIENT_CREATION_LOCK:
         if CRT_S3_CLIENT is None:
             serializer, s3_client = _initialize_crt_transfer_primatives(
@@ -120,6 +142,10 @@ def get_crt_s3_client(client, config):
             BOTOCORE_CRT_SERIALIZER = serializer
             CRT_S3_CLIENT = s3_client
 
+    os.register_at_fork(before=before_fork)
+    # Only register the handler once.
+    if not getattr(get_crt_s3_client, '_fork_handler_registered', False):
+        get_crt_s3_client._fork_handler_registered = True
     return CRT_S3_CLIENT
 
 
