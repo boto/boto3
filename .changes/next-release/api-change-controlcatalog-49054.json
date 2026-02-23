@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``controlcatalog``",
+  "description": "[``botocore``] Updated ExemptedPrincipalArns parameter documentation for improved accuracy"
+}

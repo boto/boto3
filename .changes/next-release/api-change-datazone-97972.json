@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``datazone``",
+  "description": "[``botocore``] Add workflow properties support to connections APIs"
+}
