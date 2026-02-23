@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.42.55
+=======
+
+* api-change:``bedrock``: [``botocore``] Automated Reasoning checks in Amazon Bedrock Guardrails now support fidelity report generation. The new workflow type assesses policy coverage and accuracy against customer documents. The GetAutomatedReasoningPolicyBuildWorkflowResultAssets API adds support for the three new asset types.
+* api-change:``connectcases``: [``botocore``] SearchCases API can now accept 25 fields in the request and response as opposed to the previous limit of 10. DeleteField's hard limit of 100 fields per domain has been lifted.
+* api-change:``controlcatalog``: [``botocore``] Updated ExemptedPrincipalArns parameter documentation for improved accuracy
+* api-change:``datazone``: [``botocore``] Add workflow properties support to connections APIs
+* api-change:``dynamodb``: [``botocore``] This change supports the creation of multi-account global tables. It adds one new arguments to UpdateTable, GlobalTableSettingsReplicationMode.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``mediatailor``: [``botocore``] Updated endpoint rule set for dualstack endpoints. Added a new opt-in option to log raw ad decision server requests for Playback Configurations.
+* api-change:``quicksight``: [``botocore``] Adds support for SEMISTRUCT to InputColumn Type
+* api-change:``wickr``: [``botocore``] AWS Wickr now provides APIs to manage your Wickr OpenTDF integration. These APIs enable you to test and save your OpenTDF configuration allowing you to manage rooms based on Trusted Data Format attributes.
+
+
 1.42.54
 =======
 
