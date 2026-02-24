@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.42.56
+=======
+
+* api-change:``cloudwatch``: [``botocore``] This release adds the APIs (PutAlarmMuteRule, ListAlarmMuteRules, GetAlarmMuteRule and DeleteAlarmMuteRule) to manage a new Cloudwatch resource, AlarmMuteRules. AlarmMuteRules allow customers to temporarily mute alarm notifications during expected downtime periods.
+* api-change:``ec2``: [``botocore``] Adds httpTokensEnforced property to ModifyInstanceMetadataDefaults API. Set per account or manage organization-wide using declarative policies to prevent IMDSv1-enabled instance launch and block attempts to enable IMDSv1 on existing IMDSv2-only instances.
+* api-change:``elementalinference``: [``botocore``] Initial GA launch for AWS Elemental Inference including capabilities of Smart Crop and Live Event Clipping
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``es``: [``botocore``] Fixed HTTP binding for DescribeDomainAutoTunes API to correctly pass request parameters as query parameters in the HTTP request.
+* api-change:``medialive``: [``botocore``] AWS Elemental MediaLive - Added support for Elemental Inference for Smart Cropping and Clipping features for MediaLive.
+* api-change:``observabilityadmin``: [``botocore``] Adding a new field in the CreateCentralizationRuleForOrganization, UpdateCentralizationRuleForOrganization API and updating the GetCentralizationRuleForOrganization API response to include the new field
+* api-change:``opensearch``: [``botocore``] Fixed HTTP binding for DescribeDomainAutoTunes API to correctly pass request parameters as query parameters in the HTTP request.
+* api-change:``partnercentral-selling``: [``botocore``] Added support for filtering opportunities by target close date in the ListOpportunities API. You can now filter results to return opportunities with a target close date before or after a specified date, enabling more precise opportunity searches based on expected closure timelines.
+
+
 1.42.55
 =======
 
