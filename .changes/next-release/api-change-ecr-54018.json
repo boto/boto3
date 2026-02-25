@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecr``",
-  "description": "[``botocore``] Update repository name regex to comply with OCI Distribution Specification"
-}

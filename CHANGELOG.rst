@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.42.57
+=======
+
+* api-change:``batch``: [``botocore``] AWS Batch documentation update for service job capacity units.
+* api-change:``ec2``: [``botocore``] Add support for EC2 Capacity Blocks in Local Zones.
+* api-change:``ecr``: [``botocore``] Update repository name regex to comply with OCI Distribution Specification
+* api-change:``neptune``: [``botocore``] Neptune global clusters now supports tags
+* api-change:``wafv2``: [``botocore``] AWS WAF now supports GetTopPathStatisticsByTraffic that provides aggregated statistics on the top URI paths accessed by bot traffic. Use this operation to see which paths receive the most bot traffic, identify the specific bots accessing them, and filter by category, organization, or bot name.
+
+
 1.42.56
 =======
 
