@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.42.60
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Support for AgentCore Policy GA
+* api-change:``datazone``: [``botocore``] Adding QueryGraph operation to DataZone SDK
+* api-change:``logs``: [``botocore``] CloudWatch Logs updates- Added support for the PutBearerTokenAuthentication API to enable or disable bearer token authentication on a log group. For more information, see CloudWatch Logs API documentation.
+* api-change:``partnercentral-channel``: [``botocore``] Adds the Resold Unified Operations support plan and removes the Resold Business support plan in the CreateRelationship and UpdateRelationship APIs
+* api-change:``sagemaker``: [``botocore``] This release adds b300 and g7e instance types for SageMaker inference endpoints.
+
+
 1.42.59
 =======
 
