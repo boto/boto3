@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agentcore-control``",
-  "description": "[``botocore``] Support for AgentCore Policy GA"
-}
