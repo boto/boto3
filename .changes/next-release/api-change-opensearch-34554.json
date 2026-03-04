@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearch``",
-  "description": "[``botocore``] Adding support for DeploymentStrategyOptions"
-}
