@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``es``",
+  "description": "[``botocore``] Adds support for DeploymentStrategyOptions."
+}
