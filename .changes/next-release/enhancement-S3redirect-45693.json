@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "S3 redirect",
-  "description": "[``botocore``] Validate new region name when redirecting."
-}

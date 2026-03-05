@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Added MALICIOUS FILE to IndicatorType enum in MDC Sequence"
-}
