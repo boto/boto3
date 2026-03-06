@@ -170,6 +170,7 @@ html_css_files = [
 ]
 # List of custom JS files relative to _static directory.
 html_js_files = [
+    'version_warning.js',
     'js/custom.js',
 ]
 
