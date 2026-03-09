@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.64
+=======
+
+* api-change:``iam``: [``botocore``] Added support for CloudWatch Logs long-term API keys, currently available in Preview
+* api-change:``mgn``: [``botocore``] Adds support for new storeSnapshotOnLocalZone field in ReplicationConfiguration and updateReplicationConfiguration
+* api-change:``opensearch``: [``botocore``] This change enables cross-account and cross-region access for DataSources. Customers can now define access policies on their datasources to allow other AWS accounts to access and query their data.
+* api-change:``route53globalresolver``: [``botocore``] Adds support for dual stack Global Resolvers and Dictionary-based Domain Generation Firewall Advanced Protection.
+
+
 1.42.63
 =======
 
