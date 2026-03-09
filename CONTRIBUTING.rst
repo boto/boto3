@@ -41,7 +41,7 @@ ideal report includes:
 Codestyle
 ---------
 This project uses `ruff <https://github.com/astral-sh/ruff>`__ to enforce
-codstyle requirements. We've codified this process using a tool called
+codestyle requirements. We've codified this process using a tool called
 `pre-commit <https://pre-commit.com/>`__. pre-commit allows us to specify a
 config file with all tools required for code linting, and surfaces either a
 git commit hook, or single command, for enforcing these.
