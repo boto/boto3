@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.42.65
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adding first class support for AG-UI protocol in AgentCore Runtime.
+* api-change:``connectcases``: [``botocore``] Added functionality for the Required and Hidden case rule types to be conditionally evaluated on up to 5 conditions.
+* api-change:``dms``: [``botocore``] Not need to include to any release notes. The only change is to correct LoadTimeout unit from milliseconds to seconds in RedshiftSettings
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``kafka``: [``botocore``] Add dual stack endpoint to SDK
+* api-change:``lexv2-models``: [``botocore``] This release introduces a new generative AI feature called Lex Bot Analyzer. This feature leverage AI to analyze the bot configuration against AWS Lex best practices to identify configuration issues and provides recommendations.
+
+
 1.42.64
 =======
 
