@@ -257,4 +257,4 @@ class TestRequiresCrt:
             def my_test():
                 pass
 
-            assert not getattr(my_test, '__unittest_skip__', False)
+            assert getattr(my_test, '__unittest_skip__', False) is False
