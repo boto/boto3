@@ -231,3 +231,30 @@ class TestCRTTransferManager:
                 for r in caplog.records
             ]
         )
+
+
+class TestRequiresCrt:
+    def test_bare_requires_crt_fails_immediately(self):
+        with pytest.raises(TypeError):
+
+            @requires_crt
+            def my_test():
+                pass
+
+    def test_requires_crt_skips_when_no_crt(self):
+        with mock.patch('tests.HAS_CRT', False):
+
+            @requires_crt()
+            def my_test():
+                assert False
+
+            assert getattr(my_test, '__unittest_skip__', False) is True
+
+    def test_requires_crt_runs_when_crt_available(self):
+        with mock.patch('tests.HAS_CRT', True):
+
+            @requires_crt()
+            def my_test():
+                pass
+
+            assert not getattr(my_test, '__unittest_skip__', False)
