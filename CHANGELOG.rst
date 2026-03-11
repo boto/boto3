@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.42.66
+=======
+
+* api-change:``customer-profiles``: [``botocore``] Today, Amazon Connect is announcing the ability to filter (include or exclude) recommendations based on properties of items and interactions.
+* api-change:``eks``: [``botocore``] Adds support for a new tier in controlPlaneScalingConfig on EKS Clusters.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``polly``: [``botocore``] Added support for the new voices - Ambre (fr-FR), Beatrice (it-IT), Florian (fr-FR), Lennart (de-DE), Lorenzo (it-IT) and Tiffany (en-US). They are available as a Generative voices only.
+* api-change:``sagemaker``: [``botocore``] SageMaker training plans allow you to extend your existing training plans to avoid workload interruptions without workload reconfiguration. When a training plan is approaching expiration, you can extend it directly through the SageMaker AI console or programmatically using the API or AWS CLI.
+* api-change:``simpledbv2``: [``botocore``] Introduced Amazon SimpleDB export functionality enabling domain data export to S3 in JSON format. Added three new APIs StartDomainExport, GetExport, and ListExports via SimpleDBv2 service. Supports cross-region exports and KMS encryption.
+* api-change:``workspaces``: [``botocore``] Added WINDOWS SERVER 2025 OperatingSystemName.
+
+
 1.42.65
 =======
 
