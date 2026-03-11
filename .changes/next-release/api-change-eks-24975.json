@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``eks``",
+  "description": "[``botocore``] Adds support for a new tier in controlPlaneScalingConfig on EKS Clusters."
+}
