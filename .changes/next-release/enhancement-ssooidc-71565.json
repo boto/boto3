@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "``sso-oidc``",
+  "description": "[``botocore``] Fixed missing error messages in SSO OIDC error responses by mapping OAuth2 error_description field to the standard Message field.  Issue was raised in `#2216 <https://github.com/boto/botocore/issues/2216>`__."
+}
