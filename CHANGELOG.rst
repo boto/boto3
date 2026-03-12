@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.67
+=======
+
+* api-change:``datasync``: [``botocore``] DataSync's 3 location types, Hadoop Distributed File System (HDFS), FSx for Windows File Server (FSx Windows), and FSx for NetApp ONTAP (FSx ONTAP) now have credentials managed via Secrets Manager, which may be encrypted with service keys or be configured to use customer-managed keys or secret.
+* api-change:``ecr``: [``botocore``] Add Chainguard to PTC upstreamRegistry enum
+* api-change:``s3``: [``botocore``] Adds support for account regional namespaces for general purpose buckets. The account regional namespace is a reserved subdivision of the global bucket namespace where only your account can create general purpose buckets.
+* enhancement:``sso-oidc``: [``botocore``] Fixed missing error messages in SSO OIDC error responses by mapping OAuth2 error_description field to the standard Message field.  Issue was raised in `#2216 <https://github.com/boto/botocore/issues/2216>`__.
+
+
 1.42.66
 =======
 
