@@ -33,7 +33,7 @@ To update the AWS SDK for Python
 
 1. Uninstall the currently installed copies of Boto3 and Botocore::
 
-    $ python -m pip uninstall boto3 botocore
+    $ python3 -m pip uninstall boto3 botocore
 
 2. Install the new version of Boto3. This will also install Botocore, which it requires::
 
