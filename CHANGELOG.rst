@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.69
+=======
+
+* api-change:``bedrock``: [``botocore``] You can now generate policy scenarios on demand using the new GENERATE POLICY SCENARIOS build workflow type. Scenarios will no longer be automatically generated during INGEST CONTENT, REFINE POLICY, and IMPORT POLICY workflows, resulting in faster completion times for these operations.
+* api-change:``bedrock-agentcore``: [``botocore``] Provide support to perform deterministic operations on agent runtime through shell command executions via the new InvokeAgentRuntimeCommand API
+* api-change:``bedrock-agentcore-control``: [``botocore``] Supporting hosting of public ECR Container Images in AgentCore Runtime
+* api-change:``ecs``: [``botocore``] Amazon ECS now supports configuring whether tags are propagated to the EC2 Instance Metadata Service (IMDS) for instances launched by the Managed Instances capacity provider. This gives customers control over tag visibility in IMDS when using ECS Managed Instances.
+
+
 1.42.68
 =======
 
