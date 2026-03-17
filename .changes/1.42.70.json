@@ -1,0 +1,17 @@
+[
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Deprecating namespaces field and adding namespaceTemplates.",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr``",
+    "description": "[``botocore``] Add S3LoggingConfiguration to Control LogUploads",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Provide approval to overwrite existing Lake Formation permissions on all child resources with the default permissions specified in 'CreateTableDefaultPermissions' and 'CreateDatabaseDefaultPermissions' when updating catalog. Allowed values are [\"Accept\",\"Deny\"] .",
+    "type": "api-change"
+  }
+]
