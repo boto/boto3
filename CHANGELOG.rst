@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.42.70
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Deprecating namespaces field and adding namespaceTemplates.
+* api-change:``emr``: [``botocore``] Add S3LoggingConfiguration to Control LogUploads
+* api-change:``glue``: [``botocore``] Provide approval to overwrite existing Lake Formation permissions on all child resources with the default permissions specified in 'CreateTableDefaultPermissions' and 'CreateDatabaseDefaultPermissions' when updating catalog. Allowed values are ["Accept","Deny"] .
+
+
 1.42.69
 =======
 
