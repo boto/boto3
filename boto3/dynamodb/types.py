@@ -33,7 +33,8 @@ BOOLEAN = 'BOOL'
 MAP = 'M'
 LIST = 'L'
 
-
+# Retained for backwards compatibility; serializer/deserializer no longer use
+# this context for number handling.
 DYNAMODB_CONTEXT = Context(
     Emin=-128,
     Emax=126,
