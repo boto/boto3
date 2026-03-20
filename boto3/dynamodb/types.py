@@ -286,7 +286,7 @@ class TypeDeserializer:
         return value
 
     def _deserialize_n(self, value):
-        return DYNAMODB_CONTEXT.create_decimal(value)
+        return DYNAMODB_CONTEXT.create_decimal(Decimal(value).normalize())
 
     def _deserialize_s(self, value):
         return value
