@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "s3",
+  "description": "[``botocore``] Fix aws-chunked requests with non-seekable streams sending both ``Content-Length`` and ``Transfer-Encoding: chunked``, which violated HTTP/1.1 (RFC 7230) and caused ``SignatureDoesNotMatch`` errors."
+}
