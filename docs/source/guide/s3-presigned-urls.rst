@@ -1,4 +1,4 @@
-.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -108,8 +108,8 @@ the appropriate method so this argument is not normally required.
 
     def create_presigned_url_expanded(
         client_method_name,
+        region_name,
         method_parameters=None,
-        region_name=None,
         expiration=3600,
         http_method=None,
     ):
@@ -118,8 +118,8 @@ the appropriate method so this argument is not normally required.
         Not all the client methods provided in the AWS Python SDK are supported.
 
         :param client_method_name: Name of the S3.Client method, e.g., 'list_buckets'
+        :param region_name: Name of the region the s3 client will use for signing, e.g., 'us-west-2'
         :param method_parameters: Dictionary of parameters to send to the method
-        :param region_name: string
         :param expiration: Time in seconds for the presigned URL to remain valid
         :param http_method: HTTP method to use (GET, etc.)
         :return: Presigned URL as string. If error, returns None.
@@ -187,7 +187,7 @@ request and requires additional parameters to be sent as part of the request.
         s3_client = boto3.client(
             's3',
             region_name=region_name,
-            config=boto3.session.Config(signature_version='s3v4'),
+            config=Config(signature_version='s3v4'),
         )
         try:
             response = s3_client.generate_presigned_post(
