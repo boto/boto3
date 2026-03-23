@@ -32,6 +32,7 @@ It is recommended to configure the S3 client with Signature Version 4
     import logging
     import boto3
     from botocore.exceptions import ClientError
+    from botocore.config import Config
 
 
     def create_presigned_url(
@@ -50,7 +51,7 @@ It is recommended to configure the S3 client with Signature Version 4
         s3_client = boto3.client(
             's3',
             region_name=region_name,
-            config=boto3.session.Config(signature_version='s3v4'),
+            config=Config(signature_version='s3v4'),
         )
         try:
             response = s3_client.generate_presigned_url(
@@ -102,6 +103,7 @@ the appropriate method so this argument is not normally required.
     import logging
     import boto3
     from botocore.exceptions import ClientError
+    from botocore.config import Config
 
 
     def create_presigned_url_expanded(
@@ -127,7 +129,7 @@ the appropriate method so this argument is not normally required.
         s3_client = boto3.client(
             's3',
             region_name=region_name,
-            config=boto3.session.Config(signature_version='s3v4'),
+            config=Config(signature_version='s3v4'),
         )
         try:
             response = s3_client.generate_presigned_url(
@@ -156,6 +158,7 @@ request and requires additional parameters to be sent as part of the request.
     import logging
     import boto3
     from botocore.exceptions import ClientError
+    from botocore.config import Config
 
 
     def create_presigned_post(
