@@ -1,4 +1,4 @@
-.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -24,24 +24,35 @@ used by the presigned URL are those of the AWS user who generated the URL.
 A presigned URL remains valid for a limited period of time which is specified 
 when the URL is generated.
 
+It is recommended to configure the S3 client with Signature Version 4 
+(``s3v4``) and the AWS region of the bucket when generating presigned URLs.
+
 .. code-block:: python
 
     import logging
     import boto3
     from botocore.exceptions import ClientError
+    from botocore.config import Config
 
 
-    def create_presigned_url(bucket_name, object_name, expiration=3600):
+    def create_presigned_url(
+        bucket_name, object_name, region_name, expiration=3600
+    ):
         """Generate a presigned URL to share an S3 object
 
         :param bucket_name: string
         :param object_name: string
+        :param region_name: string
         :param expiration: Time in seconds for the presigned URL to remain valid
         :return: Presigned URL as string. If error, returns None.
         """
 
         # Generate a presigned URL for the S3 object
-        s3_client = boto3.client('s3')
+        s3_client = boto3.client(
+            's3',
+            region_name=region_name,
+            config=Config(signature_version='s3v4'),
+        )
         try:
             response = s3_client.generate_presigned_url(
                 'get_object',
@@ -55,6 +66,7 @@ when the URL is generated.
         # The response contains the presigned URL
         return response
 
+
 The user can download the S3 object by entering the presigned URL in a browser. 
 A program or HTML page can download the S3 object by using the presigned URL 
 as part of an HTTP GET request.
@@ -66,7 +78,7 @@ perform a GET request.
 
     import requests  # To install: pip install requests
 
-    url = create_presigned_url('amzn-s3-demo-bucket', 'OBJECT_NAME')
+    url = create_presigned_url('amzn-s3-demo-bucket', 'OBJECT_NAME', 'us-east-1')
     if url is not None:
         response = requests.get(url)
 
@@ -91,16 +103,22 @@ the appropriate method so this argument is not normally required.
     import logging
     import boto3
     from botocore.exceptions import ClientError
+    from botocore.config import Config
 
 
     def create_presigned_url_expanded(
-        client_method_name, method_parameters=None, expiration=3600, http_method=None
+        client_method_name,
+        region_name,
+        method_parameters=None,
+        expiration=3600,
+        http_method=None,
     ):
         """Generate a presigned URL to invoke an S3.Client method
 
         Not all the client methods provided in the AWS Python SDK are supported.
 
         :param client_method_name: Name of the S3.Client method, e.g., 'list_buckets'
+        :param region_name: Name of the region the s3 client will use for signing, e.g., 'us-west-2'
         :param method_parameters: Dictionary of parameters to send to the method
         :param expiration: Time in seconds for the presigned URL to remain valid
         :param http_method: HTTP method to use (GET, etc.)
@@ -108,7 +126,11 @@ the appropriate method so this argument is not normally required.
         """
 
         # Generate a presigned URL for the S3 client method
-        s3_client = boto3.client('s3')
+        s3_client = boto3.client(
+            's3',
+            region_name=region_name,
+            config=Config(signature_version='s3v4'),
+        )
         try:
             response = s3_client.generate_presigned_url(
                 ClientMethod=client_method_name,
@@ -136,15 +158,22 @@ request and requires additional parameters to be sent as part of the request.
     import logging
     import boto3
     from botocore.exceptions import ClientError
+    from botocore.config import Config
 
 
     def create_presigned_post(
-        bucket_name, object_name, fields=None, conditions=None, expiration=3600
+        bucket_name,
+        object_name,
+        region_name,
+        fields=None,
+        conditions=None,
+        expiration=3600,
     ):
         """Generate a presigned URL S3 POST request to upload a file
 
         :param bucket_name: string
         :param object_name: string
+        :param region_name: string
         :param fields: Dictionary of prefilled form fields
         :param conditions: List of conditions to include in the policy
         :param expiration: Time in seconds for the presigned URL to remain valid
@@ -155,7 +184,11 @@ request and requires additional parameters to be sent as part of the request.
         """
 
         # Generate a presigned S3 POST URL
-        s3_client = boto3.client('s3')
+        s3_client = boto3.client(
+            's3',
+            region_name=region_name,
+            config=Config(signature_version='s3v4'),
+        )
         try:
             response = s3_client.generate_presigned_post(
                 bucket_name,
@@ -183,7 +216,7 @@ presigned POST URL to perform a POST request to upload a file to S3.
 
     # Generate a presigned S3 POST URL
     object_name = 'OBJECT_NAME'
-    response = create_presigned_post('amzn-s3-demo-bucket', object_name)
+    response = create_presigned_post('amzn-s3-demo-bucket', object_name, 'us-east-1')
     if response is None:
         exit(1)
 
@@ -207,9 +240,11 @@ The presigned POST URL and fields values can also be used in an HTML page.
         <form action="URL_VALUE" method="post" enctype="multipart/form-data">
           <!-- Copy the 'fields' key:values returned by S3Client.generate_presigned_post() -->
           <input type="hidden" name="key" value="VALUE" />
-          <input type="hidden" name="AWSAccessKeyId" value="VALUE" />
-          <input type="hidden" name="policy" value="VALUE" />
-          <input type="hidden" name="signature" value="VALUE" />
+          <input type="hidden" name="X-Amz-Credential" value="VALUE" />
+          <input type="hidden" name="X-Amz-Algorithm" value="VALUE" />
+          <input type="hidden" name="X-Amz-Date" value="VALUE" />
+          <input type="hidden" name="Policy" value="VALUE" />
+          <input type="hidden" name="X-Amz-Signature" value="VALUE" />
         File:
           <input type="file"   name="file" /> <br />
           <input type="submit" name="submit" value="Upload to Amazon S3" />
