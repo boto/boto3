@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``endpoint-rules``",
-  "description": "[``botocore``] Update endpoint-rules client to latest version"
-}

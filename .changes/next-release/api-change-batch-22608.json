@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``batch``",
-  "description": "[``botocore``] Documentation-only update for AWS Batch."
-}
