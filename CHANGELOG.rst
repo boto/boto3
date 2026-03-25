@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.42.76
+=======
+
+* api-change:``apigatewayv2``: [``botocore``] Added DISABLE IN PROGRESS and DISABLE FAILED Portal statuses.
+* api-change:``application-signals``: [``botocore``] This release adds support for creating SLOs on RUM appMonitors, Synthetics canaries and services.
+* api-change:``batch``: [``botocore``] Documentation-only update for AWS Batch.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``marketplace-agreement``: [``botocore``] The Variable Payments APIs enable AWS Marketplace Sellers to perform manage their payment requests (send, get, list, cancel).
+* api-change:``polly``: [``botocore``] Add support for Mu-law and A-law codecs for output format
+* api-change:``uxc``: [``botocore``] GA release of AccountCustomizations, used to manage account color, visible services, and visible regions settings in the AWS Management Console.
+
+
 1.42.75
 =======
 
