@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``apigatewayv2``",
+  "description": "[``botocore``] Added DISABLE IN PROGRESS and DISABLE FAILED Portal statuses."
+}
