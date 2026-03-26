@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.42.77
+=======
+
+* api-change:``bcm-data-exports``: [``botocore``] With this release we are providing an option to accounts to have their export delivered to an S3 bucket that is not owned by the account.
+* api-change:``emr``: [``botocore``] Add StepExecutionRoleArn to RunJobFlow API
+* api-change:``logs``: [``botocore``] This release adds parameter support to saved queries in CloudWatch Logs Insights. Define reusable query templates with named placeholders, invoke them using start query. Available in Console, CLI and SDK
+* api-change:``sagemaker``: [``botocore``] Release support for ml.r5d.16xlarge instance types for SageMaker HyperPod
+* api-change:``timestream-influxdb``: [``botocore``] Timestream for InfluxDB adds support for customer defined maintenance windows. This allows customers to define maintenance schedule during resource creation and updates
+
+
 1.42.76
 =======
 
