@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr``",
-  "description": "[``botocore``] Add StepExecutionRoleArn to RunJobFlow API"
-}
