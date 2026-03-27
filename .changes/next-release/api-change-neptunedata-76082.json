@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``neptunedata``",
-  "description": "[``botocore``] Minor formatting changes to remove unnecessary symbols."
-}
