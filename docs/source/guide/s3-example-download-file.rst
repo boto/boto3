@@ -36,6 +36,17 @@ object must be opened in binary mode, not text mode.
     with open('FILE_NAME', 'wb') as f:
         s3.download_fileobj('amzn-s3-demo-bucket', 'OBJECT_NAME', f)
 
+If you need to read from the same file object before closing it, call
+``flush()`` and then ``seek(0)`` first:
+
+.. code-block:: python
+
+    with open('FILE_NAME', 'wb+') as f:
+        s3.download_fileobj('amzn-s3-demo-bucket', 'OBJECT_NAME', f)
+        f.flush()
+        f.seek(0)
+        data = f.read()
+
 
 Like their upload cousins, the download methods are provided by the 
 S3 ``Client``, ``Bucket``, and ``Object`` classes, and each class provides 
@@ -51,5 +62,4 @@ object at :py:attr:`boto3.s3.transfer.S3Transfer.ALLOWED_DOWNLOAD_ARGS`.
 The download method's ``Callback`` parameter is used for the same purpose 
 as the upload method's. The upload and download methods can both invoke the 
 same ``Callback`` class.
-
 
