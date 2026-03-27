@@ -2,6 +2,15 @@
 CHANGELOG
 =========
 
+1.42.78
+=======
+
+* api-change:``bedrock-agentcore``: [``botocore``] Adding AgentCore Code Interpreter Node.js Runtime Support with an optional runtime field
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds support for custom code-based evaluators using customer-managed Lambda functions.
+* api-change:``neptunedata``: [``botocore``] Minor formatting changes to remove unnecessary symbols.
+* api-change:``omics``: [``botocore``] AWS HealthOmics now supports VPC networking, allowing users to connect runs to external resources with NAT gateway, AWS VPC resources, and more. New Configuration APIs support configuring VPC settings. StartRun API now accepts networkingMode and configurationName parameters to enable VPC networking.
+
+
 1.42.77
 =======
 
