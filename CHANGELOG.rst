@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.42.79
+=======
+
+* api-change:``appstream``: [``botocore``] Add support for URL Redirection
+* api-change:``autoscaling``: [``botocore``] Adds support for new instance lifecycle states introduced by the instance lifecycle policy and replace root volume features.
+* api-change:``bedrock-agentcore``: [``botocore``] Adds Ground Truth support for AgentCore Evaluations (Evaluate)
+* api-change:``deadline``: [``botocore``] AWS Deadline Cloud now supports three new fleet auto scaling settings. With scale out rate, you can configure how quickly workers launch. With worker idle duration, you can set how long workers wait before shutting down. With standby worker count, you can keep idle workers ready for fast job start.
+* api-change:``devops-agent``: [``botocore``] AWS DevOps Agent General Availability.
+* api-change:``ecs``: [``botocore``] Adding Local Storage support for ECS Managed Instances by introducing a new field "localStorageConfiguration" for CreateCapacityProvider and UpdateCapacityProvider APIs.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``gamelift``: [``botocore``] Update CreateScript API documentation.
+* api-change:``lakeformation``: [``botocore``] Add setSourceIdentity to DataLakeSettings Parameters
+* api-change:``logs``: [``botocore``] Adds Lookup Tables to CloudWatch Logs for log enrichment using CSV key-value data with KMS encryption support.
+* api-change:``opensearch``: [``botocore``] Added Cluster Insights API's In OpenSearch Service SDK.
+* api-change:``partnercentral-account``: [``botocore``] KYB Supplemental Form enables partners who fail business verification to submit additional details and supporting documentation through a self-service form, triggering an automated re-verification without requiring manual intervention from support teams.
+* api-change:``sagemaker``: [``botocore``] Added support for placement strategy and consolidation for SageMaker inference component endpoints. Customers can now configure how inference component copies are distributed across instances and availability zones (AZs), and enable automatic consolidation to optimizes resource utilization.
+* enhancement:``s3``: [``botocore``] Added support for opting out of Amazon S3 Express session authentication via the new ``disable_s3_express_session_auth`` S3 client configuration setting, or the new ``AWS_S3_DISABLE_EXPRESS_SESSION_AUTH`` environment variable, or the ``s3_disable_express_session_auth`` shared configuration setting.
+
+
 1.42.78
 =======
 
