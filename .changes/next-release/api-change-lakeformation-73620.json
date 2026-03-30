@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lakeformation``",
+  "description": "[``botocore``] Add setSourceIdentity to DataLakeSettings Parameters"
+}

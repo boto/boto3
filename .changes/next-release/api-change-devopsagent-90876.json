@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``devops-agent``",
+  "description": "[``botocore``] AWS DevOps Agent General Availability."
+}
