@@ -16,6 +16,7 @@ env:
 
 jobs:
   aws-sdk-pr-build:
+    # Skip draft PRs and PRs from forked repos (they don't have access)
     if: github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     permissions:
