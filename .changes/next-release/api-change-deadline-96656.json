@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``deadline``",
-  "description": "[``botocore``] AWS Deadline Cloud now supports configurable scheduling on each queue. The scheduling configuration controls how workers are distributed across jobs."
-}
