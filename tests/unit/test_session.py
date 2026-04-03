@@ -16,7 +16,7 @@ from botocore.client import Config
 from botocore.exceptions import NoCredentialsError, UnknownServiceError
 
 from boto3 import __version__
-from boto3.exceptions import ResourceNotExistsError
+from boto3.exceptions import CredentialSecurityWarning, ResourceNotExistsError
 from boto3.session import Session
 from tests import BaseTestCase, mock
 
@@ -458,3 +458,72 @@ class TestSession(BaseTestCase):
         session = Session(botocore_session=mock_bc_session)
         session.events
         mock_bc_session.get_component.assert_called_with('event_emitter')
+
+
+class TestLongTermCredentialWarning(BaseTestCase):
+    """Tests for Session._warn_if_long_term_credentials."""
+
+    def _make_session_with_key(self, access_key):
+        """Return a Session whose get_credentials() yields the given key."""
+        mock_bc_session = self.bc_session_cls()
+        session = Session(botocore_session=mock_bc_session)
+
+        mock_creds = mock.Mock()
+        mock_resolved = mock.Mock()
+        mock_resolved.access_key = access_key
+        mock_creds.resolve.return_value = mock_resolved
+        session.get_credentials = mock.Mock(return_value=mock_creds)
+
+        return session
+
+    def _assert_no_credential_warning(self, func):
+        """Assert that func() emits no CredentialSecurityWarning."""
+        import warnings as _warnings
+
+        with _warnings.catch_warnings(record=True) as record:
+            _warnings.simplefilter('always')
+            func()
+        cred_warnings = [
+            w for w in record if issubclass(w.category, CredentialSecurityWarning)
+        ]
+        assert len(cred_warnings) == 0, (
+            f"Unexpected CredentialSecurityWarning: {cred_warnings}"
+        )
+
+    def test_warns_for_long_term_akia_credentials(self):
+        session = self._make_session_with_key('AKIAIOSFODNN7EXAMPLE')
+        with pytest.warns(CredentialSecurityWarning, match='AKIA'):
+            session._warn_if_long_term_credentials()
+
+    def test_no_warning_for_temporary_asia_credentials(self):
+        session = self._make_session_with_key('ASIAIOSFODNN7EXAMPLE')
+        self._assert_no_credential_warning(session._warn_if_long_term_credentials)
+
+    def test_no_warning_when_explicit_access_key_provided(self):
+        """Explicit credentials passed to client() suppress the warning."""
+        session = self._make_session_with_key('AKIAIOSFODNN7EXAMPLE')
+        self._assert_no_credential_warning(
+            lambda: session._warn_if_long_term_credentials(
+                explicit_access_key='AKIAIOSFODNN7EXAMPLE'
+            )
+        )
+
+    def test_warning_issued_only_once_per_session(self):
+        session = self._make_session_with_key('AKIAIOSFODNN7EXAMPLE')
+        with pytest.warns(CredentialSecurityWarning):
+            session._warn_if_long_term_credentials()
+        # Second call must not produce another warning.
+        self._assert_no_credential_warning(session._warn_if_long_term_credentials)
+
+    def test_no_warning_when_env_var_suppresses(self):
+        with mock.patch.dict('os.environ', {'AWS_SUPPRESS_CREDENTIAL_WARNINGS': '1'}):
+            session = self._make_session_with_key('AKIAIOSFODNN7EXAMPLE')
+            self._assert_no_credential_warning(
+                session._warn_if_long_term_credentials
+            )
+
+    def test_no_warning_when_credentials_are_none(self):
+        mock_bc_session = self.bc_session_cls()
+        session = Session(botocore_session=mock_bc_session)
+        session.get_credentials = mock.Mock(return_value=None)
+        self._assert_no_credential_warning(session._warn_if_long_term_credentials)
