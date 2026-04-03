@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``organizations``",
-  "description": "[``botocore``] Updates close Account quota for member accounts in an Organization."
-}
