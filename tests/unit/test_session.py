@@ -484,7 +484,9 @@ class TestLongTermCredentialWarning(BaseTestCase):
             _warnings.simplefilter('always')
             func()
         cred_warnings = [
-            w for w in record if issubclass(w.category, CredentialSecurityWarning)
+            w
+            for w in record
+            if issubclass(w.category, CredentialSecurityWarning)
         ]
         assert len(cred_warnings) == 0, (
             f"Unexpected CredentialSecurityWarning: {cred_warnings}"
@@ -497,7 +499,9 @@ class TestLongTermCredentialWarning(BaseTestCase):
 
     def test_no_warning_for_temporary_asia_credentials(self):
         session = self._make_session_with_key('ASIAIOSFODNN7EXAMPLE')
-        self._assert_no_credential_warning(session._warn_if_long_term_credentials)
+        self._assert_no_credential_warning(
+            session._warn_if_long_term_credentials
+        )
 
     def test_no_warning_when_explicit_access_key_provided(self):
         """Explicit credentials passed to client() suppress the warning."""
@@ -513,10 +517,14 @@ class TestLongTermCredentialWarning(BaseTestCase):
         with pytest.warns(CredentialSecurityWarning):
             session._warn_if_long_term_credentials()
         # Second call must not produce another warning.
-        self._assert_no_credential_warning(session._warn_if_long_term_credentials)
+        self._assert_no_credential_warning(
+            session._warn_if_long_term_credentials
+        )
 
     def test_no_warning_when_env_var_suppresses(self):
-        with mock.patch.dict('os.environ', {'AWS_SUPPRESS_CREDENTIAL_WARNINGS': '1'}):
+        with mock.patch.dict(
+            'os.environ', {'AWS_SUPPRESS_CREDENTIAL_WARNINGS': '1'}
+        ):
             session = self._make_session_with_key('AKIAIOSFODNN7EXAMPLE')
             self._assert_no_credential_warning(
                 session._warn_if_long_term_credentials
@@ -526,4 +534,6 @@ class TestLongTermCredentialWarning(BaseTestCase):
         mock_bc_session = self.bc_session_cls()
         session = Session(botocore_session=mock_bc_session)
         session.get_credentials = mock.Mock(return_value=None)
-        self._assert_no_credential_warning(session._warn_if_long_term_credentials)
+        self._assert_no_credential_warning(
+            session._warn_if_long_term_credentials
+        )
