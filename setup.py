@@ -22,7 +22,10 @@ requires = [
 
 def get_version():
     init = open(os.path.join(ROOT, 'boto3', '__init__.py')).read()
-    return VERSION_RE.search(init).group(1)
+    match = VERSION_RE.search(init)
+    if match is None:
+        raise RuntimeError('Unable to find __version__ in boto3/__init__.py')
+    return match.group(1)
 
 
 setup(
