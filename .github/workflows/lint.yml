@@ -14,6 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      with:
+        persist-credentials: false
     - name: Set up Python 3.9
       uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
       with:
