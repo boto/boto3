@@ -189,7 +189,7 @@ class TypeSerializer:
         return False
 
     def _is_type_set(self, value, type_validator):
-        if self._is_set(value):
+        if self._is_set(value) and len(value) > 0:
             if False not in map(type_validator, value):
                 return True
         return False
@@ -237,6 +237,11 @@ class TypeSerializer:
         return [self.serialize(v) for v in value]
 
     def _serialize_m(self, value):
+        for k in value:
+            if not isinstance(k, str):
+                raise TypeError(
+                    f'Map keys must be strings, got {type(k).__name__}: {k!r}'
+                )
         return {k: self.serialize(v) for k, v in value.items()}
 
 
