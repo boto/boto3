@@ -260,6 +260,8 @@ access to AWS services with Boto3. After a browser-based authentication flow usi
 AWS CLI, temporary credentials are generated that Boto3 can automatically use. This 
 approach enhances security by eliminating the need to store long-term credentials locally.
 
+This functionality requires Boto3 version 1.41.0 or later.
+
 Prerequisites
 ~~~~~~~~~~~~~
 
