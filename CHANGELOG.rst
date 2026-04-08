@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.42.86
+=======
+
+* api-change:``backup``: [``botocore``] Adding EKS specific backup vault notification types for AWS Backup.
+* api-change:``drs``: [``botocore``] This changes adds support for modifying the replication configuration to support data replication using IPv6.
+* api-change:``ecr``: [``botocore``] Add UnableToListUpstreamImageReferrersException in ListImageReferrers
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``ivs-realtime``: [``botocore``] Adds support for Amazon IVS real-time streaming redundant ingest.
+* api-change:``marketplace-discovery``: [``botocore``] AWS Marketplace Discovery API provides an interface that enables programmatic access to the AWS Marketplace catalog, including searching and browsing listings, retrieving product details and fulfillment options, and accessing public and private offer pricing and terms.
+* api-change:``medialive``: [``botocore``] MediaLive is adding support for MediaConnect Router by supporting a new output type called MEDIACONNECT ROUTER. This new output type will provide seamless encrypted transport between your MediaLive channel and MediaConnect Router.
+* api-change:``outposts``: [``botocore``] Add AWS Outposts APIs to view renewal pricing options and submit renewal requests for Outpost contracts
+
+
 1.42.85
 =======
 
