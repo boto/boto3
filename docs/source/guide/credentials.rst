@@ -264,7 +264,7 @@ Prerequisites
 ~~~~~~~~~~~~~
 
 * AWS CLI version 2.32.0 or later. See `Installing or updating to the latest version of the AWS CLI <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>`_ for more information.
-* AWS Common Runtime (CRT). See :ref:`using-crt` for installation instructions.
+* Boto3 version 1.41.0 or later with AWS Common Runtime (CRT). See :ref:`using-crt` for installation instructions.
 * Access to sign into the AWS Management Console as a root user, IAM user, or through federation with IAM. If you use IAM Identity Center, go to `Login with IAM Identity Center credentials <https://docs.aws.amazon.com/signin/latest/userguide/command-line-sign-in.html#command-line-sign-in-sso>`_ instead.
 * Ensure the IAM identity has the appropriate permissions. Attach the `SignInLocalDevelopmentAccess <https://docs.aws.amazon.com/signin/latest/userguide/security-iam-awsmanpol.html>`_ managed policy to your IAM user, role, or group. If you sign in as a root user, no additional permissions are required.
 
