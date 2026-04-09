@@ -1,0 +1,32 @@
+[
+  {
+    "category": "``bcm-dashboards``",
+    "description": "[``botocore``] Scheduled email reports of Billing and Cost Management Dashboards",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore``",
+    "description": "[``botocore``] Introducing support for SearchRegistryRecords API on AgentCoreRegistry",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Initial release for CRUDL in AgentCore Registry Service",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconnect``",
+    "description": "[``botocore``] Adds support for MediaLive Channel-type Router Inputs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``redshift-data``",
+    "description": "[``botocore``] The BatchExecuteStatement API now supports named SQL parameters, enabling secure batch queries with parameterized values. This enhancement helps prevent SQL injection vulnerabilities and improves query reusability.",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Release support for g7e instance types for SageMaker HyperPod",
+    "type": "api-change"
+  }
+]

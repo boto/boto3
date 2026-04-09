@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``mediaconnect``",
-  "description": "[``botocore``] Adds support for MediaLive Channel-type Router Inputs."
-}
