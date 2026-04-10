@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.42.88
+=======
+
+* api-change:``connect``: [``botocore``] Conversational Analytics for Email
+* api-change:``devops-agent``: [``botocore``] Devops Agent now supports associate Splunk, Datadog and custom MCP server to an Agent Space.
+* api-change:``ecs``: [``botocore``] Minor updates to exceptions for completeness
+* api-change:``imagebuilder``: [``botocore``] Image pipelines can now automatically apply tags to images they create. Set the imageTags property when creating or updating your pipelines to get started.
+* api-change:``mediaconvert``: [``botocore``] Adds support for MV-HEVC video output and clear lead for AV1 DRM output.
+* api-change:``observabilityadmin``: [``botocore``] CloudWatch Observability Admin adds support for multi-region telemetry evaluation and telemetry enablement rules.
+* api-change:``rtbfabric``: [``botocore``] Adds optional health check configuration for Responder Gateways with ASG Managed Endpoints. When provided, RTB Fabric continuously probes customers' instance IPs and routes traffic only to healthy ones, reducing errors during deployments, scaling events, and instance failures.
+* api-change:``sagemaker``: [``botocore``] Support new SageMaker StartClusterHealthCheck API for on-demand DHC on Hyperpod EKS cluster. Support updated CreateCluster, UpdateCluster, DescribeCluster, BatchAddClusterNodes APIs for flexible instance group on HyperPod cluster
+
+
 1.42.87
 =======
 
