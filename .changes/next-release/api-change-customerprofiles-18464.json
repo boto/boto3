@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``customer-profiles``",
-  "description": "[``botocore``] This release introduces changes to SegmentDefinition APIs to support sorting by attributes."
-}
