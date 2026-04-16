@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``drs``",
-  "description": "[``botocore``] Updating regex for identification of AWS Regions."
-}
