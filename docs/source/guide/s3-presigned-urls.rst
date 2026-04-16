@@ -25,7 +25,7 @@ A presigned URL remains valid for a limited period of time which is specified
 when the URL is generated.
 
 It is recommended to configure the S3 client with Signature Version 4 
-(``s3v4``) and the AWS region of the bucket when generating presigned URLs.
+(``s3v4``), the AWS region of the bucket and to use virtual-hosted style addressing ``s3={'addressing_style': 'virtual'}`` when generating presigned URLs.
 
 .. code-block:: python
 
@@ -51,7 +51,10 @@ It is recommended to configure the S3 client with Signature Version 4
         s3_client = boto3.client(
             's3',
             region_name=region_name,
-            config=Config(signature_version='s3v4'),
+            config=Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'},
+            ),
         )
         try:
             response = s3_client.generate_presigned_url(
@@ -129,7 +132,10 @@ the appropriate method so this argument is not normally required.
         s3_client = boto3.client(
             's3',
             region_name=region_name,
-            config=Config(signature_version='s3v4'),
+            config=Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'},
+            ),
         )
         try:
             response = s3_client.generate_presigned_url(
@@ -187,7 +193,10 @@ request and requires additional parameters to be sent as part of the request.
         s3_client = boto3.client(
             's3',
             region_name=region_name,
-            config=Config(signature_version='s3v4'),
+            config=Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'},
+            ),
         )
         try:
             response = s3_client.generate_presigned_post(
