@@ -2,6 +2,26 @@
 CHANGELOG
 =========
 
+1.42.90
+=======
+
+* api-change:``appstream``: [``botocore``] Add content redirection to Update Stack
+* api-change:``autoscaling``: [``botocore``] This release adds support for specifying Availability Zone IDs as an alternative to Availability Zone names when creating or updating Auto Scaling groups.
+* api-change:``bedrock-agentcore``: [``botocore``] Introducing NamespacePath in AgentCore Memory to support hierarchical prefix based memory record retrieval.
+* api-change:``cloudwatch``: [``botocore``] Update documentation of alarm mute rules start and end date fields
+* api-change:``cognito-idp``: [``botocore``] Adds support for passkey-based multi-factor authentication in Cognito User Pools. Users can authenticate securely using FIDO2-compliant passkeys with user verification, enabling passwordless MFA flows while maintaining backward compatibility with password-based authentication
+* api-change:``connect``: [``botocore``] This release updates the Amazon Connect Rules CRUD APIs to support a new EventSourceName - OnEmailAnalysisAvailable. Use this event source to trigger rules when conversational analytics results are available for email contacts.
+* api-change:``connectcases``: [``botocore``] Added error handling for service quota limits
+* api-change:``customer-profiles``: [``botocore``] Amazon Connect Customer Profiles adds RecommenderSchema CRUD APIs for custom ML training columns. CreateRecommender and CreateRecommenderFilter now accept optional RecommenderSchemaName.
+* api-change:``datazone``: [``botocore``] Launching SMUS IAM domain SDK support
+* api-change:``devops-agent``: [``botocore``] Deprecate the userId from the Chat operations. This update also removes  support of AllowVendedLogDeliveryForResource API from AWS SDKs.
+* api-change:``drs``: [``botocore``] Updating regex for identification of AWS Regions.
+* api-change:``logs``: [``botocore``] Endpoint update for CloudWatch Logs Streaming APIs.
+* api-change:``mediaconvert``: [``botocore``] Adds support for Elemental Inference powered smart crop feature, enabling video verticalization
+* api-change:``rds``: [``botocore``] Adds a new DescribeServerlessV2PlatformVersions API to describe platform version properties for Aurora Serverless v2. Also introduces a new valid maintenance action value for serverless platform version updates.
+* bugfix:signing: [``botocore``] Fix bug so that configured auth scheme preference is used when auth scheme is resolved from endpoints rulesets, or from operation-level auth trait. Auth scheme preference can be configured using the existing ``auth_scheme_preference`` client config option, the ``auth_scheme_preference`` shared config setting, or the existing ``AWS_AUTH_SCHEME_PREFERENCE`` environment variable.
+
+
 1.42.89
 =======
 
