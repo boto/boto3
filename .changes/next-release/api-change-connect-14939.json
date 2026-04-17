@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``connect``",
+  "description": "[``botocore``] Fixes in SDK for customers using TestCase APIs"
+}
