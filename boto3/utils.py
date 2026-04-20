@@ -40,7 +40,7 @@ class ServiceContext(_ServiceContext):
 
     :type resource_json_definitions: dict
     :param resource_json_definitions: The loaded json models of all resource
-        shapes for a service. It is equivalient of loading a
+        shapes for a service. It is equivalent of loading a
         ``resource-1.json`` and retrieving the value at the key "resources".
     """
 
