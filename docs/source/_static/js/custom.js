@@ -90,7 +90,7 @@ function isValidResource(name, serviceDocName) {
 		window.location.assign(newPath);
 	}
 })();
-// Given a service name, we apply the html classes which indicate a current page to the corresponsing list item.
+// Given a service name, we apply the html classes which indicate a current page to the corresponding list item.
 // Before: <li class="toctree-l2"><a class="reference internal" href="../../acm.html">ACM</a></li>
 // After: <li class="toctree-l2 current current-page"><a class="reference internal" href="../../acm.html">ACM</a></li>
 function makeServiceLinkCurrent(serviceName) {
