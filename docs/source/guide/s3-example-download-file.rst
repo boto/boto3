@@ -27,7 +27,7 @@ download and the filename to save the file to.
     s3.download_file('amzn-s3-demo-bucket', 'OBJECT_NAME', 'FILE_NAME')
 
 
-The ``download_fileobj`` method accepts a writeable file-like object. The file 
+The ``download_fileobj`` method accepts a writable file-like object. The file 
 object must be opened in binary mode, not text mode.
 
 .. code-block:: python
