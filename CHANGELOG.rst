@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.42.94
+=======
+
+* api-change:``batch``: [``botocore``] Support of S3Files volume type, container start and stop timeouts.
+* api-change:``bedrock-agentcore``: [``botocore``] Adds support for Amazon Bedrock AgentCore Harness data plane APIs, enabling customers to invoke managed agent loops and execute commands on live agent sessions with streaming responses.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds support for Amazon Bedrock AgentCore Harness control plane APIs, enabling customers to create, manage, and configure managed agent loops with customizable models, tools, memory, and isolated execution environments.
+* api-change:``ec2``: [``botocore``] Managed resource visibility settings control whether resources that AWS services provision on your behalf within your AWS account appear in your Amazon console views and API list operations.
+* api-change:``ecs``: [``botocore``] GPU health monitoring and auto-repair for ECS Managed Instances
+* api-change:``emr-serverless``: [``botocore``] This release adds support for Spark connect sessions starting with release label emr-7.13.0.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``iotwireless``: [``botocore``] Enable customers to optionally specify a desired confidence level for Cellular and WiFi position estimates. Customers can use this to trade off confidence level and radius of uncertainty based on their needs.
+* api-change:``ivs``: [``botocore``] Adds support for Amazon IVS server-side ad insertion
+* api-change:``lambda``: [``botocore``] Add Ruby 4.0 (ruby4.0) support to AWS Lambda.
+* api-change:``opensearch``: [``botocore``] Adds support for RollbackServiceSoftwareUpdate API
+* api-change:``osis``: [``botocore``] Update the pipeline configuration body character limit for the CreatePipeline API call.
+* api-change:``s3``: [``botocore``] This release adds five additional checksum algorithms for S3 data integrity (MD5, SHA-512, XXHash3, XXHash64, XXHash128) and support for S3 Inventory on directory buckets (S3 Express One Zone).
+* api-change:``s3control``: [``botocore``] This release adds support for five additional checksum algorithms for data integrity checking in Amazon S3 - MD5, SHA-512, XXHash3, XXHash64, and XXHash128.
+
+
 1.42.93
 =======
 
