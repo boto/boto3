@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``batch``",
+  "description": "[``botocore``] Support of S3Files volume type, container start and stop timeouts."
+}
