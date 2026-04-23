@@ -37,7 +37,7 @@ Setup a virtual environment
 Once you have a supported version of Python installed, you should set up
 your workspace by creating a virtual environment and activate it::
 
-    $ python -m venv .venv
+    $ python3 -m venv .venv
     ...
     $ source .venv/bin/activate
 
