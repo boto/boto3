@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``cloudwatch``",
+  "description": "[``botocore``] Alias ``get_o_tel_enrichment``, ``start_o_tel_enrichment``, and ``stop_o_tel_enrichment`` botocore methods to use ``otel`` instead of ``o_tel``."
+}
