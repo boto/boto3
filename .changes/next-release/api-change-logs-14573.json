@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``logs``",
+  "description": "[``botocore``] Adding nextToken and maxItems to the GetQueryResults API."
+}
