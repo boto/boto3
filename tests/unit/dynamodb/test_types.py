@@ -143,6 +143,14 @@ class TestSerializer(unittest.TestCase):
             'M': {'foo': {'S': 'bar'}, 'baz': {'M': {'biz': {'N': '1'}}}}
         }
 
+    def test_serialize_empty_set_raises_error(self):
+        with pytest.raises(TypeError, match=r'Unsupported type'):
+            self.serializer.serialize(set())
+
+    def test_serialize_map_with_non_string_key_raises_error(self):
+        with pytest.raises(TypeError, match=r'Map keys must be strings'):
+            self.serializer.serialize({1: 'a'})
+
 
 class TestDeserializer(unittest.TestCase):
     def setUp(self):
