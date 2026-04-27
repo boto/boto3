@@ -13,8 +13,7 @@ def _next_release_json_files():
     if not NEXT_RELEASE_DIR.is_dir():
         return []
     return [
-        p for p in sorted(NEXT_RELEASE_DIR.iterdir())
-        if p.suffix == '.json'
+        p for p in sorted(NEXT_RELEASE_DIR.iterdir()) if p.suffix == '.json'
     ]
 
 
@@ -30,8 +29,7 @@ def test_next_release_json_is_well_formed(json_path):
     except json.JSONDecodeError as e:
         pytest.fail(f"{json_path.name} is not valid JSON: {e}")
     assert isinstance(entry, dict), (
-        f"{json_path.name} should be a JSON object, "
-        f"got {type(entry).__name__}"
+        f"{json_path.name} should be a JSON object, got {type(entry).__name__}"
     )
     VALID_TYPES = {'feature', 'bugfix', 'enhancement', 'api-change'}
     for key in ('category', 'description', 'type'):
