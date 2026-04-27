@@ -2,6 +2,23 @@
 CHANGELOG
 =========
 
+1.42.97
+=======
+
+* api-change:``application-signals``: [``botocore``] Application Signals now supports creating composite Service Level Objectives on Service Operations. Users can now create service SLO on multiple operations.
+* api-change:``billingconductor``: [``botocore``] Add support for Passthrough pricing plan
+* api-change:``gameliftstreams``: [``botocore``] Adds Proton 10.0-4 to the list of runtime environment options available when creating an Amazon GameLift Streams application
+* api-change:``glue``: [``botocore``] Addition of AdditionalAuditContext to GetPartition, GetPartitions, GetTableVersion, and GetTableVersions
+* api-change:``ivs``: [``botocore``] Adds tags parameter to the CreateAdConfiguration operation
+* api-change:``kms``: [``botocore``] KMS GetKeyLastUsage API provides information on the last successful cryptographic operation performed on KMS keys. This new API provides KMS customers with the last timestamp, CloudTrail eventId, and the cryptographic operation that was performed on the key.
+* api-change:``logs``: [``botocore``] Adds support for selecting all logs sources and types in a single association.
+* api-change:``mgn``: [``botocore``] Added network modernization support, enabling customers to edit, resize, merge, and split VPCs and subnets during migration while retaining functional, non-conflicting IP addresses.
+* api-change:``omics``: [``botocore``] Enable Public Internet or VPC configuration to BatchRun
+* api-change:``opensearch``: [``botocore``] Amazon OpenSearch Service now supports JWKS URL configuration for JWT authentication
+* api-change:``sagemaker``: [``botocore``] Updated API documentation for endpoint MetricsConfig. Added details on supported metric publish frequencies and clarified how EnableEnhancedMetrics controls utilization and invocation metric behavior.
+* api-change:``workspaces``: [``botocore``] Added support for Protocol as modified resource and added update failure as modification state
+
+
 1.42.96
 =======
 

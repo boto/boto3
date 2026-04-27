@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearch``",
-  "description": "[``botocore``] Amazon OpenSearch Service now supports JWKS URL configuration for JWT authentication"
-}

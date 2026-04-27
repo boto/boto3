@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``billingconductor``",
-  "description": "[``botocore``] Add support for Passthrough pricing plan"
-}
