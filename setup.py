@@ -14,9 +14,9 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.42.97,<1.43.0',
+    'botocore>=1.43.0,<1.44.0',
     'jmespath>=0.7.1,<2.0.0',
-    's3transfer>=0.16.0,<0.17.0',
+    's3transfer>=0.17.0,<0.18.0',
 ]
 
 
@@ -38,7 +38,7 @@ setup(
     include_package_data=True,
     install_requires=requires,
     license="Apache-2.0",
-    python_requires=">= 3.9",
+    python_requires=">= 3.10",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
@@ -46,7 +46,6 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
