@@ -1,3 +1,6 @@
+.. Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. SPDX-License-Identifier: Apache-2.0
+
 .. _aws-boto-ec2-examples:
 
 ###################

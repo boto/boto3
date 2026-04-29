@@ -1,3 +1,6 @@
+.. Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. SPDX-License-Identifier: Apache-2.0
+
 .. _guide_migration:
 
 Migrating from Boto 2.x
