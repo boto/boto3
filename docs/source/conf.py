@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+
 #
 # Boto3 documentation build configuration file, created by
 # sphinx-quickstart on Wed Sep  3 11:11:30 2014.
