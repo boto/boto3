@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``vpc-lattice``",
-  "description": "[``botocore``] Amazon VPC Lattice now supports privately resolvable DNS resources"
-}
