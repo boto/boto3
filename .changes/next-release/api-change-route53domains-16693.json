@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``route53domains``",
-  "description": "[``botocore``] This release adds the TLDInMaintenance exception."
-}
