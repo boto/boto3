@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cleanroomsml``",
+  "description": "[``botocore``] Increase max configurable output limits in the Clean Rooms ML configured model algorithm association resource."
+}
