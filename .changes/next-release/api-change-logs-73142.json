@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``logs``",
+  "description": "[``botocore``] Updating the max limit for start query api parameter."
+}
