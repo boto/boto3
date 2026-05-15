@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.43.9
+======
+
+* api-change:``logs``: [``botocore``] Updating the max limit for start query api parameter.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for AvailabilityStartTimeConfiguration in MediaPackageV2 DASH manifests
+* api-change:``partnercentral-selling``: [``botocore``] Enable TCV intake on Opportunity to improve Opportunities Hygiene and downstream revenue attribution.
+
+
 1.43.8
 ======
 
