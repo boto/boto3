@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.43.14
+=======
+
+* api-change:``datazone``: [``botocore``] Add support for VPC connection
+* api-change:``ec2``: [``botocore``] The ModifyInstanceAttribute API now supports modification of EnclaveOptions for the instance as a typed parameter.
+* api-change:``gameliftstreams``: [``botocore``] Added new Gen6 stream classes based on the EC2 G6e instance family. These classes are designed for streaming high-fidelity, graphically demanding games and applications that benefit from additional GPU memory and performance.
+* api-change:``invoicing``: [``botocore``] Adds support for idempotency with a new ClientToken field for the CreateInvoiceUnit, DeleteInvoiceUnit, UpdateInvoiceUnit, DeleteProcurementPortalPreference, PutProcurementPortalPreference, and UpdateProcurementPortalPreferenceStatus APIs.
+* api-change:``pi``: [``botocore``] Added ListPerformanceAnalysisReportRecommendations API to retrieve recommendations for a performance analysis report. Added analysis configuration support to CreatePerformanceAnalysisReport for enhanced analysis types such as vacuum analysis.
+* api-change:``qconnect``: [``botocore``] Added guardrail assessment results to inference spans in the ListSpans API. You can now see which AI Guardrail policies were evaluated, whether content was blocked or masked, and per-policy details for each Bedrock Converse call
+* api-change:``securityagent``: [``botocore``] Adds support for verification scripts on penetration test findings. Customers can now download executable scripts to independently reproduce confirmed vulnerabilities, with instructions and required environment variables provided for each finding.
+* enhancement:``s3``: [``botocore``] Improve caching of S3 endpoints, which should improve performance when working with multiple keys in the same bucket
+
+
 1.43.13
 =======
 
