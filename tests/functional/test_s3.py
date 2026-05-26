@@ -143,14 +143,16 @@ class TestCopy(BaseTransferTest):
         self.stub_head(expected_params=self.copy_source)
         self.stub_copy_object()
 
-    def stub_multipart_copy(self, part_size, num_parts):
+    def stub_multipart_copy(self, part_size, num_parts, extra_expected_params):
         # Set the HEAD to return the total size
         total_size = part_size * num_parts
         self.stub_head(
             content_length=total_size, expected_params=self.copy_source
         )
 
-        self.stub_create_multipart_upload()
+        self.stub_create_multipart_upload(
+            extra_expected_params=extra_expected_params
+        )
 
         # Add the responses for each UploadPartCopy
         parts = []
@@ -227,7 +229,14 @@ class TestCopy(BaseTransferTest):
 
     def test_copy_progress(self):
         chunksize = 8 * (1024**2)
-        self.stub_multipart_copy(chunksize, 3)
+        self.stub_multipart_copy(
+            chunksize,
+            3,
+            extra_expected_params={
+                'ContentType': 'binary/octet-stream',
+                'Metadata': {},
+            },
+        )
         transfer_config = TransferConfig(
             multipart_chunksize=chunksize,
             multipart_threshold=1,
