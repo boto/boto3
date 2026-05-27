@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``opensearch``",
-  "description": "[``botocore``] OpenSearch will now support multi-segment paths in JWKS URLs."
-}
