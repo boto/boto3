@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.43.18
+=======
+
+* api-change:``bedrock``: [``botocore``] Automated Reasoning checks - Added two build workflows for policies. Iterative Refine Policy uses AI to update policy definitions based on test results and feedback. Resolve Policy Ambiguities consolidates ambiguous variables in Automated Reasoning policies, a common source of ambiguous validation.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Reference your own AWS Secrets Manager secrets when configuring credential providers, giving you control over encryption, rotation, and access policies instead of using service-managed secrets.
+* api-change:``groundstation``: [``botocore``] Adds support for Alpha-5 satellite number encoding in the Two-Line Element ephemeris format.
+* api-change:``omics``: [``botocore``] Add engineSettings to StartRun and GetRun. Add profiles and profileParameterTemplates to GetWorkflow and GetWorkflowVersion.
+* api-change:``quicksight``: [``botocore``] Adds support for creating, updating, describing, listing, and deleting an OAuthClientApplication resource, a new quicksight resource that allows customers to store OAuth configurations to connect to their databases via 3 Legged OAuth.
+* api-change:``rds-data``: [``botocore``] RDS Data API arrays (longValues, doubleValues, stringValues, booleanValues) in ExecuteStatement responses now correctly support null elements. Runtime change for JS v3 and .NET. Compile-time change for C plus plus, .NET, Kotlin, Rust. No impact for Java, Python, Ruby, PHP, Go.
+* api-change:``route53resolver``: [``botocore``] Added BatchCreateFirewallRule, BatchUpdateFirewallRule, BatchDeleteFirewallRule, and ListFirewallRuleTypes APIs. Added FirewallRuleType support to Firewall Rule APIs.
+* api-change:``sesv2``: [``botocore``] This release introduces support for Tenant Suppression Lists
+
+
 1.43.17
 =======
 
@@ -203,6 +216,7 @@ CHANGELOG
 * api-change:``medialive``: [``botocore``] Updates the type of the MediaLiveRouterOutputConnectionMap.
 * api-change:``securityagent``: [``botocore``] AWS Security Agent is adding a new target domain verification method for private VPC penetration testing. Additionally, the target domain resource will now have a verification status reason field to surface additional details about domain verification
 * api-change:``vpc-lattice``: [``botocore``] Amazon VPC Lattice now supports privately resolvable DNS resources
+* enhancement:``Retries``: [``botocore``] Added opt-in support for updated standard retry behavior via the `AWS_NEW_RETRIES_2026` environment variable. This environment variable is temporary and will be removed in a future release when the updated behavior becomes the default. Changes include updated default retry mode to ``standard``, service-specific max attempts for DynamoDB, revised retry quota costs based on error type, updated exponential backoff with service-specific scale factors, ``x-amz-retry-after`` header support, and long-polling operation backoff on quota exhaustion.
 
 
 1.43.2
