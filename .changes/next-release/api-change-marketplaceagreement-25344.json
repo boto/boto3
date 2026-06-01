@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``marketplace-agreement``",
+  "description": "[``botocore``] Adding Entitlements in SearchAgreements Response"
+}
