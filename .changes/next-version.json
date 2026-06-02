@@ -1,0 +1,7 @@
+[
+  {
+    "category": "Session",
+    "description": "Add support for ``aws_bearer_token`` parameter in Session, Client, and Resource to enable per-session/client bearer token authentication for services that support it (e.g. Bedrock). This allows safe multi-tenant usage without relying on global environment variables like ``AWS_BEARER_TOKEN_BEDROCK``.",
+    "type": "feature"
+  }
+]
