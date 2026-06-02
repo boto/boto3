@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lambda``",
+  "description": "[``botocore``] Adds configuration for tag propagation to Lambda-managed resources."
+}
