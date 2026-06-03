@@ -236,6 +236,8 @@ Enforcing TLS 1.3
 
 The process of ensuring the AWS SDK for Python uses no TLS version earlier than TLS 1.3 is the same as the instructions in the `Enforcing TLS 1.2`_ section with some minor modifications, primarily adding the ``no-tls1_2`` flag to the openssl build configuration.
 
+TLS 1.3 is a prerequisite to enable post-quantum cryptography, which may require additional actions or configurations. To learn more, see `Enabling hybrid post-quantum TLS <https://docs.aws.amazon.com/sdkref/latest/guide/pqtls-details.html>`_.
+
 The following are the modified build instructions::
 
 
