@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.43.21
+=======
+
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``geo-routes``: [``botocore``] Add "standardRegionalEndpoints" back to fix 'Could not connect to the endpoint URL'
+
+
 1.43.20
 =======
 
