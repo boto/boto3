@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.43.22
+=======
+
+* api-change:``arc-region-switch``: [``botocore``] ARC Region Switch now supports three new execution blocks for multi-Region database workloads-Amazon Aurora Serverless scaling, Amazon Aurora Provisioned scaling, and Amazon Neptune Global Database failover.
+* api-change:``ce``: [``botocore``] Added support for target-coverage-based Savings Plans purchase analysis. The StartCommitmentPurchaseAnalysis API now accepts a new TARGET AVERAGE COVERAGE value for AnalysisType, as well as an optional SavingsPlansTargetCoverage field in SavingsPlansPurchaseAnalysisConfiguration
+* api-change:``compute-optimizer``: [``botocore``] This release lets customers extend the lookback period for Amazon EBS volume and Amazon ECS rightsizing recommendations to 32 days.
+* api-change:``connect``: [``botocore``] SearchContacts Connect API now supports filtering contacts by the AI Agents involved in handling them
+* api-change:``inspector2``: [``botocore``] Inspector support for enhanced scanning
+* api-change:``socialmessaging``: [``botocore``] Adding support for WhatsApp flow APIs and adding AccessDeniedByMetaException for Template APIs
+
+
 1.43.21
 =======
 
