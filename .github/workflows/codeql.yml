@@ -25,13 +25,13 @@ jobs:
         persist-credentials: false
 
     - name: "Run CodeQL init"
-      uses: "github/codeql-action/init@c10b8064de6f491fea524254123dbe5e09572f13"
+      uses: "github/codeql-action/init@7211b7c8077ea37d8641b6271f6a365a22a5fbfa"
       with:
         config-file: "./.github/codeql.yml"
         languages: "python"
 
     - name: "Run CodeQL autobuild"
-      uses: "github/codeql-action/autobuild@c10b8064de6f491fea524254123dbe5e09572f13"
+      uses: "github/codeql-action/autobuild@7211b7c8077ea37d8641b6271f6a365a22a5fbfa"
 
     - name: "Run CodeQL analyze"
-      uses: "github/codeql-action/analyze@c10b8064de6f491fea524254123dbe5e09572f13"
+      uses: "github/codeql-action/analyze@7211b7c8077ea37d8641b6271f6a365a22a5fbfa"
