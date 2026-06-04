@@ -83,5 +83,3 @@ def add_resource_type_overview(
             f':ref:`Resources Introduction Guide<{intro_link}>`.'
         )
         section.style.new_line()
-
-
