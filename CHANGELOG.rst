@@ -2,6 +2,30 @@
 CHANGELOG
 =========
 
+1.43.23
+=======
+
+* api-change:``appflow``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``appintegrations``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``auditmanager``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``chime-sdk-voice``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``cloudformation``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``config``: [``botocore``] AWS Config now supports internal service-linked rules, allowing AWS service partners to deploy Config rules for customers and use the evaluation results to build enhanced features.
+* api-change:``connectparticipant``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``efs``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``emr``: [``botocore``] Added support for Spark Connect interactive sessions on Amazon EMR on EC2 with new APIs - StartSession, GetSession, GetSessionEndpoint, ListSessions, and TerminateSession. Added sessionEnabled field in RunJobFlow and DescribeCluster to enable Spark Connect endpoints on EMR clusters.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``glue``: [``botocore``] AWS Glue Interactive Sessions now supports Apache Spark Connect, enabling remote Spark execution over gRPC with minimal client-side dependencies. Adds GetSessionEndpoint and GetDashboardUrl APIs. Modifies CreateSession now accepts SPARK CONNECT session type.
+* api-change:``guardduty``: [``botocore``] Remove unsupported RDS field for filter
+* api-change:``ivs``: [``botocore``] adds UpdateAdConfiguration operation to AWS IVS low-latency APIs
+* api-change:``kendra``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``sagemaker``: [``botocore``] Adds the IncludedData parameter to DescribeModelCard and DescribeModelPackage. Set it to MetadataOnly to retrieve a model card without decrypt permission on the customer managed AWS KMS key (default AllData returns full content). Adds support for the MTRL Job resource in SageMaker Search.
+* api-change:``sns``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``wickr``: [``botocore``] AWS Wickr now allows network administrators to configure a maximum session duration for non-SSO users in security groups, and display customizable consent popups to users at login for terms of use or compliance acknowledgements.
+* api-change:``workdocs``: [``botocore``] Adding new BDD representation of endpoint ruleset
+* api-change:``workspaces``: [``botocore``] Adding new BDD representation of endpoint ruleset
+
+
 1.43.22
 =======
 
