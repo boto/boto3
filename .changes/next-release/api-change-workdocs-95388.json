@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``workdocs``",
-  "description": "[``botocore``] Adding new BDD representation of endpoint ruleset"
-}
