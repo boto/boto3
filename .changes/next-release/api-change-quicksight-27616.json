@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Adds support for Knowledge Base APIs and Index Capacity API"
-}
