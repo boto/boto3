@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.43.24
+=======
+
+* api-change:``emr-serverless``: [``botocore``] Adds support for updating max capacity and custom fields while application is started
+* api-change:``mediaconvert``: [``botocore``] Adds support for configurable number of Clear Lead segments at the beginning of encrypted output. Adds support for multiple trickplay variants.
+* api-change:``payment-cryptography``: [``botocore``] Adds CloudFormation support for resource-based policies on AWS Payment Cryptography keys.
+* api-change:``quicksight``: [``botocore``] Adds support for Knowledge Base APIs and Index Capacity API
+* api-change:``sagemaker``: [``botocore``] This release adds support for MLflow experiment tracking in SageMaker inference optimization. CreateAIRecommendationJob and CreateAIBenchmarkJob now accept an optional OutputConfig.MlflowConfig (MLflow App ARN, experiment, run name) to stream benchmark metrics and artifacts to your own MLflow App.
+
+
 1.43.23
 =======
 
