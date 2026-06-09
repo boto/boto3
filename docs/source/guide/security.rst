@@ -125,13 +125,6 @@ For information about AWS security processes, see the `AWS: Overview of Security
 Enforcing TLS 1.2
 ------------------
 
-.. note::
-    If you are using urllib3 2.x or later (the default for new installations), TLS 1.2 is already enforced by default and no additional steps are needed.
-    You can verify your urllib3 version by running ``python -c "import urllib3; print(urllib3.__version__)"``.
-    The steps below are only necessary if you are using urllib3 1.x or need to enforce TLS 1.3
-    as the minimum.
-
-
 To ensure the AWS SDK for Python uses no TLS version earlier than TLS 1.2, you might need to recompile OpenSSL to enforce this minimum and then recompile Python to use the recompiled OpenSSL.
 
 Determining supported protocols
@@ -191,8 +184,10 @@ If you are able to make a connection, you need to recompile OpenSSL and Python t
 
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
 
+As of urllib3 2.x, the default minimum SSL version for all calls through the SDK and CLI is 1.2.
+For users who are still using older versions of urllib3, additional steps are necessary to ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2.
+You need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
 
     #!/usr/bin/env bash
     set -e
