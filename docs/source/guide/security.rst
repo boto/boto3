@@ -191,13 +191,13 @@ To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, y
     #!/usr/bin/env bash
     set -e
 
-    OPENSSL_VERSION="1.1.1m"
+    OPENSSL_VERSION="3.5.0"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_2"
-    PYTHON_VERSION="3.9.10"
+    PYTHON_VERSION="3.10.0"
     PYTHON_PREFIX="/opt/python-with-min-tls1_2"
 
 
-    curl -O "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
+    curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
     tar -xzf "openssl-$OPENSSL_VERSION.tar.gz"
     cd openssl-$OPENSSL_VERSION
     ./config --prefix=$OPENSSL_PREFIX no-ssl3 no-tls1 no-tls1_1 no-shared
@@ -206,7 +206,7 @@ To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, y
 
 
     cd /tmp
-    curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    curl -LO "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
@@ -222,7 +222,7 @@ After you run this script, you should be able to use this newly installed versio
 
 This should print out::
 
-    Python 3.9.10
+    Python 3.10.0
 
 To confirm this new version of Python does not negotiate a version earlier than TLS 1.2, rerun the steps from `Determining Supported Protocols`_ using the newly installed Python version (that is, ``/opt/python-with-min-tls1_2/bin/python3``).
 
@@ -244,13 +244,13 @@ The following are the modified build instructions::
     #!/usr/bin/env bash
     set -e
 
-    OPENSSL_VERSION="1.1.1m"
+    OPENSSL_VERSION="3.5.0"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_3"
-    PYTHON_VERSION="3.9.10"
+    PYTHON_VERSION="3.10.0"
     PYTHON_PREFIX="/opt/python-with-min-tls1_3"
 
 
-    curl -O "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
+    curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
     tar -xzf "openssl-$OPENSSL_VERSION.tar.gz"
     cd openssl-$OPENSSL_VERSION
     ./config --prefix=$OPENSSL_PREFIX no-ssl3 no-tls1 no-tls1_1 no-tls1_2 no-shared
@@ -259,7 +259,7 @@ The following are the modified build instructions::
 
 
     cd /tmp
-    curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    curl -LO "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
