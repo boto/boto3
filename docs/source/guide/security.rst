@@ -185,16 +185,17 @@ If you are able to make a connection, you need to recompile OpenSSL and Python t
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As of urllib3 2.x, the default minimum SSL version for all calls through the SDK and CLI is 1.2.
-For users who are still using older versions of urllib3, additional steps are necessary to ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2.
-You need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
+The SDK and CLI enforce a minimum TLS version of 1.2 for all requests when running on urllib3 2.x or later.
+If you're still on urllib3 1.x and unable to upgrade, you'll need to take additional steps to prevent the SDK or CLI from negotiating anything older than TLS 1.2.
+
+This requires rebuilding OpenSSL and Python from source. Save the following script and run it::
 
     #!/usr/bin/env bash
     set -e
 
-    OPENSSL_VERSION="3.5.0"
+    OPENSSL_VERSION="3.5.7"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_2"
-    PYTHON_VERSION="3.10.0"
+    PYTHON_VERSION="3.10.20"
     PYTHON_PREFIX="/opt/python-with-min-tls1_2"
 
 
@@ -223,7 +224,7 @@ After you run this script, you should be able to use this newly installed versio
 
 This should print out::
 
-    Python 3.10.0
+    Python 3.10.20
 
 To confirm this new version of Python does not negotiate a version earlier than TLS 1.2, rerun the steps from `Determining Supported Protocols`_ using the newly installed Python version (that is, ``/opt/python-with-min-tls1_2/bin/python3``).
 
@@ -245,9 +246,9 @@ The following are the modified build instructions::
     #!/usr/bin/env bash
     set -e
 
-    OPENSSL_VERSION="3.5.0"
+    OPENSSL_VERSION="3.5.7"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_3"
-    PYTHON_VERSION="3.10.0"
+    PYTHON_VERSION="3.10.20"
     PYTHON_PREFIX="/opt/python-with-min-tls1_3"
 
 
@@ -266,3 +267,4 @@ The following are the modified build instructions::
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
     make > /dev/null
     sudo make install > /dev/null
+
