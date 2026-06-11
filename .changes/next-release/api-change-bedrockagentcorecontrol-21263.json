@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agentcore-control``",
-  "description": "[``botocore``] Supports deterministic metadata for AgentCore Memory"
-}
