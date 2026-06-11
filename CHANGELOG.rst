@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.43.28
+=======
+
+* api-change:``bedrock-agentcore``: [``botocore``] Adds support to perform cross account data plane actions on an AgentCore Memory resource
+* api-change:``bedrock-agentcore-control``: [``botocore``] Supports deterministic metadata for AgentCore Memory
+* api-change:``eks``: [``botocore``] Introduce new CreateCluster parameters for Amazon EKS local clusters on AWS Outposts. Added etcdInstanceType for configuring the EC2 instance type for dedicated etcd instances, and spreadLevel for configuring the placement group spread level for Kubernetes control plane and etcd instances.
+* api-change:``healthlake``: [``botocore``] Adds the UpdateFHIRDatastore API and adds analytics, NLP, and profile configuration support to CreateFHIRDatastore and DescribeFHIRDatastore.
+* api-change:``neptune``: [``botocore``] Amazon Neptune now supports IPv6 dual-stack networking. You can create and manage Neptune DB clusters accessible over both IPv4 and IPv6 by specifying NetworkType as DUAL in CreateDBCluster, ModifyDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime API operations
+* api-change:``omics``: [``botocore``] Adds support for workflowName in the ListRuns API response.
+* api-change:``support``: [``botocore``] Adding new BDD representation of endpoint ruleset
+
+
 1.43.27
 =======
 
