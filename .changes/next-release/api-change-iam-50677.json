@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``iam``",
+  "description": "[``botocore``] Updating documentation for select service-specific credential APIs"
+}
