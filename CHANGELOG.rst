@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.43.30
+=======
+
+* api-change:``bedrock-runtime``: [``botocore``] InvokeGuardrailChecks API evaluates prompts and responses against safety checks (content filters, prompt attacks, sensitive info) without creating guardrail resources. It's a detect-only API, returning numeric scores so you can build adaptive logic as per your application.
+* api-change:``datazone``: [``botocore``] Adds support for deleting lineage events in Amazon DataZone.
+* api-change:``logs``: [``botocore``] Added endTimeOffset parameter to Scheduled Queries APIs (Create, Update, Get) enabling bounded time window configuration. Introduced scheduleType filter (CUSTOMER MANAGED, AWS MANAGED) for ListScheduledQueries and exposed it in Get and Update responses.
+* api-change:``mgn``: [``botocore``] AWS Transform for VMware now supports Amazon FSx for NetApp ONTAP as a target storage. Customers can migrate source server disks directly to FSx for NetApp ONTAP iSCSI LUNs. Target storage is configurable per source server, and compute, network, and storage migrate together in coordinated waves.
+* api-change:``rds``: [``botocore``] Adding support for RDS SQL Server BYOM and DB2 Community Edition
+* api-change:``wafv2``: [``botocore``] AWS WAF now supports AI traffic monetization for CloudFront. Configure payment networks and pricing on your web ACL, use the new Monetize rule action to charge AI agents via x402, and monitor revenue with new GetRevenueStatisticsSummary, GetRevenueStatistics, and ListSettlementRecords APIs.
+* api-change:``workspaces``: [``botocore``] Added a validation for null check for ImageIds in DescribeWorkspaceImages API request parameters.
+
+
 1.43.29
 =======
 
