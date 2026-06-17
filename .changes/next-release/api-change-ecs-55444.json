@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``ecs``",
-  "description": "[``botocore``] Releasing the ability to bring-your-own task-definition for CreateExpressGatewayService and UpdateGatewayExpressService"
-}
