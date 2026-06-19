@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.43.34
+=======
+
+* api-change:``appstream``: [``botocore``] Amazon WorkSpaces Agent Access now supports domain-joined fleets for enterprise identity integration, real-time agent observation with instant stop controls, and MCP tool forwarding for lower-latency, cost-effective desktop tool access.
+* api-change:``bedrock-agent``: [``botocore``] Add support for metadata-only retrieval on GetFlow, GetFlowVersion, and GetPrompt APIs.
+* api-change:``connect``: [``botocore``] This is the release for point based scoring system and the evaluation form validation project
+* api-change:``glue``: [``botocore``] Adds the SearchAssets operation for discovering assets in the AWS Glue Data Catalog using full-text search and filters. Minor naming refinements across the Glossary Terms and Attachment APIs for consistency.
+* api-change:``opensearch``: [``botocore``] This release introduces data source attachment APIs, enabling users to attach and detach Amazon OpenSearch Service domains and Amazon OpenSearch Serverless collections to an OpenSearch application.
+
+
 1.43.33
 =======
 
