@@ -210,13 +210,6 @@ To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, y
     curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
-    cat >> Modules/Setup <<'EOF'
-
-    *static*
-    _ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
-    _hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
-    *shared*
-    EOF
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX > /dev/null
     make > /dev/null
     sudo make install > /dev/null
@@ -271,13 +264,6 @@ The following are the modified build instructions::
     curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
-    cat >> Modules/Setup <<'EOF'
-
-    *static*
-    _ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
-    _hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
-    *shared*
-    EOF
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX > /dev/null
     make > /dev/null
     sudo make install > /dev/null
