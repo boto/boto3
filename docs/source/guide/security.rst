@@ -169,7 +169,7 @@ However, even if your installation of Python defaults to TLS v1.2 or later, it's
 
 .. note::
 
-    If you are using an older version of OpenSSL, you might not have the ``-no_tls_3`` flag available. 
+    If you are using an older version of OpenSSL, you might not have the ``-no_tls1_3`` flag available.
     In this case, just remove the flag because the version of OpenSSL you are using doesn't support TLS v1.3.
 
 Rerun the Python script::
@@ -185,7 +185,7 @@ If you are able to make a connection, you need to recompile OpenSSL and Python t
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
+To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. Ensure your system has the build dependencies required to compile OpenSSL and Python from source. Then copy the following content to create a script and run it::
 
 
     #!/usr/bin/env bash
@@ -193,14 +193,15 @@ To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, y
 
     OPENSSL_VERSION="3.5.7"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_2"
-    PYTHON_VERSION="3.10.20"
+    PYTHON_VERSION="3.11.15"
     PYTHON_PREFIX="/opt/python-with-min-tls1_2"
 
 
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
     tar -xzf "openssl-$OPENSSL_VERSION.tar.gz"
     cd openssl-$OPENSSL_VERSION
-    ./config --prefix=$OPENSSL_PREFIX no-ssl3 no-tls1 no-tls1_1 no-shared
+    ./config --prefix=$OPENSSL_PREFIX --libdir=lib \
+        no-ssl3 no-tls1 no-tls1_1 no-shared
     make > /dev/null
     sudo make install_sw > /dev/null
 
@@ -209,12 +210,19 @@ To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, y
     curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
-    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
+    cat >> Modules/Setup <<'EOF'
+
+    *static*
+    _ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+    _hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+    *shared*
+    EOF
+    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX > /dev/null
     make > /dev/null
     sudo make install > /dev/null
 
 
-This will compile a version of Python that has a statically linked OpenSSL that will not automatically negotiate anything earlier than TLS 1.2. This will also install OpenSSL in the directory: ``/opt/openssl-with-min-tls1_2`` and install Python in the directory: ``/opt/python-with-min-tls1_2``. 
+This will compile a version of Python that has a statically linked OpenSSL that will not automatically negotiate anything earlier than TLS 1.2. This will also install OpenSSL in the directory: ``/opt/openssl-with-min-tls1_2`` and install Python in the directory: ``/opt/python-with-min-tls1_2``.
 
 After you run this script, you should be able to use this newly installed version of Python::
 
@@ -222,7 +230,7 @@ After you run this script, you should be able to use this newly installed versio
 
 This should print out::
 
-    Python 3.10.20
+    Python 3.11.15
 
 To confirm this new version of Python does not negotiate a version earlier than TLS 1.2, rerun the steps from `Determining Supported Protocols`_ using the newly installed Python version (that is, ``/opt/python-with-min-tls1_2/bin/python3``).
 
@@ -246,14 +254,15 @@ The following are the modified build instructions::
 
     OPENSSL_VERSION="3.5.7"
     OPENSSL_PREFIX="/opt/openssl-with-min-tls1_3"
-    PYTHON_VERSION="3.10.20"
+    PYTHON_VERSION="3.11.15"
     PYTHON_PREFIX="/opt/python-with-min-tls1_3"
 
 
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz"
     tar -xzf "openssl-$OPENSSL_VERSION.tar.gz"
     cd openssl-$OPENSSL_VERSION
-    ./config --prefix=$OPENSSL_PREFIX no-ssl3 no-tls1 no-tls1_1 no-tls1_2 no-shared
+    ./config --prefix=$OPENSSL_PREFIX --libdir=lib \
+        no-ssl3 no-tls1 no-tls1_1 no-tls1_2 no-shared
     make > /dev/null
     sudo make install_sw > /dev/null
 
@@ -262,6 +271,13 @@ The following are the modified build instructions::
     curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
-    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
+    cat >> Modules/Setup <<'EOF'
+
+    *static*
+    _ssl _ssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libssl.a -Wl,--exclude-libs,libssl.a -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+    _hashlib _hashopenssl.c $(OPENSSL_INCLUDES) $(OPENSSL_LDFLAGS) -l:libcrypto.a -Wl,--exclude-libs,libcrypto.a
+    *shared*
+    EOF
+    ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX > /dev/null
     make > /dev/null
     sudo make install > /dev/null
