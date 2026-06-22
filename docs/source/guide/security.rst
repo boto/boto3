@@ -185,10 +185,7 @@ If you are able to make a connection, you need to recompile OpenSSL and Python t
 Compile OpenSSL and Python
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SDK and CLI enforce a minimum TLS version of 1.2 for all requests when running on urllib3 2.x or later.
-If you're still on urllib3 1.x and unable to upgrade, you'll need to take additional steps to prevent the SDK or CLI from negotiating anything older than TLS 1.2.
-
-This requires rebuilding OpenSSL and Python from source. Save the following script and run it::
+To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
 
     #!/usr/bin/env bash
     set -e
@@ -208,7 +205,7 @@ This requires rebuilding OpenSSL and Python from source. Save the following scri
 
 
     cd /tmp
-    curl -LO "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    curl -L "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
@@ -261,7 +258,7 @@ The following are the modified build instructions::
 
 
     cd /tmp
-    curl -LO "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    curl -L "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
