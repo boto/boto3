@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.43.35
+=======
+
+* api-change:``application-signals``: [``botocore``] Application Signals now supports dynamic instrumentation and Service Events telemetry. Add instrumentation at runtime without restarts, and use fine-grained profiling data to quickly pinpoint latency and error root causes.
+* api-change:``bedrock-agentcore``: [``botocore``] Adds an optional extractionMode field to CreateEvent. SKIP retains the event in short-term memory but excludes it from long-term memory extraction.
+* api-change:``directconnect``: [``botocore``] Added VIF rate limiting support for AWS Direct Connect, allowing customers to set bandwidth allocations on virtual interfaces to manage traffic on dedicated connections.
+* api-change:``ec2``: [``botocore``] This release adds support for AMI Watermark and Allowed AMIs integration
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``guardduty``: [``botocore``] Added AI-powered investigations that automatically analyze security findings, correlate related activity, and produce structured summaries with risk assessment, confidence scoring, MITRE technique classification, and actionable next steps.
+* api-change:``kafka``: [``botocore``] Amazon MSK Replicator now supports mTLS authentication when connecting to external Apache Kafka clusters, enabling customers to replicate data from clusters that require mutual TLS for client authentication. This capability is supported when replicating to Amazon MSK Express brokers.
+* api-change:``lambda``: [``botocore``] Add support for tagging Network Connector resources in AWS Lambda.
+* api-change:``lambda-core``: [``botocore``] Initial release of the AWS Lambda Core SDK with APIs to create, manage, and tag network connectors that enable Lambda compute resources to access private resources in your Amazon VPC.
+* api-change:``lambda-microvms``: [``botocore``] Lambda MicroVMs GA launch. Lambda MicroVMs enable isolated and highly responsive execution of user-supplied or LLM-generated code.
+* api-change:``logs``: [``botocore``] CloudWatch Logs Updates - New APIs introduced to support syslog ingestion to a log group. For more information, see CloudWatch Logs API documentation.
+* api-change:``mediaconnect``: [``botocore``] AWS MediaConnect now supports Content Quality Analysis for Router Inputs, enabling detection of black frames, frozen frames, and silent audio with configurable thresholds.
+* api-change:``omics``: [``botocore``] Adds support for scratch ephemeral storage mounted at tmp
+* api-change:``quicksight``: [``botocore``] Updated the Amazon Quick Spaces API to remove unsupported SPACE and ARTIFACT values from the SpaceQuickSightResourceType enum.
+
+
 1.43.34
 =======
 
