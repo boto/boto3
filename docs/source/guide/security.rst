@@ -187,6 +187,7 @@ Compile OpenSSL and Python
 
 To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, you need to recompile OpenSSL and Python. First copy the following content to create a script and run it::
 
+
     #!/usr/bin/env bash
     set -e
 
@@ -205,7 +206,7 @@ To ensure the SDK or CLI does not negotiate for anything earlier than TLS 1.2, y
 
 
     cd /tmp
-    curl -L "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
@@ -258,7 +259,7 @@ The following are the modified build instructions::
 
 
     cd /tmp
-    curl -L "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
+    curl -O "https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz"
     tar -xzf "Python-$PYTHON_VERSION.tgz"
     cd Python-$PYTHON_VERSION
     ./configure --prefix=$PYTHON_PREFIX --with-openssl=$OPENSSL_PREFIX --disable-shared > /dev/null
