@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``omics``",
+  "description": "[``botocore``] Adds support for scratch ephemeral storage mounted at tmp"
+}
