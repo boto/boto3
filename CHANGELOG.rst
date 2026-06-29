@@ -2,6 +2,30 @@
 CHANGELOG
 =========
 
+1.43.37
+=======
+
+* api-change:``appconfig``: [``botocore``] AWS AppConfig introduces Experimentation tools - enhanced capabilities within AWS AppConfig that enable you to run AB tests, multivariate tests, and gradual feature rollouts across your application stack.
+* api-change:``cloudwatch``: [``botocore``] This release adds the API (PutLogAlarm) to manage a new CloudWatch resource, Log Based Alarms. Log Based Alarms allows customers to alarm directly on CloudWatch Logs query results.
+* api-change:``connectcampaignsv2``: [``botocore``] Adding new attributes to PutProfileOutboundRequest API that will create an outbound request call for the customer's Web Notification outbound campaign.
+* api-change:``connecthealth``: [``botocore``] Expand input validation to support Unicode characters and markdown table syntax.
+* api-change:``ec2``: [``botocore``] Adds support for the precision time strategy and a parentGroupId parameter on CreatePlacementGroup and DescribePlacementGroups. Precision time placement groups and cluster placement groups with a parent precision time placement group ensure instances launch on precision time capable hardware.
+* api-change:``ecs``: [``botocore``] Amazon ECS now supports customizable deployment circuit breaker configurations. Customers can now define the failure threshold or control the failure counting mechanism.
+* api-change:``elasticache``: [``botocore``] Updated documentation for the ApplyImmediately parameter in ModifyCacheCluster and ModifyReplicationGroup to clarify modification behavior.
+* api-change:``evs``: [``botocore``] Amazon EVS introduces a VMware Cloud Foundation (VCF) self-deployed mode, along with new connectors to VCF components such as the Operations and SDDC managers to monitor coverage and usage.
+* api-change:``glue``: [``botocore``] Added the UpdateAsset operation to set the business name and description for an existing AWS Glue Data Catalog asset.
+* api-change:``imagebuilder``: [``botocore``] Adds support for AMI watermarks in Image Builder.
+* api-change:``lambda``: [``botocore``] Lambda now supports self-managed S3 buckets for Lambda code storage giving you the option for Lambda to reference a copy of your source code from your own S3 buckets. This allows you to maintain a single copy of your source code and manage your own code storage limits.
+* api-change:``pcs``: [``botocore``] Add support for in-place Slurm version upgrades on existing clusters by accepting scheduler.version in UpdateCluster.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] This launch is an expansion of our Q1 RCS for business launch where we will release an API that supports rich media and interactive messaging elements.
+* api-change:``rds-data``: [``botocore``] Updated documentation to remove Aurora Serverless V1 references.
+* api-change:``resource-explorer-2``: [``botocore``] Added CFN resource type fields for Search and ListSupportedResourceTypes responses. Added SLRec field for ServiceView
+* api-change:``sagemaker-featurestore-runtime``: [``botocore``] Add support for ListRecords and BatchWriteRecord APIs to Feature Store.
+* api-change:``vpc-lattice``: [``botocore``] Amazon VPC Lattice now supports mutable idle timeout configuration on VPC Lattice Services
+* api-change:``wafv2``: [``botocore``] AWS WAF added support for associating AWS WAF web ACLs with Amazon Bedrock AgentCore Gateway resources. You can now use AssociateWebACL, DisassociateWebACL, GetWebACLForResource, and ListResourcesForWebACL to protect your AgentCore Gateways with AWS WAF.
+* enhancement:Identity: [``botocore``] Add public methods to insert, remove, and retrieve providers in the token provider chain.
+
+
 1.43.36
 =======
 

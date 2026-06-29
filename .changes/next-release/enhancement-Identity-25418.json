@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Identity",
-  "description": "[``botocore``] Add public methods to insert, remove, and retrieve providers in the token provider chain."
-}

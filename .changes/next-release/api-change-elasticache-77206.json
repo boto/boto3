@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``elasticache``",
-  "description": "[``botocore``] Updated documentation for the ApplyImmediately parameter in ModifyCacheCluster and ModifyReplicationGroup to clarify modification behavior."
-}
