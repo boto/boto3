@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cleanrooms``",
-  "description": "[``botocore``] Adds support for intermediate tables in AWS Clean Rooms collaborations."
-}
