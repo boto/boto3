@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``supportauthz``",
+  "description": "[``botocore``] New SDK release for SupportAuthZ."
+}
