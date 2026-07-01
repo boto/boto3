@@ -1,2 +1,2 @@
-# Python SDK core team - all PRs require team review
-* @boto/sync-team-aws-sdk-python
+# Python SDK and CLI shared team - all PRs require team review
+* @boto/sync-team-aws-python-sdk-cli-team
