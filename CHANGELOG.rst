@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.43.40
+=======
+
+* api-change:``cognito-idp``: [``botocore``] Add support for provisioned limit management, enabling customers to view and update their provisioned API rate limits for Amazon Cognito User Pools programmatically through the new GetProvisionedLimit and UpdateProvisionedLimit APIs.
+* api-change:``config``: [``botocore``] AWS Config now supports tag-on-create for organization-managed Config rules and conformance packs through the PutOrganizationConfigRule and PutOrganizationConformancePack APIs.
+* api-change:``customer-profiles``: [``botocore``] Amazon Connect Customer Profiles adds support for diversityConfig to recommenderConfig which can be used for diversifying the recommendations. This release also includes model versioning support which helps customer to rollback trained models.
+* api-change:``mediatailor``: [``botocore``] Added dual-stack (IPv4 and IPv6) endpoint fields to SSAI and Channel Assembly API responses.
+* api-change:``outposts``: [``botocore``] Tighten Outpost site ContactPhoneNumber regex to perform phone number validation.
+
+
 1.43.39
 =======
 
