@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``outposts``",
-  "description": "[``botocore``] Tighten Outpost site ContactPhoneNumber regex to perform phone number validation."
-}
