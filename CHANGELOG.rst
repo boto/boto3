@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.43.44
+=======
+
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``signin``: [``botocore``] Adds support for OAuth 2.0 token operations in AWS Sign-In, CreateOAuth2TokenWithIAM (client credentials flow), IntrospectOAuth2TokenWithIAM (token inspection), and RevokeOAuth2TokenWithIAM (token revocation).
+
+
 1.43.43
 =======
 
