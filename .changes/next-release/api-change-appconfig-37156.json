@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appconfig``",
-  "description": "[``botocore``] Update ExperimentRun APIs to support ConflictExceptions."
-}
