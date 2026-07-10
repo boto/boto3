@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``quicksight``",
-  "description": "[``botocore``] Provides CreateKnowledgeBase and UpdateKnowledgeBase APIs"
-}
