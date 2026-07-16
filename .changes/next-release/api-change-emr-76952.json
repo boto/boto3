@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr``",
-  "description": "[``botocore``] Amazon EMR updates the Session object returned by GetSession API"
-}
