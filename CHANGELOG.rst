@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.43.50
+=======
+
+* api-change:``chime-sdk-voice``: [``botocore``] Marked CreateProxySession, DeleteProxySession, GetProxySession, ListProxySessions, UpdateProxySession, PutVoiceConnectorProxy, DeleteVoiceConnectorProxy, and GetVoiceConnectorProxy as deprecated.
+* api-change:``emr``: [``botocore``] Amazon EMR updates the Session object returned by GetSession API
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``omics``: [``botocore``] Adds support for returning the task UUID (universally unique identifier) in GetRunTask and ListRunTasks responses
+* api-change:``redshift``: [``botocore``] Amazon Redshift - Added support for rg.large and rg.12xlarge node types in CreateCluster, ModifyCluster, and ResizeCluster API operations.
+* api-change:``s3``: [``botocore``] Documentation update for removing the 30 day minimum restriction for transition to Standard-IA or OneZone-IA storage classes
+* api-change:``sagemaker``: [``botocore``] Release support for g7 instance type for SageMaker inference endpoints.
+* api-change:``sustainability``: [``botocore``] Adds support for retrieving estimated water allocation data.
+
+
 1.43.49
 =======
 
