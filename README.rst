@@ -30,10 +30,10 @@ For more information on deprecations, see this
 .. |Python| image:: https://img.shields.io/pypi/pyversions/boto3.svg?style=flat
     :target: https://pypi.python.org/pypi/boto3/
     :alt: Python Versions
-.. |Version| image:: http://img.shields.io/pypi/v/boto3.svg?style=flat
+.. |Version| image:: https://img.shields.io/pypi/v/boto3.svg?style=flat
     :target: https://pypi.python.org/pypi/boto3/
     :alt: Package Version
-.. |License| image:: http://img.shields.io/pypi/l/boto3.svg?style=flat
+.. |License| image:: https://img.shields.io/pypi/l/boto3.svg?style=flat
     :target: https://github.com/boto/boto3/blob/develop/LICENSE
     :alt: License
 
