@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``ssm``",
+  "description": "[``botocore``] Added a WarningMessage field to Automation along with corresponding public documentation."
+}
