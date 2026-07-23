@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.43.55
+=======
+
+* api-change:``appstream``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.1. The SDK will prioritize its most performant protocol.
+* api-change:``backup-gateway``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``bcm-pricing-calculator``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``bcm-recommended-actions``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``bedrock-agentcore``: [``botocore``] Adds support for the Bring Your Own Storage(BYOS) feature in AgentCore Browser and Code Interpreter. Enables mounting S3Files and EFS File Systems via Access points.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds support for the Bring Your Own Storage(BYOS) feature in AgentCore Browser and Code Interpreter. Enables mounting S3Files and EFS File Systems via Access points.
+* api-change:``datazone``: [``botocore``] Adds support for notebook sync with S3 ipynb files
+* api-change:``gameliftstreams``: [``botocore``] GameLift Streams now supports configuring a custom aspect ratio per stream session to accommodate different player devices. Supported aspect ratios include landscape, portrait, and square - delivering a full-screen experience without letterboxing or cropping.
+* api-change:``kendra-ranking``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``mediapackagev2``: [``botocore``] This release adds support for non-epoch-locked CMAF ingest in MediaPackageV2 channels.
+* api-change:``quicksight``: [``botocore``] Added new capabilities to custom permissions profiles to control access to Amazon Quick through the browser extension and Microsoft Word, Outlook, Excel, and PowerPoint add-ins.
+* api-change:``redshift-data``: [``botocore``] This release include long polling provids a new parameter wait-time-seconds to 5 API operations, new API ListSessions, and a new parameter execution-mode to BatchExecuteStatement
+* api-change:``sagemaker``: [``botocore``] Release support for c6a, m6a, m6g, m7g, m8g instance types for SageMaker HyperPod
+* api-change:``workspaces-instances``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+
+
 1.43.54
 =======
 
