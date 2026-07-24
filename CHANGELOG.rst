@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.43.56
+=======
+
+* api-change:``application-insights``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.1. The SDK will prioritize its most performant protocol.
+* api-change:``artifact``: [``botocore``] Added the PutComplianceInquiryFeedback API, enabling customers to submit feedback on compliance inquiry responses. Customers can rate responses as helpful or not helpful and provide optional reason codes and comments.
+* api-change:``cognito-idp``: [``botocore``] Amazon Cognito user pools now support the AdminGetUserAuthFactors operation, which lets administrators retrieve the configured authentication factors (such as password, SMS, email, and TOTP) available for a specific user in a user pool.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``neptune-graph``: [``botocore``] Update validations for Tag Keys and KMS Key ARNs.
+* api-change:``odb``: [``botocore``] Documentation-only update to clarify the operation-specific valid values for the externalIdType field.
+* api-change:``rtbfabric``: [``botocore``] The deprecated inboundLinksCount field has been removed from the GetResponderGateway API response. Customers who previously relied on this field should use linksRequestedCount instead.
+
+
 1.43.55
 =======
 
