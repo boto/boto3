@@ -160,6 +160,18 @@ class TestBucketTransferMethods(unittest.TestCase):
             Config=None,
         )
 
+    def test_move(self):
+        inject.bucket_move(self.bucket, self.copy_source, Key='key')
+        self.bucket.meta.client.move.assert_called_with(
+            CopySource=self.copy_source,
+            Bucket=self.bucket.name,
+            Key='key',
+            ExtraArgs=None,
+            Callback=None,
+            SourceClient=None,
+            Config=None,
+        )
+
     def test_upload_fileobj(self):
         fileobj = io.BytesIO(b'foo')
         inject.bucket_upload_fileobj(self.bucket, Key='key', Fileobj=fileobj)
@@ -215,6 +227,18 @@ class TestObjectTransferMethods(unittest.TestCase):
     def test_copy(self):
         inject.object_copy(self.obj, self.copy_source)
         self.obj.meta.client.copy.assert_called_with(
+            CopySource=self.copy_source,
+            Bucket=self.obj.bucket_name,
+            Key=self.obj.key,
+            ExtraArgs=None,
+            Callback=None,
+            SourceClient=None,
+            Config=None,
+        )
+
+    def test_move(self):
+        inject.object_move(self.obj, self.copy_source)
+        self.obj.meta.client.move.assert_called_with(
             CopySource=self.copy_source,
             Bucket=self.obj.bucket_name,
             Key=self.obj.key,
