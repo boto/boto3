@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dms``",
+  "description": "[``botocore``] Updated documentation for various DMS Schema Conversion operations"
+}
