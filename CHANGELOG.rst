@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.43.60
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds support for configuring models through the OpenResponses API for custom evaluators. CreateEvaluator and UpdateEvaluator now accept an OpenResponses model configuration for LLM-as-a-Judge evaluations.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``iam``: [``botocore``] Improved IAM Policy Simulator accuracy. Simulator now evaluates SCP conditions and resource scoping, returns explicitDeny for explicit SCP denials, and reports accurate cross-account decisions.
+* api-change:``kafka``: [``botocore``] Amazon MSK Express brokers now support streaming tables for Apache Iceberg, continuously materializing Apache Kafka topics as Iceberg tables in Amazon S3 Tables. Express brokers also now support data delivery to Amazon S3 general purpose buckets.
+* api-change:``lambda``: [``botocore``] Add Python3.15 (python3.15) and NodeJs 26 (nodejs26.x) support to AWS Lambda
+* api-change:``network-firewall``: [``botocore``] Adds UPDATING field to Container Association Status
+* api-change:``pricing-plan-manager``: [``botocore``] Adds support for Public PricingPlanManager SDK
+* api-change:``sagemaker``: [``botocore``] Adds support for g7 family instance types for SageMaker Studio JupyterLab and CodeEditor apps for IAD (us-east-1), PDX (us-west-2), CMH (us-east-2).
+* api-change:``securityagent``: [``botocore``] Adds support for providing a branch override when configured integrated repositories
+
+
 1.43.59
 =======
 
