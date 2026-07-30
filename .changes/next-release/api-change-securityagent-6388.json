@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``securityagent``",
-  "description": "[``botocore``] Adds support for providing a branch override when configured integrated repositories"
-}
