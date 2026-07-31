@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.43.61
+=======
+
+* api-change:``bcm-pricing-calculator``: [``botocore``] Removing Smithy RPC v2 CBOR support that was added in previous SDK release.
+* api-change:``bcm-recommended-actions``: [``botocore``] Removing Smithy RPC v2 CBOR support that was added in previous SDK release.
+
+
 1.43.60
 =======
 
