@@ -2,6 +2,26 @@
 CHANGELOG
 =========
 
+1.43.62
+=======
+
+* api-change:``amp``: [``botocore``] Amazon Managed Service for Prometheus adds support for an Amazon OpenSearch Service exporter for managed collectors.
+* api-change:``bedrock-runtime``: [``botocore``] Added support for mid-conversation tool changes in the Amazon Bedrock Converse and ConverseStream APIs
+* api-change:``billing``: [``botocore``] Adds GetEnterpriseSupportChargeSummary, GetEnterpriseSupportContractDetails, and ListEnterpriseSupportLinkedAccountCharges. These APIs provide first-time programmatic access to billing data for Enterprise Support usage previously only available upon request through AWS Concierge or Support.
+* api-change:``cloudformation``: [``botocore``] Adding enum for sensitive property to DriftIgnoredReason
+* api-change:``connectcampaignsv2``: [``botocore``] Launching feature for abandonment rate pacing control for outbound campaigns.
+* api-change:``datazone``: [``botocore``] Adding support for enhanced Git experience in Sagemaker Unified Studio.
+* api-change:``elementalinference``: [``botocore``] AWS Elemental Inference now supports graphic composition on cropped video outputs, enabling branded graphics and other visual elements to be overlaid as part of the inference workflow.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``logs``: [``botocore``] Amazon CloudWatch Logs now lets you create and update lookup tables directly from CloudWatch Logs query results by passing a queryId, and configure a lookup table as a scheduled query destination so it refreshes automatically with the latest query results on each run.
+* api-change:``marketplace-catalog``: [``botocore``] This release enhances the ListEntities API to support TargetAgreementId, TargetAgreementIntent, and CreatedBySource filters for the Offer entity type.
+* api-change:``network-firewall``: [``botocore``] Doc Updates for Container Attributes
+* api-change:``outposts``: [``botocore``] Adds the "EKS" value to the AWSServiceName enum and marks the Address field as sensitive.
+* api-change:``quicksight``: [``botocore``] Adding TopicV2 management APIs, adding possibility to use Topics in Analysis
+* api-change:``rds``: [``botocore``] Adds StorageOperationStatus and StorageOperationPercentProgress to DescribeDBInstances, letting you monitor RDS storage initialization and optimization progress.
+* api-change:``resiliencehubv2``: [``botocore``] Adding support for new testing capability in AWS Resilience Hub.
+
+
 1.43.61
 =======
 
