@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``bcm-pricing-calculator``",
+    "description": "[``botocore``] Removing Smithy RPC v2 CBOR support that was added in previous SDK release.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bcm-recommended-actions``",
+    "description": "[``botocore``] Removing Smithy RPC v2 CBOR support that was added in previous SDK release.",
+    "type": "api-change"
+  }
+]
