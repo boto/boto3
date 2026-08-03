@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks-auth``",
-  "description": "[``botocore``] Added eksNodeName, instanceId, and zone optional parameters to the AssumeRoleForPodIdentity API."
-}
