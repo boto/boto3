@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``organizations``",
-  "description": "[``botocore``] Improved accuracy of CloudTrail event documentation for AWS Organizations membership operations."
-}
