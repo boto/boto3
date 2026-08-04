@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.43.64
+=======
+
+* api-change:``connect``: [``botocore``] Amazon Connect Customer now supports up to 50 attachments per email, increased from the previous limit of 10. The individual maximum attachment size limit of 20 MB and the total email size limit of 25 MB still hold true.
+* api-change:``dsql``: [``botocore``] UpdateCluster now checks the RemovePeerCluster permission on the specific cluster being removed, not a wildcard and docs now clarify how to set kmsEncryptionKey so the cluster uses the AWS-owned key.
+* api-change:``dynamodb``: [``botocore``] Vector indexes are a type of index in Amazon DynamoDB that enable similarity search on vector embedding stored in your table items. Vector indexes use approximate nearest neighbor search to find items whose vectors are most similar to a query vector that you provide.
+* api-change:``ec2``: [``botocore``] Amazon EC2 now supports Application Status Checks, a new status check that monitors your application's health through configurable HTTP(S) paths and ports, so you can detect and automatically respond to application-level impairments.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``iam``: [``botocore``] Updating endpoint generation logic
+* api-change:``inspector2``: [``botocore``] Adding Azure SBOM export capability.
+* api-change:``organizations``: [``botocore``] Improved accuracy of CloudTrail event documentation for AWS Organizations membership operations.
+* api-change:``partnercentral-selling``: [``botocore``] Partners can now create leads with only 5 required fields and free-text values for all other fields, reducing import friction. Engagement invitations now include enrichment data (propensity scores, lead readiness) directly in the response.
+* api-change:``sso-admin``: [``botocore``] AWS IAM Identity Center now lets you create organization-level instances without enabling multi-account permissions. You can enable multi-account permissions during instance creation or later via console or API, which then provisions the necessary service-linked roles.
+* api-change:``workspaces``: [``botocore``] Added ClientExperiencePolicy to ClientProperties object for ModifyClientProperties and DescribeClientProperties APIs.
+
+
 1.43.63
 =======
 
