@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``acm-pca``",
+  "description": "[``botocore``] Private Certificate Authority service now supports RSASSA-PSS signing algorithm."
+}
