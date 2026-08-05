@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.43.65
+=======
+
+* api-change:``acm-pca``: [``botocore``] Private Certificate Authority service now supports RSASSA-PSS signing algorithm.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adding support for fine-grained access control for AgentCore Memory through managed AgentCore Gateway HTTP Connectors.
+* api-change:``deadline``: [``botocore``] AWS Deadline Cloud now reports persistent volume costs alongside compute and license costs. Customers can view per-fleet storage costs in Usage Explorer by selecting the Usage Type grouping, helping them better understand the costs of their infrastructure.
+* api-change:``ecs``: [``botocore``] New enum values added for Agent Connectivity issues
+* api-change:``glue``: [``botocore``] Added the PutDataCatalogExportConfiguration to export Glue Data Catalog metadata to systems tables stored in S3 Tables.
+
+
 1.43.64
 =======
 
