@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``agent-registry``",
+  "description": "[``botocore``] Agent Registry's Public Preview release"
+}

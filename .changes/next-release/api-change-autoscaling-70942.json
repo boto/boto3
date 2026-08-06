@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``autoscaling``",
+  "description": "[``botocore``] EC2 Auto Scaling now supports being managed by other AWS services via the operator field."
+}

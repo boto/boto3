@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``devicefarm``",
+  "description": "[``botocore``] Adds support for service generated insights across runs, jobs, and tests."
+}
