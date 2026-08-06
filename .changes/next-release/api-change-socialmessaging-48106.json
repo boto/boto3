@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``socialmessaging``",
-  "description": "[``botocore``] Add support for WhatsApp Conversions APIs."
-}

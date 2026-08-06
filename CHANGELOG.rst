@@ -2,6 +2,31 @@
 CHANGELOG
 =========
 
+1.43.66
+=======
+
+* api-change:``agent-registry``: [``botocore``] Agent Registry's Public Preview release
+* api-change:``agent-registry-control``: [``botocore``] Agent Registry's Public Preview release
+* api-change:``autoscaling``: [``botocore``] EC2 Auto Scaling now supports being managed by other AWS services via the operator field.
+* api-change:``backup``: [``botocore``] AWS Backup now lets you create read-only access points for Amazon S3 recovery points, enabling you to access backup data using S3 APIs without initiating a restore.
+* api-change:``bedrock-agentcore``: [``botocore``] Add support for capacity provider sessions in Amazon Bedrock AgentCore. Customers can now delete an active session running on a runtime instance launched through their capacity provider.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Add support for Gateway rate limits and Runtime instances in Amazon Bedrock AgentCore. Customers can now configure rate limits scoped to control request rates, token consumption rates, and active connection rates. Customers can now create capacity providers to launch runtimes on their EC2 instances.
+* api-change:``devicefarm``: [``botocore``] Adds support for service generated insights across runs, jobs, and tests.
+* api-change:``ec2``: [``botocore``] Adds a new optional IncludeLocalZones parameter to the Spot Placement Score API that defaults to false. When set to true, the Spot Placement Score API will consider the relevant Local Zones with Spot capacity when computing the Spot Placement Score.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``gamelift``: [``botocore``] Adds support for C8a, C8i, C9g, M8a, M8i, and M9g EC2 instance type families for managed EC2 and container fleets. Also adds explicit anchors on most string regexes.
+* api-change:``kafka``: [``botocore``] MSK Clusters can now deliver authorizer logs alongside broker logs to the destinations defined by you
+* api-change:``logs``: [``botocore``] This release adds index category support to the CloudWatch Logs DescribeFieldIndexes API. Customers can filter and identify DEFAULT, CUSTOM, AUTO, and INACTIVE field indexes.
+* api-change:``marketplace-agreement``: [``botocore``] GetAgreementTerms now returns a new term variant in AcceptedTerm, netPaymentTerm, with a paymentDuePeriod field (example "P30D").
+* api-change:``marketplace-discovery``: [``botocore``] GetOfferTerms now returns netPaymentTerm in offerTerms, specifying payment due period after invoice date. The paymentDuePeriod field uses ISO 8601 duration format (e.g., "P30D" for net 30 days). This is a backward-compatible addition. See API documentation for full structure and examples.
+* api-change:``mediatailor``: [``botocore``] AWS Elemental MediaTailor now supports concurrent function execution. The new Concurrent Executor function type runs multiple independent child functions in parallel within a single lifecycle hook, reducing pipeline latency to the duration of the slowest call instead of the sum of all calls.
+* api-change:``s3``: [``botocore``] AWS Backup now lets you create read-only access points for Amazon S3 recovery points, enabling you to access backup data using S3 APIs without initiating a restore.
+* api-change:``sagemaker``: [``botocore``] Releases new Model Customization SequenceLength parameter for Training and g7 instance types for Training and Processing.
+* api-change:``securityhub``: [``botocore``] Security Hub is adding a new public API, ListFreeTrialStatusesV2 to describe the free trial statuses of the Security Hub service and its opt-in features.
+* api-change:``socialmessaging``: [``botocore``] Add support for WhatsApp Conversions APIs.
+* bugfix:retries: [``botocore``] Include the resolved max attempts in the ``amz-sdk-request`` header on the initial attempt
+
+
 1.43.65
 =======
 
