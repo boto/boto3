@@ -42,12 +42,32 @@ class BaseTransformationTest(unittest.TestCase):
                     'name': 'SampleOperation',
                     'input': {'shape': 'SampleOperationInputOutput'},
                     'output': {'shape': 'SampleOperationInputOutput'},
-                }
+                },
+                'SampleListOperation': {
+                    'name': 'SampleListOperation',
+                    'input': {'shape': 'SampleOperationListInputOutput'},
+                    'output': {'shape': 'SampleOperationListInputOutput'},
+                },
+                'SampleOperationStructList': {
+                    'name': 'SampleOperationStructListInputOutput',
+                    'input': {'shape': 'SampleOperationStructListInputOutput'},
+                    'output': {'shape': 'SampleOperationStructListInputOutput'},
+                },
             },
             'shapes': {
                 'SampleOperationInputOutput': {
                     'type': 'structure',
                     'members': {},
+                },
+                'SampleOperationListInputOutput': {
+                    'type': 'list',
+                    'member': {'shape': 'SampleOperationInputOutput'},
+                },
+                'SampleOperationStructListInputOutput': {
+                    'type': 'structure',
+                    'members': {
+                        'InputList': {'shape': 'SampleOperationListInputOutput'},
+                    },
                 },
                 'String': {'type': 'string'},
             },
@@ -570,6 +590,33 @@ class TestTransformConditionExpression(BaseTransformationTest):
                 ':c': 'd',
             },
         }
+
+    def test_key_and_attr_condition_expression_nested_inside_list(self):
+        self.operation_model = OperationModel(self.json_model['operations']["SampleOperationStructList"], self.service_model)
+        params = {"InputList":[{
+            'KeyCondition': Key('foo').eq('bar'),
+            'AttrCondition': Attr('biz').eq('baz'),
+            'ExpressionAttributeNames': {'#a': 'b'},
+            'ExpressionAttributeValues': {':c': 'd'},
+        }]}
+        self.injector.inject_condition_expressions(
+            params, self.operation_model
+        )
+        assert params == {"InputList":[{
+            'KeyCondition': '#n1 = :v1',
+            'AttrCondition': '#n0 = :v0',
+            'ExpressionAttributeNames': {
+                '#n0': 'biz',
+                '#n1': 'foo',
+                '#a': 'b'
+            },
+            'ExpressionAttributeValues': {
+                ':v0': 'baz',
+                ':v1': 'bar',
+                ':c': 'd'
+            },
+        }]}
+
 
 
 class TestCopyDynamoDBParams(unittest.TestCase):
