@@ -33,3 +33,4 @@ described in :doc:`quickstart`.
    secrets-manager
    ses-examples
    sqs-examples
+   bedrock
