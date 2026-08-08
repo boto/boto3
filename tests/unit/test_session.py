@@ -272,6 +272,116 @@ class TestSession(BaseTestCase):
             config=None,
         )
 
+    def test_session_with_aws_bearer_token(self):
+        session = Session(aws_bearer_token='test-token')
+        assert session._aws_bearer_token == 'test-token'
+
+    def test_session_with_aws_bearer_token_none(self):
+        session = Session()
+        assert session._aws_bearer_token is None
+
+    def test_create_client_with_aws_bearer_token(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(region_name='us-east-1')
+        session.client(
+            'bedrock-runtime',
+            region_name='us-west-2',
+            aws_bearer_token='test-bearer-token',
+        )
+
+        bc_session.create_client.assert_called_with(
+            'bedrock-runtime',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name='us-west-2',
+            api_version=None,
+            config=None,
+            aws_bearer_token='test-bearer-token',
+        )
+
+    def test_create_client_with_session_level_aws_bearer_token(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(
+            region_name='us-east-1',
+            aws_bearer_token='session-level-token',
+        )
+        session.client('bedrock-runtime', region_name='us-west-2')
+
+        bc_session.create_client.assert_called_with(
+            'bedrock-runtime',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name='us-west-2',
+            api_version=None,
+            config=None,
+            aws_bearer_token='session-level-token',
+        )
+
+    def test_create_client_aws_bearer_token_client_overrides_session(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(
+            region_name='us-east-1',
+            aws_bearer_token='session-level-token',
+        )
+        session.client(
+            'bedrock-runtime',
+            region_name='us-west-2',
+            aws_bearer_token='client-level-token',
+        )
+
+        bc_session.create_client.assert_called_with(
+            'bedrock-runtime',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name='us-west-2',
+            api_version=None,
+            config=None,
+            aws_bearer_token='client-level-token',
+        )
+
+    def test_create_client_aws_bearer_token_empty_string_overrides_session(self):
+        bc_session = self.bc_session_cls.return_value
+
+        session = Session(
+            region_name='us-east-1',
+            aws_bearer_token='session-level-token',
+        )
+        # Empty string is an explicit value and should override session token
+        session.client(
+            'bedrock-runtime',
+            region_name='us-west-2',
+            aws_bearer_token='',
+        )
+
+        bc_session.create_client.assert_called_with(
+            'bedrock-runtime',
+            aws_secret_access_key=None,
+            aws_access_key_id=None,
+            endpoint_url=None,
+            use_ssl=True,
+            aws_session_token=None,
+            verify=None,
+            region_name='us-west-2',
+            api_version=None,
+            config=None,
+            aws_bearer_token='',
+        )
+
     def test_create_client_with_aws_account_id(self):
         bc_session = self.bc_session_cls.return_value
 
@@ -324,6 +434,7 @@ class TestSession(BaseTestCase):
             region_name=None,
             api_version='2014-11-02',
             config=mock.ANY,
+            aws_bearer_token=None,
         )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
@@ -356,6 +467,7 @@ class TestSession(BaseTestCase):
             region_name=None,
             api_version='2014-11-02',
             config=mock.ANY,
+            aws_bearer_token=None,
         )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'Resource'
@@ -388,6 +500,7 @@ class TestSession(BaseTestCase):
             region_name=None,
             api_version='2014-11-02',
             config=mock.ANY,
+            aws_bearer_token=None,
         )
         client_config = session.client.call_args[1]['config']
         assert client_config.user_agent_extra == 'foo'
