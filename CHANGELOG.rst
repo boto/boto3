@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.43.69
+=======
+
+* api-change:``account-access``: [``botocore``] Adds SDK support for AWS IAM account access manager, a feature that enables mapping of IAM roles to the users and groups in AWS IAM Identity Center.
+* api-change:``bedrock-agentcore``: [``botocore``] Adding online eval arn as input for recommendation API
+* api-change:``cleanrooms``: [``botocore``] Adds support for exporting redacted query execution logs in AWS Clean Rooms
+* api-change:``clouddirectory``: [``botocore``] Added an end-of-support notice to Amazon Cloud Directory public CLI reference documentation.
+* api-change:``connect``: [``botocore``] Seven new APIs for managing custom metrics, including create, describe, update, and delete. Using Custom Metrics, customers of Amazon Connect Customer can tailor analytics dashboards to their needs by applying custom thresholds, filters, and calculations to one or more out of the box measurements.
+* api-change:``datazone``: [``botocore``] GetSubscriptionGrant now returns materialized asset scope name for mapping Lake Formation data cell filters or Redshift views to subscription grants.
+* api-change:``eks``: [``botocore``] This feature would give customers the ability to selectively tune certain configurations of Kubernetes control plane components in an Amazon EKS cluster.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``organizations``: [``botocore``] Documentation update for AWS Organizations that clarifies valid input values for the HandshakePartyType parameter in the InviteAccountToOrganization. API ORGANIZATION is valid in responses only. valid input values are ACCOUNT and EMAIL
+* api-change:``textract``: [``botocore``] Amazon A2I entered maintenance mode in July 2026 and now rejects StartHumanLoop requests from accounts that it does not recognize as existing customers. This update adds a corresponding note to the HumanLoopConfig parameter documentation so that the API Reference and SDK docs explain this behavior.
+
+
 1.43.68
 =======
 
