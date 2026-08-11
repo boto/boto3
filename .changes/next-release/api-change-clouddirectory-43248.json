@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``clouddirectory``",
-  "description": "[``botocore``] Added an end-of-support notice to Amazon Cloud Directory public CLI reference documentation."
-}
