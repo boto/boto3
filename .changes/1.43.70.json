@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``dsql``",
+    "description": "[``botocore``] Improved validation of Kinesis stream ARN format to ensure only valid ARN characters are accepted",
+    "type": "api-change"
+  },
+  {
+    "category": "``glue``",
+    "description": "[``botocore``] Documentation updates for materialized views APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``iam``",
+    "description": "[``botocore``] Introduced role manager, an IAM capability that automatically sets up the IAM roles your AWS services need. When you set up a supported service in the console, role manager creates a role for you or reuses an existing one from an AWS-managed template.",
+    "type": "api-change"
+  },
+  {
+    "category": "``mediaconnect``",
+    "description": "[``botocore``] AWS MediaConnect now supports tuning the internal recovery latency between Router Inputs and Outputs to prioritize stream quality versus end-to-end latency.",
+    "type": "api-change"
+  },
+  {
+    "category": "``odb``",
+    "description": "[``botocore``] Adds support for Oracle Exadata on Exascale Infrastructure (ExaDB-XS) resources including storage vaults and VM clusters.",
+    "type": "api-change"
+  },
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] Added APIs for DLP with Microsoft Purview (manage configs with label enforcement across Spaces, Chat, Knowledge Bases), Approval Workflows (CRUD for policies on asset sharing for Agents, Knowledge Bases, Spaces), and Limits Management (limit profiles for index storage and agent hours per user).",
+    "type": "api-change"
+  },
+  {
+    "category": "``wellarchitected``",
+    "description": "[``botocore``] This change releases the Well-Architected Agent, a generative AI service that analyzes a customer's AWS environment and delivers personalized, prioritized recommendations across cost, security, performance, and resilience.",
+    "type": "api-change"
+  }
+]
