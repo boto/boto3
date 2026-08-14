@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``mwaa-serverless``",
+  "description": "[``botocore``] Adds support for Consuming code for MWAA Serverless"
+}

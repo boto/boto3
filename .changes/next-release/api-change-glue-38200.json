@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``glue``",
+  "description": "[``botocore``] Added support for associating glossary terms with iterable form items, such as table columns."
+}
