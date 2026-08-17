@@ -2,6 +2,19 @@
 CHANGELOG
 =========
 
+1.43.73
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds implementations of third-party evaluators, both managed-as-a-service and as templates within custom evaluators.
+* api-change:``bedrock-agent-runtime``: [``botocore``] AgenticRetrieveStream API now supports Amazon Bedrock AgentCore Memory. Use the new memoryConfiguration parameter to continue a session from short-term memory and retrieve from long-term memory.
+* api-change:``connect``: [``botocore``] This release adds new APIs to create, describe, update, delete, and list extraction definitions, enabling customers to manage lifecycle of extraction definition resources. Additionally, this release adds new event sources for Rules related to ACW and new action to Extract Information.
+* api-change:``drs``: [``botocore``] AWS Elastic Disaster Recovery (AWS DRS) now offers Recovery Plans to recover multi-server applications in the right order in one action. Define the launch sequence once, with ordered steps and wait times, and DRS runs it automatically. Validate with non-disruptive drills and monitor in real time.
+* api-change:``ecr``: [``botocore``] Documentation update for the ECR PutReplicationConfiguration API to increase the replication rule limit from 10 to 25
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``geo-maps``: [``botocore``] Amazon Location Service now supports POI density and category filtering on dynamic maps. The GetStyleDescriptor API adds two optional parameters. PoiDensity (Off to VeryDense) controls POI volume, and PoiCategories filters by up to nine categories. Available on HERE and Grab map styles.
+* api-change:``organizations``: [``botocore``] Add new Transfer Responsibility error codes and document related CloudTrail events for accepting and terminating a Transfer Responsibility.
+
+
 1.43.72
 =======
 
