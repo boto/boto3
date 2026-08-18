@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``batch``",
+  "description": "[``botocore``] Update AWS Batch documentation with newer Fargate Supported configurations, notes, and fix broken Docker link re-directs."
+}
