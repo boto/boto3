@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.43.75
+=======
+
+* api-change:``account-access``: [``botocore``] Adds throttling exceptions to operation outputs that were previously inconsistent with other operations.
+* api-change:``batch``: [``botocore``] AWS Batch now supports managing CloudWatch Container Insights on compute environments via CreateComputeEnvironment and UpdateComputeEnvironment.
+* api-change:``bedrock-agentcore``: [``botocore``] AgentCore Memory now supports Flexible Namespaces and Non-Conversational Payloads in CreateEvent API
+* api-change:``bedrock-agentcore-control``: [``botocore``] AgentCore Memory now supports Flexible Namespaces
+* api-change:``eks``: [``botocore``] Adds support for EKS cluster certificate authorities (CA)
+* api-change:``medialive``: [``botocore``] AWS Elemental MediaLive now supports video cropping and output positioning. Use cropRectangle and outputPositionRectangle to position the encoded video within the output frame, with the surrounding area filled with black.
+* api-change:``redshift``: [``botocore``] Amazon Redshift enhanced System Table retention that allows customers to store their system table data directly in S3 Tables in customer's account instead of Redshift Managed Storage
+* api-change:``redshift-serverless``: [``botocore``] Amazon Redshift Enhanced System Table Retention that allows customers to store their system table data directly in S3 Tables in customer's account instead of Redshift Managed Storage
+* api-change:``vpc-lattice``: [``botocore``] Amazon VPC Lattice now supports modification of private DNS options on Service Network VPC Associations
+
+
 1.43.74
 =======
 
