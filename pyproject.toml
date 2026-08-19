@@ -1,3 +1,55 @@
+[project]
+name = "boto3"
+dynamic = ["version"]
+description = "The AWS SDK for Python"
+readme = "README.rst"
+authors = [
+    { name = "Amazon Web Services"}
+]
+requires-python=">= 3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Free Threading :: 2 - Beta",
+]
+dependencies = [
+    "botocore>=1.43.75,<1.44.0",
+    "jmespath>=0.7.1,<2.0.0",
+    "s3transfer>=0.19.0,<0.20.0",
+]
+
+[project.optional-dependencies]
+crt = ["botocore[crt]>=1.21.0,<2.0a0"]
+
+[project.urls]
+Homepage = "https://github.com/boto/boto3"
+Documentation = "https://docs.aws.amazon.com/boto3/latest/"
+Source = "https://github.com/boto/boto3"
+
+[build-system]
+requires = ["setuptools>=84"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["boto3*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "boto3.__version__" }
+
+[tool.setuptools.package-data]
+boto3 = ["data/aws/resources/*.json", "examples/*.rst"]
+
 [tool.pytest.ini_options]
 markers = [
     "slow: marks tests as slow",
