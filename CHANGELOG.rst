@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.43.76
+=======
+
+* api-change:``amplify``: [``botocore``] Increased the maximum allowed length from 255 to 4,096 characters to support longer access tokens.
+* api-change:``arc-region-switch``: [``botocore``] Adds support for Rds switchover read replica for Oracle databases in Region switch plans
+* api-change:``batch``: [``botocore``] AWS Batch now supports a new compute environment type that provides fully managed EC2 capacity with broader compute flexibility than Fargate, including GPU instances, bare metal, and specific instance type selection, without infrastructure management overhead.
+* api-change:``cloudfront``: [``botocore``] Added SigV4a as a supported signing protocol for Origin Access Control (OAC), enabling CloudFront to sign requests to Amazon S3 Multi-Region Access Point (S3-MRAP) origins.
+* api-change:``directconnect``: [``botocore``] This release adds custom route prefix pool allocations for Direct Connect. You can set IPv4 and IPv6 route prefix counts on private and transit virtual interfaces, and view pool size and unallocated counts on connections and LAGs, plus direct connect gateway attachment prefix allocation totals.
+* api-change:``ec2``: [``botocore``] EC2 marks UEFI instance metadata field as sensitive.
+* api-change:``lambda``: [``botocore``] Adds support for full JSON resource-based policies, enabling customers to create, retrieve, update, and delete function resource policies as complete JSON documents.
+* api-change:``pricing-plan-manager``: [``botocore``] Documentation update for the CreateSubscription API to correct the default value of the approval mode parameter. The default value for paid subscriptions is MANUAL, not IMMEDIATE as previously documented. The default value remains IMMEDIATE for FREE tier subscriptions.
+* api-change:``sagemaker``: [``botocore``] Added IAM Identity Center (IdC) support to CreatePartnerApp and UpdatePartnerApp APIs. Added Customer Managed Key (CMK) support to CreateMlflowApp and DescribeMlflowApp.
+* api-change:``sesv2``: [``botocore``] Amazon SES now supports per-message tracking overrides. You can use the new ConfigurationOverrides parameter in SendEmail and SendBulkEmail to enable or disable open and click tracking for individual messages without changing your account-level or configuration set settings.
+
+
 1.43.75
 =======
 
