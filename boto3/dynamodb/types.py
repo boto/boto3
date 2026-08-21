@@ -33,7 +33,8 @@ BOOLEAN = 'BOOL'
 MAP = 'M'
 LIST = 'L'
 
-
+# Retained for backwards compatibility; serializer/deserializer no longer use
+# this context for number handling.
 DYNAMODB_CONTEXT = Context(
     Emin=-128,
     Emax=126,
@@ -211,10 +212,10 @@ class TypeSerializer:
         return value
 
     def _serialize_n(self, value):
-        number = str(DYNAMODB_CONTEXT.create_decimal(value))
-        if number in ['Infinity', 'NaN']:
+        decimal_value = Decimal(value)
+        if decimal_value.is_nan() or decimal_value.is_infinite():
             raise TypeError('Infinity and NaN not supported')
-        return number
+        return str(decimal_value)
 
     def _serialize_s(self, value):
         return value
@@ -286,7 +287,7 @@ class TypeDeserializer:
         return value
 
     def _deserialize_n(self, value):
-        return DYNAMODB_CONTEXT.create_decimal(value)
+        return Decimal(value)
 
     def _deserialize_s(self, value):
         return value
