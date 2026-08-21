@@ -10,6 +10,9 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+from importlib.resources import path
+from unittest.mock import patch
+
 import boto3.session
 from tests import unittest
 
@@ -45,3 +48,9 @@ class TestSession(unittest.TestCase):
         regions = self.session.get_available_regions('s3')
         assert isinstance(regions, list)
         assert regions
+
+    def test_loader_search_path(self):
+        with patch.object(boto3.session, '__file__', None):
+            session = boto3.session.Session()
+            with path(boto3, "data") as data_path:
+                assert str(data_path) in session._loader.search_paths
