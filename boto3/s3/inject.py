@@ -805,6 +805,9 @@ def download_fileobj(
 
     This is a managed transfer which will perform a multipart download in
     multiple threads if necessary.
+    If you plan to read from the file-like object after the download completes
+    and before closing it, call ``Fileobj.flush()`` and ``Fileobj.seek(0)``
+    first.
 
     Usage::
 
@@ -871,6 +874,9 @@ def bucket_download_fileobj(
 
     This is a managed transfer which will perform a multipart download in
     multiple threads if necessary.
+    If you plan to read from the file-like object after the download completes
+    and before closing it, call ``Fileobj.flush()`` and ``Fileobj.seek(0)``
+    first.
 
     Usage::
 
@@ -920,6 +926,9 @@ def object_download_fileobj(
 
     This is a managed transfer which will perform a multipart download in
     multiple threads if necessary.
+    If you plan to read from the file-like object after the download completes
+    and before closing it, call ``Fileobj.flush()`` and ``Fileobj.seek(0)``
+    first.
 
     Usage::
 
