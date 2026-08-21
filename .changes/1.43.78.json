@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``backup``",
+    "description": "[``botocore``] Updating CLI Docs for Backup Audit Manager List Job Summaries APIs.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore``",
+    "description": "[``botocore``] Increase spans count from 1k to 20k",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Update Dataset schema to THIRDPARTYEVALUATIONV1",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] Allows customers to specify an initial warm up period to wait for metrics to arrive when creating metric or log alarms",
+    "type": "api-change"
+  },
+  {
+    "category": "``devicefarm``",
+    "description": "[``botocore``] Added support to CreateRemoveAccessSession for selecting a server version on the mobile WebDriver endpoint.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``kinesis``",
+    "description": "[``botocore``] Generate account endpoint for Kinesis Data Streams requests when the account ID is available",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] DataProtectionConfig field Key Documentation Update",
+    "type": "api-change"
+  }
+]
