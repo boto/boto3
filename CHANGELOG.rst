@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.43.77
+=======
+
+* bugfix:HTTP: [``botocore``] Fixed an issue where reused connections could return a cached response status, dropping response headers.
+
+
 1.43.76
 =======
 
