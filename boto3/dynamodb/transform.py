@@ -258,15 +258,11 @@ class ConditionExpressionTransformation:
             built_expression = self._condition_builder.build_expression(
                 value, is_key_condition=self._is_key_condition
             )
-
-            self._placeholder_names.update(
-                built_expression.attribute_name_placeholders
-            )
-            self._placeholder_values.update(
-                built_expression.attribute_value_placeholders
-            )
-
-            return built_expression.condition_expression
+            return {
+                "PARAM_NAME_PLACEHOLDER": built_expression.condition_expression,
+                "ExpressionAttributeNames": built_expression.attribute_name_placeholders,
+                "ExpressionAttributeValues": built_expression.attribute_value_placeholders
+            }
         # Use the user provided value if it is not a ConditonBase object.
         return value
 
@@ -302,12 +298,24 @@ class ParameterTransformer:
     ):
         if not isinstance(params, collections_abc.Mapping):
             return
-        for param in params:
+        for param in copy.deepcopy(params):
             if param in model.members:
                 member_model = model.members[param]
                 member_shape = member_model.name
                 if member_shape == target_shape:
-                    params[param] = transformation(params[param])
+                    new_value = transformation(params[param])
+                    if isinstance(new_value, dict):
+                        if "PARAM_NAME_PLACEHOLDER" in new_value:
+                            new_value[param] = new_value.pop("PARAM_NAME_PLACEHOLDER")
+                            for key, value in new_value.items():
+                                if isinstance(value, dict) and key in params and isinstance(params[key], dict):
+                                    params[key].update(value)
+                                else:
+                                    params[key] = value
+                        else:
+                            params[param] = new_value
+                    else:
+                        params[param] = new_value
                 else:
                     self._transform_parameters(
                         member_model,
