@@ -1,0 +1,52 @@
+[
+  {
+    "category": "``batch``",
+    "description": "[``botocore``] Doc Update, Add note that UpdatePolicy applies only to EC2 managed compute environments",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock``",
+    "description": "[``botocore``] Adds support for specifying an inference profile ID or ARN, or an application inference profile ARN as the target model in CreateAdvancedPromptOptimizationJob.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] This release adds the ExtractedInformation segment to the ListRealtimeContactAnalysisSegmentsV2 API, enabling customers to retrieve information extracted from real-time contact analysis.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect-contact-lens``",
+    "description": "[``botocore``] This release adds the ExtractedInformation segment to the ListRealtimeContactAnalysisSegments API, enabling customers to retrieve information extracted from real-time contact analysis.",
+    "type": "api-change"
+  },
+  {
+    "category": "``dsql``",
+    "description": "[``botocore``] Corrected the validation pattern on the ServiceName response field in the GetVpcEndpointServiceName API to match the values Amazon Aurora DSQL actually returns.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elementalinference``",
+    "description": "[``botocore``] Added support for the GetFixture API, enabling customers to retrieve the details of a fixture from its fixture ID, and added the access role ARN to the CreateFeed, GetFeed, and UpdateFeed responses.",
+    "type": "api-change"
+  },
+  {
+    "category": "``kafka``",
+    "description": "[``botocore``] Amazon MSK Replicator now supports OAuth authentication when connecting to external Apache Kafka clusters, enabling customers to replicate data from clusters that require OAuth for client authentication. This new capability is supported in all AWS Regions where MSK Express brokers are available.",
+    "type": "api-change"
+  },
+  {
+    "category": "``launch-wizard``",
+    "description": "[``botocore``] Added accountConstraints and patternType to GetWorkload, ListWorkloads, GetWorkloadDeploymentPattern and ListWorkloadDeploymentPatterns for Launch Wizard",
+    "type": "api-change"
+  },
+  {
+    "category": "``securityagent``",
+    "description": "[``botocore``] Adding private and self-signed certificate configuration support for penetration tests",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-influxdb``",
+    "description": "[``botocore``] Service-managed parameter groups now only apply optimized defaults to DB Clusters automatically. New field effectiveDbParameterGroupIdentifier surfaces the parameter group actually applied.",
+    "type": "api-change"
+  }
+]
