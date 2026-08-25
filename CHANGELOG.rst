@@ -2,6 +2,20 @@
 CHANGELOG
 =========
 
+1.43.80
+=======
+
+* api-change:``autoscaling``: [``botocore``] Adds support for Distribution Segments in mixed instances policies, providing ordered prioritization across On-Demand Capacity Reservations, Capacity Blocks, interruptible Capacity Reservations, and On-Demand capacity.
+* api-change:``devops-agent``: [``botocore``] Adds the UpdateApprovalAction API for resolving agent action approvals in AWS DevOps Agent agent spaces.
+* api-change:``ec2``: [``botocore``] Fleet feature to support Capacity Reservation Resource Groups with Amazon EC2 Capacity Blocks and interruptible Capacity Reservations
+* api-change:``eks``: [``botocore``] This feature would give customers the ability to tune TerminatedPodGcThreshold configuration in an Amazon EKS cluster.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``evs``: [``botocore``] EVS now supports i7i.metal-48xl EC2 bare metal instance type, delivering high random IOPS performance with real-time latency, ideal for IO intensive and latency-sensitive workloads such as transactional databases, real-time analytics, and AI ML pre-processing.
+* api-change:``iam-toolbox``: [``botocore``] AWS Identity and Access Management (IAM) announces access troubleshooter, helping you debug access denied errors faster. Supported error messages now include an identifier you can use to retrieve detailed evaluations of the policies considered and their results. Preview in US East (N. Virginia).
+* api-change:``iot``: [``botocore``] As part of this release, we are extending capability of AWS IoT Rules Engine to support IoT InfluxDB Action. The IoT InfluxDB action lets customers send messages from IoT sensors and applications to InfluxDB.
+* api-change:``meteringmarketplace``: [``botocore``] Updated documentation to clarify duplicate-billing prevention and BatchMeterUsage retry guidance
+
+
 1.43.79
 =======
 
