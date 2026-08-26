@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.43.81
+=======
+
+* api-change:``devops-agent``: [``botocore``] AWS DevOps Agent now supports trigger filter groups for Release Readiness Review, letting you control when the capability auto-triggers based on webhook events and target branches.
+* api-change:``ec2``: [``botocore``] Adds deleting state to possible VPC States.
+* api-change:``license-manager-user-subscriptions``: [``botocore``] Released support for License Expiry field in ListProductSubscriptions API
+* api-change:``network-firewall``: [``botocore``] Adding new status enum for Firewalls.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker AI now supports ml.g7 instances for model optimization. You can now run model optimization jobs on ml.g7 instances, in supported AWS Regions.
+
+
 1.43.80
 =======
 
