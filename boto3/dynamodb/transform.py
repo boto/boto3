@@ -170,6 +170,26 @@ class TransformationInjector:
         values that are generated when transforming the condition expressions.
         """
         self._condition_builder.reset()
+        # Start placeholder numbering after any placeholders the caller
+        # already provided, so generated ones don't overwrite them (#4831).
+        expr_attr_names_input = 'ExpressionAttributeNames'
+        expr_attr_values_input = 'ExpressionAttributeValues'
+        if expr_attr_names_input in params:
+            used = [
+                int(name[2:])
+                for name in params[expr_attr_names_input]
+                if name.startswith("#n")
+            ]
+            if used:
+                self._condition_builder._name_count = max(used) + 1
+        if expr_attr_values_input in params:
+            used = [
+                int(value[2:])
+                for value in params[expr_attr_values_input]
+                if value.startswith(":v")
+            ]
+            if used:
+                self._condition_builder._value_count = max(used) + 1
         generated_names = {}
         generated_values = {}
 
