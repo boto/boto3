@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.43.83
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] Adds an optional syncSchedule field to CreateDataSource and UpdateDataSource for Managed Knowledge Bases data source connectors, so a data source can sync automatically on a daily, weekly, or monthly schedule.
+* api-change:``bedrock-agentcore``: [``botocore``] AgentCore Memory now supports direct ingestion into long-term memory via IngestData API
+* api-change:``cognito-idp``: [``botocore``] Adds two new operations - GetClientToken which allows M2M auth through the SDK, and DescribeTermsByClient to find which Terms are associated with a user-pool client without knowing the Terms resource id.
+* api-change:``ecs``: [``botocore``] Amazon Elastic Container Service - This release adds support for early success criteria on ECS rolling deployments, letting deployment complete once a configurable percentage of tasks are healthy, with configurable BLOCKING (required) or DEFERRED (asynchronous) cleanup of previous service revisions.
+* api-change:``healthlake``: [``botocore``] New HealthLake API, RestoreFHIRDatastore, providing the capability to restore active datastores to a point in time within the last 30 days or recover a deleted datastore from the delete snapshot.
+* api-change:``partnercentral-selling``: [``botocore``] Releasing PARC, new APN Program that lets sellers add solftware revenue details to aws opportunity summary
+
+
 1.43.82
 =======
 
