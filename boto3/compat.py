@@ -13,7 +13,6 @@
 import sys
 import os
 import errno
-import socket
 import warnings
 
 from boto3.exceptions import PythonDeprecationWarning
@@ -28,7 +27,6 @@ SOCKET_ERROR = ConnectionError
 
 _APPEND_MODE_CHAR = 'a'
 
-import collections.abc as collections_abc
 
 
 TRANSFER_CONFIG_SUPPORTS_CRT = hasattr(TransferConfig, 'UNSET_DEFAULT')
