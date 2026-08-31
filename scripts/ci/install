@@ -39,7 +39,7 @@ if __name__ == "__main__":
         run("python scripts/ci/install-dev-deps")
         if os.path.isdir("dist") and os.listdir("dist"):
             shutil.rmtree("dist")
-        run("python setup.py bdist_wheel")
+        run("python -m pip wheel --no-deps --wheel-dir dist .")
         wheel_dist = os.listdir("dist")[0]
         package = os.path.join('dist', wheel_dist)
         if args.extras:
