@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.43.85
+=======
+
+* api-change:``agent-registry``: [``botocore``] Release HTTP and AGUI descriptors to the dataplane model
+
+
 1.43.84
 =======
 
