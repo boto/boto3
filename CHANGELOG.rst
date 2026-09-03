@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.43.88
+=======
+
+* api-change:``bedrock-agentcore``: [``botocore``] Adds log group name prefix trace source selection, custom or source log group result destinations, and metrics namespace customization
+* api-change:``bedrock-agentcore-control``: [``botocore``] AgentCore Identity adds Consent Portal APIs to manage portals that let end users grant OAuth authorization for agents to access resources. AgentCore Evaluation adds trace source selection by log group prefix, custom or source log group result destinations, and metrics namespace customization.
+* api-change:``connect``: [``botocore``] This release enables TagOnCreate for Rule resource on CreateRule API. It also introduces a new field called PreEvaluationFilters to Rule resource, thereby impacting all Create, Update, Describe and Search APIs for Rules
+* api-change:``drs``: [``botocore``] AWS Elastic Disaster Recovery now includes source server architecture in SourceProperties to identify x86 and ARM64 systems.
+* api-change:``ecs``: [``botocore``] Adds a critical parameter to the Amazon ECS managed daemon APIs that controls whether a daemon task failure drains the container instance. Non-critical daemon failures no longer drain the instance or block instance registration.
+* api-change:``eks``: [``botocore``] Deprecate EncryptionConfig resources field. Amazon EKS encrypts all Kubernetes API data with envelope encryption by default for clusters running Kubernetes version 1.28 or higher, so this field no longer affects which resources are encrypted.
+* api-change:``elbv2``: [``botocore``] This release adds support for sending TCP resets for Gateway Load Balancer when a flow's idle timeout expires, or when a target becomes unhealthy or is deregistered. This adds updates the CLI documentation.
+* api-change:``evs``: [``botocore``] Amazon EVS now allows users to set, update, and retrieve values for parameters that apply across all EVS Environments in their account at a regional level, such as the VCF License portability core count.
+* api-change:``guardduty``: [``botocore``] Adding support for Sequence Activities in GuardDuty Findings
+* api-change:``socialmessaging``: [``botocore``] Adding support for WhatsApp Flows with endpoints.
+* api-change:``stepfunctions``: [``botocore``] Updates Step Functions API documentation around CloudTrail, Execution name reuse and sort order of ListExecutions API
+* api-change:``transcribe``: [``botocore``] Amazon Transcribe now supports specifying up to 29 PII entity types in the ContentRedaction configuration of a StartTranscriptionJob request, allowing all supported entity types to be redacted in a single batch transcription job.
+* api-change:``transfer``: [``botocore``] AWS Transfer Family SFTP Connectors now support specifying an ordered list of AWS Secrets Manager version stages for secret retrieval. This enables seamless credential rotation workflows where external partners may take time to update their systems with new credentials.
+
+
 1.43.87
 =======
 
