@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.43.90
+=======
+
+* api-change:``appflow``: [``botocore``] Amazon AppFlow now supports key pair (RSA private key) authentication for the Snowflake connector. You can provide a privateKey in SnowflakeConnectorProfileCredentials, and password is no longer required. This is a non-breaking, additive change available via the AWS SDK and CLI.
+* api-change:``cloudtrail``: [``botocore``] Adds support for the RecursiveLogging trail setting, which suppresses recursive events generated when CloudTrail delivers logs to a trail's destinations.
+* api-change:``connect``: [``botocore``] Releasing workload types feature. A proper launch announcement or details will follow up.
+* api-change:``ec2``: [``botocore``] Adds the InterfaceTypes field to NetworkCardInfo in the DescribeInstanceTypes response. This field identifies the network interface types supported by each network card.
+* api-change:``mgn``: [``botocore``] This release adds support for configuring the EBS volume initialization rate and delete on termination behavior in launch configuration template
+* api-change:``omics``: [``botocore``] Added support for session policies in AWS HealthOmics Workflows, allowing customers to scope down IAM permissions for individual workflow runs without modifying the service role.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] This feature will allow customers to specify an area-code when requesting a 10DLC number. Why it matters- Customers can now select a number that matches where their business is located.
+* api-change:``s3``: [``botocore``] Adds support for Amazon S3 Object Lock variable retention.  Existing S3 APIs that support S3 Object Lock parameters now support two new parameters EventHold and EventHoldDuration at the object level, and DefaultEventHoldDuration at the bucket level.
+* api-change:``s3control``: [``botocore``] Adds support for Amazon S3 Object Lock variable retention.  Existing S3 APIs that support S3 Object Lock parameters now support two new parameters EventHold and EventHoldDuration at the object level, and DefaultEventHoldDuration at the bucket level.
+* api-change:``sagemaker``: [``botocore``] Add support for InstancePreferences list for multiple instance type input support on SageMaker Training and Processing
+
+
 1.43.89
 =======
 
