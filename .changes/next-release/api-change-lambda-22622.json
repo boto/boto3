@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lambda``",
+  "description": "[``botocore``] Updates documentation for lambda function timeout."
+}
