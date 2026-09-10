@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.43.92
+=======
+
+* api-change:``bedrock-agent``: [``botocore``] TwelveLabs Marengo 3.0 is now an embedding model option in Amazon Bedrock Managed Knowledge Base. Create multimodal embeddings for video, audio, and image content that capture visual scenes, speech, and video cues, not just transcribed text.
+* api-change:``ec2``: [``botocore``] The CreateImage API now supports a BootModeOverride parameter to explicitly set UEFI boot mode on a new AMI, overriding the source instance's inherited boot mode.
+* api-change:``outposts``: [``botocore``] Added fields to identify Outpost generation and rack scaling configuration on Outpost and CatalogItem resources.
+* api-change:``resiliencehubv2``: [``botocore``] This release adds the ListTestRunSourceEvents and ListTestRunDependencies APIs, which return the alarm state changes during a test run and the dependencies the run blocked.
+* api-change:``rtbfabric``: [``botocore``] AWS RTB Fabric now lets you control how traffic is routed to your responder gateway across Availability Zones. Set the new clientRoutingPolicy parameter  to keep traffic within the same Availability Zone or distribute traffic across all Availability Zones.
+* api-change:``sagemaker``: [``botocore``] This release adds the ability for customers to attach customer owned Elastic Network Interfaces (ENIs) to HyperPod cluster nodes.
+
+
 1.43.91
 =======
 
