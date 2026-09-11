@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.43.93
+=======
+
+* api-change:``batch``: [``botocore``] Added new bulk job APIs (CancelJobs, TerminateJobs, TerminateServiceJobs) and new fields on ListJobs and ListServiceJobs responses. This allows customers to cancel or terminate multiple jobs in a single request. ListJobs and ListServiceJobs responses now include isCancelled and isTerminated fields.
+* api-change:``ecs``: [``botocore``] This feature adds support for setting the cpu architecture type that should be used to launch tasks for an Express Gateway Service.
+* api-change:``invoicing``: [``botocore``] Add ListProcurementPortals and ListProcurementPortalSuppliers APIs to retrieve AWS-supported 3rd party procurement portals and their suppliers for e-invoice delivery and purchase order retrieval.
+* api-change:``lightsail``: [``botocore``] Amazon Lightsail now lets you serve website content from a private Lightsail bucket through a Lightsail distribution. This release adds enablePrivateOriginAccess to the CreateDistribution and UpdateDistribution actions, plus new defaultRootObject and customErrorResponses options.
+* api-change:``mediaconvert``: [``botocore``] Adds Dolby Vision metadata to Probe results, including profile, level, and presence of the RPU, base layer, and enhancement layer. Adds video sample and display aspect ratios. Adds the UnprocessableEntityException (HTTP 422) error to Probe for recognized but malformed or corrupt inputs.
+* api-change:``s3``: [``botocore``] Updated S3 Object Lock Default Retention documentation.
+* bugfix:Serialization: [``botocore``] Preserve sub-second precision when serializing ``unixTimestamp`` request parameters. Timestamps with a fractional component are now sent as a fractional value (e.g. ``1704110400.123456``) instead of being truncated to whole seconds (fixes `#3255 <https://github.com/boto/botocore/issues/3255>`__). Whole-second timestamps are unchanged. The previous behavior can be restored by setting ``timestamp_precision`` to ``'legacy'`` in a ``creating-serializer`` event handler.
+
+
 1.43.92
 =======
 
