@@ -571,6 +571,38 @@ class TestTransformConditionExpression(BaseTransformationTest):
             },
         }
 
+    def test_key_and_attr_conditon_expression_colliding_placeholders(self):
+        # When the caller supplies placeholders that share the generated
+        # naming scheme (#n<k> / :v<k>), generated placeholders must
+        # start counting above the highest existing index so they do not
+        # silently overwrite the caller's values via dict.update().
+        # See boto3 issue #4831.
+        params = {
+            'KeyCondition': Key('foo').eq('bar'),
+            'AttrCondition': Attr('biz').eq('baz'),
+            'ExpressionAttributeNames': {'#n0': 'user_attr', '#other': 'x'},
+            'ExpressionAttributeValues': {':v0': 'user_val', ':custom': 'y'},
+        }
+        self.injector.inject_condition_expressions(
+            params, self.operation_model
+        )
+        assert params == {
+            'KeyCondition': '#n2 = :v2',
+            'AttrCondition': '#n1 = :v1',
+            'ExpressionAttributeNames': {
+                '#n1': 'biz',
+                '#n2': 'foo',
+                '#n0': 'user_attr',
+                '#other': 'x',
+            },
+            'ExpressionAttributeValues': {
+                ':v1': 'baz',
+                ':v2': 'bar',
+                ':v0': 'user_val',
+                ':custom': 'y',
+            },
+        }
+
 
 class TestCopyDynamoDBParams(unittest.TestCase):
     def test_copy_dynamodb_params(self):
