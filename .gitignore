@@ -34,3 +34,6 @@ docs/source/.vs
 .doctrees
 
 source/_build
+
+# scratch workspace
+/workspace
