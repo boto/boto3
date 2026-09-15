@@ -126,5 +126,19 @@ class PythonDeprecationWarning(Warning):
     pass
 
 
+class CredentialSecurityWarning(UserWarning):
+    """
+    Emitted when boto3 detects that long-term AWS credentials (access key IDs
+    prefixed with ``AKIA``) are in use.  Long-term credentials do not expire
+    automatically and carry a higher risk than temporary credentials obtained
+    via IAM roles or AWS IAM Identity Center.
+
+    To suppress this warning, set the environment variable
+    ``AWS_SUPPRESS_CREDENTIAL_WARNINGS=1``.
+    """
+
+    pass
+
+
 class InvalidCrtTransferConfigError(Boto3Error):
     pass
