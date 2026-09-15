@@ -28,7 +28,7 @@ def get_version():
 setup(
     name='boto3',
     version=get_version(),
-    description='The AWS SDK for Python',
+    description='The AWS SDK for Python (Boto3)',
     long_description=open('README.rst').read(),
     author='Amazon Web Services',
     url='https://github.com/boto/boto3',
