@@ -203,12 +203,19 @@ def document_load_reload_action(
         example_resource_name = resource_name
     example_prefix = f'{example_resource_name}.{action_name}'
     full_action_name = f"{section.context.get('qualifier', '')}{action_name}"
-    document_model_driven_method(
+    operation_model = service_model.operation_model(
+        load_model.request.operation
+    )
+    ignore_params = get_resource_ignore_params(load_model.request.params)
+
+    document_model_driven_resource_method(
         section=section,
         method_name=full_action_name,
-        operation_model=OperationModel({}, service_model),
+        operation_model=operation_model,
         event_emitter=event_emitter,
         method_description=description,
         example_prefix=example_prefix,
+        exclude_input=ignore_params,
+        resource_action_model=load_model,
         include_signature=include_signature,
     )
