@@ -2,6 +2,18 @@
 CHANGELOG
 =========
 
+1.43.96
+=======
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds support for a new DELETE FAILED status for Bedrock AgentCore Runtimes and Bedrock AgentCore Runtime Endpoints.
+* api-change:``connect``: [``botocore``] Adds support for ContactAnalysis via ListContactReferences.
+* api-change:``customer-profiles``: [``botocore``] This release introduces the SearchRecommendations API, which retrieves recommendations for a profile identified by a search key.
+* api-change:``ec2``: [``botocore``] Releasing new EC2 R9g and R9gd memory-optimized instances powered by AWS Graviton5 processors, with up to 25 percent better compute performance than R8g instances, faster DDR5 memory, and up to 100 Gbps network and 72 Gbps EBS bandwidth. R9gd instances additionally provide local NVMe SSD storage.
+* api-change:``elasticbeanstalk``: [``botocore``] Adds support to create and manage Elastic Beanstalk Cluster Environments.
+* api-change:``marketplace-catalog``: [``botocore``] This release enhances the ListEntities API to support issuerAccountId and SourceAuthorization filter for ResaleAuthorization entity.
+* api-change:``resiliencehubv2``: [``botocore``] Next Gen Resilience Hub now supports dependency insights (LLM-based insights about customer's service dependencies) and organization-level policy sharing (provision to share policy with member accounts for an organization)
+
+
 1.43.95
 =======
 
