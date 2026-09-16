@@ -1,0 +1,37 @@
+[
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Adds support for a new DELETE FAILED status for Bedrock AgentCore Runtimes and Bedrock AgentCore Runtime Endpoints.",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Adds support for ContactAnalysis via ListContactReferences.",
+    "type": "api-change"
+  },
+  {
+    "category": "``customer-profiles``",
+    "description": "[``botocore``] This release introduces the SearchRecommendations API, which retrieves recommendations for a profile identified by a search key.",
+    "type": "api-change"
+  },
+  {
+    "category": "``ec2``",
+    "description": "[``botocore``] Releasing new EC2 R9g and R9gd memory-optimized instances powered by AWS Graviton5 processors, with up to 25 percent better compute performance than R8g instances, faster DDR5 memory, and up to 100 Gbps network and 72 Gbps EBS bandwidth. R9gd instances additionally provide local NVMe SSD storage.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticbeanstalk``",
+    "description": "[``botocore``] Adds support to create and manage Elastic Beanstalk Cluster Environments.",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-catalog``",
+    "description": "[``botocore``] This release enhances the ListEntities API to support issuerAccountId and SourceAuthorization filter for ResaleAuthorization entity.",
+    "type": "api-change"
+  },
+  {
+    "category": "``resiliencehubv2``",
+    "description": "[``botocore``] Next Gen Resilience Hub now supports dependency insights (LLM-based insights about customer's service dependencies) and organization-level policy sharing (provision to share policy with member accounts for an organization)",
+    "type": "api-change"
+  }
+]

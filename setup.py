@@ -14,7 +14,7 @@ VERSION_RE = re.compile(r'''__version__ = ['"]([0-9.]+)['"]''')
 
 
 requires = [
-    'botocore>=1.43.95,<1.44.0',
+    'botocore>=1.43.96,<1.44.0',
     'jmespath>=0.7.1,<2.0.0',
     's3transfer>=0.19.0,<0.20.0',
 ]
@@ -28,7 +28,7 @@ def get_version():
 setup(
     name='boto3',
     version=get_version(),
-    description='The AWS SDK for Python',
+    description='The AWS SDK for Python (Boto3)',
     long_description=open('README.rst').read(),
     author='Amazon Web Services',
     url='https://github.com/boto/boto3',
