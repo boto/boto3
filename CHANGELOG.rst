@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.43.97
+=======
+
+* api-change:``bedrock-agentcore``: [``botocore``] Batch evaluation now supports evaluating specific traces within a session. Each session can specify up to 100 trace IDs to evaluate.
+* api-change:``connect``: [``botocore``] Made the replicaAlias attribute optional in the ReplicateInstance API to support Global routing for Amazon Connect Global Resiliency (ACGR) instances. This change maintains backward compatibility. When onboarding to ACGR without Global routing, you must specify a custom replicaAlias in your API call
+* api-change:``ec2``: [``botocore``] Adding support for "Tunnel" VPC Endpoint
+* api-change:``guardduty``: [``botocore``] This change surfaces AI Protection resources on existing public IAM attack sequences. Customers will now see which model was accessed and whether a guardrail intervened as part of the credential-compromise sequence.
+* api-change:``iotwireless``: [``botocore``] Adds Multi-frame GNSS support to the AWS IoT Core Device Location GetPositionEstimate API. The new GnssMultiFrame measurement type improves location accuracy by combining multiple GNSS signal captures (2, 4, 8, 16, or 32) from the same device to estimate its position.
+* api-change:``notifications``: [``botocore``] Added support for attachments on managed notification events. Added support to access and subscribe sensitive managed notification events.
+* api-change:``sesv2``: [``botocore``] Added support to query the tenant name for BatchGetMetricData and CreateExportJob APIs to filter metrics and messages at the tenant level.
+* api-change:``sns``: [``botocore``] SNS API reference documentation update
+* api-change:``socialmessaging``: [``botocore``] Add support for WhatsApp Calling APIs.
+* api-change:``vpc-lattice``: [``botocore``] Adding support for CIDR Resource Configuration
+* enhancement:Checksums: [``botocore``] Expose the calculated checksum on ``StreamingChecksumBody`` and allow it to be constructed without an expected checksum value.
+
+
 1.43.96
 =======
 
