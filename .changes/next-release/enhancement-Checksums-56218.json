@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Checksums",
+  "description": "[``botocore``] Expose the calculated checksum on ``StreamingChecksumBody`` and allow it to be constructed without an expected checksum value."
+}
