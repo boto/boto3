@@ -6,16 +6,19 @@
 Quickstart
 ==========
 
-This guide details the steps needed to install or update the AWS SDK for Python.
+This guide details the steps needed to install or update the AWS SDK for Python (Boto3).
 
 The SDK is composed of two key Python packages: Botocore (the library providing the low-level
 functionality shared between the Python SDK and the AWS CLI) and Boto3 (the package implementing the
 Python SDK itself).
 
-.. note::
+.. tip::
 
-    Documentation and developers tend to refer to the AWS SDK for Python as "Boto3," and this
-    documentation often does so as well.
+    **Try the new AWS SDK for Python (Version 4)** - Now in Developer Preview, this next-generation
+    Python SDK with native async/await support is available for evaluation. You can use it alongside
+    Boto3. Boto3 remains the recommended SDK for production workloads.
+
+    `Learn more about choosing the right SDK → <https://docs.aws.amazon.com/sdk-for-python/v4/guide/choosing-sdk.html>`__
 
 Installation
 ------------
