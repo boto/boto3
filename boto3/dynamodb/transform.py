@@ -169,7 +169,24 @@ class TransformationInjector:
         and KeyExpression shapes. It also handles any placeholder names and
         values that are generated when transforming the condition expressions.
         """
-        self._condition_builder.reset()
+        expr_attr_names_input = 'ExpressionAttributeNames'
+        expr_attr_values_input = 'ExpressionAttributeValues'
+
+        reserved_names = params.get(expr_attr_names_input)
+        if not isinstance(reserved_names, collections_abc.Mapping):
+            reserved_names = ()
+        reserved_values = params.get(expr_attr_values_input)
+        if not isinstance(reserved_values, collections_abc.Mapping):
+            reserved_values = ()
+
+        try:
+            self._condition_builder.reset(
+                reserved_names=reserved_names,
+                reserved_values=reserved_values,
+            )
+        except TypeError:
+            self._condition_builder.reset()
+
         generated_names = {}
         generated_values = {}
 
