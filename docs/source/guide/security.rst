@@ -125,7 +125,7 @@ For information about AWS security processes, see the `AWS: Overview of Security
 Enforcing TLS 1.2
 ------------------
 
-To ensure the AWS SDK for Python uses no TLS version earlier than TLS 1.2, you might need to recompile OpenSSL to enforce this minimum and then recompile Python to use the recompiled OpenSSL.
+To ensure the AWS SDK for Python (Boto3) uses no TLS version earlier than TLS 1.2, you might need to recompile OpenSSL to enforce this minimum and then recompile Python to use the recompiled OpenSSL.
 
 Determining supported protocols
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -234,7 +234,7 @@ Enforcing TLS 1.3
     We recommend testing this change with each service prior to production deployment.
 
 
-The process of ensuring the AWS SDK for Python uses no TLS version earlier than TLS 1.3 is the same as the instructions in the `Enforcing TLS 1.2`_ section with some minor modifications, primarily adding the ``no-tls1_2`` flag to the openssl build configuration.
+The process of ensuring the AWS SDK for Python (Boto3) uses no TLS version earlier than TLS 1.3 is the same as the instructions in the `Enforcing TLS 1.2`_ section with some minor modifications, primarily adding the ``no-tls1_2`` flag to the openssl build configuration.
 
 TLS 1.3 is a prerequisite to enable post-quantum cryptography, which may require additional actions or configurations. To learn more, see `Enabling hybrid post-quantum TLS <https://docs.aws.amazon.com/sdkref/latest/guide/pqtls-details.html>`_.
 

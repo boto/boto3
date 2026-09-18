@@ -13,10 +13,13 @@ You use the AWS SDK for Python (Boto3) to create, configure, and manage AWS serv
 Elastic Compute Cloud (Amazon EC2) and Amazon Simple Storage Service (Amazon S3). The SDK provides
 an object-oriented API as well as low-level access to AWS services.
 
-.. note::
+.. tip::
 
-    Documentation and developers tend to refer to the AWS SDK for Python as "Boto3," and this
-    documentation often does so as well.
+    **Try the new AWS SDK for Python (Version 4)** - Now in Developer Preview, this next-generation
+    Python SDK with native async/await support is available for evaluation. You can use it alongside
+    Boto3. Boto3 remains the recommended SDK for production workloads.
+
+    `Learn more about choosing the right SDK → <https://docs.aws.amazon.com/sdk-for-python/v4/guide/choosing-sdk.html>`__
 
 Quickstart
 ----------
