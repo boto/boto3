@@ -2,6 +2,16 @@
 CHANGELOG
 =========
 
+1.43.99
+=======
+
+* api-change:``bedrock-agentcore``: [``botocore``] Amazon Bedrock AgentCore Harness now supports lifecycle hooks for invocations and tool calls, with Lambda, SNS, and EventBridge targets. This release also adds apiBase for custom OpenAI-compatible endpoints.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Amazon Bedrock AgentCore Harness now supports lifecycle hooks for invocations and tool calls, with Lambda, SNS, and EventBridge targets. This release also adds apiBase for custom OpenAI-compatible endpoints
+* api-change:``billingconductor``: [``botocore``] Launching Auto Billing Transfer Billing Group Creation Preference feature
+* api-change:``docdb``: [``botocore``] Add support for CopyTagsToSnapshot field in CreateDbCluster, ModifyDbCluster, RestoreDbClusterFromSnapshot and RestoreDbClusterToPointInTime for DocumentDB.
+* api-change:``sagemaker``: [``botocore``] Add support for r6i, m8i, c8i, r8i instance types in Training and Processing
+
+
 1.43.98
 =======
 
