@@ -18,7 +18,7 @@ Python SDK itself).
     Python SDK with native async/await support is available for evaluation. You can use it alongside
     Boto3. Boto3 remains the recommended SDK for production workloads.
 
-    `Learn more about choosing the right SDK → <https://docs.aws.amazon.com/sdk-for-python/v4/guide/choosing-sdk.html>`__
+    `Learn more about choosing the right SDK <https://docs.aws.amazon.com/sdk-for-python/v4/guide/choosing-sdk.html>`__
 
 Installation
 ------------
