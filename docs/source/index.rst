@@ -15,7 +15,7 @@ an object-oriented API as well as low-level access to AWS services.
 
 .. tip::
 
-    **Try the new AWS SDK for Python (Version 4)** - Now in Developer Preview, this next-generation
+    **Try the new AWS SDK for Python v4** - Now in Developer Preview, this next-generation
     Python SDK with native async/await support is available for evaluation. You can use it alongside
     Boto3. Boto3 remains the recommended SDK for production workloads.
 
