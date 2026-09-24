@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.43.102
+========
+
+* api-change:``cloudwatch``: [``botocore``] This release adds Create, Get, Update, and DeleteResourceMetricsConfiguration to enable detailed metric collection for an AWS resource, and adds UpdateOTelEnrichment plus include and exclude filters on StartOTelEnrichment so you can choose which metric namespaces CloudWatch enriches.
+* api-change:``datazone``: [``botocore``] Amazon DataZone now supports the TOOLING blueprint category on CreateEnvironmentBlueprint, UpdateEnvironmentBlueprint, GetEnvironmentBlueprint, and ListEnvironmentBlueprints, for custom tooling blueprints. CreateConnection now accepts roleArn in iamProperties.
+* api-change:``elasticache``: [``botocore``] Added tagging support for ElastiCache Global DataStore.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``eventbridgev2``: [``botocore``] Introducing Amazon EventBridge enhanced Custom event bus, a new shareable event bus for organizational-scale event-driven applications feature ordered delivery, deduplication, open event formats, and cross-account bus sharing.
+* api-change:``events``: [``botocore``] Adds a ManagedBy field to the DescribeEventBus and ListEventBuses responses, identifying the AWS service that created an event bus on your behalf.
+* api-change:``iot``: [``botocore``] Fixed ListV2LoggingLevels and DeleteV2LoggingLevel documentation to include all supported target-types
+* api-change:``marketplace-discovery``: [``botocore``] AWS Marketplace Discovery API now supports localized responses and SigV4a request signing. It returns new fulfillment details, including AMI architecture, EBS volume and security group information, SaaS quick-launch status, and SageMaker input and output MIME types.
+* api-change:``redshift-data``: [``botocore``] Updates to the ListDatabases and WorkgroupName validation
+* api-change:``route53resolver``: [``botocore``] Documentation updates for Route 53 Resolver. Clarifies which Outpost Resolver operations apply to first-generation AWS Outposts and that Resolver is managed automatically on second-generation Outposts. Adds Local Network Interface subnet compatibility notes for Resolver endpoints.
+* api-change:``securityagent``: [``botocore``] Added support for Confluence export, enabling customers to publish security findings to Confluence pages.
+
+
 1.43.101
 ========
 

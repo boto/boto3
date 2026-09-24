@@ -1,0 +1,57 @@
+[
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] This release adds Create, Get, Update, and DeleteResourceMetricsConfiguration to enable detailed metric collection for an AWS resource, and adds UpdateOTelEnrichment plus include and exclude filters on StartOTelEnrichment so you can choose which metric namespaces CloudWatch enriches.",
+    "type": "api-change"
+  },
+  {
+    "category": "``datazone``",
+    "description": "[``botocore``] Amazon DataZone now supports the TOOLING blueprint category on CreateEnvironmentBlueprint, UpdateEnvironmentBlueprint, GetEnvironmentBlueprint, and ListEnvironmentBlueprints, for custom tooling blueprints. CreateConnection now accepts roleArn in iamProperties.",
+    "type": "api-change"
+  },
+  {
+    "category": "``elasticache``",
+    "description": "[``botocore``] Added tagging support for ElastiCache Global DataStore.",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``eventbridgev2``",
+    "description": "[``botocore``] Introducing Amazon EventBridge enhanced Custom event bus, a new shareable event bus for organizational-scale event-driven applications feature ordered delivery, deduplication, open event formats, and cross-account bus sharing.",
+    "type": "api-change"
+  },
+  {
+    "category": "``events``",
+    "description": "[``botocore``] Adds a ManagedBy field to the DescribeEventBus and ListEventBuses responses, identifying the AWS service that created an event bus on your behalf.",
+    "type": "api-change"
+  },
+  {
+    "category": "``iot``",
+    "description": "[``botocore``] Fixed ListV2LoggingLevels and DeleteV2LoggingLevel documentation to include all supported target-types",
+    "type": "api-change"
+  },
+  {
+    "category": "``marketplace-discovery``",
+    "description": "[``botocore``] AWS Marketplace Discovery API now supports localized responses and SigV4a request signing. It returns new fulfillment details, including AMI architecture, EBS volume and security group information, SaaS quick-launch status, and SageMaker input and output MIME types.",
+    "type": "api-change"
+  },
+  {
+    "category": "``redshift-data``",
+    "description": "[``botocore``] Updates to the ListDatabases and WorkgroupName validation",
+    "type": "api-change"
+  },
+  {
+    "category": "``route53resolver``",
+    "description": "[``botocore``] Documentation updates for Route 53 Resolver. Clarifies which Outpost Resolver operations apply to first-generation AWS Outposts and that Resolver is managed automatically on second-generation Outposts. Adds Local Network Interface subnet compatibility notes for Resolver endpoints.",
+    "type": "api-change"
+  },
+  {
+    "category": "``securityagent``",
+    "description": "[``botocore``] Added support for Confluence export, enabling customers to publish security findings to Confluence pages.",
+    "type": "api-change"
+  }
+]
