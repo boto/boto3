@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``guardduty``",
-  "description": "[``botocore``] Adding awsServiceName field to GuardDuty Findings"
-}
