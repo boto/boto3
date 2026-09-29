@@ -2,6 +2,27 @@
 CHANGELOG
 =========
 
+1.43.105
+========
+
+* api-change:``appstream``: [``botocore``] Add support for NVIDIA GRID driver version metadata in Workspace Applications image responses through the new ImageSoftwareMetadata field.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Amazon Bedrock Agentic Retrieve now supports the Bedrock Mantle (OpenAI Responses) endpoint via a new MantleFoundationModel configuration with an optional projectId.
+* api-change:``deadline``: [``botocore``] AWS Deadline Cloud now supports Docker software add-ons on service-managed fleets. Adds support for Open Job Description EXPR and Feature Bundle 1 job templates with typed job parameters and job, step, and parameter names up to 512 characters.
+* api-change:``ec2``: [``botocore``] Adds the LaunchStatus field to CapacityReservation in the DescribeCapacityReservations response. This field indicates whether you can currently launch instances into an UltraServer.
+* api-change:``elasticache``: [``botocore``] Amazon ElastiCache Serverless now supports public endpoints for Valkey caches. With the new Connection Type parameter, you can create a serverless cache accessible over the internet without any VPC configuration. Public endpoint caches require IAM authentication.
+* api-change:``elementalinference``: [``botocore``] Adds an extendedAnalysis setting to contextual metadata outputs to control detection of people, environments, brands, and on-screen text, and updates the summaryGeneration documentation.
+* api-change:``glue``: [``botocore``] Add support for Glue system-managed materialized views.
+* api-change:``identitystore``: [``botocore``] Add support for network access controls to restrict Identity Store API and SCIM access to trusted networks, optimistic locking for users and groups via resource revisions, and resource ARNs as identifiers in requests.
+* api-change:``inspector2``: [``botocore``] The ListFindingAggregations API now includes Low, Informational, and Untriaged counts alongside the existing severity counts in SeverityCounts.
+* api-change:``mediatailor``: [``botocore``] AWS Elemental MediaTailor now supports beaconing configuration on playback configurations. In Insights reporting mode, MediaTailor will now gather client side beaconing metrics. Set the reporting mode to Disabled to turn this off.
+* api-change:``opensearch``: [``botocore``] Amazon OpenSearch Service now supports advisory pre-validations for domain config changes. Non-critical checks now surface as warnings you can acknowledge (via the new AcceptedWarnings parameter) and proceed, instead of hard-blocking. Severity is reported in change-progress and dry-run results.
+* api-change:``rds``: [``botocore``] Adds the TargetResourceConfigurations parameter to CreateBlueGreenDeployment, letting you specify a target KMS key for each resource in the green environment.
+* api-change:``sagemaker``: [``botocore``] Adds support for cpu flex type instances on SageMaker Training and Processing. Also contains minor updates to DescribeTrainingPlan to support ARN inputs.
+* api-change:``securityagent``: [``botocore``] Adds support for Azure DevOps and Bitbucket Data Center integration providers.
+* api-change:``sesv2``: [``botocore``] Added Filter support for ListTenants, ListEmailIdentities, and ListConfigurationSets APIs.
+* api-change:``transfer``: [``botocore``] AWS Transfer Family now supports configuring up to three custom ports on public SFTP servers, instead of the single default port 22. You can also set each port's communication mode (server-talk-first or client-talk-first) so legacy and modern SFTP clients connect reliably.
+
+
 1.43.104
 ========
 
