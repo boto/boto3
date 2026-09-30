@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``globalaccelerator``",
-  "description": "[``botocore``] IpSets now include the Network Zone for each Static IP address."
-}
