@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dynamodb``",
+  "description": "[``botocore``] Adds support for filtering exported table data using FilterExpression, ProjectionExpression and KeyConditionExpression with ExportTableToPointInTime."
+}
