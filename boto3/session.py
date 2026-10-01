@@ -50,6 +50,9 @@ class Session:
                          the default profile is used.
     :type aws_account_id: string
     :param aws_account_id: AWS account ID
+    :type aws_bearer_token: string
+    :param aws_bearer_token: Bearer token for authentication with services
+                             that support bearer token auth (e.g. Bedrock).
     """
 
     def __init__(
@@ -61,6 +64,7 @@ class Session:
         botocore_session=None,
         profile_name=None,
         aws_account_id=None,
+        aws_bearer_token=None,
     ):
         if botocore_session is not None:
             self._session = botocore_session
@@ -99,6 +103,9 @@ class Session:
 
         if region_name is not None:
             self._session.set_config_variable('region', region_name)
+
+        # Store the bearer token for per-session bearer token authentication
+        self._aws_bearer_token = aws_bearer_token
 
         self.resource_factory = ResourceFactory(
             self._session.get_component('event_emitter')
@@ -243,6 +250,7 @@ class Session:
         aws_session_token=None,
         config=None,
         aws_account_id=None,
+        aws_bearer_token=None,
     ):
         """
         Create a low-level service client by name.
@@ -314,9 +322,25 @@ class Session:
         :param aws_account_id: The account id to use when creating
             the client.  Same semantics as aws_access_key_id above.
 
+        :type aws_bearer_token: string
+        :param aws_bearer_token: The bearer token to use for
+            authentication with services that support bearer token auth
+            (e.g. Bedrock). If provided, this takes precedence over any
+            bearer token resolved from environment variables and any
+            session-level token. Same semantics as aws_access_key_id
+            above.
+
         :return: Service client instance
 
         """
+        # Determine the effective bearer token to use
+        # Precedence: client parameter > session parameter > environment variable
+        effective_aws_bearer_token = (
+            aws_bearer_token
+            if aws_bearer_token is not None
+            else self._aws_bearer_token
+        )
+
         create_client_kwargs = {
             'region_name': region_name,
             'api_version': api_version,
@@ -328,11 +352,16 @@ class Session:
             'aws_session_token': aws_session_token,
             'config': config,
             'aws_account_id': aws_account_id,
+            'aws_bearer_token': effective_aws_bearer_token,
         }
         if aws_account_id is None:
             # Remove aws_account_id for arbitrary
             # botocore version mismatches in AWS Lambda.
             del create_client_kwargs['aws_account_id']
+        if effective_aws_bearer_token is None:
+            # Remove aws_bearer_token for arbitrary
+            # botocore version mismatches in AWS Lambda.
+            del create_client_kwargs['aws_bearer_token']
 
         return self._session.create_client(
             service_name, **create_client_kwargs
@@ -350,6 +379,7 @@ class Session:
         aws_secret_access_key=None,
         aws_session_token=None,
         config=None,
+        aws_bearer_token=None,
     ):
         """
         Create a resource service client by name.
@@ -419,6 +449,14 @@ class Session:
             <https://docs.aws.amazon.com/botocore/latest/reference/config.html>`_
             for more details.
 
+        :type aws_bearer_token: string
+        :param aws_bearer_token: The bearer token to use for
+            authentication with services that support bearer token auth
+            (e.g. Bedrock). If provided, this takes precedence over any
+            bearer token resolved from environment variables and any
+            session-level token. Same semantics as aws_access_key_id
+            above.
+
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
         try:
@@ -483,6 +521,7 @@ class Session:
             aws_secret_access_key=aws_secret_access_key,
             aws_session_token=aws_session_token,
             config=config,
+            aws_bearer_token=aws_bearer_token,
         )
         service_model = client.meta.service_model
 
