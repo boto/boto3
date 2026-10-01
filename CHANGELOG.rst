@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.43.107
+========
+
+* api-change:``bedrock-agent``: [``botocore``] Adds an optional textReadyAt field to ListIngestionJobs and GetIngestionJob for Managed Knowledge Bases data source sync jobs. The field denotes the timestamp at which all the documents in the scope of a sync job had their text content indexed and are available for retrieval.
+* api-change:``cloudfront``: [``botocore``] Added always-amz-auth as a supported signing behavior for Origin Access Control (OAC), enabling CloudFront to authenticate requests to Lambda-Web origins.
+* api-change:``ec2``: [``botocore``] This release launches the AMI tag sharing feature, which lets AMI owners share tags alongside their AMIs, eliminating the need to build and maintain custom tag replication workflows.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``endusermessaging``: [``botocore``] AWS End User Messaging now supports Brand profiles and Notify code configurations. Brand profiles capture your sender details once to reuse across phone number registrations. Notify code configurations let you define your OTP policy and delivery settings to send passcodes in minutes.
+* api-change:``health``: [``botocore``] Adds DescribeServiceLifecycle operation returning lifecycle information for AWS services, including end-of-support dates, version recommendations, and lifecycle events.
+* api-change:``lambda-web``: [``botocore``] Lambda Web Functions GA launch. Lambda Web Functions enable customers to run web applications and API backends
+* api-change:``quicksight``: [``botocore``] This release adds HierarchyFilter support for Amazon QuickSight analysis and dashboard and 2 legged OAuth for databricks datasources.
+* api-change:``sagemaker``: [``botocore``] Release support for c8a.16xlarge and m8a.16xlarge instance types for SageMaker HyperPod
+* api-change:``securityhub``: [``botocore``] Adds GetRemediationsV2 and ListExposuresByRemediationV2 APIs. This feature allows customers to see their highest priority remediations for their Exposure findings. Remediations target key changes customers can make to resources to drive finding resolution.
+* api-change:``transfer``: [``botocore``] AWS Transfer Family Workflows adds support for the structuredLogDestinations option, enabling customers to specify a custom Amazon CloudWatch Logs log group for managed workflow execution logs.
+
+
 1.43.106
 ========
 
