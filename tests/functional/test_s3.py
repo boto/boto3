@@ -390,8 +390,20 @@ class TestDownloadFileobj(BaseTransferTest):
         self.contents = b'foo'
         self.fileobj = io.BytesIO()
 
+    def stub_download_head(self, content_length):
+        # s3transfer enables checksum mode on the HeadObject so that the
+        # response includes the stored full object checksum.
+        self.stub_head(
+            content_length=content_length,
+            expected_params={
+                'Bucket': self.bucket,
+                'Key': self.key,
+                'ChecksumMode': 'ENABLED',
+            },
+        )
+
     def stub_single_part_download(self):
-        self.stub_head(content_length=len(self.contents))
+        self.stub_download_head(content_length=len(self.contents))
         self.stub_get_object(self.contents)
 
     def stub_get_object(
@@ -454,7 +466,7 @@ class TestDownloadFileobj(BaseTransferTest):
     def stub_multipart_download(
         self, contents, part_size, num_parts, extra_params=None
     ):
-        self.stub_head(content_length=len(contents))
+        self.stub_download_head(content_length=len(contents))
 
         for i in range(num_parts):
             start_byte = i * part_size
