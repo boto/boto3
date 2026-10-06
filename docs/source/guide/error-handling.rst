@@ -200,7 +200,7 @@ Using Amazon Kinesis as an example service, you can use Boto3 to catch the excep
 
 .. note::
 
-    The Boto3 ``standard`` retry mode will catch throttling errors and exceptions, and will back off and retry them for you.
+    The default Boto3 ``standard`` retry mode will catch throttling errors and exceptions, and will back off and retry them for you.
 
 Additionally, you can also access some of the dynamic service-side exceptions from the client’s exception property. Using the previous example, you would need to modify only the ``except`` clause.
 
