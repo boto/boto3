@@ -2,6 +2,12 @@
 CHANGELOG
 =========
 
+1.43.109
+========
+
+* api-change:``lambda-web``: [``botocore``] Removes operations that are not yet generally available from the Lambda Web.
+
+
 1.43.108
 ========
 
