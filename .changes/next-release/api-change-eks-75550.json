@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``eks``",
-  "description": "[``botocore``] Configurations support for EKS ACK Capabilities, including EnableCrossNamespace and DisableServices configuration."
-}

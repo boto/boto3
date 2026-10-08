@@ -2,6 +2,35 @@
 CHANGELOG
 =========
 
+1.43.110
+========
+
+* api-change:``budgets``: [``botocore``] Adds a product attribute dimension to CreateBudget and UpdateBudget, letting customers filter AWS Budgets costs by structured attributes such as Amazon Bedrock model, provider, inference type, and feature.
+* api-change:``ce``: [``botocore``] Adds a product attribute dimension to GetCostAndUsage, GetCostAndUsageWithResources, and GetDimensionValues, letting customers group, filter, and discover Cost Explorer costs by structured attributes such as Amazon Bedrock model, provider, inference type, and feature.
+* api-change:``cloudformation``: [``botocore``] CloudFormation introduces force rollback, a new opt-in capability that lets your stacks complete a rollback even when an individual resource cannot be reverted. Set ForceRollback on ContinueUpdateRollback and CloudFormation records each resource that fails as skipped, completing the rollback.
+* api-change:``codeconnections``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``datazone``: [``botocore``] Adds support for multi-file notebook import. StartNotebookImport now accepts an s3Files source location with an ordered list of Amazon S3 objects, creating one notebook cell per file, plus a type field to create either a DATA or SQL notebook.
+* api-change:``devops-agent``: [``botocore``] Adds release management associations with private network access to AWS DevOps Agent, and a releaseManagementAssociationId field on GitHub and GitLab associations. This helps release management agents (Release-readiness review and Release Testing) access customer resources that are behind a VPC.
+* api-change:``eks``: [``botocore``] Configurations support for EKS ACK Capabilities, including EnableCrossNamespace and DisableServices configuration.
+* api-change:``emr-serverless``: [``botocore``] This release adds support for system profile logs for lakeformation enabled Spark connect sessions .
+* api-change:``fms``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.1. The SDK will prioritize its most performant protocol.
+* api-change:``gamelift``: [``botocore``] Amazon GameLift Servers container fleets now support CPU bursting for game server container groups. The TotalVcpuLimit property of a game server container group definition is now optional. When you omit it, the group has no CPU cap and its containers can burst into unused CPU on the instance.
+* api-change:``glue``: [``botocore``] Introduced GetSystemLogsForJobRun and GetSystemLogsForSession APIs, enabling account admins to retrieve system-space logs for FGAC-enabled Glue jobs and sessions.
+* api-change:``guardduty``: [``botocore``] Added support for GuardDuty RDS Data Activity Monitoring
+* api-change:``health``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.1. The SDK will prioritize its most performant protocol.
+* api-change:``keyspaces``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``lambda``: [``botocore``] AWS Lambda now supports OAuth 2.0 (OAUTHBEARER), IAM, and IAM with OAUTHBEARER authentication for self-managed Apache Kafka event source mappings, including optional OAuth scope, audience, logical cluster, and identity pool parameters. OAuth 2.0 is also available for Confluent Schema Registry.
+* api-change:``marketplace-agreement``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.0. The SDK will prioritize its most performant protocol.
+* api-change:``medialive``: [``botocore``] AWS Elemental MediaLive Workflow Monitor now supports AWS Elemental Inference feeds as a target resource type for CloudWatch alarm templates.
+* api-change:``opensearch``: [``botocore``] This release adds a new EncryptionMode option (DISK or NATIVE) to EncryptionAtRestOptions for the CreateDomain and UpdateDomainConfig operations, enabling selection of engine-native index-level encryption on supported Amazon OpenSearch Service domains.
+* api-change:``pi``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.1. The SDK will prioritize its most performant protocol.
+* api-change:``securityagent``: [``botocore``] Include model field for suggested remediation steps as part of findings
+* api-change:``securityhub``: [``botocore``] Release findings export APIs - StartExportJobV2, GetExportJobV2, ListExportJobsV2, and CancelExportJobV2. This supports exporting findings from AWS Security Hub to Amazon S3 bucket.
+* api-change:``security-ir``: [``botocore``] Adds support for retrieving finding-lifecycle metrics for an AWS Security Incident Response membership.
+* api-change:``sesv2``: [``botocore``] SESV2 DEED - Documentation Update
+* api-change:``translate``: [``botocore``] This release adds Smithy RPC v2 CBOR as an additional protocol alongside the existing AWS JSON 1.1. The SDK will prioritize its most performant protocol.
+
+
 1.43.109
 ========
 
