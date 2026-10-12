@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``observabilityadmin``",
-  "description": "[``botocore``] Adding support for TransactionSearch telemetry rules."
-}
