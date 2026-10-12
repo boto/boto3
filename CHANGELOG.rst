@@ -2,6 +2,28 @@
 CHANGELOG
 =========
 
+1.43.112
+========
+
+* api-change:``bedrock-agentcore``: [``botocore``] AgentCore Memory now supports Long-Term Memory Time-to-Live on Batch APIs.
+* api-change:``bedrock-agentcore-control``: [``botocore``] AgentCore Memory now supports configuring Long-Term Memory Time-to-Live (TTL) on Memory Strategies.
+* api-change:``cloudwatchomni``: [``botocore``] Adds support for updating agentCoreEvaluationRoleArn in UpdateSpace API
+* api-change:``devops-agent``: [``botocore``] Adds support for the includedData field in GetAgentSpace and ListAgentSpaces APIs
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``glue``: [``botocore``] Adds new AWS Glue Data Quality APIs to retrieve and list data quality evaluation results. The new GetDataQualityResultV2, BatchGetDataQualityResultV2, and ListDataQualityResultsV2 operations return data quality results published from any supported data processing engine.
+* api-change:``lambda``: [``botocore``] Doc updates to reposition Lambda Functions as Lambda Event Functions
+* api-change:``lambda-core``: [``botocore``] Lambda Network Connector now supports Lambda Web Functions, letting them reach private VPC resources, and adds versioning, each connector update creates an immutable version that revisions pin to, so customers can roll out and roll back networking changes without affecting running workloads
+* api-change:``lambda-web``: [``botocore``] Lambda Web Functions GA launch. Lambda Web Functions enable customers to run web applications and API backends
+* api-change:``mediaconnect``: [``botocore``] This release adds support for MediaConnect Router high-bitrate tiers. It also adds a configurable audio reference level for NDI flows, and enhanced source metadata that includes color information and transport stream ID.
+* api-change:``observabilityadmin``: [``botocore``] Adding support for TransactionSearch telemetry rules.
+* api-change:``omics``: [``botocore``] AWS HealthOmics now supports private workflow runs using VPC resources shared across accounts via AWS RAM. A new optional vpcOwnerAccountId field in CreateConfiguration's VpcConfig allows customers to specify the account that owns the shared subnets and security groups.
+* api-change:``pcs``: [``botocore``] Adding scheduler version to RegisterComputeNodeGroup API. A compute node uses this value to run the matching scheduler version.
+* api-change:``pinpoint-sms-voice-v2``: [``botocore``] DescribePhoneNumbers and DescribeSenderIds now return an optional PricingTier field that indicates whether a phone number, sender ID, short code, or long code is classified as Domestic or International, enabling customers to identify origination identities eligible for local pricing.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker Training Session is a managed service for training on shared GPU infrastructure. It provides full lifecycle management of training sessions and exposes low-level primitive APIs for operations like forward-backward passes, optimizer steps, and state management.
+* api-change:``sagemakertrainingsessionruntime``: [``botocore``] Amazon SageMaker Training Session Runtime provides APIs for executing operations within active training sessions, including asynchronous training operations, sampling and inference requests, and streaming real-time model responses, enabling programmatic control over the training loop.
+* api-change:``securityagent``: [``botocore``] Adds support for Jira integration provider in AWS Security Agent.
+
+
 1.43.111
 ========
 
