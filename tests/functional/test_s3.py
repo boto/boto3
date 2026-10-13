@@ -31,6 +31,7 @@ class TestS3MethodInjection(unittest.TestCase):
         assert hasattr(client, 'upload_file')
         assert hasattr(client, 'download_file')
         assert hasattr(client, 'copy')
+        assert hasattr(client, 'move')
 
     def test_bucket_resource_has_load_method(self):
         session = boto3.session.Session(region_name='us-west-2')
@@ -42,12 +43,14 @@ class TestS3MethodInjection(unittest.TestCase):
         assert hasattr(bucket, 'upload_file')
         assert hasattr(bucket, 'download_file')
         assert hasattr(bucket, 'copy')
+        assert hasattr(bucket, 'move')
 
     def test_transfer_methods_injected_to_object(self):
         obj = boto3.resource('s3').Object('my_bucket', 'my_key')
         assert hasattr(obj, 'upload_file')
         assert hasattr(obj, 'download_file')
         assert hasattr(obj, 'copy')
+        assert hasattr(obj, 'move')
 
 
 class BaseTransferTest(unittest.TestCase):
@@ -183,6 +186,20 @@ class TestCopy(BaseTransferTest):
             expected_params=expected_params,
         )
 
+    def stub_delete_source_object(self, extra_expected_params=None):
+        delete_response = {'ResponseMetadata': {'HTTPStatusCode': 204}}
+        expected_params = {
+            'Bucket': self.copy_source['Bucket'],
+            'Key': self.copy_source['Key'],
+        }
+        if extra_expected_params:
+            expected_params.update(extra_expected_params)
+        self.stubber.add_response(
+            method='delete_object',
+            service_response=delete_response,
+            expected_params=expected_params,
+        )
+
     def stub_copy_part(self, part_number, copy_range):
         copy_part_response = {
             "CopyPartResult": {"ETag": self.etag},
@@ -226,6 +243,43 @@ class TestCopy(BaseTransferTest):
         with self.stubber:
             response = obj.copy(self.copy_source)
         assert response is None
+
+    def test_client_move(self):
+        self.stub_single_part_copy()
+        self.stub_delete_source_object()
+        with self.stubber:
+            response = self.s3.meta.client.move(
+                self.copy_source, self.bucket, self.key
+            )
+        assert response['ResponseMetadata']['HTTPStatusCode'] == 204
+
+    def test_bucket_move(self):
+        self.stub_single_part_copy()
+        self.stub_delete_source_object()
+        bucket = self.s3.Bucket(self.bucket)
+        with self.stubber:
+            response = bucket.move(self.copy_source, self.key)
+        assert response['ResponseMetadata']['HTTPStatusCode'] == 204
+
+    def test_object_move(self):
+        self.stub_single_part_copy()
+        self.stub_delete_source_object()
+        obj = self.s3.Object(self.bucket, self.key)
+        with self.stubber:
+            response = obj.move(self.copy_source)
+        assert response['ResponseMetadata']['HTTPStatusCode'] == 204
+
+    def test_move_with_source_version(self):
+        self.copy_source['VersionId'] = 'version-id'
+        self.stub_single_part_copy()
+        self.stub_delete_source_object(
+            extra_expected_params={'VersionId': 'version-id'}
+        )
+        with self.stubber:
+            response = self.s3.meta.client.move(
+                self.copy_source, self.bucket, self.key
+            )
+        assert response['ResponseMetadata']['HTTPStatusCode'] == 204
 
     def test_copy_progress(self):
         chunksize = 8 * (1024**2)
