@@ -2,6 +2,27 @@
 CHANGELOG
 =========
 
+1.43.113
+========
+
+* api-change:``agent-registry-control``: [``botocore``] AWS Agent Registry is improving recently launched custom metadata schema feature to make shared attributes easier to manage.
+* api-change:``appintegrations``: [``botocore``] This release adds the Connect JWT authentication type and the AudienceOverride field to AuthConfig, letting A2A server applications authenticate with JWTs issued by Amazon Connect.
+* api-change:``appstream``: [``botocore``] Adds support for administrators to require users to re-authenticate OneDrive and Google Drive storage connectors when a streaming session is reused.
+* api-change:``arc-region-switch``: [``botocore``] Adds support for SSM Execution Block in Region switch plans
+* api-change:``connect``: [``botocore``] New APIs to support aliases and versions for ContactFlow.
+* api-change:``datasync``: [``botocore``] AWS DataSync Enhanced mode now supports FSx for OpenZFS, NFS 4.2, and object metadata controls
+* api-change:``gamelift``: [``botocore``] Adds support for new instance types in the C8a, C8i, C9g, M8a, M8i, and M9g families for managed EC2 and container fleets
+* api-change:``glue``: [``botocore``] Amazon Glue releasing support for adding custom namespace for S3 Tables in Glue zero-ETL integration
+* api-change:``lakeformation``: [``botocore``] Added new LakeFormation APIs and documentation updates for Simple Row-level Security (RLS).
+* api-change:``lambda-web``: [``botocore``] Documentation update to include common use cases.
+* api-change:``omics``: [``botocore``] With Expanded container registry support, you can use container images from registries such as Seqera (Wave), NVIDIA NGC, and Google Artifact Registry with AWS HealthOmics private workflows, without manually migrating images into Amazon ECR or editing your workflow definitions.
+* api-change:``resiliencehubv2``: [``botocore``] Adds support for DevOpsAgent integration where users can specify the agent space ARN at service level and launch investigations directly from Resilience Hub v2.
+* api-change:``route53domains``: [``botocore``] Route 53 Domains now supports premium domains. This release adds consent objects to operations on premium domains and a new GetDomainPrices API. Also, the Flags and PublicKey fields were deprecated from the DnssecKey response.
+* api-change:``sagemaker``: [``botocore``] Adds Amazon Athena, Cleanup, ForEach, and Amazon EMR Serverless step metadata, ForEach iteration context, and the CompletedWithFailures execution status to SageMaker Pipelines.
+* api-change:``securityhub``: [``botocore``] Adds and updates APIs to support criticality. This feature allows customers to create automation rules to assign criticality to resources matching a criteria. With this release, resources and exposure findings will include the criticality.
+* bugfix:Endpoints: [``botocore``] Ignore unrecognized top-level keys (such as serviceId) in endpoint ruleset files instead of failing client creation.
+
+
 1.43.112
 ========
 
