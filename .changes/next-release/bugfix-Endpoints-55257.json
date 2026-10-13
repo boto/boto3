@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Endpoints",
-  "description": "[``botocore``] Ignore unrecognized top-level keys (such as serviceId) in endpoint ruleset files instead of failing client creation."
-}

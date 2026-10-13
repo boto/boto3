@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``glue``",
-  "description": "[``botocore``] Amazon Glue releasing support for adding custom namespace for S3 Tables in Glue zero-ETL integration"
-}
