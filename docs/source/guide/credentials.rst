@@ -183,19 +183,28 @@ support for single sign-on (SSO) credentials.
 
 To begin using the IAM Identity Center credential provider, start by using the AWS CLI (v2) to configure and manage your SSO profiles and login sessions.
 For detailed instructions on the configuration and login process see the `AWS CLI User Guide for SSO <https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html>`_.
-Once completed you will have one or many profiles in the shared configuration file with the following settings:
+Once completed you will have one or many profiles in the shared configuration file with the following settings.
+
+The recommended configuration uses an ``sso-session`` section (supported since botocore 1.29.10).
+The profile references the session by name instead of repeating the portal settings inline, and the SSO token is refreshed automatically after you sign in with ``aws sso login``:
 
 .. code-block:: ini
 
     # In ~/.aws/config
     [profile my-sso-profile]
-    sso_start_url = https://my-sso-portal.awsapps.com/start
-    sso_region = us-east-1
+    sso_session = my-sso
     sso_account_id = 123456789011
     sso_role_name = readOnly
 
+    [sso-session my-sso]
+    sso_start_url = https://my-sso-portal.awsapps.com/start
+    sso_region = us-east-1
+    sso_registration_scopes = sso:account:access
+
+* ``sso_session`` - The name of the ``[sso-session]`` section in the shared configuration file that this profile references.
 * ``sso_start_url`` - The URL that points to the organization's IAM Identity Center user portal.
 * ``sso_region`` - The AWS Region that contains the IAM Identity Center portal host. This is separate from the default AWS CLI Region parameter, and can also be a different Region.
+* ``sso_registration_scopes`` - Optional. The scopes requested during registration, such as ``sso:account:access``, which limit the tokens that can be created during subsequent logins and token refreshes.
 * ``sso_account_id`` - The AWS account ID that contains the IAM role that you want to use with this profile.
 * ``sso_role_name`` - The name of the IAM role that defines the user's permissions when using this profile.
 
@@ -208,6 +217,20 @@ For example, we can create a Session using the ``my-sso-profile`` profile and an
 
     session = boto3.Session(profile_name='my-sso-profile')
     s3_client = session.client('s3')
+
+The older form configures the same provider entirely inline on the profile, without an ``sso-session`` section:
+
+.. code-block:: ini
+
+    # In ~/.aws/config
+    [profile my-inline-sso-profile]
+    sso_start_url = https://my-sso-portal.awsapps.com/start
+    sso_region = us-east-1
+    sso_account_id = 123456789011
+    sso_role_name = readOnly
+
+This inline form is supported for backwards compatibility, but it is the `legacy non-refreshable configuration <https://docs.aws.amazon.com/sdkref/latest/guide/feature-sso-credentials.html#sso-legacy>`_: the session is fixed at eight hours and cannot be refreshed automatically, so the AWS SDKs and Tools reference recommends the ``sso-session`` form above, especially for long-running processes.
+To migrate, move ``sso_start_url``, ``sso_region``, and optionally add ``sso_registration_scopes`` into an ``[sso-session]`` section, replace them on the profile with ``sso_session``, and run ``aws sso login``.
 
 
 Shared credentials file
