@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``guardduty``",
+  "description": "[``botocore``] Releasing support for Custom Detection Rule Runtime Monitoring"
+}

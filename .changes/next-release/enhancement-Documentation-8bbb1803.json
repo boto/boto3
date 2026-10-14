@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Documentation",
+  "description": "[``botocore``] Raise the Request Syntax and Response Syntax line limit in generated reference pages from 1,500 to 2,000 lines, so services such as MediaLive whose syntax sections fall just over the old limit render them again instead of the \"too large to render\" notice."
+}
