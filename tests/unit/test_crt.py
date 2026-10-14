@@ -59,10 +59,13 @@ def mock_serializer_singleton(monkeypatch):
     yield None
 
 
-def create_test_client(service_name='s3', region_name="us-east-1"):
+def create_test_client(
+    service_name='s3', region_name="us-east-1", endpoint_url=None
+):
     return boto3.client(
         service_name,
         region_name=region_name,
+        endpoint_url=endpoint_url,
         aws_access_key_id="access",
         aws_secret_access_key="secret",
         aws_session_token="token",
@@ -71,6 +74,10 @@ def create_test_client(service_name='s3', region_name="us-east-1"):
 
 USW2_S3_CLIENT = create_test_client(region_name="us-west-2")
 USE1_S3_CLIENT = create_test_client(region_name="us-east-1")
+USW2_CUSTOM_ENDPOINT_S3_CLIENT = create_test_client(
+    region_name="us-west-2",
+    endpoint_url="https://s3.custom-endpoint.example.com",
+)
 
 
 class TestCRTTransferManager:
@@ -195,6 +202,46 @@ class TestCRTTransferManager:
         assert isinstance(
             crt_s3_client.cred_provider, BotocoreCRTCredentialsWrapper
         )
+
+    @requires_crt()
+    def test_get_crt_s3_client_refuses_custom_endpoint_url(
+        self,
+        mock_crt_process_lock,
+        mock_crt_client_singleton,
+        mock_serializer_singleton,
+    ):
+        # Regression test: the native CRT S3 client has no way to target
+        # a custom endpoint_url, so it must never be handed to a client
+        # configured with one -- not even as the first/only caller in
+        # the process -- or transfers would be silently misrouted to
+        # the real AWS endpoint instead.
+        config = TransferConfig()
+        crt_s3_client = boto3.crt.get_crt_s3_client(
+            USW2_CUSTOM_ENDPOINT_S3_CLIENT, config
+        )
+        assert crt_s3_client is None
+        assert boto3.crt.BOTOCORE_CRT_SERIALIZER is None
+
+    @requires_crt()
+    def test_create_crt_transfer_manager_w_client_different_endpoint_url(
+        self,
+        mock_crt_process_lock,
+        mock_crt_client_singleton,
+        mock_serializer_singleton,
+    ):
+        """A cached CRT client created for one endpoint_url must not be
+        silently reused for a client configured with a different
+        endpoint_url (e.g. a custom/non-AWS S3-compatible endpoint).
+        """
+        default_tm = boto3.crt.create_crt_transfer_manager(
+            USW2_S3_CLIENT, None
+        )
+        assert isinstance(default_tm, s3transfer.crt.CRTTransferManager)
+
+        custom_endpoint_tm = boto3.crt.create_crt_transfer_manager(
+            USW2_CUSTOM_ENDPOINT_S3_CLIENT, None
+        )
+        assert custom_endpoint_tm is None
 
     @requires_crt()
     def test_get_crt_s3_client_w_wrong_region(

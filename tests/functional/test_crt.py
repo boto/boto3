@@ -54,9 +54,15 @@ class MockOptimizedInstance(ContextDecorator):
         self.is_optimized.stop()
 
 
-def create_mock_client(region_name='us-west-2'):
+def create_mock_client(
+    region_name='us-west-2',
+    endpoint_url='https://s3.us-west-2.amazonaws.com',
+):
     client = mock.Mock()
     client.meta.region_name = region_name
+    client.meta.endpoint_url = endpoint_url
+    client.meta.config.use_dualstack_endpoint = False
+    client.meta.config.use_fips_endpoint = False
     client._get_credentials.return_value = Credentials(
         'access', 'secret', 'token'
     )
