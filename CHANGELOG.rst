@@ -2,6 +2,24 @@
 CHANGELOG
 =========
 
+1.43.114
+========
+
+* api-change:``arc-region-switch``: [``botocore``] Features - Adds support for an optional payload to invoke the Lambda function with as part of the Custom action Lambda execution block
+* api-change:``bedrock-agentcore-control``: [``botocore``] This release supports scoping Amazon Bedrock AgentCore Gateway rate limits by request header or request body field.
+* api-change:``cloudfront``: [``botocore``] This release adds a new "IpAddressType" field to "VPCOriginEndpointConfig", allowing customers to specify whether their VPC origin accepts IPv4-only or dualstack connections.
+* api-change:``dynamodbstreams``: [``botocore``] Add support for a new iterator type (AT TIMESTAMP) for DynamoDB Streams GetShardIterator API that allows reading from a specific point in time from the stream.
+* api-change:``ec2``: [``botocore``] Adds T8i instance sizes to the InstanceType enum. T8i instances are low-cost burstable instances powered by custom sixth generation Intel Xeon 6 processors, available exclusively on AWS, and built on the latest sixth generation AWS Nitro cards
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``guardduty``: [``botocore``] Releasing support for Custom Detection Rule Runtime Monitoring
+* api-change:``imagebuilder``: [``botocore``] This release adds parentInstance to infrastructure configurations, so builds can use an already-running instance from an Amazon EC2 Auto Scaling group. It also adds terminateInstanceOnCompletion, which keeps build and test instances running after image creation ends.
+* api-change:``lambda``: [``botocore``] AWS Lambda now supports an optional X-Ray trace header for chained invocations in durable executions, enabling child invocations to be linked to the initiating span.
+* api-change:``meteringmarketplace``: [``botocore``] Documentation update - added a Get started pointer to the AWS Marketplace AI Metering Agent Skill in the BatchMeterUsage API reference. No API or behavior change.
+* api-change:``organizations``: [``botocore``] With dual-stack enabled, all requests now resolve to the endpoint in the partition's primary Region (for example, organizations.us-east-1.api.aws) and are signed for that Region. Previously, requests from other Regions resolved to a nonexistent endpoint. No API changes.
+* api-change:``transfer``: [``botocore``] AWS Transfer Family now lets you store SFTP server host keys in AWS Secrets Manager in your own AWS account. This gives you greater control over your server identity and helps simplify server migrations and failover.
+* enhancement:Documentation: [``botocore``] Raise the Request Syntax and Response Syntax line limit in generated reference pages from 1,500 to 2,000 lines, so services such as MediaLive whose syntax sections fall just over the old limit render them again instead of the "too large to render" notice.
+
+
 1.43.113
 ========
 
