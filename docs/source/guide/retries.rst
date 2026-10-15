@@ -23,7 +23,7 @@ Available retry modes
 Legacy retry mode
 ~~~~~~~~~~~~~~~~~~
 
-Legacy mode is the default mode used by any Boto3 client you create. As its name implies, ``legacy mode`` uses an older (v1) retry handler that has limited functionality.
+Legacy mode was the default mode for Boto3 clients before standard mode became the default. As its name implies, ``legacy mode`` uses an older (v1) retry handler that has limited functionality. To keep using it, set ``retry_mode = legacy`` in your AWS config file, set the ``AWS_RETRY_MODE=legacy`` environment variable, or pass ``Config(retries={'mode': 'legacy'})`` to your client. See `Configuring a retry mode`_ for more information.
 
 **Legacy mode’s functionality includes:**
 
@@ -54,11 +54,11 @@ Legacy mode is the default mode used by any Boto3 client you create. As its name
 Standard retry mode
 ~~~~~~~~~~~~~~~~~~~~
 
-Standard mode is a retry mode that was introduced with the updated retry handler (v2). This mode is a standardization of retry logic and behavior that is consistent with other AWS SDKs. In addition to this standardization, this mode also extends the functionality of retries over that found in legacy mode.
+Standard mode is the default mode used by any Boto3 client you create. It uses the updated retry handler (v2). This mode is a standardization of retry logic and behavior that is consistent with other AWS SDKs. In addition to this standardization, this mode also extends the functionality of retries over that found in legacy mode.
 
 **Standard mode’s functionality includes:**
 
-* A default value of 3 for maximum attempts (including the initial request). See `Available configuration options`_ for more information on overwriting this value.
+* A default value of 3 for maximum attempts (including the initial request). Amazon DynamoDB and Amazon DynamoDB Streams clients default to 4. See `Available configuration options`_ for more information on overwriting this value.
 * Circuit-breaking functionality to prevent retry attempts during service outages.
 * Retry attempts for an expanded list of errors/exceptions::
 
@@ -85,7 +85,9 @@ Standard mode is a retry mode that was introduced with the updated retry handler
    EC2ThrottledException
 
 * Retry attempts on nondescriptive, transient error codes. Specifically, these HTTP status codes: 500, 502, 503, 504.
-* Any retry attempt will include an exponential backoff by a base factor of 2 for a maximum backoff time of 20 seconds.
+* Any retry attempt will include an exponential backoff by a base factor of 2 for a maximum backoff time of 20 seconds, starting from 50 milliseconds for transient errors (25 milliseconds for Amazon DynamoDB and Amazon DynamoDB Streams) and 1 second for throttling errors.
+* If a response includes an ``x-amz-retry-after`` header, the retry delay is raised to at least the value of that header, up to 5 seconds more than the computed backoff.
+* For long-polling operations (such as Amazon SQS ``ReceiveMessage``), the computed backoff is still applied when circuit breaking stops further retries.
 
 Adaptive retry mode
 ~~~~~~~~~~~~~~~~~~~~
@@ -108,7 +110,7 @@ Available configuration options
 
 In Boto3, users can customize retry configurations:
 
-* ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy (default), standard, and adaptive.
+* ``retry_mode`` - This tells Boto3 which retry mode to use. As described previously, there are three retry modes available: legacy, standard (default), and adaptive.
 * ``max_attempts`` - This provides Boto3's retry handler with a value of maximum attempts. **Important**: The behavior differs depending on how it's configured:
 
   * When set in your AWS config file or using the ``AWS_MAX_ATTEMPTS`` environment variable: ``max_attempts`` includes the initial request (total requests)
@@ -134,7 +136,7 @@ This first way to define your retry configuration is to update your global AWS c
    max_attempts = 10
    retry_mode = standard
 
-Any Boto3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``legacy``, and the default ``max_attempts`` value is 5 (total attempts including initial request).
+Any Boto3 script or code that uses your AWS config file inherits these configurations when using your profile, unless otherwise explicitly overwritten by a ``Config`` object when instantiating your client object at runtime. If no configuration options are set, the default retry mode value is ``standard``, and the default ``max_attempts`` value is 3 (total attempts including initial request), or 4 for Amazon DynamoDB and Amazon DynamoDB Streams.
 
 Defining a retry configuration in a Config object for your Boto3 client
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -155,7 +157,7 @@ As shown in the following example, the ``Config`` object takes a ``retries`` dic
    )
 
 .. note::
-   The AWS configuration file uses ``retry_mode`` and the ``Config`` object uses ``mode``. Although named differently, they both refer to the same retry configuration whose options are legacy (default), standard, and adaptive.
+   The AWS configuration file uses ``retry_mode`` and the ``Config`` object uses ``mode``. Although named differently, they both refer to the same retry configuration whose options are legacy, standard (default), and adaptive.
 
 The following is an example of instantiating a ``Config`` object and passing it into an Amazon EC2 client to use at runtime.
 
@@ -174,7 +176,7 @@ The following is an example of instantiating a ``Config`` object and passing it 
    ec2 = boto3.client('ec2', config=config)
 
 .. note::
-   As mentioned previously, if no configuration options are set, the default mode is ``legacy`` and the default ``total_max_attempts`` is 5 (total attempts including initial request).
+   As mentioned previously, if no configuration options are set, the default mode is ``standard`` and the default ``total_max_attempts`` is 3 (total attempts including initial request), or 4 for Amazon DynamoDB and Amazon DynamoDB Streams.
 
 
 Validating retry attempts
