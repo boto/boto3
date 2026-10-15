@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "dynamodb",
+  "description": "Prevent condition expression placeholders from colliding with caller-supplied ExpressionAttributeNames and ExpressionAttributeValues"
+}
