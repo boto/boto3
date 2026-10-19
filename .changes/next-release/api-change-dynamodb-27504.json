@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``dynamodb``",
+  "description": "[``botocore``] Enable account endpoint generation for existing CN and GovCloud regions"
+}

@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "HTTP",
+  "description": "[``botocore``] Fixes a regression with urllib3 v2 where truncated response bodies read in chunks raised ``ResponseStreamingError`` before botocore could validate ``Content-Length``. These reads now raise ``IncompleteReadError`` again."
+}
