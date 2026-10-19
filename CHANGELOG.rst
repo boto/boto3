@@ -2,6 +2,45 @@
 CHANGELOG
 =========
 
+1.43.115
+========
+
+* api-change:``amplify``: [``botocore``] Documentation update release for AWS service
+* api-change:``bedrock-agent``: [``botocore``] Adds Retrieval Instructions for Amazon Bedrock Knowledge Bases. Create, get, update, delete, list, and version customer-authored instructions that guide how a knowledge base retrieves and answers, with content review before use.
+* api-change:``bedrock-agentcore``: [``botocore``] Adds the Builtin.FailureAnalysis evaluator for batch evaluations. GetBatchEvaluation now returns insightResults that group session failures into insights with root causes and suggested fixes.
+* api-change:``bedrock-agent-runtime``: [``botocore``] Adds support for applying a Retrieval Instruction, optionally by version, to AgenticRetrieveStream requests for Amazon Bedrock Knowledge Bases, and reports the applied instruction and version on the trace.
+* api-change:``cloudwatch``: [``botocore``] This release adds ActionConfiguration to PutMetricAlarm, PutCompositeAlarm and PutLogAlarm. It allows customers to include an alarm's tags in its notifications and alarm state change events
+* api-change:``codecommit``: [``botocore``] Documentation update release for AWS service
+* api-change:``codeconnections``: [``botocore``] Documentation update release for AWS service
+* api-change:``codedeploy``: [``botocore``] Adds support for suspending Amazon EC2 Auto Scaling processes during CodeDeploy EC2 in-place deployments. Use ec2DeploymentOptions to choose which processes are suspended and resumed.
+* api-change:``codepipeline``: [``botocore``] Documentation update release for AWS service
+* api-change:``codestar-notifications``: [``botocore``] Documentation update release for AWS service
+* api-change:``connect``: [``botocore``] Amazon Connect GetAttachedFile API now supports an optional UrlContentDisposition parameter. Set it to INLINE to get a pre-signed URL that displays the file in the browser, so agents can preview email attachments without downloading them. ATTACHMENT (download) remains the default.
+* api-change:``controltower``: [``botocore``] Documentation update release for AWS service
+* api-change:``databrew``: [``botocore``] Documentation update release for AWS service
+* api-change:``datazone``: [``botocore``] Adds SDK and CLI support for the Iceberg REST catalog connection types already available in Amazon SageMaker Unified Studio - ICEBERGRESTCATALOG, SNOWFLAKEICEBERGRESTCATALOG, and DATABRICKSICEBERGRESTCATALOG.
+* api-change:``devops-agent``: [``botocore``] Documentation update release for AWS service
+* api-change:``drs``: [``botocore``] Documentation update release for AWS service
+* api-change:``dynamodb``: [``botocore``] Enable account endpoint generation for existing CN and GovCloud regions
+* api-change:``ecs``: [``botocore``] Adds support for configurable envoy application log levels. Customers can now debug network connectivity issues with their task's sidecar envoys.
+* api-change:``emr-containers``: [``botocore``] Documentation update release for AWS service
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``grafana``: [``botocore``] Documentation update release for AWS service
+* api-change:``guardduty``: [``botocore``] Adding a new Expected Bucket Owner optional field for GuardDuty publishing destination APIs
+* api-change:``iotwireless``: [``botocore``] Documentation update release for AWS service
+* api-change:``logs``: [``botocore``] Amazon CloudWatch Logs now supports filtering DescribeDeliverySources by resourceArns, DescribeDeliveryDestinations by names, and DescribeDeliveries by deliverySourceNames.
+* api-change:``observabilityadmin``: [``botocore``] Adding support for EKS Container Insights Telemetry Rules
+* api-change:``opensearch``: [``botocore``] Amazon OpenSearch Service adds a new TLS security policy to support FIPS policy and post-quantum cryptography
+* api-change:``socialmessaging``: [``botocore``] Adding support for WhatsApp Direct Send.
+* api-change:``timestream-influxdb``: [``botocore``] Adds four new parameters to the InfluxDBv3Enterprise parameter group for Amazon Timestream for InfluxDB. The new parameters are upgradePachaTree, walBufferSize, snapshotSize, and snapshotDuration.
+* api-change:``workspaces``: [``botocore``] Adds optional imageValidationMode enum to ImportCustomWorkspaceImageRequest. This allows customers to opt-in to having prevalidation run in the service account instead of customer account.
+* api-change:``workspaces-instances``: [``botocore``] ModifyVolume is a new public API for WorkSpaces Core Managed Instances. Customers can change the size, type, IOPS, or throughput of an existing managed volume online, with no stop required. Customers track progress by calling EC2 DescribeVolumesModifications directly.
+* api-change:``xray``: [``botocore``] Adds support for encrypting the Transaction Search spans log group with a customer managed AWS KMS key. Pass the key ARN in the new CloudWatchLogsConfiguration.SpansLogGroupKmsKeyId field of UpdateTraceSegmentDestination. X-Ray applies the key when it creates the log group.
+* bugfix:HTTP: [``botocore``] Fixes a regression with urllib3 v2 where truncated response bodies read in chunks raised ``ResponseStreamingError`` before botocore could validate ``Content-Length``. These reads now raise ``IncompleteReadError`` again.
+* bugfix:credentials: [``botocore``] Fixes `#3827 <https://github.com/boto/botocore/issues/3827>`__, a race condition where concurrent calls to ``get_frozen_credentials()`` could return expired credentials while a refresh was in progress.
+* enhancement:SigV4: [``botocore``] Add W3C ``traceparent``, ``tracestate`` and ``baggage`` headers to the list of headers excluded from SigV4 signing.
+
+
 1.43.114
 ========
 

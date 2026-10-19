@@ -1,0 +1,172 @@
+[
+  {
+    "category": "``amplify``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent``",
+    "description": "[``botocore``] Adds Retrieval Instructions for Amazon Bedrock Knowledge Bases. Create, get, update, delete, list, and version customer-authored instructions that guide how a knowledge base retrieves and answers, with content review before use.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore``",
+    "description": "[``botocore``] Adds the Builtin.FailureAnalysis evaluator for batch evaluations. GetBatchEvaluation now returns insightResults that group session failures into insights with root causes and suggested fixes.",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agent-runtime``",
+    "description": "[``botocore``] Adds support for applying a Retrieval Instruction, optionally by version, to AgenticRetrieveStream requests for Amazon Bedrock Knowledge Bases, and reports the applied instruction and version on the trace.",
+    "type": "api-change"
+  },
+  {
+    "category": "``cloudwatch``",
+    "description": "[``botocore``] This release adds ActionConfiguration to PutMetricAlarm, PutCompositeAlarm and PutLogAlarm. It allows customers to include an alarm's tags in its notifications and alarm state change events",
+    "type": "api-change"
+  },
+  {
+    "category": "``codecommit``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``codeconnections``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``codedeploy``",
+    "description": "[``botocore``] Adds support for suspending Amazon EC2 Auto Scaling processes during CodeDeploy EC2 in-place deployments. Use ec2DeploymentOptions to choose which processes are suspended and resumed.",
+    "type": "api-change"
+  },
+  {
+    "category": "``codepipeline``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``codestar-notifications``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``connect``",
+    "description": "[``botocore``] Amazon Connect GetAttachedFile API now supports an optional UrlContentDisposition parameter. Set it to INLINE to get a pre-signed URL that displays the file in the browser, so agents can preview email attachments without downloading them. ATTACHMENT (download) remains the default.",
+    "type": "api-change"
+  },
+  {
+    "category": "``controltower``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``databrew``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``datazone``",
+    "description": "[``botocore``] Adds SDK and CLI support for the Iceberg REST catalog connection types already available in Amazon SageMaker Unified Studio - ICEBERGRESTCATALOG, SNOWFLAKEICEBERGRESTCATALOG, and DATABRICKSICEBERGRESTCATALOG.",
+    "type": "api-change"
+  },
+  {
+    "category": "``devops-agent``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``drs``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``dynamodb``",
+    "description": "[``botocore``] Enable account endpoint generation for existing CN and GovCloud regions",
+    "type": "api-change"
+  },
+  {
+    "category": "``ecs``",
+    "description": "[``botocore``] Adds support for configurable envoy application log levels. Customers can now debug network connectivity issues with their task's sidecar envoys.",
+    "type": "api-change"
+  },
+  {
+    "category": "``emr-containers``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``endpoint-rules``",
+    "description": "[``botocore``] Update endpoint-rules client to latest version",
+    "type": "api-change"
+  },
+  {
+    "category": "``grafana``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``guardduty``",
+    "description": "[``botocore``] Adding a new Expected Bucket Owner optional field for GuardDuty publishing destination APIs",
+    "type": "api-change"
+  },
+  {
+    "category": "``iotwireless``",
+    "description": "[``botocore``] Documentation update release for AWS service",
+    "type": "api-change"
+  },
+  {
+    "category": "``logs``",
+    "description": "[``botocore``] Amazon CloudWatch Logs now supports filtering DescribeDeliverySources by resourceArns, DescribeDeliveryDestinations by names, and DescribeDeliveries by deliverySourceNames.",
+    "type": "api-change"
+  },
+  {
+    "category": "``observabilityadmin``",
+    "description": "[``botocore``] Adding support for EKS Container Insights Telemetry Rules",
+    "type": "api-change"
+  },
+  {
+    "category": "``opensearch``",
+    "description": "[``botocore``] Amazon OpenSearch Service adds a new TLS security policy to support FIPS policy and post-quantum cryptography",
+    "type": "api-change"
+  },
+  {
+    "category": "``socialmessaging``",
+    "description": "[``botocore``] Adding support for WhatsApp Direct Send.",
+    "type": "api-change"
+  },
+  {
+    "category": "``timestream-influxdb``",
+    "description": "[``botocore``] Adds four new parameters to the InfluxDBv3Enterprise parameter group for Amazon Timestream for InfluxDB. The new parameters are upgradePachaTree, walBufferSize, snapshotSize, and snapshotDuration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces``",
+    "description": "[``botocore``] Adds optional imageValidationMode enum to ImportCustomWorkspaceImageRequest. This allows customers to opt-in to having prevalidation run in the service account instead of customer account.",
+    "type": "api-change"
+  },
+  {
+    "category": "``workspaces-instances``",
+    "description": "[``botocore``] ModifyVolume is a new public API for WorkSpaces Core Managed Instances. Customers can change the size, type, IOPS, or throughput of an existing managed volume online, with no stop required. Customers track progress by calling EC2 DescribeVolumesModifications directly.",
+    "type": "api-change"
+  },
+  {
+    "category": "``xray``",
+    "description": "[``botocore``] Adds support for encrypting the Transaction Search spans log group with a customer managed AWS KMS key. Pass the key ARN in the new CloudWatchLogsConfiguration.SpansLogGroupKmsKeyId field of UpdateTraceSegmentDestination. X-Ray applies the key when it creates the log group.",
+    "type": "api-change"
+  },
+  {
+    "category": "HTTP",
+    "description": "[``botocore``] Fixes a regression with urllib3 v2 where truncated response bodies read in chunks raised ``ResponseStreamingError`` before botocore could validate ``Content-Length``. These reads now raise ``IncompleteReadError`` again.",
+    "type": "bugfix"
+  },
+  {
+    "category": "credentials",
+    "description": "[``botocore``] Fixes `#3827 <https://github.com/boto/botocore/issues/3827>`__, a race condition where concurrent calls to ``get_frozen_credentials()`` could return expired credentials while a refresh was in progress.",
+    "type": "bugfix"
+  },
+  {
+    "category": "SigV4",
+    "description": "[``botocore``] Add W3C ``traceparent``, ``tracestate`` and ``baggage`` headers to the list of headers excluded from SigV4 signing.",
+    "type": "enhancement"
+  }
+]
