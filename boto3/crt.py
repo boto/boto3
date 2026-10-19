@@ -23,6 +23,7 @@ import logging
 import threading
 
 import botocore.exceptions
+from botocore.config import Config
 from botocore.session import Session
 from s3transfer.crt import (
     BotocoreCRTCredentialsWrapper,
@@ -55,6 +56,44 @@ _ALLOWED_CRT_TRANSFER_CONFIG_OPTIONS = {
 }
 
 
+def _is_default_s3_endpoint(client, session):
+    """Determine whether ``client`` is using the endpoint boto3 would
+    resolve by default for its region, rather than a custom/overridden
+    one (e.g. a local test server, VPC endpoint, or other S3-compatible
+    service).
+
+    The native CRT S3 client (``create_s3_crt_client``) has no way to
+    target an arbitrary ``endpoint_url`` -- it always resolves the real
+    AWS regional endpoint for the given region. If ``client`` is using a
+    non-default endpoint, CRT cannot honor it and must not be used, or
+    requests will be silently misrouted to real AWS instead of the
+    endpoint the caller configured.
+    """
+    try:
+        comparison_config = Config(
+            region_name=client.meta.region_name,
+            use_dualstack_endpoint=client.meta.config.use_dualstack_endpoint,
+            use_fips_endpoint=client.meta.config.use_fips_endpoint,
+        )
+        default_client = session.create_client(
+            's3',
+            region_name=client.meta.region_name,
+            aws_access_key_id='aws',
+            aws_secret_access_key='aws',
+            config=comparison_config,
+        )
+        return client.meta.endpoint_url == default_client.meta.endpoint_url
+    except botocore.exceptions.BotoCoreError:
+        logger.debug(
+            'Unable to determine whether %s is using a default S3 '
+            'endpoint. Treating it as non-default to avoid silently '
+            'misrouting CRT-backed transfers.',
+            client,
+            exc_info=True,
+        )
+        return False
+
+
 def _create_crt_client(session, config, region_name, cred_provider):
     """Create a CRT S3 Client for file transfer.
 
@@ -69,14 +108,21 @@ def _create_crt_client(session, config, region_name, cred_provider):
     return create_s3_crt_client(**create_crt_client_kwargs)
 
 
-def _create_crt_request_serializer(session, region_name):
+def _create_crt_request_serializer(session, region_name, endpoint_url=None):
     return BotocoreCRTRequestSerializer(
-        session, {'region_name': region_name, 'endpoint_url': None}
+        session,
+        {'region_name': region_name, 'endpoint_url': endpoint_url},
     )
 
 
 def _create_crt_s3_client(
-    session, config, region_name, credentials, lock, **kwargs
+    session,
+    config,
+    region_name,
+    credentials,
+    lock,
+    endpoint_url=None,
+    **kwargs,
 ):
     """Create boto3 wrapper class to manage crt lock reference and S3 client."""
     cred_wrapper = BotocoreCRTCredentialsWrapper(credentials)
@@ -86,6 +132,7 @@ def _create_crt_s3_client(
         lock,
         region_name,
         cred_wrapper,
+        endpoint_url=endpoint_url,
     )
 
 
@@ -98,12 +145,23 @@ def _initialize_crt_transfer_primatives(client, config):
         return None, None
 
     session = Session()
+
+    if not _is_default_s3_endpoint(client, session):
+        # The native CRT S3 client cannot target a custom endpoint_url,
+        # so using it here would silently send requests to the real AWS
+        # endpoint instead of the one the caller configured. Fall back
+        # to the classic (non-CRT) transfer manager instead.
+        return None, None
+
     region_name = client.meta.region_name
+    endpoint_url = client.meta.endpoint_url
     credentials = client._get_credentials()
 
-    serializer = _create_crt_request_serializer(session, region_name)
+    serializer = _create_crt_request_serializer(
+        session, region_name, endpoint_url
+    )
     s3_client = _create_crt_s3_client(
-        session, config, region_name, credentials, lock
+        session, config, region_name, credentials, lock, endpoint_url
     )
     return serializer, s3_client
 
@@ -133,11 +191,19 @@ class CRTS3Client:
     ensure we don't use the CRT client when a successful request cannot be made.
     """
 
-    def __init__(self, crt_client, process_lock, region, cred_provider):
+    def __init__(
+        self,
+        crt_client,
+        process_lock,
+        region,
+        cred_provider,
+        endpoint_url=None,
+    ):
         self.crt_client = crt_client
         self.process_lock = process_lock
         self.region = region
         self.cred_provider = cred_provider
+        self.endpoint_url = endpoint_url
 
 
 def is_crt_compatible_request(client, crt_s3_client):
@@ -156,7 +222,8 @@ def is_crt_compatible_request(client, crt_s3_client):
         boto3_creds.get_frozen_credentials(), crt_s3_client.cred_provider
     )
     is_same_region = client.meta.region_name == crt_s3_client.region
-    return is_same_region and is_same_identity
+    is_same_endpoint = client.meta.endpoint_url == crt_s3_client.endpoint_url
+    return is_same_region and is_same_identity and is_same_endpoint
 
 
 def compare_identity(boto3_creds, crt_s3_creds):
