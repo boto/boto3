@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "Python",
+  "description": "Added support for Python 3.15"
+}
