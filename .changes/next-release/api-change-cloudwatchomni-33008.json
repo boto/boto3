@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudwatchomni``",
-  "description": "[``botocore``] Updating max value for maxResults in SearchPrincipals API"
-}
