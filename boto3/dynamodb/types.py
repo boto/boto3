@@ -41,6 +41,15 @@ DYNAMODB_CONTEXT = Context(
     traps=[Clamped, Overflow, Inexact, Rounded, Underflow],
 )
 
+# Context used to normalize numbers before applying DYNAMODB_CONTEXT.
+# This removes trailing zeros so that a number like
+# '1234567895171680000000000000000000000000' (16 significant digits but
+# 40 characters) is first normalized to '1.23456789517168E+39' before
+# being validated against the 38-digit precision limit.  The wider
+# precision (100) ensures that normalization itself never loses
+# significant digits.
+_NORMALIZE_CONTEXT = Context(Emin=-128, Emax=126, prec=100, traps=[])
+
 
 BINARY_TYPES = (bytearray, bytes)
 
@@ -211,7 +220,11 @@ class TypeSerializer:
         return value
 
     def _serialize_n(self, value):
-        number = str(DYNAMODB_CONTEXT.create_decimal(value))
+        number = str(
+            DYNAMODB_CONTEXT.create_decimal(
+                _NORMALIZE_CONTEXT.normalize(Decimal(value))
+            )
+        )
         if number in ['Infinity', 'NaN']:
             raise TypeError('Infinity and NaN not supported')
         return number
@@ -286,7 +299,9 @@ class TypeDeserializer:
         return value
 
     def _deserialize_n(self, value):
-        return DYNAMODB_CONTEXT.create_decimal(value)
+        return DYNAMODB_CONTEXT.create_decimal(
+            _NORMALIZE_CONTEXT.normalize(Decimal(value))
+        )
 
     def _deserialize_s(self, value):
         return value
