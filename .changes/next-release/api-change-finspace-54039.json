@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``finspace``",
-  "description": "[``botocore``] The finspace and finspace-data clients have been removed following the deprecation of the service."
-}

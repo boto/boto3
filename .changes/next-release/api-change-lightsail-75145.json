@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lightsail``",
-  "description": "[``botocore``] This release adds support for metrics related to system-disk performance."
-}

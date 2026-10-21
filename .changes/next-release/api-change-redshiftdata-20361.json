@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``redshift-data``",
-  "description": "[``botocore``] Add Redshift QueryUUID field to DescribeStatement response"
-}
