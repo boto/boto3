@@ -14,6 +14,21 @@ Boto3 is maintained and published by `Amazon Web Services`_.
 
 Boto (pronounced boh-toh) was named after the fresh water dolphin native to the Amazon river. The name was chosen by the author of the original Boto library, Mitch Garnaat, as a reference to the company.
 
+AWS SDK for Python v4
+------------------------------
+
+AWS also offers the AWS SDK for Python v4, a next-generation SDK currently in Developer Preview. It is rebuilt from the ground up with an async-first, modular architecture designed for high-throughput applications.
+
+Key differences from Boto3:
+
+- **Native async/await** - True concurrency with asyncio, no community wrappers needed
+- **Per-service packages** - Install only what you need (e.g., ``aws-sdk-dynamodb``) for minimal deployment size
+- **HTTP/2 bidirectional streaming** - First-class support for streaming services like Bedrock Runtime and Transcribe Streaming
+
+Boto3 is generally available and recommended for production workloads. The AWS SDK for Python v4 is intended for evaluation and early feedback only, and is not yet production-ready. Both SDKs coexist in the same project without conflicts.
+
+`Learn more about the AWS SDK for Python v4 <https://docs.aws.amazon.com/sdk-for-python/v4/guide/welcome.html>`__
+
 Notices
 -------
 
