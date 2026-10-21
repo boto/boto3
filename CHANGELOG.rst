@@ -2,6 +2,27 @@
 CHANGELOG
 =========
 
+1.43.117
+========
+
+* api-change:``autoscaling``: [``botocore``] EC2 Auto Scaling now supports account settings, letting you manage account-level configuration for Auto Scaling.
+* api-change:``connect``: [``botocore``] Added support for AWS-managed security profiles.
+* api-change:``datazone``: [``botocore``] Added custom designations support with new CRUD APIs. The designation field in project membership and policy grant APIs supports a new enum for custom designations. These APIs also support a new field for custom designation id.
+* api-change:``devops-agent``: [``botocore``] Adds support for Microsoft Teams as a notification service. Associations can now be created and updated with a Microsoft Teams team and channel configuration using the DevOps Agent API and SDKs.
+* api-change:``ec2``: [``botocore``] Adds new response fields to DescribeInstanceStatus and Network Insights analysis results.
+* api-change:``finspace``: [``botocore``] The finspace and finspace-data clients have been removed following the deprecation of the service.
+* api-change:``healthlake``: [``botocore``] Update the UpdateProfileWithAgent API to return a streaming response to provide more frequent updates on what the agent is doing.
+* api-change:``lexv2-models``: [``botocore``] Adds support for Assisted NLU - Dialog Manager mode allowing usage of LLMs as the default NLU system and dialog management
+* api-change:``lightsail``: [``botocore``] This release adds support for metrics related to system-disk performance.
+* api-change:``mediaconvert``: [``botocore``] Adds AV1 CBR rate control and scene change detection. New sliding window peak bitrate setting for all codecs. DASH adaptation set grouping update. Option to disable the AV1 perceptual quality filter. Support for vertical (portrait) AV1 encoding.
+* api-change:``network-firewall``: [``botocore``] Adds support for Network Firewall Resolved IP validation.
+* api-change:``polly``: [``botocore``] Added support for the new voices - Kenneth (en-US), Nate (en-US), Tina (de-DE), Carlos (es-US), Carolina (pt-BR), Leo (pt-BR), Curtis (en-AU), Kiara (en-IN), Arjun (en-IN) and Hyunduk (ko-KR). They are available as a Generative voices only.
+* api-change:``quicksight``: [``botocore``] Adds support for SharePoint and OneDrive two-legged OAuth certificate credentials and Google Workspace service account credentials when creating data sources
+* api-change:``redshift-data``: [``botocore``] Add Redshift QueryUUID field to DescribeStatement response
+* api-change:``stepfunctions``: [``botocore``] Release minor updates to API model
+* api-change:``tnb``: [``botocore``] The tnb client has been removed following the deprecation of the service.
+
+
 1.43.116
 ========
 
