@@ -21,6 +21,7 @@ CHANGELOG
 * api-change:``redshift-data``: [``botocore``] Add Redshift QueryUUID field to DescribeStatement response
 * api-change:``stepfunctions``: [``botocore``] Release minor updates to API model
 * api-change:``tnb``: [``botocore``] The tnb client has been removed following the deprecation of the service.
+* bugfix:TLS: [``botocore``] Removes the ``AAA Certificate Services`` root from botocore's vendored CA bundle in response to the eMudhra/emSign CA incident. Sectigo used this root to cross-sign eMudhra intermediate CAs whose private keys were compromised. The vendored bundle is only used when ``certifi`` isn't installed; ``certifi`` users should upgrade to ``certifi>=2026.10.19``. See `#3838 <https://github.com/boto/botocore/pull/3838>`__.
 
 
 1.43.116
