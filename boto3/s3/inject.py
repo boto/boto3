@@ -655,6 +655,8 @@ def upload_fileobj(
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
         upload.
+
+    :returns: None
     """
     if not hasattr(Fileobj, 'read'):
         raise ValueError('Fileobj must implement read')
@@ -716,6 +718,8 @@ def bucket_upload_fileobj(
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
         upload.
+
+    :returns: None
     """
     return self.meta.client.upload_fileobj(
         Fileobj=Fileobj,
@@ -763,6 +767,8 @@ def object_upload_fileobj(
     :type Config: boto3.s3.transfer.TransferConfig
     :param Config: The transfer configuration to be used when performing the
         upload.
+
+    :returns: None
     """
     return self.meta.client.upload_fileobj(
         Fileobj=Fileobj,
