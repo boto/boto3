@@ -213,7 +213,7 @@ Multithreading or multiprocessing with resources
 
 Resource instances are **not** thread safe and should not be shared
 across threads or processes. These special classes contain additional
-meta data that cannot be shared. It's recommended to create a new
+meta data that cannot be shared. You must create a new
 Resource for each thread or process::
 
     import boto3
