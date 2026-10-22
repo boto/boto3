@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``continuum``",
+  "description": "[``botocore``] Releasing Continuum for Code Vulnerabilities APIs for SDKs"
+}
