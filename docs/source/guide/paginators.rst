@@ -107,7 +107,7 @@ JMESPath expressions that are applied to each page of results through the
     client = boto3.client('s3', region_name='us-west-2')
     paginator = client.get_paginator('list_objects_v2')
     page_iterator = paginator.paginate(Bucket='amzn-s3-demo-bucket')
-    filtered_iterator = page_iterator.search("Contents[?Size > `100`][]")
+    filtered_iterator = page_iterator.search("Contents[?Size > `100`]")
     for key_data in filtered_iterator:
         print(key_data)
 
@@ -119,3 +119,11 @@ results is a list, then each value of the list is yielded individually
 (essentially implementing a flat map). For example, in the above expression,
 each key that has a ``Size`` greater than `100` is yielded by the
 ``filtered_iterator``.
+
+.. note::
+
+    ``Contents`` is a response key specific to the S3 ``list_objects_v2``
+    operation; other operations use different response keys. To iterate over
+    the objects without filtering, use ``page_iterator.search('Contents')``.
+    Since ``search`` yields list elements individually, a trailing ``[]`` is
+    unnecessary in these expressions.
