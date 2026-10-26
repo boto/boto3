@@ -2,6 +2,28 @@
 CHANGELOG
 =========
 
+1.43.119
+========
+
+* api-change:``appstream``: [``botocore``] Add Windows 11 to PlatformType enum
+* api-change:``billing``: [``botocore``] Adds support for managing private pricing contracts and contractual investments including listing and associating contracts, retrieving contractual investments and their summaries, and creating, listing, and canceling contractual investment attestations
+* api-change:``connect``: [``botocore``] Amazon Connect now automatically saves agents' in-progress email drafts preserving the message, recipients, and subject during browser or network interruptions so agents can return to the mail and continue instead of starting over.
+* api-change:``deadline``: [``botocore``] fix the sdk documenation issue only
+* api-change:``ecr``: [``botocore``] Add support for ECR replication backfill
+* api-change:``eks``: [``botocore``] This release adds support for EKS management of Gateway API CRDs (Custom Resource Definitions)
+* api-change:``ivs``: [``botocore``] The release adds failover slate configurations, which show viewers a slate during temporary broadcaster network disruptions to reduce viewer drop-off and refresh storms.
+* api-change:``kms``: [``botocore``] This release adds support for ML-KEM (Module-Lattice-Based Key-Encapsulation Mechanism) keys in AWS KMS. ML-KEM, as specified in NIST FIPS 203, is a post-quantum key encapsulation mechanism that can be used to establish a shared secret between two parties.
+* api-change:``lightsail``: [``botocore``] This release adds Web Application Firewall (WAF) support for Lightsail distribution.
+* api-change:``marketplace-catalog``: [``botocore``] This release adds support for the SubsidiaryAuthorization entity type in the ListEntities operation, including entity-type filters with partial name search, sort options, and a summary returned for each subsidiary authorization.
+* api-change:``mediaconnect``: [``botocore``] This release adds support for managing and sharing endpoint across accounts in AWS Elemental MediaConnect. You can now register endpoints to represent external or service-managed sources and destinations, and share them across AWS accounts.
+* api-change:``medialive``: [``botocore``] AWS Elemental MediaLive now lets you control whether explicit weighted prediction is applied to H.264 outputs. It also introduces Perceptual Filter, a new noise reduction filter designed to improve video quality by increasing VMAF scores, now with Auto, None, and strength options.
+* api-change:``odb``: [``botocore``] Adds support for Exascale storage with Oracle Exadata Database Service on Dedicated Infrastructure
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker HyperPod adds the MultiNodeTrainingValidation deep health check for clusters orchestrated by Amazon EKS. It validates NVIDIA GPU instances by running a short multi-node training workload and flags instances that produce numerical errors or fall behind expected training time.
+* api-change:``signin``: [``botocore``] Adds support for the OAuth 2.0 Token Exchange grant (RFC 8693), enabling applications to exchange identity provider issued JSON Web Tokens (JWTs) for short-lived OAuth access tokens to access supported AWS services without managing separate AWS credentials.
+* api-change:``sso-admin``: [``botocore``] Added support for the RegionScope parameter on ListInstances, allowing you to list IAM Identity Center instances in the current Region or across all Regions.
+* api-change:``taxsettings``: [``botocore``] Add Mexico Additional Info changes
+
+
 1.43.118
 ========
 
