@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``appstream``",
-  "description": "[``botocore``] Add Windows 11 to PlatformType enum"
-}

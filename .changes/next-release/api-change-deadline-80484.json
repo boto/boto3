@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``deadline``",
-  "description": "[``botocore``] fix the sdk documenation issue only"
-}
