@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.43.120
+========
+
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds the ResetTokenVaultKeyMaterial API, which restores a token vault whose customer managed key was deleted by moving it to an AWS owned key. The reset permanently deletes the stored OAuth 2.0 tokens, users must consent again. Adds on-behalf-of token exchange client authentication override option.
+* api-change:``ec2``: [``botocore``] EC2 AMIs can now show vulnerability data and be targeted directly for scanning.
+* api-change:``ecs``: [``botocore``] ECS now supports GPU sharing via NVIDIA Multi-Process Service (MPS) on ECS Managed Instances and ECS EC2, allowing multiple ECS tasks to share a single Nvidia GPU for improved utilization.
+* api-change:``inspector2``: [``botocore``] Adding support for Machine Image scan
+* api-change:``license-manager``: [``botocore``] AWS License Manager now supports delegate grants for read-only visibility into license distributions. CreateGrant accepts a new GrantType (BuyerGrant or DelegateGrant) and a desired status at distribution time.
+* api-change:``lightsail``: [``botocore``] Added the attributeUpdates parameter to the Lightsail StartInstance API, which allows customers to update the attributes of a stopped instance when starting it.
+
+
 1.43.119
 ========
 
