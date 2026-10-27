@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``lightsail``",
+  "description": "[``botocore``] Added the attributeUpdates parameter to the Lightsail StartInstance API, which allows customers to update the attributes of a stopped instance when starting it."
+}
