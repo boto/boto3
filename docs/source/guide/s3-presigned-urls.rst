@@ -325,14 +325,9 @@ To allow only one type, use ``{'Content-Type': 'image/png'}`` or
 Every form field needs a matching condition. The exceptions are 
 ``x-amz-signature``, ``file``, ``policy``, and fields that start with 
 ``x-ignore-``. ``generate_presigned_post`` adds the ``bucket`` and ``key`` 
-conditions for you. If the key ends with ``${filename}``, S3 replaces it 
-with the name of the uploaded file.
-
-.. warning::
-    ``generate_presigned_post`` adds ``bucket`` and ``key`` conditions to 
-    the list you pass as ``Conditions``. If you reuse the same list, each 
-    call adds more conditions to it. After two calls with different keys, no 
-    upload can match the policy. Create a new list for each call.
+conditions to the list you pass, so build a new ``Conditions`` list for each 
+call. If the key ends with ``${filename}``, S3 replaces it with the name of 
+the uploaded file.
 
 S3 requires ``file`` to be the last field in the form. ``requests`` sends 
 ``data`` fields before ``files``, so the ``requests`` example above meets 
