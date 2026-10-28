@@ -252,3 +252,357 @@ The presigned POST URL and fields values can also be used in an HTML page.
         </form>
       </body>
     </html>
+
+Restricting presigned POST uploads with policy conditions
+=========================================================
+
+By default, anyone with a presigned POST can upload a file of any size or 
+type to its key. To limit the upload, pass ``Conditions``. S3 checks the form 
+against each condition and rejects the upload if any condition fails. The 
+following example uses ``content-length-range`` and ``Content-Type`` 
+conditions to accept only images from 1 byte to 10 MiB.
+
+.. code-block:: python
+
+    import logging
+    import boto3
+    from botocore.exceptions import ClientError
+    from botocore.config import Config
+
+    MAX_UPLOAD_BYTES = 10 * 1024 * 1024  # 10 MiB
+
+
+    def create_image_upload_form(
+        bucket_name,
+        user_id,
+        region_name,
+        expiration=300,
+    ):
+        """Generate a presigned S3 POST request to upload an image
+
+        :param bucket_name: string
+        :param user_id: string
+        :param region_name: string
+        :param expiration: Time in seconds for the presigned URL to remain valid
+        :return: Dictionary with the following keys:
+            url: URL to post to
+            fields: Dictionary of form fields and values to submit with the POST
+        :return: None if error.
+        """
+
+        # Generate a presigned S3 POST URL with policy conditions
+        s3_client = boto3.client(
+            's3',
+            region_name=region_name,
+            config=Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'},
+            ),
+        )
+        try:
+            response = s3_client.generate_presigned_post(
+                bucket_name,
+                f'avatars/{user_id}/${{filename}}',
+                Fields={'Content-Type': 'image/png'},
+                Conditions=[
+                    ['content-length-range', 1, MAX_UPLOAD_BYTES],
+                    ['starts-with', '$Content-Type', 'image/'],
+                ],
+                ExpiresIn=expiration,
+            )
+        except ClientError as e:
+            logging.error(e)
+            return None
+
+        # The response contains the presigned URL and required fields
+        return response
+
+``content-length-range`` sets the minimum and maximum file size in bytes. 
+``['starts-with', '$Content-Type', 'image/']`` allows any ``image/`` type. 
+To allow only one type, use ``{'Content-Type': 'image/png'}`` or 
+``['eq', '$Content-Type', 'image/png']``.
+
+Every form field needs a matching condition. The exceptions are 
+``x-amz-signature``, ``file``, ``policy``, and fields that start with 
+``x-ignore-``. ``generate_presigned_post`` adds the ``bucket`` and ``key`` 
+conditions for you. If the key ends with ``${filename}``, S3 replaces it 
+with the name of the uploaded file.
+
+.. warning::
+    ``generate_presigned_post`` adds ``bucket`` and ``key`` conditions to 
+    the list you pass as ``Conditions``. If you reuse the same list, each 
+    call adds more conditions to it. After two calls with different keys, no 
+    upload can match the policy. Create a new list for each call.
+
+S3 requires ``file`` to be the last field in the form. ``requests`` sends 
+``data`` fields before ``files``, so the ``requests`` example above meets 
+this requirement.
+
+Presigning multipart upload parts
+=================================
+
+A presigned ``put_object`` URL uploads the whole file in one request. For 
+resumable transfers of large files, use a multipart upload instead. The 
+server starts the upload and gives the client a presigned ``UploadPart`` URL 
+(``upload_part`` in boto3) for each part. The client uploads the parts and 
+sends each part's ``ETag`` back to the server. The server then completes the 
+upload.
+
+.. code-block:: python
+
+    import logging
+    import math
+    import boto3
+    from botocore.exceptions import ClientError
+    from botocore.config import Config
+
+    PART_SIZE = 16 * 1024 * 1024  # 16 MiB
+    MAX_PARTS = 10000
+
+
+    def create_presigned_upload_parts(
+        bucket_name,
+        object_name,
+        file_size,
+        region_name,
+        expiration=3600,
+    ):
+        """Start a multipart upload and generate a presigned URL for each part
+
+        :param bucket_name: string
+        :param object_name: string
+        :param file_size: Size of the file in bytes
+        :param region_name: string
+        :param expiration: Time in seconds for the presigned URLs to remain valid
+        :return: Dictionary with the following keys:
+            upload_id: ID of the multipart upload
+            part_size: Size in bytes of each part except the last
+            urls: Dictionary of part number to presigned URL
+        :return: None if error.
+        """
+
+        # Start the upload and generate a presigned URL for each part
+        s3_client = boto3.client(
+            's3',
+            region_name=region_name,
+            config=Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'},
+            ),
+        )
+        try:
+            response = s3_client.create_multipart_upload(
+                Bucket=bucket_name, Key=object_name
+            )
+            upload_id = response['UploadId']
+            part_size = max(PART_SIZE, math.ceil(file_size / MAX_PARTS))
+            urls = {}
+            for part_number in range(1, math.ceil(file_size / part_size) + 1):
+                urls[part_number] = s3_client.generate_presigned_url(
+                    'upload_part',
+                    Params={
+                        'Bucket': bucket_name,
+                        'Key': object_name,
+                        'UploadId': upload_id,
+                        'PartNumber': part_number,
+                    },
+                    ExpiresIn=expiration,
+                )
+        except ClientError as e:
+            logging.error(e)
+            return None
+
+        return {'upload_id': upload_id, 'part_size': part_size, 'urls': urls}
+
+
+    def complete_presigned_upload(
+        bucket_name, object_name, upload_id, parts, region_name
+    ):
+        """Complete a multipart upload from the parts the client uploaded
+
+        :param bucket_name: string
+        :param object_name: string
+        :param upload_id: string
+        :param parts: List of {'PartNumber': int, 'ETag': string}
+        :param region_name: string
+        :return: True if the upload was completed, otherwise False.
+        """
+
+        s3_client = boto3.client('s3', region_name=region_name)
+        try:
+            s3_client.complete_multipart_upload(
+                Bucket=bucket_name,
+                Key=object_name,
+                UploadId=upload_id,
+                MultipartUpload={
+                    'Parts': sorted(parts, key=lambda p: p['PartNumber'])
+                },
+            )
+        except ClientError as e:
+            logging.error(e)
+            return False
+        return True
+
+The client uploads each part with a ``PUT`` request to its URL. It saves the 
+``ETag`` header from each response. After a restart, the server can call 
+``list_parts`` to find the stored parts, so the client uploads only the 
+missing ones. Uploading the same part number again replaces the stored part, 
+so retries are safe. To cancel the upload, call ``abort_multipart_upload`` 
+with the ``UploadId``. This deletes the stored parts.
+
+Part numbers run from 1 to 10,000. Each part must be 5 MiB to 5 GiB, except 
+the last part. The presigned ``upload_part`` URL signs only the ``host`` 
+header, so the client can't add ``x-amz-*`` headers. For a browser client, 
+add ``ETag`` to ``ExposeHeaders`` in the bucket's CORS configuration. See 
+:doc:`s3-example-configuring-buckets`.
+
+S3 bills for the parts of an abandoned upload until it is aborted. See 
+`Cleaning up abandoned multipart uploads`_.
+
+Requiring a checksum on a presigned upload
+==========================================
+
+A presigned URL doesn't sign a hash of the file. It signs the string 
+``UNSIGNED-PAYLOAD`` instead, so the signature doesn't cover the uploaded 
+bytes. To have S3 check the file, pass its checksum in ``Params``. Boto3 then 
+adds the matching ``x-amz-checksum-*`` header to the signed URL.
+
+.. code-block:: python
+
+    import logging
+    import boto3
+    from botocore.exceptions import ClientError
+    from botocore.config import Config
+
+
+    def create_presigned_put_with_checksum(
+        bucket_name, object_name, checksum_sha256, region_name, expiration=300
+    ):
+        """Generate a presigned URL to upload a file with a SHA-256 checksum
+
+        :param bucket_name: string
+        :param object_name: string
+        :param checksum_sha256: Base64-encoded SHA-256 digest of the file
+        :param region_name: string
+        :param expiration: Time in seconds for the presigned URL to remain valid
+        :return: Presigned URL as string. If error, returns None.
+        """
+
+        # Generate a presigned URL that signs the checksum header
+        s3_client = boto3.client(
+            's3',
+            region_name=region_name,
+            config=Config(
+                signature_version='s3v4',
+                s3={'addressing_style': 'virtual'},
+            ),
+        )
+        try:
+            response = s3_client.generate_presigned_url(
+                'put_object',
+                Params={
+                    'Bucket': bucket_name,
+                    'Key': object_name,
+                    'ChecksumSHA256': checksum_sha256,
+                },
+                ExpiresIn=expiration,
+            )
+        except ClientError as e:
+            logging.error(e)
+            return None
+
+        # The response contains the presigned URL
+        return response
+
+The client must send the ``x-amz-checksum-sha256`` header with the same 
+value. If the file doesn't match the checksum, S3 returns ``400 BadDigest``. 
+If the header is missing or has a different value, S3 returns 
+``403 SignatureDoesNotMatch``.
+
+You can pass any of these checksums in ``Params``: ``ChecksumCRC32``, 
+``ChecksumCRC32C``, ``ChecksumCRC64NVME``, ``ChecksumSHA1``, 
+``ChecksumSHA256``, ``ChecksumSHA512``, ``ChecksumMD5``, ``ChecksumXXHASH64``, 
+``ChecksumXXHASH3``, and ``ChecksumXXHASH128``. Each one signs the matching 
+``x-amz-checksum-<algorithm>`` header, in lowercase. The value is the 
+base64-encoded raw digest, not the hex string.
+
+For a multipart upload, create the upload with 
+``ChecksumAlgorithm='SHA256'``. Then presign each part with that part's 
+checksum. When you complete the upload, include each part's checksum with its 
+``ETag``. With checksums, part numbers must start at 1 and have no gaps.
+
+Cleaning up abandoned multipart uploads
+=======================================
+
+S3 stores and bills for upload parts until the upload is completed or 
+aborted. To abort incomplete multipart uploads automatically, add a lifecycle 
+rule with ``AbortIncompleteMultipartUpload``. The rule aborts any upload that 
+isn't completed within ``DaysAfterInitiation`` days after it started.
+
+.. code-block:: python
+
+    ABORT_RULE = {
+        'ID': 'abort-incomplete-multipart-uploads',
+        'Filter': {'Prefix': ''},
+        'Status': 'Enabled',
+        'AbortIncompleteMultipartUpload': {'DaysAfterInitiation': 7},
+    }
+
+Set ``DaysAfterInitiation`` longer than your longest upload. The count 
+starts when the upload starts. Uploading more parts doesn't reset it.
+
+``put_bucket_lifecycle_configuration`` replaces all of the bucket's 
+lifecycle rules. To keep the existing rules, read them first and add the 
+abort rule to the list.
+
+.. code-block:: python
+
+    import logging
+    import boto3
+    from botocore.exceptions import ClientError
+
+
+    def add_abort_incomplete_mpu_rule(bucket_name):
+        """Add a lifecycle rule that aborts incomplete multipart uploads
+
+        :param bucket_name: string
+        :return: True if the rule was added, otherwise False.
+        """
+
+        # Read the existing rules so the new configuration keeps them
+        s3_client = boto3.client('s3')
+        extra_args = {}
+        try:
+            response = s3_client.get_bucket_lifecycle_configuration(
+                Bucket=bucket_name
+            )
+            rules = response['Rules']
+            if 'TransitionDefaultMinimumObjectSize' in response:
+                extra_args['TransitionDefaultMinimumObjectSize'] = (
+                    response['TransitionDefaultMinimumObjectSize']
+                )
+        except ClientError as e:
+            if e.response['Error']['Code'] == 'NoSuchLifecycleConfiguration':
+                rules = []
+            else:
+                logging.error(e)
+                return False
+
+        rules = [r for r in rules if r.get('ID') != ABORT_RULE['ID']] + [ABORT_RULE]
+        try:
+            s3_client.put_bucket_lifecycle_configuration(
+                Bucket=bucket_name,
+                LifecycleConfiguration={'Rules': rules},
+                **extra_args,
+            )
+        except ClientError as e:
+            logging.error(e)
+            return False
+        return True
+
+An empty ``Prefix`` applies the rule to the whole bucket. A rule with 
+``AbortIncompleteMultipartUpload`` can't use a tag-based filter. The rule 
+also applies to uploads that started before you added it. Some older rules 
+set ``Prefix`` directly instead of inside ``Filter``. If the bucket has one of 
+these rules, S3 rejects the new configuration with ``InvalidRequest`` and the 
+function returns ``False``.
