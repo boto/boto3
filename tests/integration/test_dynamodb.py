@@ -218,3 +218,66 @@ class TestDynamodbBatchWrite(BaseDynamoDBTest):
         # Verify all the items were added to dynamodb.
         for obj in self.table.scan(ConsistentRead=True)['Items']:
             self.assertIn(obj, items)
+
+        # Verify consumed capacity is None
+        self.assertIs(batch.consumed_capacity, None)
+
+    def test_batch_write_item_agg_capacity_none(self):
+        num_elements = 100
+        items = []
+        for i in range(num_elements):
+            items.append({'MyHashKey': f'foo{i}', 'OtherKey': f'bar{i}'})
+
+        with self.table.batch_writer(return_consumed_capacity='NONE') as batch:
+            for item in items:
+                batch.put_item(Item=item)
+
+        # Verify all the items were added to dynamodb.
+        for obj in self.table.scan(ConsistentRead=True)['Items']:
+            self.assertIn(obj, items)
+
+        # Verify consumed capacity
+        self.assertIs(batch.consumed_capacity, None)
+
+    def test_batch_write_item_agg_capacity_total(self):
+        num_elements = 100
+        items = []
+        for i in range(num_elements):
+            items.append({'MyHashKey': f'foo{i}', 'OtherKey': f'bar{i}'})
+
+        with self.table.batch_writer(
+            return_consumed_capacity='TOTAL'
+        ) as batch:
+            for item in items:
+                batch.put_item(Item=item)
+
+        # Verify all the items were added to dynamodb.
+        for obj in self.table.scan(ConsistentRead=True)['Items']:
+            self.assertIn(obj, items)
+
+        # Verify consumed capacity
+        total_cu = batch.consumed_capacity[0]['CapacityUnits']
+        self.assertEqual(total_cu, num_elements)
+        self.assertNotIn('Table', batch.consumed_capacity[0])
+
+    def test_batch_write_item_agg_capacity_indexes(self):
+        num_elements = 100
+        items = []
+        for i in range(num_elements):
+            items.append({'MyHashKey': f'foo{i}', 'OtherKey': f'bar{i}'})
+
+        with self.table.batch_writer(
+            return_consumed_capacity='INDEXES'
+        ) as batch:
+            for item in items:
+                batch.put_item(Item=item)
+
+        # Verify all the items were added to dynamodb.
+        for obj in self.table.scan(ConsistentRead=True)['Items']:
+            self.assertIn(obj, items)
+
+        # Verify consumed capacity
+        total_cu = batch.consumed_capacity[0]['CapacityUnits']
+        table_cu = batch.consumed_capacity[0]['Table']['CapacityUnits']
+        self.assertEqual(total_cu, num_elements)
+        self.assertEqual(table_cu, num_elements)
