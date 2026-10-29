@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "s3",
-  "description": "[``botocore``] Prevent generate_presigned_post from mutating the caller's Conditions list."
-}
