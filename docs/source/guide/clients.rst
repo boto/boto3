@@ -111,6 +111,8 @@ with the method's appropriate parameters passed in::
     # Begin waiting for the S3 bucket, amzn-s3-demo-bucket, to exist
     s3_bucket_exists_waiter.wait(Bucket='amzn-s3-demo-bucket')
 
+.. _guide_clients_multithreading:
+
 Multithreading or multiprocessing with clients
 ----------------------------------------------
 
@@ -141,27 +143,66 @@ consider their clients thread-safe without careful review.
     context may result in response ordering issues or interpreter failures
     from underlying SSL modules.
 
-General Example
-~~~~~~~~~~~~~~~
+Creating clients for use in threads
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: python
+The ``Session`` that creates a client is not thread safe, so what matters is
+where you call ``session.client()``. Once a client has been created it does not
+call back into its session and can be used from any thread. There are two safe
+patterns:
+
+1. **Create one session outside the threads and pass its clients to the
+   threads.** The threads share the clients and never touch the session. This
+   is the recommended pattern::
 
     import boto3.session
     from concurrent.futures import ThreadPoolExecutor
 
     def do_s3_task(client, task_definition):
         # Put your thread-safe code here
+        ...
 
     def my_workflow():
-        # Create a session and use it to make our client
+        # Create a session outside the threads and use it to make our client.
         session = boto3.session.Session()
         s3_client = session.client('s3')
 
         # Define some work to be done, this can be anything
         my_tasks = [ ... ]
 
-        # Dispatch work tasks with our s3_client
+        # Dispatch work tasks with our s3_client. The client is thread safe
+        # and is shared by all the workers.
         with ThreadPoolExecutor(max_workers=8) as executor:
             futures = [executor.submit(do_s3_task, s3_client, task) for task in my_tasks]
+
+2. **Create both the session and the client inside each thread.** Nothing is
+   shared between threads, but every thread rereads the service model files::
+
+    import boto3.session
+    import threading
+
+    class MyTask(threading.Thread):
+        def run(self):
+            # Here we create a new session per thread
+            session = boto3.session.Session()
+
+            # Next, we create a client using our thread's session object
+            s3 = session.client('s3')
+
+            # Put your thread-safe code here
+            ...
+
+Do not mix the two. Creating a session in one thread and then calling
+``session.client()`` from other threads at the same time uses the session
+concurrently, which is not safe.
+
+With multiple processes, create both the session and the clients inside each
+process. Neither sessions nor clients can be shared across processes.
+
+The first time a session creates a client for a service, Boto3 reads that
+service's JSON model files from disk and caches them in that session. The cache
+is not shared between sessions, so with the second pattern every thread repeats
+the read and holds its own copy of the model data. This is why the first
+pattern is recommended. See :ref:`guide_session_multithreading` for details.
 
 .. _Botocore Events: https://docs.aws.amazon.com/botocore/latest/topics/events.html
