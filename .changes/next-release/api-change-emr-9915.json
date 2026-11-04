@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``emr``",
-  "description": "[``botocore``] Added StepAdditionalInfo on DescribeStep and ListSteps to surface YARN application IDs for steps."
-}
