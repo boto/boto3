@@ -571,6 +571,76 @@ class TestTransformConditionExpression(BaseTransformationTest):
             },
         }
 
+    def test_condition_expression_preserves_existing_attribute_values(self):
+        params = {
+            'AttrCondition': Attr('filter_val').is_in(['foo', 'bar']),
+            'ExpressionAttributeNames': {'#f1': 'val1'},
+            'ExpressionAttributeValues': {':v1': 321},
+        }
+        self.injector.inject_condition_expressions(
+            params, self.operation_model
+        )
+        assert params['AttrCondition'] == '#n0 IN (:v0, :v2)'
+        assert params['ExpressionAttributeNames'] == {
+            '#f1': 'val1',
+            '#n0': 'filter_val',
+        }
+        assert params['ExpressionAttributeValues'] == {
+            ':v1': 321,
+            ':v0': 'foo',
+            ':v2': 'bar',
+        }
+
+    def test_condition_expression_preserves_existing_attribute_names(self):
+        params = {
+            'AttrCondition': Attr('myattr').eq('myval'),
+            'ExpressionAttributeNames': {'#n0': 'existing_attr'},
+            'ExpressionAttributeValues': {':v0': 'existing_val'},
+        }
+        self.injector.inject_condition_expressions(
+            params, self.operation_model
+        )
+        assert params['AttrCondition'] == '#n1 = :v1'
+        assert params['ExpressionAttributeNames'] == {
+            '#n0': 'existing_attr',
+            '#n1': 'myattr',
+        }
+        assert params['ExpressionAttributeValues'] == {
+            ':v0': 'existing_val',
+            ':v1': 'myval',
+        }
+
+    def test_condition_expression_with_multiple_colliding_placeholders(self):
+        params = {
+            'AttrCondition': Attr('myattr').eq('myval'),
+            'KeyCondition': Key('mykey').eq('keyval'),
+            'ExpressionAttributeNames': {
+                '#n0': 'existing_name0',
+                '#n1': 'existing_name1',
+            },
+            'ExpressionAttributeValues': {
+                ':v0': 'existing_val0',
+                ':v1': 'existing_val1',
+            },
+        }
+        self.injector.inject_condition_expressions(
+            params, self.operation_model
+        )
+        assert params['AttrCondition'] == '#n2 = :v2'
+        assert params['KeyCondition'] == '#n3 = :v3'
+        assert params['ExpressionAttributeNames'] == {
+            '#n0': 'existing_name0',
+            '#n1': 'existing_name1',
+            '#n2': 'myattr',
+            '#n3': 'mykey',
+        }
+        assert params['ExpressionAttributeValues'] == {
+            ':v0': 'existing_val0',
+            ':v1': 'existing_val1',
+            ':v2': 'myval',
+            ':v3': 'keyval',
+        }
+
 
 class TestCopyDynamoDBParams(unittest.TestCase):
     def test_copy_dynamodb_params(self):
