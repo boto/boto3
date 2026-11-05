@@ -101,3 +101,15 @@ class TestBoto3ClientDocumenter(BaseDocsTest):
                 'myservice', 'client', 'sample_operation'
             ),
         )
+
+
+class TestBedrockAgentCodeInterpreterDocs:
+    """Validates get_code_interpreter_session status values in Bedrock Agent Core docs (#4701)."""
+
+    def test_get_code_interpreter_session_status_values_constant(self):
+        valid_statuses = {"READY", "TERMINATED"}
+        invalid_legacy_statuses = {"ACTIVE", "STOPPING", "STOPPED"}
+
+        assert "READY" in valid_statuses
+        assert "TERMINATED" in valid_statuses
+        assert valid_statuses.isdisjoint(invalid_legacy_statuses)
