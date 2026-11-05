@@ -66,8 +66,8 @@ Multithreading or multiprocessing with sessions
 -----------------------------------------------
 
 Similar to ``Resource`` objects, ``Session`` objects are not thread safe
-and should not be shared across threads and processes. It's recommended
-to create a new ``Session`` object for each thread or process::
+and should not be shared across threads and processes. You must create
+a new ``Session`` object for each thread or process::
 
     import boto3
     import boto3.session
