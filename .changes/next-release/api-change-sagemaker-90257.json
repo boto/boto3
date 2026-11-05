@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] Fixed the ImageDeleted and ImageVersionDeleted waiters to succeed on the ResourceNotFound error returned by DescribeImage and DescribeImageVersion"
-}
