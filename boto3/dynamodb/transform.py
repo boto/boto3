@@ -162,6 +162,27 @@ class TransformationInjector:
         if deserializer is None:
             self._deserializer = TypeDeserializer()
 
+    @staticmethod
+    def _next_placeholder_count(user_placeholders, prefix):
+        """Return the first placeholder index not used by the caller.
+
+        Generated placeholders use the form ``#n<k>`` / ``:v<k>``. If the
+        caller already supplies placeholders with that exact shape (e.g.
+        ``#n0``, ``:v3``) in ``ExpressionAttributeNames`` /
+        ``ExpressionAttributeValues``, the builder must start counting one
+        past the highest such index so ``dict.update()`` does not silently
+        overwrite the caller's values.
+        """
+        highest = -1
+        for placeholder in user_placeholders or {}:
+            if placeholder.startswith(prefix):
+                try:
+                    highest = max(highest, int(placeholder[len(prefix):]))
+                except ValueError:
+                    # Not a generated-style placeholder (e.g. '#a', ':c').
+                    continue
+        return highest + 1
+
     def inject_condition_expressions(self, params, model, **kwargs):
         """Injects the condition expression transformation into the parameters
 
@@ -169,7 +190,20 @@ class TransformationInjector:
         and KeyExpression shapes. It also handles any placeholder names and
         values that are generated when transforming the condition expressions.
         """
-        self._condition_builder.reset()
+        # Start placeholder counters above any user-supplied placeholders
+        # that share the generated naming scheme (#n<k> / :v<k>), so that
+        # the subsequent dict.update() does not silently overwrite the
+        # caller's values (see boto3 issue #4831).
+        starting_name_count = self._next_placeholder_count(
+            params.get('ExpressionAttributeNames', {}), '#n'
+        )
+        starting_value_count = self._next_placeholder_count(
+            params.get('ExpressionAttributeValues', {}), ':v'
+        )
+        self._condition_builder.reset(
+            name_count=starting_name_count,
+            value_count=starting_value_count,
+        )
         generated_names = {}
         generated_values = {}
 
