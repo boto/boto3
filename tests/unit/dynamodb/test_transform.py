@@ -643,6 +643,47 @@ class TestDynamoDBHighLevelResource(unittest.TestCase):
             ),
         ]
 
+    def test_instantiation_without_document_modified_shape(self):
+        # When boto3 is paired with a botocore that does not provide
+        # DocumentModifiedShape, the documentation customizations are
+        # skipped but the runtime transformations are still registered.
+        dynamodb_class = type(
+            'dynamodb',
+            (DynamoDBHighLevelResource, ServiceResource),
+            {'meta': self.meta},
+        )
+        with mock.patch(
+            'boto3.dynamodb.transform.TransformationInjector'
+        ) as mock_injector:
+            with mock.patch(
+                'boto3.dynamodb.transform.DocumentModifiedShape', None
+            ):
+                dynamodb_class(client=self.client)
+
+        event_call_args = self.events.register.call_args_list
+        assert event_call_args == [
+            mock.call(
+                'provide-client-params.dynamodb',
+                copy_dynamodb_params,
+                unique_id='dynamodb-create-params-copy',
+            ),
+            mock.call(
+                'before-parameter-build.dynamodb',
+                mock_injector.return_value.inject_condition_expressions,
+                unique_id='dynamodb-condition-expression',
+            ),
+            mock.call(
+                'before-parameter-build.dynamodb',
+                mock_injector.return_value.inject_attribute_value_input,
+                unique_id='dynamodb-attr-value-input',
+            ),
+            mock.call(
+                'after-call.dynamodb',
+                mock_injector.return_value.inject_attribute_value_output,
+                unique_id='dynamodb-attr-value-output',
+            ),
+        ]
+
 
 class TestRegisterHighLevelInterface(unittest.TestCase):
     def test_register(self):
