@@ -211,10 +211,10 @@ class TypeSerializer:
         return value
 
     def _serialize_n(self, value):
-        number = str(DYNAMODB_CONTEXT.create_decimal(value))
-        if number in ['Infinity', 'NaN']:
+        number = DYNAMODB_CONTEXT.create_decimal(value)
+        if number.is_nan() or number.is_infinite():
             raise TypeError('Infinity and NaN not supported')
-        return number
+        return str(number)
 
     def _serialize_s(self, value):
         return value
