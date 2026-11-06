@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``datazone``",
-  "description": "[``botocore``] Adds support for updating OAuth 2.0 connection settings with UpdateConnection."
-}
