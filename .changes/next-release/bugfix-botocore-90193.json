@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``botocore``",
+  "description": "Fixed ``import boto3`` raising ``ImportError`` when paired with botocore versions older than 1.43.34."
+}
