@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "Client",
-  "description": "[``botocore``] Derive client class names from the ``serviceId`` model field instead of ``serviceAbbreviation`` or ``serviceFullName``. Existing class names are unchanged."
-}

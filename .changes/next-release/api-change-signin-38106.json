@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``signin``",
-  "description": "[``botocore``] Adds the CreateBearerToken API, which exchanges your IAM credentials for a bearer token that can be used to access supported AWS services."
-}
