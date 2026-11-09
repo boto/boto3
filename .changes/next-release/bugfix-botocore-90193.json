@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``botocore``",
+  "description": "Added a best-effort fallback so ``import boto3`` no longer fails when installed alongside an older, unsupported botocore version. Install matching boto3 and botocore versions for full functionality."
+}
