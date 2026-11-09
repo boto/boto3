@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "Retries",
+  "description": "[``botocore``] Fixed a KeyError raised by the handler that adds the amz-sdk-invocation-id header when a request-created handler ran on a request that was not sent through the endpoint, such as a request built directly in a test."
+}
