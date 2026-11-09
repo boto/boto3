@@ -40,10 +40,7 @@ class BaseDynamoDBTest(unittest.TestCase):
         }
         cls.table = cls.dynamodb.create_table(
             TableName=cls.table_name,
-            ProvisionedThroughput={
-                "ReadCapacityUnits": 5,
-                "WriteCapacityUnits": 5,
-            },
+            BillingMode='PAY_PER_REQUEST',
             KeySchema=[{"AttributeName": "MyHashKey", "KeyType": "HASH"}],
             AttributeDefinitions=[
                 {"AttributeName": "MyHashKey", "AttributeType": "S"}
