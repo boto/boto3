@@ -2,6 +2,28 @@
 CHANGELOG
 =========
 
+1.44.0
+======
+
+* api-change:``arc-region-switch``: [``botocore``] Adds RetryableConflictException to UpdatePlan so AWS SDKs automatically retry updates that conflict with a concurrent change.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Amazon Bedrock AgentCore Gateway now supports domainOverride so JWT-authorized gateways can advertise your public domain in OAuth discovery behind a proxy or custom domain. AgentCore Runtime adds warmup lifecycle hooks and specifying runtime memory via hooksConfiguration and resourceConfigurations.
+* api-change:``cloudwatchomni``: [``botocore``] Release of GetSpaceDataAccess API - Used to get temporary credentials, limited to the requested actions, for working with data in a space.
+* api-change:``connect``: [``botocore``] Amazon Connect now returns Contact Lens conversational analytics configuration in the DescribeContact API. Customers can retrieve a contact's analytics, redaction, summarization, and sentiment settings, consistent with the configuration already available in contact trace records and contact events.
+* api-change:``devicefarm``: [``botocore``] Adds the NONE insights type to disable insights generation for a run, a testPackageArn field in run details, and a new artifact type for device connect command logs.
+* api-change:``gamelift``: [``botocore``] Amazon GameLift Servers adds game session placement insights. Logs show how the queue's priority configuration, along with player latency and cost data, are applied to each placement request. Use game session placement insights to diagnose why game session placements succeed, fail, or time out.
+* api-change:``lakeformation``: [``botocore``] Adds support for governing AWS Glue user-defined functions with Lake Formation permissions. This release adds the UserDefinedFunction and AnyResource resources, the EXECUTE permission, and the GetTemporaryGlueFunctionCredentials and GetGlueFunctionSessionContext APIs.
+* api-change:``marketplace-agreement``: [``botocore``] This release adds the freeTrialSummary.trialEndTime field to DescribeAgreement and the freeTrialEndTime field to SearchAgreements results, so you can see when an agreement's free trial ends.
+* api-change:``network-firewall``: [``botocore``] Firewall Policy V2 for Network Firewall
+* api-change:``pcs``: [``botocore``] Added support for configuring AMIs, Amazon EC2 security groups, SSH key pairs, and launch template modes when creating or updating AWS PCS compute node groups.
+* api-change:``route53profiles``: [``botocore``] Adds support for having multiple profiles on one VPC. This is done using a priority system to handle conflicts on the dataplane.
+* api-change:``s3tables``: [``botocore``] Adds support for server access logging for Amazon S3 table buckets with the new PutTableBucketLogging and GetTableBucketLogging APIs.
+* api-change:``verifiedpermissions``: [``botocore``] Inconsequential changes to model formatting
+* bugfix:auth: [``botocore``] Require HTTPS when using bearer token authorization
+* enhancement:``Retries``: [``botocore``] Retry an HTTP 429 as a throttling error in standard and adaptive modes when the error code does not match a modeled error.
+* enhancement:credentials: [``botocore``] Login credential refresh requests are now sent to the region recorded in the cached login token, so a refresh is redeemed in the region the session was created in.
+* feature:``Retries``: [``botocore``] The standard retry mode is now the default. It uses 3 attempts (4 for DynamoDB), 50 ms base backoff for transient errors (25 ms for DynamoDB) and 1 s for throttling errors, and no longer reads the ``AWS_NEW_RETRIES_2026`` environment variable.
+
+
 1.43.127
 ========
 
