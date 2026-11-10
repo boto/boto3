@@ -1,5 +1,0 @@
-{
-  "type": "feature",
-  "category": "``Retries``",
-  "description": "[``botocore``] The standard retry mode is now the default. It uses 3 attempts (4 for DynamoDB), 50 ms base backoff for transient errors (25 ms for DynamoDB) and 1 s for throttling errors, and no longer reads the ``AWS_NEW_RETRIES_2026`` environment variable."
-}

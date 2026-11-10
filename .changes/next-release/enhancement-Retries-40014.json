@@ -1,5 +1,0 @@
-{
-  "type": "enhancement",
-  "category": "``Retries``",
-  "description": "[``botocore``] Retry an HTTP 429 as a throttling error in standard and adaptive modes when the error code does not match a modeled error."
-}

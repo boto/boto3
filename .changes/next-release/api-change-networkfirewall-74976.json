@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``network-firewall``",
-  "description": "[``botocore``] Firewall Policy V2 for Network Firewall"
-}
