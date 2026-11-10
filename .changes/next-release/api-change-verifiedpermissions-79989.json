@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``verifiedpermissions``",
+  "description": "[``botocore``] Inconsequential changes to model formatting"
+}
