@@ -316,10 +316,16 @@ class ConditionExpressionBuilder:
     def _get_value_placeholder(self):
         return f":{self._value_placeholder}{self._value_count}"
 
-    def reset(self):
-        """Resets the placeholder name and values"""
-        self._name_count = 0
-        self._value_count = 0
+    def reset(self, name_count=0, value_count=0):
+        """Resets the placeholder name and values
+
+        ``name_count`` and ``value_count`` allow the caller to resume
+        placeholder numbering from a specific index, so generated
+        placeholders do not collide with placeholders the caller has
+        already provided (see boto3 issue #4831).
+        """
+        self._name_count = name_count
+        self._value_count = value_count
 
     def build_expression(self, condition, is_key_condition=False):
         """Builds the condition expression and the dictionary of placeholders.
