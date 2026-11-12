@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``securityagent``",
-  "description": "[``botocore``] Adds support for cleanup strategy in CreatePentestInput and UpdatePentestInput."
-}

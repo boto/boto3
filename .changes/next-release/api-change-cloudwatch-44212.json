@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``cloudwatch``",
-  "description": "[``botocore``] Adds support for saving, retrieving, listing, and deleting CloudWatch metric data query definitions."
-}
