@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``securityhub``",
+  "description": "[``botocore``] New DISABLED status for Security Hub CSPM Central Configuration."
+}
