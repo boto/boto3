@@ -1,5 +1,0 @@
-{
-  "type": "bugfix",
-  "category": "Serialization",
-  "description": "[``botocore``] Send ``Content-Type: application/cbor`` for a Smithy RPC v2 CBOR request when only the response is an event stream. The request used the event stream media type."
-}

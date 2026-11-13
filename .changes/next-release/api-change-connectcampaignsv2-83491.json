@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``connectcampaignsv2``",
-  "description": "[``botocore``] Adds LastModifiedTime to DescribeCampaign and ListCampaigns responses."
-}

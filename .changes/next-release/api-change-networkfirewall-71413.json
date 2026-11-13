@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``network-firewall``",
-  "description": "[``botocore``] Releasing Firewall Proxy API and deprecating Egress Proxy API."
-}

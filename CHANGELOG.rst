@@ -2,6 +2,34 @@
 CHANGELOG
 =========
 
+1.44.3
+======
+
+* api-change:``appstream``: [``botocore``] Amazon WorkSpaces Agent Access now supports image builders, so AI agents can install, configure, and test applications before you create an image. New Replay Session delivers a video of screenshots, a transcript, and a report for each agent session, optionally encrypted with your own KMS key.
+* api-change:``cloudformation``: [``botocore``] AWS CloudFormation introduces stack aliases, which let you refer to an existing stack by a new name without deleting and recreating it. Manage aliases with SetAlias and RemoveAlias, and use an alias in place of the stack name in operations such as UpdateStack.
+* api-change:``cognito-idp``: [``botocore``] Adding support for dynamic client registration.
+* api-change:``connectcampaignsv2``: [``botocore``] Adds LastModifiedTime to DescribeCampaign and ListCampaigns responses.
+* api-change:``deadline``: [``botocore``] AWS Deadline Cloud now supports the NVIDIA RTX PRO 4500 GPU accelerator (rtx-pro-4500) for service-managed fleets running Amazon EC2 G7 instances.
+* api-change:``devops-agent``: [``botocore``] AWS DevOps Agent adds bidirectional communication for Microsoft Teams associations. Set msteams.bidirectional with an IAM role so the agent answers mentions in your Teams channels.
+* api-change:``docdb``: [``botocore``] Update the documentation for the --engine-version flag for cluster creation
+* api-change:``ec2``: [``botocore``] Adds support for Networking Flexible Cost Allocation APIs, enabling Network Admin, Architect, and Engineers to break down shared networking costs by the resources that generated the traffic.
+* api-change:``glue``: [``botocore``] Field description update for auto upgrade summaries
+* api-change:``iam``: [``botocore``] Minor documentation updates only
+* api-change:``imagebuilder``: [``botocore``] Add documentation clarification around List API behavior, and add image available waiter
+* api-change:``lambda``: [``botocore``] Adds support for customer-managed runtimes in the CreateFunction and UpdateFunctionConfiguration APIs. Functions can now use a customer-managed runtime and receive its updates automatically, or pin to a specific runtime version using the existing runtime controls.
+* api-change:``lambda-core``: [``botocore``] Initial release of the customer-managed runtime APIs. Runtime publishers can now create, version, and manage custom runtimes, and use aliases to roll out new runtime versions to the functions that use them.
+* api-change:``network-firewall``: [``botocore``] Releasing Firewall Proxy API and deprecating Egress Proxy API.
+* api-change:``organizations``: [``botocore``] Add support for policy operations on the SECURITYHUB CSPM POLICY policy type.
+* api-change:``qconnect``: [``botocore``] Amazon Q in Connect now supports additional message template attributes. You can personalize message templates using case fields, Amazon Connect Customer Profiles calculated attributes, and product recommendations.
+* api-change:``rolesanywhere``: [``botocore``] This release adds resource aliases for IAM Roles Anywhere trust anchors, profiles, and certificate revocation lists (CRLs). Assign an optional, unique alias name to a resource and use its alias ARN wherever an identifier is accepted, including CreateSession.
+* api-change:``sagemaker``: [``botocore``] New feature for Sagemaker Hyperpod Slurm clusters to install Extensions and view cluster operations.
+* api-change:``scheduler``: [``botocore``] Adds EventBridgePutEventsV2Parameters and EventBridgePutRawEventsParameters to Target so schedules can publish to Amazon EventBridge event bus v2 with PutEvents or PutRawEvents.
+* api-change:``securityhub``: [``botocore``] New DISABLED status for Security Hub CSPM Central Configuration.
+* api-change:``ssm``: [``botocore``] Adding Google Cloud Platform (GCP) support to SSM Cloud Connector to enable onboarding of GCP Compute Engine instances to AWS Systems Manager. Customers can now optionally create an SSM Cloud Connector without an AWS Config connector.
+* api-change:``vpc-lattice``: [``botocore``] Amazon VPC Lattice now supports modification of resource configuration DNS resolution on Resource Gateways
+* bugfix:Serialization: [``botocore``] Send ``Content-Type: application/cbor`` for a Smithy RPC v2 CBOR request when only the response is an event stream. The request used the event stream media type.
+
+
 1.44.2
 ======
 

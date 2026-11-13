@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``sagemaker``",
-  "description": "[``botocore``] New feature for Sagemaker Hyperpod Slurm clusters to install Extensions and view cluster operations."
-}
