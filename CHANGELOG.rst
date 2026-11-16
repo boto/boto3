@@ -2,6 +2,38 @@
 CHANGELOG
 =========
 
+1.44.4
+======
+
+* api-change:``athena``: [``botocore``] Adds an optional AttributesToGet parameter to ListDatabases and ListTableMetadata to return only requested database or table names (and table types) from the AWS Glue Data Catalog, reducing response time for large catalogs.
+* api-change:``cognito-idp``: [``botocore``] Implement OAuth 2.0 Token Exchange (RFC 8693) for Cognito User Pools, enabling services to exchange a user's existing token for a new token that is appropriately scoped and audience-bound for a specific downstream service.
+* api-change:``connect``: [``botocore``] Adds the DeleteAllEntitySessions API, which signs a user out of all of their active sessions in an Amazon Connect instance.
+* api-change:``connecthealth``: [``botocore``] Adds dataset APIs and async medical coding jobs that can use a customer dataset (preview). Ambient listening sessions add medical coding job details and real-time periodontal chart and checklist events (preview). SubmitFeedback compares human-approved and AI-generated artifacts (preview).
+* api-change:``connectscheduling``: [``botocore``] This release adds APIs for Amazon Connect Scheduling. Use them to create, get, approve, reject, and cancel agent time off requests, and to set agent time off balances.
+* api-change:``dsql``: [``botocore``] Added support for Amazon Aurora DSQL advanced monitoring metric groups, which publish detailed database metrics and logs to Amazon CloudWatch Database Insights. Adds the metricGroups parameter to CreateCluster, UpdateCluster, and GetCluster.
+* api-change:``dynamodbstreams``: [``botocore``] Generate account-based endpoints for DynamoDB Streams requests when the account ID is available
+* api-change:``ec2``: [``botocore``] Adds a new Transit Gateway Attachment type called Network Function. Launches associated KMS Keys for EBS Snapshots - associated KMS keys enable customers to share and copy snapshots encrypted with AWS Managed Keys across AWS accounts.
+* api-change:``ecr``: [``botocore``] ECR feature support for replicating image deletion and untagging.
+* api-change:``ecs``: [``botocore``] Amazon ECS gateway connectors now support a configurable deregistration delay (0-3600 seconds, default 300 seconds).
+* api-change:``emr-serverless``: [``botocore``] Amazon EMR Serverless now supports Flex, a new execution option for running data processing jobs on spare compute capacity at a discount.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``health``: [``botocore``] Adds resource tags functionality to the AWS Health service
+* api-change:``iam-toolbox``: [``botocore``] AWS IAM adds the GetRequestAuthorizationPolicy operation, per-check authorization results (checks) and extra policy metadata for resource-based policies (policySource) in GetRequestAuthorizationDetails for Access Troubleshooter.
+* api-change:``iotwireless``: [``botocore``] Updated CreateDeviceProfile to accept MaxEirp values up to 36 dBm in LoRaWANDeviceProfile. Previously the maximum value was 15.
+* api-change:``kms``: [``botocore``] AWS KMS now supports sharing KMS keys across AWS accounts using AWS Resource Access Manager (AWS RAM). This release adds the optional ResourceOwners parameter to ListKeys, which lists keys owned by the caller's account (SELF), keys shared with the account through AWS RAM, or both.
+* api-change:``lambda``: [``botocore``] Adds support for GPU instances on Lambda Managed Instances in the CreateFunction and UpdateFunctionConfiguration APIs. Lambda Event Functions on Lambda Managed Instances can now set the accelerator memory using the new AcceleratorConfig parameter and run on capacity providers with GPU instances.
+* api-change:``lambda-core``: [``botocore``] Lambda network connectors now support service-managed Elastic IP addresses. This enables traffic routed through a connector to reach the public internet without a NAT gateway.
+* api-change:``network-firewall``: [``botocore``] Adds support for context-aware stateful rule groups, letting rules reference AWS resource IDs through ContextSets sourced from a Network Manager context store.
+* api-change:``networkflowmonitor``: [``botocore``] This release adds Performance Monitors to Amazon CloudWatch Network Monitoring. Without installing an agent, they track traffic in the VPCs you select and report an impact score (None, Low, Medium, or High) showing whether the AWS network is degrading your workloads.
+* api-change:``networkmanager``: [``botocore``] Context Sharing with Firewalls
+* api-change:``opensearchmemory``: [``botocore``] Initial release of Amazon OpenSearch Memory, which gives AI agents persistent memory. Store conversation and document events in a Space, have memories extracted from them automatically, and retrieve them with semantic, lexical, or hybrid search.
+* api-change:``s3vectors``: [``botocore``] Amazon S3 Vectors now supports hybrid search, providing metadata text search along with vector search.
+* api-change:``sagemaker``: [``botocore``] Amazon SageMaker adds Synthetic Data Generation, Auto-labeling, Data Quality Evaluation, and Data Transformation capabilities, Cross-Region Inference Routing, KV Aware routing for realtime inference endpoints.
+* api-change:``sagemaker-inference-router-runtime``: [``botocore``] Amazon SageMaker adds cross-region inference routing with new runtime APIs that intelligently route inference requests across endpoints in multiple AWS regions.
+* api-change:``wellarchitected``: [``botocore``] This release adds AWS Organizations integration, on-demand reports, recommendation and profile sharing, and automated basic profiles to the Well-Architected Agent.
+* api-change:``workspaces``: [``botocore``] Adds the WorkspaceOsUserMode parameter to RegisterWorkspaceDirectory and DescribeWorkspaceDirectories, so customers can register an IAM Identity Center directory whose WorkSpaces use local operating system users instead of joining a domain.
+
+
 1.44.3
 ======
 
