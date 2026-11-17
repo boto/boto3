@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``bedrock-agentcore``",
-  "description": "[``botocore``] Adds support for continuous insights and automatic dataset generation"
-}

@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``controltower``",
-  "description": "[``botocore``] AWS Control Tower now reports source drift when an enabled baseline no longer matches the landing zone's configuration."
-}
