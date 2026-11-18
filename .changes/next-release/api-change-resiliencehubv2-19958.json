@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``resiliencehubv2``",
+  "description": "[``botocore``] This release includes support for adding new field for the effective policy used in test runs and documentation updates."
+}

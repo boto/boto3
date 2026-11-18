@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``health``",
+  "description": "[``botocore``] Adds resource tags functionality to the AWS Health service"
+}

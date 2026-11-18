@@ -1,0 +1,5 @@
+{
+  "type": "enhancement",
+  "category": "UserAgent",
+  "description": "[``botocore``] Cache static User-Agent components to reduce per-request CPU overhead without changing the emitted header."
+}
