@@ -74,7 +74,7 @@ verify a domain, you allow SES to send email from any address on that domain.
 When you run the following code example, SES provides you with a verification 
 token. You have to add the token to your domain's DNS configuration. For more 
 information, see `Verifying a Domain with Amazon 
-SES <http://aws.amazon.com/documentation/ses/verify-domain-procedure.html>`_.
+SES <https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#verify-domain-procedure>`_.
 
 To add a sending domain to your SES account, use the 
 `VerifyDomainIdentity <https://docs.aws.amazon.com/ses/latest/APIReference/API_VerifyDomainIdentity.html>`_ 
