@@ -2,6 +2,30 @@
 CHANGELOG
 =========
 
+1.44.6
+======
+
+* api-change:``abuse-signal``: [``botocore``] This release introduces the AWS Abuse Signal API, enabling customers to programmatically submit and track AWS abuse reports.
+* api-change:``bedrock-agentcore-control``: [``botocore``] Adds s3BucketMount to mount an Amazon S3 bucket as a file system in AgentCore Runtime, with an optional per-session key prefix and adds operatingSystemConfiguration with a Linux privilegeMode (STANDARD or PRIVILEGED) to the capacity provider configuration
+* api-change:``braket``: [``botocore``] Supporting a new PAUSED device status and a DeviceStatusReason.
+* api-change:``cleanrooms``: [``botocore``] Adds support for populating intermediate tables with results from PySpark analysis templates.
+* api-change:``cloudformation``: [``botocore``] AWS CloudFormation StackSets now provides stage-by-stage progress for deployments that span thousands of accounts and AWS Regions, which enables you to see where each deployment stands while it runs
+* api-change:``cognito-idp``: [``botocore``] Add support for restoring user pool's user data to point in time.
+* api-change:``elbv2``: [``botocore``] This release adds support for the keyExchange field in CloudTrail tlsDetails, enabling customers to distinguish classical from post-quantum hybrid key exchange for TLS connections on Application Load Balancers.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``health``: [``botocore``] Adds resource tags functionality to the AWS Health service
+* api-change:``iam``: [``botocore``] Adds MaxSignInSessionDuration to IAM Roles and Login Profiles, allowing customers to configure the maximum Console sign-in session duration per principal. Affects CreateRole, UpdateRole, GetRole and LoginProfile APIs.
+* api-change:``neptune``: [``botocore``] Neptune Database Serverless support for graviton3 based r8g instances.
+* api-change:``resiliencehubv2``: [``botocore``] This release includes support for adding new field for the effective policy used in test runs and documentation updates.
+* api-change:``s3``: [``botocore``] Adds exclusions and Multi-Region key resolution to S3 Replication. Rule filters support a Not element to exclude prefixes and object tags. Destination EncryptionConfiguration supports UseSourceMultiRegionKey to encrypt replicas with the related replica KMS multi-Region key in the destination Region.
+* api-change:``securityagent``: [``botocore``] This release adds support for resuming a paused penetration test job from its last saved checkpoint.
+* api-change:``sesv2``: [``botocore``] This release adds support for Spillover Routing in Amazon SES.
+* api-change:``signin``: [``botocore``] These APIs enable customers and administrators to list, view, and revoke AWS Sign-In Sessions programmatically using the AWS CLI and SDKs, providing greater visibility and control over authenticated access.
+* api-change:``support``: [``botocore``] Updated endpoint resolution for AWS Support, including FIPS and dual-stack endpoints.
+* api-change:``wafv2``: [``botocore``] Adds the AnalyticsConfig parameter to CreateWebACL and UpdateWebACL to enable or disable cross-Region security analytics for a WebACL. When you enable security analytics, you authorize AWS to transfer and store full request logs outside the AWS Region where the WebACL is hosted.
+* enhancement:UserAgent: [``botocore``] Cache static User-Agent components to reduce per-request CPU overhead without changing the emitted header.
+
+
 1.44.5
 ======
 
