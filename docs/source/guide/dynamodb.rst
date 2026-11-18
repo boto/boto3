@@ -467,6 +467,27 @@ For more information on the various conditions you can use for queries and
 scans, refer to :ref:`ref_dynamodb_conditions`.
 
 
+Using the client of a resource
+------------------------------
+The client returned by ``dynamodb.meta.client`` or ``table.meta.client`` is
+not the same as one created with ``boto3.client('dynamodb')``. It
+serializes and deserializes items the same way the resource does, so it
+takes and returns plain Python values (see :ref:`ref_valid_dynamodb_types`)
+instead of the low-level ``{'S': 'johndoe'}`` attribute value format::
+
+    # Resource client: plain values
+    table.meta.client.get_item(
+        TableName='users',
+        Key={'username': 'johndoe', 'last_name': 'Doe'},
+    )
+
+    # Low-level client: typed attribute values
+    boto3.client('dynamodb').get_item(
+        TableName='users',
+        Key={'username': {'S': 'johndoe'}, 'last_name': {'S': 'Doe'}},
+    )
+
+
 Deleting a table
 ----------------
 Finally, if you want to delete your table call
