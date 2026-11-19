@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``lambda``",
-  "description": "[``botocore``] Increase function timeout limit to 30 minutes for Lambda Event Functions."
-}
