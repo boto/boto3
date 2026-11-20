@@ -85,6 +85,10 @@ class TestSerializer(unittest.TestCase):
         with pytest.raises(TypeError, match=r'Infinity and NaN not supported'):
             self.serializer.serialize(Decimal('NaN'))
 
+    def test_serialize_infinity_error(self):
+        with pytest.raises(TypeError, match=r'Infinity and NaN not supported'):
+            self.serializer.serialize(Decimal('-Infinity'))
+
     def test_serialize_string(self):
         assert self.serializer.serialize('foo') == {'S': 'foo'}
 
@@ -141,6 +145,21 @@ class TestSerializer(unittest.TestCase):
         )
         assert serialized_value == {
             'M': {'foo': {'S': 'bar'}, 'baz': {'M': {'biz': {'N': '1'}}}}
+        }
+
+    def test_serialize_large_number_with_trailing_zeros(self):
+        assert self.serializer.serialize(
+            1234567895171680000000000000000000000000
+        ) == {'N': '1234567895171680000000000000000000000000'}
+
+    def test_serialize_large_decimal_with_trailing_zeros(self):
+        assert self.serializer.serialize(
+            Decimal('1234567895171680000000000000000000000000')
+        ) == {'N': '1234567895171680000000000000000000000000'}
+
+    def test_serialize_large_decimal_defers_validation_to_dynamodb(self):
+        assert self.serializer.serialize(Decimal('9' * 39)) == {
+            'N': '999999999999999999999999999999999999999'
         }
 
 
@@ -206,3 +225,16 @@ class TestDeserializer(unittest.TestCase):
                 }
             }
         ) == {'foo': 'mystring', 'bar': {'baz': Decimal('1')}}
+
+    def test_deserialize_large_number_with_trailing_zeros(self):
+        # Numbers with trailing zeros that exceed 38 total digits but have
+        # <=38 significant digits are valid in DynamoDB and must deserialize.
+        large_num = '1234567895171680000000000000000000000000'
+        result = self.deserializer.deserialize({'N': large_num})
+        assert result == Decimal(large_num)
+        assert str(result) == large_num
+
+    def test_deserialize_and_serialize_large_number_with_trailing_zeros(self):
+        large_num = '1234567895171680000000000000000000000000'
+        result = self.deserializer.deserialize({'N': large_num})
+        assert TypeSerializer().serialize(result) == {'N': large_num}
