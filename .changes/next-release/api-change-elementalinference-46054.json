@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``elementalinference``",
+  "description": "[``botocore``] Adds Arabic (ara) as a supported language for subtitling transcription and custom vocabulary dictionaries."
+}
