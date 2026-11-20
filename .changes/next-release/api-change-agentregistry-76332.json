@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``agent-registry``",
-  "description": "[``botocore``] Adds support for the WEBBOT registry record type"
-}
