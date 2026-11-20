@@ -13,6 +13,7 @@
 
 import copy
 import os
+import warnings
 
 import botocore.session
 from botocore.client import Config
@@ -24,7 +25,11 @@ from botocore.exceptions import (
 
 import boto3
 import boto3.utils
-from boto3.exceptions import ResourceNotExistsError, UnknownAPIVersionError
+from boto3.exceptions import (
+    CredentialSecurityWarning,
+    ResourceNotExistsError,
+    UnknownAPIVersionError,
+)
 
 from .resources.factory import ResourceFactory
 
@@ -105,6 +110,7 @@ class Session:
         )
         self._setup_loader()
         self._register_default_handlers()
+        self._long_term_credential_warning_issued = False
 
     def __repr__(self):
         return '{}(region_name={})'.format(
@@ -334,6 +340,9 @@ class Session:
             # botocore version mismatches in AWS Lambda.
             del create_client_kwargs['aws_account_id']
 
+        self._warn_if_long_term_credentials(
+            explicit_access_key=aws_access_key_id
+        )
         return self._session.create_client(
             service_name, **create_client_kwargs
         )
@@ -505,6 +514,51 @@ class Session:
         )
 
         return cls(client=client)
+
+    def _warn_if_long_term_credentials(self, explicit_access_key=None):
+        """Emit a warning when long-term IAM user credentials are detected.
+
+        Long-term credentials (access keys prefixed with ``AKIA``) carry a
+        higher risk than temporary credentials because they never expire
+        automatically. This warning is emitted at most once per
+        :class:`Session` instance and can be silenced by setting the
+        ``AWS_SUPPRESS_CREDENTIAL_WARNINGS`` environment variable to ``1``.
+
+        The warning is skipped when the caller explicitly supplies an access
+        key to :meth:`client` or :meth:`resource`, because the caller is
+        assumed to be intentionally overriding session-level credentials.
+        """
+        if self._long_term_credential_warning_issued:
+            return
+        if os.environ.get('AWS_SUPPRESS_CREDENTIAL_WARNINGS') == '1':
+            return
+        if explicit_access_key is not None:
+            return
+
+        credentials = self.get_credentials()
+        if credentials is None:
+            return
+
+        resolved = credentials.resolve()
+        if resolved is None or not resolved.access_key:
+            return
+
+        if resolved.access_key.startswith('AKIA'):
+            self._long_term_credential_warning_issued = True
+            warnings.warn(
+                "boto3 detected long-term AWS credentials (access key ID "
+                "starting with 'AKIA'). Long-term credentials do not expire "
+                "automatically and may pose a security risk if compromised. "
+                "Consider switching to a safer alternative:\n"
+                "  - IAM roles (recommended for EC2 / Lambda / ECS / EKS)\n"
+                "  - IAM Identity Center (SSO) for local development: "
+                "`aws sso login`\n"
+                "  - AWS STS AssumeRole for cross-account access\n"
+                "To suppress this warning, set the environment variable "
+                "AWS_SUPPRESS_CREDENTIAL_WARNINGS=1.",
+                CredentialSecurityWarning,
+                stacklevel=3,
+            )
 
     def _register_default_handlers(self):
         # S3 customizations
