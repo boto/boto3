@@ -93,7 +93,11 @@ def document_resource_waiter(
         ':py:meth:`{}.Waiter.{}.wait` which polls '
         ':py:meth:`{}.Client.{}` every {} seconds until '
         'a successful state is reached. An error is raised '
-        'after {} failed checks.'.format(
+        'after {} failed checks. The resource identifiers are supplied '
+        'automatically. Additional keyword arguments are optional and are '
+        'passed to the underlying service operation. Explicit keyword '
+        'arguments override automatically supplied parameters, which can '
+        'change the resource being monitored.'.format(
             resource_name,
             ' '.join(resource_waiter_model.name.split('_')[2:]),
             service_module_name,

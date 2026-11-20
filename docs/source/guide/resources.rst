@@ -207,6 +207,18 @@ keyword arguments. Examples of waiters include::
     # EC2: Wait for an instance to reach the running state.
     instance.wait_until_running()
 
+For example, calling ``instance.wait_until_running()`` automatically passes
+the instance's ID in the ``InstanceIds`` parameter to the underlying
+``DescribeInstances`` operation. You do not need to provide ``InstanceIds``
+or ``Filters`` to identify this instance.
+
+The reference documentation also lists other parameters accepted by the
+underlying operation, such as ``Filters`` and ``DryRun``. These are optional
+and can change the results returned to the waiter. Explicit keyword arguments
+take precedence over automatically supplied parameters: passing a different
+``InstanceIds`` value, for example, makes the waiter monitor that instance
+instead of the instance represented by the resource.
+
 
 Multithreading or multiprocessing with resources
 ----------------------------------
