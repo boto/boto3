@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "s3",
+  "description": "Fixed a bug in the CRT-based S3 transfer manager where a client's custom ``endpoint_url`` was silently ignored, causing transfers to be misrouted to the default AWS regional endpoint instead of a configured custom endpoint. Fixes `#4839 <https://github.com/boto/boto3/issues/4839>`__."
+}
