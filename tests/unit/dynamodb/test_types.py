@@ -85,6 +85,27 @@ class TestSerializer(unittest.TestCase):
         with pytest.raises(TypeError, match=r'Infinity and NaN not supported'):
             self.serializer.serialize(Decimal('NaN'))
 
+    def test_serialize_special_number_error(self):
+        values = [
+            'Infinity',
+            '-Infinity',
+            'NaN',
+            '-NaN',
+            'sNaN',
+            '-sNaN',
+            'NaN123',
+        ]
+        for value in values:
+            with self.subTest(value=value):
+                with pytest.raises(
+                    TypeError, match=r'Infinity and NaN not supported'
+                ):
+                    self.serializer.serialize(Decimal(value))
+
+    def test_serialize_special_number_in_set_error(self):
+        with pytest.raises(TypeError, match=r'Infinity and NaN not supported'):
+            self.serializer.serialize({Decimal('1'), Decimal('-Infinity')})
+
     def test_serialize_string(self):
         assert self.serializer.serialize('foo') == {'S': 'foo'}
 
