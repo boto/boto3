@@ -711,3 +711,54 @@ class TestConditionExpressionBuilder(unittest.TestCase):
             },
             {':v0': 'foo', ':v1': 'foo2', ':v2': 'bar', ':v3': 'bar2'},
         )
+
+    def test_build_expression_with_reserved_names_and_values(self):
+        builder = ConditionExpressionBuilder(
+            reserved_names={'#n0'}, reserved_values={':v0'}
+        )
+        a = Attr('myattr')
+        exp_string, names, values = builder.build_expression(a.eq('foo'))
+        assert exp_string == '#n1 = :v1'
+        assert names == {'#n1': 'myattr'}
+        assert values == {':v1': 'foo'}
+
+    def test_reset_with_reserved_names_and_values(self):
+        self.builder.reset(
+            reserved_names={'#n0', '#n1'}, reserved_values={':v0', ':v1'}
+        )
+        a = Attr('myattr')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n2 = :v2', {'#n2': 'myattr'}, {':v2': 'foo'}
+        )
+
+    def test_build_expression_with_non_consecutive_reserved_values(self):
+        self.builder.reset(reserved_values={':v0', ':v2'})
+        a = Attr('myattr')
+        self.assert_condition_expression_build(
+            a.is_in(['foo', 'bar']),
+            '#n0 IN (:v1, :v3)',
+            {'#n0': 'myattr'},
+            {':v1': 'foo', ':v3': 'bar'},
+        )
+
+    def test_build_expression_argument_reserved_names_and_values(self):
+        a = Attr('myattr')
+        exp_string, names, values = self.builder.build_expression(
+            a.eq('foo'),
+            reserved_names={'#n0'},
+            reserved_values={':v0'},
+        )
+        assert exp_string == '#n1 = :v1'
+        assert names == {'#n1': 'myattr'}
+        assert values == {':v1': 'foo'}
+
+    def test_reset_clears_reserved_names_and_values(self):
+        self.builder.reset(reserved_names={'#n0'}, reserved_values={':v0'})
+        a = Attr('myattr')
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n1 = :v1', {'#n1': 'myattr'}, {':v1': 'foo'}
+        )
+        self.builder.reset()
+        self.assert_condition_expression_build(
+            a.eq('foo'), '#n0 = :v0', {'#n0': 'myattr'}, {':v0': 'foo'}
+        )

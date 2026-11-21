@@ -304,24 +304,46 @@ BuiltConditionExpression = namedtuple(
 class ConditionExpressionBuilder:
     """This class is used to build condition expressions with placeholders"""
 
-    def __init__(self):
-        self._name_count = 0
-        self._value_count = 0
+    def __init__(self, reserved_names=None, reserved_values=None):
         self._name_placeholder = 'n'
         self._value_placeholder = 'v'
+        self.reset(
+            reserved_names=reserved_names,
+            reserved_values=reserved_values,
+        )
 
     def _get_name_placeholder(self):
-        return f"#{self._name_placeholder}{self._name_count}"
+        name = f"#{self._name_placeholder}{self._name_count}"
+        while name in self._reserved_names:
+            self._name_count += 1
+            name = f"#{self._name_placeholder}{self._name_count}"
+        return name
 
     def _get_value_placeholder(self):
-        return f":{self._value_placeholder}{self._value_count}"
+        value = f":{self._value_placeholder}{self._value_count}"
+        while value in self._reserved_values:
+            self._value_count += 1
+            value = f":{self._value_placeholder}{self._value_count}"
+        return value
 
-    def reset(self):
+    def reset(self, reserved_names=None, reserved_values=None):
         """Resets the placeholder name and values"""
         self._name_count = 0
         self._value_count = 0
+        self._reserved_names = (
+            set(reserved_names) if reserved_names is not None else set()
+        )
+        self._reserved_values = (
+            set(reserved_values) if reserved_values is not None else set()
+        )
 
-    def build_expression(self, condition, is_key_condition=False):
+    def build_expression(
+        self,
+        condition,
+        is_key_condition=False,
+        reserved_names=None,
+        reserved_values=None,
+    ):
         """Builds the condition expression and the dictionary of placeholders.
 
         :type condition: ConditionBase
@@ -331,6 +353,14 @@ class ConditionExpressionBuilder:
         :type is_key_condition: Boolean
         :param is_key_condition: True if the expression is for a
             KeyConditionExpression. False otherwise.
+
+        :type reserved_names: Iterable
+        :param reserved_names: Iterable of placeholder names to avoid
+            colliding with.
+
+        :type reserved_values: Iterable
+        :param reserved_values: Iterable of placeholder values to avoid
+            colliding with.
 
         :rtype: (string, dict, dict)
         :returns: Will return a string representing the condition with
@@ -342,6 +372,10 @@ class ConditionExpressionBuilder:
         """
         if not isinstance(condition, ConditionBase):
             raise DynamoDBNeedsConditionError(condition)
+        if reserved_names is not None:
+            self._reserved_names.update(reserved_names)
+        if reserved_values is not None:
+            self._reserved_values.update(reserved_values)
         attribute_name_placeholders = {}
         attribute_value_placeholders = {}
         condition_expression = self._build_expression(
