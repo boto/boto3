@@ -222,11 +222,18 @@ presigned POST URL to perform a POST request to upload a file to S3.
         exit(1)
 
     # Demonstrate how another Python program can use the presigned URL to upload a file
-    with open(object_name, 'rb') as f:
-        files = {'file': (object_name, f)}
+    file_name = 'FILE_NAME'
+    with open(file_name, 'rb') as f:
+        files = {'file': (file_name, f)}
         http_response = requests.post(response['url'], data=response['fields'], files=files)
     # If successful, returns HTTP status code 204
     logging.info(f'File upload HTTP status code: {http_response.status_code}')
+
+The object key is part of the signed policy, so the uploaded object is stored
+as ``OBJECT_NAME`` regardless of the local file name sent in the ``file``
+field. To let the uploader choose the key, pass a key ending in
+``${filename}`` (for example ``'uploads/${filename}'``), which S3 replaces with
+the name of the uploaded file.
 
 The presigned POST URL and fields values can also be used in an HTML page.
 
