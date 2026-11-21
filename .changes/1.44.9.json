@@ -1,0 +1,12 @@
+[
+  {
+    "category": "``quicksight``",
+    "description": "[``botocore``] Quicksight public SDK release for November 20",
+    "type": "api-change"
+  },
+  {
+    "category": "``sagemaker``",
+    "description": "[``botocore``] Amazon SageMaker AI adds APIs to view capacity reservations and their usage.",
+    "type": "api-change"
+  }
+]
