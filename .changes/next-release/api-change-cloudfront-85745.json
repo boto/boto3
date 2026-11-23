@@ -1,0 +1,5 @@
+{
+  "type": "api-change",
+  "category": "``cloudfront``",
+  "description": "[``botocore``] Launch CloudFront in AWS European Sovereign Cloud."
+}
