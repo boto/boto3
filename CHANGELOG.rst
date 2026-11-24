@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.44.11
+=======
+
+* api-change:``bedrock-agentcore``: [``botocore``] Adds the optional userLocation parameter to InvokeWebSearch. Specify a two-letter ISO 3166-1 alpha-2 country code to refine web search results for that country. InvokeWebSearch also accepts search queries in languages other than English.
+* api-change:``globalaccelerator``: [``botocore``] AWS Global Accelerator supports Client IP Preservation for NLBs with TLS Listener endpoints.
+
+
 1.44.10
 =======
 
