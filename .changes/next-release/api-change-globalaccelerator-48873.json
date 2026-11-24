@@ -1,5 +1,0 @@
-{
-  "type": "api-change",
-  "category": "``globalaccelerator``",
-  "description": "[``botocore``] AWS Global Accelerator supports Client IP Preservation for NLBs with TLS Listener endpoints."
-}
