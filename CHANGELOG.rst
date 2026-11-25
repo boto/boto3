@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.44.12
+=======
+
+* api-change:``elb-proxy``: [``botocore``] Introducing Elastic Load Balancing for Envoy. Run your existing Envoy configurations with AWS integrations, managed scaling, and automatic patching.
+* api-change:``endpoint-rules``: [``botocore``] Update endpoint-rules client to latest version
+* api-change:``wafv2``: [``botocore``] AWS WAF added support for associating AWS WAF web ACLs with Elastic Load Balancing proxies. You can now use AssociateWebACL, DisassociateWebACL, GetWebACLForResource, and ListResourcesForWebACL with the ELB PROXY resource type to protect your proxies with AWS WAF
+
+
 1.44.11
 =======
 
