@@ -75,6 +75,13 @@ class DynamoDBHighLevelResource:
 
         # Apply the documentation customizations to account for
         # the transformations.
+        self._register_documentation_customizations()
+
+    def _register_documentation_customizations(self):
+        if DocumentModifiedShape is None:
+            # botocore < 1.43.34 does not provide DocumentModifiedShape.
+            return
+
         attr_value_shape_docs = DocumentModifiedShape(
             'AttributeValue',
             new_type='valid DynamoDB type',

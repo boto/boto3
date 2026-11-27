@@ -472,19 +472,21 @@ in the ``~/.aws/config`` file.
     a single request, including the initial attempt.  For example,
     setting this value to 5 will result in a request being retried up to
     4 times.  If not provided, the number of retries will default to whatever
-    is modeled, which is typically 5 total attempts in the ``legacy`` retry mode,
-    and 3 in the ``standard`` and ``adaptive`` retry modes.
+    is modeled, which is 3 total attempts in the ``standard`` and ``adaptive``
+    retry modes (4 for Amazon DynamoDB and Amazon DynamoDB Streams), and
+    typically 5 in the ``legacy`` retry mode.
 
 ``retry_mode``
     A string representing the type of retries Boto3 will perform.  Valid values are the following:
 
-        * ``legacy`` - The preexisting retry behavior.  This is the default value if
-          no retry mode is provided.
+        * ``legacy`` - The preexisting retry behavior.
         * ``standard`` - A standardized set of retry rules across the AWS SDKs.
+          This is the default value if no retry mode is provided.
           This includes a standard set of errors that are retried and
           support for retry quotas, which limit the number of unsuccessful retries
           an SDK can make.  This mode will default the maximum number of attempts
-          to 3 unless a ``max_attempts`` is explicitly provided.
+          to 3 (4 for Amazon DynamoDB and Amazon DynamoDB Streams) unless a
+          ``max_attempts`` is explicitly provided.
         * ``adaptive`` - An experimental retry mode that includes all the
           functionality of ``standard`` mode with automatic client-side
           throttling.  This is a provisional mode whose behavior might change.

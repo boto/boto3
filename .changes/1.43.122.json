@@ -1,0 +1,42 @@
+[
+  {
+    "category": "``bedrock-agentcore``",
+    "description": "[``botocore``] Adds AgentCore Runtime session endpoint support, including sessionEndpointUrl on the InvokeAgentRuntime response",
+    "type": "api-change"
+  },
+  {
+    "category": "``bedrock-agentcore-control``",
+    "description": "[``botocore``] Adds Session Endpoint Feature on AgentCore Runtime",
+    "type": "api-change"
+  },
+  {
+    "category": "``cleanrooms``",
+    "description": "[``botocore``] Adds support for the PySpark 2.0 analysis template format and for choosing the file format (CSV or Parquet) of protected job results written to Amazon S3, including in a membership's default job result configuration.",
+    "type": "api-change"
+  },
+  {
+    "category": "``imagebuilder``",
+    "description": "[``botocore``] This release adds support for on-demand AMI scanning with Amazon Inspector.",
+    "type": "api-change"
+  },
+  {
+    "category": "``lightsail``",
+    "description": "[``botocore``] This release adds support for instance health status checks and system status checks.",
+    "type": "api-change"
+  },
+  {
+    "category": "``wafv2``",
+    "description": "[``botocore``] AWS WAF customers using Targeted Bot Control, ATP, or ACFP managed rule groups can now enable automatic Challenge JavaScript SDK injection. When enabled, Amazon CloudFront injects the script tag into HTML responses on your behalf, removing the need for manual integration.",
+    "type": "api-change"
+  },
+  {
+    "category": "s3",
+    "description": "[``botocore``] Prevent generate_presigned_post from mutating the caller's Conditions list.",
+    "type": "bugfix"
+  },
+  {
+    "category": "AWSCRT",
+    "description": "[``botocore``] Update awscrt version to 0.38.0",
+    "type": "enhancement"
+  }
+]

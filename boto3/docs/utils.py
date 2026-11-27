@@ -13,7 +13,13 @@
 import inspect
 
 import jmespath
-from botocore.docs.utils import DocumentModifiedShape  # noqa: F401
+
+try:
+    from botocore.docs.utils import DocumentModifiedShape  # noqa: F401
+except ImportError:
+    # DocumentModifiedShape was added in botocore 1.43.34. Skip the DynamoDB
+    # docstring customizations with earlier versions.
+    DocumentModifiedShape = None
 
 
 def get_resource_ignore_params(params):
