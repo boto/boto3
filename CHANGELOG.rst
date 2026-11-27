@@ -2,6 +2,17 @@
 CHANGELOG
 =========
 
+1.44.13
+=======
+
+* api-change:``cloudwatch``: [``botocore``] CloudWatch OTel enrichment supports a free basic option and a paid tag enrichment option, using the EnableTagEnrichment flag. Set it to true (default) to enrich vended metrics with resource ARN and tag labels for PromQL queries. Set it to false to get the free basic option without resource tags.
+* api-change:``es``: [``botocore``] Catalog APIs for Optimized engine domains
+* api-change:``marketplace-agreement``: [``botocore``] This release adds per-Region pricing to AWS Marketplace usage-based pricing terms. Rate card items can now include Region-specific price overrides. When a Regional price is present for an AWS Region, it replaces the default price for that dimension.
+* api-change:``neptune-graph``: [``botocore``] Adds support for Graph Sessions, a new offering backed by on-demand ephemeral compute.
+* api-change:``opensearch``: [``botocore``] Catalog APIs for Optimized engine domains
+* api-change:``rds``: [``botocore``] Aurora PostgreSQL and Aurora MySQL now let you delete a DB cluster and all its instances in a single API call or console action, without deleting each instance first. Cluster deletion also completes faster.
+
+
 1.44.12
 =======
 
