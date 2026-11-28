@@ -1,0 +1,5 @@
+{
+  "type": "bugfix",
+  "category": "``dynamodb``",
+  "description": "Raise a ``TypeError`` from ``TypeSerializer`` for ``-Infinity``, ``-NaN``, ``sNaN`` and other non-finite ``Decimal`` values, as it already did for ``Infinity`` and ``NaN``, instead of sending them to DynamoDB as numbers."
+}
