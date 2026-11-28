@@ -8,7 +8,7 @@ Code Examples
 #############
 
 This section describes code examples that demonstrate how to use the AWS SDK
-for Python to call various AWS services. The source files for the examples,
+for Python (Boto3) to call various AWS services. The source files for the examples,
 plus additional example programs, are available in the `AWS Code
 Catalog <https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code>`_.
 
